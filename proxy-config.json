@@ -1,0 +1,16 @@
+{
+    "/k8s/micro-infra-gateway/v1/*": {
+        "target": "https://heloword.com/k8s/micro-infra-gateway/v1",
+        "changeOrigin": true,
+        "secure": true,
+        "logLevel": "debug",
+        "pathRewrite": {"^/k8s/micro-infra-gateway/v1" : ""}
+    },
+    "/k8s/*": {
+        "target": "http://localhost:9487",
+        "changeOrigin": true,
+        "secure": false,
+        "logLevel": "debug",
+        "pathRewrite": {"^/k8s" : ""}
+    }
+}

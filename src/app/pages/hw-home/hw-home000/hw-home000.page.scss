@@ -1,0 +1,48 @@
+ion-tab-bar {
+    --background: white;
+}
+
+ion-card {
+    margin: 5px;
+}
+
+.acct-panel * {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ion-card ion-row.acct-panel:last-child {
+    padding-top: 0;
+}
+
+ion-card ion-row.acct-panel:first-child {
+    padding-bottom: 0;
+}
+
+ion-card ion-row.acct-panel ion-col:first-child {
+    border-right: solid lightgray 1px;
+}
+
+ion-card ion-row.acct-panel ion-text h5 {
+    height: 30px !important;
+}
+
+.saving-card ion-row:first-child {
+    border-bottom: solid lightgray .01rem;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+    color: var(--ion-color-primary);
+}
+
+.saving-card ion-row:not(:first-child) {
+    padding-top: 0;
+}
+
+.saving-card ion-row:not(:last-child) {
+    padding-bottom: 0;
+}
+.saving-card ion-text {
+    font-weight: 700;
+}

@@ -1,0 +1,186 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+      <ion-buttons slot="start">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title>
+          <ion-grid class="ion-no-padding">
+              <ion-row>
+                  <ion-col size="3" class="ion-text-center"></ion-col>
+
+                  <ion-col size="6" class="ion-text-center">
+                      <ion-img class="ion-text-center" src="assets/images/"></ion-img>
+                  </ion-col>
+
+                  <ion-col size="3" class="ion-text-center"></ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-title>
+
+      <ion-buttons *ngIf="showScan" slot="primary">
+          <ion-button >
+              <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+      <ion-row>
+          <ion-col size="3">
+              <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block">
+                  Btn1
+                  <ion-ripple-effect type="bounded"></ion-ripple-effect>
+              </ion-button>
+          </ion-col>
+          <ion-col size="3">
+              <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block">
+                  Btn2
+                  <ion-ripple-effect type="bounded"></ion-ripple-effect>
+              </ion-button>
+          </ion-col>
+          <ion-col size="3">
+              <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block">
+                  Btn3
+                  <ion-ripple-effect type="bounded"></ion-ripple-effect>
+              </ion-button>
+          </ion-col>
+          <ion-col size="3">
+              <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block">
+                  Btn4
+                  <ion-ripple-effect type="bounded"></ion-ripple-effect>
+              </ion-button>
+          </ion-col>
+      </ion-row>
+
+      <ion-row>
+          <ion-col>
+              <ion-img class="ion-text-center icon-check" src="assets/images/banner.png"></ion-img>
+          </ion-col>
+      </ion-row>
+
+
+      <ion-card class="v-bottom">
+          <ion-row class="ion-padding acct-panel">
+              <ion-col size="6" class="ion-text-center">
+                  <ion-text>
+                      <h5>
+                          Word
+                      </h5>
+                  </ion-text>
+              </ion-col>
+              <ion-col size="6" class="ion-text-center">
+                  <ion-text>
+                      <h5>
+                          Review
+                      </h5>
+                  </ion-text>
+              </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-padding acct-panel">
+              <ion-col size="6" class="ion-text-center">
+                  <ion-text color="primary">
+                      <h1>{{balance | number}}</h1>
+                  </ion-text>
+              </ion-col>
+              <ion-col size="6" class="ion-text-center">
+                  <ion-text color="primary">
+                      <h1>0</h1>
+                  </ion-text>
+              </ion-col>
+          </ion-row>
+      </ion-card>
+
+      <ion-card class="saving-card">
+
+          <ion-row class="ion-padding">
+              <ion-col size="6" class="ion-text-left">
+                  <ion-text>
+                      Eng
+                  </ion-text>
+              </ion-col>
+              <ion-col size="6" class="ion-text-right">
+                  <ion-text>
+                      ➤
+                  </ion-text>
+              </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-padding">
+              <ion-col size="6" class="ion-text-left">
+                  <ion-text>
+                      Word
+                  </ion-text>
+              </ion-col>
+              <ion-col size="6" class="ion-text-right">
+                  <ion-text color="primary">
+                      {{balance | number}}
+                  </ion-text>
+              </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-padding">
+              <ion-col size="6" class="ion-text-left">
+                  <ion-text>
+                      Remaining
+                  </ion-text>
+              </ion-col>
+              <ion-col size="6" class="ion-text-right">
+                  <ion-text>
+                      {{balance | number}}
+                  </ion-text>
+              </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-padding">
+              <ion-col size="6" class="ion-text-left">
+                  <ion-text>
+                      Reviewed
+                  </ion-text>
+              </ion-col>
+              <ion-col size="6" class="ion-text-right">
+                  <ion-text>
+                      0
+                  </ion-text>
+              </ion-col>
+          </ion-row>
+
+      </ion-card>
+
+  </ion-grid>
+
+</ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="'/wb005-transfer'">
+          <ion-icon name="logo-usd"></ion-icon>
+          <ion-label>Tab1</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button>
+          <ion-icon name="card"></ion-icon>
+          <ion-label>Tab2</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button selected [routerLink]="'/wb000-home'">
+          <ion-icon name="home"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button>
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Tab3</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button>
+          <ion-icon name="people"></ion-icon>
+          <ion-label>Tab4</ion-label>
+      </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

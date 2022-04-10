@@ -1,0 +1,57 @@
+.v-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    margin: 0;
+}
+.card-round-border {
+    border-radius: 40px 40px 0 0;
+}
+.item-inner {
+    margin-left: -5%;
+}
+.min-height {
+    max-height: 1px;
+    min-height: 1px;
+}
+ion-content{
+    --background: #fff url('/assets/images/login/bg.png') no-repeat fixed top / 100%;
+}
+ion-input {
+    --padding-top: 0 !important;
+}
+ion-label {
+    --color: darkslategray !important;
+    margin-bottom: 15px !important;
+}
+ion-grid {
+    padding-top: 0;
+}
+.links {
+    font-size: 12px;
+    text-decoration: underline;
+    color: darkslategray !important;
+}
+ion-segment {
+    --background: white;
+}
+ion-segment-button {
+    --indicator-box-shadow: 0;
+}
+ion-segment-button::part(indicator) {
+    width: 80%;
+    margin: auto;
+}
+ion-card {
+    min-height: 180px;
+}
+.google-sign-in-btn {
+    border: solid 1px rgba(0,0,0,0.05);
+    box-shadow: 1px 1px rgb(0 0 0 / 20%);
+    border-radius: 5px;
+}
+@media only screen and (min-height : 812px) and (orientation: portrait) { 
+    ion-content{
+        --background: #fff url('/assets/images/login/bg.png') no-repeat fixed top / 140%;
+    }
+}

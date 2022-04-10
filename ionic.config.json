@@ -1,0 +1,7 @@
+{
+  "name": "heloword-frontend",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
