@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  baseHref: '/k8s',
   appVersion: '0.1',
   backendBaseUrl: '/k8s',
   googleClientId: '268421074885-cn4qtlas4hep25tt7f0gaak8qh557fbu.apps.googleusercontent.com',
