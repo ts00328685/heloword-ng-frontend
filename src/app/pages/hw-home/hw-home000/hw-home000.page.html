@@ -19,7 +19,7 @@
           </ion-grid>
       </ion-title>
 
-      <ion-buttons *ngIf="showScan" slot="primary">
+      <ion-buttons slot="primary">
           <ion-button >
               <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
           </ion-button>
@@ -34,7 +34,7 @@
 
       <ion-row>
           <ion-col size="3">
-              <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block">
+              <ion-button (click)="test()" size="small" class="next-btn" color="primary" fill="outline" expand="block">
                   Btn1
                   <ion-ripple-effect type="bounded"></ion-ripple-effect>
               </ion-button>
@@ -87,7 +87,7 @@
           <ion-row class="ion-padding acct-panel">
               <ion-col size="6" class="ion-text-center">
                   <ion-text color="primary">
-                      <h1>{{balance | number}}</h1>
+                      <h1>0</h1>
                   </ion-text>
               </ion-col>
               <ion-col size="6" class="ion-text-center">
@@ -121,7 +121,7 @@
               </ion-col>
               <ion-col size="6" class="ion-text-right">
                   <ion-text color="primary">
-                      {{balance | number}}
+                      0
                   </ion-text>
               </ion-col>
           </ion-row>
@@ -134,7 +134,7 @@
               </ion-col>
               <ion-col size="6" class="ion-text-right">
                   <ion-text>
-                      {{balance | number}}
+                      0
                   </ion-text>
               </ion-col>
           </ion-row>
@@ -159,7 +159,7 @@
 </ion-content>
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-      <ion-tab-button [routerLink]="'/wb005-transfer'">
+      <ion-tab-button (click)="test()">
           <ion-icon name="logo-usd"></ion-icon>
           <ion-label>Tab1</ion-label>
       </ion-tab-button>
@@ -169,7 +169,7 @@
           <ion-label>Tab2</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button selected [routerLink]="'/wb000-home'">
+      <ion-tab-button selected [routerLink]="'/hw-login'">
           <ion-icon name="home"></ion-icon>
       </ion-tab-button>
 

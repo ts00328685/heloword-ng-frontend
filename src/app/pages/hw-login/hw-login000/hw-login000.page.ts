@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
-import { tap, mergeMap } from 'rxjs/operators';
-import { ApiService } from 'src/app/shared/services/api.service';
-import { SettingState, StateService } from 'src/app/shared/services/state.service';
-import { ViewService } from 'src/app/shared/services/view.service';
+import { Component } from '@angular/core';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { tap, mergeMap, map } from 'rxjs/operators';
+import { BasePage } from 'src/app/shared/base/base.page';
+import { Forms } from 'src/app/shared/base/validation/forms';
+import { RuleUtils } from 'src/app/shared/utils/rules-utils';
 
 @Component({
   selector: 'hw-login000',
   templateUrl: './hw-login000.page.html',
   styleUrls: ['./hw-login000.page.scss'],
 })
-export class HwLogin000Page implements OnInit {
+export class HwLogin000Page extends BasePage<any> {
 
   loginType = 0;
 
@@ -23,26 +22,28 @@ export class HwLogin000Page implements OnInit {
   socialUser;
   isLoggedin = false;
 
-  constructor(
-    private stateService: StateService,
-    private apiService: ApiService,
-    private viewService: ViewService,
-    private socialAuthService: SocialAuthService,
-    private router: Router) {
-  }
 
-  ngOnInit() {
-    this.socialAuthService.authState
+  init(): void {
+    super.getSocialAuthService().authState
     .pipe(
       tap(socialUser => localStorage.setItem('idToken', socialUser['idToken'])),
-      mergeMap(socialUser => this.apiService.doPost('/service-auth/api/auth/verify-google-id', socialUser, false))
+      mergeMap(socialUser => super.getApiService().doPost('/service-auth/api/auth/verify-google-id', socialUser, false)),
+      map(rs => rs.data || {})
     )
     .subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = user != null;
-      this.handleLoginSuccess();
-      console.log(this.socialUser);
+      this.handleLoginSuccess(this.socialUser);
+      super.debug(this.socialUser);
     });
+  }
+
+  getFormClazz(): Forms<any> {
+    return null
+  }
+  
+  getPageName(): string {
+    return 'Login Page';
   }
 
   ionViewWillEnter() {
@@ -82,27 +83,22 @@ export class HwLogin000Page implements OnInit {
     return this.pwd;
   }
 
-  test() {
-    this.apiService.doGet('/service-word/api/word-english/example/according to').subscribe(console.log);
-  }
-
   login() {
   }
 
-  handleLoginSuccess() {
-    // this.state.custId = this.custId;
-    // if (this.state.custId != this.custId) {
-    //   this.stateService.clearSettingState();
-    //   this.stateService.updateSettingState(this.state);
-    // }
-    this.router.navigateByUrl('/hw-home', { replaceUrl: true });
+  handleLoginSuccess(user) {
+    if (RuleUtils.getInstance().isEmptyObject(user)) {
+      super.getViewService().showSystemErrorToast();
+    } else {
+      super.getActionService().nextPageByUrl('/hw-home', { replaceUrl: true }); 
+    }
   }
 
   googleLogin(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    super.getSocialAuthService().signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   logOut(): void {
-    this.socialAuthService.signOut();
+    super.getSocialAuthService().signOut();
   }
 }

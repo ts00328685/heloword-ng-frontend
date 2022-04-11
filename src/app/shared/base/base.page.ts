@@ -3,7 +3,9 @@ import { BaseComponent } from 'src/app/shared/base/base.component';
 import { Forms } from 'src/app/shared/base/validation/forms';
 import { ActivatedRoute } from '@angular/router';
 import { InjectorUtils } from '../utils/injector-utils';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export abstract class BasePage<T> extends BaseComponent {
 
     private pData: any;
@@ -17,7 +19,7 @@ export abstract class BasePage<T> extends BaseComponent {
     abstract getPageName(): string;
 
     protected pageInit(): void {
-        this.subscribeParams();
+        // this.subscribeParams();
         this.checkAndScrollToPageTop();
         this.checkAndStopPageTimer();
         this.getTitleService().setTitle(this.getPageName());

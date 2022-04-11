@@ -7,4 +7,5 @@ export const environment = {
     loggerLevel: 0,
     enableClientLog: false
   },
+  cipher: {aesKey: '', aesIv: ''}
 };

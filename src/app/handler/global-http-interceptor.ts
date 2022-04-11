@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 import { UtilsService } from "../shared/services/utils.service";
 import { ViewService } from "../shared/services/view.service";
 
@@ -17,7 +18,7 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
     this.viewService.presentLoading();
     const authReq = req.clone({
       headers: new HttpHeaders({
-        cv: this.utils.generateCV(),
+        cv: this.utils.generateCV(environment.cipher.aesKey, environment.cipher.aesIv),
         'Authorization': 'Bearer /'
       }),
       withCredentials: true

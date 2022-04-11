@@ -1,9 +1,9 @@
 import { ViewService } from './view.service';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Device } from '@ionic-native/device';
 import { environment } from 'src/environments/environment';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { UtilsService } from './utils.service';
@@ -21,33 +21,24 @@ export class ApiService {
   }
 
   doGet(url: string, params: HttpParams = new HttpParams()): Observable<any> {
-    const headers = new HttpHeaders().set('cv', this.utilsService.generateCV());;
-    return this.httpClient.get(environment.backendBaseUrl + url, { headers, params: params })
+    return this.httpClient.get(environment.backendBaseUrl + url, { params: params })
       .pipe(
         catchError(this.handleHttpError.bind(this))
       );
   }
 
   doPost(url: string, params: any = {}, defaultParamFormat = true, baseUrl = environment.backendBaseUrl) {
-    const headers = new HttpHeaders().set('cv', this.utilsService.generateCV());;
     const _params = defaultParamFormat
       ? { ... this.getFidoServerCommonHeader(), body: params }
       : params;
 
-    return this.httpClient.post(baseUrl + url, _params, {headers})
+    return this.httpClient.post(baseUrl + url, _params)
       .pipe(
-        catchError(this.handleHttpError.bind(this)),
-        tap(rs => {
-          console.log('doPost', url, JSON.stringify({
-            ... this.getFidoServerCommonHeader(),
-            body: params
-          }), JSON.stringify(rs));
-        })
+        catchError(this.handleHttpError.bind(this))
       );
   }
 
   handleHttpError(error: any): Observable<CommonResponse> {
-    console.error('handleHttpError', JSON.stringify(error));
     this.viewService.dismissLoading();
     return of({
       header: { code: '9999', txTime: this.getCurrentTime() },

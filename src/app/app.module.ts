@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -14,6 +14,7 @@ import { GlobalHttpInterceptor } from './handler/global-http-interceptor';
 import { SocialLoginModule, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { InjectorUtils } from './shared/utils/injector-utils';
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,6 +47,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {
+    InjectorUtils.setInjector(injector);
+  }
+ }
 
 

@@ -1,16 +1,16 @@
 import { AuthService } from '../services/auth.service';
 import { TimerUtils } from './../utils/timer-utils';
-import { AfterViewInit, ChangeDetectorRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { InjectorUtils } from '../utils/injector-utils';
 import { LoggerUtils } from '../utils/logger-utils';
 import { RuleUtils } from '../utils/rules-utils';
 import { CommonUtils } from '../utils/common-utils';
-import { FuSurveyService } from '../components/fu-survey/fu-survey.service';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActionService } from '../services/action.service';
 import { ViewService } from '../services/view.service';
 import { ApiService } from '../services/api.service';
-
+import { SocialAuthService } from 'angularx-social-login';
+@Injectable()
 export abstract class BaseComponent implements OnInit, OnDestroy, AfterViewInit {
     
     ngAfterViewInit(): void {
@@ -74,8 +74,8 @@ export abstract class BaseComponent implements OnInit, OnDestroy, AfterViewInit 
         return InjectorUtils.getInjector().get(Renderer2);
     }
 
-    protected getSurveyService(): FuSurveyService {
-        return InjectorUtils.getInjector().get(FuSurveyService);
+    protected getSocialAuthService(): SocialAuthService {
+        return InjectorUtils.getInjector().get(SocialAuthService);
     }
 
     protected getDomSanitizer(): DomSanitizer {

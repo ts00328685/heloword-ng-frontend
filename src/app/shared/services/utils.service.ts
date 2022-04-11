@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import CryptoJS from 'crypto-js';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
 
-  constructor() {
-    window['utilsService'] = this;
-  }
-
-  generateCV(): string {
+  generateCV(_key: string, iv: string): string {
+    if (!_key || !iv) {
+      return '';
+    }
     const message = new Date().getTime().toString();
-    return this.encryptAES(message, "", "") ;
+    return this.encryptAES(message, _key, iv) ;
   }
 
   decryptAES(content: string, key: string, iv: string): string {

@@ -1,29 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { ApiService } from 'src/app/shared/services/api.service';
-import { StateService } from 'src/app/shared/services/state.service';
-import { ViewService } from 'src/app/shared/services/view.service';
+import { mergeMap } from 'rxjs/operators';
+import { BasePage } from 'src/app/shared/base/base.page';
+import { Forms } from 'src/app/shared/base/validation/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'hw-home000',
   templateUrl: './hw-home000.page.html',
   styleUrls: ['./hw-home000.page.scss'],
 })
-export class HwHome000Page  {
+export class HwHome000Page extends BasePage<any> {
+  
+  init(): void {
 
-  balance = 0;
+    if (environment.cipher.aesIv && environment.cipher.aesKey) {
+      return;
+    }
 
-  showScan = false;
-
-  constructor(
-    private navCtrl: NavController,
-    private apiService: ApiService,
-    private stateService: StateService,
-    private viewService: ViewService
-  ) { }
-
-  ionViewWillEnter() {
-
+    super.getApiService().doGet('/service-auth/api/auth/init-cookie').pipe(
+      mergeMap(() =>  super.getApiService().doGet('/service-auth/api/auth/init-cipher'))
+    ).subscribe(response => {
+      super.debug('init cipher', response);
+      environment.cipher = response.data;
+    })
   }
+
+  getFormClazz(): Forms<any> {
+    return null;
+  }
+
+  getPageName(): string {
+    return 'Home 000';
+  }
+
+  test() {
+    super.getApiService().doGet('/service-word/api/word-english/example/according to').subscribe(super.debug.bind(this));
+  }
+
 
 }
