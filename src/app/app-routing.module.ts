@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'hw-login',
     loadChildren: () => import('./pages/hw-login/hw-login.module').then( m => m.HwLoginModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'hw-home'
   }
 ];
 
