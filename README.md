@@ -1,3 +1,7 @@
+!UNDER CONSTRUCTION!
+https://www.heloword.com/k8s/ng-frontend/v1
+
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
