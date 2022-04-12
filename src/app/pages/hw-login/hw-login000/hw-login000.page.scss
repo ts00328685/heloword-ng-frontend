@@ -15,7 +15,7 @@
     min-height: 1px;
 }
 ion-content{
-    --background: #fff url('/assets/images/login/bg.png') no-repeat fixed top / 100%;
+    --background: #fff url('~src/assets/images/login/bg.png') no-repeat fixed top / 100%;
 }
 ion-input {
     --padding-top: 0 !important;
@@ -52,6 +52,6 @@ ion-card {
 }
 @media only screen and (min-height : 812px) and (orientation: portrait) { 
     ion-content{
-        --background: #fff url('/assets/images/login/bg.png') no-repeat fixed top / 140%;
+        --background: #fff url('~src/assets/images/login/bg.png') no-repeat fixed top / 140%;
     }
 }

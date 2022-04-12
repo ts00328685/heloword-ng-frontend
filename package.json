@@ -8,7 +8,7 @@
     "start": "ng serve --proxy-config proxy-config.json --host=0.0.0.0",
     "start-prod": "ng serve --proxy-config proxy-config.json --host=0.0.0.0 --prod",
     "build": "ng build",
-    "build-prod": "ng build --prod --deploy-url=/k8s/ng-frontend/v1/ --base-href=/k8s/ng-frontend/v1/",
+    "build-prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
