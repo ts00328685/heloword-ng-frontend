@@ -28,7 +28,6 @@ import { InjectorUtils } from './shared/utils/injector-utils';
     HttpClientModule
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: environment.baseHref },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     DatePipe,
     {provide: ErrorHandler, useClass: GlobalErrorHandler},

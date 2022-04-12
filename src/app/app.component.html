@@ -2,24 +2,30 @@
     <ion-split-pane contentId="main-content">
         <ion-menu contentId="main-content" type="overlay">
             <ion-content>
-
-                <ion-list id="inbox-list">
-                    <ion-list-header>Heloword</ion-list-header>
-                    <ion-note>service@heloword.com</ion-note>
-
+                <ion-list id="inbox-list" class="profile">
+                    <ion-row>
+                        <ion-col size="9">
+                            <ion-list-header>{{(user$ | async).nickname || 'Helo!'}}</ion-list-header>
+                            <ion-note>{{(user$ | async).email || 'service@heloword.com'}}</ion-note>
+                        </ion-col>
+                        <ion-col size="3" class="ion-float-left">
+                            <ion-avatar>
+                                <img [src]="(user$ | async).picture || './assets/images/icon-face-id.png'">
+                            </ion-avatar>
+                        </ion-col>
+                    </ion-row>
                     <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                        <ion-item routerDirection="root" [routerLink]="p.url" lines="none" detail="false" routerLinkActive="selected">
+                        <ion-item routerDirection="root" [routerLink]="p.url" lines="none" detail="false"
+                                  routerLinkActive="selected">
                             <ion-icon slot="start" [name]="p.icon"></ion-icon>
                             <ion-label>{{ p.title }}</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
                 </ion-list>
 
-                <ion-item-divider></ion-item-divider>
-
                 <ion-list>
                     <ion-menu-toggle auto-hide="false">
-                        <ion-item routerDirection="root" routerLink="hw-login" lines="none" detail="false" routerLinkActive="selected">
+                        <ion-item routerDirection="root" lines="none" detail="false">
                             <ion-icon slot="start" name="warning-outline"></ion-icon>
                             <ion-label>Log out</ion-label>
                         </ion-item>

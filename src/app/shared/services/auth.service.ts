@@ -10,39 +10,8 @@ import { UserVO } from '../models/common-models';
 })
 export class AuthService extends BaseService {
 
-  private userStore = new BehaviorSubject<UserVO>({ isLoggedIn: false, authorities: [], roles: [], menus: {}, branches: [], name: '', counselorType: [] });
+  private userStore = new BehaviorSubject<any>({ isLoggedIn: false, authorities: [], roles: [], menus: {}, branches: [], name: '', counselorType: [] });
   public readonly userStore$ = this.userStore.asObservable();
-
-  private jwt = '';
-
-  constructor() {
-    super();
-  }
-
-  updateJwt(jwt: string) {
-    this.jwt = jwt;
-
-    let funList = [] as any;
-    let name = '';
-
-    const authorities = funList.functions.map((func: any) => func.funId.toLowerCase());
-    const menus = {} as any;
-    funList.functions.forEach((func: any) => {
-      menus[func.funId.toLowerCase()] = {
-        name: func.name,
-        desc: func.desc
-      };
-    });
-
-    const counselorType = funList.counselorType;
-    const branches = funList.branches;
-    const roles = funList.roles;
-    this.updateUserStore({ isLoggedIn: true, authorities, roles, menus, branches, name, counselorType });
-  }
-
-  getJwt(): string {
-    return this.jwt;
-  }
 
   updateUserStore(userVO: UserVO) {
     this.userStore.next(userVO);

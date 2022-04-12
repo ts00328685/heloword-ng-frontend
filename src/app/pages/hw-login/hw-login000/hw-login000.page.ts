@@ -90,6 +90,7 @@ export class HwLogin000Page extends BasePage<any> {
     if (RuleUtils.getInstance().isEmptyObject(user)) {
       super.getViewService().showSystemErrorToast();
     } else {
+      super.getAuthService().updateUserStore(user);
       super.getActionService().nextPageByUrl('/hw-home', { replaceUrl: true }); 
     }
   }
