@@ -7,15 +7,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { APP_BASE_HREF, DatePipe } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { GlobalErrorHandler } from './handler/global-error-handler';
 import { GlobalHttpInterceptor } from './handler/global-http-interceptor';
 import { SocialLoginModule, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { InjectorUtils } from './shared/utils/injector-utils';
-import { ApiService } from './shared/services/api.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +25,8 @@ import { ApiService } from './shared/services/api.service';
     IonicModule.forRoot(),
     SocialLoginModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpClientJsonpModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

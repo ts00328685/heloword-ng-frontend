@@ -8,6 +8,6 @@ export const environment = {
     enableClientLog: true
   },
   cipher: {aesKey: '', aesIv: ''},
-  retrieveIpUrl: 'https://jsonip.com/',
+  retrieveIpUrl: 'https://jsonip.com',
   userIp: ''
 };

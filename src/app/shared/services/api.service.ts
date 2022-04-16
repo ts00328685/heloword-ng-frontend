@@ -37,7 +37,7 @@ export class ApiService extends BaseService {
   }
 
   retrieveUserIp(): Observable<any> {
-    return this.httpClient.get(environment.retrieveIpUrl)
+    return this.httpClient.jsonp(environment.retrieveIpUrl, 'callback')
       .pipe(
         tap((rs: any) => {
           environment.userIp = rs.ip || environment.userIp;

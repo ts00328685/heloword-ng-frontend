@@ -12,7 +12,7 @@ export const environment = {
     enableClientLog: true
   },
   cipher: {aesKey: '', aesIv: ''},
-  retrieveIpUrl: '/get-ip',
+  retrieveIpUrl: 'https://jsonip.com/callback',
   userIp: ''
 };
 
