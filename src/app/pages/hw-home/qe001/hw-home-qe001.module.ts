@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { HwHomeRoutingModule } from './hw-home-routing.module';
+import { HwHomeQe001RoutingModule } from './hw-home-qe001-routing.module';
+
 
 
 
@@ -11,10 +12,9 @@ import { HwHomeRoutingModule } from './hw-home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HwHomeRoutingModule
+    HwHomeQe001RoutingModule
   ],
   declarations: [
-    
   ]
 })
-export class HwHomeModule {}
+export class HwHomeQe001Module {}

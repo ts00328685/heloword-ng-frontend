@@ -5,11 +5,11 @@ import { Forms } from 'src/app/shared/base/validation/forms';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'hw-home000',
-  templateUrl: './hw-home000.page.html',
-  styleUrls: ['./hw-home000.page.scss'],
+  selector: 'hw-home-qe001-0100',
+  templateUrl: './hw-home-qe001-0100.page.html',
+  styleUrls: ['./hw-home-qe001-0100.page.scss'],
 })
-export class HwHome000Page extends BasePage<any> {
+export class HwHomeQe0010100Page extends BasePage<any> {
   
   init(): void {
 
@@ -30,7 +30,7 @@ export class HwHome000Page extends BasePage<any> {
   }
 
   getPageName(): string {
-    return 'Home 000';
+    return 'Home Qu-001 0100 - home dashboard';
   }
 
   test() {
