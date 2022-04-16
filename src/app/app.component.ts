@@ -15,7 +15,7 @@ export class AppComponent extends BaseComponent {
   user$ = super.getAuthService().userStore$;
 
   init() {
-
+    super.getApiService().retrieveUserIp();
   }
 
 }

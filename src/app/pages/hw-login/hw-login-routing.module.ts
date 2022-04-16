@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HwLogin000Page } from './hw-login000/hw-login000.page';
+import { HwLoginNormalPage } from './normal/hw-login-normal.page';
+
 
 
 const routes: Routes = [
   {
-    path: '',
-    component: HwLogin000Page
+    path: 'normal',
+    component: HwLoginNormalPage
+  },
+  {
+    path: '**',
+    redirectTo: 'normal'
   }
 ];
 

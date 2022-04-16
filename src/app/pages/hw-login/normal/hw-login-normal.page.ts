@@ -6,11 +6,11 @@ import { Forms } from 'src/app/shared/base/validation/forms';
 import { RuleUtils } from 'src/app/shared/utils/rules-utils';
 
 @Component({
-  selector: 'hw-login000',
-  templateUrl: './hw-login000.page.html',
-  styleUrls: ['./hw-login000.page.scss'],
+  selector: 'hw-login-normal',
+  templateUrl: './hw-login-normal.page.html',
+  styleUrls: ['./hw-login-normal.page.scss'],
 })
-export class HwLogin000Page extends BasePage<any> {
+export class HwLoginNormalPage extends BasePage<any> {
 
   loginType = 0;
 
@@ -27,7 +27,7 @@ export class HwLogin000Page extends BasePage<any> {
     super.getSocialAuthService().authState
     .pipe(
       tap(socialUser => localStorage.setItem('idToken', socialUser['idToken'])),
-      mergeMap(socialUser => super.getApiService().doPost('/service-auth/api/auth/verify-google-id', socialUser, false)),
+      mergeMap(socialUser => super.getApiService().doPost('/service-auth/api/auth/verify-google-id', socialUser)),
       map(rs => rs.data || {})
     )
     .subscribe((user) => {
@@ -76,7 +76,7 @@ export class HwLogin000Page extends BasePage<any> {
 
   switchLoginType(e: any) {
     this.loginType = +this.loginType;
-    console.log(e)
+    super.debug(e)
   }
 
   isPwdValid() {

@@ -63,7 +63,7 @@ export class NumberCommaDirective implements AfterViewInit, OnChanges {
 
     @HostListener('paste', ['$event'])
     @HostListener('keyup', ['$event']) onkeyup(e) {
-        // console.log(e)
+        // super.debug(e)
         this.numberCheck(e);
     }
 
@@ -83,7 +83,7 @@ export class NumberCommaDirective implements AfterViewInit, OnChanges {
      * @implement
      */
     ngOnChanges(changes: SimpleChanges) {
-        // console.log("ngOnChanges");
+        // super.debug("ngOnChanges");
     }
 
     /** 數字檢查 */

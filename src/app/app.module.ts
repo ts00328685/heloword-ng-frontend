@@ -15,11 +15,12 @@ import { SocialLoginModule, GoogleLoginProvider, SocialAuthServiceConfig } from 
 import { environment } from 'src/environments/environment';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { InjectorUtils } from './shared/utils/injector-utils';
+import { ApiService } from './shared/services/api.service';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -30,8 +31,8 @@ import { InjectorUtils } from './shared/utils/injector-utils';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     DatePipe,
-    {provide: ErrorHandler, useClass: GlobalErrorHandler},
-    {provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true},
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -51,6 +52,6 @@ export class AppModule {
   constructor(private injector: Injector) {
     InjectorUtils.setInjector(injector);
   }
- }
+}
 
 

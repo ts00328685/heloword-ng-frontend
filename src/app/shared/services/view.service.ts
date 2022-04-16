@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { BaseService } from '../base/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ViewService {
+export class ViewService extends BaseService {
 
   loading: HTMLIonLoadingElement;
 
@@ -13,10 +14,12 @@ export class ViewService {
     private loadingController: LoadingController,
     private alertController: AlertController
   ) 
-  {}
+  {
+    super();
+  }
 
   scrollToTop() {
-    console.log('to be implemented');
+    super.debug('to be implemented');
   }
 
   showSystemErrorToast() {

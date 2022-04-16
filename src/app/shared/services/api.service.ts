@@ -1,91 +1,55 @@
-import { ViewService } from './view.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Device } from '@ionic-native/device';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { DatePipe } from '@angular/common';
-import { UtilsService } from './utils.service';
+import { BaseService } from '../base/base.service';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService extends BaseService {
 
-  userIp = '127.0.0.1';
-
-  constructor(private httpClient: HttpClient, private viewService: ViewService, private datePipe: DatePipe, private utilsService: UtilsService) {
+  constructor(private httpClient: HttpClient) {
+    super();
     window['apiService'] = this;
-    this.retrieveUserIp();
   }
 
-  doGet(url: string, params: HttpParams = new HttpParams()): Observable<any> {
-    return this.httpClient.get(environment.backendBaseUrl + url, { params: params })
-      .pipe(
-        catchError(this.handleHttpError.bind(this))
+  doGet(url: string, params: HttpParams = new HttpParams()): Observable<CommonResponse> {
+    return this.getHttpClient().pipe(
+      mergeMap(httpClient => httpClient.get<CommonResponse>(environment.backendBaseUrl + url, { params: params }))
+    );
+  }
+
+  doPost(url: string, params: any = {}, baseUrl = environment.backendBaseUrl): Observable<CommonResponse> {
+    return this.getHttpClient().pipe(
+      mergeMap(httpClient => httpClient.post<CommonResponse>(baseUrl + url, params))
+    );
+  }
+
+  getHttpClient(): Observable<HttpClient> {
+    if (!environment.userIp) {
+      return this.retrieveUserIp().pipe(
+        map(_ => this.httpClient)
       );
-  }
-
-  doPost(url: string, params: any = {}, defaultParamFormat = true, baseUrl = environment.backendBaseUrl) {
-    const _params = defaultParamFormat
-      ? { ... this.getFidoServerCommonHeader(), body: params }
-      : params;
-
-    return this.httpClient.post(baseUrl + url, _params)
-      .pipe(
-        catchError(this.handleHttpError.bind(this))
-      );
-  }
-
-  handleHttpError(error: any): Observable<CommonResponse> {
-    this.viewService.dismissLoading();
-    return of({
-      header: { code: '9999', txTime: this.getCurrentTime() },
-      body: {}
-    });
-  }
-
-  retrieveUserIp(): void {
-    this.httpClient.get('https://jsonip.com')
-      .pipe(this.handleHttpError.bind(this))
-      .subscribe(
-        (value: any) => {
-          this.userIp = value.ip || this.userIp;
-          console.log('clientIp:', this.userIp);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  }
-
-  getFidoServerCommonHeader() {
-    return {
-      'header': {
-        'channelCode': 'CCA',
-        'appVersion': environment.appVersion,
-        'deviceUuid': Device.uuid,
-        'deviceVersion': Device.version,
-        'deviceBrand': Device.manufacturer + '_' + Device.model,
-        'deviceType': Device.platform,
-        'userIp': this.userIp
-      }
     }
+    return new Observable(observer => observer.next(this.httpClient));
   }
 
-  getCurrentTime(): string {
-    return this.datePipe.transform(new Date, 'yyyy/MM/dd HH:mm:ss');
+  retrieveUserIp(): Observable<any> {
+    return this.httpClient.get(environment.retrieveIpUrl)
+      .pipe(
+        tap((rs: any) => {
+          environment.userIp = rs.ip || environment.userIp;
+          super.debug('clientIp:', environment.userIp);
+        })
+      );
   }
-
 }
 
 export interface CommonResponse {
-  header: {
-    // 1200
-    code: string,
-    // 2020/07/27 10:29:47
-    txTime: string
-  }
-  body: any
+  timestamp: Date
+  code: string
+  message: string
+  data: any
 }

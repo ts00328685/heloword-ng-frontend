@@ -7,5 +7,7 @@ export const environment = {
     loggerLevel: 0,
     enableClientLog: true
   },
-  cipher: {aesKey: '', aesIv: ''}
+  cipher: {aesKey: '', aesIv: ''},
+  retrieveIpUrl: 'https://jsonip.com/',
+  userIp: ''
 };

@@ -12,5 +12,12 @@
         "secure": false,
         "logLevel": "debug",
         "pathRewrite": {"^/k8s" : ""}
+    },
+    "/get-ip": {
+        "target": "https://jsonip.com/",
+        "changeOrigin": true,
+        "secure": true,
+        "logLevel": "debug",
+        "pathRewrite": {"^/get-ip" : ""}
     }
 }
