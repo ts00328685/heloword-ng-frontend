@@ -24,7 +24,7 @@
                 </ion-list>
 
                 <ion-list>
-                    <ion-menu-toggle auto-hide="false">
+                    <ion-menu-toggle auto-hide="false" (click)="logout()">
                         <ion-item routerDirection="root" lines="none" detail="false">
                             <ion-icon slot="start" name="warning-outline"></ion-icon>
                             <ion-label>Log out</ion-label>

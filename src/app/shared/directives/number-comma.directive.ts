@@ -47,7 +47,7 @@ export class NumberCommaDirective implements AfterViewInit, OnChanges {
         this.doCommafy();
         if (this.maxLength) {
             // 塞maxLength
-            this.elementRef.nativeElement.maxLength = CommonUtils.getInstance().commafy(
+            this.elementRef.nativeElement.maxLength = CommonUtils.commafy(
                 new Array(this.maxLength).fill('1', 0, this.maxLength).join('')).length;
         }
     }
@@ -171,7 +171,7 @@ export class NumberCommaDirective implements AfterViewInit, OnChanges {
             setTimeout(() => {
                 // 如果值沒異動的話
                 if (this.elementRef.nativeElement.value === value) {
-                    this.elementRef.nativeElement.value = CommonUtils.getInstance().commafy(this.checkMaxLength(value));
+                    this.elementRef.nativeElement.value = CommonUtils.commafy(this.checkMaxLength(value));
                 }
             }, 0);
         } else {
@@ -182,7 +182,7 @@ export class NumberCommaDirective implements AfterViewInit, OnChanges {
     private doNgModelCommafy(value) {
         if (value && this.numberReg.test(value)) {
             this.elementRef.nativeElement.dataset.commafy = '1';
-            this.elementRef.nativeElement.value = CommonUtils.getInstance().commafy(this.checkMaxLength(value));
+            this.elementRef.nativeElement.value = CommonUtils.commafy(this.checkMaxLength(value));
         } else {
             this.elementRef.nativeElement.dataset.commafy = '';
         }

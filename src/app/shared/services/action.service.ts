@@ -13,13 +13,14 @@ export class ActionService extends BaseService {
 
   constructor(private router: Router) {
     super();
+    window['actionService'] = this;
   }
 
-  public nextPageByUrl(url: string, params = {}, invoke = true, newWindow = false) {
-    this.routeParamStore.next({ ...params, invoke });
+  public nextPageByUrl(url: string, params = {}, newWindow = false) {
+    this.routeParamStore.next(params);
     if (newWindow) {
       super.debug('nextPageByUrl url:', url);
-      this.router.navigate([]).then(result => { window.open('#/' + url, '_blank'); });
+      this.router.navigate([]).then(result => { window.open('/' + url, '_blank'); });
     } else {
       this.router.navigate([url]);
     }

@@ -53,6 +53,7 @@ export class UiImageLoaderDirective extends BaseComponent {
     }
     super.debug('image loaded', this.el.nativeElement.src);
   }
+  
   @HostListener('error') onError() {
     this.imageLoad.emit(false);
     if (this.loadingSrc) {

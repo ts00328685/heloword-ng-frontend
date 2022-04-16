@@ -4,11 +4,17 @@ import { BaseService } from '../base/base.service';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserVO } from '../models/common-models';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
+
+  constructor(private apiService: ApiService) {
+    super();
+    window['authService'] = this;
+  }
 
   private userStore = new BehaviorSubject<any>({ isLoggedIn: false, authorities: [], roles: [], menus: {}, branches: [], name: '', counselorType: [] });
   public readonly userStore$ = this.userStore.asObservable();
@@ -20,6 +26,11 @@ export class AuthService extends BaseService {
 
   getUser() {
     return this.userStore.getValue();
+  }
+
+  logout() {
+    this.apiService.doGet('/service-auth/api/auth/logout').subscribe();
+    this.updateUserStore({});
   }
 
   isUserLoggedIn(): boolean {

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PageActivateGuard } from './shared/guard/page.activate.guard';
 
 const routes: Routes = [
   {
@@ -9,10 +10,12 @@ const routes: Routes = [
   },
   {
     path: 'hw-home',
+    canActivateChild: [PageActivateGuard],
     loadChildren: () => import('./pages/hw-home/hw-home.module').then( m => m.HwHomeModule)
   },
   {
     path: 'hw-login',
+    canActivateChild: [PageActivateGuard],
     loadChildren: () => import('./pages/hw-login/hw-login.module').then( m => m.HwLoginModule)
   },
   {

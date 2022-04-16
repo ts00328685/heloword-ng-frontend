@@ -19,7 +19,7 @@ export abstract class BasePage<T> extends BaseComponent {
     abstract getPageName(): string;
 
     protected pageInit(): void {
-        // this.subscribeParams();
+        this.subscribeParams();
         this.checkAndScrollToPageTop();
         this.checkAndStopPageTimer();
         this.getTitleService().setTitle(this.getPageName());
@@ -58,27 +58,6 @@ export abstract class BasePage<T> extends BaseComponent {
     }
 
     private subscribeParams() {
-        const route = this.getActivatedRoute();
-        this.subscription.add(route.queryParamMap.subscribe((params) => {
-            this.pData = params;
-            super.debug('pageInit queryParamMap', params);
-        }));
-        this.subscription.add(route.queryParams.subscribe((params) => {
-            super.debug('pageInit queryParams', params);
-            this.pData = { ...this.pData, ...params };
-        }));
-        this.subscription.add(route.params.subscribe((params) => {
-            this.pData = { ...this.pData, ...params };
-            super.debug('pageInit params', params);
-        }));
-        this.subscription.add(route.paramMap.subscribe((params) => {
-            super.debug('pageInit paramMap', params);
-            this.pData = { ...this.pData, ...params };
-        }));
-        this.subscription.add(route.data.subscribe((params) => {
-            super.debug('pageInit data', params);
-            this.pData = { ...this.pData, ...params };
-        }));
         this.subscription.add(this.getActionService().routeParamStore$.subscribe(params => {
             super.debug('pageInit routeParamStore', params);
             this.pData = { ...this.pData, ...params };
@@ -105,7 +84,7 @@ export abstract class BasePage<T> extends BaseComponent {
         super.getViewService().showSystemErrorToast();
     }
 
-    private getActivatedRoute(): ActivatedRoute {
+    protected getActivatedRoute(): ActivatedRoute {
         return InjectorUtils.getInjector().get(ActivatedRoute);
     }
 

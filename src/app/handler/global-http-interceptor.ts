@@ -24,9 +24,12 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.viewService.presentLoading();
+
+    const withCredentials = req.url !== environment.retrieveIpUrl;
+
     const authReq = req.clone({
       headers: new HttpHeaders(this.getCommonHeader()),
-      withCredentials: true
+      withCredentials
     });
     super.debug('intercepting request', authReq);
     return next.handle(authReq).pipe(
@@ -50,6 +53,7 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
   getCommonHeader() {
     return {
         'cv': this.utils.generateCV(environment.cipher.aesKey, environment.cipher.aesIv),
+        'X-REQUEST-ID': this.utils.generateUUID(),
         'Authorization': 'Bearer /',
         'ChannelCode': 'NG-FRONTEND',
         'ClientIp': environment.userIp

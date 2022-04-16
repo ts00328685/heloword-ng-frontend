@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GoogleLoginProvider } from 'angularx-social-login';
-import { tap, mergeMap, map } from 'rxjs/operators';
+import { mergeMap, map } from 'rxjs/operators';
 import { BasePage } from 'src/app/shared/base/base.page';
 import { Forms } from 'src/app/shared/base/validation/forms';
 import { RuleUtils } from 'src/app/shared/utils/rules-utils';
@@ -26,7 +26,6 @@ export class HwLoginNormalPage extends BasePage<any> {
   init(): void {
     super.getSocialAuthService().authState
     .pipe(
-      tap(socialUser => localStorage.setItem('idToken', socialUser['idToken'])),
       mergeMap(socialUser => super.getApiService().doPost('/service-auth/api/auth/verify-google-id', socialUser)),
       map(rs => rs.data || {})
     )

@@ -18,4 +18,8 @@ export class AppComponent extends BaseComponent {
     super.getApiService().retrieveUserIp();
   }
 
+  logout() {
+    super.getAuthService().logout();
+  }
+
 }

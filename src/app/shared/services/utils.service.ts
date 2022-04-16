@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import CryptoJS from 'crypto-js';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +24,10 @@ export class UtilsService {
       CryptoJS.enc.Utf8.parse(key),
       { iv: CryptoJS.enc.Utf8.parse(iv) }
     ).toString();
+  }
+
+  generateUUID(): string {
+    return CryptoJS.HmacMD5(new Date().getTime(), new Date().getTime().toString()).toString();
   }
 
 }
