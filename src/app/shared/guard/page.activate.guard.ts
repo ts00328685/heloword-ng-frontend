@@ -38,7 +38,7 @@ export class PageActivateGuard extends BaseComponent implements CanActivateChild
                     environment.cipher = response.data;
                 }),
                 map(_ => true)
-        );
+            );
     }
 
 }
