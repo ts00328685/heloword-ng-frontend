@@ -10,6 +10,7 @@ import { ActionService } from '../services/action.service';
 import { ViewService } from '../services/view.service';
 import { ApiService } from '../services/api.service';
 import { SocialAuthService } from 'angularx-social-login';
+import { DataService } from '../services/data.service';
 @Injectable()
 export abstract class BaseComponent implements OnInit, OnDestroy, AfterViewInit {
     
@@ -64,6 +65,10 @@ export abstract class BaseComponent implements OnInit, OnDestroy, AfterViewInit 
 
     protected getApiService(): ApiService {
         return InjectorUtils.getInjector().get(ApiService);
+    }
+
+    protected getDataService(): DataService {
+        return InjectorUtils.getInjector().get(DataService);
     }
 
     protected getChangeDetectionRef(): ChangeDetectorRef {

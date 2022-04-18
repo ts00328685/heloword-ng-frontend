@@ -30,14 +30,15 @@ export class ViewService extends BaseService {
         duration: 2000,
         position: 'top',
       }).then(_toast => _toast.present());
-    }, 1000);
+    }, 500);
   }
 
-  async presentLoading(config = { duration: 2000 }) {
+  async presentLoading(config = { duration: 10000 }) {
     const showLoader = async () => {
       this.loading = await this.loadingController.create(config);
       await this.loading.present();
     }
+
     if (this.loading) {
       this.loading.dismiss().then(_=> {
         showLoader();
@@ -51,6 +52,7 @@ export class ViewService extends BaseService {
     if (!this.loading) {
       return;
     }
+
     await this.loading.dismiss();
   }
 

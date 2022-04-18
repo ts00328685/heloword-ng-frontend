@@ -1,33 +1,34 @@
 
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { BaseService } from '../base/base.service';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { UserVO } from '../models/common-models';
 import { ApiService } from './api.service';
 import { RuleUtils } from '../utils/rules-utils';
+import { DataService } from './data.service';
+import { ActionService } from './action.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
 
-  private checkedUserLoginStatus = false;
-
-  constructor(private apiService: ApiService) {
-    super();
-    window['authService'] = this;
-  }
-
-  private userStore = new BehaviorSubject<any>({ isLoggedIn: false, authorities: [], roles: [], menus: {}, branches: [], name: '', counselorType: [] });
+  private userStore = new BehaviorSubject<User>({} as any);
   public readonly userStore$ = this.userStore.asObservable();
 
-  updateUserStore(userVO: UserVO) {
-    this.userStore.next(userVO);
+  private checkedUserLoginStatus = false;
+
+  constructor(private apiService: ApiService, private dataService: DataService, private actionService: ActionService) {
+    super();
+  }
+
+  updateUserStore(user: User) {
+    this.userStore.next(user);
     if (!RuleUtils.getInstance().isEmptyObject) {
       this.hasCheckedUserLoginStatus(true);
     }
-    super.debug('updated UserVO:', userVO);
+    super.debug('updated user:', user);
+    this.dataService.clearAllStore();
+    this.actionService.reloadPage();
   }
 
   hasCheckedUserLoginStatus(hasChecked = false): boolean {
@@ -43,48 +44,41 @@ export class AuthService extends BaseService {
 
   logout() {
     this.apiService.doGet('/service-auth/api/auth/logout').subscribe();
-    this.updateUserStore({});
+    this.updateUserStore({} as any);
+    this.dataService.clearAllStore();
   }
 
   isUserLoggedIn(): boolean {
-    return true;
-  }
-
-  getUserAuthorities(): string[] {
-    return []
-  }
-
-  getMenus(): { [key: string]: any } {
-    return [];
+    return !!this.userStore.getValue();
   }
 
   getRoles(): string[] {
-    return [];
+    return this.userStore.getValue()?.roles?.map(r=>r.name) || [];
   }
 
-  getBranches(): any[] {
-    return [];
+  hasAnyRole(roles: string[] = []): boolean {
+    return roles.some(r => this.getRoles().includes(r));
   }
 
-  hasAuthority(authorities: string[]): boolean {
-    let hasAuthority = false;
-    this.getUserAuthorities().forEach(auth => {
-      if (authorities.indexOf(auth) > -1) {
-        hasAuthority = true;
-        return;
-      }
-    });
-    return hasAuthority;
-  }
-
-  hasRole(roles: string[]): boolean {
-    let hasRole = false;
-    this.getRoles().forEach(role => {
-      if (roles.indexOf(role) > -1) {
-        hasRole = true;
-        return;
-      }
-    });
-    return hasRole;
+  hasAllRoles(roles: string[] = []): boolean {
+    return roles.every(r => this.getRoles().includes(r));
   }
 }
+export interface Role {
+  status: number;
+  role: string;
+  name: string;
+}
+export interface User {
+  username: string;
+  fullname: string;
+  nickname: string;
+  picture: string;
+  locale: string;
+  email: string;
+  googleToken: string;
+  facebookToken: string;
+  roles: Role[];
+}
+
+

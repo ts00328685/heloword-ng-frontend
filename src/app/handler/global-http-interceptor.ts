@@ -2,7 +2,7 @@ import { DatePipe } from "@angular/common";
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { tap } from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { UtilsService } from "../shared/services/utils.service";
 import { ViewService } from "../shared/services/view.service";
@@ -33,8 +33,9 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
     });
     super.debug('intercepting request', authReq);
     return next.handle(authReq).pipe(
+        catchError(this.handleHttpError.bind(this)),
         tap(evt => {
-            if (evt instanceof HttpResponse || evt instanceof HttpErrorResponse) {
+            if (evt instanceof HttpResponse) {
                 super.debug('intercepting response', evt);
                 this.viewService.dismissLoading();
             }
@@ -44,9 +45,10 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
 
   handleHttpError(error: any): Observable<any> {
     this.viewService.dismissLoading();
-    super.error(error);
+    this.viewService.showSystemErrorToast();
+    super.error('handling http error', error);
     return of({
-      body: { code: '1999', message:  error}
+      body: { code: '1999', message:  error, timestamps: new Date()}
     });
   }
 

@@ -27,13 +27,13 @@ export class ActionService extends BaseService {
 
   }
 
-  public reloadPage(params = {}, invoke = true) {
+  public reloadPage(params = {}) {
     const prevUrl = this.getCurrentUrl();
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.nextPageByUrl(prevUrl, params, invoke));
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.nextPageByUrl(prevUrl, params));
   }
 
-  public redirectTo(url: string, params = {}, invoke = true) {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.nextPageByUrl(url, params, invoke));
+  public redirectTo(url: string, params = {}) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.nextPageByUrl(url, params));
   }
 
   public getCurrentUrl(): string {
@@ -47,6 +47,5 @@ export class ActionService extends BaseService {
   public updateRouteParam(params = {}) {
     this.routeParamStore.next({ ...this.routeParamStore.getValue(), ...params });
   }
-
 
 }

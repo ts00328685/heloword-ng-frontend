@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BaseService } from '../base/base.service';
 import { map, mergeMap, tap } from 'rxjs/operators';
 
@@ -23,7 +23,7 @@ export class ApiService extends BaseService {
 
   doPost(url: string, params: any = {}, baseUrl = environment.backendBaseUrl): Observable<CommonResponse> {
     return this.getHttpClient().pipe(
-      mergeMap(httpClient => httpClient.post<CommonResponse>(baseUrl + url, params))
+      mergeMap(httpClient => httpClient.post<CommonResponse>(baseUrl + url, params)),
     );
   }
 
