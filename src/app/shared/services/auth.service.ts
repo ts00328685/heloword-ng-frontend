@@ -28,7 +28,6 @@ export class AuthService extends BaseService {
     }
     super.debug('updated user:', user);
     this.dataService.clearAllStore();
-    this.actionService.reloadPage();
   }
 
   hasCheckedUserLoginStatus(hasChecked = false): boolean {
