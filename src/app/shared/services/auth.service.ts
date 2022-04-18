@@ -1,15 +1,18 @@
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { BaseService } from '../base/base.service';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserVO } from '../models/common-models';
 import { ApiService } from './api.service';
+import { RuleUtils } from '../utils/rules-utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
+
+  private checkedUserLoginStatus = false;
 
   constructor(private apiService: ApiService) {
     super();
@@ -21,7 +24,17 @@ export class AuthService extends BaseService {
 
   updateUserStore(userVO: UserVO) {
     this.userStore.next(userVO);
+    if (!RuleUtils.getInstance().isEmptyObject) {
+      this.hasCheckedUserLoginStatus(true);
+    }
     super.debug('updated UserVO:', userVO);
+  }
+
+  hasCheckedUserLoginStatus(hasChecked = false): boolean {
+    if (hasChecked) {
+      this.checkedUserLoginStatus = hasChecked;
+    }
+    return this.checkedUserLoginStatus;
   }
 
   getUser() {

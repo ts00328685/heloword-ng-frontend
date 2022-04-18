@@ -25,19 +25,26 @@ export class PageActivateGuard extends BaseComponent implements CanActivateChild
         super.debug('route params', currentRouteParams)
         super.getActionService().updateRouteParam(currentRouteParams);
 
-
-        if (environment.cipher.aesIv && environment.cipher.aesKey) {
+        if (environment.cipher.aesIv && environment.cipher.aesKey && super.getAuthService().hasCheckedUserLoginStatus()) {
             return true;
         }
 
         return super.getApiService().doGet('/service-auth/api/auth/init-cookie')
             .pipe(
                 mergeMap(() => super.getApiService().doGet('/service-auth/api/auth/init-cipher')),
-                tap(response => {
-                    super.debug('init cipher', response);
-                    environment.cipher = response.data;
-                }),
-                map(_ => true)
+                tap(response => environment.cipher = response.data),
+                mergeMap(() => super.getApiService().doGet('/frontend-api/api/fe/user')),
+                map(response => {
+                    super.getAuthService().hasCheckedUserLoginStatus(true);
+                    if (response.code !== '0000') {
+                        return true;
+                    }
+                    if (response.data && response.data.user) {
+                        super.getAuthService().updateUserStore(response.data.user);
+                        super.debug('user session found, automatically logging in');
+                    }
+                    return true;
+                })
             );
     }
 
