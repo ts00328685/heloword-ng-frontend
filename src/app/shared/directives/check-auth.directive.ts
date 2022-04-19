@@ -17,7 +17,7 @@ export class CheckAuthDirective extends BaseComponent {
     /* 陣列第一個為function id, 第二個Optional參數傳true則會幫element加disabled attribute */
     /* ex. ['fu002010'] or ['fu002010', true] */
     @Input() set checkAuth(param: string[]) {
-        if (super.getAuthService().hasAuthority([param[0]])) {
+        if (super.getAuthService().hasAnyRole([param[0]])) {
             this._viewContainer.createEmbeddedView(this._templateRef);
         } else {
             this.handleViewChange(!!param[1]);

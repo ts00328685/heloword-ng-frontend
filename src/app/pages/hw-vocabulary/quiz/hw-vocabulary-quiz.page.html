@@ -1,0 +1,84 @@
+<ion-content (swipeleft)="goNext()" class="ion-padding">
+    <ion-grid class="ion-padding ion-text-center">
+
+        <ion-row class="ion-align-items-center">
+            <ion-col size="9">
+                <ion-input [value]="inputValue" autofocus #input type="text">
+                </ion-input>
+            </ion-col>
+            <ion-col size="2" (click)="pronounce(currentWord.word)">
+                <ion-button size="small" mode="md" fill="clear" shape="round">
+                    <ion-icon color="dark" name="volume-high-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="1">
+                <ion-toggle [(ngModel)]="autoPronounce"></ion-toggle>
+            </ion-col>
+        </ion-row>
+
+        <ion-row (click)="pronounce(currentWord.translateCh)" class="ion-align-items-center">
+            <ion-col size="9" class="ion-no-padding">
+                <h2 class="ion-text-left" [innerHTML]="currentWord?.translateCh"></h2>
+            </ion-col>
+            <ion-col size="2">
+                <ion-button size="small" mode="md" fill="clear" shape="round">
+                    <ion-icon color="dark" name="volume-high-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="1">
+                <ion-toggle [(ngModel)]="autoPronounceCh"></ion-toggle>
+            </ion-col>
+        </ion-row>
+
+        <ion-row (click)="pronounce(currentWord.translateEn, 'en')" class="ion-align-items-left">
+            <ion-col size="9" class="ion-no-padding">
+                <h2 class="ion-text-left">
+                    {{currentWord?.translateEn}}
+                </h2>
+            </ion-col>
+            <ion-col size="2">
+                <ion-button size="small" mode="md" fill="clear" shape="round">
+                    <ion-icon color="dark" name="volume-high-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="1">
+                <ion-toggle [(ngModel)]="autoPronounceEn"></ion-toggle>
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="currentWord?.sentence" (click)="pronounce(currentWord.sentence)" class="ion-align-items-left">
+            <ion-col size="9" class="ion-no-padding">
+                <h2 class="ion-text-left">
+                    {{currentWord?.sentence}}
+                </h2>
+            </ion-col>
+            <ion-col size="2">
+                <ion-button size="small" mode="md" fill="clear" shape="round">
+                    <ion-icon color="dark" name="volume-high-outline"></ion-icon>
+                </ion-button>
+            </ion-col>
+            <ion-col size="1">
+                <ion-toggle [(ngModel)]="autoPronounceSentence"></ion-toggle>
+            </ion-col>
+        </ion-row>
+
+        <ion-row (click)="pronounce(currentWord.word)" class="ion-align-items-center">
+            <h2 style="color: lightgray;">
+                <!-- {{currentWord?.kk}} -->
+            </h2>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center">
+            <h3 style="color: lightgray;" (click)="onAnsClick(currentWord.word)">
+                Show Answer
+            </h3>
+        </ion-row>
+
+    </ion-grid>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="goNext()" color="primary" class="ion-margin">
+            Skip
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

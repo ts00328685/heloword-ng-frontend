@@ -40,6 +40,10 @@ ion-button {
     outline: none;
 }
 
+ion-popover {
+    --offset-y: -200px;
+}
+
 ion-app.cameraView,
 ion-app.cameraView ion-content,
 ion-app.cameraView ion-footer,

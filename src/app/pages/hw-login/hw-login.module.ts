@@ -1,18 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 import { HWLoginRoutingModule } from './hw-login-routing.module';
 import { HwLoginNormalPage } from './normal/hw-login-normal.page';
-
-
-
+import { SharedModule } from 'src/app/shared/modules/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
+    SharedModule,
     HWLoginRoutingModule
   ],
   declarations: [

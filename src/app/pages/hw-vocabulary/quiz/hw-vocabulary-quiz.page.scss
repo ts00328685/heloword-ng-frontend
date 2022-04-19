@@ -1,0 +1,25 @@
+.mat-h1,
+.mat-headline,
+.mat-typography h1 {
+    font-size: 27px;
+}
+
+ion-input {
+    font-size: 24px !important;
+}
+
+ion-toggle {
+    padding-top: 18px;
+    zoom: 0.5;
+}
+
+@media screen and (min-width: 600px) {
+    ion-toggle {
+        padding-top: 18px;
+        zoom: 0.9;
+    }
+}
+
+h2 {
+    line-height: 1.2;
+}

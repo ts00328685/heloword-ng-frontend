@@ -1,6 +1,6 @@
 import { AuthService } from '../services/auth.service';
 import { TimerUtils } from './../utils/timer-utils';
-import { AfterViewInit, ChangeDetectorRef, Component, Injectable, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Injectable, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { InjectorUtils } from '../utils/injector-utils';
 import { LoggerUtils } from '../utils/logger-utils';
 import { RuleUtils } from '../utils/rules-utils';
@@ -11,6 +11,7 @@ import { ViewService } from '../services/view.service';
 import { ApiService } from '../services/api.service';
 import { SocialAuthService } from 'angularx-social-login';
 import { DataService } from '../services/data.service';
+import { PopoverController } from '@ionic/angular';
 @Injectable()
 export abstract class BaseComponent implements OnInit, OnDestroy, AfterViewInit {
     
@@ -49,6 +50,10 @@ export abstract class BaseComponent implements OnInit, OnDestroy, AfterViewInit 
 
     protected isNeedCancelComponentTimer(): boolean {
         return false;
+    }
+
+    protected getPopoverController(): PopoverController {
+        return InjectorUtils.getInjector().get(PopoverController);
     }
 
     protected getActionService(): ActionService {

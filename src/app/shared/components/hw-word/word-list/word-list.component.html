@@ -1,0 +1,9 @@
+<hw-word-card *ngFor="let word of wordListSplice" [word]="word"></hw-word-card>
+
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content
+                               loadingSpinner="bubbles"
+                               loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+
+</ion-infinite-scroll>

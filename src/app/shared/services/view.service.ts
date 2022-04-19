@@ -12,9 +12,8 @@ export class ViewService extends BaseService {
   constructor(
     private toastController: ToastController,
     private loadingController: LoadingController,
-    private alertController: AlertController
-  ) 
-  {
+    private alertController: AlertController,
+  ) {
     super();
   }
 
@@ -40,7 +39,7 @@ export class ViewService extends BaseService {
     }
 
     if (this.loading) {
-      this.loading.dismiss().then(_=> {
+      this.loading.dismiss().then(_ => {
         showLoader();
       })
       return;

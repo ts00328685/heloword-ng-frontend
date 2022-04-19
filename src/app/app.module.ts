@@ -29,8 +29,8 @@ import { InjectorUtils } from './shared/utils/injector-utils';
     HttpClientJsonpModule
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     DatePipe,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true },
     {

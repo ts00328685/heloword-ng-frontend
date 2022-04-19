@@ -5,6 +5,7 @@ import { ComponentsModule } from '../components/components.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,8 @@ import { RouterModule } from '@angular/router';
     DirectivesModule,
     ComponentsModule,
     RouterModule,
+    DirectivesModule,
+    IonicModule
   ],
   exports: [
     CommonModule,
@@ -27,6 +30,8 @@ import { RouterModule } from '@angular/router';
     DirectivesModule,
     ComponentsModule,
     RouterModule,
+    DirectivesModule,
+    IonicModule
   ]
 })
 export class SharedModule { }

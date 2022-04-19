@@ -19,6 +19,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/hw-login/hw-login.module').then( m => m.HwLoginModule)
   },
   {
+    path: 'hw-vocabulary',
+    canActivateChild: [PageActivateGuard],
+    loadChildren: () => import('./pages/hw-vocabulary/hw-vocabulary.module').then( m => m.HwVocabularyModule)
+  },
+  {
     path: '**',
     redirectTo: 'hw-home'
   }
