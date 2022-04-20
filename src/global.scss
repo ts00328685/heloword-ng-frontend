@@ -9,7 +9,6 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
-
 /* Core CSS required for Ionic components to work properly */
 
 @import "~@ionic/angular/css/core.css";
@@ -19,7 +18,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 
@@ -39,17 +38,20 @@ ion-button {
 * {
     outline: none;
 }
-
-ion-popover {
-    --offset-y: -200px;
+ion-popover::part(content) {
+    top: unset !important;
+    left: 2.5vw !important;
+    bottom: 50px;
+    width: 95vw;
+    max-height: 90vh;
+    border-radius: 0;
 }
-
 ion-app.cameraView,
 ion-app.cameraView ion-content,
 ion-app.cameraView ion-footer,
 ion-app.cameraView .nav-decor,
 ion-app.cameraView ion-page {
-  background: transparent none !important;
-  --background :transparent none !important;
-  --ion-background-color: none; // this is important
+    background: transparent none !important;
+    --background: transparent none !important;
+    --ion-background-color: none; // this is important
 }

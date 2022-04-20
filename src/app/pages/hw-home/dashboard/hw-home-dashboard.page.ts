@@ -57,6 +57,10 @@ export class HwHomeDashboardPage extends BasePage<any> {
     );
   }
 
+  goVocabularyPage() {
+    super.getActionService().nextPageByUrl('/hw-vocabulary')
+  }
+
   getFormClazz(): Forms<any> {
     return null;
   }

@@ -32,6 +32,10 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
 
   init(): void {
+    if (!super.getPageData().quizSettings) {
+      super.getActionService().goBackHome();
+      return;
+    }
     this.retrieveData();
   }
 
@@ -51,7 +55,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   retrieveData() {
     const ds = super.getDataService();
     if (!ds.wordStore.isEmpty() || !ds.sentenceStore.isEmpty()) {
-      this.initWordList(ds.wordStore.getValue().wordEnglishList);
+      this.initWordList();
       return;
     }
 
@@ -78,13 +82,31 @@ export class HwVocabularyQuizPage extends BasePage<any> {
           }
         )
 
-        this.initWordList(wordEnglishList);
+        this.initWordList();
       }
     );
   }
 
-  initWordList(wordList = []) {
-    this.originalWordList = wordList.sort(() => Math.random() - 0.5);
+  initWordList() {
+
+    const quizSettings = super.getPageData().quizSettings;
+    const words = super.getDataService().wordStore.getValue();
+    const sentences = super.getDataService().sentenceStore.getValue();
+    const wordAndSentences = {
+      ...words, ...sentences
+    };
+
+    let combinedList = [];
+
+    Object.keys(quizSettings).forEach(key => {
+      if (!wordAndSentences[key]) return;
+      const setting = quizSettings[key];
+      combinedList = [ ...combinedList, ...wordAndSentences[key].slice(setting.min, setting.max) ]
+    })
+    
+    super.debug('combined list', combinedList);
+
+    this.originalWordList = combinedList.sort(() => Math.random() - 0.5);
     if (!this.originalWordList || this.originalWordList.length <= 0) {
       window.location.href = '/';
     }
@@ -94,7 +116,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   onInputChange(word: string) {
-    let answer = this.currentWord.word.trim().toLowerCase();
+    let answer = this.currentWord.word || this.currentWord.sentence.trim().toLowerCase();
     const lastCharacter = answer.charAt(answer.length - 1);
     const charsToIgnore = ['.', '?', '。', '!'];
     if (charsToIgnore.includes(lastCharacter)) {
@@ -132,7 +154,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.currentWord = this.originalWordList[0];
     this.input.value = '';
     if (this.autoPronounce) {
-      this.pronounce(this.currentWord.word);
+      this.pronounce(this.currentWord.word || this.currentWord.sentence);
     }
 
     const delay = this.autoPronounce ? 1000 : 0;

@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { HwHeaderComponent } from './hw-header/hw-header.component';
 import { ModalWordSettingComponent } from './hw-modal/modal-word-setting/modal-word-setting.component';
+import { QuizSettingItemComponent } from './hw-modal/modal-word-setting/quiz-setting-item/quiz-setting-item.component';
 import { WordCardComponent } from './hw-word/word-card/word-card.component';
 import { WordListComponent } from './hw-word/word-list/word-list.component';
 
@@ -19,13 +20,15 @@ import { WordListComponent } from './hw-word/word-list/word-list.component';
     HwHeaderComponent,
     ModalWordSettingComponent,
     WordCardComponent,
-    WordListComponent
+    WordListComponent,
+    QuizSettingItemComponent
   ],
   exports: [
     HwHeaderComponent,
     ModalWordSettingComponent,
     WordCardComponent,
-    WordListComponent
+    WordListComponent,
+    QuizSettingItemComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,23 +1,9 @@
 <ion-list *ngIf="isDisplay">
-    <ion-item>
-        <ion-range #minRange min="1" [(ngModel)]="minValue" value="1" [max]="max" color="secondary">
-            <ion-label slot="start">1</ion-label>
-            <ion-label slot="end">{{max}}</ion-label>
-        </ion-range>
-    </ion-item>
-    <ion-item>
-        <ion-range #maxRange [(ngModel)]="maxValue" (ionChange)="assignValue('maxValue', maxRange.value.toString())" [value]="maxValue < minValue ? minValue + 1 : maxValue" [min]="minValue + 1" [max]="max" color="secondary">
-            <ion-label slot="start">{{minRange.value}}</ion-label>
-            <ion-label slot="end">{{max}}</ion-label>
-        </ion-range>
-    </ion-item>
 
-    <ion-item>
-        <ion-label>Start: </ion-label>
-        <ion-badge class="ion-margin-end" color="primary">{{minRange.value}}</ion-badge>
-        <ion-label>End: </ion-label>
-        <ion-badge color="primary">{{maxRange.value}}</ion-badge>
-    </ion-item>
+    <hw-quiz-setting-item *ngFor="let setting of settingList"
+                          [setting]="setting"
+                          (settingChange)="quizSettingChange($event)">
+    </hw-quiz-setting-item>
 
     <ion-item class="ion-text-center">
         <ion-grid>

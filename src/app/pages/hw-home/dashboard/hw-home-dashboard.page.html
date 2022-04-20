@@ -5,18 +5,8 @@
             <ion-menu-button auto-hide="false"></ion-menu-button>
         </ion-buttons>
 
-        <ion-title>
-            <ion-grid class="ion-no-padding">
-                <ion-row>
-                    <ion-col size="3" class="ion-text-center"></ion-col>
-
-                    <ion-col size="6" class="ion-text-center">
-                        <ion-text>PAGE TITLE</ion-text>
-                    </ion-col>
-
-                    <ion-col size="3" class="ion-text-center"></ion-col>
-                </ion-row>
-            </ion-grid>
+        <ion-title class="ion-text-center">
+            <ion-text>{{getPageName()}}</ion-text>
         </ion-title>
 
         <ion-buttons slot="primary">
@@ -32,33 +22,33 @@
 
     <ion-grid>
 
-        <ion-row>
-            <ion-col size="3">
-                <ion-button size="small" class="next-btn" color="primary" fill="outline"
-                            expand="block">
-                    Btn1
-                    <ion-ripple-effect type="bounded"></ion-ripple-effect>
-                </ion-button>
-            </ion-col>
-            <ion-col size="3">
-                <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block">
-                    Btn2
-                    <ion-ripple-effect type="bounded"></ion-ripple-effect>
-                </ion-button>
-            </ion-col>
-            <ion-col size="3">
-                <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block">
-                    Btn3
-                    <ion-ripple-effect type="bounded"></ion-ripple-effect>
-                </ion-button>
-            </ion-col>
-            <ion-col size="3">
-                <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block">
-                    Btn4
-                    <ion-ripple-effect type="bounded"></ion-ripple-effect>
-                </ion-button>
-            </ion-col>
-        </ion-row>
+        <!-- <ion-row> -->
+            <!-- <ion-col size="3"> -->
+                <!-- <ion-button size="small" class="next-btn" color="primary" fill="outline" -->
+                            <!-- expand="block"> -->
+                    <!-- Btn1 -->
+                    <!-- <ion-ripple-effect type="bounded"></ion-ripple-effect> -->
+                <!-- </ion-button> -->
+            <!-- </ion-col> -->
+            <!-- <ion-col size="3"> -->
+                <!-- <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block"> -->
+                    <!-- Btn2 -->
+                    <!-- <ion-ripple-effect type="bounded"></ion-ripple-effect> -->
+                <!-- </ion-button> -->
+            <!-- </ion-col> -->
+            <!-- <ion-col size="3"> -->
+                <!-- <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block"> -->
+                    <!-- Btn3 -->
+                    <!-- <ion-ripple-effect type="bounded"></ion-ripple-effect> -->
+                <!-- </ion-button> -->
+            <!-- </ion-col> -->
+            <!-- <ion-col size="3"> -->
+                <!-- <ion-button size="small" class="next-btn" color="primary" fill="outline" expand="block"> -->
+                    <!-- Btn4 -->
+                    <!-- <ion-ripple-effect type="bounded"></ion-ripple-effect> -->
+                <!-- </ion-button> -->
+            <!-- </ion-col> -->
+        <!-- </ion-row> -->
 
         <ion-row>
             <ion-col>
@@ -227,9 +217,9 @@
 </ion-content>
 <ion-tabs>
     <ion-tab-bar slot="bottom">
-        <ion-tab-button>
+        <ion-tab-button (click)="goVocabularyPage()">
             <ion-icon name="logo-usd"></ion-icon>
-            <ion-label>Tab1</ion-label>
+            <ion-label>Vocab</ion-label>
         </ion-tab-button>
 
         <ion-tab-button>

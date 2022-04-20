@@ -36,6 +36,10 @@ export class ActionService extends BaseService {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.nextPageByUrl(url, params));
   }
 
+  public goBackHome() {
+    this.router.navigateByUrl('/hw-home');
+  }
+
   public getCurrentUrl(): string {
     return this.router.url;
   }
