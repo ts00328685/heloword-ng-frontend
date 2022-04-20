@@ -116,10 +116,18 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   onInputChange(word: string) {
-    let answer = (this.currentWord.word || this.currentWord.sentence).trim().toLowerCase();
+    let answer = (this.currentWord.word || this.currentWord.sentence);
 
     if (this.currentWord.language === 'jp') {
-      answer = this.currentWord.translateEn.trim().toLowerCase();
+      answer = this.currentWord.translateEn
+    }
+
+    answer = answer.trim().toLowerCase();
+
+    if (this.currentWord.language === 'de') {
+      answer.replace(/[ä]/g, 'a');
+      answer.replace(/[ö]/g, 'o');
+      answer.replace(/[ü]/g, 'u');
     }
 
     const lastCharacter = answer.charAt(answer.length - 1);
