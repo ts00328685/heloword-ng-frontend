@@ -116,7 +116,12 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   onInputChange(word: string) {
-    let answer = this.currentWord.word || this.currentWord.sentence.trim().toLowerCase();
+    let answer = (this.currentWord.word || this.currentWord.sentence).trim().toLowerCase();
+
+    if (this.currentWord.language === 'jp') {
+      answer = this.currentWord.translateEn.trim().toLowerCase();
+    }
+
     const lastCharacter = answer.charAt(answer.length - 1);
     const charsToIgnore = ['.', '?', '。', '!'];
     if (charsToIgnore.includes(lastCharacter)) {
@@ -124,6 +129,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     }
 
     const trimmedAns = answer.replace(/[\W]/g, '');
+    
     const trimmedWord = word.trim().toLowerCase().replace(/[\W]/g, '');
 
     if (word.includes('＊')) {
@@ -154,23 +160,23 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.currentWord = this.originalWordList[0];
     this.input.value = '';
     if (this.autoPronounce) {
-      this.pronounce(this.currentWord.word || this.currentWord.sentence);
+      this.pronounce(this.currentWord.word || this.currentWord.sentence, this.currentWord.language);
     }
 
     const delay = this.autoPronounce ? 1000 : 0;
     if (this.autoPronounceEn) {
       setTimeout(() => {
-        this.pronounce(this.currentWord.translateEn);
+        this.pronounce(this.currentWord.translateEn, 'en');
       }, delay);
     }
     if (this.autoPronounceCh) {
       setTimeout(() => {
-        this.pronounce(this.currentWord.translateCh);
+        this.pronounce(this.currentWord.translateCh, 'ch');
       }, delay);
     }
     if (this.autoPronounceSentence) {
       setTimeout(() => {
-        this.pronounce(this.currentWord.sentence);
+        this.pronounce(this.currentWord.sentence, this.currentWord.language);
       }, delay);
     }
     this.input.setFocus();
@@ -184,13 +190,16 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
     let lang = 'en-US';
 
-    const REGEX_CHINESE = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f]/;
-    if (word.match(REGEX_CHINESE)) {
+    if (type === 'ch') {
       lang = 'zh-TW';
     }
 
-    if (word.match(/[\u3040-\u30ff]/)) {
+    if (type === 'jp') {
       lang = 'ja-JP';
+    }
+
+    if (type === 'de') {
+      lang = 'de-DE';
     }
 
     word = word.replace(/(\[.*?\]|\(.*?\)) */g, '').replace(/(\<.*?\>) */g, '');
