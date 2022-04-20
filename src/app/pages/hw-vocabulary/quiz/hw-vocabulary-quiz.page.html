@@ -16,7 +16,7 @@
             </ion-col>
         </ion-row>
 
-        <ion-row (click)="pronounce(currentWord?.translateCh, 'ch')" class="ion-align-items-center">
+        <ion-row *ngIf="currentWord?.translateCh" (click)="pronounce(currentWord?.translateCh, 'ch')" class="ion-align-items-center">
             <ion-col size="9" class="ion-no-padding">
                 <h2 class="ion-text-left" [innerHTML]="currentWord?.translateCh"></h2>
             </ion-col>

@@ -125,9 +125,9 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     answer = answer.trim().toLowerCase();
 
     if (this.currentWord.language === 'de') {
-      answer.replace(/[ä]/g, 'a');
-      answer.replace(/[ö]/g, 'o');
-      answer.replace(/[ü]/g, 'u');
+      answer = answer.replace(/[ä]/g, 'a');
+      answer = answer.replace(/[ö]/g, 'o');
+      answer = answer.replace(/[ü]/g, 'u');
     }
 
     const lastCharacter = answer.charAt(answer.length - 1);
