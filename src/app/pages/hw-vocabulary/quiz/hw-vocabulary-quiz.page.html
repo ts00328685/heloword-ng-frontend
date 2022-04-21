@@ -74,6 +74,21 @@
             </h3>
         </ion-row>
 
+        <ion-item>
+            <ion-label>Volume</ion-label>
+            <ion-range min="0.1" title="Volume" [(ngModel)]="pronounciationVolume" value="1" step="0.1" [max]="3" color="secondary">
+                <ion-label slot="start">0.1</ion-label>
+                <ion-label slot="end">3</ion-label>
+            </ion-range>
+        </ion-item>
+        <ion-item>
+            <ion-label>Speed</ion-label>
+            <ion-range min="0.1" title="Speed" [(ngModel)]="pronounciationSpeed" value="1" step="0.1" [max]="3" color="secondary">
+                <ion-label slot="start">0.1</ion-label>
+                <ion-label slot="end">3</ion-label>
+            </ion-range>
+        </ion-item>
+
     </ion-grid>
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">

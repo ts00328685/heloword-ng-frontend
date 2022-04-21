@@ -25,6 +25,9 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   autoPronounceCh = false;
   autoPronounceSentence = false;
 
+  pronounciationSpeed = 1.0;
+  pronounciationVolume = 0.2;
+
   @ViewChild('input')
   input;
 
@@ -226,14 +229,14 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       // Set utterance properties
       utterance.voice = voice;
       utterance.pitch = 1.2;
-      utterance.rate = 1.00;
-      utterance.volume = 1.6;
+      utterance.rate = this.pronounciationSpeed;
+      utterance.volume = this.pronounciationVolume;
 
       // Speak the utterance
       synthesis.speak(utterance);
 
     } else {
-      console.log('Text-to-speech not supported.');
+      super.error('Text-to-speech not supported.');
     }
 
     this.input.setFocus();
