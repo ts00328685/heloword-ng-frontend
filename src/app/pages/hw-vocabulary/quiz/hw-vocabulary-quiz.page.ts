@@ -128,6 +128,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       answer = answer.replace(/[ä]/g, 'a');
       answer = answer.replace(/[ö]/g, 'o');
       answer = answer.replace(/[ü]/g, 'u');
+      answer = answer.replace(/[ß]/g, 'b');
     }
 
     const lastCharacter = answer.charAt(answer.length - 1);
