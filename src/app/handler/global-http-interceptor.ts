@@ -37,7 +37,7 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
         tap(evt => {
             if (evt instanceof HttpResponse) {
                 super.debug('intercepting response', evt);
-                this.viewService.dismissLoading();
+                this.viewService.dismissLoading().then();
             }
         })
     );
