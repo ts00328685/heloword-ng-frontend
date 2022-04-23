@@ -32,7 +32,7 @@ export class ViewService extends BaseService {
     }, 500);
   }
 
-  async presentLoading(config = { duration: 3500 }) {
+  async presentLoading(config = { duration: 60000 }) {
     const showLoader = async () => {
       this.loading = await this.loadingController.create(config);
       await this.loading.present();
@@ -44,7 +44,7 @@ export class ViewService extends BaseService {
       })
       return;
     }
-    showLoader();
+    await showLoader();
   }
 
   async dismissLoading() {
