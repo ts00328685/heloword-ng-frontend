@@ -8,6 +8,7 @@ import { BaseService } from '../base/base.service';
 export class ViewService extends BaseService {
 
   loading: HTMLIonLoadingElement;
+  lastLoaderTime: number;
 
   constructor(
     private toastController: ToastController,
@@ -36,6 +37,7 @@ export class ViewService extends BaseService {
     const showLoader = async () => {
       this.loading = await this.loadingController.create(config);
       await this.loading.present();
+      this.lastLoaderTime = new Date().getTime();
     }
 
     if (this.loading) {
@@ -53,6 +55,10 @@ export class ViewService extends BaseService {
     }
 
     await this.loading.dismiss();
+    const topLayer = await this.loadingController.getTop();
+    if (topLayer) {
+      await topLayer.dismiss();
+    }
   }
 
   createAlert(message: string, cssClass = '', header = 'Notification', buttonText = 'Okay'): Promise<HTMLIonAlertElement> {
