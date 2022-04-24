@@ -16,8 +16,8 @@ export class WordListComponent extends BaseComponent {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   @Input()
-  wordListOriginal: Array<Word> = [];
-  wordListSplice: Array<Word> = [];
+  wordListOriginal: Array<Sentence> = [];
+  wordListSplice: Array<Sentence> = [];
   interval = 50;
   start = 0;
   end = this.start + this.interval;
