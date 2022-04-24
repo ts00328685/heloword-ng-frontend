@@ -99,7 +99,9 @@
         </ion-card>
 
         <ion-card class="saving-card" *ngFor="let wordStore of wordStore$ | async | keyvalue"
-                  [hidden]="wordStore.value?.length <= 0">
+                  [hidden]="wordStore.value?.length <= 0"
+                  (click)="clickCard(wordStore.value)"
+                  >
 
             <ion-row class="ion-padding">
                 <ion-col size="6" class="ion-text-left">
@@ -156,7 +158,8 @@
         </ion-card>
 
         <ion-card class="saving-card" *ngFor="let sentenceStore of sentenceStore$ | async | keyvalue"
-                  [hidden]="sentenceStore.value?.length <= 0">
+                  [hidden]="sentenceStore.value?.length <= 0"
+                  (click)="clickCard(sentenceStore.value)">
 
             <ion-row class="ion-padding">
                 <ion-col size="6" class="ion-text-left">
@@ -219,27 +222,27 @@
     <ion-tabs>
         <ion-tab-bar slot="bottom">
             <ion-tab-button (click)="goVocabularyPage()">
-                <ion-icon name="logo-usd"></ion-icon>
-                <ion-label>Vocab</ion-label>
+                <ion-icon name="book-outline"></ion-icon>
+                <ion-label>Word</ion-label>
             </ion-tab-button>
 
             <ion-tab-button>
-                <ion-icon name="card"></ion-icon>
-                <ion-label>Tab2</ion-label>
+                <ion-icon name="calendar-outline"></ion-icon>
+                <ion-label>Review</ion-label>
             </ion-tab-button>
 
-            <ion-tab-button selected [routerLink]="'/hw-login'">
+            <ion-tab-button selected [routerLink]="'/hw-home'">
                 <ion-icon name="home"></ion-icon>
             </ion-tab-button>
 
             <ion-tab-button>
-                <ion-icon name="map"></ion-icon>
-                <ion-label>Tab3</ion-label>
+                <ion-icon name="stats-chart-outline"></ion-icon>
+                <ion-label>Stats</ion-label>
             </ion-tab-button>
 
             <ion-tab-button>
-                <ion-icon name="people"></ion-icon>
-                <ion-label>Tab4</ion-label>
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <ion-label>Info</ion-label>
             </ion-tab-button>
         </ion-tab-bar>
     </ion-tabs>

@@ -35,6 +35,12 @@ ion-button {
     color: var(--ion-color-primary);
 }
 
+.vertical-align-content > * {
+     display: flex!important;
+     align-content: center!important;
+     align-items: center!important;
+}
+
 * {
     outline: none;
 }

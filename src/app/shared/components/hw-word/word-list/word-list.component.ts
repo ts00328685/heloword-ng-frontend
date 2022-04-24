@@ -23,9 +23,7 @@ export class WordListComponent extends BaseComponent {
   end = this.start + this.interval;
 
   init() {
-    super.getDataService().wordStore.dataStore$.subscribe(_=> {
-      this.wordListSplice = this.wordListOriginal.slice(this.start, this.end);
-    })
+    this.wordListSplice = this.wordListOriginal.slice(this.start, this.end);
   }
 
   loadData(event) {

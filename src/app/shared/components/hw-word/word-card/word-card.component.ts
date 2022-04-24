@@ -11,19 +11,33 @@ export class WordCardComponent extends BaseComponent{
 
 
   @Input()
-  word: Word;
+  word: Sentence;
   
   init() {
 
   }
 
-  pronounce(word: string) {
+  pronounce(word: string, language = 'en-US') {
     if ('speechSynthesis' in window) {
+
+      let lang = 'en-US';
+
+      if (language === 'ch') {
+        lang = 'zh-TW';
+      }
+  
+      if (language === 'jp') {
+        lang = 'ja-JP';
+      }
+  
+      if (language === 'de') {
+        lang = 'de-DE';
+      }
    
       const synthesis = window.speechSynthesis;
 
       // Get the first `en` language voice in the list
-      const voice = synthesis.getVoices().filter( aVoice => aVoice.lang === 'en')[0];
+      const voice = synthesis.getVoices().filter( aVoice => aVoice.lang === lang)[0];
 
       // Create an utterance object
       const utterance = new SpeechSynthesisUtterance(word);
@@ -32,7 +46,7 @@ export class WordCardComponent extends BaseComponent{
       utterance.voice = voice;
       utterance.pitch = 1.5;
       utterance.rate = 1.05;
-      utterance.volume = 1.6;
+      utterance.volume = 0.3;
 
       // Speak the utterance
       synthesis.speak(utterance);

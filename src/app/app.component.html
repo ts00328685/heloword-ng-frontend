@@ -14,7 +14,7 @@
                             </ion-avatar>
                         </ion-col>
                     </ion-row>
-                    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+                    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index" [hidden]="p.title === 'Login' && (user$ | async).isLoggedIn">
                         <ion-item routerDirection="root" [routerLink]="p.url" lines="none" detail="false"
                                   routerLinkActive="selected">
                             <ion-icon slot="start" [name]="p.icon"></ion-icon>
@@ -23,7 +23,7 @@
                     </ion-menu-toggle>
                 </ion-list>
 
-                <ion-list>
+                <ion-list *ngIf="(user$ | async).isLoggedIn">
                     <ion-menu-toggle auto-hide="false" (click)="logout()">
                         <ion-item routerDirection="root" lines="none" detail="false">
                             <ion-icon slot="start" name="warning-outline"></ion-icon>

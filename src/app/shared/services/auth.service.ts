@@ -12,7 +12,7 @@ import { ActionService } from './action.service';
 })
 export class AuthService extends BaseService {
 
-  private userStore = new BehaviorSubject<User>({} as any);
+  private userStore = new BehaviorSubject<User>({} as User);
   public readonly userStore$ = this.userStore.asObservable();
 
   private checkedUserLoginStatus = false;
@@ -22,8 +22,8 @@ export class AuthService extends BaseService {
   }
 
   updateUserStore(user: User) {
-    this.userStore.next(user);
-    if (!RuleUtils.getInstance().isEmptyObject) {
+    this.userStore.next({...user, isLoggedIn: !!user?.email});
+    if (!RuleUtils.getInstance().isEmptyObject(user)) {
       this.hasCheckedUserLoginStatus(true);
     }
     super.debug('updated user:', user);
@@ -43,7 +43,7 @@ export class AuthService extends BaseService {
 
   logout() {
     this.apiService.doGet('/service-auth/api/auth/logout').subscribe();
-    this.updateUserStore({} as any);
+    this.updateUserStore({} as User);
     this.dataService.clearAllStore();
   }
 
@@ -78,6 +78,7 @@ export interface User {
   googleToken: string;
   facebookToken: string;
   roles: Role[];
+  isLoggedIn: boolean
 }
 
 

@@ -1,58 +1,59 @@
 <ion-card>
   <ion-card-content>
     <ion-grid>
-      <ion-row>
-        <ion-col size="5">
-          <ion-text color="dark">
-            <h2>{{word.word}}</h2>
-          </ion-text>
-        </ion-col>
+
+      <ion-row *ngIf="word.word" class="vertical-align-content">
         <ion-col>
           <ion-text>
-            <h2>{{word.translateCh}}</h2>
+            <h3>{{word.word}}</h3>
           </ion-text>
         </ion-col>
         <ion-col size="2">
-            <ion-button (click)="pronounce(word.word)" size="medium" fill="clear" shape="round">
-              <ion-icon color="dark" name="volume-high-outline"></ion-icon>
+            <ion-button (click)="pronounce(word.word, word.language)" size="medium" fill="clear" shape="round">
+              <ion-icon name="volume-high-outline"></ion-icon>
             </ion-button>
         </ion-col>
       </ion-row>
-    
-      <ion-row>
+
+      <ion-row *ngIf="word.translateCh" class="vertical-align-content">
         <ion-col>
           <ion-text>
-            <h2>{{word.translateEn}}</h2>
+            <h3>{{word.translateCh}}</h3>
           </ion-text>
+        </ion-col>
+        <ion-col size="2">
+            <ion-button (click)="pronounce(word.translateCh, 'ch')" size="medium" fill="clear" shape="round">
+              <ion-icon name="volume-high-outline"></ion-icon>
+            </ion-button>
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="word.translateEn" class="vertical-align-content">
         <ion-col>
           <ion-text>
-            <h3>{{word.createDate}}</h3>
+            <h3>{{word.translateEn}}</h3>
           </ion-text>
         </ion-col>
         <ion-col size="2">
             <ion-button (click)="pronounce(word.translateEn)" size="medium" fill="clear" shape="round">
-              <ion-icon color="dark" name="volume-high-outline"></ion-icon>
+              <ion-icon name="volume-high-outline"></ion-icon>
             </ion-button>
         </ion-col>
       </ion-row>
 
+      <ion-row *ngIf="word.sentence" class="vertical-align-content">
+        <ion-col>
+          <ion-text>
+            <h3>{{word.sentence}}</h3>
+          </ion-text>
+        </ion-col>
+        <ion-col size="2">
+            <ion-button (click)="pronounce(word.sentence, word.language)" size="medium" fill="clear" shape="round">
+              <ion-icon name="volume-high-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+      </ion-row>
+    
     </ion-grid>
   </ion-card-content>
 </ion-card>
-
-<!-- <ion-item>
-  <ion-label class="ion-text-wrap">
-    <ion-text color="primary">
-      <h2>{{word.word}}</h2>
-    </ion-text>
-    <p>{{word.kk}}</p>
-    <ion-text color="secondary">
-      <p>{{word.ch}}</p>
-    </ion-text>
-    <p>{{word.en}}</p>
-  </ion-label>
-</ion-item> -->

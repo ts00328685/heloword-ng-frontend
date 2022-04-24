@@ -14,20 +14,17 @@ export class HwVocabularyListPage extends BasePage<any> {
   sentenceStore$ = super.getDataService().sentenceStore.dataStore$;
   
   popover;
-  wordList = [];
+  wordListOriginal = [];
 
   init(): void {
-    if (super.getDataService().sentenceStore.isEmpty() && super.getDataService().wordStore.isEmpty()) {
+    this.wordListOriginal = super.getPageData().wordListOriginal;
+    if (this.getRules().isEmptyArray(this.wordListOriginal)) {
       super.getActionService().goBackHome();
     }
   }
 
   ionViewWillEnter() {
     super.debug('ionViewWillEnter')
-    setTimeout(() => {
-      this.wordStore$ = super.getDataService().wordStore.dataStore$;
-      this.sentenceStore$ = super.getDataService().sentenceStore.dataStore$;
-    });
   }
 
   async presentPopover(ev: any) {

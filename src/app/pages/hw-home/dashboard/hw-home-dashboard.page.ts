@@ -57,6 +57,10 @@ export class HwHomeDashboardPage extends BasePage<any> {
     );
   }
 
+  clickCard(list) {
+    super.getActionService().nextPageByUrl('/hw-vocabulary/list', {wordListOriginal: list});
+  }
+
   goVocabularyPage() {
     super.getActionService().nextPageByUrl('/hw-vocabulary')
   }

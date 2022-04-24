@@ -7,7 +7,7 @@
   
   <ion-content [fullscreen]="true">
   
-    <hw-word-list #wordList [wordListOriginal]="(wordStore$ | async)?.wordEnglishList || []"></hw-word-list>
+    <hw-word-list #wordList [wordListOriginal]="wordListOriginal || []"></hw-word-list>
     <ion-fab (click)="onFabClick($event)" vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button  color="danger" class="ion-margin">
         <ion-icon name="game-controller-outline"></ion-icon>
