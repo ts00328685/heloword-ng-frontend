@@ -33,11 +33,11 @@ export class ViewService extends BaseService {
     }, 500);
   }
 
-  async presentLoading(config = { duration: 60000 }) {
+  async presentLoading(config = { duration: 10000 }) {
     const showLoader = async () => {
       this.loading = await this.loadingController.create(config);
-      await this.loading.present();
       this.lastLoaderTime = new Date().getTime();
+      await this.loading.present();
     }
 
     if (this.loading) {
@@ -59,6 +59,10 @@ export class ViewService extends BaseService {
     if (topLayer) {
       await topLayer.dismiss();
     }
+  }
+
+  showAlert(message: string, cssClass = '', header = 'Notification', buttonText = 'Okay') {
+    this.createAlert(message, cssClass, header, buttonText).then(alert => alert.present().then());
   }
 
   createAlert(message: string, cssClass = '', header = 'Notification', buttonText = 'Okay'): Promise<HTMLIonAlertElement> {

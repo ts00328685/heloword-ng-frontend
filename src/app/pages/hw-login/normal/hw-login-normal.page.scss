@@ -1,7 +1,7 @@
 .v-bottom {
     position: absolute;
     bottom: 0;
-    width: 100vw;
+    width: 100%;
     margin: 0;
 }
 .card-round-border {
@@ -15,7 +15,7 @@
     min-height: 1px;
 }
 ion-content{
-    --background: #fff url('~src/assets/images/login/bg.png') no-repeat fixed top / 100%;
+    --background: #fff url('~src/assets/images/login/night_bg.png') no-repeat fixed top / 100%; 
 }
 ion-input {
     --padding-top: 0 !important;
@@ -32,9 +32,6 @@ ion-grid {
     text-decoration: underline;
     color: darkslategray !important;
 }
-ion-segment {
-    --background: white;
-}
 ion-segment-button {
     --indicator-box-shadow: 0;
 }
@@ -50,8 +47,11 @@ ion-card {
     box-shadow: 1px 1px rgb(0 0 0 / 20%);
     border-radius: 5px;
 }
+ion-img::part(image) {
+    border-radius: 50px;
+}
 @media only screen and (min-height : 812px) and (orientation: portrait) { 
     ion-content{
-        --background: #fff url('~src/assets/images/login/bg.png') no-repeat fixed top / 140%;
+      --background: #fff url('~src/assets/images/login/night_bg.png') no-repeat fixed top / 140%;
     }
 }

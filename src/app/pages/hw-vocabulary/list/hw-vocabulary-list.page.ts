@@ -18,7 +18,8 @@ export class HwVocabularyListPage extends BasePage<any> {
 
   init(): void {
     this.wordListOriginal = super.getPageData().wordListOriginal;
-    if (this.getRules().isEmptyArray(this.wordListOriginal)) {
+    if (this.getRules().isEmptyArray(this.wordListOriginal) 
+      && this.getRules().isEmptyArray(this.wordListOriginal = this.getDataService().wordStore.getValue().wordEnglishList)) {
       super.getActionService().goBackHome();
     }
   }

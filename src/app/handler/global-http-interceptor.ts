@@ -21,7 +21,6 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
     private utils: UtilsService
   ) {
     super();
-    window['interceptor'] = this;
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

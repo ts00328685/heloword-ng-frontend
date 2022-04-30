@@ -53,6 +53,7 @@ export class HwHomeDashboardPage extends BasePage<any> {
             sentenceJapaneseList
           }
         )
+        super.getViewService().showAlert('Currently still under construction, might be updated anytime! Log in for more data.');
       }
     );
   }
