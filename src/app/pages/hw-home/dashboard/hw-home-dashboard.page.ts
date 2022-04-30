@@ -53,7 +53,9 @@ export class HwHomeDashboardPage extends BasePage<any> {
             sentenceJapaneseList
           }
         )
-        super.getViewService().showAlert('Currently still under construction, might be updated anytime! Log in for more data.');
+        const exMsg =  '\nLog in for more data.';
+        const msg = 'Currently still under construction, might be updated anytime!';
+        super.getViewService().showAlert(super.getAuthService().isUserLoggedIn() ? msg : msg + exMsg);
       }
     );
   }

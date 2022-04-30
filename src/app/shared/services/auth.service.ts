@@ -38,7 +38,7 @@ export class AuthService extends BaseService {
   }
 
   getUser() {
-    return this.userStore.getValue();
+    return this.userStore.getValue() || {} as User;
   }
 
   logout() {
@@ -48,7 +48,7 @@ export class AuthService extends BaseService {
   }
 
   isUserLoggedIn(): boolean {
-    return !!this.userStore.getValue();
+    return !!this.getUser().isLoggedIn;
   }
 
   getRoles(): string[] {
