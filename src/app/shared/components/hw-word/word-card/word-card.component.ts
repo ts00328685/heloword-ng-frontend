@@ -33,7 +33,9 @@ export class WordCardComponent extends BaseComponent{
       if (language === 'de') {
         lang = 'de-DE';
       }
-   
+  
+      word = word.replace(/(\[.*?\]|\(.*?\)) */g, '').replace(/(\<.*?\>) */g, '');
+
       const synthesis = window.speechSynthesis;
 
       // Get the first `en` language voice in the list
