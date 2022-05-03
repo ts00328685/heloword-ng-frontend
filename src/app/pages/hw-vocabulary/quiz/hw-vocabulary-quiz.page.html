@@ -16,11 +16,11 @@
             </ion-col>
         </ion-row>
 
-        <ion-row *ngIf="currentWord?.translateCh" (click)="pronounce(currentWord?.translateCh, 'ch')" class="ion-align-items-center vertical-align-content">
+        <ion-row *ngIf="currentWord?.translateCh" class="ion-align-items-center vertical-align-content">
             <ion-col size="9" class="ion-no-padding">
                 <h2 class="ion-text-left" [innerHTML]="currentWord?.translateCh"></h2>
             </ion-col>
-            <ion-col size="2">
+            <ion-col size="2" (click)="pronounce(currentWord?.translateCh, 'ch')">
                 <ion-button size="small" mode="md" fill="clear" shape="round">
                     <ion-icon name="volume-high-outline"></ion-icon>
                 </ion-button>
@@ -30,13 +30,13 @@
             </ion-col>
         </ion-row>
 
-        <ion-row (click)="pronounce(currentWord?.translateEn, 'en')" class="ion-align-items-left vertical-align-content">
+        <ion-row class="ion-align-items-left vertical-align-content">
             <ion-col size="9" class="ion-no-padding">
                 <h2 class="ion-text-left">
                     {{currentWord?.translateEn}}
                 </h2>
             </ion-col>
-            <ion-col size="2">
+            <ion-col size="2" (click)="pronounce(currentWord?.translateEn, 'en')">
                 <ion-button size="small" mode="md" fill="clear" shape="round">
                     <ion-icon name="volume-high-outline"></ion-icon>
                 </ion-button>
@@ -46,12 +46,12 @@
             </ion-col>
         </ion-row>
 
-        <ion-row *ngIf="currentWord?.sentence" (click)="pronounce(currentWord?.sentence, currentWord.language)" class="ion-align-items-left vertical-align-content">
+        <ion-row *ngIf="currentWord?.sentence" class="ion-align-items-left vertical-align-content">
             <ion-col size="9" class="ion-no-padding">
                 <h2 class="ion-text-left" [innerHTML]="currentWord?.sentence">
                 </h2>
             </ion-col>
-            <ion-col size="2">
+            <ion-col size="2" (click)="pronounce(currentWord?.sentence, currentWord.language)">
                 <ion-button size="small" mode="md" fill="clear" shape="round">
                     <ion-icon name="volume-high-outline"></ion-icon>
                 </ion-button>
