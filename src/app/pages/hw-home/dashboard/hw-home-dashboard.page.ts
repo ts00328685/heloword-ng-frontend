@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BasePage } from 'src/app/shared/base/base.page';
 import { Forms } from 'src/app/shared/base/validation/forms';
+import { Sentence } from 'src/app/shared/models/common-models';
+import { WordStore, SentenceStore } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'hw-home-dashboard',
@@ -20,7 +22,7 @@ export class HwHomeDashboardPage extends BasePage<any> {
     sentenceGermanList: 'German Sentences',
     sentenceJapaneseList: 'Japanese Sentences',
   }
-  
+
   init(): void {
     this.retrieveData();
   }
@@ -39,6 +41,7 @@ export class HwHomeDashboardPage extends BasePage<any> {
         const sentenceEnglishList = response.data.sentenceEnglishList || [];
         const sentenceGermanList = response.data.sentenceGermanList || [];
         const sentenceJapaneseList = response.data.sentenceJapaneseList || [];
+
         super.getDataService().wordStore.updateValue(
           {
             wordEnglishList,
@@ -53,15 +56,49 @@ export class HwHomeDashboardPage extends BasePage<any> {
             sentenceJapaneseList
           }
         )
-        const exMsg =  '\nLog in for more data.';
+        this.fillWordWithSentence(super.getDataService().wordStore.getValue(), super.getDataService().sentenceStore.getValue().sentenceEnglishList);
+        const exMsg = '\nLog in for more data.';
         const msg = 'Currently still under construction, might be updated anytime!';
         super.getViewService().showAlert(super.getAuthService().isUserLoggedIn() ? msg : msg + exMsg);
       }
     );
   }
 
+  fillWordWithSentence(words: WordStore, sentences: Sentence[]) {
+
+    if (!super.getAuthService().isUserLoggedIn()) {
+      super.debug('Not logged in, ignoring fillWordWithSentence');
+      return;
+    }
+
+    const sentenceMap = sentences.reduce((pre, cur, idx) => {
+      if (!cur.word) {
+        return pre;
+      }
+      return {
+        ...pre, 
+        [cur.word]: cur.sentence 
+      };
+    }, {});
+
+
+    Object.keys(words).forEach(key => {
+      const lang = key.substring(4);
+      if (!lang.toLowerCase().includes('english')) {
+        return;
+      }
+
+      (words[key] as Sentence[] || []).forEach(word => {
+        word.sentence = sentenceMap[word.word] || '';
+      });
+    })
+
+    super.debug('wordEnglish with sentence', words['wordEnglishList']);
+
+  }
+
   clickCard(list) {
-    super.getActionService().nextPageByUrl('/hw-vocabulary/list', {wordListOriginal: list});
+    super.getActionService().nextPageByUrl('/hw-vocabulary/list', { wordListOriginal: list });
   }
 
   goVocabularyPage() {

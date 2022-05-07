@@ -39,7 +39,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       super.getActionService().goBackHome();
       return;
     }
-    this.retrieveData();
+    this.initWordList();
   }
 
   protected afterViewInit(): void {
@@ -53,41 +53,6 @@ export class HwVocabularyQuizPage extends BasePage<any> {
         takeUntil(this.unsubscribe)
       ).subscribe();
     this.input.el.focus();
-  }
-
-  retrieveData() {
-    const ds = super.getDataService();
-    if (!ds.wordStore.isEmpty() || !ds.sentenceStore.isEmpty()) {
-      this.initWordList();
-      return;
-    }
-
-    super.getApiService().doGet('/frontend-api/api/fe/home/dashboard').subscribe(
-      response => {
-        const wordEnglishList = response.data.wordEnglishList || [];
-        const wordGermanList = response.data.wordGermanList || [];
-        const wordJapaneseList = response.data.wordJapaneseList || [];
-        const sentenceEnglishList = response.data.sentenceEnglishList || [];
-        const sentenceGermanList = response.data.sentenceGermanList || [];
-        const sentenceJapaneseList = response.data.sentenceJapaneseList || [];
-        super.getDataService().wordStore.updateValue(
-          {
-            wordEnglishList,
-            wordGermanList,
-            wordJapaneseList
-          }
-        )
-        super.getDataService().sentenceStore.updateValue(
-          {
-            sentenceEnglishList,
-            sentenceGermanList,
-            sentenceJapaneseList
-          }
-        )
-
-        this.initWordList();
-      }
-    );
   }
 
   initWordList() {
