@@ -2,8 +2,11 @@
     <ion-grid class="ion-padding ion-text-center">
 
         <ion-row class="ion-align-items-center vertical-align-content">
-            <ion-col size="9">
-                <ion-input [value]="inputValue" autofocus #input type="text">
+            <ion-col size="2">
+                <ion-text>{{currentIndex}}/{{totalLength}}</ion-text>
+            </ion-col>
+            <ion-col size="7">
+                <ion-input class="ion-text-left" [value]="inputValue" autofocus #input type="text">
                 </ion-input>
             </ion-col>
             <ion-col size="2" (click)="pronounce(currentWord?.word || currentWord?.sentence, currentWord.language)">

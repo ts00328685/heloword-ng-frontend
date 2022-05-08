@@ -8,10 +8,6 @@ import { BaseComponent } from 'src/app/shared/base/base.component';
 })
 export class ModalWordSettingComponent extends BaseComponent {
 
-  isDisplay = true;
-  minValue = 1;
-  maxValue = 2;
-
   @Input()
   max: number = 0;
 
@@ -30,7 +26,8 @@ export class ModalWordSettingComponent extends BaseComponent {
 
       this.settingList.push({
         type: key,
-        total: wordList.length
+        total: wordList.length,
+        isSelected: true
       });
 
     })
@@ -43,7 +40,8 @@ export class ModalWordSettingComponent extends BaseComponent {
 
       this.settingList.push({
         type: key,
-        total: sentenceList.length
+        total: sentenceList.length,
+        isSelected: true
       });
 
     })
@@ -51,7 +49,22 @@ export class ModalWordSettingComponent extends BaseComponent {
   }
 
   onSpellingClick() {
-    super.getActionService().nextPageByUrl('/hw-vocabulary/quiz', { quizSettings: this.quizSettings });
+    const quizSettings = Object.keys(this.quizSettings).reduce((pre, cur) => {
+      const setting = this.quizSettings[cur];
+      if (!setting.isSelected) {
+        return pre;
+      }
+      return {...pre, [cur]: setting}
+    }, {});
+
+
+    if (super.getRules().isEmptyObject(quizSettings)) {
+      super.getViewService().showAlert('Please select at least one group!');
+      return;
+    }
+
+
+    super.getActionService().nextPageByUrl('/hw-vocabulary/quiz', { quizSettings });
     super.getPopoverController().dismiss();
   }
 
@@ -66,4 +79,5 @@ export interface QuizSetting {
   max?: number;
   type: string;
   total: number;
+  isSelected: boolean;
 }

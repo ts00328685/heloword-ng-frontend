@@ -3,6 +3,7 @@ import { BasePage } from 'src/app/shared/base/base.page';
 import { Forms } from 'src/app/shared/base/validation/forms';
 import { Sentence } from 'src/app/shared/models/common-models';
 import { WordStore, SentenceStore } from 'src/app/shared/services/data.service';
+import { UtilsService } from 'src/app/shared/services/utils.service';
 
 @Component({
   selector: 'hw-home-dashboard',
@@ -14,14 +15,7 @@ export class HwHomeDashboardPage extends BasePage<any> {
   wordStore$ = super.getDataService().wordStore.dataStore$;
   sentenceStore$ = super.getDataService().sentenceStore.dataStore$;
 
-  titleMap = {
-    wordEnglishList: 'English Words',
-    wordGermanList: 'German Words',
-    wordJapaneseList: 'Japanese Words',
-    sentenceEnglishList: 'English Sentences',
-    sentenceGermanList: 'German Sentences',
-    sentenceJapaneseList: 'Japanese Sentences',
-  }
+  titleMap = UtilsService.getWordSentenceTitleMap();
 
   init(): void {
     this.retrieveData();

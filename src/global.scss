@@ -49,7 +49,7 @@ ion-popover::part(content) {
     left: 2.5vw !important;
     bottom: 50px;
     width: 95vw;
-    max-height: 90vh;
+    max-height: 85vh;
     border-radius: 0;
 }
 ion-app.cameraView,
@@ -60,4 +60,8 @@ ion-app.cameraView ion-page {
     background: transparent none !important;
     --background: transparent none !important;
     --ion-background-color: none; // this is important
+}
+ion-toggle {
+    --handle-spacing: 0px;
+    --handle-height: 100%;
 }

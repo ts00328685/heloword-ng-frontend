@@ -6,6 +6,17 @@ import CryptoJS from 'crypto-js';
 })
 export class UtilsService {
 
+  public static getWordSentenceTitleMap() {
+    return {
+      wordEnglishList: 'English Words',
+      wordGermanList: 'German Words',
+      wordJapaneseList: 'Japanese Words',
+      sentenceEnglishList: 'English Sentences',
+      sentenceGermanList: 'German Sentences',
+      sentenceJapaneseList: 'Japanese Sentences',
+    }
+  }
+
   generateCV(_key: string, iv: string): string {
     if (!_key || !iv) {
       return '';

@@ -1,26 +1,65 @@
 <ion-item>
-    <ion-text>
-        {{ setting.type }}
-    </ion-text>
+    <ion-row class="ion-align-items-center vertical-align-content">
+        <ion-col size="10">
+            <ion-badge>
+                <ion-text>{{ titleMap[setting.type] }}</ion-text>
+            </ion-badge>
+        </ion-col>
+        <ion-col size="2" class="ion-justify-content-end">
+            <ion-toggle size="small" [(ngModel)]="setting.isSelected"></ion-toggle>
+        </ion-col>
+    </ion-row>
 </ion-item>
 <ion-item>
-    <ion-range #minRange min="1" [(ngModel)]="minValue" value="1" [max]="setting.total" color="secondary">
-        <ion-label slot="start">1</ion-label>
-        <ion-label slot="end">{{setting.total}}</ion-label>
-    </ion-range>
+    <ion-row class="ion-align-items-center vertical-align-content">
+        <ion-col size="2">
+            <ion-input [disabled]="!setting.isSelected" class="ion-text-left" [(ngModel)]="minValue" type="number">
+            </ion-input>
+        </ion-col>
+        <ion-col size="10" class="ion-justify-content-end">
+            <ion-range [disabled]="!setting.isSelected" #minRange min="1" [(ngModel)]="minValue" value="1"
+                       (ionChange)="assignValue('minValue', minRange.value.toString())"
+                       [max]="setting.total"
+                       color="secondary">
+                <ion-label slot="start">1</ion-label>
+                <ion-label slot="end">{{setting.total}}</ion-label>
+            </ion-range>
+        </ion-col>
+    </ion-row>
 </ion-item>
 <ion-item>
-    <ion-range #maxRange [(ngModel)]="maxValue" (ionChange)="assignValue('maxValue', maxRange.value.toString())"
-               [value]="maxValue < minValue ? minValue + 1 : maxValue" [min]="minValue + 1" [max]="setting.total"
-               color="secondary">
-        <ion-label slot="start">{{minRange.value}}</ion-label>
-        <ion-label slot="end">{{setting.total}}</ion-label>
-    </ion-range>
+    <ion-row class="ion-align-items-center vertical-align-content">
+        <ion-col size="2">
+            <ion-input [disabled]="!setting.isSelected" class="ion-text-left" [(ngModel)]="maxValue" type="number">
+            </ion-input>
+        </ion-col>
+        <ion-col size="10" class="ion-justify-content-end">
+            <ion-range [disabled]="!setting.isSelected" #maxRange [(ngModel)]="maxValue"
+                       (ionChange)="assignValue('maxValue', maxRange.value.toString())"
+                       [value]="maxValue < minValue ? minValue + 1 : maxValue" [min]="minValue + 1"
+                       [max]="setting.total"
+                       color="secondary">
+                <ion-label slot="start">{{minRange.value}}</ion-label>
+                <ion-label slot="end">{{setting.total}}</ion-label>
+            </ion-range>
+        </ion-col>
+    </ion-row>
+
 </ion-item>
 
 <ion-item>
-    <ion-label>Start: </ion-label>
-    <ion-badge class="ion-margin-end" color="primary">{{minRange.value}}</ion-badge>
-    <ion-label>End: </ion-label>
-    <ion-badge color="primary">{{maxRange.value}}</ion-badge>
+    <ion-row class="ion-align-items-center vertical-align-content">
+        <ion-col size="6" class="ion-justify-content-end">
+            <ion-label>Start: </ion-label>
+        </ion-col>
+        <ion-col size="2" class="ion-justify-content-end">
+            <ion-badge color="secondary">{{minRange.value}}</ion-badge>
+        </ion-col>
+        <ion-col size="2" class="ion-justify-content-end">
+            <ion-label>End: </ion-label>
+        </ion-col>
+        <ion-col size="2" class="ion-justify-content-end">
+            <ion-badge color="secondary">{{maxRange.value}}</ion-badge>
+        </ion-col>
+    </ion-row>
 </ion-item>

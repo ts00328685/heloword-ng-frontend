@@ -27,6 +27,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
   pronounciationSpeed = 1.0;
   pronounciationVolume = 0.2;
+  
 
   @ViewChild('input')
   input;
@@ -35,6 +36,14 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
 
   init(): void {
+    this.initialize();
+  }
+
+  ionViewWillEnter() {
+    this.initialize();
+  }
+
+  initialize() {
     if (!super.getPageData().quizSettings) {
       super.getActionService().goBackHome();
       return;
@@ -133,7 +142,6 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     }
     this.currentIndex++;
     this.originalWordList = this.originalWordList.slice(1, this.originalWordList.length);
-    this.totalLength = this.originalWordList.length;
     this.currentWord = this.originalWordList[0];
     this.input.value = '';
     if (this.autoPronounce) {

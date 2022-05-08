@@ -1,5 +1,6 @@
 export interface Sentence extends Word {
     sentence: string;
+    sentences: Sentence[];
 }
 export interface Word {
     id: number;
