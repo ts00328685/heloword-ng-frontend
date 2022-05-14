@@ -20,10 +20,13 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   totalLength: number;
   currentIndex: number;
   inputValue = '';
+  // TODO: extract these settings to localstorage
   autoPronounce = false;
   autoPronounceEn = false;
   autoPronounceCh = false;
   autoPronounceSentence = false;
+  autoInputFocus = false;
+  autoComplete = false;
 
   pronounciationSpeed = 1.0;
   pronounciationVolume = 0.2;
@@ -61,7 +64,10 @@ export class HwVocabularyQuizPage extends BasePage<any> {
         tap(this.onInputChange.bind(this)),
         takeUntil(this.unsubscribe)
       ).subscribe();
-    this.input.el.focus();
+    
+    if (this.autoInputFocus) {
+      this.input.el.focus();
+    }
   }
 
   initWordList() {
@@ -93,6 +99,12 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   onInputChange(word: string) {
+    if (this.isAnswerCorrect(word)) {
+      this.goNext();
+    }
+  }
+
+  isAnswerCorrect(word: string): boolean {
     let answer = (this.currentWord.word || this.currentWord.sentence);
 
     if (this.currentWord.language === 'jp') {
@@ -123,8 +135,10 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     }
 
     if (trimmedWord.length >= trimmedAns.length && trimmedWord.includes(trimmedAns)) {
-      this.goNext();
+      return true;
     }
+
+    return false;
   }
 
   onChClick() {
@@ -134,6 +148,13 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   onAnsClick(answer: string) {
     this.input.value = `${answer}＊`;
     this.input.setFocus();
+  }
+
+  onEnter(word: string) {
+    if (!this.isAnswerCorrect(word)) {
+      super.getViewService().showToast('Wrong answer!', 1000);
+    }
+    this.goNext();
   }
 
   goNext() {
@@ -164,7 +185,9 @@ export class HwVocabularyQuizPage extends BasePage<any> {
         this.pronounce(this.currentWord.sentence, this.currentWord.language);
       }, delay);
     }
-    this.input.setFocus();
+    if (this.autoInputFocus) {
+      this.input.setFocus();
+    }
   }
 
   pronounce(word: string, type = '') {

@@ -24,13 +24,17 @@ export class ViewService extends BaseService {
 
   showSystemErrorToast() {
     setTimeout(() => {
-      this.toastController.create({
-        message: 'System busy, please try later',
-        icon: 'information-circle',
-        duration: 2000,
-        position: 'top',
-      }).then(_toast => _toast.present());
+      this.showToast('System busy, please try later');
     }, 500);
+  }
+
+  showToast(msg = '', duration = 2000, position: 'top' | 'bottom' = 'top', icon = 'information-circle') {
+    this.toastController.create({
+      message: msg,
+      icon,
+      duration,
+      position,
+    }).then(_toast => _toast.present());
   }
 
   async presentLoading(config = { duration: 35000 }) {
