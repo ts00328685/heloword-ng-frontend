@@ -27,7 +27,7 @@ export class HwHomeDashboardPage extends BasePage<any> {
       return;
     }
 
-    super.getApiService().doGet('/frontend-api/api/fe/home/dashboard').subscribe(
+    super.getApiService().doPost('/frontend-api/api/fe/home/dashboard').subscribe(
       response => {
         const wordEnglishList = response.data.wordEnglishList || [];
         const wordGermanList = response.data.wordGermanList || [];

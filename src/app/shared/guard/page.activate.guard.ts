@@ -29,11 +29,11 @@ export class PageActivateGuard extends BaseComponent implements CanActivateChild
             return true;
         }
 
-        return super.getApiService().doGet('/service-auth/api/auth/init-cookie')
+        return super.getApiService().doPost('/service-auth/api/auth/init-cookie')
             .pipe(
-                mergeMap(() => super.getApiService().doGet('/service-auth/api/auth/init-cipher')),
+                mergeMap(() => super.getApiService().doPost('/service-auth/api/auth/init-cipher')),
                 tap(response => environment.cipher = response.data),
-                mergeMap(() => super.getApiService().doGet('/frontend-api/api/fe/user')),
+                mergeMap(() => super.getApiService().doPost('/frontend-api/api/fe/user')),
                 map(response => {
                     super.getAuthService().hasCheckedUserLoginStatus(true);
                     if (response.code !== '0000') {
