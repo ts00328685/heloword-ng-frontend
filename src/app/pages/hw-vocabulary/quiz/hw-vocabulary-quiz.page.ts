@@ -105,6 +105,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
         answerId: this.currentWord.id,
         answerTableName: this.currentWord.tableName,
         timeSpent,
+        index: this.currentIndex,
         startTime: this.eachQuestionStartTime,
         finishedTime: new Date(),
         pronounceCount: this.pronounceCount,
