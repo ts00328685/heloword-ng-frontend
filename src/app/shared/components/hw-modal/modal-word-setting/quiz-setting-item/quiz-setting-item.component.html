@@ -13,7 +13,14 @@
 <ion-item>
     <ion-row class="ion-align-items-center vertical-align-content">
         <ion-col size="2">
-            <ion-input [disabled]="!setting.isSelected" class="ion-text-left" [(ngModel)]="minValue" type="number">
+            <ion-input 
+                [disabled]="!setting.isSelected" 
+                class="ion-text-left" 
+                [(ngModel)]="minValue"
+                [min]="1"
+                [max]="setting.total"
+                (ionChange)="validateInput('minValue', $event)" 
+                type="number">
             </ion-input>
         </ion-col>
         <ion-col size="10" class="ion-justify-content-end">
@@ -30,7 +37,14 @@
 <ion-item>
     <ion-row class="ion-align-items-center vertical-align-content">
         <ion-col size="2">
-            <ion-input [disabled]="!setting.isSelected" class="ion-text-left" [(ngModel)]="maxValue" type="number">
+            <ion-input 
+                [disabled]="!setting.isSelected" 
+                class="ion-text-left" 
+                [(ngModel)]="maxValue" 
+                [min]="2"
+                [max]="setting.total"
+                type="number"
+                (ionChange)="validateInput('maxValue', $event)">
             </ion-input>
         </ion-col>
         <ion-col size="10" class="ion-justify-content-end">

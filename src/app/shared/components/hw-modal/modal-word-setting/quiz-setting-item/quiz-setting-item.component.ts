@@ -32,6 +32,33 @@ export class QuizSettingItemComponent extends BaseComponent {
     this.emitValue();
   }
 
+  validateInput(type: 'minValue' | 'maxValue', ionChange: CustomEvent | any) {
+    const value = +ionChange.detail.value;
+    super.debug('validateInput', type, value);
+    switch(type) {
+      case 'minValue':
+        if (value < 1) {
+          // settimeout for triggering change detection
+          setTimeout(()=>{
+            this.minValue = 1;
+          })
+        }
+        if (value >= this.setting.total) {
+          this.minValue = this.setting.total;
+        }
+        break;
+      case 'maxValue':
+        if (value < this.minValue) {
+          this.maxValue = this.minValue + 1;
+        }
+        if (value >= this.setting.total) {
+          this.maxValue = this.setting.total;
+        }
+        break;
+      default:
+    }
+  }
+
   emitValue() {
     this.settingChange.emit({
       min: this.minValue,
