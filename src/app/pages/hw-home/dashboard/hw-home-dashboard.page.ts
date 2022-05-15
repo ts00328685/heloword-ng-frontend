@@ -50,6 +50,7 @@ export class HwHomeDashboardPage extends BasePage<any> {
             sentenceJapaneseList
           }
         )
+
         this.fillWordWithSentence(super.getDataService().wordStore.getValue(), super.getDataService().sentenceStore.getValue().sentenceEnglishList);
         const exMsg = '\nLog in for more data.';
         const msg = 'Currently still under construction, might be updated anytime!';

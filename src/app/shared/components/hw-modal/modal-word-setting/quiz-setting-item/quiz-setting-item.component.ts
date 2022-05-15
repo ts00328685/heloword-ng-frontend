@@ -61,11 +61,10 @@ export class QuizSettingItemComponent extends BaseComponent {
 
   emitValue() {
     this.settingChange.emit({
+      timestamp: new Date(),
       min: this.minValue,
       max: this.maxValue,
-      type: this.setting.type,
-      total: this.setting.total,
-      isSelected: this.setting.isSelected
+      ...this.setting
     })
   }
 }

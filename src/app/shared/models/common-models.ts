@@ -18,4 +18,5 @@ export interface Word {
     note?: any;
     info?: any;
     language: string;
+    tableName?: string;
 }

@@ -10,7 +10,7 @@ export class GlobalErrorHandler extends BaseComponent implements ErrorHandler {
   handleError(error) {
     super.error('global error', error);
     this.viewService.showSystemErrorToast();
-    this.viewService.dismissLoading();
+    this.viewService.dismissLoading().then();
   }
 
 }

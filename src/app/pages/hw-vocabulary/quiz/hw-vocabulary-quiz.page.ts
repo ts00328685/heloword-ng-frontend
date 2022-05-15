@@ -4,7 +4,9 @@ import { Subject } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged, tap, takeUntil } from 'rxjs/operators';
 import { BasePage } from 'src/app/shared/base/base.page';
 import { Forms } from 'src/app/shared/base/validation/forms';
+import { QuizSetting } from 'src/app/shared/components/hw-modal/modal-word-setting/modal-word-setting.component';
 import { Sentence } from 'src/app/shared/models/common-models';
+import { RuleUtils } from 'src/app/shared/utils/rules-utils';
 
 @Component({
   selector: 'hw-vocabulary-quiz',
@@ -26,12 +28,18 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   autoPronounceEn = false;
   autoPronounceCh = false;
   autoPronounceSentence = false;
-  autoInputFocus = false;
+  autoInputFocus = true;
   autoComplete = false;
 
   pronounciationSpeed = 1.0;
   pronounciationVolume = 0.2;
-  
+
+  settingIdMap: Map<string, number>;
+
+  eachQuestionStartTime = new Date();
+  pronounceCount = 0;
+  deleteCount = 0;
+  wrongCount = 0;
 
   @ViewChild('input')
   input: IonInput;
@@ -44,6 +52,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   ionViewWillEnter() {
+    this.saveQuizSettings(super.getPageData().quizSettings);
     this.initialize();
   }
 
@@ -52,8 +61,62 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       super.getActionService().goBackHome();
       return;
     }
+
     this.initWordList();
   }
+
+  saveQuizSettings(quizSettings: QuizSetting) {
+
+    if (RuleUtils.getInstance().isEmptyObject(quizSettings)) {
+      return;
+    }
+
+    if (!super.getAuthService().isUserLoggedIn()) {
+      return;
+    }
+
+    const settingList = Object.keys(quizSettings).map(_key => { return { _key, ...quizSettings[_key] }; });
+
+    super.getApiService().doPost(
+      '/frontend-api/api/fe/quiz/save-setting-records',
+      settingList
+    ).subscribe(rs => {
+
+      this.settingIdMap = new Map();
+      settingList.forEach((s, index) => {
+        this.settingIdMap.set(s.tableName, rs.data.ids[index]);
+      });
+
+      super.debug('settingIdMap', this.settingIdMap);
+    });
+
+
+  }
+
+  saveSingleRecord() {
+    if (!super.getAuthService().isUserLoggedIn()) {
+      return;
+    }
+
+    const currentTime = new Date();
+    const timeSpent = (currentTime.getTime() - this.eachQuestionStartTime.getTime()) / 1000;
+    super.getApiService().doPost(
+      '/frontend-api/api/fe/quiz/save-single-record',
+      {
+        answerId: this.currentWord.id,
+        answerTableName: this.currentWord.tableName,
+        timeSpent,
+        startTime: this.eachQuestionStartTime,
+        finishedTime: new Date(),
+        pronounceCount: this.pronounceCount,
+        deleteCount: this.deleteCount,
+        wrongCount: this.wrongCount,
+        recordQuizSettingId: this.settingIdMap.get(this.currentWord.tableName),
+      }
+    ).subscribe();
+
+  }
+
 
   protected afterViewInit(): void {
     this.input.ionChange
@@ -65,7 +128,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
         tap(this.onInputChange.bind(this)),
         takeUntil(this.unsubscribe)
       ).subscribe();
-    
+
     if (this.autoInputFocus) {
       this.input.setFocus();
     }
@@ -85,15 +148,16 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     Object.keys(quizSettings).forEach(key => {
       if (!wordAndSentences[key]) return;
       const setting = quizSettings[key];
-      combinedList = [ ...combinedList, ...wordAndSentences[key].slice(setting.min - 1, setting.max) ]
+      combinedList = [...combinedList, ...wordAndSentences[key].slice(setting.min - 1, setting.max)]
     })
-    
+
     super.debug('combined list', combinedList);
 
     this.originalWordList = combinedList.sort(() => Math.random() - 0.5);
     if (!this.originalWordList || this.originalWordList.length <= 0) {
       window.location.href = '/';
     }
+
     this.currentWord = this.originalWordList[0];
     this.totalLength = this.originalWordList.length;
     this.currentIndex = 1;
@@ -133,7 +197,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     }
 
     const trimmedAns = answer.replace(/[\W]/g, '');
-    
+
     const trimmedWord = word.trim().toLowerCase().replace(/[\W]/g, '');
 
     if (word.includes('＊')) {
@@ -172,6 +236,8 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   goNext() {
     this.cancelPronouncing();
 
+    this.saveSingleRecord();
+    
     this.currentIndex++;
 
     // TODO: go to a result reviewing page
@@ -278,4 +344,16 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }
+}
+
+class QuizRecord {
+  username: string;
+  answerId: number;
+  answerTableName: string;
+  timeSpent: number;
+  startTime: Date;
+  finishedTime: Date;
+  pronounceCount: number;
+  deleteCount: number;
+  wrongCount: number;
 }

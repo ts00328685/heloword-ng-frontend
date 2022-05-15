@@ -25,8 +25,10 @@ export class ModalWordSettingComponent extends BaseComponent {
       if (!wordList || wordList.length < 1) return;
 
       this.settingList.push({
+        timestamp: new Date(),
         type: key,
         total: wordList.length,
+        tableName: wordList[0].tableName,
         isSelected: false
       });
 
@@ -39,8 +41,10 @@ export class ModalWordSettingComponent extends BaseComponent {
       if (!sentenceList || sentenceList.length < 1) return;
 
       this.settingList.push({
+        timestamp: new Date(),
         type: key,
         total: sentenceList.length,
+        tableName: sentenceList[0].tableName,
         isSelected: false
       });
 
@@ -75,9 +79,11 @@ export class ModalWordSettingComponent extends BaseComponent {
 }
 
 export interface QuizSetting {
+  timestamp: Date;
   min?: number;
   max?: number;
   type: string;
+  tableName: string;
   total: number;
   isSelected: boolean;
 }

@@ -53,7 +53,7 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
   }
 
   handleHttpError(error: any): Observable<any> {
-    this.viewService.dismissLoading();
+    this.viewService.dismissLoading().then();
     this.viewService.showSystemErrorToast();
     super.error('handling http error', error);
     return of({
