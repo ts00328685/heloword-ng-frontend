@@ -12,18 +12,19 @@ export class ApiService extends BaseService {
 
   constructor(private httpClient: HttpClient) {
     super();
+    // TODO: to be deleted
     window['apiService'] = this;
   }
 
-  doGet(url: string, params: HttpParams = new HttpParams()): Observable<CommonResponse> {
+  doGet(url: string, params: HttpParams = new HttpParams(), showLoader = true): Observable<CommonResponse> {
     return this.getHttpClient().pipe(
-      mergeMap(httpClient => httpClient.get<CommonResponse>(environment.backendBaseUrl + url, { params: params }))
+      mergeMap(httpClient => httpClient.get<CommonResponse>(environment.backendBaseUrl + url, { params: params, headers: { showLoader: showLoader + '' } }))
     );
   }
 
-  doPost(url: string, params: any = {}, baseUrl = environment.backendBaseUrl): Observable<CommonResponse> {
+  doPost(url: string, params: any = {}, baseUrl = environment.backendBaseUrl, showLoader = true): Observable<CommonResponse> {
     return this.getHttpClient().pipe(
-      mergeMap(httpClient => httpClient.post<CommonResponse>(baseUrl + url, params)),
+      mergeMap(httpClient => httpClient.post<CommonResponse>(baseUrl + url, params, { headers: { showLoader: showLoader + '' } })),
     );
   }
 

@@ -24,7 +24,10 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const loader = from(this.viewService.presentLoading());
+
+    const isShowLoader = req.headers.get('showLoader') === 'true';
+
+    const loader = isShowLoader ? from(this.viewService.presentLoading()) : of(null);
 
     const withCredentials = req.url !== environment.retrieveIpUrl;
 

@@ -8,6 +8,7 @@
             <ion-col size="7">
                 <ion-input #input
                            (keyup.enter)="onEnter(input.value + '')"
+                           (keydown.backspace)="onBackspace(input.value + '')"
                            class="ion-text-center"
                            [value]="inputValue"
                            [autofocus]="autoInputFocus"

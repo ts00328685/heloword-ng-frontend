@@ -66,6 +66,7 @@ export class HwHomeDashboardPage extends BasePage<any> {
       return;
     }
 
+    super.getViewService().presentLoading().then();
     setTimeout(() => {
 
       const sentenceMap = sentences.reduce((pre, cur, idx) => {
@@ -89,6 +90,7 @@ export class HwHomeDashboardPage extends BasePage<any> {
             word.sentence = sentenceMap[word.word] || '';
           });
         });
+        super.getViewService().dismissLoading().then();
       })
 
     });

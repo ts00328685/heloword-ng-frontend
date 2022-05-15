@@ -90,7 +90,6 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       super.debug('settingIdMap', this.settingIdMap);
     });
 
-
   }
 
   saveSingleRecord() {
@@ -112,7 +111,9 @@ export class HwVocabularyQuizPage extends BasePage<any> {
         deleteCount: this.deleteCount,
         wrongCount: this.wrongCount,
         recordQuizSettingId: this.settingIdMap.get(this.currentWord.tableName),
-      }
+      }, 
+      undefined,
+      false
     ).subscribe();
 
   }
@@ -204,8 +205,12 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       return;
     }
 
-    if (trimmedWord.length >= trimmedAns.length && trimmedWord.includes(trimmedAns)) {
+    const isInputWordComplete = trimmedWord.length >= trimmedAns.length;
+
+    if (isInputWordComplete && trimmedWord.includes(trimmedAns)) {
       return true;
+    } else if (isInputWordComplete && !trimmedWord.includes(trimmedAns)) {
+      this.wrongCount++;
     }
 
     return false;
@@ -218,6 +223,11 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   onAnsClick(answer: string) {
     this.input.value = `${answer}＊`;
     this.input.setFocus();
+  }
+
+  onBackspace(word: string) {
+    super.debug('backspace pressed');
+    this.deleteCount++;
   }
 
   onEnter(word: string) {
@@ -237,6 +247,11 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.cancelPronouncing();
 
     this.saveSingleRecord();
+
+    this.eachQuestionStartTime = new Date();
+    this.pronounceCount = 0;
+    this.wrongCount = 0;
+    this.deleteCount = 0;
     
     this.currentIndex++;
 
@@ -282,6 +297,8 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   pronounce(word: string, type = '') {
 
     this.cancelPronouncing();
+
+    this.pronounceCount++;
 
     if (!word) {
       return;
