@@ -41,7 +41,7 @@ export class ModalWordSettingComponent extends BaseComponent {
       this.settingList.push({
         type: key,
         total: sentenceList.length,
-        isSelected: true
+        isSelected: false
       });
 
     })
