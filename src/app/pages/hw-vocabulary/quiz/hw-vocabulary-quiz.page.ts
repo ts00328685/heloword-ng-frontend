@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { IonInput } from '@ionic/angular';
 import { Subject } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged, tap, takeUntil } from 'rxjs/operators';
 import { BasePage } from 'src/app/shared/base/base.page';
@@ -33,7 +34,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   
 
   @ViewChild('input')
-  input;
+  input: IonInput;
 
   unsubscribe = new Subject();
 
@@ -66,7 +67,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       ).subscribe();
     
     if (this.autoInputFocus) {
-      this.input.el.focus();
+      this.input.setFocus();
     }
   }
 
@@ -162,14 +163,11 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.goNext();
   }
 
-  onTab(word: string) {
-    this.pronounce(this.getRawAnswer());
-  }
-
   goNext() {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
+
     this.currentIndex++;
 
     // TODO: go to a result reviewing page
@@ -202,9 +200,13 @@ export class HwVocabularyQuizPage extends BasePage<any> {
         this.pronounce(this.currentWord.sentence, this.currentWord.language);
       }, delay);
     }
-    if (this.autoInputFocus) {
-      this.input.setFocus();
-    }
+
+    this.input.getInputElement().then(e => {
+      e.blur();
+      if (this.autoInputFocus) {
+        this.input.setFocus();
+      }
+    });
   }
 
   pronounce(word: string, type = '') {
@@ -252,7 +254,6 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       super.error('Text-to-speech not supported.');
     }
 
-    this.input.setFocus();
   }
 
   getFormClazz(): Forms<any> {
