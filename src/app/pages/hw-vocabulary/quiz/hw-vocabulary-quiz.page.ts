@@ -84,7 +84,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     Object.keys(quizSettings).forEach(key => {
       if (!wordAndSentences[key]) return;
       const setting = quizSettings[key];
-      combinedList = [ ...combinedList, ...wordAndSentences[key].slice(setting.min, setting.max) ]
+      combinedList = [ ...combinedList, ...wordAndSentences[key].slice(setting.min - 1, setting.max) ]
     })
     
     super.debug('combined list', combinedList);
@@ -104,14 +104,19 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     }
   }
 
-  isAnswerCorrect(word: string): boolean {
+  getRawAnswer() {
     let answer = (this.currentWord.word || this.currentWord.sentence);
 
     if (this.currentWord.language === 'jp') {
       answer = this.currentWord.translateEn
     }
 
-    answer = answer.trim().toLowerCase();
+    return answer.trim().toLowerCase();
+  }
+
+  isAnswerCorrect(word: string): boolean {
+
+    let answer = this.getRawAnswer();
 
     if (this.currentWord.language === 'de') {
       answer = answer.replace(/[ä]/g, 'a');
@@ -157,11 +162,23 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.goNext();
   }
 
+  onTab(word: string) {
+    this.pronounce(this.getRawAnswer());
+  }
+
   goNext() {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
     this.currentIndex++;
+
+    // TODO: go to a result reviewing page
+    if (this.currentIndex > this.totalLength) {
+      super.getViewService().showToast('Finished!');
+      super.getActionService().goBackHome();
+      return;
+    }
+
     this.originalWordList = this.originalWordList.slice(1, this.originalWordList.length);
     this.currentWord = this.originalWordList[0];
     this.input.value = '';
