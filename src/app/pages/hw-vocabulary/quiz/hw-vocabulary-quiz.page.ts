@@ -216,7 +216,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   pronounce(word: string, type = '') {
 
     this.cancelPronouncing();
-    
+
     if (!word) {
       return;
     }
@@ -258,6 +258,10 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
     } else {
       super.error('Text-to-speech not supported.');
+    }
+
+    if (this.autoInputFocus) {
+      this.input.setFocus();
     }
 
   }
