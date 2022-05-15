@@ -163,10 +163,14 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.goNext();
   }
 
-  goNext() {
+  cancelPronouncing() {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
+  }
+
+  goNext() {
+    this.cancelPronouncing();
 
     this.currentIndex++;
 
@@ -211,6 +215,8 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
   pronounce(word: string, type = '') {
 
+    this.cancelPronouncing();
+    
     if (!word) {
       return;
     }
