@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BasePage } from 'src/app/shared/base/base.page';
 import { Forms } from 'src/app/shared/base/validation/forms';
 import { Sentence } from 'src/app/shared/models/common-models';
-import { WordStore, SentenceStore } from 'src/app/shared/services/data.service';
+import { WordStore } from 'src/app/shared/services/data.service';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 
 @Component({
@@ -66,29 +66,33 @@ export class HwHomeDashboardPage extends BasePage<any> {
       return;
     }
 
-    const sentenceMap = sentences.reduce((pre, cur, idx) => {
-      if (!cur.word) {
-        return pre;
-      }
-      return {
-        ...pre, 
-        [cur.word]: cur.sentence 
-      };
-    }, {});
+    setTimeout(() => {
 
+      const sentenceMap = sentences.reduce((pre, cur, idx) => {
+        if (!cur.word) {
+          return pre;
+        }
+        return {
+          ...pre,
+          [cur.word]: cur.sentence
+        };
+      }, {});
 
-    Object.keys(words).forEach(key => {
-      const lang = key.substring(4);
-      if (!lang.toLowerCase().includes('english')) {
-        return;
-      }
+      Object.keys(words).forEach(key => {
+        setTimeout(() => {
+          const lang = key.substring(4);
+          if (!lang.toLowerCase().includes('english')) {
+            return;
+          }
 
-      (words[key] as Sentence[] || []).forEach(word => {
-        word.sentence = sentenceMap[word.word] || '';
-      });
-    })
+          (words[key] as Sentence[] || []).forEach(word => {
+            word.sentence = sentenceMap[word.word] || '';
+          });
+        });
+      })
 
-    super.debug('wordEnglish with sentence', words['wordEnglishList']);
+    });
+
 
   }
 
