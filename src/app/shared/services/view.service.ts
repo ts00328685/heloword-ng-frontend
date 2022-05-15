@@ -37,7 +37,7 @@ export class ViewService extends BaseService {
     }).then(_toast => _toast.present());
   }
 
-  async presentLoading(config = { duration: 35000 }) {
+  async presentLoading(config = { duration: 55000 }) {
     const showLoader = async () => {
       this.loading = await this.loadingController.create(config);
       this.lastLoaderTime = new Date().getTime();
