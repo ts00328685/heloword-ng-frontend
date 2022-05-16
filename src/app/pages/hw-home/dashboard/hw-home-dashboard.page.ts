@@ -66,35 +66,36 @@ export class HwHomeDashboardPage extends BasePage<any> {
       return;
     }
 
-    super.getViewService().presentLoading().then();
-    setTimeout(() => {
+    super.getViewService().presentLoading().then(_ => {
 
-      const sentenceMap = sentences.reduce((pre, cur, idx) => {
-        if (!cur.word) {
-          return pre;
-        }
-        return {
-          ...pre,
-          [cur.word]: cur.sentence
-        };
-      }, {});
+      setTimeout(() => {
+        const sentenceMap = sentences.reduce((pre, cur, idx) => {
+          if (!cur.word) {
+            return pre;
+          }
+          return {
+            ...pre,
+            [cur.word]: cur.sentence
+          };
+        }, {});
 
-      Object.keys(words).forEach(key => {
-        setTimeout(() => {
+
+        Object.keys(words).forEach((key, wIdx) => {
           const lang = key.substring(4);
           if (!lang.toLowerCase().includes('english')) {
             return;
           }
 
-          (words[key] as Sentence[] || []).forEach(word => {
-            word.sentence = sentenceMap[word.word] || '';
+          (words[key] as Sentence[] || []).forEach((word, idx) => {
+            setTimeout(() => {
+              word.sentence = sentenceMap[word.word] || '';
+            }, 10);
           });
-        });
+        })
         super.getViewService().dismissLoading().then();
-      })
+      }, 777);
 
     });
-
 
   }
 
