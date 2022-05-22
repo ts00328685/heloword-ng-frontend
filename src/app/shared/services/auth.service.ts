@@ -42,10 +42,11 @@ export class AuthService extends BaseService {
   }
 
   logout() {
-    this.apiService.doPost('/service-auth/api/auth/logout').subscribe();
-    this.updateUserStore({} as User);
-    this.dataService.clearAllStore();
-    this.actionService.reloadApp();
+    this.apiService.doPost('/service-auth/api/auth/logout').subscribe(_ => {
+      this.updateUserStore({} as User);
+      this.dataService.clearAllStore();
+      this.actionService.reloadApp();
+    });
   }
 
   isUserLoggedIn(): boolean {
