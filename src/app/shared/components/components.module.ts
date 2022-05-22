@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { DirectivesModule } from '../directives/directives.module';
+import { HwBottomTabsComponent } from './hw-bottom-tabs/hw-bottom-tabs.component';
 
 import { HwHeaderComponent } from './hw-header/hw-header.component';
 import { ModalWordSettingComponent } from './hw-modal/modal-word-setting/modal-word-setting.component';
@@ -14,21 +17,25 @@ import { WordListComponent } from './hw-word/word-list/word-list.component';
     IonicModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DirectivesModule,
+    RouterModule
   ],
   declarations: [
     HwHeaderComponent,
     ModalWordSettingComponent,
     WordCardComponent,
     WordListComponent,
-    QuizSettingItemComponent
+    QuizSettingItemComponent,
+    HwBottomTabsComponent
   ],
   exports: [
     HwHeaderComponent,
     ModalWordSettingComponent,
     WordCardComponent,
     WordListComponent,
-    QuizSettingItemComponent
+    QuizSettingItemComponent,
+    HwBottomTabsComponent
   ]
 })
 export class ComponentsModule { }

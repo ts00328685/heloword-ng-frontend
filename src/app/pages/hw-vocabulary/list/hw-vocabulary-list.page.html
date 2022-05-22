@@ -1,18 +1,17 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-searchbar #searchBar [animated]="true" (ionInput)="wordList.onSearchChange(searchBar.value)"
-      ></ion-searchbar>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content [fullscreen]="true">
-  
-    <hw-word-list #wordList [wordListOriginal]="wordListOriginal || []"></hw-word-list>
-    <ion-fab (click)="onFabClick($event)" vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button  color="danger" class="ion-margin">
-        <ion-icon name="game-controller-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  
-  </ion-content>
-  
+<hw-header [pageHeader]="pageHeader"></hw-header>
+<!-- <ion-header [translucent]="true"> -->
+<!-- </ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-searchbar #searchBar [animated]="true" (ionInput)="wordList.onSearchChange(searchBar.value)"></ion-searchbar>
+  </ion-toolbar>
+  <hw-word-list #wordList [wordListOriginal]="wordListOriginal || []"></hw-word-list>
+  <ion-fab (click)="onFabClick($event)" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" class="ion-margin">
+      <ion-icon name="game-controller-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+<hw-bottom-tabs [selected]="'hw-vocabulary'"></hw-bottom-tabs>

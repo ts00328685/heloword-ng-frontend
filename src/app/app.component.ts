@@ -10,6 +10,8 @@ export class AppComponent extends BaseComponent {
   public appPages = [
     { title: 'Home', url: 'hw-home', icon: 'log-in-outline' },
     { title: 'Vocabulary', url: 'hw-vocabulary', icon: 'log-in-outline' },
+    { title: 'Review', url: 'hw-review', icon: 'log-in-outline' },
+    { title: 'Stats', url: 'hw-stats', icon: 'log-in-outline' },
     { title: 'Login', url: 'hw-login', icon: 'log-in-outline' },
   ];
 

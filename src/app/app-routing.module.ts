@@ -24,6 +24,21 @@ const routes: Routes = [
     loadChildren: () => import('./pages/hw-vocabulary/hw-vocabulary.module').then( m => m.HwVocabularyModule)
   },
   {
+    path: 'hw-review',
+    canActivateChild: [PageActivateGuard],
+    loadChildren: () => import('./pages/hw-review/hw-review.module').then( m => m.HwReviewModule)
+  },
+  {
+    path: 'hw-stats',
+    canActivateChild: [PageActivateGuard],
+    loadChildren: () => import('./pages/hw-stats/hw-stats.module').then( m => m.HwStatsModule)
+  },
+  {
+    path: 'hw-info',
+    canActivateChild: [PageActivateGuard],
+    loadChildren: () => import('./pages/hw-info/hw-info.module').then( m => m.HwInfoModule)
+  },
+  {
     path: '**',
     redirectTo: 'hw-home'
   }

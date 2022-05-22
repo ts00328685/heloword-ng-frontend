@@ -1,0 +1,29 @@
+<ion-toolbar>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button [selected]="selected == 'hw-vocabulary'" [routerLink]="'/hw-vocabulary'">
+                <ion-icon name="book-outline"></ion-icon>
+                <ion-label>Word</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button [selected]="selected == 'hw-review'" [routerLink]="'/hw-review'">
+                <ion-icon name="calendar-outline"></ion-icon>
+                <ion-label>Review</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button [selected]="selected == 'hw-home'" [routerLink]="'/hw-home'">
+                <ion-icon name="home"></ion-icon>
+            </ion-tab-button>
+
+            <ion-tab-button [selected]="selected == 'hw-stats'" [routerLink]="'/hw-stats'">
+                <ion-icon name="stats-chart-outline"></ion-icon>
+                <ion-label>Stats</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button [selected]="selected == 'hw-info'" [routerLink]="'/hw-info'">
+                <ion-icon name="information-circle-outline"></ion-icon>
+                <ion-label>Info</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
+</ion-toolbar>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BaseComponent } from '../../base/base.component';
 
 @Component({
@@ -8,5 +8,8 @@ import { BaseComponent } from '../../base/base.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HwHeaderComponent extends BaseComponent {
+
+  @Input()
+  pageHeader: string;
 
 }

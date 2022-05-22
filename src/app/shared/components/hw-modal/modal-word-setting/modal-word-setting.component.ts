@@ -53,11 +53,13 @@ export class ModalWordSettingComponent extends BaseComponent {
   }
 
   onSpellingClick() {
+    const timestamp = new Date();
     const quizSettings = Object.keys(this.quizSettings).reduce((pre, cur) => {
       const setting = this.quizSettings[cur];
       if (!setting.isSelected) {
         return pre;
       }
+      setting.timestamp = timestamp;
       return {...pre, [cur]: setting}
     }, {});
 

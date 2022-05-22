@@ -12,6 +12,8 @@ export abstract class BasePage<T> extends BaseComponent {
 
     private subscription = new Subscription();
 
+    pageHeader = this.getPageName();
+
     abstract init(): void;
 
     abstract getFormClazz(): Forms<any>;

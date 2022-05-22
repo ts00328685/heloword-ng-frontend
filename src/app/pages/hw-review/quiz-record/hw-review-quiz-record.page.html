@@ -1,0 +1,86 @@
+<hw-header [pageHeader]="pageHeader"></hw-header>
+
+<ion-content>
+
+    <ion-grid>
+
+        <ion-card class="saving-card" *ngFor="let settingRecord of settingRecords$ | async | keyvalue: unsorted"
+                  [hidden]="settingRecord.value?.length <= 0"
+                  (click)="clickCard(settingRecord.value)">
+
+            <ion-row class="ion-padding">
+                <ion-col size="6" class="ion-text-left">
+                    <ion-text>
+                        {{ settingRecord.key | date: 'yyyy/MM/dd HH:mm:ss' }}
+                    </ion-text>
+                </ion-col>
+                <ion-col size="6" class="ion-text-right">
+                    <ion-text>
+                        ➤
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-padding">
+                <ion-col size="6" class="ion-text-left">
+                    <ion-text>
+                        Groups
+                    </ion-text>
+                </ion-col>
+                <ion-col size="6" class="ion-text-right">
+                    <ion-text color="primary">
+                        {{ settingRecord.value?.length || 0 }}
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-padding group-list" *ngFor="let value of settingRecord.value">
+                <ion-col size="8" class="ion-text-left">
+                    <ion-text>
+                        {{titleMap[value.type]}}
+                    </ion-text>
+                </ion-col>
+                <ion-col size="2" class="ion-text-right">
+                    <ion-text color="primary">
+                        {{ value.min }}
+                    </ion-text>
+                </ion-col>
+                <ion-col size="2" class="ion-text-right">
+                    <ion-text color="primary">
+                        {{ value.max }}
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-padding">
+                <ion-col size="6" class="ion-text-left">
+                    <ion-text>
+                        Completed
+                    </ion-text>
+                </ion-col>
+                <ion-col size="6" class="ion-text-right">
+                    <ion-text>
+                        0
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-padding">
+                <ion-col size="6" class="ion-text-left">
+                    <ion-text>
+                        Unfinished
+                    </ion-text>
+                </ion-col>
+                <ion-col size="6" class="ion-text-right">
+                    <ion-text>
+                        0
+                    </ion-text>
+                </ion-col>
+            </ion-row>
+
+        </ion-card>
+
+    </ion-grid>
+
+</ion-content>
+<hw-bottom-tabs [selected]="'hw-review'"></hw-bottom-tabs>
