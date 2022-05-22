@@ -10,6 +10,9 @@ import { Forms } from 'src/app/shared/base/validation/forms';
 })
 export class HwInfoGeneralPage extends BasePage<any> {
 
+  url = super.getDomSanitizer().bypassSecurityTrustResourceUrl('https://www.linkedin.com/in/ryan-tseng-4161ab83');
+  curveWiki = super.getDomSanitizer().bypassSecurityTrustResourceUrl('https://en.wikipedia.org/wiki/Forgetting_curve');
+
   init(): void {
     
   }

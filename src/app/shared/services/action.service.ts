@@ -27,6 +27,10 @@ export class ActionService extends BaseService {
 
   }
 
+  public reloadApp() {
+    window.location.href = '/';
+  }
+
   public reloadPage(params = {}) {
     const prevUrl = this.getCurrentUrl();
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.nextPageByUrl(prevUrl, params));

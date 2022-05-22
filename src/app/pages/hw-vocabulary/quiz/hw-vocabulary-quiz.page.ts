@@ -157,7 +157,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
     this.originalWordList = combinedList.sort(() => Math.random() - 0.5);
     if (!this.originalWordList || this.originalWordList.length <= 0) {
-      window.location.href = '/';
+      super.getActionService().goBackHome();
     }
 
     this.currentWord = this.originalWordList[0];

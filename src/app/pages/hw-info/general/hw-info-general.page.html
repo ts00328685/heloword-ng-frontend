@@ -1,12 +1,24 @@
 <hw-header [pageHeader]="pageHeader"></hw-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
-    <ion-grid>
+    <ion-text>
+        <h6>This app is meant to help you memorize some words based on the
+            <a target="_blank" [href]="curveWiki"><b>The Ebbinghaus Forgetting Curve</b></a>
+        </h6>
+    </ion-text>
+    <ion-text>
+        <h6>Currently still under construction, and might be updated at anytime!</h6>
+    </ion-text>
+    <ion-text>
+        <h6>Author: Ryan Tseng</h6>
+    </ion-text>
 
-        Info Page
+    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark"
+         data-type="VERTICAL" data-vanity="ryan-tseng-4161ab83" data-version="v1"><a
+           class="badge-base__link LI-simple-link"
+           [href]="url">Ryan Tseng</a></div>
 
-    </ion-grid>
 
 </ion-content>
 <hw-bottom-tabs [selected]="'hw-info'"></hw-bottom-tabs>
