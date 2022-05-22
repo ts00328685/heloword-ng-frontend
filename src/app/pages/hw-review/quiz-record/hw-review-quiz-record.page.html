@@ -4,6 +4,12 @@
 
     <ion-grid>
 
+        <ion-card class="ion-padding">
+            <ion-row class="ion-text-center" *ngIf="!hasAnyRecord">
+                <h6>{{emptyMsg}}</h6>
+            </ion-row>
+        </ion-card>
+
         <ion-card class="saving-card" *ngFor="let settingRecord of settingRecords$ | async | keyvalue: unsorted"
                   [hidden]="settingRecord.value?.length <= 0"
                   (click)="clickCard(settingRecord.value)">

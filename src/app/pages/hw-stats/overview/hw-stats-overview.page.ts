@@ -10,6 +10,9 @@ import { Forms } from 'src/app/shared/base/validation/forms';
 })
 export class HwStatsOverviewPage extends BasePage<any> {
 
+  emptyMsg = super.getAuthService().isUserLoggedIn() ? 'Empty Records~' : 'Log-in required'
+  hasAnyRecord = false;
+  
   init(): void {
     
   }

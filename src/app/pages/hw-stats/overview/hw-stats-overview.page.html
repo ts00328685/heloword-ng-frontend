@@ -4,7 +4,11 @@
 
     <ion-grid>
 
-        Statistics Page
+        <ion-card class="ion-padding">
+            <ion-row class="ion-text-center" *ngIf="!hasAnyRecord">
+                <h6>{{emptyMsg}}</h6>
+            </ion-row>
+        </ion-card>
 
     </ion-grid>
 

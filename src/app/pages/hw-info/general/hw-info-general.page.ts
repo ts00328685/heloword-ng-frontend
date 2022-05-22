@@ -16,6 +16,14 @@ export class HwInfoGeneralPage extends BasePage<any> {
   init(): void {
     
   }
+  
+  afterViewInit(): void {
+    const script = document.createElement('script');
+    script.src = 'https://platform.linkedin.com/badges/js/profile.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  }
 
   getFormClazz(): Forms<any> {
     return null;

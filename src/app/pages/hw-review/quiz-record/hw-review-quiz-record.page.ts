@@ -17,8 +17,9 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
 
   titleMap = UtilsService.getWordSentenceTitleMap();
   settingRecords$: Observable<Map<Date, Array<QuizSetting>>>;
-  hasAnyRecord = false;
+  hasAnyRecord = true;
   
+  emptyMsg = super.getAuthService().isUserLoggedIn() ? 'Empty Records~' : 'Log-in required'
 
   init(): void {
     this.settingRecords$ = this.retrieveData();
@@ -32,8 +33,8 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
     return super.getApiService().doPost('/frontend-api/api/fe/quiz/get-quiz-settings').pipe(
       map(response => response.data),
       tap(data => {
-        if (!RuleUtils.getInstance().isEmptyObject(data)) {
-          this.hasAnyRecord = true;
+        if (RuleUtils.getInstance().isEmptyObject(data)) {
+          this.hasAnyRecord = false;
         }
       })
     )
