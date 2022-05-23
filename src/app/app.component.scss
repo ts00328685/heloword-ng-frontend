@@ -101,25 +101,33 @@ ion-menu.ios ion-note {
   padding-right: 16px;
 }
 
-ion-menu.ios ion-note {
-  margin-bottom: 8px;
+.mr-auto {
+  margin: auto !important;
 }
-
 ion-note {
   display: inline-block;
   font-size: 16px;
-
+  margin: auto;
   color: var(--ion-color-medium-shade);
 }
-
+ion-avatar {
+  margin: auto;
+}
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
 
-ion-list ion-col:first-child {
+ion-list:first-child {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .version {
   font-size: 80%;
+}
+.vertical-align-content > *
+{
+     display: flex!important;
+     align-content: center!important;
+     align-items: center!important;
 }

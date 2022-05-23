@@ -3,12 +3,12 @@
         <ion-menu contentId="main-content" type="overlay">
             <ion-content>
                 <ion-list id="inbox-list" class="profile">
-                    <ion-row>
-                        <ion-col size="9">
+                    <ion-row class="mr-auto">
+                        <ion-col size="9" class="mr-auto">
                             <ion-list-header>{{(user$ | async).nickname || 'Helo!'}}</ion-list-header>
-                            <ion-note>{{(user$ | async).email || 'service@heloword.com'}}</ion-note>
+                            <ion-note class="mr-auto">{{(user$ | async).email || 'service@heloword.com'}}</ion-note>
                         </ion-col>
-                        <ion-col size="3" class="ion-float-left">
+                        <ion-col size="3">
                             <ion-avatar>
                                 <img [src]="(user$ | async).picture || './assets/images/icon-face-id.png'">
                             </ion-avatar>
@@ -33,7 +33,7 @@
                 </ion-list>
 
                 <ion-list class="ion-text-right">
-                    <ion-text class="ion-padding version">ver. 2022.05.22.a</ion-text>
+                    <ion-text class="ion-padding version">ver. {{version}}</ion-text>
                 </ion-list>
             </ion-content>
         </ion-menu>

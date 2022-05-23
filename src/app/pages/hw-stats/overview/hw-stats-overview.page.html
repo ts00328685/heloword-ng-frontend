@@ -4,8 +4,8 @@
 
     <ion-grid>
 
-        <ion-card class="ion-padding">
-            <ion-row class="ion-text-center" *ngIf="!hasAnyRecord">
+        <ion-card class="ion-padding" *ngIf="!hasAnyRecord">
+            <ion-row class="ion-text-center">
                 <h6>{{emptyMsg}}</h6>
             </ion-row>
         </ion-card>

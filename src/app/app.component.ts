@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { BaseComponent } from './shared/base/base.component';
 @Component({
   selector: 'app-root',
@@ -6,6 +7,8 @@ import { BaseComponent } from './shared/base/base.component';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent extends BaseComponent {
+  
+  version = environment.appVersion;
   
   public appPages = [
     { title: 'Home', url: 'hw-home', icon: 'log-in-outline' },
