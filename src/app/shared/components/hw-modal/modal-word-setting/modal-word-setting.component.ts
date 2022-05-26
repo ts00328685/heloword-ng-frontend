@@ -88,4 +88,5 @@ export interface QuizSetting {
   tableName: string;
   total: number;
   isSelected: boolean;
+  finishedCount?: number;
 }

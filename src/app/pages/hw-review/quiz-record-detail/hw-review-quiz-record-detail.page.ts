@@ -7,11 +7,11 @@ import { Forms } from 'src/app/shared/base/validation/forms';
 import { QuizSetting } from 'src/app/shared/components/hw-modal/modal-word-setting/modal-word-setting.component';
 import { UtilsService } from 'src/app/shared/services/utils.service';
 @Component({
-  selector: 'hw-review-quiz-record',
-  templateUrl: './hw-review-quiz-record.page.html',
-  styleUrls: ['./hw-review-quiz-record.page.scss'],
+  selector: 'hw-review-quiz-record-detail',
+  templateUrl: './hw-review-quiz-record-detail.page.html',
+  styleUrls: ['./hw-review-quiz-record-detail.page.scss'],
 })
-export class HwReviewQuizRecordPage extends BasePage<any> {
+export class HwReviewQuizRecordDetailPage extends BasePage<any> {
 
   titleMap = UtilsService.getWordSentenceTitleMap();
   settingRecords$: Observable<Map<Date, { records: Array<QuizSetting>, completed: number, total: number }>>;
@@ -23,6 +23,10 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
     if (!super.getAuthService().isUserLoggedIn()) {
       return;
     }
+
+    const pageData = super.getPageData();
+    super.debug(pageData);
+
     this.settingRecords$ = this.retrieveData();
   }
 
@@ -32,43 +36,16 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
 
   retrieveData() {
     return super.getApiService().doPost('/frontend-api/api/fe/quiz/get-quiz-settings').pipe(
-      map(response => response.data),
-      map((data: Map<Date, Array<QuizSetting>>) => {
-        const dataExt: Map<Date, { records: Array<QuizSetting>, completed: number, total: number }> = new Map();
-      
-        Object.keys(data).forEach((key) => {
-          const settings = data[key];
-          const {completed, total} = settings.reduce((prev, curr)=> {
-            const total = curr.max - curr.min + 1 + prev.total;
-            const totalFinished = curr.finishedCount + prev.completed;
-            return {completed: totalFinished, total: total};
-          }, {completed: 0, total: 0});
-          dataExt.set(new Date(key) ,{
-            total,
-            completed,
-            records: settings
-          });
-        })
-        return dataExt;
-      }),
-      tap(data => {
-        if (data.size <= 0) {
-          this.hasAnyRecord = false;
-        }
-      })
+      map(response => response.data)
     )
   }
-
-  clickCard(settingRecord) {
-   super.getActionService().nextPageByUrl('/hw-review/quiz-record-detail', settingRecord);
-  }
-
+  
   getFormClazz(): Forms<any> {
     return null;
   }
 
   getPageName(): string {
-    return 'Review';
+    return 'Review Detail';
   }
 
 }
