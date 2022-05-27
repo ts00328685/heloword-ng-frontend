@@ -57,11 +57,22 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   initialize() {
-    if (!super.getPageData().quizSettings) {
+    const quizSettings = super.getPageData().quizSettings;
+    if (!quizSettings) {
       super.getActionService().goBackHome();
       return;
     }
 
+    const settingList = Object.keys(quizSettings).map(_key => { return { _key, ...quizSettings[_key] }; });
+    const alreadyPersisted = settingList.some(setting => !!setting.id);
+
+    if (alreadyPersisted) {
+      this.settingIdMap = new Map();
+      settingList.forEach((s, index) => {
+        this.settingIdMap.set(s.tableName, s.id);
+      });
+      super.debug('settings already persisted');
+    }
     this.initWordList();
   }
 
@@ -76,6 +87,12 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     }
 
     const settingList = Object.keys(quizSettings).map(_key => { return { _key, ...quizSettings[_key] }; });
+
+    const alreadyPersisted = settingList.some(setting => !!setting.id);
+
+    if (alreadyPersisted) {
+      return;
+    }
 
     super.getApiService().doPost(
       '/frontend-api/api/fe/quiz/save-setting-records',
@@ -137,7 +154,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   initWordList() {
-
+    const finishedIdMap: {[key: number]: number[]} = super.getPageData().finishedIdMap;
     const quizSettings = super.getPageData().quizSettings;
     const words = super.getDataService().wordStore.getValue();
     const sentences = super.getDataService().sentenceStore.getValue();
@@ -158,6 +175,14 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.originalWordList = combinedList.sort(() => Math.random() - 0.5);
     if (!this.originalWordList || this.originalWordList.length <= 0) {
       super.getActionService().goBackHome();
+    }
+
+    // remove finished ones
+    if (!RuleUtils.getInstance().isEmptyObject(finishedIdMap)) {
+      this.originalWordList = this.originalWordList.filter(word => {
+        const settingIdOfThisWord = this.settingIdMap.get(word.tableName);
+        return !finishedIdMap[settingIdOfThisWord].includes(word.id);
+      });
     }
 
     this.currentWord = this.originalWordList[0];

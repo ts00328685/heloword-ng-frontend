@@ -12,7 +12,7 @@
 
         <ion-card class="saving-card" *ngFor="let settingRecord of settingRecords$ | async | keyvalue: unsorted"
                   [hidden]="settingRecord.value?.records?.length <= 0"
-                  (click)="clickCard(settingRecord)">
+                  (click)="clickCard(settingRecord.value.records)">
 
             <ion-row class="ion-padding">
                 <ion-col size="6" class="ion-text-left">
@@ -73,12 +73,12 @@
 
             <ion-row class="ion-padding">
                 <ion-col size="6" class="ion-text-left">
-                    <ion-text [color]="settingRecord.value.total - settingRecord.value.completed > 0 ? 'warning' : 'primary'">
+                    <ion-text [color]="settingRecord.value.total - settingRecord.value.completed > 0 ? 'warning' : ''">
                         Unfinished
                     </ion-text>
                 </ion-col>
                 <ion-col size="6" class="ion-text-right">
-                    <ion-text [color]="settingRecord.value.total - settingRecord.value.completed > 0 ? 'warning' : 'primary'">
+                    <ion-text [color]="settingRecord.value.total - settingRecord.value.completed > 0 ? 'warning' : ''">
                         {{settingRecord.value.total - settingRecord.value.completed}}
                     </ion-text>
                 </ion-col>
@@ -86,12 +86,12 @@
 
             <ion-row class="ion-padding">
                 <ion-col size="6" class="ion-text-left">
-                    <ion-text>
+                    <ion-text [color]="settingRecord.value.total == settingRecord.value.completed ? 'primary' : ''">
                         Completed
                     </ion-text>
                 </ion-col>
                 <ion-col size="6" class="ion-text-right">
-                    <ion-text>
+                    <ion-text [color]="settingRecord.value.total == settingRecord.value.completed ? 'primary' : ''">
                         {{settingRecord.value.completed}}
                     </ion-text>
                 </ion-col>

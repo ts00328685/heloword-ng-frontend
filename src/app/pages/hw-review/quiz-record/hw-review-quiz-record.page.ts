@@ -26,6 +26,10 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
     this.settingRecords$ = this.retrieveData();
   }
 
+  ionViewWillEnter() {
+    this.init();
+  }
+
   unsorted = (a: KeyValue<Date, { records: Array<QuizSetting>, completed: number, total: number }>, b: KeyValue<Date, { records: Array<QuizSetting>, completed: number, total: number }>): number => {
     return new Date(b.key).getTime() - new Date(a.key).getTime();
   }
@@ -35,15 +39,15 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
       map(response => response.data),
       map((data: Map<Date, Array<QuizSetting>>) => {
         const dataExt: Map<Date, { records: Array<QuizSetting>, completed: number, total: number }> = new Map();
-      
+
         Object.keys(data).forEach((key) => {
           const settings = data[key];
-          const {completed, total} = settings.reduce((prev, curr)=> {
+          const { completed, total } = settings.reduce((prev, curr) => {
             const total = curr.max - curr.min + 1 + prev.total;
             const totalFinished = curr.finishedCount + prev.completed;
-            return {completed: totalFinished, total: total};
-          }, {completed: 0, total: 0});
-          dataExt.set(new Date(key) ,{
+            return { completed: totalFinished, total: total };
+          }, { completed: 0, total: 0 });
+          dataExt.set(new Date(key), {
             total,
             completed,
             records: settings
@@ -59,8 +63,34 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
     )
   }
 
-  clickCard(settingRecord) {
-   super.getActionService().nextPageByUrl('/hw-review/quiz-record-detail', settingRecord);
+  clickCard(settings: Array<QuizSetting>) {
+    super.debug(settings)
+    const settingIds = settings.map(s => s.id);
+    super.getApiService().doPost('/frontend-api/api/fe/quiz/get-record-ids-by-setting-ids', settingIds).subscribe(response => {
+
+      const quizSettings = settings.reduce((prev, curr) => {
+        curr.timestamp = new Date();
+        curr.tableName = this.getTableNameFromType(curr.type);
+        return {...prev, [curr.type]: curr};
+      }, {} as any);
+
+      const finishedIdMap = response.data;
+
+      super.debug(quizSettings);
+      super.getActionService().nextPageByUrl('/hw-vocabulary/quiz', { quizSettings, finishedIdMap });
+    });
+
+  }
+
+  getTableNameFromType(type: string) {
+    return {
+      wordEnglishList: 'word_english',
+      wordGermanList: 'word_german',
+      wordJapaneseList: 'word_japanese',
+      sentenceEnglishList: 'sentence_english',
+      sentenceGermanList: 'sentence_german',
+      sentenceJapaneseList: 'sentence_japanese',
+    }[type];
   }
 
   getFormClazz(): Forms<any> {
