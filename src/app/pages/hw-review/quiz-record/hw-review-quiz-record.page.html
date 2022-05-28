@@ -41,12 +41,12 @@
             </ion-row>
 
             <ion-row class="ion-padding group-list" *ngFor="let setting of settingRecord?.value?.records">
-                <ion-col size="8" class="ion-text-left">
+                <ion-col size="6" class="ion-text-left">
                     <ion-text>
                         {{titleMap[setting.type]}}
                     </ion-text>
                 </ion-col>
-                <ion-col size="2" class="ion-text-right">
+                <ion-col size="4" class="ion-text-right">
                     <ion-text>
                         {{ setting.min }}-{{ setting.max }}
                     </ion-text>

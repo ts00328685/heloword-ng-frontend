@@ -21,6 +21,7 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
 
   init(): void {
     if (!super.getAuthService().isUserLoggedIn()) {
+      this.hasAnyRecord = false;
       return;
     }
     this.settingRecords$ = this.retrieveData();
@@ -63,12 +64,17 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
     )
   }
 
-  clickCard(settings: Array<QuizSetting>) {
+  clickCard(settings: { records: Array<QuizSetting>, completed: number, total: number }) {
     super.debug(settings)
-    const settingIds = settings.map(s => s.id);
+
+    if (settings.completed === settings.total) {
+      return;
+    }
+
+    const settingIds = settings.records.map(s => s.id);
     super.getApiService().doPost('/frontend-api/api/fe/quiz/get-record-ids-by-setting-ids', settingIds).subscribe(response => {
 
-      const quizSettings = settings.reduce((prev, curr) => {
+      const quizSettings = settings.records.reduce((prev, curr) => {
         curr.timestamp = new Date();
         curr.tableName = this.getTableNameFromType(curr.type);
         return {...prev, [curr.type]: curr};
