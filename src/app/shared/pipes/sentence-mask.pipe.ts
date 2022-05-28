@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { RuleUtils } from '../utils/rules-utils';
 
 /**
- *  i am good -> i a* g***
+ *  i am good -> i a_ g___
  */
 @Pipe({
     name: 'sentenceMask'

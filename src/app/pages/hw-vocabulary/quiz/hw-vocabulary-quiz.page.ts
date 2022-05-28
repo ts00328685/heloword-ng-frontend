@@ -48,12 +48,12 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
   unsubscribe = new Subject();
 
-
   init(): void {
     this.initialize();
   }
 
   ionViewWillEnter() {
+    super.getViewService().showAlert('Note that if you type the wrong answer or reveal the asnwer in any way, this word will show up again later for a retest!')
     this.saveQuizSettings(super.getPageData().quizSettings);
     this.initialize();
   }
@@ -270,12 +270,16 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.cancelPronouncing();
 
     let needToReEnterAgain = false;
+
+    if (this.pronounceCount >= 3) {
+      this.wrongCount++;
+    }
     
     if (this.wrongCount === 0) {
       this.saveSingleRecord();
     } else {
       needToReEnterAgain = true;
-      super.getViewService().showToast('Wrong! Pushed to the end for retesting again!', 1000);
+      super.getViewService().showToast('Pushed to the end for retesting again!', 1000);
     }
 
     this.eachQuestionStartTime = new Date();
@@ -334,6 +338,9 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
   toggleSentenceMask() {
     this.enableSentenceMask = !this.enableSentenceMask;
+    if (!this.enableSentenceMask) {
+      this.wrongCount++;
+    }
   }
 
   pronounce(word: string, type = '') {
