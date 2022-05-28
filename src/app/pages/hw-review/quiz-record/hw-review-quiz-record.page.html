@@ -12,7 +12,7 @@
 
         <ion-card class="saving-card" *ngFor="let settingRecord of settingRecords$ | async | keyvalue: unsorted"
                   [hidden]="settingRecord.value?.records?.length <= 0"
-                  (click)="clickCard(settingRecord.value.records)">
+                  (click)="clickCard(settingRecord.value)">
 
             <ion-row class="ion-padding">
                 <ion-col size="6" class="ion-text-left">
