@@ -30,6 +30,8 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   autoPronounceSentence = false;
   autoInputFocus = true;
   autoComplete = false;
+  enableSentenceMask = false;
+  sentenceMaskIndex = 1;
 
   pronounciationSpeed = 1.0;
   pronounciationVolume = 0.2;
@@ -242,11 +244,8 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     return false;
   }
 
-  onChClick() {
-    this.goNext();
-  }
-
   onAnsClick(answer: string) {
+    this.wrongCount += 5;
     this.input.value = `${answer}＊`;
     this.input.setFocus();
   }
@@ -257,9 +256,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   onEnter(word: string) {
-    if (!this.isAnswerCorrect(word)) {
-      super.getViewService().showToast('Wrong answer!', 1000);
-    }
+    this.wrongCount += 5;
     this.goNext();
   }
 
@@ -272,14 +269,23 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   goNext() {
     this.cancelPronouncing();
 
-    this.saveSingleRecord();
+    let needToReEnterAgain = false;
+    
+    if (this.wrongCount === 0) {
+      this.saveSingleRecord();
+    } else {
+      needToReEnterAgain = true;
+      super.getViewService().showToast('Wrong! Pushed to the end for retesting again!', 1000);
+    }
 
     this.eachQuestionStartTime = new Date();
     this.pronounceCount = 0;
     this.wrongCount = 0;
     this.deleteCount = 0;
     
-    this.currentIndex++;
+    if (!needToReEnterAgain) {
+      this.currentIndex++;
+    }
 
     // TODO: go to a result reviewing page
     if (this.currentIndex > this.totalLength) {
@@ -289,8 +295,14 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     }
 
     this.originalWordList = this.originalWordList.slice(1, this.originalWordList.length);
+
+    if (needToReEnterAgain) {
+      this.originalWordList.push({...this.currentWord});
+    }
+
     this.currentWord = this.originalWordList[0];
     this.input.value = '';
+
     if (this.autoPronounce) {
       this.pronounce(this.currentWord.word || this.currentWord.sentence, this.currentWord.language);
     }
@@ -318,6 +330,10 @@ export class HwVocabularyQuizPage extends BasePage<any> {
         this.input.setFocus();
       }
     });
+  }
+
+  toggleSentenceMask() {
+    this.enableSentenceMask = !this.enableSentenceMask;
   }
 
   pronounce(word: string, type = '') {

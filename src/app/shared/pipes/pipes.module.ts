@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 
 import { CommafyPipe } from './commafy.pipe';
+import { SentenceMaskPipe } from './sentence-mask.pipe';
 
 @NgModule({
     declarations: [
-        CommafyPipe
+        CommafyPipe,
+        SentenceMaskPipe
     ],
     exports: [
-        CommafyPipe
+        CommafyPipe,
+        SentenceMaskPipe
     ]
 })
 export class PipesModule { }

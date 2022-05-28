@@ -17,7 +17,6 @@ export class HwInfoGeneralPage extends BasePage<any> {
   badge: ElementRef;
 
   init(): void {
-    
   }
   
   afterViewInit(): void {

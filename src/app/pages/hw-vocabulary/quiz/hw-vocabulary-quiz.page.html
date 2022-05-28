@@ -42,7 +42,7 @@
             </ion-col>
         </ion-row>
 
-        <ion-row class="ion-align-items-left vertical-align-content">
+        <ion-row *ngIf="currentWord?.translateEn" class="ion-align-items-left vertical-align-content">
             <ion-col size="9" class="ion-no-padding">
                 <h2 class="ion-text-left">
                     {{currentWord?.translateEn}}
@@ -59,9 +59,14 @@
         </ion-row>
 
         <ion-row *ngIf="currentWord?.sentence" class="ion-align-items-left vertical-align-content">
-            <ion-col size="9" class="ion-no-padding">
-                <h2 class="ion-text-left" [innerHTML]="currentWord?.sentence">
+            <ion-col size="8" class="ion-no-padding">
+                <h2 class="ion-text-left" [innerHTML]="currentWord?.sentence | sentenceMask: sentenceMaskIndex: enableSentenceMask">
                 </h2>
+            </ion-col>
+            <ion-col size="1">
+                <ion-button size="small" mode="md" fill="clear" shape="round" (click)="toggleSentenceMask()">
+                    <ion-icon [name]="enableSentenceMask ? 'eye-off' : 'eye' "></ion-icon>
+                </ion-button>
             </ion-col>
             <ion-col size="2" (click)="pronounce(currentWord?.sentence, currentWord.language)">
                 <ion-button size="small" mode="md" fill="clear" shape="round">
