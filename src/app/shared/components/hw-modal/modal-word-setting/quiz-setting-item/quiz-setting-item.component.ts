@@ -13,7 +13,7 @@ export class QuizSettingItemComponent extends BaseComponent {
   @Input()
   minValue = 1;
   @Input()
-  maxValue = 2;
+  maxValue = 10;
 
   @Input()
   setting: QuizSetting = {} as QuizSetting;
@@ -28,7 +28,11 @@ export class QuizSettingItemComponent extends BaseComponent {
   }
 
   assignValue(key: string, value: string) {
-    this[key] = +value;
+    let _value = +value;
+    if (key === 'maxValue') {
+      _value = Math.ceil(_value / 10) * 10;
+    }
+    this[key] = _value;
     this.emitValue();
   }
 
