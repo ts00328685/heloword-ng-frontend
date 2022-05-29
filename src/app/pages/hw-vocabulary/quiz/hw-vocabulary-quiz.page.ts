@@ -31,6 +31,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   autoInputFocus = true;
   autoComplete = false;
   enableSentenceMask = false;
+  failWhenMaskOff = false;
   sentenceMaskIndex = 1;
 
   pronounciationSpeed = 1.0;
@@ -270,6 +271,10 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     this.cancelPronouncing();
 
     let needToReEnterAgain = false;
+
+    if (this.failWhenMaskOff && !this.enableSentenceMask) {
+      this.wrongCount++;
+    }
 
     if (this.pronounceCount >= 3) {
       this.wrongCount++;
