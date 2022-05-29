@@ -53,7 +53,7 @@ export class QuizSettingItemComponent extends BaseComponent {
         break;
       case 'maxValue':
         if (value < this.minValue) {
-          this.maxValue = this.minValue + 1;
+          this.maxValue = this.minValue + 10;
         }
         if (value >= this.setting.total) {
           this.maxValue = this.setting.total;

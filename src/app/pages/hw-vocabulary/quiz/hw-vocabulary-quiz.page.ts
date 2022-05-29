@@ -238,7 +238,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
     if (isInputWordComplete && trimmedWord.includes(trimmedAns)) {
       return true;
-    } else if (isInputWordComplete && !trimmedWord.includes(trimmedAns)) {
+    } else if (trimmedWord.length > trimmedAns.length && !trimmedWord.includes(trimmedAns)) {
       this.wrongCount++;
     }
 
@@ -247,7 +247,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
   onAnsClick(answer: string) {
     this.wrongCount += 5;
-    this.input.value = `${answer}＊`;
+    super.getViewService().showToast(`Correct Answer: ${answer}`, 5000, 'bottom');
     this.input.setFocus();
   }
 
@@ -258,7 +258,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
 
   onEnter(word: string) {
     this.wrongCount += 5;
-    this.goNext();
+    super.getViewService().showToast(`Correct Answer: ${this.currentWord.word}`, 5000, 'bottom');
   }
 
   cancelPronouncing() {
