@@ -21,7 +21,7 @@ export class AnswereMaskPipe implements PipeTransform {
             }
 
             const trimmedWord = word.replace(/(\W) */g, '');
-            console.error(trimmedWord, answer)
+
             if (trimmedWord.toLowerCase().includes(answer.toLowerCase())) {
                 return '____'
             } 
