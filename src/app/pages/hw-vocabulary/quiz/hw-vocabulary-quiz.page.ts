@@ -117,6 +117,12 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       return;
     }
 
+    if (this.currentWord.recordSaved) {
+      return;
+    }
+
+    this.currentWord.recordSaved = true;
+
     const currentTime = new Date();
     const timeSpent = (currentTime.getTime() - this.eachQuestionStartTime.getTime()) / 1000;
     super.getApiService().doPost(
