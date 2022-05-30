@@ -19,4 +19,5 @@ export interface Word {
     info?: any;
     language: string;
     tableName?: string;
+    recordSaved?: boolean;
 }
