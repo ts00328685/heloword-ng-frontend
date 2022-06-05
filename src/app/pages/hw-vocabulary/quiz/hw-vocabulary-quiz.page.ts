@@ -32,7 +32,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   autoComplete = false;
   enableSentenceMask = false;
   failWhenMaskOff = false;
-  japaneseMode = true;
+  japaneseMode = false;
   sentenceMaskIndex = 1;
 
   pronounciationSpeed = 1.0;
