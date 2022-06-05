@@ -32,6 +32,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   autoComplete = false;
   enableSentenceMask = false;
   failWhenMaskOff = false;
+  japaneseMode = true;
   sentenceMaskIndex = 1;
 
   pronounciationSpeed = 1.0;
@@ -209,13 +210,17 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     let answer = (this.currentWord.word || this.currentWord.sentence);
 
     if (this.currentWord.language === 'jp') {
-      answer = this.currentWord.translateEn
+      answer = this.currentWord.translateEn;
+    }
+
+    if (this.japaneseMode) {
+      answer = this.currentWord.sentence;
     }
 
     return answer.trim().toLowerCase();
   }
 
-  isAnswerCorrect(word: string): boolean {
+  isAnswerCorrect(input: string): boolean {
 
     let answer = this.getRawAnswer();
 
@@ -232,13 +237,13 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       answer = answer.substr(0, answer.length - 1);
     }
 
+    if (this.japaneseMode) {
+      return this.isJpInputCorrect(input, answer);
+    }
+
     const trimmedAns = answer.replace(/[\W]/g, '');
 
-    const trimmedWord = word.trim().toLowerCase().replace(/[\W]/g, '');
-
-    if (word.includes('＊')) {
-      return;
-    }
+    const trimmedWord = input.trim().toLowerCase().replace(/[\W]/g, '');
 
     const isInputWordComplete = trimmedWord.length >= trimmedAns.length;
 
@@ -251,8 +256,25 @@ export class HwVocabularyQuizPage extends BasePage<any> {
     return false;
   }
 
+  isJpInputCorrect(input: string = '', answer: string = '') {
+    const {ansKanjiFirst, ansKataFirsst} = this.getJpAnswers(answer);
+    return input === ansKanjiFirst || input === ansKataFirsst;
+  }
+
+  getJpAnswers(answer: string = '') {
+    const kataInBrackets = (answer.match(/(?<=\[).+?(?=\])/g) || []).map(c => c.match(/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[々〆〤ヶ]+?=^(?<=\[).+?(?=\])/g)).reduce((prev, curr)=>[...prev, ...curr], []);
+    return {
+      ansKanjiFirst: (answer.match(/[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[々〆〤ヶ]+|[0-9]+/g) || []).filter(c => !kataInBrackets.includes(c)).join(''),
+      ansKataFirsst: (answer.match(/(?<=\[).+?(?=\])[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[々〆〤ヶ]+|[0-9]+/g) || []).join('')
+    }
+  }
+  
   onAnsClick(answer: string) {
     this.wrongCount += 5;
+    if (this.japaneseMode) {
+      const {ansKanjiFirst, ansKataFirsst} = this.getJpAnswers(answer);
+      answer = `${ansKanjiFirst} or ${ansKataFirsst}`
+    }
     super.getViewService().showToast(`Correct Answer: ${answer}`, 5000, 'bottom');
     this.input.setFocus();
   }
@@ -263,6 +285,9 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   onEnter(word: string) {
+    if (this.japaneseMode) {
+      return;
+    }
     this.wrongCount += 5;
     super.getViewService().showToast(`Correct Answer: ${this.currentWord.word}`, 5000, 'bottom');
   }
