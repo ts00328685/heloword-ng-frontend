@@ -30,6 +30,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   autoPronounceSentence = false;
   autoInputFocus = true;
   autoComplete = false;
+  enableEnMask = false;
   enableSentenceMask = false;
   failWhenMaskOff = false;
   japaneseMode = false;
@@ -375,6 +376,13 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   toggleSentenceMask() {
     this.enableSentenceMask = !this.enableSentenceMask;
     if (!this.enableSentenceMask) {
+      this.wrongCount++;
+    }
+  }
+
+  toggleEnMask() {
+    this.enableEnMask = !this.enableEnMask;
+    if (!this.enableEnMask) {
       this.wrongCount++;
     }
   }
