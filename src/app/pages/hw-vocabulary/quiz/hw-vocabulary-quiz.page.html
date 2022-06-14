@@ -44,7 +44,7 @@
 
         <ion-row *ngIf="currentWord?.translateEn" class="ion-align-items-left vertical-align-content">
             <ion-col size="8" class="ion-no-padding">
-                <h2 class="ion-text-left">
+                <h2 class="ion-text-left" [ngClass]="enableEnMask ? 'large-letter-spacing' : ''">
                     {{currentWord?.translateEn | sentenceMask: sentenceMaskIndex: enableEnMask}}
                 </h2>
             </ion-col>
@@ -65,7 +65,8 @@
 
         <ion-row *ngIf="currentWord?.sentence" class="ion-align-items-left vertical-align-content">
             <ion-col size="8" class="ion-no-padding">
-                <h2 class="ion-text-left" [innerHTML]="currentWord?.sentence | answerMask: currentWord.word | sentenceMask: sentenceMaskIndex: enableSentenceMask">
+                <h2 [ngClass]="enableSentenceMask ? 'large-letter-spacing' : ''"
+                    class="ion-text-left" [innerHTML]="currentWord?.sentence | answerMask: currentWord.word | sentenceMask: sentenceMaskIndex: enableSentenceMask">
                 </h2>
             </ion-col>
             <ion-col size="1">
