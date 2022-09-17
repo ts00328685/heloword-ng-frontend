@@ -1,6 +1,5 @@
 A web app to learn and review vocabulary of various languages
-<img width="793" alt="image" src="https://user-images.githubusercontent.com/43750759/178137089-ec1e1516-4ebf-480b-b2f8-91f41dc7bd71.png">
-
+<img width="945" alt="圖片" src="https://user-images.githubusercontent.com/43750759/190847346-7781a0d9-f499-4290-8cc5-d6e6674fd59a.png">
 
 Frequently updated
 https://www.heloword.com/k8s/ng-frontend/v1
