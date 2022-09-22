@@ -4,7 +4,8 @@ A web app to learn and review vocabulary of various languages
 Frequently updated
 https://www.heloword.com/k8s/ng-frontend/v1
 
-
+Intro:
+https://www.youtube.com/watch?v=zmdaJGhAMhE
 <!-- GETTING STARTED -->
 ## Getting Started
 
