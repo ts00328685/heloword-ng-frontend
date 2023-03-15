@@ -316,7 +316,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       this.saveSingleRecord();
     } else {
       needToReEnterAgain = true;
-      super.getViewService().showToast('Pushed to the end for retesting again!', 1000);
+      // super.getViewService().showToast('Pushed to the end for retesting again!', 1000);
     }
 
     this.eachQuestionStartTime = new Date();
