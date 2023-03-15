@@ -276,7 +276,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       const {ansKanjiFirst, ansKataFirsst} = this.getJpAnswers(answer);
       answer = `${ansKanjiFirst} or ${ansKataFirsst}`
     }
-    super.getViewService().showToast(`Correct Answer: ${answer}`, 5000, 'bottom');
+    super.getViewService().showToast(`Correct Answer: ${answer}`, 2000, 'bottom');
     this.input.setFocus();
   }
 
@@ -290,7 +290,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       return;
     }
     this.wrongCount += 5;
-    super.getViewService().showToast(`Correct Answer: ${this.currentWord.word}`, 5000, 'bottom');
+    super.getViewService().showToast(`Correct Answer: ${this.currentWord.word}`, 2000, 'bottom');
   }
 
   cancelPronouncing() {
