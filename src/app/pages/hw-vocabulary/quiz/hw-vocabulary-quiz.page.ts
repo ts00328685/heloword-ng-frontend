@@ -290,7 +290,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       return;
     }
     this.wrongCount += 5;
-    super.getViewService().showToast(`Correct Answer: ${this.currentWord.word}`, 2000, 'bottom');
+    super.getViewService().showToast(`Correct Answer: ${this.currentWord.word}`, 700, 'bottom');
   }
 
   cancelPronouncing() {
