@@ -13,7 +13,7 @@ export const environment = {
   },
   cipher: {aesKey: '', aesIv: ''},
   retrieveIpUrl: 'https://jsonip.com/callback',
-  userIp: ''
+  userIp: '0.0.0.0'
 };
 
 /*
