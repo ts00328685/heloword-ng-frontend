@@ -9,5 +9,5 @@ export const environment = {
   },
   cipher: {aesKey: '', aesIv: ''},
   retrieveIpUrl: 'https://jsonip.com',
-  userIp: ''
+  userIp: '0.0.0.0'
 };
