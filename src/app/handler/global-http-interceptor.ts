@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { UtilsService } from "../shared/services/utils.service";
 import { ViewService } from "../shared/services/view.service";
 import { BaseComponent } from "../shared/base/base.component";
+import { AuthService } from "../shared/services/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
   constructor(
     private datePipe: DatePipe,
     private viewService: ViewService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private authService: AuthService
   ) {
     super();
   }
@@ -42,6 +44,10 @@ export class GlobalHttpInterceptor extends BaseComponent implements HttpIntercep
       mergeMap(evt => {
         if (!(evt instanceof HttpResponse)) {
           return of(evt);
+        }
+
+        if (this.authService.isUserLoggedIn() && evt?.body?.code === '9403') {
+          this.authService.logout();
         }
 
         this.lastResponseTimestamp = new Date().getTime();
