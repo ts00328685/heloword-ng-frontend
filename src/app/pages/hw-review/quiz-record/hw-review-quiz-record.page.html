@@ -15,12 +15,13 @@
                   (click)="clickCard(settingRecord.value)">
 
             <ion-row class="ion-padding">
-                <ion-col size="6" class="ion-text-left">
+                <ion-col size="9" class="ion-text-left">
                     <ion-text [color]="settingRecord.value.total - settingRecord.value.completed > 0 ? 'warning' : 'primary'">
-                        {{ settingRecord.key | date: 'yyyy/MM/dd HH:mm:ss' }}
+                        <span *ngIf="settingRecord.value.latestFinishedTime">Last updated at: {{ settingRecord.value.latestFinishedTime | date: 'yyyy/MM/dd HH:mm:ss' }} | </span>
+                        <span>Created at: {{ settingRecord.key | date: 'yyyy/MM/dd HH:mm:ss' }}</span>
                     </ion-text>
                 </ion-col>
-                <ion-col size="6" class="ion-text-right">
+                <ion-col size="3" class="ion-text-right">
                     <ion-text [color]="settingRecord.value.total - settingRecord.value.completed > 0 ? 'warning' : 'primary'">
                         ➤
                     </ion-text>

@@ -83,6 +83,7 @@ export class ModalWordSettingComponent extends BaseComponent {
 export interface QuizSetting {
   id?: number;
   timestamp: Date;
+  latestFinishedTime?: Date;
   min?: number;
   max?: number;
   type: string;

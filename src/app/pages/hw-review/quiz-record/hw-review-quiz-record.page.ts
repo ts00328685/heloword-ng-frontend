@@ -14,7 +14,7 @@ import { UtilsService } from 'src/app/shared/services/utils.service';
 export class HwReviewQuizRecordPage extends BasePage<any> {
 
   titleMap = UtilsService.getWordSentenceTitleMap();
-  settingRecords$: Observable<Map<Date, { records: Array<QuizSetting>, completed: number, total: number }>>;
+  settingRecords$: Observable<Map<Date, { records: Array<QuizSetting>, completed: number, total: number, latestFinishedTime: Date }>>;
   hasAnyRecord = true;
 
   emptyMsg = super.getAuthService().isUserLoggedIn() ? 'Empty Records~' : 'Log-in required'
@@ -31,7 +31,10 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
     this.init();
   }
 
-  unsorted = (a: KeyValue<Date, { records: Array<QuizSetting>, completed: number, total: number }>, b: KeyValue<Date, { records: Array<QuizSetting>, completed: number, total: number }>): number => {
+  unsorted = (a: KeyValue<Date, { records: Array<QuizSetting>, completed: number, total: number, latestFinishedTime: Date }>, b: KeyValue<Date, { records: Array<QuizSetting>, completed: number, total: number, latestFinishedTime: Date }>): number => {
+    if (a.value.latestFinishedTime && b.value.latestFinishedTime) {
+      return new Date(b.value.latestFinishedTime).getTime() - new Date(a.value.latestFinishedTime).getTime();
+    }
     return new Date(b.key).getTime() - new Date(a.key).getTime();
   }
 
@@ -39,7 +42,7 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
     return super.getApiService().doPost('/frontend-api/api/fe/quiz/get-quiz-settings').pipe(
       map(response => response.data),
       map((data: Map<Date, Array<QuizSetting>>) => {
-        const dataExt: Map<Date, { records: Array<QuizSetting>, completed: number, total: number }> = new Map();
+        const dataExt: Map<Date, { records: Array<QuizSetting>, completed: number, total: number, latestFinishedTime: Date }> = new Map();
 
         Object.keys(data).forEach((key) => {
           const settings = data[key];
@@ -51,6 +54,7 @@ export class HwReviewQuizRecordPage extends BasePage<any> {
           dataExt.set(new Date(key), {
             total,
             completed,
+            latestFinishedTime: settings.find(s => s.latestFinishedTime)?.latestFinishedTime,
             records: settings
           });
         })
