@@ -1,5 +1,5 @@
 export const environment = {
-  appVersion: '2022.05.23.a',
+  appVersion: '2025.02.01.a',
   backendBaseUrl: '/k8s/micro-infra-gateway/v1',
   googleClientId: '268421074885-cn4qtlas4hep25tt7f0gaak8qh557fbu.apps.googleusercontent.com',
   production: true,
