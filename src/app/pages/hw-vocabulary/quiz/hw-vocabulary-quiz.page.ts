@@ -210,11 +210,11 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   getRawAnswer() {
     let answer = (this.currentWord.word || this.currentWord.sentence);
 
-    if (this.currentWord.language === 'jp') {
-      answer = this.currentWord.translateEn;
+    if (this.japaneseMode && this.currentWord.language === 'jp') {
+      answer = answer.replace(/\[[^\]]*\]/g, '').replace(/\s+/g, '');
     }
 
-    if (this.japaneseMode) {
+    if (this.japaneseMode && this.currentWord.sentence) {
       answer = this.currentWord.sentence;
     }
 
@@ -232,14 +232,15 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       answer = answer.replace(/[ß]/g, 'b');
     }
 
+
+    if (this.japaneseMode && this.currentWord.language === 'jp') {
+      return this.isJpInputCorrect(input, answer);
+    }
+
     const lastCharacter = answer.charAt(answer.length - 1);
     const charsToIgnore = ['.', '?', '。', '!'];
     if (charsToIgnore.includes(lastCharacter)) {
       answer = answer.substr(0, answer.length - 1);
-    }
-
-    if (this.japaneseMode) {
-      return this.isJpInputCorrect(input, answer);
     }
 
     const trimmedAns = answer.replace(/[\W]/g, '');
@@ -286,9 +287,6 @@ export class HwVocabularyQuizPage extends BasePage<any> {
   }
 
   onEnter(word: string) {
-    if (this.japaneseMode) {
-      return;
-    }
     this.wrongCount += 5;
     super.getViewService().showToast(`Correct Answer: ${this.currentWord.word}`, 700, 'bottom');
   }
