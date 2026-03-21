@@ -188,7 +188,7 @@ const StatsPage: React.FC = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
                   <XAxis dataKey="label" tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} interval={range === 30 ? 4 : 0} />
                   <YAxis tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => [`${v} min`, 'Time']} />
+                  <Tooltip contentStyle={tooltipStyle} formatter={(v) => [`${v} min`, 'Time']} />
                   <Line type="monotone" dataKey="timeSpentMin" name="Minutes" stroke="#a855f7" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
                 </LineChart>
               </ResponsiveContainer>
