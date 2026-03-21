@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { QuizSetting, WORD_SENTENCE_TITLE_MAP } from '../models';
+import { useTranslation } from 'react-i18next';
+import { QuizSetting } from '../models';
 import { useData } from '../contexts/DataContext';
 import { useUI } from '../contexts/UIContext';
 
@@ -42,6 +43,7 @@ const Toggle: React.FC<{ checked: boolean; onChange: () => void }> = ({ checked,
 
 const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onChange }) => {
   const color = TYPE_COLOR[setting.type] ?? DEFAULT_COLOR;
+  const { t } = useTranslation();
 
   return (
     <div
@@ -62,7 +64,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
           <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${color.dot}`} />
           <div className="min-w-0">
             <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{title}</p>
-            <p className="text-xs text-gray-400 dark:text-gray-500">{setting.total} items</p>
+            <p className="text-xs text-gray-400 dark:text-gray-500">{t('quizModal.itemCount', { count: setting.total })}</p>
           </div>
         </div>
         <Toggle
@@ -76,16 +78,16 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
         <div className={`px-4 pb-4 pt-1 ${color.bg}`}>
           <div className="flex items-center gap-2 mb-2">
             <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${color.badge}`}>
-              Range: {setting.min ?? 1} – {setting.max ?? setting.total}
+              {t('quizModal.range', { min: setting.min ?? 1, max: setting.max ?? setting.total })}
             </span>
             <span className="text-xs text-gray-400 dark:text-gray-500">
-              ({((setting.max ?? setting.total) - (setting.min ?? 1) + 1)} selected)
+              {t('quizModal.countSelected', { count: (setting.max ?? setting.total) - (setting.min ?? 1) + 1 })}
             </span>
           </div>
 
           <div className="flex gap-3">
             <div className="flex-1">
-              <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">From</label>
+              <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">{t('quizModal.from')}</label>
               <input
                 type="number"
                 min={1}
@@ -100,7 +102,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
               />
             </div>
             <div className="flex-1">
-              <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">To</label>
+              <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">{t('quizModal.to')}</label>
               <input
                 type="number"
                 min={setting.min ?? 1}
@@ -128,6 +130,7 @@ interface QuizSettingModalProps {
 const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
   const { wordStore, sentenceStore } = useData();
   const { showAlert } = useUI();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const buildInitialSettings = (): QuizSetting[] => {
@@ -161,7 +164,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
   const handleStart = () => {
     const selected = settings.filter((s) => s.isSelected);
     if (selected.length === 0) {
-      showAlert('Please select at least one group!');
+      showAlert(t('quizModal.selectList'));
       return;
     }
     const timestamp = new Date();
@@ -183,9 +186,9 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-3 pb-4 border-b border-gray-100 dark:border-gray-800">
           <div>
-            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">Configure Quiz</h2>
+            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{t('quizModal.title')}</h2>
             <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
-              {selectedCount === 0 ? 'Select word lists to include' : `${selectedCount} list${selectedCount !== 1 ? 's' : ''} selected`}
+              {selectedCount === 0 ? t('quizModal.subtitleEmpty') : t('quizModal.subtitleCount', { count: selectedCount })}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -193,7 +196,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
               onClick={handleSelectAll}
               className="text-xs font-semibold text-blue-500 hover:text-blue-700 dark:hover:text-blue-300 px-2 py-1 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
             >
-              {settings.every((s) => s.isSelected) ? 'Deselect all' : 'Select all'}
+              {settings.every((s) => s.isSelected) ? t('quizModal.deselectAll') : t('quizModal.selectAll')}
             </button>
             <button
               onClick={onClose}
@@ -210,14 +213,14 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
           {settings.length === 0 ? (
             <p className="text-center text-gray-400 dark:text-gray-500 py-10 text-sm">
-              No word lists loaded. Go to Home first.
+              {t('quizModal.noLists')}
             </p>
           ) : (
             settings.map((s, i) => (
               <QuizSettingItem
                 key={s.type}
                 setting={s}
-                title={WORD_SENTENCE_TITLE_MAP[s.type] || s.type}
+                title={t(`wordLists.${s.type}`, s.type)}
                 onChange={(updated) => handleChange(i, updated)}
               />
             ))
@@ -235,7 +238,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
             }`}
           >
-            {selectedCount === 0 ? 'Select a list to start' : `Start Quiz →`}
+            {selectedCount === 0 ? t('quizModal.selectList') : t('quizModal.startQuiz')}
           </button>
         </div>
       </div>

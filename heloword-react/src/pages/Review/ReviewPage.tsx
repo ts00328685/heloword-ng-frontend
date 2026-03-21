@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
-import { QuizSetting, TYPE_TO_TABLE_MAP, WORD_SENTENCE_TITLE_MAP } from '../../models';
+import { QuizSetting, TYPE_TO_TABLE_MAP } from '../../models';
 import { doPost } from '../../services/api.service';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { useData } from '../../contexts/DataContext';
@@ -18,6 +19,7 @@ interface QuizGroup {
 
 const ReviewPage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const { showLoading, hideLoading } = useUI();
 
@@ -26,8 +28,6 @@ const ReviewPage: React.FC = () => {
   const [groups, setGroups] = useState<QuizGroup[]>([]);
   const [loading, setLoading] = useState(false);
   const [showAllDue, setShowAllDue] = useState(false);
-
-  const emptyMsg = isLoggedIn ? 'Empty Records~' : 'Log-in required';
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -138,13 +138,13 @@ const ReviewPage: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
-            <p className="text-gray-500 dark:text-gray-400 font-medium">Login required</p>
-            <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">Sign in to see your quiz history</p>
+            <p className="text-gray-500 dark:text-gray-400 font-medium">{t('review.loginRequired')}</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">{t('review.loginHint')}</p>
             <button
               onClick={() => navigate('/login')}
               className="mt-4 bg-blue-500 text-white font-semibold text-sm px-6 py-2.5 rounded-xl hover:bg-blue-600 transition-colors"
             >
-              Go to Login
+              {t('review.goLogin')}
             </button>
           </div>
         )}
@@ -156,17 +156,17 @@ const ReviewPage: React.FC = () => {
                 <span className="w-6 h-6 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
                   {dueCount > 99 ? '99+' : dueCount}
                 </span>
-                <h3 className="text-sm font-semibold text-orange-700 dark:text-orange-400">Due for Review</h3>
+                <h3 className="text-sm font-semibold text-orange-700 dark:text-orange-400">{t('review.dueForReview')}</h3>
               </div>
               <button
                 onClick={() => setShowAllDue((v) => !v)}
                 className="text-xs text-orange-500 font-medium"
               >
-                {showAllDue ? 'Hide' : 'Show all'}
+                {showAllDue ? t('review.hide') : t('review.showAll')}
               </button>
             </div>
             <p className="text-xs text-orange-500 dark:text-orange-500 mb-3">
-              These words need review based on the forgetting curve.
+              {t('review.dueDescription')}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {(showAllDue ? dueWords : dueWords.slice(0, 12)).map((w) => (
@@ -179,7 +179,7 @@ const ReviewPage: React.FC = () => {
                 </span>
               ))}
               {!showAllDue && dueCount > 12 && (
-                <span className="text-xs text-orange-400 px-2 py-0.5">+{dueCount - 12} more</span>
+                <span className="text-xs text-orange-400 px-2 py-0.5">{t('review.moreItems', { count: dueCount - 12 })}</span>
               )}
             </div>
           </div>
@@ -188,13 +188,13 @@ const ReviewPage: React.FC = () => {
         {isLoggedIn && loading && (
           <div className="text-center py-12">
             <div className="w-8 h-8 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-sm text-gray-400 dark:text-gray-500">Loading quiz history...</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500">{t('review.loading')}</p>
           </div>
         )}
 
         {isLoggedIn && !loading && groups.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-gray-400 dark:text-gray-500 text-sm">{emptyMsg}</p>
+            <p className="text-gray-400 dark:text-gray-500 text-sm">{t('review.empty')}</p>
           </div>
         )}
 
@@ -219,7 +219,7 @@ const ReviewPage: React.FC = () => {
                       <p className="text-sm font-bold text-gray-800 dark:text-gray-100">{formatDate(group.date)}</p>
                       {group.latestFinishedTime && (
                         <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
-                          Last activity: {formatTime(group.latestFinishedTime)}
+                          {t('review.lastActivity', { time: formatTime(group.latestFinishedTime) })}
                         </p>
                       )}
                     </div>
@@ -230,7 +230,7 @@ const ReviewPage: React.FC = () => {
                           : 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400'
                       }`}
                     >
-                      {isComplete ? 'Done' : `${pct}%`}
+                      {isComplete ? t('review.done') : `${pct}%`}
                     </span>
                   </div>
 
@@ -242,13 +242,13 @@ const ReviewPage: React.FC = () => {
                   </div>
 
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-                    {group.completed} / {group.total} completed
+                    {t('review.completionRatio', { completed: group.completed, total: group.total })}
                   </p>
 
                   <div className="flex flex-wrap gap-1.5">
                     {group.records.map((r) => (
                       <span key={r.type} className="text-xs bg-blue-50 dark:bg-blue-900/40 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
-                        {WORD_SENTENCE_TITLE_MAP[r.type] || r.type}
+                        {t(`wordLists.${r.type}`, r.type)}
                         {r.min && r.max ? ` (${r.min}-${r.max})` : ''}
                       </span>
                     ))}
@@ -256,7 +256,7 @@ const ReviewPage: React.FC = () => {
 
                   {!isComplete && (
                     <p className="text-xs text-blue-500 font-medium mt-2 text-right">
-                      Tap to resume →
+                      {t('review.resumePrompt')}
                     </p>
                   )}
                 </div>

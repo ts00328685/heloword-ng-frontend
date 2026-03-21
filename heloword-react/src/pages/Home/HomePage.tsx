@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useData } from '../../contexts/DataContext';
 import { useUI } from '../../contexts/UIContext';
-import { Sentence, WORD_SENTENCE_TITLE_MAP, WordStore } from '../../models';
+import { Sentence, WordStore } from '../../models';
 import { doPost } from '../../services/api.service';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
@@ -29,6 +30,7 @@ const WordSection: React.FC<{
   list: Sentence[];
   onViewAll: () => void;
 }> = ({ title, list, onViewAll }) => {
+  const { t } = useTranslation();
   if (!list || list.length === 0) return null;
 
   return (
@@ -39,7 +41,7 @@ const WordSection: React.FC<{
           onClick={onViewAll}
           className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
         >
-          View all →
+          {t('home.viewAll')}
         </button>
       </div>
       <div className="grid grid-cols-2 gap-2">
@@ -53,6 +55,7 @@ const WordSection: React.FC<{
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const { wordStore, sentenceStore, updateWordStore, updateSentenceStore, isWordStoreEmpty } = useData();
   const { dueCount } = useNotifications();
@@ -128,13 +131,13 @@ const HomePage: React.FC = () => {
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
         <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-5 mb-6 text-white shadow-lg">
-          <h2 className="text-xl font-bold mb-1">Vocabulary Quiz</h2>
-          <p className="text-blue-100 text-sm mb-4">Practice words & sentences across multiple languages</p>
+          <h2 className="text-xl font-bold mb-1">{t('home.quizTitle')}</h2>
+          <p className="text-blue-100 text-sm mb-4">{t('home.quizSubtitle')}</p>
           <button
             onClick={() => navigate('/vocabulary')}
             className="bg-white text-blue-600 font-semibold text-sm px-4 py-2 rounded-xl hover:bg-blue-50 transition-colors shadow"
           >
-            Go to Quiz →
+            {t('home.goToQuiz')}
           </button>
         </div>
 
@@ -150,9 +153,9 @@ const HomePage: React.FC = () => {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-orange-700 dark:text-orange-400">
-                {dueCount} word{dueCount !== 1 ? 's' : ''} due for review
+                {t('home.dueWords', { count: dueCount })}
               </p>
-              <p className="text-xs text-orange-500 dark:text-orange-500 mt-0.5">Based on your forgetting curve</p>
+              <p className="text-xs text-orange-500 dark:text-orange-500 mt-0.5">{t('home.dueCurve')}</p>
             </div>
             <svg className="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -163,14 +166,14 @@ const HomePage: React.FC = () => {
         {!hasData && (
           <div className="text-center py-12">
             <div className="w-8 h-8 border-3 border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-sm text-gray-400 dark:text-gray-500">Loading word lists...</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500">{t('home.loading')}</p>
           </div>
         )}
 
         {allSections.map(({ key, list }) => (
           <WordSection
             key={key}
-            title={WORD_SENTENCE_TITLE_MAP[key]}
+            title={t(`wordLists.${key}`, key)}
             list={list}
             onViewAll={() => handleViewAll(list)}
           />
