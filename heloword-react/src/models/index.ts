@@ -84,6 +84,22 @@ export const TYPE_TO_TABLE_MAP: Record<string, string> = {
   sentenceJapaneseList: 'sentence_japanese',
 };
 
+export interface DueWord {
+  answerId: number;
+  answerTableName: string;
+  lastReviewTime: string;
+  nextReviewTime: string;
+  reviewCount: number;
+  correctCount: number;
+}
+
+export interface DailyStat {
+  date: string;       // "YYYY-MM-DD"
+  total: number;
+  wrongCount: number;
+  timeSpent: number;  // seconds
+}
+
 export const WORD_SENTENCE_TITLE_MAP: Record<string, string> = {
   wordEnglishList: 'English Words',
   wordGermanList: 'German Words',

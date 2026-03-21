@@ -9,6 +9,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { DataProvider } from './contexts/DataContext';
 import { UIProvider } from './contexts/UIContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 import HomePage from './pages/Home/HomePage';
 import InfoPage from './pages/Info/InfoPage';
 import LoginPage from './pages/Login/LoginPage';
@@ -75,9 +76,11 @@ const App: React.FC = () => {
       <UIProvider>
         <AuthProvider>
           <DataProvider>
-            <Router>
-              <AppLayout />
-            </Router>
+            <NotificationProvider>
+              <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+                <AppLayout />
+              </Router>
+            </NotificationProvider>
           </DataProvider>
         </AuthProvider>
       </UIProvider>

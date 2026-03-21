@@ -5,6 +5,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
 import { QuizSetting, TYPE_TO_TABLE_MAP, WORD_SENTENCE_TITLE_MAP } from '../../models';
 import { doPost } from '../../services/api.service';
+import { useNotifications } from '../../contexts/NotificationContext';
+import { useData } from '../../contexts/DataContext';
 
 interface QuizGroup {
   date: Date;
@@ -19,8 +21,11 @@ const ReviewPage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { showLoading, hideLoading } = useUI();
 
+  const { dueWords, dueCount } = useNotifications();
+  const { wordStore, sentenceStore } = useData();
   const [groups, setGroups] = useState<QuizGroup[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showAllDue, setShowAllDue] = useState(false);
 
   const emptyMsg = isLoggedIn ? 'Empty Records~' : 'Log-in required';
 
@@ -100,6 +105,19 @@ const ReviewPage: React.FC = () => {
     }
   };
 
+  const lookupWord = (answerId: number, tableName: string): string => {
+    const allLists = [
+      ...wordStore.wordEnglishList,
+      ...wordStore.wordGermanList,
+      ...wordStore.wordJapaneseList,
+      ...sentenceStore.sentenceEnglishList,
+      ...sentenceStore.sentenceGermanList,
+      ...sentenceStore.sentenceJapaneseList,
+    ];
+    const found = allLists.find((w) => w.id === answerId && w.tableName === tableName);
+    return found ? (found.word || found.sentence || `#${answerId}`) : `#${answerId}`;
+  };
+
   const formatDate = (d: Date) =>
     d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
@@ -128,6 +146,42 @@ const ReviewPage: React.FC = () => {
             >
               Go to Login
             </button>
+          </div>
+        )}
+
+        {isLoggedIn && dueCount > 0 && (
+          <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-2xl p-4 mb-4">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className="w-6 h-6 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                  {dueCount > 99 ? '99+' : dueCount}
+                </span>
+                <h3 className="text-sm font-semibold text-orange-700 dark:text-orange-400">Due for Review</h3>
+              </div>
+              <button
+                onClick={() => setShowAllDue((v) => !v)}
+                className="text-xs text-orange-500 font-medium"
+              >
+                {showAllDue ? 'Hide' : 'Show all'}
+              </button>
+            </div>
+            <p className="text-xs text-orange-500 dark:text-orange-500 mb-3">
+              These words need review based on the forgetting curve.
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {(showAllDue ? dueWords : dueWords.slice(0, 12)).map((w) => (
+                <span
+                  key={`${w.answerId}-${w.answerTableName}`}
+                  className="text-xs bg-white dark:bg-gray-800 border border-orange-200 dark:border-orange-800 text-orange-600 dark:text-orange-400 px-2 py-0.5 rounded-lg font-medium"
+                  title={`Reviewed ${w.reviewCount}× — ${w.correctCount} correct`}
+                >
+                  {lookupWord(w.answerId, w.answerTableName)}
+                </span>
+              ))}
+              {!showAllDue && dueCount > 12 && (
+                <span className="text-xs text-orange-400 px-2 py-0.5">+{dueCount - 12} more</span>
+              )}
+            </div>
           </div>
         )}
 

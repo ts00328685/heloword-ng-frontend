@@ -7,6 +7,7 @@ import { useUI } from '../../contexts/UIContext';
 import { Sentence, WORD_SENTENCE_TITLE_MAP, WordStore } from '../../models';
 import { doPost } from '../../services/api.service';
 import SentenceRenderer from '../../components/SentenceRenderer';
+import { useNotifications } from '../../contexts/NotificationContext';
 
 const WordCard: React.FC<{ word: Sentence }> = ({ word }) => (
   <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 flex flex-col gap-0.5 hover:shadow-md transition-shadow">
@@ -54,6 +55,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const { wordStore, sentenceStore, updateWordStore, updateSentenceStore, isWordStoreEmpty } = useData();
+  const { dueCount } = useNotifications();
   const { showLoading, hideLoading } = useUI();
   const hasFetched = useRef(false);
 
@@ -135,6 +137,28 @@ const HomePage: React.FC = () => {
             Go to Quiz →
           </button>
         </div>
+
+        {dueCount > 0 && (
+          <div
+            onClick={() => navigate('/review')}
+            className="flex items-center gap-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-2xl p-4 mb-5 cursor-pointer hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors"
+          >
+            <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center shrink-0">
+              <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-orange-700 dark:text-orange-400">
+                {dueCount} word{dueCount !== 1 ? 's' : ''} due for review
+              </p>
+              <p className="text-xs text-orange-500 dark:text-orange-500 mt-0.5">Based on your forgetting curve</p>
+            </div>
+            <svg className="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        )}
 
         {!hasData && (
           <div className="text-center py-12">
