@@ -2,10 +2,16 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '../contexts/NotificationContext';
+import { useSocial } from '../contexts/SocialContext';
 
 const BottomTabs: React.FC = () => {
   const { dueCount } = useNotifications();
   const { t } = useTranslation();
+  const { unreadCounts, friends } = useSocial();
+
+  const totalUnread = Object.values(unreadCounts).reduce((sum, n) => sum + n, 0);
+  const pendingRequests = friends.filter((f) => f.status === 'PENDING_RECEIVED').length;
+  const socialBadge = totalUnread + pendingRequests;
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 safe-area-bottom">
@@ -35,9 +41,9 @@ const BottomTabs: React.FC = () => {
           </svg>
         )} />
 
-        <TabItem path="/info" label={t('nav.info')} icon={(active) => (
+        <TabItem path="/social" label={t('nav.social')} badge={socialBadge} icon={(active) => (
           <svg className={`w-6 h-6 ${active ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={active ? 2.5 : 2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={active ? 2.5 : 2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
         )} />
 

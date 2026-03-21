@@ -111,6 +111,33 @@ export const doGet = async <T = any>(
 };
 
 /**
+ * PUT request to the backend.
+ */
+export const doPut = async <T = any>(
+  url: string,
+  params: unknown = {},
+  baseUrl: string = environment.backendBaseUrl
+): Promise<CommonResponse<T>> => {
+  await ensureIp();
+  const instance = getAxiosInstance();
+  const response = await instance.put<CommonResponse<T>>(baseUrl + url, params);
+  return response.data;
+};
+
+/**
+ * DELETE request to the backend.
+ */
+export const doDelete = async <T = any>(
+  url: string,
+  baseUrl: string = environment.backendBaseUrl
+): Promise<CommonResponse<T>> => {
+  await ensureIp();
+  const instance = getAxiosInstance();
+  const response = await instance.delete<CommonResponse<T>>(baseUrl + url);
+  return response.data;
+};
+
+/**
  * Reset the axios instance (used after logout to clear state).
  */
 export const resetApiInstance = (): void => {
