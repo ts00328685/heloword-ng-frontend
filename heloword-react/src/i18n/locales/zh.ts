@@ -83,6 +83,7 @@ const zh = {
     loginRequired: '需要登入',
     loginHint: '登入以查看您的測驗歷史',
     goLogin: '前往登入',
+    guestBanner: '您的進度已儲存在此裝置。登入以同步至其他裝置 →',
     empty: '沒有記錄～',
     dueForReview: '待複習',
     hide: '收起',

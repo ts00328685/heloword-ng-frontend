@@ -6,8 +6,14 @@ import SentenceRenderer from '../../components/SentenceRenderer';
 import { useAuth } from '../../contexts/AuthContext';
 import { useData } from '../../contexts/DataContext';
 import { useUI } from '../../contexts/UIContext';
+import { useNotifications } from '../../contexts/NotificationContext';
 import { QuizSetting, Sentence } from '../../models';
 import { doPost } from '../../services/api.service';
+import {
+  generateId,
+  saveGuestSetting,
+  saveGuestRecord,
+} from '../../services/guestStorage.service';
 
 const normalizeGerman = (s: string) =>
   s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'b');
@@ -61,6 +67,7 @@ const VocabularyQuizPage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { wordStore, sentenceStore } = useData();
   const { showToast, showAlert } = useUI();
+  const { refreshGuest } = useNotifications();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const startTimeRef = useRef<Date>(new Date());
@@ -112,9 +119,35 @@ const VocabularyQuizPage: React.FC = () => {
   }, [currentIndex, autoInputFocus]);
 
   const saveQuizSettings = async (quizSettings: Record<string, QuizSetting>) => {
-    if (!isLoggedIn) return;
-
     const settingList = Object.keys(quizSettings).map((k) => ({ _key: k, ...quizSettings[k] }));
+
+    if (!isLoggedIn) {
+      // Resume flow: settings already have _guestId from ReviewPage
+      const alreadyPersistedGuest = settingList.some((s) => !!(s as any)._guestId);
+      if (alreadyPersistedGuest) {
+        settingList.forEach((s) => {
+          settingIdMapRef.current.set(s.tableName, (s as any)._guestId);
+        });
+        return;
+      }
+      // New guest session: generate UUIDs and persist to localStorage
+      const timestamp = new Date().toISOString();
+      settingList.forEach((s) => {
+        const id = generateId();
+        saveGuestSetting({
+          id,
+          timestamp,
+          type: s.type,
+          tableName: s.tableName || '',
+          min: s.min ?? 1,
+          max: s.max ?? s.total,
+          total: s.total,
+        });
+        settingIdMapRef.current.set(s.tableName, id as any);
+      });
+      return;
+    }
+
     const alreadyPersisted = settingList.some((s) => !!s.id);
     if (alreadyPersisted) {
       settingList.forEach((s) => settingIdMapRef.current.set(s.tableName, s.id!));
@@ -133,12 +166,27 @@ const VocabularyQuizPage: React.FC = () => {
 
   const saveSingleRecord = useCallback(
     async (word: Sentence) => {
-      if (!isLoggedIn || word.recordSaved) return;
+      if (word.recordSaved) return;
       word.recordSaved = true;
 
       const currentTime = new Date();
       const timeSpent = (currentTime.getTime() - startTimeRef.current.getTime()) / 1000;
       const settingId = settingIdMapRef.current.get(word.tableName || '');
+
+      if (!isLoggedIn) {
+        // Guest: persist to localStorage
+        saveGuestRecord({
+          id: generateId(),
+          settingId: settingId ? String(settingId) : '',
+          answerId: word.id,
+          answerTableName: word.tableName || '',
+          timeSpent,
+          finishedTime: currentTime.toISOString(),
+          wrongCount: wrongCountRef.current,
+          quizIndex: currentIndex,
+        });
+        return;
+      }
 
       try {
         await doPost('/frontend-api/api/fe/quiz/save-single-record', {
@@ -296,6 +344,7 @@ const VocabularyQuizPage: React.FC = () => {
       const isLastWord = !needRetest && currentIndex + 1 >= totalLength;
       if (isLastWord) {
         showToast(t('quiz.finished'));
+        if (!isLoggedIn) refreshGuest();
         navigate('/home', { replace: true });
         return;
       }
@@ -317,6 +366,7 @@ const VocabularyQuizPage: React.FC = () => {
       currentIndex, totalLength, wordList, failWhenMaskOff, enableSentenceMask,
       autoPronounce, autoPronounceEn, autoPronounceCh, autoPronounceSentence,
       autoInputFocus, speed, volume, saveSingleRecord, showToast, navigate,
+      isLoggedIn, refreshGuest,
     ]
   );
 

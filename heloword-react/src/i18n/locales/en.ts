@@ -83,6 +83,7 @@ const en = {
     loginRequired: 'Login required',
     loginHint: 'Sign in to see your quiz history',
     goLogin: 'Go to Login',
+    guestBanner: 'Your progress is saved locally on this device. Log in to sync across devices →',
     empty: 'Empty Records~',
     dueForReview: 'Due for Review',
     hide: 'Hide',

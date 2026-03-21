@@ -83,6 +83,7 @@ const ja = {
     loginRequired: 'ログインが必要',
     loginHint: 'クイズ履歴を見るにはサインインしてください',
     goLogin: 'ログインへ',
+    guestBanner: '進捗はこのデバイスにローカル保存されています。他のデバイスと同期するにはログイン →',
     empty: '記録なし～',
     dueForReview: '復習が必要な単語',
     hide: '非表示',
