@@ -1,12 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useAuth } from '../../contexts/AuthContext';
 import { useData } from '../../contexts/DataContext';
 import { useUI } from '../../contexts/UIContext';
+import { useNotifications } from '../../contexts/NotificationContext';
 import { QuizSetting, Sentence } from '../../models';
 import { doPost } from '../../services/api.service';
+import {
+  generateId,
+  saveGuestSetting,
+  saveGuestRecord,
+} from '../../services/guestStorage.service';
 
 const normalizeGerman = (s: string) =>
   s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'b');
@@ -56,9 +63,11 @@ const pronounceWord = (word: string, lang: string, speed = 1.0, volume = 0.2) =>
 const VocabularyQuizPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const { wordStore, sentenceStore } = useData();
   const { showToast, showAlert } = useUI();
+  const { refreshGuest } = useNotifications();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const startTimeRef = useRef<Date>(new Date());
@@ -98,7 +107,7 @@ const VocabularyQuizPage: React.FC = () => {
     }
 
     quizSettingsRef.current = quizSettings;
-    showAlert('Note that if you type the wrong answer or reveal the answer in any way, this word will show up again later for a retest!');
+    showAlert(t('quiz.retestNote'));
     saveQuizSettings(quizSettings);
     initWordList(quizSettings, finishedIdMap);
   }, []);
@@ -110,9 +119,35 @@ const VocabularyQuizPage: React.FC = () => {
   }, [currentIndex, autoInputFocus]);
 
   const saveQuizSettings = async (quizSettings: Record<string, QuizSetting>) => {
-    if (!isLoggedIn) return;
-
     const settingList = Object.keys(quizSettings).map((k) => ({ _key: k, ...quizSettings[k] }));
+
+    if (!isLoggedIn) {
+      // Resume flow: settings already have _guestId from ReviewPage
+      const alreadyPersistedGuest = settingList.some((s) => !!(s as any)._guestId);
+      if (alreadyPersistedGuest) {
+        settingList.forEach((s) => {
+          settingIdMapRef.current.set(s.tableName, (s as any)._guestId);
+        });
+        return;
+      }
+      // New guest session: generate UUIDs and persist to localStorage
+      const timestamp = new Date().toISOString();
+      settingList.forEach((s) => {
+        const id = generateId();
+        saveGuestSetting({
+          id,
+          timestamp,
+          type: s.type,
+          tableName: s.tableName || '',
+          min: s.min ?? 1,
+          max: s.max ?? s.total,
+          total: s.total,
+        });
+        settingIdMapRef.current.set(s.tableName, id as any);
+      });
+      return;
+    }
+
     const alreadyPersisted = settingList.some((s) => !!s.id);
     if (alreadyPersisted) {
       settingList.forEach((s) => settingIdMapRef.current.set(s.tableName, s.id!));
@@ -131,12 +166,27 @@ const VocabularyQuizPage: React.FC = () => {
 
   const saveSingleRecord = useCallback(
     async (word: Sentence) => {
-      if (!isLoggedIn || word.recordSaved) return;
+      if (word.recordSaved) return;
       word.recordSaved = true;
 
       const currentTime = new Date();
       const timeSpent = (currentTime.getTime() - startTimeRef.current.getTime()) / 1000;
       const settingId = settingIdMapRef.current.get(word.tableName || '');
+
+      if (!isLoggedIn) {
+        // Guest: persist to localStorage
+        saveGuestRecord({
+          id: generateId(),
+          settingId: settingId ? String(settingId) : '',
+          answerId: word.id,
+          answerTableName: word.tableName || '',
+          timeSpent,
+          finishedTime: currentTime.toISOString(),
+          wrongCount: wrongCountRef.current,
+          quizIndex: currentIndex,
+        });
+        return;
+      }
 
       try {
         await doPost('/frontend-api/api/fe/quiz/save-single-record', {
@@ -254,7 +304,7 @@ const VocabularyQuizPage: React.FC = () => {
     if (e.key === 'Enter') {
       wrongCountRef.current += 5;
       const ans = getRawAnswer(wordList[0]);
-      showToast(`Correct Answer: ${ans}`, 700, 'bottom');
+      showToast(t('quiz.correctAnswer', { answer: ans }), 700, 'bottom');
     }
   };
 
@@ -293,7 +343,8 @@ const VocabularyQuizPage: React.FC = () => {
 
       const isLastWord = !needRetest && currentIndex + 1 >= totalLength;
       if (isLastWord) {
-        showToast('Finished! 🎉');
+        showToast(t('quiz.finished'));
+        if (!isLoggedIn) refreshGuest();
         navigate('/home', { replace: true });
         return;
       }
@@ -315,6 +366,7 @@ const VocabularyQuizPage: React.FC = () => {
       currentIndex, totalLength, wordList, failWhenMaskOff, enableSentenceMask,
       autoPronounce, autoPronounceEn, autoPronounceCh, autoPronounceSentence,
       autoInputFocus, speed, volume, saveSingleRecord, showToast, navigate,
+      isLoggedIn, refreshGuest,
     ]
   );
 
@@ -325,9 +377,10 @@ const VocabularyQuizPage: React.FC = () => {
     let ans = getRawAnswer(current);
     if (japaneseMode && current.language === 'jp') {
       const { ansKanjiFirst, ansKataFirst } = getJpAnswers(ans);
-      ans = `${ansKanjiFirst} or ${ansKataFirst}`;
+      showToast(t('quiz.correctAnswerJp', { ans1: ansKanjiFirst, ans2: ansKataFirst }), 2000, 'bottom');
+    } else {
+      showToast(t('quiz.correctAnswer', { answer: ans }), 2000, 'bottom');
     }
-    showToast(`Correct Answer: ${ans}`, 2000, 'bottom');
     if (autoInputFocus) inputRef.current?.focus();
   };
 
@@ -355,7 +408,7 @@ const VocabularyQuizPage: React.FC = () => {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 items-center justify-center">
         <div className="w-8 h-8 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mb-4" />
-        <p className="text-gray-400 dark:text-gray-500 text-sm">Loading quiz...</p>
+        <p className="text-gray-400 dark:text-gray-500 text-sm">{t('quiz.loading')}</p>
       </div>
     );
   }
@@ -393,16 +446,16 @@ const VocabularyQuizPage: React.FC = () => {
         {/* Settings panel */}
         {showSettings && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
-            <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Quiz Options</h3>
+            <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">{t('quiz.options')}</h3>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { label: 'Auto Pronounce', val: autoPronounce, set: setAutoPronounce },
-                { label: 'Pronounce EN', val: autoPronounceEn, set: setAutoPronounceEn },
-                { label: 'Pronounce CH', val: autoPronounceCh, set: setAutoPronounceCh },
-                { label: 'Pronounce Sentence', val: autoPronounceSentence, set: setAutoPronounceSentence },
-                { label: 'Auto Focus', val: autoInputFocus, set: setAutoInputFocus },
-                { label: 'Japanese Mode', val: japaneseMode, set: setJapaneseMode },
-                { label: 'Fail w/o Mask', val: failWhenMaskOff, set: setFailWhenMaskOff },
+                { label: t('quiz.autoPronounce'), val: autoPronounce, set: setAutoPronounce },
+                { label: t('quiz.pronounceEn'), val: autoPronounceEn, set: setAutoPronounceEn },
+                { label: t('quiz.pronounceCh'), val: autoPronounceCh, set: setAutoPronounceCh },
+                { label: t('quiz.pronounceSentence'), val: autoPronounceSentence, set: setAutoPronounceSentence },
+                { label: t('quiz.autoFocus'), val: autoInputFocus, set: setAutoInputFocus },
+                { label: t('quiz.japaneseMode'), val: japaneseMode, set: setJapaneseMode },
+                { label: t('quiz.failWithoutMask'), val: failWhenMaskOff, set: setFailWhenMaskOff },
               ].map(({ label, val, set }) => (
                 <button
                   key={label}
@@ -420,7 +473,7 @@ const VocabularyQuizPage: React.FC = () => {
 
             <div className="mt-3 space-y-2">
               <div className="flex items-center gap-3">
-                <span className="text-xs text-gray-500 dark:text-gray-400 w-16">Speed: {speed.toFixed(1)}</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 w-16">{t('quiz.speed', { value: speed.toFixed(1) })}</span>
                 <input
                   type="range" min={0.5} max={2} step={0.1} value={speed}
                   onChange={(e) => setSpeed(parseFloat(e.target.value))}
@@ -428,7 +481,7 @@ const VocabularyQuizPage: React.FC = () => {
                 />
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-gray-500 dark:text-gray-400 w-16">Volume: {(volume * 100).toFixed(0)}%</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 w-16">{t('quiz.volume', { value: (volume * 100).toFixed(0) })}</span>
                 <input
                   type="range" min={0} max={1} step={0.05} value={volume}
                   onChange={(e) => setVolume(parseFloat(e.target.value))}
@@ -446,14 +499,14 @@ const VocabularyQuizPage: React.FC = () => {
               {current.language}
             </span>
             <span className="text-xs text-gray-400 dark:text-gray-500">
-              Wrong: {wrongCountRef.current} · Pronounce: {pronounceCountRef.current}
+              {t('quiz.wrongPronounce', { wrong: wrongCountRef.current, pronounce: pronounceCountRef.current })}
             </span>
           </div>
 
           <div className="mb-2 min-h-[24px]">
             {enableEnMask ? (
               <button onClick={handleToggleEnMask} className="text-sm text-gray-400 dark:text-gray-500 italic underline">
-                [Show EN translation]
+                {t('quiz.showEnTranslation')}
               </button>
             ) : (
               <div className="flex items-center gap-2">
@@ -473,7 +526,7 @@ const VocabularyQuizPage: React.FC = () => {
             <div className="mt-2 min-h-[20px]">
               {enableSentenceMask ? (
                 <button onClick={handleToggleSentenceMask} className="text-xs text-gray-400 dark:text-gray-500 italic underline">
-                  [Show sentence]
+                  {t('quiz.showSentence')}
                 </button>
               ) : (
                 <div className="flex items-start gap-2">
@@ -489,14 +542,14 @@ const VocabularyQuizPage: React.FC = () => {
 
         {/* Answer input */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
-          <label className="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-2">Your Answer</label>
+          <label className="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-2">{t('quiz.yourAnswer')}</label>
           <input
             ref={inputRef}
             type="text"
             value={inputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            placeholder={japaneseMode ? 'Type in Japanese...' : 'Type your answer...'}
+            placeholder={japaneseMode ? t('quiz.placeholderJapanese') : t('quiz.placeholderDefault')}
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="off"
@@ -514,21 +567,21 @@ const VocabularyQuizPage: React.FC = () => {
             <svg className="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
             </svg>
-            Pronounce
+            {t('quiz.pronounce')}
           </button>
 
           <button
             onClick={handleRevealAnswer}
             className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600 transition-colors shadow-sm"
           >
-            Reveal
+            {t('quiz.reveal')}
           </button>
 
           <button
             onClick={() => goNext(current)}
             className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-sm font-bold py-3 rounded-xl transition-colors shadow-md"
           >
-            Skip →
+            {t('quiz.skip')}
           </button>
         </div>
       </main>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import QuizSettingModal from '../../components/QuizSettingModal';
 
 const VocabularyPage: React.FC = () => {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -17,21 +19,21 @@ const VocabularyPage: React.FC = () => {
             </svg>
           </div>
 
-          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Start a Quiz</h2>
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('vocabulary.startQuiz')}</h2>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-            Select word groups and practice your vocabulary across English, German, and Japanese.
+            {t('vocabulary.description')}
           </p>
 
           <button
             onClick={() => setShowModal(true)}
             className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold py-4 rounded-2xl transition-colors shadow-md text-base"
           >
-            Configure Quiz →
+            {t('vocabulary.configureBtn')}
           </button>
         </div>
 
         <p className="text-xs text-gray-400 dark:text-gray-500 mt-6 text-center leading-relaxed px-4">
-          Make sure you've visited the Home page first to load the word lists.
+          {t('vocabulary.hint')}
         </p>
       </main>
 

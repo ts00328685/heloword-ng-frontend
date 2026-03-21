@@ -3,6 +3,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import AppInitializer from './components/AppInitializer';
 import AlertDialog from './components/AlertDialog';
 import BottomTabs from './components/BottomTabs';
+import MessageNotificationToast from './components/MessageNotificationToast';
 import LoadingSpinner from './components/LoadingSpinner';
 import Toast from './components/Toast';
 import { AuthProvider } from './contexts/AuthContext';
@@ -10,8 +11,10 @@ import { DataProvider } from './contexts/DataContext';
 import { UIProvider } from './contexts/UIContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { NotificationProvider } from './contexts/NotificationContext';
+import { SocialProvider } from './contexts/SocialContext';
 import HomePage from './pages/Home/HomePage';
 import InfoPage from './pages/Info/InfoPage';
+import SocialPage from './pages/Social/SocialPage';
 import LoginPage from './pages/Login/LoginPage';
 import ReviewPage from './pages/Review/ReviewPage';
 import StatsPage from './pages/Stats/StatsPage';
@@ -45,9 +48,13 @@ const AppLayout: React.FC = () => {
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/stats" element={<StatsPage />} />
         <Route path="/info" element={<InfoPage />} />
+        <Route path="/social" element={<SocialPage />} />
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
+
+      {/* Real-time message notification toasts */}
+      <MessageNotificationToast />
 
       {/* Bottom navigation — hidden on quiz & login */}
       <BottomTabsWrapper />
@@ -77,9 +84,11 @@ const App: React.FC = () => {
         <AuthProvider>
           <DataProvider>
             <NotificationProvider>
-              <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-                <AppLayout />
-              </Router>
+              <SocialProvider>
+                <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+                  <AppLayout />
+                </Router>
+              </SocialProvider>
             </NotificationProvider>
           </DataProvider>
         </AuthProvider>

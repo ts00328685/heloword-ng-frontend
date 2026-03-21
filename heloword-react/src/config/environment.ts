@@ -19,7 +19,7 @@ export interface Environment {
 
 // Mutable environment config (cipher & userIp are populated at runtime)
 export const environment: Environment = {
-  appVersion: '2025.02.01.a',
+  appVersion: '2026.03.21.a',
   backendBaseUrl: import.meta.env.VITE_BACKEND_BASE_URL || (import.meta.env.PROD ? '/k8s/micro-infra-gateway/v1' : '/k8s'),
   googleClientId: '268421074885-cn4qtlas4hep25tt7f0gaak8qh557fbu.apps.googleusercontent.com',
   production: import.meta.env.PROD,

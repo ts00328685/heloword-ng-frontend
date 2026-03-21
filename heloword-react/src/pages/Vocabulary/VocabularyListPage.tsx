@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import QuizSettingModal from '../../components/QuizSettingModal';
 import SentenceRenderer from '../../components/SentenceRenderer';
@@ -9,6 +10,7 @@ import { Sentence } from '../../models';
 const VocabularyListPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { wordStore } = useData();
   const [showModal, setShowModal] = useState(false);
 
@@ -25,7 +27,7 @@ const VocabularyListPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header
-        title="Word List"
+        title={t('wordList.title')}
         showBack
         rightContent={
           <button
@@ -42,7 +44,7 @@ const VocabularyListPage: React.FC = () => {
       />
 
       <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full">
-        <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">{list.length} items</p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">{t('wordList.itemCount', { count: list.length })}</p>
 
         <div className="space-y-2">
           {list.map((word, index) => (

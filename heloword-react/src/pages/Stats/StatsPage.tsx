@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
+import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
@@ -18,12 +19,6 @@ import { doPost } from '../../services/api.service';
 import { DailyStat } from '../../models';
 
 type Range = 7 | 30 | 0;
-
-const RANGES: { label: string; value: Range }[] = [
-  { label: '7d',  value: 7  },
-  { label: '30d', value: 30 },
-  { label: 'All', value: 0  },
-];
 
 function formatXLabel(date: string, range: Range): string {
   if (range === 0) {
@@ -46,8 +41,15 @@ const StatsPage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { showLoading, hideLoading } = useUI();
   const { isDark } = useTheme();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [range, setRange] = useState<Range>(7);
+
+  const RANGES: { label: string; value: Range }[] = [
+    { label: t('stats.range7d'),  value: 7  },
+    { label: t('stats.range30d'), value: 30 },
+    { label: t('stats.rangeAll'), value: 0  },
+  ];
   const [stats, setStats] = useState<DailyStat[]>([]);
   const [error, setError] = useState(false);
   const fetchedFor = useRef<Range | null>(null);
@@ -107,7 +109,7 @@ const StatsPage: React.FC = () => {
               </svg>
             </div>
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">Statistics</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Log in to view your quiz statistics and progress over time.</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('stats.loginPrompt')}</p>
             <button
               onClick={() => navigate('/login')}
               className="bg-blue-500 text-white font-semibold text-sm px-6 py-2.5 rounded-xl hover:bg-blue-600 transition-colors"
@@ -145,19 +147,19 @@ const StatsPage: React.FC = () => {
 
         {/* Summary cards */}
         <div className="grid grid-cols-2 gap-3 mb-5">
-          <SummaryCard label="Reviews" value={totalReviewed.toString()} color="blue" />
-          <SummaryCard label="Accuracy" value={`${accuracy}%`} color="green" />
-          <SummaryCard label="Wrong" value={totalWrong.toString()} color="red" />
-          <SummaryCard label="Time" value={`${totalTimeMin} min`} color="purple" />
+          <SummaryCard label={t('stats.reviews')} value={totalReviewed.toString()} color="blue" />
+          <SummaryCard label={t('stats.accuracy')} value={`${accuracy}%`} color="green" />
+          <SummaryCard label={t('stats.wrong')} value={totalWrong.toString()} color="red" />
+          <SummaryCard label={t('stats.time')} value={`${totalTimeMin} min`} color="purple" />
         </div>
 
         {error && (
-          <p className="text-center text-sm text-red-400 mb-4">Failed to load statistics.</p>
+          <p className="text-center text-sm text-red-400 mb-4">{t('stats.errorLoading')}</p>
         )}
 
         {!error && stats.every((s) => s.total === 0) && (
           <div className="text-center py-10">
-            <p className="text-sm text-gray-400 dark:text-gray-500">No quiz data for this period. Complete some quizzes to see your stats!</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500">{t('stats.noData')}</p>
           </div>
         )}
 
@@ -165,7 +167,7 @@ const StatsPage: React.FC = () => {
           <>
             {/* Reviews chart */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 mb-4 shadow-sm border border-gray-100 dark:border-gray-700">
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">Reviews</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">{t('stats.chartReviews')}</h3>
               <ResponsiveContainer width="100%" height={180}>
                 <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
@@ -173,23 +175,23 @@ const StatsPage: React.FC = () => {
                   <YAxis tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} allowDecimals={false} />
                   <Tooltip contentStyle={tooltipStyle} />
                   <Legend wrapperStyle={{ fontSize: 11, color: textColor }} />
-                  <Line type="monotone" dataKey="total"        name="Total"   stroke="#3b82f6" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
-                  <Line type="monotone" dataKey="correctCount" name="Correct" stroke="#22c55e" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
-                  <Line type="monotone" dataKey="wrongCount"   name="Wrong"   stroke="#ef4444" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+                  <Line type="monotone" dataKey="total"        name={t('stats.total')}   stroke="#3b82f6" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+                  <Line type="monotone" dataKey="correctCount" name={t('stats.correct')} stroke="#22c55e" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+                  <Line type="monotone" dataKey="wrongCount"   name={t('stats.wrong')}   stroke="#ef4444" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
 
             {/* Time spent chart */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">Time Spent (min)</h3>
+              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">{t('stats.chartTime')}</h3>
               <ResponsiveContainer width="100%" height={160}>
                 <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
                   <XAxis dataKey="label" tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} interval={range === 30 ? 4 : 0} />
                   <YAxis tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} />
-                  <Tooltip contentStyle={tooltipStyle} formatter={(v) => [`${v} min`, 'Time']} />
-                  <Line type="monotone" dataKey="timeSpentMin" name="Minutes" stroke="#a855f7" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+                  <Tooltip contentStyle={tooltipStyle} formatter={(v) => [`${v} min`, t('stats.time')]} />
+                  <Line type="monotone" dataKey="timeSpentMin" name={t('stats.minutes')} stroke="#a855f7" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>

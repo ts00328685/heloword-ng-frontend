@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
+import { LANGUAGES, changeLanguage, Language } from '../i18n';
 
 interface HeaderProps {
   title: string;
@@ -13,6 +15,9 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
   const navigate = useNavigate();
   const { user, isLoggedIn, logout } = useAuth();
   const { isDark, toggle } = useTheme();
+  const { i18n, t } = useTranslation();
+
+  const currentLang = i18n.language as Language;
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 shadow-sm">
@@ -23,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
             <button
               onClick={() => navigate(-1)}
               className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 transition-colors"
-              aria-label="Go back"
+              aria-label={t('common.back', 'Go back')}
             >
               <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -37,12 +42,30 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
         {/* Center: title */}
         <h1 className="text-base font-semibold text-gray-800 dark:text-gray-100 truncate px-2">{title}</h1>
 
-        {/* Right: dark mode toggle + custom content or user avatar/logout */}
+        {/* Right: language switcher + dark mode + user */}
         <div className="flex items-center gap-1 min-w-[40px] justify-end">
+          {/* Language switcher */}
+          <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5 mr-1">
+            {LANGUAGES.map(({ code, label }) => (
+              <button
+                key={code}
+                onClick={() => changeLanguage(code)}
+                className={`px-1.5 py-0.5 text-[10px] font-semibold rounded-md transition-colors ${
+                  currentLang === code
+                    ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+
+          {/* Dark mode toggle */}
           <button
             onClick={toggle}
             className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle dark mode"
+            aria-label={t('common.toggleDark', 'Toggle dark mode')}
           >
             {isDark ? (
               <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -68,9 +91,8 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 <button
                   onClick={logout}
                   className="text-xs text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
-                  aria-label="Logout"
                 >
-                  Logout
+                  {t('common.logout')}
                 </button>
               </div>
             ) : (
@@ -78,7 +100,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 onClick={() => navigate('/login')}
                 className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
               >
-                Login
+                {t('common.login')}
               </button>
             )
           )}

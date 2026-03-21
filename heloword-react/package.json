@@ -13,8 +13,10 @@
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.6.0",
     "crypto-js": "^4.2.0",
+    "i18next": "^25.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^16.5.8",
     "react-is": "^19.2.4",
     "react-router-dom": "^6.20.0",
     "recharts": "^3.8.0"
