@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import QuizSettingModal from '../../components/QuizSettingModal';
+import SentenceRenderer from '../../components/SentenceRenderer';
 import { useData } from '../../contexts/DataContext';
 import { Sentence } from '../../models';
 
@@ -11,7 +12,6 @@ const VocabularyListPage: React.FC = () => {
   const { wordStore } = useData();
   const [showModal, setShowModal] = useState(false);
 
-  // Words passed via navigation state, fallback to English word store
   const list: Sentence[] =
     location.state?.wordListOriginal ||
     wordStore.wordEnglishList ||
@@ -23,14 +23,14 @@ const VocabularyListPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header
         title="Word List"
         showBack
         rightContent={
           <button
             onClick={() => setShowModal(true)}
-            className="p-2 rounded-xl hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label="Start quiz"
           >
             <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,34 +42,34 @@ const VocabularyListPage: React.FC = () => {
       />
 
       <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full">
-        <p className="text-xs text-gray-400 mb-3">{list.length} items</p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">{list.length} items</p>
 
         <div className="space-y-2">
           {list.map((word, index) => (
             <div
               key={`${word.tableName}-${word.id}`}
-              className="bg-white rounded-xl border border-gray-200 p-3 flex gap-3 items-start hover:shadow-sm transition-shadow"
+              className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 flex gap-3 items-start hover:shadow-sm transition-shadow"
             >
-              <span className="text-xs text-gray-400 font-mono pt-0.5 min-w-[24px]">
+              <span className="text-xs text-gray-400 dark:text-gray-500 font-mono pt-0.5 min-w-[24px]">
                 {index + 1}
               </span>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-800">
-                  {word.word || word.sentence}
+                <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+                  <SentenceRenderer text={word.word || word.sentence} />
                 </p>
                 {word.translateEn && (
                   <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>
                 )}
                 {word.translateCh && (
-                  <p className="text-xs text-gray-400">{word.translateCh}</p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>
                 )}
                 {word.sentence && word.word && (
-                  <p className="text-xs text-gray-500 italic mt-1 leading-relaxed">
-                    {word.sentence}
+                  <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed">
+                    <SentenceRenderer text={word.sentence} />
                   </p>
                 )}
               </div>
-              <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-md font-mono self-start flex-shrink-0">
+              <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-0.5 rounded-md font-mono self-start flex-shrink-0">
                 {word.language?.toUpperCase()}
               </span>
             </div>
@@ -77,7 +77,6 @@ const VocabularyListPage: React.FC = () => {
         </div>
       </main>
 
-      {/* FAB to open quiz settings */}
       <button
         onClick={() => setShowModal(true)}
         className="fixed bottom-20 right-4 z-30 w-14 h-14 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded-full shadow-lg flex items-center justify-center transition-colors"

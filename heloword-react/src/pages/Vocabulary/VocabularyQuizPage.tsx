@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
+import SentenceRenderer from '../../components/SentenceRenderer';
 import { useAuth } from '../../contexts/AuthContext';
 import { useData } from '../../contexts/DataContext';
 import { useUI } from '../../contexts/UIContext';
 import { QuizSetting, Sentence } from '../../models';
 import { doPost } from '../../services/api.service';
-
-// ─── Answer validation helpers ─────────────────────────────────────────────
 
 const normalizeGerman = (s: string) =>
   s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'b');
@@ -24,8 +23,6 @@ const getJpAnswers = (answer: string) => {
 
   return { ansKanjiFirst, ansKataFirst };
 };
-
-// ─── Pronunciation ──────────────────────────────────────────────────────────
 
 const LANG_MAP: Record<string, string> = {
   en: 'en-US',
@@ -56,8 +53,6 @@ const pronounceWord = (word: string, lang: string, speed = 1.0, volume = 0.2) =>
   synthesis.speak(utterance);
 };
 
-// ─── Main Quiz Component ────────────────────────────────────────────────────
-
 const VocabularyQuizPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -68,18 +63,15 @@ const VocabularyQuizPage: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const startTimeRef = useRef<Date>(new Date());
 
-  // Quiz state
   const [wordList, setWordList] = useState<Sentence[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [totalLength, setTotalLength] = useState(0);
 
-  // Per-question counters
   const pronounceCountRef = useRef(0);
   const deleteCountRef = useRef(0);
   const wrongCountRef = useRef(0);
 
-  // Settings
   const [autoPronounce, setAutoPronounce] = useState(false);
   const [autoPronounceEn, setAutoPronounceEn] = useState(false);
   const [autoPronounceCh, setAutoPronounceCh] = useState(false);
@@ -93,11 +85,8 @@ const VocabularyQuizPage: React.FC = () => {
   const [volume, setVolume] = useState(0.2);
   const [showSettings, setShowSettings] = useState(false);
 
-  // Setting ID map for saving records
   const settingIdMapRef = useRef<Map<string, number>>(new Map());
   const quizSettingsRef = useRef<Record<string, QuizSetting>>({});
-
-  // ── Initialise ────────────────────────────────────────────────────────────
 
   useEffect(() => {
     const quizSettings: Record<string, QuizSetting> = location.state?.quizSettings;
@@ -109,25 +98,16 @@ const VocabularyQuizPage: React.FC = () => {
     }
 
     quizSettingsRef.current = quizSettings;
-
-    // Alert message
     showAlert('Note that if you type the wrong answer or reveal the answer in any way, this word will show up again later for a retest!');
-
-    // Save settings to backend if not yet persisted
     saveQuizSettings(quizSettings);
-
-    // Build word list
     initWordList(quizSettings, finishedIdMap);
   }, []);
 
-  // Focus input when current word changes
   useEffect(() => {
     if (autoInputFocus && inputRef.current) {
       inputRef.current.focus();
     }
   }, [currentIndex, autoInputFocus]);
-
-  // ── API helpers ──────────────────────────────────────────────────────────
 
   const saveQuizSettings = async (quizSettings: Record<string, QuizSetting>) => {
     if (!isLoggedIn) return;
@@ -159,29 +139,24 @@ const VocabularyQuizPage: React.FC = () => {
       const settingId = settingIdMapRef.current.get(word.tableName || '');
 
       try {
-        await doPost(
-          '/frontend-api/api/fe/quiz/save-single-record',
-          {
-            answerId: word.id,
-            answerTableName: word.tableName,
-            timeSpent,
-            quizIndex: currentIndex,
-            startTime: startTimeRef.current,
-            finishedTime: currentTime,
-            pronounceCount: pronounceCountRef.current,
-            deleteCount: deleteCountRef.current,
-            wrongCount: wrongCountRef.current,
-            recordQuizSettingId: settingId,
-          }
-        );
+        await doPost('/frontend-api/api/fe/quiz/save-single-record', {
+          answerId: word.id,
+          answerTableName: word.tableName,
+          timeSpent,
+          quizIndex: currentIndex,
+          startTime: startTimeRef.current,
+          finishedTime: currentTime,
+          pronounceCount: pronounceCountRef.current,
+          deleteCount: deleteCountRef.current,
+          wrongCount: wrongCountRef.current,
+          recordQuizSettingId: settingId,
+        });
       } catch {
         // Non-critical
       }
     },
     [isLoggedIn, currentIndex]
   );
-
-  // ── Word list ─────────────────────────────────────────────────────────────
 
   const initWordList = (
     quizSettings: Record<string, QuizSetting>,
@@ -198,7 +173,6 @@ const VocabularyQuizPage: React.FC = () => {
       list = [...list, ...combined[key].slice(min, max)];
     });
 
-    // Shuffle
     list = list.sort(() => Math.random() - 0.5);
 
     if (list.length === 0) {
@@ -206,7 +180,6 @@ const VocabularyQuizPage: React.FC = () => {
       return;
     }
 
-    // Remove already-finished entries
     const hasFinished = Object.keys(finishedIdMap).length > 0;
     if (hasFinished) {
       list = list.filter((word) => {
@@ -220,8 +193,6 @@ const VocabularyQuizPage: React.FC = () => {
     setTotalLength(list.length);
     setCurrentIndex(0);
   };
-
-  // ── Answer validation ─────────────────────────────────────────────────────
 
   const getRawAnswer = (word: Sentence): string => {
     let answer = (word.word || word.sentence || '');
@@ -248,7 +219,6 @@ const VocabularyQuizPage: React.FC = () => {
       return input === ansKanjiFirst || input === ansKataFirst;
     }
 
-    // Strip trailing punctuation
     const lastChar = answer.charAt(answer.length - 1);
     if (['.', '?', '。', '!'].includes(lastChar)) {
       answer = answer.slice(0, -1);
@@ -265,8 +235,6 @@ const VocabularyQuizPage: React.FC = () => {
     }
     return false;
   };
-
-  // ── Input handler ─────────────────────────────────────────────────────────
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -290,8 +258,6 @@ const VocabularyQuizPage: React.FC = () => {
     }
   };
 
-  // ── Navigation ────────────────────────────────────────────────────────────
-
   const goNext = useCallback(
     (current: Sentence) => {
       cancelPronouncing();
@@ -311,7 +277,6 @@ const VocabularyQuizPage: React.FC = () => {
         needRetest = true;
       }
 
-      // Reset counters
       startTimeRef.current = new Date();
       pronounceCountRef.current = 0;
       deleteCountRef.current = 0;
@@ -333,7 +298,6 @@ const VocabularyQuizPage: React.FC = () => {
         return;
       }
 
-      // Auto-pronounce next word
       const next = wordList[needRetest ? wordList.length - 1 : 1];
       if (!next) return;
 
@@ -353,8 +317,6 @@ const VocabularyQuizPage: React.FC = () => {
       autoInputFocus, speed, volume, saveSingleRecord, showToast, navigate,
     ]
   );
-
-  // ── Actions ───────────────────────────────────────────────────────────────
 
   const handleRevealAnswer = () => {
     wrongCountRef.current += 5;
@@ -387,41 +349,31 @@ const VocabularyQuizPage: React.FC = () => {
     setEnableMaskEn((v) => !v);
   };
 
-  // ─────────────────────────────────────────────────────────────────────────
-
   const current = wordList[0];
-  const progress = Math.min(
-    ((needsRetest: boolean) => {
-      const done = needsRetest ? currentIndex : currentIndex;
-      return totalLength > 0 ? (done / totalLength) * 100 : 0;
-    })(false),
-    100
-  );
 
   if (!current) {
     return (
-      <div className="flex flex-col min-h-screen bg-gray-50 items-center justify-center">
+      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 items-center justify-center">
         <div className="w-8 h-8 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mb-4" />
-        <p className="text-gray-400 text-sm">Loading quiz...</p>
+        <p className="text-gray-400 dark:text-gray-500 text-sm">Loading quiz...</p>
       </div>
     );
   }
 
-  const displayWord = current.word || current.sentence || '';
   const displaySentence = current.sentence || '';
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header
         title={`${currentIndex + 1} / ${totalLength}`}
         showBack
         rightContent={
           <button
             onClick={() => setShowSettings((v) => !v)}
-            className="p-2 rounded-xl hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label="Quiz settings"
           >
-            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
@@ -430,7 +382,7 @@ const VocabularyQuizPage: React.FC = () => {
       />
 
       {/* Progress bar */}
-      <div className="h-1 bg-gray-200">
+      <div className="h-1 bg-gray-200 dark:bg-gray-700">
         <div
           className="h-1 bg-blue-500 transition-all duration-500"
           style={{ width: `${(currentIndex / totalLength) * 100}%` }}
@@ -440,8 +392,8 @@ const VocabularyQuizPage: React.FC = () => {
       <main className="flex-1 pb-6 px-4 pt-4 max-w-2xl mx-auto w-full overflow-y-auto">
         {/* Settings panel */}
         {showSettings && (
-          <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-4 shadow-sm">
-            <h3 className="text-sm font-bold text-gray-700 mb-3">Quiz Options</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
+            <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Quiz Options</h3>
             <div className="grid grid-cols-2 gap-2">
               {[
                 { label: 'Auto Pronounce', val: autoPronounce, set: setAutoPronounce },
@@ -458,7 +410,7 @@ const VocabularyQuizPage: React.FC = () => {
                   className={`text-xs px-3 py-2 rounded-lg border font-medium transition-colors ${
                     val
                       ? 'bg-blue-500 border-blue-500 text-white'
-                      : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'
+                      : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600'
                   }`}
                 >
                   {label}
@@ -466,10 +418,9 @@ const VocabularyQuizPage: React.FC = () => {
               ))}
             </div>
 
-            {/* Speed & Volume */}
             <div className="mt-3 space-y-2">
               <div className="flex items-center gap-3">
-                <span className="text-xs text-gray-500 w-16">Speed: {speed.toFixed(1)}</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 w-16">Speed: {speed.toFixed(1)}</span>
                 <input
                   type="range" min={0.5} max={2} step={0.1} value={speed}
                   onChange={(e) => setSpeed(parseFloat(e.target.value))}
@@ -477,7 +428,7 @@ const VocabularyQuizPage: React.FC = () => {
                 />
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-gray-500 w-16">Volume: {(volume * 100).toFixed(0)}%</span>
+                <span className="text-xs text-gray-500 dark:text-gray-400 w-16">Volume: {(volume * 100).toFixed(0)}%</span>
                 <input
                   type="range" min={0} max={1} step={0.05} value={volume}
                   onChange={(e) => setVolume(parseFloat(e.target.value))}
@@ -489,63 +440,45 @@ const VocabularyQuizPage: React.FC = () => {
         )}
 
         {/* Word card */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-4 shadow-sm">
-          {/* Language tag */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 mb-4 shadow-sm">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-md font-medium uppercase">
+            <span className="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium uppercase">
               {current.language}
             </span>
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-gray-400 dark:text-gray-500">
               Wrong: {wrongCountRef.current} · Pronounce: {pronounceCountRef.current}
             </span>
           </div>
 
-          {/* EN translation */}
           <div className="mb-2 min-h-[24px]">
             {enableEnMask ? (
-              <button
-                onClick={handleToggleEnMask}
-                className="text-sm text-gray-400 italic underline"
-              >
+              <button onClick={handleToggleEnMask} className="text-sm text-gray-400 dark:text-gray-500 italic underline">
                 [Show EN translation]
               </button>
             ) : (
               <div className="flex items-center gap-2">
                 <p className="text-sm text-blue-500 font-medium">{current.translateEn}</p>
-                <button
-                  onClick={handleToggleEnMask}
-                  className="text-xs text-gray-300 hover:text-gray-500"
-                  title="Mask EN"
-                >
+                <button onClick={handleToggleEnMask} className="text-xs text-gray-300 dark:text-gray-600 hover:text-gray-500" title="Mask EN">
                   👁
                 </button>
               </div>
             )}
           </div>
 
-          {/* Chinese translation */}
           {current.translateCh && (
-            <p className="text-sm text-gray-400 mb-2">{current.translateCh}</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500 mb-2">{current.translateCh}</p>
           )}
 
-          {/* Sentence */}
           {displaySentence && current.word && (
             <div className="mt-2 min-h-[20px]">
               {enableSentenceMask ? (
-                <button
-                  onClick={handleToggleSentenceMask}
-                  className="text-xs text-gray-400 italic underline"
-                >
+                <button onClick={handleToggleSentenceMask} className="text-xs text-gray-400 dark:text-gray-500 italic underline">
                   [Show sentence]
                 </button>
               ) : (
                 <div className="flex items-start gap-2">
-                  <p className="text-xs text-gray-500 italic leading-relaxed flex-1">{displaySentence}</p>
-                  <button
-                    onClick={handleToggleSentenceMask}
-                    className="text-xs text-gray-300 hover:text-gray-500 flex-shrink-0"
-                    title="Mask sentence"
-                  >
+                  <SentenceRenderer text={displaySentence} className="text-xs text-gray-500 dark:text-gray-400 italic leading-relaxed flex-1" />
+                  <button onClick={handleToggleSentenceMask} className="text-xs text-gray-300 dark:text-gray-600 hover:text-gray-500 flex-shrink-0" title="Mask sentence">
                     👁
                   </button>
                 </div>
@@ -554,9 +487,9 @@ const VocabularyQuizPage: React.FC = () => {
           )}
         </div>
 
-        {/* Answer input area */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-4 shadow-sm">
-          <label className="text-xs font-medium text-gray-500 block mb-2">Your Answer</label>
+        {/* Answer input */}
+        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
+          <label className="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-2">Your Answer</label>
           <input
             ref={inputRef}
             type="text"
@@ -568,7 +501,7 @@ const VocabularyQuizPage: React.FC = () => {
             autoCorrect="off"
             autoCapitalize="off"
             spellCheck={false}
-            className="w-full text-base border-2 border-gray-200 focus:border-blue-400 rounded-xl px-4 py-3 outline-none transition-colors"
+            className="w-full text-base border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 rounded-xl px-4 py-3 outline-none transition-colors"
           />
         </div>
 
@@ -576,7 +509,7 @@ const VocabularyQuizPage: React.FC = () => {
         <div className="grid grid-cols-3 gap-3">
           <button
             onClick={handlePronounce}
-            className="bg-white border border-gray-200 text-gray-700 text-sm font-medium py-3 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-sm flex items-center justify-center gap-1.5"
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600 transition-colors shadow-sm flex items-center justify-center gap-1.5"
           >
             <svg className="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
@@ -586,7 +519,7 @@ const VocabularyQuizPage: React.FC = () => {
 
           <button
             onClick={handleRevealAnswer}
-            className="bg-white border border-gray-200 text-gray-700 text-sm font-medium py-3 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-colors shadow-sm"
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600 transition-colors shadow-sm"
           >
             Reveal
           </button>

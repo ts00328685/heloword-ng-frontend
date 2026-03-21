@@ -21,7 +21,6 @@ const LoginPage: React.FC = () => {
 
     showLoading();
     try {
-      // Pass the Google credential to the backend for verification
       const response = await doPost('/service-auth/api/auth/verify-google-id', {
         credential: credentialResponse.credential,
         provider: 'GOOGLE',
@@ -50,23 +49,21 @@ const LoginPage: React.FC = () => {
 
   return (
     <GoogleOAuthProvider clientId={environment.googleClientId}>
-      <div className="flex flex-col min-h-screen bg-gray-50">
+      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
         <Header title="Login" showBack />
 
         <main className="flex-1 flex items-center justify-center px-4 pb-20">
           <div className="w-full max-w-sm">
-            {/* Logo / brand area */}
             <div className="text-center mb-8">
               <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl mx-auto mb-4 flex items-center justify-center shadow-lg">
                 <span className="text-white text-3xl font-black">Hw</span>
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Welcome Back</h1>
-              <p className="text-sm text-gray-500 mt-1">Sign in to track your quiz progress</p>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Welcome Back</h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Sign in to track your quiz progress</p>
             </div>
 
-            {/* Login card */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-              <h2 className="text-base font-semibold text-gray-700 mb-4 text-center">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6">
+              <h2 className="text-base font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
                 Continue with Google
               </h2>
 
@@ -81,16 +78,15 @@ const LoginPage: React.FC = () => {
                 />
               </div>
 
-              <p className="text-xs text-gray-400 text-center mt-4 leading-relaxed">
+              <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-4 leading-relaxed">
                 By signing in, your quiz history and progress will be saved to your account.
               </p>
             </div>
 
-            {/* Skip */}
             <div className="text-center mt-4">
               <button
                 onClick={() => navigate('/home')}
-                className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
               >
                 Continue without login →
               </button>

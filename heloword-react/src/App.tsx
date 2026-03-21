@@ -8,6 +8,7 @@ import Toast from './components/Toast';
 import { AuthProvider } from './contexts/AuthContext';
 import { DataProvider } from './contexts/DataContext';
 import { UIProvider } from './contexts/UIContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import HomePage from './pages/Home/HomePage';
 import InfoPage from './pages/Info/InfoPage';
 import LoginPage from './pages/Login/LoginPage';
@@ -70,15 +71,17 @@ const BottomTabsWrapper: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <UIProvider>
-      <AuthProvider>
-        <DataProvider>
-          <Router>
-            <AppLayout />
-          </Router>
-        </DataProvider>
-      </AuthProvider>
-    </UIProvider>
+    <ThemeProvider>
+      <UIProvider>
+        <AuthProvider>
+          <DataProvider>
+            <Router>
+              <AppLayout />
+            </Router>
+          </DataProvider>
+        </AuthProvider>
+      </UIProvider>
+    </ThemeProvider>
   );
 };
 
