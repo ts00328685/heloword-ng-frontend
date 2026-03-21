@@ -188,6 +188,7 @@ export class HwVocabularyQuizPage extends BasePage<any> {
       super.getActionService().goBackHome();
     }
 
+    
     // remove finished ones
     if (!RuleUtils.getInstance().isEmptyObject(finishedIdMap)) {
       this.originalWordList = this.originalWordList.filter(word => {
