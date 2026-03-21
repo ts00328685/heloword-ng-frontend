@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build-prod": "tsc && vite build --base=/k8s/ng-frontend/v1/",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -14,7 +15,9 @@
     "crypto-js": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0"
+    "react-is": "^19.2.4",
+    "react-router-dom": "^6.20.0",
+    "recharts": "^3.8.0"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.1",
