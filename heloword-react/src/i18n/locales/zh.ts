@@ -165,6 +165,19 @@ const zh = {
     requestSent: '好友邀請已送出！',
     requestFailed: '送出邀請失敗',
   },
+  guestSetup: {
+    title: '歡迎來到 Heloword！',
+    subtitle: '設定暱稱，讓其他人認識你。',
+    placeholder: '你的暱稱...',
+    confirm: '出發吧！',
+    skip: '暫時跳過',
+    preview: '你將顯示為：',
+  },
+  cookie: {
+    message: '我們使用 Cookie 進行工作階段管理與偏好設定。',
+    accept: '接受',
+    learnMore: '了解更多',
+  },
   wordLists: {
     wordEnglishList: '英文單字',
     wordGermanList: '德文單字',

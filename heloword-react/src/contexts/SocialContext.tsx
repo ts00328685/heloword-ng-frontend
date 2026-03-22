@@ -67,6 +67,7 @@ interface SocialContextType {
   doUpdateFriendNickname: (id: number, nickname: string) => Promise<void>;
 
   refreshFriends: () => Promise<void>;
+  setGuestName: (name: string) => void;
 }
 
 const SocialContext = createContext<SocialContextType>({} as SocialContextType);
@@ -337,6 +338,11 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     await refreshFriends();
   }, [refreshFriends]);
 
+  const setGuestName = useCallback((name: string) => {
+    localStorage.setItem('hw-guest-name', name);
+    setMyDisplayName(name);
+  }, []);
+
   return (
     <SocialContext.Provider
       value={{
@@ -358,6 +364,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         doRemoveFriend,
         doUpdateFriendNickname,
         refreshFriends,
+        setGuestName,
       }}
     >
       {children}

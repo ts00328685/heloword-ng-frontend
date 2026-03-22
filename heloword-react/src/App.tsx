@@ -14,6 +14,8 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import { SocialProvider } from './contexts/SocialContext';
 import { ChallengeProvider } from './contexts/ChallengeContext';
 import ChallengePage from './pages/Challenge/ChallengePage';
+import GuestSetupModal from './components/GuestSetupModal';
+import CookieConsentBanner from './components/CookieConsentBanner';
 import HomePage from './pages/Home/HomePage';
 import InfoPage from './pages/Info/InfoPage';
 import SocialPage from './pages/Social/SocialPage';
@@ -61,6 +63,10 @@ const AppLayout: React.FC = () => {
 
       {/* Bottom navigation — hidden on quiz & login */}
       <BottomTabsWrapper />
+
+      {/* Guest nickname setup & cookie consent */}
+      <GuestSetupModal />
+      <CookieConsentBanner />
     </AppInitializer>
   );
 };

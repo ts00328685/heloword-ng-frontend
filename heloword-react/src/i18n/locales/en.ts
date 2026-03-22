@@ -165,6 +165,19 @@ const en = {
     requestSent: 'Friend request sent!',
     requestFailed: 'Failed to send request',
   },
+  guestSetup: {
+    title: 'Welcome to Heloword!',
+    subtitle: 'Pick a nickname so others know who you are.',
+    placeholder: 'Your nickname...',
+    confirm: "Let's Go!",
+    skip: 'Skip for now',
+    preview: 'You\'ll appear as:',
+  },
+  cookie: {
+    message: 'We use cookies for session management and preferences.',
+    accept: 'Accept',
+    learnMore: 'Learn More',
+  },
   wordLists: {
     wordEnglishList: 'English Words',
     wordGermanList: 'German Words',
