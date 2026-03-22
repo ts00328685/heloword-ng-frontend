@@ -165,6 +165,19 @@ const ja = {
     requestSent: 'フレンド申請を送りました！',
     requestFailed: '申請の送信に失敗しました',
   },
+  guestSetup: {
+    title: 'Heloword へようこそ！',
+    subtitle: 'ニックネームを設定して、他のユーザーに自分を紹介しよう。',
+    placeholder: 'ニックネームを入力...',
+    confirm: 'はじめる！',
+    skip: 'あとで設定する',
+    preview: '表示名：',
+  },
+  cookie: {
+    message: 'セッション管理と設定のためにCookieを使用しています。',
+    accept: '同意する',
+    learnMore: '詳しく見る',
+  },
   wordLists: {
     wordEnglishList: '英語単語',
     wordGermanList: 'ドイツ語単語',
