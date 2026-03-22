@@ -26,6 +26,7 @@ import {
   rejectFriendRequest,
   removeFriend,
   sendChatMessage,
+  sendFriendRequest,
   sendHeartbeat,
   updateFriendNickname,
 } from '../services/social.service';
