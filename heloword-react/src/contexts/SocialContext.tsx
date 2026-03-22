@@ -113,9 +113,8 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       wsClientRef.current.deactivate();
     }
 
-    // Build WebSocket URL from the current origin + backend base path
     const proto = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    const wsUrl = `${proto}://${window.location.host}${environment.backendBaseUrl}/fe/ws`;
+    const wsUrl = `${proto}://${window.location.host}${environment.backendBaseUrl}/frontend-api/api/fe/ws`;
 
     const client = new Client({
       brokerURL: wsUrl,
