@@ -14,7 +14,7 @@ let _ipFetchPromise: Promise<void> | null = null;
  * ChannelCode: identifies the frontend channel
  * ClientIp: user's detected IP
  */
-const getCommonHeaders = (): Record<string, string> => ({
+export const getCommonHeaders = (): Record<string, string> => ({
   cv: generateCV(environment.cipher.aesKey, environment.cipher.aesIv),
   'X-REQUEST-ID': generateUUID(),
   Authorization: 'Bearer /',

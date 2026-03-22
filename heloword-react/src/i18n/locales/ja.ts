@@ -90,6 +90,7 @@ const ja = {
     hide: '非表示',
     showAll: 'すべて表示',
     dueDescription: 'これらの単語は忘却曲線に基づき復習が必要です。',
+    startDueReview: '復習を開始 →',
     reviewedStats: '{{count}} 回復習 — {{correct}} 回正解',
     moreItems: '+{{count}} 件',
     loading: 'クイズ履歴を読み込み中...',

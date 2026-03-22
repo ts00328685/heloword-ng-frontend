@@ -90,6 +90,7 @@ const zh = {
     hide: '收起',
     showAll: '顯示全部',
     dueDescription: '這些單字需要根據遺忘曲線進行複習。',
+    startDueReview: '開始複習 →',
     reviewedStats: '已複習 {{count}} 次 — {{correct}} 次正確',
     moreItems: '+{{count}} 更多',
     loading: '載入測驗歷史中...',

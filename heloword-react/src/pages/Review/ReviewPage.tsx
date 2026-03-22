@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
+import SentenceRenderer from '../../components/SentenceRenderer';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
-import { QuizSetting, TYPE_TO_TABLE_MAP } from '../../models';
+import { QuizSetting, Sentence, TYPE_TO_TABLE_MAP } from '../../models';
 import { doPost } from '../../services/api.service';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { useData } from '../../contexts/DataContext';
@@ -226,6 +227,43 @@ const ReviewPage: React.FC = () => {
   const onCardClick = (group: QuizGroup) =>
     isLoggedIn ? handleCardClick(group) : handleGuestCardClick(group);
 
+  const handleDueReviewClick = () => {
+    if (dueWords.length === 0) return;
+
+    // Build lookup set: "id|tableName" — use '' when tableName is null/undefined
+    const dueSet = new Set(dueWords.map((w) => `${w.answerId}|${w.answerTableName ?? ''}`));
+
+    // Scan each list directly — avoids brittle tableName→type reverse-map
+    const allListTypes: Array<[string, Sentence[]]> = [
+      ['wordEnglishList', wordStore.wordEnglishList],
+      ['wordGermanList', wordStore.wordGermanList],
+      ['wordJapaneseList', wordStore.wordJapaneseList],
+      ['sentenceEnglishList', sentenceStore.sentenceEnglishList],
+      ['sentenceGermanList', sentenceStore.sentenceGermanList],
+      ['sentenceJapaneseList', sentenceStore.sentenceJapaneseList],
+    ];
+
+    const quizSettings: Record<string, QuizSetting> = {};
+    allListTypes.forEach(([type, list]) => {
+      if (!list?.length) return;
+      const hasDue = list.some((w) => dueSet.has(`${w.id}|${w.tableName ?? ''}`));
+      if (!hasDue) return;
+      quizSettings[type] = {
+        timestamp: new Date(),
+        type,
+        tableName: TYPE_TO_TABLE_MAP[type],
+        total: list.length,
+        isSelected: true,
+        min: 1,
+        max: list.length,
+      };
+    });
+
+    if (Object.keys(quizSettings).length === 0) return;
+
+    navigate('/vocabulary/quiz', { state: { quizSettings, dueOnlyIds: dueWords } });
+  };
+
   // ─── Render ───────────────────────────────────────────────────────────────
 
   return (
@@ -269,20 +307,26 @@ const ReviewPage: React.FC = () => {
             <p className="text-xs text-orange-500 dark:text-orange-500 mb-3">
               {t('review.dueDescription')}
             </p>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1.5 mb-3">
               {(showAllDue ? dueWords : dueWords.slice(0, 12)).map((w) => (
                 <span
                   key={`${w.answerId}-${w.answerTableName}`}
                   className="text-xs bg-white dark:bg-gray-800 border border-orange-200 dark:border-orange-800 text-orange-600 dark:text-orange-400 px-2 py-0.5 rounded-lg font-medium"
                   title={`Reviewed ${w.reviewCount}× — ${w.correctCount} correct`}
                 >
-                  {lookupWord(w.answerId, w.answerTableName)}
+                  <SentenceRenderer text={lookupWord(w.answerId, w.answerTableName)} />
                 </span>
               ))}
               {!showAllDue && dueCount > 12 && (
                 <span className="text-xs text-orange-400 px-2 py-0.5">{t('review.moreItems', { count: dueCount - 12 })}</span>
               )}
             </div>
+            <button
+              onClick={handleDueReviewClick}
+              className="w-full py-2 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white text-sm font-semibold rounded-xl transition-colors"
+            >
+              {t('review.startDueReview')}
+            </button>
           </div>
         )}
 

@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { Client } from '@stomp/stompjs';
 import { useAuth } from './AuthContext';
 import { environment } from '../config/environment';
 import {
@@ -16,14 +17,15 @@ import {
   computeRoomId,
   fetchFriends,
   fetchMessages,
+  fetchOnlineUsers,
   fetchUnreadCounts,
   getOrCreateGuestIdentity,
   markRoomRead,
   removeOnlineUser,
+  removeOnlineUserBeacon,
   rejectFriendRequest,
   removeFriend,
   sendChatMessage,
-  sendFriendRequest,
   sendHeartbeat,
   updateFriendNickname,
 } from '../services/social.service';
@@ -83,19 +85,14 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [activeChatUserId, setActiveChatUserId] = useState<string | null>(null);
   const [notifications, setNotifications] = useState<MessageNotification[]>([]);
   const activeChatUserIdRef = useRef<string | null>(null);
-  // Stable ref so SSE closure can call the latest refreshFriends without recreation
   const refreshFriendsRef = useRef<() => void>(() => {});
 
   const heartbeatRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const sseRef = useRef<EventSource | null>(null);
-  const sseReconnectRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const sseReconnectDelayRef = useRef<number>(1_000);
+  const wsClientRef = useRef<Client | null>(null);
   const pollChatRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const lastMsgTimestampRef = useRef<number>(0);
 
   // ── Identity ────────────────────────────────────────────────────────────
-  // Wait until auth is confirmed so we never send a ghost guest heartbeat
-  // on behalf of a user who is actually logged in.
 
   useEffect(() => {
     if (!hasCheckedLoginStatus) return;
@@ -109,79 +106,84 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [hasCheckedLoginStatus, isLoggedIn, user]);
 
-  // ── SSE subscription (per-user: online-users + new-message events) ──────
+  // ── WebSocket (STOMP) connection ─────────────────────────────────────────
 
-  const connectSse = useCallback((userId: string) => {
-    if (sseRef.current) {
-      sseRef.current.close();
-      sseRef.current = null;
+  const connectWebSocket = useCallback((userId: string) => {
+    if (wsClientRef.current?.active) {
+      wsClientRef.current.deactivate();
     }
 
-    const url = `${environment.backendBaseUrl}/frontend-api/api/fe/social/stream/${encodeURIComponent(userId)}`;
-    const es = new EventSource(url, { withCredentials: true });
+    // Build WebSocket URL from the current origin + backend base path
+    const proto = window.location.protocol === 'https:' ? 'wss' : 'ws';
+    const wsUrl = `${proto}://${window.location.host}${environment.backendBaseUrl}/fe/ws`;
 
-    es.addEventListener('online-users', (e: MessageEvent) => {
-      try {
-        const users: OnlineUser[] = JSON.parse(e.data);
-        setOnlineUsers(users);
-        sseReconnectDelayRef.current = 1_000;
-      } catch {
-        // ignore parse errors
-      }
-    });
+    const client = new Client({
+      brokerURL: wsUrl,
+      reconnectDelay: 5000,
+      onConnect: () => {
+        // Fetch current list immediately so the UI isn't empty until next heartbeat
+        fetchOnlineUsers().then(setOnlineUsers).catch(() => {});
 
-    es.addEventListener('new-message', (e: MessageEvent) => {
-      try {
-        const msg: ChatMessage = JSON.parse(e.data);
-        const roomId = msg.roomId;
-
-        // Append to message map so active chat auto-updates
-        setMessageMap((prev) => {
-          const existing = prev[roomId] ?? [];
-          if (existing.some((m) => m.id === msg.id)) return prev;
-          const updated = [...existing, msg].sort(
-            (a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime()
-          );
-          return { ...prev, [roomId]: updated };
+        // Online users broadcast
+        client.subscribe('/topic/online-users', (frame) => {
+          try {
+            const users: OnlineUser[] = JSON.parse(frame.body);
+            setOnlineUsers(users);
+          } catch {
+            // ignore parse errors
+          }
         });
 
-        // If chat with this sender is not open: increment badge + show toast
-        if (activeChatUserIdRef.current !== msg.senderUserId) {
-          setUnreadCounts((prev) => ({
-            ...prev,
-            [msg.senderUserId]: (prev[msg.senderUserId] ?? 0) + 1,
-          }));
-          const notif: MessageNotification = {
-            id: `${msg.id}-${Date.now()}`,
-            senderUserId: msg.senderUserId,
-            senderDisplayName: msg.senderDisplayName,
-            content: msg.content,
-            roomId,
-            receivedAt: Date.now(),
-          };
-          setNotifications((prev) => [...prev, notif]);
-        }
-      } catch {
-        // ignore parse errors
-      }
+        // Per-user: incoming chat messages
+        client.subscribe(`/topic/social/${userId}/messages`, (frame) => {
+          try {
+            const msg: ChatMessage = JSON.parse(frame.body);
+            const roomId = msg.roomId;
+
+            setMessageMap((prev) => {
+              const existing = prev[roomId] ?? [];
+              if (existing.some((m) => m.id === msg.id)) return prev;
+              const updated = [...existing, msg].sort(
+                (a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime()
+              );
+              return { ...prev, [roomId]: updated };
+            });
+
+            if (activeChatUserIdRef.current !== msg.senderUserId) {
+              setUnreadCounts((prev) => ({
+                ...prev,
+                [msg.senderUserId]: (prev[msg.senderUserId] ?? 0) + 1,
+              }));
+              const notif: MessageNotification = {
+                id: `${msg.id}-${Date.now()}`,
+                senderUserId: msg.senderUserId,
+                senderDisplayName: msg.senderDisplayName,
+                content: msg.content,
+                roomId,
+                receivedAt: Date.now(),
+              };
+              setNotifications((prev) => [...prev, notif]);
+            }
+          } catch {
+            // ignore parse errors
+          }
+        });
+
+        // Per-user: incoming friend requests
+        client.subscribe(`/topic/social/${userId}/friend-requests`, () => {
+          refreshFriendsRef.current();
+        });
+      },
+      onStompError: (frame) => {
+        console.warn('STOMP error', frame.headers['message']);
+      },
     });
 
-    es.addEventListener('new-friend-request', () => {
-      refreshFriendsRef.current();
-    });
-
-    es.onerror = () => {
-      es.close();
-      sseRef.current = null;
-      const delay = sseReconnectDelayRef.current;
-      sseReconnectDelayRef.current = Math.min(delay * 2, 30_000);
-      sseReconnectRef.current = setTimeout(() => connectSse(userId), delay);
-    };
-
-    sseRef.current = es;
+    client.activate();
+    wsClientRef.current = client;
   }, []);
 
-  // ── Heartbeat + SSE connect when identity is ready ───────────────────────
+  // ── Heartbeat + WebSocket connect when identity is ready ──────────────────
 
   const prevUserIdRef = useRef<string>('');
 
@@ -190,42 +192,38 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     const isGuest = !isLoggedIn;
 
-    // If identity changed (guest UUID → real username on login, or vice versa),
-    // explicitly remove the old entry so it doesn't linger for 90 s.
     if (prevUserIdRef.current && prevUserIdRef.current !== myUserId) {
       removeOnlineUser(prevUserIdRef.current).catch(() => {});
     }
     prevUserIdRef.current = myUserId;
 
-    // Clear any pending reconnect from a previous identity
-    if (sseReconnectRef.current) clearTimeout(sseReconnectRef.current);
-    sseReconnectDelayRef.current = 1_000;
-
-    // Heartbeat keeps this user's entry alive in Redis and triggers SSE broadcasts
     const beat = () => sendHeartbeat(myUserId, myDisplayName, isGuest).catch(() => {});
     beat();
     heartbeatRef.current = setInterval(beat, 30_000);
 
-    // Subscribe via SSE for real-time online list + targeted message notifications
-    connectSse(myUserId);
+    connectWebSocket(myUserId);
 
-    // Logged-in extras
     if (isLoggedIn) {
       fetchFriends().then(setFriends).catch(() => {});
       fetchUnreadCounts(myUserId).then(setUnreadCounts).catch(() => {});
     }
 
+    // Tab close: keepalive fetch completes even as the page unloads
+    const handleBeforeUnload = () => removeOnlineUserBeacon(myUserId);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
     return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      removeOnlineUser(myUserId).catch(() => {});
       if (heartbeatRef.current) clearInterval(heartbeatRef.current);
-      if (sseReconnectRef.current) clearTimeout(sseReconnectRef.current);
-      if (sseRef.current) {
-        sseRef.current.close();
-        sseRef.current = null;
+      if (wsClientRef.current) {
+        wsClientRef.current.deactivate();
+        wsClientRef.current = null;
       }
     };
-  }, [myUserId, myDisplayName, isLoggedIn, connectSse]);
+  }, [myUserId, myDisplayName, isLoggedIn, connectWebSocket]);
 
-  // ── Chat polling ────────────────────────────────────────────────────────
+  // ── Chat polling ──────────────────────────────────────────────────────────
 
   useEffect(() => {
     if (pollChatRef.current) clearInterval(pollChatRef.current);
@@ -252,7 +250,6 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       }).catch(() => {});
     };
 
-    // Load full history on open
     fetchMessages(roomId).then((msgs) => {
       setMessageMap((prev) => ({ ...prev, [roomId]: msgs }));
       if (msgs.length > 0) {
@@ -267,20 +264,18 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     };
   }, [activeChatUserId, myUserId]);
 
-  // ── Actions ─────────────────────────────────────────────────────────────
+  // ── Actions ───────────────────────────────────────────────────────────────
 
   const openChat = useCallback((userId: string, _displayName: string) => {
     lastMsgTimestampRef.current = 0;
     activeChatUserIdRef.current = userId;
     setActiveChatUserId(userId);
-    // Clear unread badge for this sender
     setUnreadCounts((prev) => {
       if (!prev[userId]) return prev;
       const next = { ...prev };
       delete next[userId];
       return next;
     });
-    // Dismiss any pending notifications from this user
     setNotifications((prev) => prev.filter((n) => n.senderUserId !== userId));
   }, []);
 
@@ -312,7 +307,6 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setFriends(f);
   }, [isLoggedIn]);
 
-  // Keep ref up to date so SSE closure can always call the latest version
   refreshFriendsRef.current = refreshFriends;
 
   const doSendFriendRequest = useCallback(async (addresseeUsername: string) => {

@@ -90,6 +90,7 @@ const en = {
     hide: 'Hide',
     showAll: 'Show all',
     dueDescription: 'These words need review based on the forgetting curve.',
+    startDueReview: 'Start Review →',
     reviewedStats: 'Reviewed {{count}}× — {{correct}} correct',
     moreItems: '+{{count}} more',
     loading: 'Loading quiz history...',
