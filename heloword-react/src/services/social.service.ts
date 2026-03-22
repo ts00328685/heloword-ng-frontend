@@ -124,15 +124,20 @@ export async function fetchFriends(): Promise<Friend[]> {
 
 export async function sendFriendRequest(addresseeUsername: string): Promise<Friend | null> {
   const res = await doPost('/frontend-api/api/fe/social/friends/request', addresseeUsername);
-  return res.code === '0000' ? res.data : null;
+  if (res.code !== '0000') throw new Error(res.message || 'Failed to send friend request');
+  return res.data;
 }
 
 export async function acceptFriendRequest(id: number) {
-  return doPost(`/frontend-api/api/fe/social/friends/accept/${id}`);
+  const res = await doPost(`/frontend-api/api/fe/social/friends/accept/${id}`);
+  if (res.code !== '0000') throw new Error(res.message || 'Failed to accept friend request');
+  return res;
 }
 
 export async function rejectFriendRequest(id: number) {
-  return doPost(`/frontend-api/api/fe/social/friends/reject/${id}`);
+  const res = await doPost(`/frontend-api/api/fe/social/friends/reject/${id}`);
+  if (res.code !== '0000') throw new Error(res.message || 'Failed to reject friend request');
+  return res;
 }
 
 export async function removeFriend(id: number) {

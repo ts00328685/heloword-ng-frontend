@@ -12,6 +12,7 @@ const ja = {
     stats: '統計',
     info: '情報',
     social: 'ソーシャル',
+    challenge: 'チャレンジ',
   },
   home: {
     quizTitle: '単語クイズ',
@@ -161,6 +162,8 @@ const ja = {
     save: '保存',
     noMessages: 'まだメッセージがありません。挨拶してみて！',
     messagePlaceholder: 'メッセージを入力...',
+    requestSent: 'フレンド申請を送りました！',
+    requestFailed: '申請の送信に失敗しました',
   },
   wordLists: {
     wordEnglishList: '英語単語',
