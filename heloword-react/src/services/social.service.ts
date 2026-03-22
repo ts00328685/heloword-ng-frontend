@@ -1,4 +1,5 @@
-import { doGet, doPost, doPut, doDelete } from './api.service';
+import { doGet, doPost, doPut, doDelete, getCommonHeaders } from './api.service';
+import { environment } from '../config/environment';
 
 export interface OnlineUser {
   userId: string;
@@ -55,6 +56,20 @@ export async function sendHeartbeat(userId: string, displayName: string, isGuest
 
 export async function removeOnlineUser(userId: string) {
   return doDelete(`/frontend-api/api/fe/social/heartbeat/${encodeURIComponent(userId)}`);
+}
+
+/**
+ * Fire-and-forget removal using fetch keepalive so the request completes
+ * even when called from a beforeunload handler (browser tab close).
+ */
+export function removeOnlineUserBeacon(userId: string): void {
+  const url = `${environment.backendBaseUrl}/frontend-api/api/fe/social/heartbeat/${encodeURIComponent(userId)}`;
+  fetch(url, {
+    method: 'DELETE',
+    keepalive: true,
+    credentials: 'include',
+    headers: getCommonHeaders(),
+  }).catch(() => {});
 }
 
 export async function fetchOnlineUsers(): Promise<OnlineUser[]> {

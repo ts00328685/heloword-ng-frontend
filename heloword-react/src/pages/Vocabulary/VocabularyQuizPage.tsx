@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useData } from '../../contexts/DataContext';
 import { useUI } from '../../contexts/UIContext';
 import { useNotifications } from '../../contexts/NotificationContext';
-import { QuizSetting, Sentence } from '../../models';
+import { DueWord, QuizSetting, Sentence } from '../../models';
 import { doPost } from '../../services/api.service';
 import {
   generateId,
@@ -228,6 +228,13 @@ const VocabularyQuizPage: React.FC = () => {
     if (list.length === 0) {
       navigate('/home', { replace: true });
       return;
+    }
+
+    // If launched from the due-for-review section, restrict to only those words
+    const dueOnlyIds: DueWord[] | undefined = location.state?.dueOnlyIds;
+    if (dueOnlyIds && dueOnlyIds.length > 0) {
+      const dueSet = new Set(dueOnlyIds.map((w) => `${w.answerId}|${w.answerTableName ?? ''}`));
+      list = list.filter((word) => dueSet.has(`${word.id}|${word.tableName ?? ''}`));
     }
 
     const hasFinished = Object.keys(finishedIdMap).length > 0;

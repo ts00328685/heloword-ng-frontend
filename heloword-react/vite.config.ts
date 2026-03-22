@@ -16,11 +16,20 @@ export default defineConfig({
         secure: true,
         cookieDomainRewrite: '',
       },
+      // WebSocket: bypass gateway (browsers can't send custom headers on WS upgrade,
+      // so the gateway AuthFilter would reject it). Go directly to frontend-api.
+      '/k8s/fe/ws': {
+        target: 'http://localhost:7001',
+        changeOrigin: true,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/k8s/, '/api'),
+      },
       // Local backend: matches Angular's proxy-config.json — strips /k8s prefix
       '/k8s': {
         target: 'http://localhost:9487',
         changeOrigin: true,
         secure: false,
+        ws: true,
         rewrite: (path) => path.replace(/^\/k8s/, ''),
       },
     }
