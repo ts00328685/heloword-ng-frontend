@@ -4,6 +4,10 @@ const zh = {
     startingUp: '啟動中...',
     login: '登入',
     logout: '登出',
+    editNickname: '更改暱稱',
+    editNicknameHint: '此名稱將顯示給其他用戶。',
+    editNicknameHintGuest: '其他人將看到你的名稱為 Guest-{name}。',
+    nicknamePlaceholder: '你的暱稱…',
   },
   nav: {
     quiz: '測驗',

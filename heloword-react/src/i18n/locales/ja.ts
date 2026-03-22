@@ -4,6 +4,10 @@ const ja = {
     startingUp: '起動中...',
     login: 'ログイン',
     logout: 'ログアウト',
+    editNickname: 'ニックネームを変更',
+    editNicknameHint: 'この名前は他のユーザーに表示されます。',
+    editNicknameHintGuest: '他のユーザーには Guest-{name} と表示されます。',
+    nicknamePlaceholder: 'ニックネーム…',
   },
   nav: {
     quiz: 'クイズ',

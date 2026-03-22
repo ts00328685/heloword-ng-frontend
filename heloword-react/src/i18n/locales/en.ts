@@ -4,6 +4,10 @@ const en = {
     startingUp: 'Starting up...',
     login: 'Login',
     logout: 'Logout',
+    editNickname: 'Change nickname',
+    editNicknameHint: 'This name is visible to other users.',
+    editNicknameHintGuest: "You'll appear as Guest-{name} to others.",
+    nicknamePlaceholder: 'Your nickname…',
   },
   nav: {
     quiz: 'Quiz',
