@@ -115,7 +115,10 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
 
     const proto = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    const wsUrl = `${proto}://${window.location.host}${environment.backendBaseUrl}/frontend-api/api/fe/ws`;
+    // Prod: direct ingress to frontend-api (bypasses gateway — WS upgrade can't carry cv header)
+    // Dev:  Vite proxy rule for /k8s/frontend-api/api/fe/ws routes directly to localhost:7001
+    const wsBasePath = environment.production ? '/k8s/frontend-api/v1' : '/k8s/frontend-api/api';
+    const wsUrl = `${proto}://${window.location.host}${wsBasePath}/fe/ws`;
 
     const client = new Client({
       brokerURL: wsUrl,
