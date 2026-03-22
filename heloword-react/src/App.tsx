@@ -12,6 +12,8 @@ import { UIProvider } from './contexts/UIContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { SocialProvider } from './contexts/SocialContext';
+import { ChallengeProvider } from './contexts/ChallengeContext';
+import ChallengePage from './pages/Challenge/ChallengePage';
 import HomePage from './pages/Home/HomePage';
 import InfoPage from './pages/Info/InfoPage';
 import SocialPage from './pages/Social/SocialPage';
@@ -49,6 +51,7 @@ const AppLayout: React.FC = () => {
         <Route path="/stats" element={<StatsPage />} />
         <Route path="/info" element={<InfoPage />} />
         <Route path="/social" element={<SocialPage />} />
+        <Route path="/challenge" element={<ChallengePage />} />
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
@@ -85,9 +88,11 @@ const App: React.FC = () => {
           <DataProvider>
             <NotificationProvider>
               <SocialProvider>
-                <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-                  <AppLayout />
-                </Router>
+                <ChallengeProvider>
+                  <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+                    <AppLayout />
+                  </Router>
+                </ChallengeProvider>
               </SocialProvider>
             </NotificationProvider>
           </DataProvider>

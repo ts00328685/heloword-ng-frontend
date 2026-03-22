@@ -198,6 +198,8 @@ const SocialPage: React.FC = () => {
   const [nicknameTarget, setNicknameTarget] = useState<Friend | null>(null);
   const [friendRequestInput, setFriendRequestInput] = useState('');
   const [sendingRequest, setSendingRequest] = useState(false);
+  const [friendRequestError, setFriendRequestError] = useState<string | null>(null);
+  const [friendRequestSuccess, setFriendRequestSuccess] = useState(false);
 
   // Resolve target display name for chat
   const chatTargetUser: OnlineUser | Friend | undefined =
@@ -224,9 +226,18 @@ const SocialPage: React.FC = () => {
     const target = friendRequestInput.trim();
     if (!target) return;
     setSendingRequest(true);
-    await doSendFriendRequest(target).catch(() => {});
-    setSendingRequest(false);
-    setFriendRequestInput('');
+    setFriendRequestError(null);
+    setFriendRequestSuccess(false);
+    try {
+      await doSendFriendRequest(target);
+      setFriendRequestInput('');
+      setFriendRequestSuccess(true);
+      setTimeout(() => setFriendRequestSuccess(false), 3000);
+    } catch (e: any) {
+      setFriendRequestError(e?.message || t('social.requestFailed'));
+    } finally {
+      setSendingRequest(false);
+    }
   };
 
   return (
@@ -359,19 +370,25 @@ const SocialPage: React.FC = () => {
                   <div className="flex gap-2">
                     <input
                       value={friendRequestInput}
-                      onChange={(e) => setFriendRequestInput(e.target.value)}
+                      onChange={(e) => { setFriendRequestInput(e.target.value); setFriendRequestError(null); setFriendRequestSuccess(false); }}
                       onKeyDown={(e) => e.key === 'Enter' && handleSendFriendRequest()}
                       placeholder={t('social.usernamePlaceholder')}
-                      className="flex-1 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      className={`flex-1 rounded-xl border bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${friendRequestError ? 'border-red-400 dark:border-red-500' : 'border-gray-200 dark:border-gray-700'}`}
                     />
                     <button
                       onClick={handleSendFriendRequest}
                       disabled={sendingRequest || !friendRequestInput.trim()}
                       className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white text-sm rounded-xl transition-colors"
                     >
-                      {t('social.add')}
+                      {sendingRequest ? '...' : t('social.add')}
                     </button>
                   </div>
+                  {friendRequestError && (
+                    <p className="mt-1.5 text-xs text-red-500 dark:text-red-400">{friendRequestError}</p>
+                  )}
+                  {friendRequestSuccess && (
+                    <p className="mt-1.5 text-xs text-green-500 dark:text-green-400">{t('social.requestSent')}</p>
+                  )}
                 </div>
 
                 {/* Pending received */}

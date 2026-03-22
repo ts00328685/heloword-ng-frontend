@@ -12,6 +12,7 @@ const zh = {
     stats: '統計',
     info: '關於',
     social: '社交',
+    challenge: '挑戰',
   },
   home: {
     quizTitle: '單字測驗',
@@ -161,6 +162,8 @@ const zh = {
     save: '儲存',
     noMessages: '還沒有訊息，說聲嗨吧！',
     messagePlaceholder: '輸入訊息...',
+    requestSent: '好友邀請已送出！',
+    requestFailed: '送出邀請失敗',
   },
   wordLists: {
     wordEnglishList: '英文單字',

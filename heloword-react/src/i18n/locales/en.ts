@@ -12,6 +12,7 @@ const en = {
     stats: 'Stats',
     info: 'Info',
     social: 'Social',
+    challenge: 'Challenge',
   },
   home: {
     quizTitle: 'Vocabulary Quiz',
@@ -161,6 +162,8 @@ const en = {
     save: 'Save',
     noMessages: 'No messages yet. Say hi!',
     messagePlaceholder: 'Type a message...',
+    requestSent: 'Friend request sent!',
+    requestFailed: 'Failed to send request',
   },
   wordLists: {
     wordEnglishList: 'English Words',
