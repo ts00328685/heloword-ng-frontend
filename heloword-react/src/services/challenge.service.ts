@@ -20,16 +20,18 @@ export interface ChallengeRoom {
 }
 
 export interface ChallengeEvent {
-  type: 'ROOM_UPDATE' | 'GAME_STARTED' | 'QUESTION' | 'ROUND_WIN' | 'QUESTION_TIMEOUT' | 'GAME_OVER';
+  type: 'ROOM_UPDATE' | 'GAME_STARTED' | 'QUESTION' | 'ROUND_WIN' | 'WRONG_ANSWER' | 'QUESTION_TIMEOUT' | 'GAME_OVER';
   room?: ChallengeRoom;
   roundNumber?: number;
   totalRounds?: number;
   question?: string;
   questionId?: string;
   timeoutSeconds?: number;
+  hint?: string;
   winnerId?: string;
   winnerName?: string;
   correctAnswer?: string;
+  pointsAwarded?: number;
   scores?: Record<string, number>;
 }
 
