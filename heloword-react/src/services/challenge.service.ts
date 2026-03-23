@@ -32,6 +32,7 @@ export interface ChallengeEvent {
   winnerName?: string;
   correctAnswer?: string;
   pointsAwarded?: number;
+  targetUserId?: string;
   scores?: Record<string, number>;
 }
 
