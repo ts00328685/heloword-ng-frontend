@@ -6,63 +6,71 @@ import { useChallenge } from '../../contexts/ChallengeContext';
 import { ChallengeRoom, createRoom } from '../../services/challenge.service';
 import ChallengeRoomPage from './ChallengeRoomPage';
 
-const GAME_TYPE_LABELS: Record<string, string> = {
-  wordEnglishList: 'English Words',
-  wordGermanList: 'German Words',
-  wordJapaneseList: 'Japanese Words',
+const GAME_TYPE_KEYS: Record<string, string> = {
+  wordEnglishList: 'wordLists.wordEnglishList',
+  wordGermanList: 'wordLists.wordGermanList',
+  wordJapaneseList: 'wordLists.wordJapaneseList',
 };
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
+  const { t } = useTranslation();
   const colors: Record<string, string> = {
     WAITING: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
     PLAYING: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
     FINISHED: 'bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400',
   };
-  const labels: Record<string, string> = { WAITING: 'Waiting', PLAYING: 'Live', FINISHED: 'Ended' };
+  const labelKeys: Record<string, string> = {
+    WAITING: 'challenge.statusWaiting',
+    PLAYING: 'challenge.statusLive',
+    FINISHED: 'challenge.statusEnded',
+  };
   return (
     <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${colors[status] ?? colors.WAITING}`}>
-      {labels[status] ?? status}
+      {t(labelKeys[status] ?? 'challenge.statusWaiting')}
     </span>
   );
 };
 
-const RoomCard: React.FC<{ room: ChallengeRoom; onJoin: (id: string) => void }> = ({ room, onJoin }) => (
-  <div className={`rounded-2xl border p-3 shadow-sm ${room.system
-    ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800'
-    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'}`}>
-    <div className="flex items-start gap-2 mb-2">
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2">
-          {room.system && <span className="text-xs font-bold text-blue-500">⭐ SYSTEM</span>}
-          <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{room.name}</p>
+const RoomCard: React.FC<{ room: ChallengeRoom; onJoin: (id: string) => void }> = ({ room, onJoin }) => {
+  const { t } = useTranslation();
+  return (
+    <div className={`rounded-2xl border p-3 shadow-sm ${room.system
+      ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800'
+      : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'}`}>
+      <div className="flex items-start gap-2 mb-2">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            {room.system && <span className="text-xs font-bold text-blue-500">⭐ {t('challenge.system')}</span>}
+            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{room.name}</p>
+          </div>
+          <p className="text-xs text-gray-400 dark:text-gray-500">
+            {t(GAME_TYPE_KEYS[room.gameType] ?? 'wordLists.wordEnglishList')} · {t('challenge.players', { count: room.players.length })}
+            {room.status === 'PLAYING' && ` · ${t('challenge.round')} ${room.currentRound}/${room.totalRounds}`}
+          </p>
         </div>
-        <p className="text-xs text-gray-400 dark:text-gray-500">
-          {GAME_TYPE_LABELS[room.gameType] ?? room.gameType} · {room.players.length} player{room.players.length !== 1 ? 's' : ''}
-          {room.status === 'PLAYING' && ` · Round ${room.currentRound}/${room.totalRounds}`}
-        </p>
+        <StatusBadge status={room.status} />
       </div>
-      <StatusBadge status={room.status} />
+      {room.players.length > 0 && (
+        <div className="flex gap-1 mb-2 flex-wrap">
+          {room.players.slice(0, 5).map(p => (
+            <span key={p.userId} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full">
+              {p.displayName} {room.status !== 'WAITING' && <span className="text-blue-500 font-bold">{p.score}</span>}
+            </span>
+          ))}
+        </div>
+      )}
+      <button
+        onClick={() => onJoin(room.id)}
+        className="w-full py-1.5 text-sm font-medium rounded-xl bg-blue-500 hover:bg-blue-600 text-white transition-colors"
+      >
+        {t('challenge.join')}
+      </button>
     </div>
-    {/* Top 3 players */}
-    {room.players.length > 0 && (
-      <div className="flex gap-1 mb-2 flex-wrap">
-        {room.players.slice(0, 5).map(p => (
-          <span key={p.userId} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full">
-            {p.displayName} {room.status !== 'WAITING' && <span className="text-blue-500 font-bold">{p.score}</span>}
-          </span>
-        ))}
-      </div>
-    )}
-    <button
-      onClick={() => onJoin(room.id)}
-      className="w-full py-1.5 text-sm font-medium rounded-xl bg-blue-500 hover:bg-blue-600 text-white transition-colors"
-    >
-      Join
-    </button>
-  </div>
-);
+  );
+};
 
 const CreateRoomModal: React.FC<{ onClose: () => void; onCreate: (room: ChallengeRoom) => void }> = ({ onClose, onCreate }) => {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [gameType, setGameType] = useState('wordEnglishList');
   const [rounds, setRounds] = useState(10);
@@ -85,30 +93,30 @@ const CreateRoomModal: React.FC<{ onClose: () => void; onCreate: (room: Challeng
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50" onClick={onClose}>
       <div className="bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-2xl p-5 w-full sm:max-w-sm shadow-xl" onClick={e => e.stopPropagation()}>
-        <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-4">Create Room</h3>
-        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">Room Name (optional)</label>
+        <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-4">{t('challenge.createRoomTitle')}</h3>
+        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">{t('challenge.roomNameLabel')}</label>
         <input
           value={name} onChange={e => setName(e.target.value)}
-          placeholder="My Room"
+          placeholder={t('challenge.roomNamePlaceholder')}
           className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
-        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">Word List</label>
+        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">{t('challenge.wordListLabel')}</label>
         <select
           value={gameType} onChange={e => setGameType(e.target.value)}
           className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
-          {Object.entries(GAME_TYPE_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+          {Object.entries(GAME_TYPE_KEYS).map(([k, tKey]) => <option key={k} value={k}>{t(tKey)}</option>)}
         </select>
-        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">Rounds: {rounds}</label>
+        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">{t('challenge.roundsLabel', { count: rounds })}</label>
         <input
           type="range" min={5} max={20} value={rounds} onChange={e => setRounds(Number(e.target.value))}
           className="w-full mb-4"
         />
         {error && <p className="text-xs text-red-500 mb-2">{error}</p>}
         <div className="flex gap-2">
-          <button onClick={onClose} className="flex-1 py-2 text-sm text-gray-500 border border-gray-200 dark:border-gray-700 rounded-xl">Cancel</button>
+          <button onClick={onClose} className="flex-1 py-2 text-sm text-gray-500 border border-gray-200 dark:border-gray-700 rounded-xl">{t('social.cancel')}</button>
           <button onClick={handleCreate} disabled={loading} className="flex-1 py-2 text-sm bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white rounded-xl">
-            {loading ? '...' : 'Create'}
+            {loading ? '...' : t('challenge.create')}
           </button>
         </div>
       </div>
@@ -149,13 +157,13 @@ const ChallengePage: React.FC = () => {
             onClick={() => setShowCreate(true)}
             className="w-full py-3 rounded-2xl bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm transition-colors shadow-sm"
           >
-            + Create Room
+            {t('challenge.createRoom')}
           </button>
         )}
 
         {systemRoom && (
           <div>
-            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">Featured</p>
+            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">{t('challenge.featured')}</p>
             <RoomCard room={systemRoom} onJoin={handleJoin} />
           </div>
         )}
@@ -163,7 +171,7 @@ const ChallengePage: React.FC = () => {
         {userRooms.length > 0 && (
           <div>
             <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
-              Rooms ({userRooms.length})
+              {t('challenge.rooms')} ({userRooms.length})
             </p>
             <div className="space-y-2">
               {userRooms.map(room => <RoomCard key={room.id} room={room} onJoin={handleJoin} />)}
@@ -171,9 +179,9 @@ const ChallengePage: React.FC = () => {
           </div>
         )}
 
-        {rooms.length <= 1 && !systemRoom && (
+        {rooms.length === 0 && (
           <div className="text-center py-12 text-gray-400 dark:text-gray-500 text-sm">
-            No rooms yet. Create one!
+            {t('challenge.noRooms')}
           </div>
         )}
       </main>

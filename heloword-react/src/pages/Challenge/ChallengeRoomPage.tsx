@@ -1,26 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useChallenge } from '../../contexts/ChallengeContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { ChallengePlayer } from '../../services/challenge.service';
 
 const MEDAL = ['🥇', '🥈', '🥉'];
 
-const Scoreboard: React.FC<{ players: ChallengePlayer[]; myUserId: string }> = ({ players, myUserId }) => (
-  <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-3 shadow-sm">
-    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">Scoreboard</p>
-    <div className="space-y-1">
-      {players.map((p, i) => (
-        <div key={p.userId} className={`flex items-center gap-2 rounded-xl px-2 py-1 ${p.userId === myUserId ? 'bg-blue-50 dark:bg-blue-900/20' : ''}`}>
-          <span className="text-sm w-5 text-center">{MEDAL[i] ?? `${i + 1}.`}</span>
-          <span className="flex-1 text-sm text-gray-800 dark:text-gray-100 truncate">{p.displayName}</span>
-          <span className="text-sm font-bold text-blue-500">{p.score}</span>
-        </div>
-      ))}
+const Scoreboard: React.FC<{ players: ChallengePlayer[]; myUserId: string }> = ({ players, myUserId }) => {
+  const { t } = useTranslation();
+  return (
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-3 shadow-sm">
+      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">{t('challenge.scoreboard')}</p>
+      <div className="space-y-1">
+        {players.map((p, i) => (
+          <div key={p.userId} className={`flex items-center gap-2 rounded-xl px-2 py-1 ${p.userId === myUserId ? 'bg-blue-50 dark:bg-blue-900/20' : ''}`}>
+            <span className="text-sm w-5 text-center">{MEDAL[i] ?? `${i + 1}.`}</span>
+            <span className="flex-1 text-sm text-gray-800 dark:text-gray-100 truncate">{p.displayName}</span>
+            <span className="text-sm font-bold text-blue-500">{p.score}</span>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave }) => {
+  const { t } = useTranslation();
   const { currentRoom, lastEvent, startGameAction, submitAnswer } = useChallenge();
   const { isLoggedIn, user } = useAuth();
   const myUserId = isLoggedIn && user ? user.username : (localStorage.getItem('hw-guest-id') || '');
@@ -29,12 +34,16 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [question, setQuestion] = useState<string | null>(null);
   const [questionId, setQuestionId] = useState<string | null>(null);
+  const [hint, setHint] = useState<string | null>(null);
   const [roundMsg, setRoundMsg] = useState<string | null>(null);
+  // answered=true means the question has been resolved (win or timeout) — blocks further input
   const [answered, setAnswered] = useState(false);
+  // wrongFeedback=true shows a brief "wrong answer" flash without blocking input
+  const [wrongFeedback, setWrongFeedback] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const wrongTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Process incoming events
   useEffect(() => {
     if (!lastEvent) return;
     const ev = lastEvent;
@@ -42,12 +51,13 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
     if (ev.type === 'QUESTION') {
       setQuestion(ev.question ?? null);
       setQuestionId(ev.questionId ?? null);
+      setHint(ev.hint ?? null);
       setTimeLeft(ev.timeoutSeconds ?? 15);
       setAnswer('');
       setAnswered(false);
+      setWrongFeedback(false);
       setRoundMsg(null);
       inputRef.current?.focus();
-      // Start countdown
       if (timerRef.current) clearInterval(timerRef.current);
       timerRef.current = setInterval(() => {
         setTimeLeft(t => {
@@ -57,21 +67,35 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
       }, 1000);
     }
 
+    if (ev.type === 'WRONG_ANSWER') {
+      // Only show feedback to the player who got it wrong
+      if (ev.targetUserId === myUserId) {
+        setWrongFeedback(true);
+        setAnswer('');
+        if (wrongTimeoutRef.current) clearTimeout(wrongTimeoutRef.current);
+        wrongTimeoutRef.current = setTimeout(() => setWrongFeedback(false), 1500);
+        inputRef.current?.focus();
+      }
+    }
+
     if (ev.type === 'ROUND_WIN') {
       clearInterval(timerRef.current!);
       setTimeLeft(null);
       setQuestion(null);
+      setAnswered(true);
       const isMe = ev.winnerId === myUserId;
+      const pts = ev.pointsAwarded ?? 1;
       setRoundMsg(isMe
-        ? `✅ You got it! +1 point`
-        : `⚡ ${ev.winnerName} answered: ${ev.correctAnswer}`);
+        ? t('challenge.youGotIt', { points: pts })
+        : t('challenge.someoneAnswered', { name: ev.winnerName, word: ev.correctAnswer, points: pts }));
     }
 
     if (ev.type === 'QUESTION_TIMEOUT') {
       clearInterval(timerRef.current!);
       setTimeLeft(null);
       setQuestion(null);
-      setRoundMsg(`⏰ Time's up! Answer: ${ev.correctAnswer}`);
+      setAnswered(true);
+      setRoundMsg(t('challenge.timesUp', { word: ev.correctAnswer }));
     }
 
     if (ev.type === 'GAME_OVER') {
@@ -80,14 +104,17 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
       setQuestion(null);
       setRoundMsg(null);
     }
-  }, [lastEvent, myUserId]);
+  }, [lastEvent, myUserId, t]);
 
-  useEffect(() => () => { if (timerRef.current) clearInterval(timerRef.current); }, []);
+  useEffect(() => () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    if (wrongTimeoutRef.current) clearTimeout(wrongTimeoutRef.current);
+  }, []);
 
   const handleSubmit = () => {
     if (!answer.trim() || !questionId || answered) return;
-    setAnswered(true);
     submitAnswer(answer.trim(), questionId);
+    // Do NOT set answered=true here — keep input open for unlimited guesses
   };
 
   const handleKey = (e: React.KeyboardEvent) => {
@@ -114,7 +141,9 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
         <div className="flex-1 min-w-0">
           <p className="font-semibold text-gray-800 dark:text-gray-100 truncate text-sm">{currentRoom.name}</p>
           <p className="text-xs text-gray-400">
-            {isPlaying ? `Round ${currentRoom.currentRound} / ${currentRoom.totalRounds}` : currentRoom.status}
+            {isPlaying
+              ? `${t('challenge.round')} ${currentRoom.currentRound} / ${currentRoom.totalRounds}`
+              : currentRoom.status}
           </p>
         </div>
         {timeLeft != null && timeLeft > 0 && (
@@ -134,17 +163,17 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 text-center shadow-sm">
             <p className="text-2xl mb-2">🎮</p>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              {currentRoom.players.length} player{currentRoom.players.length !== 1 ? 's' : ''} waiting…
+              {t('challenge.waitingForPlayers', { count: currentRoom.players.length })}
             </p>
             {isHost && (
               <button
                 onClick={startGameAction}
                 className="px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-colors"
               >
-                Start Game
+                {t('challenge.startGame')}
               </button>
             )}
-            {!isHost && <p className="text-xs text-gray-400">Waiting for host to start…</p>}
+            {!isHost && <p className="text-xs text-gray-400">{t('challenge.waitingForHost')}</p>}
           </div>
         )}
 
@@ -152,14 +181,14 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
         {isGameOver && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 text-center shadow-sm">
             <p className="text-3xl mb-2">🏆</p>
-            <p className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-1">Game Over!</p>
+            <p className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-1">{t('challenge.gameOver')}</p>
             {sortedPlayers[0] && (
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Winner: <span className="font-semibold text-yellow-500">{sortedPlayers[0].displayName}</span> with {sortedPlayers[0].score} pts
+                {t('challenge.winner', { name: sortedPlayers[0].displayName, score: sortedPlayers[0].score })}
               </p>
             )}
             {currentRoom.system && (
-              <p className="text-xs text-gray-400 mt-3">Next game starting soon…</p>
+              <p className="text-xs text-gray-400 mt-3">{t('challenge.nextGameSoon')}</p>
             )}
           </div>
         )}
@@ -169,9 +198,14 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
             {question ? (
               <>
-                <p className="text-xs text-gray-400 dark:text-gray-500 mb-2 text-center">Type the word that matches:</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mb-2 text-center">{t('challenge.typeWordMatch')}</p>
                 <div className="text-center mb-4">
                   <p className="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">{question}</p>
+                  {hint && timeLeft !== null && timeLeft <= 5 && timeLeft > 0 && (
+                    <p className="mt-2 text-sm font-mono font-semibold text-orange-500 tracking-widest">
+                      {t('challenge.hint', { hint })}
+                    </p>
+                  )}
                 </div>
                 <div className="flex gap-2">
                   <input
@@ -180,12 +214,18 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                     onChange={e => setAnswer(e.target.value)}
                     onKeyDown={handleKey}
                     disabled={answered}
-                    placeholder="Type your answer…"
+                    placeholder={t('challenge.typeAnswer')}
                     autoComplete="off"
                     autoCorrect="off"
                     autoCapitalize="off"
                     spellCheck={false}
-                    className={`flex-1 rounded-xl border bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-400 ${answered ? 'opacity-50' : 'border-gray-200 dark:border-gray-700'}`}
+                    className={`flex-1 rounded-xl border bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2.5 focus:outline-none focus:ring-2 transition-colors ${
+                      wrongFeedback
+                        ? 'border-red-400 focus:ring-red-400'
+                        : answered
+                          ? 'opacity-50 border-gray-200 dark:border-gray-700'
+                          : 'border-gray-200 dark:border-gray-700 focus:ring-blue-400'
+                    }`}
                   />
                   <button
                     onClick={handleSubmit}
@@ -195,8 +235,8 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                     ↵
                   </button>
                 </div>
-                {answered && (
-                  <p className="text-xs text-center text-blue-500 mt-2">Waiting for result…</p>
+                {wrongFeedback && (
+                  <p className="text-xs text-center text-red-500 mt-2">{t('challenge.wrongAnswer')}</p>
                 )}
               </>
             ) : (
@@ -204,14 +244,14 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                 {roundMsg ? (
                   <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{roundMsg}</p>
                 ) : (
-                  <p className="text-sm text-gray-400">Get ready…</p>
+                  <p className="text-sm text-gray-400">{t('challenge.getReady')}</p>
                 )}
               </div>
             )}
           </div>
         )}
 
-        {/* Round result message when question area is not shown */}
+        {/* Round result message when not playing */}
         {!isPlaying && roundMsg && (
           <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-3 text-center">
             <p className="text-sm text-gray-600 dark:text-gray-400">{roundMsg}</p>

@@ -97,7 +97,7 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         const event: ChallengeEvent = JSON.parse(frame.body);
         setLastEvent(event);
         if (event.room) setCurrentRoom(event.room);
-        if (event.type === 'ROUND_WIN' || event.type === 'QUESTION_TIMEOUT') {
+        if (event.type === 'ROUND_WIN' || event.type === 'QUESTION_TIMEOUT' || event.type === 'WRONG_ANSWER') {
           // Update current room scores from event
           setCurrentRoom(prev => {
             if (!prev || !event.scores) return prev;
