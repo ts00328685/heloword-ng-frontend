@@ -215,6 +215,7 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                     onKeyDown={handleKey}
                     disabled={answered}
                     placeholder={t('challenge.typeAnswer')}
+                    autoFocus
                     autoComplete="off"
                     autoCorrect="off"
                     autoCapitalize="off"
