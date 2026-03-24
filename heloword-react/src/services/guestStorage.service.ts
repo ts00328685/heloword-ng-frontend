@@ -1,4 +1,5 @@
-import { DueWord } from '../models';
+import { DueGroup, DueWord, QuizSetting } from '../models';
+import { computeGroupStates, getIntervals, GroupLevelOverride } from '../utils/ebbinghaus';
 
 export interface GuestSetting {
   id: string;
@@ -21,19 +22,9 @@ export interface GuestRecord {
   quizIndex: number;
 }
 
-const SETTINGS_KEY = 'hw-guest-settings';
-const RECORDS_KEY  = 'hw-guest-records';
-
-// Ebbinghaus intervals in milliseconds — mirrors backend NotificationServiceImpl
-const INTERVAL_MS = [
-  86_400_000,    // 1 day
-  86_400_000,    // 1 day
-  259_200_000,   // 3 days
-  604_800_000,   // 7 days
-  1_209_600_000, // 14 days
-  2_592_000_000, // 30 days
-  7_776_000_000, // 90 days
-];
+const SETTINGS_KEY  = 'hw-guest-settings';
+const RECORDS_KEY   = 'hw-guest-records';
+const OVERRIDES_KEY = 'hw-group-level-overrides';
 
 function generateId(): string {
   if (typeof crypto !== 'undefined' && crypto.randomUUID) {
@@ -94,52 +85,118 @@ export function getFinishedIdsBySetting(settingId: string): number[] {
 }
 
 /**
- * Computes which words are due for review using the Ebbinghaus forgetting curve.
- * Mirrors backend NotificationServiceImpl.getDueForReview().
+ * Converts guest settings + records into QuizSetting[] shape so that the shared
+ * computeGroupStates() function can be used for both logged-in and guest users.
+ */
+export function guestSettingsToQuizSettings(): QuizSetting[] {
+  const settings = getGuestSettings();
+  const records  = getGuestRecords();
+
+  return settings.map((s): QuizSetting => {
+    const settingRecords = records.filter((r) => r.settingId === s.id && r.wrongCount === 0);
+    const finishedCount = new Set(settingRecords.map((r) => r.answerId)).size;
+
+    const latestRecord = settingRecords
+      .slice()
+      .sort((a, b) => new Date(b.finishedTime).getTime() - new Date(a.finishedTime).getTime())[0];
+
+    return {
+      id: undefined,
+      timestamp: new Date(s.timestamp),
+      latestFinishedTime: latestRecord ? new Date(latestRecord.finishedTime) : undefined,
+      min: s.min,
+      max: s.max,
+      type: s.type,
+      tableName: s.tableName,
+      total: s.total,
+      isSelected: true,
+      finishedCount,
+    };
+  });
+}
+
+/**
+ * Computes which groups are due for review using the Ebbinghaus forgetting curve.
+ * Returns only groups with status UNFINISHED, DUE, or FRESH.
+ */
+export function computeGuestDueGroups(): DueGroup[] {
+  const quizSettings = guestSettingsToQuizSettings();
+  if (quizSettings.length === 0) return [];
+
+  const states = computeGroupStates(quizSettings, getIntervals(), getGuestGroupOverrides());
+  return Array.from(states.values()).filter(
+    (g) => g.status === 'UNFINISHED' || g.status === 'DUE' || g.status === 'FRESH',
+  );
+}
+
+/**
+ * Returns all group states (including SCHEDULED) for guest users.
+ * Used by ReviewPage to show status badges on all groups.
+ */
+export function computeAllGuestGroupStates(): Map<string, DueGroup> {
+  const quizSettings = guestSettingsToQuizSettings();
+  if (quizSettings.length === 0) return new Map();
+  return computeGroupStates(quizSettings, getIntervals(), getGuestGroupOverrides());
+}
+
+/**
+ * @deprecated — per-word due list kept for any legacy code paths.
+ * Prefer computeGuestDueGroups() for the group-based notification system.
  */
 export function computeGuestDueWords(): DueWord[] {
-  const records = getGuestRecords();
-  if (records.length === 0) return [];
+  return []; // replaced by group-based system
+}
 
-  const now = Date.now();
+// ─── Group Level Overrides (guest) ──────────────────────────────────────────
 
-  // Group by answerId + answerTableName
-  const groups: Record<string, GuestRecord[]> = {};
-  for (const r of records) {
-    const key = `${r.answerId}|${r.answerTableName}`;
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(r);
+export function getGuestGroupOverrides(): Record<string, GroupLevelOverride> {
+  try {
+    const raw = localStorage.getItem(OVERRIDES_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Record<string, { level: number; setAt: string }>;
+    const result: Record<string, GroupLevelOverride> = {};
+    for (const [k, v] of Object.entries(parsed)) {
+      result[k] = { level: v.level, setAt: new Date(v.setAt) };
+    }
+    return result;
+  } catch {
+    return {};
   }
+}
 
-  const due: DueWord[] = [];
-
-  for (const wordRecords of Object.values(groups)) {
-    const sorted = [...wordRecords].sort(
-      (a, b) => new Date(b.finishedTime).getTime() - new Date(a.finishedTime).getTime()
+export function saveGuestGroupOverride(groupKey: string, level: number): void {
+  const overrides = getGuestGroupOverrides();
+  overrides[groupKey] = { level, setAt: new Date() };
+  try {
+    const serializable = Object.fromEntries(
+      Object.entries(overrides).map(([k, v]) => [k, { level: v.level, setAt: v.setAt.toISOString() }]),
     );
+    localStorage.setItem(OVERRIDES_KEY, JSON.stringify(serializable));
+  } catch {}
+}
 
-    const lastReviewTime = sorted[0].finishedTime;
-    const lastReviewMs   = new Date(lastReviewTime).getTime();
-    const reviewCount    = wordRecords.length;
-    const correctCount   = wordRecords.filter((r) => r.wrongCount === 0).length;
+export function deleteGuestGroupOverride(groupKey: string): void {
+  const overrides = getGuestGroupOverrides();
+  delete overrides[groupKey];
+  try {
+    const serializable = Object.fromEntries(
+      Object.entries(overrides).map(([k, v]) => [k, { level: v.level, setAt: v.setAt.toISOString() }]),
+    );
+    localStorage.setItem(OVERRIDES_KEY, JSON.stringify(serializable));
+  } catch {}
+}
 
-    const intervalIndex  = Math.min(correctCount, INTERVAL_MS.length - 1);
-    const nextReviewMs   = lastReviewMs + INTERVAL_MS[intervalIndex];
+// ─── Delete Group (guest) ───────────────────────────────────────────────────
 
-    if (nextReviewMs > now) continue; // Not due yet
-
-    const sample = sorted[0];
-    due.push({
-      answerId:        sample.answerId,
-      answerTableName: sample.answerTableName,
-      lastReviewTime,
-      nextReviewTime:  new Date(nextReviewMs).toISOString(),
-      reviewCount,
-      correctCount,
-    });
-  }
-
-  return due;
+export function deleteGuestGroup(type: string, min: number, max: number): void {
+  const settings = getGuestSettings();
+  const records  = getGuestRecords();
+  const toDelete = settings.filter((s) => s.type === type && s.min === min && s.max === max);
+  const deleteIds = new Set(toDelete.map((s) => s.id));
+  writeJson(SETTINGS_KEY, settings.filter((s) => !deleteIds.has(s.id)));
+  writeJson(RECORDS_KEY, records.filter((r) => !deleteIds.has(r.settingId)));
+  const groupKey = `${type}:${min}:${max}`;
+  deleteGuestGroupOverride(groupKey);
 }
 
 export { generateId };

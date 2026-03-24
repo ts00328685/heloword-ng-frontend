@@ -96,6 +96,7 @@ const VocabularyQuizPage: React.FC = () => {
 
   const settingIdMapRef = useRef<Map<string, number>>(new Map());
   const quizSettingsRef = useRef<Record<string, QuizSetting>>({});
+  const saveSettingsPromiseRef = useRef<Promise<void> | null>(null);
 
   useEffect(() => {
     const quizSettings: Record<string, QuizSetting> = location.state?.quizSettings;
@@ -108,8 +109,18 @@ const VocabularyQuizPage: React.FC = () => {
 
     quizSettingsRef.current = quizSettings;
     showAlert(t('quiz.retestNote'));
-    saveQuizSettings(quizSettings);
-    initWordList(quizSettings, finishedIdMap);
+    // Only run once — Strict Mode fires this effect twice; the null guard prevents a
+    // second saveQuizSettings call and a duplicate initWordList call.
+    // initWordList is called AFTER saveQuizSettings resolves so that settingIdMapRef
+    // is fully populated before any word can be answered, eliminating the race where
+    // save-single-record posts run without a recordQuizSettingId.
+    if (saveSettingsPromiseRef.current === null) {
+      const run = async () => {
+        await saveQuizSettings(quizSettings);
+        initWordList(quizSettings, finishedIdMap);
+      };
+      saveSettingsPromiseRef.current = run();
+    }
   }, []);
 
   useEffect(() => {
