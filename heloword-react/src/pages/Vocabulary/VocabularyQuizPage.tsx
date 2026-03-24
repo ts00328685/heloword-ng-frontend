@@ -96,7 +96,7 @@ const VocabularyQuizPage: React.FC = () => {
 
   const settingIdMapRef = useRef<Map<string, number>>(new Map());
   const quizSettingsRef = useRef<Record<string, QuizSetting>>({});
-  const saveSettingsPromiseRef = useRef<Promise<void>>(Promise.resolve());
+  const saveSettingsPromiseRef = useRef<Promise<void> | null>(null);
 
   useEffect(() => {
     const quizSettings: Record<string, QuizSetting> = location.state?.quizSettings;
@@ -109,8 +109,18 @@ const VocabularyQuizPage: React.FC = () => {
 
     quizSettingsRef.current = quizSettings;
     showAlert(t('quiz.retestNote'));
-    saveSettingsPromiseRef.current = saveQuizSettings(quizSettings);
-    initWordList(quizSettings, finishedIdMap);
+    // Only run once — Strict Mode fires this effect twice; the null guard prevents a
+    // second saveQuizSettings call and a duplicate initWordList call.
+    // initWordList is called AFTER saveQuizSettings resolves so that settingIdMapRef
+    // is fully populated before any word can be answered, eliminating the race where
+    // save-single-record posts run without a recordQuizSettingId.
+    if (saveSettingsPromiseRef.current === null) {
+      const run = async () => {
+        await saveQuizSettings(quizSettings);
+        initWordList(quizSettings, finishedIdMap);
+      };
+      saveSettingsPromiseRef.current = run();
+    }
   }, []);
 
   useEffect(() => {
@@ -155,11 +165,6 @@ const VocabularyQuizPage: React.FC = () => {
       return;
     }
 
-    // Guard against React 18 Strict Mode double-invoke (two identical POSTs)
-    const saveKey = `hw-saved-${settingList[0]?.timestamp}`;
-    if (sessionStorage.getItem(saveKey)) return;
-    sessionStorage.setItem(saveKey, '1');
-
     try {
       const response = await doPost('/frontend-api/api/fe/quiz/save-setting-records', settingList);
       settingList.forEach((s, idx) => {
@@ -177,7 +182,6 @@ const VocabularyQuizPage: React.FC = () => {
 
       const currentTime = new Date();
       const timeSpent = (currentTime.getTime() - startTimeRef.current.getTime()) / 1000;
-      await saveSettingsPromiseRef.current;
       const settingId = settingIdMapRef.current.get(word.tableName || '');
 
       if (!isLoggedIn) {

@@ -168,6 +168,11 @@ const ReviewPage: React.FC = () => {
     return states.sort((a, b) => order[a.status] - order[b.status])[0];
   };
 
+  // ─── Formatting ───────────────────────────────────────────────────────────
+
+  const formatDate = (d: Date) =>
+    d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
   // ─── Filtering ────────────────────────────────────────────────────────────
 
   const filteredGroups = groups.filter((g) => {
@@ -240,17 +245,58 @@ const ReviewPage: React.FC = () => {
     navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap } });
   };
 
-  const handleDueReviewClick = () => {
+  const handleDueReviewClick = async () => {
     if (dueGroups.length === 0) return;
+    const allRecords = groups.flatMap((grp) => grp.records);
     const quizSettings: Record<string, QuizSetting> = {};
+
     dueGroups.forEach((g) => {
-      quizSettings[g.type] = {
-        timestamp: new Date(), type: g.type,
-        tableName: TYPE_TO_TABLE_MAP[g.type] || g.type,
-        total: g.max - g.min + 1, isSelected: true, min: g.min, max: g.max,
-      };
+      // Match by type + range so we carry over the existing id — prevents a duplicate setting record
+      const existing = allRecords.find(
+        (r) => r.type === g.type && (r.min ?? 1) === g.min && (r.max ?? r.total) === g.max,
+      );
+      if (existing) {
+        quizSettings[g.type] = { ...existing, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[g.type] || existing.tableName };
+      } else {
+        quizSettings[g.type] = {
+          timestamp: new Date(), type: g.type,
+          tableName: TYPE_TO_TABLE_MAP[g.type] || g.type,
+          total: g.max - g.min + 1, isSelected: true, min: g.min, max: g.max,
+        };
+      }
     });
-    navigate('/vocabulary/quiz', { state: { quizSettings } });
+
+    // For UNFINISHED groups, fetch already-completed word IDs so the quiz skips them
+    const unfinishedSettingIds = dueGroups
+      .filter((g) => g.status === 'UNFINISHED')
+      .map((g) => allRecords.find((r) => r.type === g.type && (r.min ?? 1) === g.min && (r.max ?? r.total) === g.max)?.id)
+      .filter(Boolean) as number[];
+
+    if (!isLoggedIn) {
+      const finishedIdMap: Record<string, number[]> = {};
+      dueGroups
+        .filter((g) => g.status === 'UNFINISHED')
+        .forEach((g) => {
+          const existing = allRecords.find(
+            (r) => r.type === g.type && (r.min ?? 1) === g.min && (r.max ?? r.total) === g.max,
+          ) as any;
+          if (existing?._guestId) finishedIdMap[existing._guestId] = getFinishedIdsBySetting(existing._guestId);
+        });
+      navigate('/vocabulary/quiz', { state: { quizSettings, ...(Object.keys(finishedIdMap).length ? { finishedIdMap } : {}) } });
+      return;
+    }
+
+    if (unfinishedSettingIds.length > 0) {
+      showLoading();
+      try {
+        const response = await doPost('/frontend-api/api/fe/quiz/get-record-ids-by-setting-ids', unfinishedSettingIds);
+        navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap: response.data } });
+      } finally {
+        hideLoading();
+      }
+    } else {
+      navigate('/vocabulary/quiz', { state: { quizSettings } });
+    }
   };
 
   const onCardClick = (group: QuizGroup, forceNewSession?: boolean) =>
@@ -389,11 +435,6 @@ const ReviewPage: React.FC = () => {
     setEditLevel(state?.reviewLevel ?? 0);
     setEditGroup(group);
   };
-
-  // ─── Formatting ───────────────────────────────────────────────────────────
-
-  const formatDate = (d: Date) =>
-    d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
   const formatTime = (d?: Date) => {
     if (!d) return '';
