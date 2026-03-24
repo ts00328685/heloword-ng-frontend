@@ -35,6 +35,20 @@ const VocabularyPage: React.FC = () => {
         <p className="text-xs text-gray-400 dark:text-gray-500 mt-6 text-center leading-relaxed px-4">
           {t('vocabulary.hint')}
         </p>
+
+        {/* Ebbinghaus explanation card */}
+        <div className="mt-6 w-full max-w-sm bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border border-purple-200 dark:border-purple-800 rounded-2xl p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-lg">🧠</span>
+            <h3 className="text-sm font-bold text-purple-700 dark:text-purple-300">{t('vocabulary.ebbinghausTitle')}</h3>
+          </div>
+          <p className="text-xs text-purple-600 dark:text-purple-400 leading-relaxed">
+            {t('vocabulary.ebbinghausText')}
+          </p>
+          <p className="text-xs text-purple-500 dark:text-purple-500 font-semibold mt-2">
+            {t('vocabulary.recommendedGroupSize')}
+          </p>
+        </div>
       </main>
 
       {showModal && <QuizSettingModal onClose={() => setShowModal(false)} />}

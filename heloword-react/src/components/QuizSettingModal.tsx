@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { QuizSetting } from '../models';
+import { QuizSetting, Sentence, WordStore } from '../models';
 import { useData } from '../contexts/DataContext';
+import { useAuth } from '../contexts/AuthContext';
 import { useUI } from '../contexts/UIContext';
+import { doPost } from '../services/api.service';
+import { DEFAULT_INTERVALS_MS, getIntervals, saveIntervals, formatInterval } from '../utils/ebbinghaus';
 
 // Language color palette keyed by list type
 const TYPE_COLOR: Record<string, { bg: string; dot: string; badge: string }> = {
@@ -44,6 +47,19 @@ const Toggle: React.FC<{ checked: boolean; onChange: () => void }> = ({ checked,
 const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onChange }) => {
   const color = TYPE_COLOR[setting.type] ?? DEFAULT_COLOR;
   const { t } = useTranslation();
+
+  // Local string state so the user can freely edit without being snapped back mid-type.
+  // Sync back to parent as a raw number (no clamping) — clamping happens on Start.
+  const [minStr, setMinStr] = useState(String(setting.min ?? 1));
+  const [maxStr, setMaxStr] = useState(String(setting.max ?? setting.total));
+
+  // When the setting is toggled on, reset the displayed values.
+  useEffect(() => {
+    if (setting.isSelected) {
+      setMinStr(String(setting.min ?? 1));
+      setMaxStr(String(setting.max ?? setting.total));
+    }
+  }, [setting.isSelected]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div
@@ -91,12 +107,13 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
               <input
                 type="number"
                 min={1}
-                max={setting.max ?? setting.total}
-                value={setting.min ?? 1}
+                max={setting.total}
+                value={minStr}
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => {
-                  const v = Math.max(1, Math.min(Number(e.target.value), setting.max ?? setting.total));
-                  onChange({ ...setting, min: v });
+                  setMinStr(e.target.value);
+                  const v = parseInt(e.target.value, 10);
+                  if (!isNaN(v)) onChange({ ...setting, min: v });
                 }}
                 className="w-full text-sm border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
@@ -105,13 +122,14 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
               <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">{t('quizModal.to')}</label>
               <input
                 type="number"
-                min={setting.min ?? 1}
+                min={1}
                 max={setting.total}
-                value={setting.max ?? setting.total}
+                value={maxStr}
                 onClick={(e) => e.stopPropagation()}
                 onChange={(e) => {
-                  const v = Math.min(setting.total, Math.max(Number(e.target.value), setting.min ?? 1));
-                  onChange({ ...setting, max: v });
+                  setMaxStr(e.target.value);
+                  const v = parseInt(e.target.value, 10);
+                  if (!isNaN(v)) onChange({ ...setting, max: v });
                 }}
                 className="w-full text-sm border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
@@ -128,13 +146,34 @@ interface QuizSettingModalProps {
 }
 
 const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
-  const { wordStore, sentenceStore } = useData();
+  const { wordStore, sentenceStore, isWordStoreEmpty, isSentenceStoreEmpty, updateWordStore, updateSentenceStore } = useData();
+  const { isLoggedIn } = useAuth();
   const { showAlert } = useUI();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [dataLoading, setDataLoading] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const fetchedRef = useRef(false);
 
-  const buildInitialSettings = (): QuizSetting[] => {
-    const combined = { ...wordStore, ...sentenceStore } as Record<string, any[]>;
+  // Interval configurator state (in minutes for display)
+  const [showIntervalConfig, setShowIntervalConfig] = useState(false);
+  const [intervalInputs, setIntervalInputs] = useState<string[]>(() =>
+    getIntervals().map((ms) => String(Math.round(ms / 60_000))),
+  );
+
+  const handleSaveIntervals = () => {
+    const parsed = intervalInputs.map((v) => Math.max(1, Number(v) || 1) * 60_000);
+    saveIntervals(parsed);
+    setShowIntervalConfig(false);
+  };
+
+  const handleResetIntervals = () => {
+    setIntervalInputs(DEFAULT_INTERVALS_MS.map((ms) => String(Math.round(ms / 60_000))));
+    saveIntervals([...DEFAULT_INTERVALS_MS]);
+  };
+
+  const buildInitialSettings = (ws = wordStore, ss = sentenceStore): QuizSetting[] => {
+    const combined = { ...ws, ...ss } as Record<string, any[]>;
     return Object.entries(combined)
       .filter(([, list]) => list && list.length > 0)
       .map(([key, list]) => ({
@@ -149,6 +188,37 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
   };
 
   const [settings, setSettings] = useState<QuizSetting[]>(buildInitialSettings);
+
+  useEffect(() => {
+    if (fetchedRef.current || !isWordStoreEmpty() || !isSentenceStoreEmpty()) return;
+    fetchedRef.current = true;
+    setDataLoading(true);
+    setLoadError(false);
+    doPost('/frontend-api/api/fe/home/dashboard')
+      .then((response) => {
+        const d = response.data || {};
+        const words: WordStore = {
+          wordEnglishList: d.wordEnglishList || [],
+          wordGermanList: d.wordGermanList || [],
+          wordJapaneseList: d.wordJapaneseList || [],
+        };
+        const sentences = {
+          sentenceEnglishList: d.sentenceEnglishList || [],
+          sentenceGermanList: d.sentenceGermanList || [],
+          sentenceJapaneseList: d.sentenceJapaneseList || [],
+        };
+        if (isLoggedIn && d.sentenceEnglishList?.length) {
+          const sentenceMap: Record<string, string> = {};
+          (d.sentenceEnglishList as Sentence[]).forEach((s) => { if (s.word) sentenceMap[s.word] = s.sentence; });
+          (words.wordEnglishList || []).forEach((w) => { if (sentenceMap[w.word]) w.sentence = sentenceMap[w.word]; });
+        }
+        updateWordStore(words);
+        updateSentenceStore(sentences);
+        setSettings(buildInitialSettings(words, sentences));
+      })
+      .catch(() => setLoadError(true))
+      .finally(() => setDataLoading(false));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const selectedCount = settings.filter((s) => s.isSelected).length;
 
@@ -169,7 +239,12 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
     }
     const timestamp = new Date();
     const quizSettings: Record<string, QuizSetting> = {};
-    selected.forEach((s) => { quizSettings[s.type] = { ...s, timestamp }; });
+    selected.forEach((s) => {
+      // Clamp at start time so mid-edit values don't cause invalid ranges
+      const min = Math.max(1, Math.min(s.min ?? 1, s.total));
+      const max = Math.max(min, Math.min(s.max ?? s.total, s.total));
+      quizSettings[s.type] = { ...s, timestamp, min, max };
+    });
     onClose();
     navigate('/vocabulary/quiz', { state: { quizSettings } });
   };
@@ -211,9 +286,83 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
 
         {/* List */}
         <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
-          {settings.length === 0 ? (
+
+          {/* Ebbinghaus info card */}
+          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-3 mb-1">
+            <div className="flex items-start gap-2">
+              <span className="text-base mt-0.5">🧠</span>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 mb-1">{t('quizModal.ebbinghausTitle')}</p>
+                <p className="text-xs text-blue-600 dark:text-blue-400 leading-relaxed">{t('quizModal.ebbinghausDesc')}</p>
+                <p className="text-xs text-blue-500 dark:text-blue-500 mt-1 font-medium">{t('quizModal.recommendedSize')}</p>
+              </div>
+            </div>
+
+            {/* Current intervals display */}
+            <div className="mt-2 flex flex-wrap gap-1">
+              {getIntervals().map((ms, i) => (
+                <span key={i} className="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 px-1.5 py-0.5 rounded-md font-mono">
+                  {formatInterval(ms)}
+                </span>
+              ))}
+            </div>
+
+            {/* Toggle interval configurator */}
+            <button
+              onClick={() => setShowIntervalConfig((v) => !v)}
+              className="mt-2 text-xs text-blue-500 dark:text-blue-400 font-medium hover:underline"
+            >
+              {showIntervalConfig ? '▲' : '▼'} {t('quizModal.customizeIntervals')}
+            </button>
+
+            {showIntervalConfig && (
+              <div className="mt-2 space-y-2">
+                <div className="grid grid-cols-4 gap-1.5">
+                  {intervalInputs.map((val, i) => (
+                    <div key={i} className="flex flex-col items-center gap-0.5">
+                      <span className="text-xs text-blue-400 dark:text-blue-500 font-medium">{i + 1}</span>
+                      <input
+                        type="number"
+                        min={1}
+                        value={val}
+                        onChange={(e) => {
+                          const updated = [...intervalInputs];
+                          updated[i] = e.target.value;
+                          setIntervalInputs(updated);
+                        }}
+                        className="w-full text-xs border border-blue-200 dark:border-blue-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-lg px-1.5 py-1 text-center focus:outline-none focus:ring-1 focus:ring-blue-400"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleResetIntervals}
+                    className="flex-1 text-xs py-1.5 rounded-xl border border-blue-200 dark:border-blue-700 text-blue-500 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+                  >
+                    {t('quizModal.resetIntervals')}
+                  </button>
+                  <button
+                    onClick={handleSaveIntervals}
+                    className="flex-1 text-xs py-1.5 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-colors"
+                  >
+                    {t('quizModal.saveIntervals')}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {dataLoading ? (
+            <div className="text-center py-10">
+              <div className="w-7 h-7 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+              <p className="text-sm text-gray-400 dark:text-gray-500">{t('quizModal.noLists')}</p>
+            </div>
+          ) : loadError ? (
+            <p className="text-center text-red-400 dark:text-red-500 py-10 text-sm">{t('quizModal.loadError')}</p>
+          ) : settings.length === 0 ? (
             <p className="text-center text-gray-400 dark:text-gray-500 py-10 text-sm">
-              {t('quizModal.noLists')}
+              {t('quizModal.loadError')}
             </p>
           ) : (
             settings.map((s, i) => (

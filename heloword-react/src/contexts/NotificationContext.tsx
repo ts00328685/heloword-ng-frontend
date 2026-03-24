@@ -1,18 +1,26 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useAuth } from './AuthContext';
 import { doPost } from '../services/api.service';
-import { DueWord } from '../models';
-import { computeGuestDueWords } from '../services/guestStorage.service';
+import { DueGroup, QuizSetting } from '../models';
+import { computeGroupStates, getIntervals, GroupLevelOverride } from '../utils/ebbinghaus';
+import { computeGuestDueGroups, computeAllGuestGroupStates } from '../services/guestStorage.service';
 
 interface NotificationContextType {
-  dueWords: DueWord[];
+  /** Groups that are UNFINISHED, DUE, or FRESH — drives the orange badge. */
+  dueGroups: DueGroup[];
+  /** All group states including SCHEDULED — used by ReviewPage for status badges. */
+  groupStates: Map<string, DueGroup>;
+  /** Number of due/fresh/unfinished groups — used for the nav badge. */
   dueCount: number;
+  /** Re-fetch quiz settings and recompute (logged-in users). */
   refresh: () => Promise<void>;
+  /** Recompute from localStorage (guest users, call after finishing a quiz). */
   refreshGuest: () => void;
 }
 
 const NotificationContext = createContext<NotificationContextType>({
-  dueWords: [],
+  dueGroups: [],
+  groupStates: new Map(),
   dueCount: 0,
   refresh: async () => {},
   refreshGuest: () => {},
@@ -22,22 +30,46 @@ export const useNotifications = () => useContext(NotificationContext);
 
 export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isLoggedIn } = useAuth();
-  const [dueWords, setDueWords] = useState<DueWord[]>([]);
+  const [dueGroups, setDueGroups]   = useState<DueGroup[]>([]);
+  const [groupStates, setGroupStates] = useState<Map<string, DueGroup>>(new Map());
   const hasFetched = useRef(false);
+
+  const applySettings = useCallback((settings: QuizSetting[], overrides?: Record<string, GroupLevelOverride>) => {
+    const states = computeGroupStates(settings, getIntervals(), overrides);
+    setGroupStates(states);
+    setDueGroups(
+      Array.from(states.values()).filter(
+        (g) => g.status === 'UNFINISHED' || g.status === 'DUE' || g.status === 'FRESH',
+      ),
+    );
+  }, []);
 
   const refresh = useCallback(async () => {
     try {
-      const response = await doPost('/frontend-api/api/fe/notifications/due-for-review');
-      if (response.code === '0000') {
-        setDueWords(response.data || []);
+      const [settingsRes, overridesRes] = await Promise.all([
+        doPost('/frontend-api/api/fe/quiz/get-quiz-settings'),
+        doPost('/frontend-api/api/fe/quiz/get-group-overrides'),
+      ]);
+      if (settingsRes.code === '0000' && settingsRes.data) {
+        const flat: QuizSetting[] = Object.values(
+          settingsRes.data as Record<string, QuizSetting[]>,
+        ).flat();
+        const overrides: Record<string, GroupLevelOverride> = {};
+        if (overridesRes.code === '0000' && Array.isArray(overridesRes.data)) {
+          for (const o of overridesRes.data) {
+            overrides[o.groupKey] = { level: o.levelOverride, setAt: new Date(o.setAt) };
+          }
+        }
+        applySettings(flat, overrides);
       }
     } catch {
-      // silently ignore — notifications are non-critical
+      // non-critical — silently ignore
     }
-  }, []);
+  }, [applySettings]);
 
   const refreshGuest = useCallback(() => {
-    setDueWords(computeGuestDueWords());
+    setGroupStates(computeAllGuestGroupStates());
+    setDueGroups(computeGuestDueGroups());
   }, []);
 
   useEffect(() => {
@@ -46,21 +78,26 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
       hasFetched.current = true;
       refresh();
     } else {
-      // Compute due words from localStorage for guest users
-      setDueWords(computeGuestDueWords());
+      refreshGuest();
     }
-  }, [isLoggedIn, refresh]);
+  }, [isLoggedIn, refresh, refreshGuest]);
 
-  // Reset server-side state when user logs out; recompute guest due words
+  // Reset on logout
   useEffect(() => {
     if (!isLoggedIn) {
       hasFetched.current = false;
-      setDueWords(computeGuestDueWords());
+      refreshGuest();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, refreshGuest]);
 
   return (
-    <NotificationContext.Provider value={{ dueWords, dueCount: dueWords.length, refresh, refreshGuest }}>
+    <NotificationContext.Provider value={{
+      dueGroups,
+      groupStates,
+      dueCount: dueGroups.length,
+      refresh,
+      refreshGuest,
+    }}>
       {children}
     </NotificationContext.Provider>
   );

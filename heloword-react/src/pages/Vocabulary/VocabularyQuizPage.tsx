@@ -96,6 +96,7 @@ const VocabularyQuizPage: React.FC = () => {
 
   const settingIdMapRef = useRef<Map<string, number>>(new Map());
   const quizSettingsRef = useRef<Record<string, QuizSetting>>({});
+  const saveSettingsPromiseRef = useRef<Promise<void>>(Promise.resolve());
 
   useEffect(() => {
     const quizSettings: Record<string, QuizSetting> = location.state?.quizSettings;
@@ -108,7 +109,7 @@ const VocabularyQuizPage: React.FC = () => {
 
     quizSettingsRef.current = quizSettings;
     showAlert(t('quiz.retestNote'));
-    saveQuizSettings(quizSettings);
+    saveSettingsPromiseRef.current = saveQuizSettings(quizSettings);
     initWordList(quizSettings, finishedIdMap);
   }, []);
 
@@ -154,6 +155,11 @@ const VocabularyQuizPage: React.FC = () => {
       return;
     }
 
+    // Guard against React 18 Strict Mode double-invoke (two identical POSTs)
+    const saveKey = `hw-saved-${settingList[0]?.timestamp}`;
+    if (sessionStorage.getItem(saveKey)) return;
+    sessionStorage.setItem(saveKey, '1');
+
     try {
       const response = await doPost('/frontend-api/api/fe/quiz/save-setting-records', settingList);
       settingList.forEach((s, idx) => {
@@ -171,6 +177,7 @@ const VocabularyQuizPage: React.FC = () => {
 
       const currentTime = new Date();
       const timeSpent = (currentTime.getTime() - startTimeRef.current.getTime()) / 1000;
+      await saveSettingsPromiseRef.current;
       const settingId = settingIdMapRef.current.get(word.tableName || '');
 
       if (!isLoggedIn) {

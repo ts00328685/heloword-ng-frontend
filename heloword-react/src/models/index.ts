@@ -93,6 +93,19 @@ export interface DueWord {
   correctCount: number;
 }
 
+/** Group-level spaced-repetition state (one entry per unique type:min:max range). */
+export interface DueGroup {
+  groupKey: string;          // "type:min:max"
+  type: string;
+  min: number;
+  max: number;
+  /** UNFINISHED: in-progress session; DUE: interval elapsed; FRESH: grace missed; SCHEDULED: waiting */
+  status: 'UNFINISHED' | 'DUE' | 'FRESH' | 'SCHEDULED';
+  reviewLevel: number;       // 0–6, index into intervals array
+  nextReviewTime?: Date;     // when the review becomes/became due
+  lastCompletionTime?: Date; // when the group was last fully completed
+}
+
 export interface DailyStat {
   date: string;       // "YYYY-MM-DD"
   total: number;
