@@ -51,13 +51,13 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
   // Local string state so the user can freely edit without being snapped back mid-type.
   // Sync back to parent as a raw number (no clamping) — clamping happens on Start.
   const [minStr, setMinStr] = useState(String(setting.min ?? 1));
-  const [maxStr, setMaxStr] = useState(String(setting.max ?? setting.total));
+  const [maxStr, setMaxStr] = useState(String(setting.max ?? Math.min(50, setting.total)));
 
   // When the setting is toggled on, reset the displayed values.
   useEffect(() => {
     if (setting.isSelected) {
       setMinStr(String(setting.min ?? 1));
-      setMaxStr(String(setting.max ?? setting.total));
+      setMaxStr(String(setting.max ?? Math.min(50, setting.total)));
     }
   }, [setting.isSelected]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -102,37 +102,77 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
           </div>
 
           <div className="flex gap-3">
+            {/* From */}
             <div className="flex-1">
               <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">{t('quizModal.from')}</label>
-              <input
-                type="number"
-                min={1}
-                max={setting.total}
-                value={minStr}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
-                  setMinStr(e.target.value);
-                  const v = parseInt(e.target.value, 10);
-                  if (!isNaN(v)) onChange({ ...setting, min: v });
-                }}
-                className="w-full text-sm border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-              />
+              <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = Math.max(1, (parseInt(minStr, 10) || 1) - 50);
+                    setMinStr(String(next));
+                    onChange({ ...setting, min: next });
+                  }}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
+                >−</button>
+                <input
+                  type="number"
+                  min={1}
+                  max={setting.total}
+                  value={minStr}
+                  onChange={(e) => {
+                    setMinStr(e.target.value);
+                    const v = parseInt(e.target.value, 10);
+                    if (!isNaN(v)) onChange({ ...setting, min: v });
+                  }}
+                  className="w-full text-sm text-center border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = (parseInt(minStr, 10) || 1) + 50;
+                    setMinStr(String(next));
+                    onChange({ ...setting, min: next });
+                  }}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
+                >+</button>
+              </div>
             </div>
+            {/* To */}
             <div className="flex-1">
               <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">{t('quizModal.to')}</label>
-              <input
-                type="number"
-                min={1}
-                max={setting.total}
-                value={maxStr}
-                onClick={(e) => e.stopPropagation()}
-                onChange={(e) => {
-                  setMaxStr(e.target.value);
-                  const v = parseInt(e.target.value, 10);
-                  if (!isNaN(v)) onChange({ ...setting, max: v });
-                }}
-                className="w-full text-sm border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-              />
+              <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = Math.max(1, (parseInt(maxStr, 10) || 50) - 50);
+                    setMaxStr(String(next));
+                    onChange({ ...setting, max: next });
+                  }}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
+                >−</button>
+                <input
+                  type="number"
+                  min={1}
+                  max={setting.total}
+                  value={maxStr}
+                  onChange={(e) => {
+                    setMaxStr(e.target.value);
+                    const v = parseInt(e.target.value, 10);
+                    if (!isNaN(v)) onChange({ ...setting, max: v });
+                  }}
+                  className="w-full text-sm text-center border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = (parseInt(maxStr, 10) || 50) + 50;
+                    setMaxStr(String(next));
+                    onChange({ ...setting, max: next });
+                  }}
+                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
+                >+</button>
+              </div>
             </div>
           </div>
         </div>
@@ -183,7 +223,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         tableName: list[0]?.tableName || '',
         isSelected: false,
         min: 1,
-        max: list.length,
+        max: Math.min(50, list.length),
       }));
   };
 

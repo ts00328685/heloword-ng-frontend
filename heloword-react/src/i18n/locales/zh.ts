@@ -56,6 +56,7 @@ const zh = {
     pronounceSentence: '發音例句',
     autoFocus: '自動聚焦',
     japaneseMode: '日文模式',
+    jpButtonInput: '按鈕輸入',
     failWithoutMask: '未遮罩視為失敗',
     speed: '速度：{{value}}',
     volume: '音量：{{value}}%',

@@ -205,7 +205,9 @@ const ReviewPage: React.FC = () => {
       return;
     }
 
-    if (group.completed === group.total) return;
+    // Use modulo so multi-cycle accumulated counts don't prevent resuming an unfinished session
+    const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
+    if (cycleCompleted === 0 && group.completed > 0) return; // fully completed this cycle
 
     const settingIds = group.records.map((s) => s.id).filter(Boolean);
     showLoading();
@@ -234,7 +236,8 @@ const ReviewPage: React.FC = () => {
       return;
     }
 
-    if (group.completed === group.total) return;
+    const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
+    if (cycleCompleted === 0 && group.completed > 0) return;
 
     const quizSettings: Record<string, QuizSetting> = {};
     const finishedIdMap: Record<string, number[]> = {};
@@ -609,9 +612,13 @@ const ReviewPage: React.FC = () => {
         {!loading && filteredGroups.length > 0 && (
           <div className="space-y-3" style={{ paddingBottom: selectionMode && selectedKeys.size > 0 ? '5rem' : undefined }}>
             {filteredGroups.map((group, i) => {
-              const pct = group.total > 0 ? Math.round((group.completed / group.total) * 100) : 0;
               const groupState = resolveGroupState(group.records);
               const status = groupState?.status ?? 'SCHEDULED';
+              // finishedCount accumulates across all review cycles, so use modulo to get
+              // the current cycle's progress. SCHEDULED means just completed → show full.
+              const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
+              const displayCompleted = status === 'SCHEDULED' ? group.total : cycleCompleted;
+              const pct = group.total > 0 ? Math.round((displayCompleted / group.total) * 100) : 0;
               const cfg = STATUS_CONFIG[status];
               const isDue = status === 'DUE' || status === 'FRESH';
               const isUnfinished = status === 'UNFINISHED';
@@ -698,7 +705,7 @@ const ReviewPage: React.FC = () => {
                   </div>
 
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-                    {t('review.completionRatio', { completed: group.completed, total: group.total })}
+                    {t('review.completionRatio', { completed: displayCompleted, total: group.total })}
                   </p>
 
                   <div className="flex flex-wrap gap-1.5">
