@@ -56,6 +56,7 @@ const ja = {
     pronounceSentence: '例文発音',
     autoFocus: '自動フォーカス',
     japaneseMode: '日本語モード',
+    jpButtonInput: 'ボタン入力',
     failWithoutMask: 'マスクなし失敗',
     speed: '速度：{{value}}',
     volume: '音量：{{value}}%',

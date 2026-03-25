@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useData } from '../../contexts/DataContext';
 import { useUI } from '../../contexts/UIContext';
 import { useNotifications } from '../../contexts/NotificationContext';
-import { DueWord, QuizSetting, Sentence } from '../../models';
+import { DueWord, QuizSetting, Sentence, SentenceStore, WordStore } from '../../models';
 import { doPost } from '../../services/api.service';
 import {
   generateId,
@@ -38,6 +38,42 @@ const LANG_MAP: Record<string, string> = {
   ch: 'zh-TW',
 };
 
+/** Extract the kana-only reading from a Japanese word string.
+ *  "さ 来週[らいしゅう]" → "さらいしゅう"
+ *  Skips kanji and spaces; takes the content of [brackets] as the reading. */
+const extractKanaAnswer = (wordStr: string): string => {
+  let result = '';
+  let i = 0;
+  while (i < wordStr.length) {
+    if (wordStr[i] === '[') {
+      const end = wordStr.indexOf(']', i);
+      if (end !== -1) { result += wordStr.slice(i + 1, end); i = end + 1; }
+      else i++;
+    } else if (/[一-龠々〆〤ヶ]/.test(wordStr[i]) || wordStr[i] === ' ') {
+      i++;
+    } else {
+      result += wordStr[i];
+      i++;
+    }
+  }
+  return result;
+};
+
+/** Split a kana string into max-9 display groups.
+ *  Small kana (ゅ, ょ, etc.) are merged with the preceding character. */
+const splitKanaGroups = (kana: string): string[] => {
+  const small = /[ぁぃぅぇぉゃゅょっゎァィゥェォャュョッヮ]/;
+  const groups: string[] = [];
+  for (const ch of kana) {
+    if (small.test(ch) && groups.length > 0) groups[groups.length - 1] += ch;
+    else groups.push(ch);
+  }
+  while (groups.length > 9) {
+    groups.splice(groups.length - 2, 2, groups[groups.length - 2] + groups[groups.length - 1]);
+  }
+  return groups;
+};
+
 const cancelPronouncing = () => {
   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
 };
@@ -65,7 +101,7 @@ const VocabularyQuizPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
-  const { wordStore, sentenceStore } = useData();
+  const { wordStore, sentenceStore, isWordStoreEmpty, updateWordStore, updateSentenceStore } = useData();
   const { showToast, showAlert } = useUI();
   const { refreshGuest } = useNotifications();
 
@@ -94,7 +130,17 @@ const VocabularyQuizPage: React.FC = () => {
   const [volume, setVolume] = useState(0.2);
   const [showSettings, setShowSettings] = useState(false);
 
+  // Japanese button-input mode
+  const [jpButtonMode, setJpButtonMode] = useState(true);
+  const [builtAnswer, setBuiltAnswer] = useState<string[]>([]);
+  const [kanaGroups, setKanaGroups] = useState<string[]>([]);
+  const [showJpSuccess, setShowJpSuccess] = useState(false);
+
   const settingIdMapRef = useRef<Map<string, number>>(new Map());
+  // Collect every in-flight save-single-record promise so we can await them before navigating
+  const pendingSavesRef = useRef<Promise<void>[]>([]);
+  // Prevents double-trigger of goNext in JP button mode (showJpSuccess state update is async)
+  const jpSuccessFiredRef = useRef(false);
   const quizSettingsRef = useRef<Record<string, QuizSetting>>({});
   const saveSettingsPromiseRef = useRef<Promise<void> | null>(null);
 
@@ -117,17 +163,55 @@ const VocabularyQuizPage: React.FC = () => {
     if (saveSettingsPromiseRef.current === null) {
       const run = async () => {
         await saveQuizSettings(quizSettings);
-        initWordList(quizSettings, finishedIdMap);
+        // initWordList closes over wordStore/sentenceStore from the first render.
+        // If the user navigated here without visiting Home first the stores are empty,
+        // so fetch the dashboard and pass the fresh data directly.
+        let freshWords: WordStore | undefined;
+        let freshSentences: SentenceStore | undefined;
+        if (isWordStoreEmpty()) {
+          try {
+            const response = await doPost('/frontend-api/api/fe/home/dashboard');
+            const d = response.data || {};
+            freshWords = {
+              wordEnglishList: d.wordEnglishList || [],
+              wordGermanList: d.wordGermanList || [],
+              wordJapaneseList: d.wordJapaneseList || [],
+            };
+            freshSentences = {
+              sentenceEnglishList: d.sentenceEnglishList || [],
+              sentenceGermanList: d.sentenceGermanList || [],
+              sentenceJapaneseList: d.sentenceJapaneseList || [],
+            };
+            updateWordStore(freshWords);
+            updateSentenceStore(freshSentences);
+          } catch {
+            // fall through — initWordList will navigate to /home if still empty
+          }
+        }
+        initWordList(quizSettings, finishedIdMap, freshWords, freshSentences);
       };
       saveSettingsPromiseRef.current = run();
     }
   }, []);
 
   useEffect(() => {
-    if (autoInputFocus && inputRef.current) {
+    const isButtonMode = wordList[0]?.language === 'jp' && jpButtonMode && !!wordList[0]?.word;
+    if (autoInputFocus && inputRef.current && !isButtonMode) {
       inputRef.current.focus();
     }
-  }, [currentIndex, autoInputFocus]);
+  }, [currentIndex, autoInputFocus, jpButtonMode, wordList]);
+
+  // Reset kana buttons whenever the word changes or button mode is toggled
+  useEffect(() => {
+    const word = wordList[0];
+    if (!word || word.language !== 'jp' || !jpButtonMode || !word.word) return;
+    const kana = extractKanaAnswer(word.word);
+    const groups = splitKanaGroups(kana);
+    setKanaGroups([...groups].sort(() => Math.random() - 0.5));
+    setBuiltAnswer([]);
+    setShowJpSuccess(false);
+    jpSuccessFiredRef.current = false;
+  }, [wordList[0]?.id, jpButtonMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const saveQuizSettings = async (quizSettings: Record<string, QuizSetting>) => {
     const settingList = Object.keys(quizSettings).map((k) => ({ _key: k, ...quizSettings[k] }));
@@ -176,7 +260,7 @@ const VocabularyQuizPage: React.FC = () => {
   };
 
   const saveSingleRecord = useCallback(
-    async (word: Sentence) => {
+    (word: Sentence) => {
       if (word.recordSaved) return;
       word.recordSaved = true;
 
@@ -185,7 +269,6 @@ const VocabularyQuizPage: React.FC = () => {
       const settingId = settingIdMapRef.current.get(word.tableName || '');
 
       if (!isLoggedIn) {
-        // Guest: persist to localStorage
         saveGuestRecord({
           id: generateId(),
           settingId: settingId ? String(settingId) : '',
@@ -199,31 +282,30 @@ const VocabularyQuizPage: React.FC = () => {
         return;
       }
 
-      try {
-        await doPost('/frontend-api/api/fe/quiz/save-single-record', {
-          answerId: word.id,
-          answerTableName: word.tableName,
-          timeSpent,
-          quizIndex: currentIndex,
-          startTime: startTimeRef.current,
-          finishedTime: currentTime,
-          pronounceCount: pronounceCountRef.current,
-          deleteCount: deleteCountRef.current,
-          wrongCount: wrongCountRef.current,
-          recordQuizSettingId: settingId,
-        });
-      } catch {
-        // Non-critical
-      }
+      const p = doPost('/frontend-api/api/fe/quiz/save-single-record', {
+        answerId: word.id,
+        answerTableName: word.tableName,
+        timeSpent,
+        quizIndex: currentIndex,
+        startTime: startTimeRef.current,
+        finishedTime: currentTime,
+        pronounceCount: pronounceCountRef.current,
+        deleteCount: deleteCountRef.current,
+        wrongCount: wrongCountRef.current,
+        recordQuizSettingId: settingId,
+      }).then(() => {}).catch(() => {});
+      pendingSavesRef.current.push(p);
     },
     [isLoggedIn, currentIndex]
   );
 
   const initWordList = (
     quizSettings: Record<string, QuizSetting>,
-    finishedIdMap: Record<string, number[]>
+    finishedIdMap: Record<string, number[]>,
+    ws?: WordStore,
+    ss?: SentenceStore,
   ) => {
-    const combined: Record<string, Sentence[]> = { ...wordStore, ...sentenceStore } as any;
+    const combined: Record<string, Sentence[]> = { ...(ws ?? wordStore), ...(ss ?? sentenceStore) } as any;
     let list: Sentence[] = [];
 
     Object.keys(quizSettings).forEach((key) => {
@@ -327,7 +409,7 @@ const VocabularyQuizPage: React.FC = () => {
   };
 
   const goNext = useCallback(
-    (current: Sentence) => {
+    async (current: Sentence) => {
       cancelPronouncing();
 
       let needRetest = false;
@@ -361,9 +443,12 @@ const VocabularyQuizPage: React.FC = () => {
 
       const isLastWord = !needRetest && currentIndex + 1 >= totalLength;
       if (isLastWord) {
+        // Wait for all in-flight save-single-record calls before navigating so the
+        // review page sees the complete finishedCount rather than a stale value.
+        await Promise.all(pendingSavesRef.current);
         showToast(t('quiz.finished'));
         if (!isLoggedIn) refreshGuest();
-        navigate('/home', { replace: true });
+        navigate('/review', { replace: true });
         return;
       }
 
@@ -387,6 +472,43 @@ const VocabularyQuizPage: React.FC = () => {
       isLoggedIn, refreshGuest,
     ]
   );
+
+  const handleKanaClick = useCallback((idx: number) => {
+    const word = wordList[0];
+    if (!word || jpSuccessFiredRef.current) return;
+    const kana = extractKanaAnswer(word.word || '');
+    const next = [...builtAnswer, kanaGroups[idx]];
+    setBuiltAnswer(next);
+    if (next.join('') === kana) {
+      jpSuccessFiredRef.current = true;
+      setShowJpSuccess(true);
+      setTimeout(() => {
+        setShowJpSuccess(false);
+        goNext(word);
+      }, 2000);
+    }
+  }, [wordList, kanaGroups, builtAnswer, goNext]);
+
+  // Number-key (1–9) and Backspace shortcuts for button mode
+  useEffect(() => {
+    const word = wordList[0];
+    if (!word || word.language !== 'jp' || !jpButtonMode || !word.word) return;
+    const handler = (e: KeyboardEvent) => {
+      if (jpSuccessFiredRef.current) return;
+      if (e.key === 'Backspace') {
+        e.preventDefault();
+        setBuiltAnswer((p) => p.slice(0, -1));
+        return;
+      }
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= kanaGroups.length) {
+        e.preventDefault();
+        handleKanaClick(n - 1);
+      }
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [wordList, jpButtonMode, kanaGroups, handleKanaClick]);
 
   const handleRevealAnswer = () => {
     wrongCountRef.current += 5;
@@ -421,6 +543,8 @@ const VocabularyQuizPage: React.FC = () => {
   };
 
   const current = wordList[0];
+  // Button mode: JP words only (not sentence-only entries)
+  const isJpButtonMode = !!(current?.language === 'jp' && jpButtonMode && current?.word);
 
   if (!current) {
     return (
@@ -473,6 +597,7 @@ const VocabularyQuizPage: React.FC = () => {
                 { label: t('quiz.pronounceSentence'), val: autoPronounceSentence, set: setAutoPronounceSentence },
                 { label: t('quiz.autoFocus'), val: autoInputFocus, set: setAutoInputFocus },
                 { label: t('quiz.japaneseMode'), val: japaneseMode, set: setJapaneseMode },
+                { label: t('quiz.jpButtonInput'), val: jpButtonMode, set: setJpButtonMode },
                 { label: t('quiz.failWithoutMask'), val: failWhenMaskOff, set: setFailWhenMaskOff },
               ].map(({ label, val, set }) => (
                 <button
@@ -559,22 +684,76 @@ const VocabularyQuizPage: React.FC = () => {
         </div>
 
         {/* Answer input */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
-          <label className="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-2">{t('quiz.yourAnswer')}</label>
-          <input
-            ref={inputRef}
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            placeholder={japaneseMode ? t('quiz.placeholderJapanese') : t('quiz.placeholderDefault')}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            spellCheck={false}
-            className="w-full text-base border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 rounded-xl px-4 py-3 outline-none transition-colors"
-          />
-        </div>
+        {isJpButtonMode ? (
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
+            {showJpSuccess ? (
+              /* 2-second success flash: show kanji + kana */
+              <div className="flex flex-col items-center justify-center py-2 gap-1">
+                <span className="text-green-500 text-xl font-bold">✓</span>
+                <p className="text-2xl font-bold text-gray-800 dark:text-gray-100 tracking-wide">
+                  {(current.word || '').replace(/\[.*?\]/g, '').replace(/\s+/g, '')}
+                </p>
+                <p className="text-sm text-gray-400 dark:text-gray-500 tracking-widest">
+                  {extractKanaAnswer(current.word || '')}
+                </p>
+              </div>
+            ) : (
+              <>
+                {/* Built-answer slots */}
+                <div className="flex flex-wrap gap-1.5 mb-3 min-h-[2.5rem] items-center">
+                  {kanaGroups.map((_, i) => (
+                    <span
+                      key={i}
+                      className={`inline-flex items-center justify-center min-w-[2.25rem] h-9 px-1.5 rounded-lg text-base font-bold border-2 transition-colors ${
+                        i < builtAnswer.length
+                          ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-200'
+                          : 'border-dashed border-gray-300 dark:border-gray-600 text-transparent select-none'
+                      }`}
+                    >
+                      {i < builtAnswer.length ? builtAnswer[i] : '　'}
+                    </span>
+                  ))}
+                  {builtAnswer.length > 0 && (
+                    <button
+                      onClick={() => setBuiltAnswer((p) => p.slice(0, -1))}
+                      className="h-9 px-2.5 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-gray-400 hover:text-red-400 hover:border-red-300 transition-colors text-sm font-medium"
+                    >⌫</button>
+                  )}
+                </div>
+                {/* Shuffled kana buttons labeled 1–9 */}
+                <div className="grid grid-cols-3 gap-2">
+                  {kanaGroups.map((group, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleKanaClick(i)}
+                      className="relative flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:scale-95 transition-all"
+                    >
+                      <span className="absolute top-0.5 left-1.5 text-[10px] font-mono text-gray-400 dark:text-gray-500">{i + 1}</span>
+                      <span className="text-lg font-bold text-gray-800 dark:text-gray-100">{group}</span>
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
+            <label className="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-2">{t('quiz.yourAnswer')}</label>
+            <input
+              ref={inputRef}
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              placeholder={japaneseMode ? t('quiz.placeholderJapanese') : t('quiz.placeholderDefault')}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              className="w-full text-base border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 rounded-xl px-4 py-3 outline-none transition-colors"
+            />
+          </div>
+        )}
 
         {/* Action buttons */}
         <div className="grid grid-cols-3 gap-3">

@@ -56,6 +56,7 @@ const en = {
     pronounceSentence: 'Pronounce Sentence',
     autoFocus: 'Auto Focus',
     japaneseMode: 'Japanese Mode',
+    jpButtonInput: 'Button Input',
     failWithoutMask: 'Fail w/o Mask',
     speed: 'Speed: {{value}}',
     volume: 'Volume: {{value}}%',
