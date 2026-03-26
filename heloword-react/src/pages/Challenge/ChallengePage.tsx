@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useChallenge } from '../../contexts/ChallengeContext';
@@ -130,6 +131,7 @@ const ChallengePage: React.FC = () => {
   const { rooms, currentRoom, joinRoomAction, leaveRoomAction } = useChallenge();
   const [showCreate, setShowCreate] = useState(false);
   const [joining, setJoining] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   if (currentRoom) {
     return <ChallengeRoomPage onLeave={leaveRoomAction} />;
@@ -184,6 +186,35 @@ const ChallengePage: React.FC = () => {
             {t('challenge.noRooms')}
           </div>
         )}
+
+        {/* Side Games section */}
+        <div>
+          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
+            {t('scramble.sideGames')}
+          </p>
+          <div className="space-y-2">
+            {[
+              { lang: 'jp', icon: '🇯🇵', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)', titleKey: 'scramble.titleJp', descKey: 'scramble.descJp' },
+              { lang: 'en', icon: '🇬🇧', gradient: 'linear-gradient(135deg, #a29bfe, #6c5ce7)', titleKey: 'scramble.titleEn', descKey: 'scramble.descEn' },
+            ].map(({ lang: l, icon, gradient, titleKey, descKey }) => (
+              <button
+                key={l}
+                onClick={() => navigate('/challenge/scramble', { state: { lang: l } })}
+                className="w-full flex items-center gap-3 p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-purple-400 dark:hover:border-purple-600 transition-colors text-left"
+              >
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style={{ background: gradient }}>
+                  {icon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{t(titleKey)}</p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{t(descKey)}</p>
+                </div>
+                <span className="text-gray-300 dark:text-gray-600">›</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
       </main>
 
       {showCreate && (
