@@ -15,6 +15,7 @@ const EMPTY_WORD_STORE: WordStore = {
   wordEnglishList: [],
   wordGermanList: [],
   wordJapaneseList: [],
+  wordJapaneseVerbList: [],
 };
 
 const EMPTY_SENTENCE_STORE: SentenceStore = {
@@ -41,7 +42,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     () =>
       !wordStore.wordEnglishList?.length &&
       !wordStore.wordGermanList?.length &&
-      !wordStore.wordJapaneseList?.length,
+      !wordStore.wordJapaneseList?.length &&
+      !wordStore.wordJapaneseVerbList?.length,
     [wordStore]
   );
 

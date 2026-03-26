@@ -259,6 +259,7 @@ const ja = {
     wordEnglishList: '英語単語',
     wordGermanList: 'ドイツ語単語',
     wordJapaneseList: '日本語単語',
+    wordJapaneseVerbList: '日本語動詞',
     sentenceEnglishList: '英語文章',
     sentenceGermanList: 'ドイツ語文章',
     sentenceJapaneseList: '日本語文章',

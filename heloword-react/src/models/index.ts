@@ -35,6 +35,7 @@ export interface Word {
   language: string;
   tableName?: string;
   recordSaved?: boolean;
+  _quizType?: string;
 }
 
 export interface Sentence extends Word {
@@ -66,6 +67,7 @@ export interface WordStore {
   wordEnglishList: Sentence[];
   wordGermanList: Sentence[];
   wordJapaneseList: Sentence[];
+  wordJapaneseVerbList: Sentence[];
 }
 
 export interface SentenceStore {
@@ -79,6 +81,7 @@ export const TYPE_TO_TABLE_MAP: Record<string, string> = {
   wordEnglishList: 'word_english',
   wordGermanList: 'word_german',
   wordJapaneseList: 'word_japanese',
+  wordJapaneseVerbList: 'word_japanese',
   sentenceEnglishList: 'sentence_english',
   sentenceGermanList: 'sentence_german',
   sentenceJapaneseList: 'sentence_japanese',
@@ -117,6 +120,7 @@ export const WORD_SENTENCE_TITLE_MAP: Record<string, string> = {
   wordEnglishList: 'English Words',
   wordGermanList: 'German Words',
   wordJapaneseList: 'Japanese Words',
+  wordJapaneseVerbList: 'Japanese Verbs',
   sentenceEnglishList: 'English Sentences',
   sentenceGermanList: 'German Sentences',
   sentenceJapaneseList: 'Japanese Sentences',

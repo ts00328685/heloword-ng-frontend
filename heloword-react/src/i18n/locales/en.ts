@@ -259,6 +259,7 @@ const en = {
     wordEnglishList: 'English Words',
     wordGermanList: 'German Words',
     wordJapaneseList: 'Japanese Words',
+    wordJapaneseVerbList: 'Japanese Verbs',
     sentenceEnglishList: 'English Sentences',
     sentenceGermanList: 'German Sentences',
     sentenceJapaneseList: 'Japanese Sentences',

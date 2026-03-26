@@ -259,6 +259,7 @@ const zh = {
     wordEnglishList: '英文單字',
     wordGermanList: '德文單字',
     wordJapaneseList: '日文單字',
+    wordJapaneseVerbList: '日文動詞',
     sentenceEnglishList: '英文句子',
     sentenceGermanList: '德文句子',
     sentenceJapaneseList: '日文句子',

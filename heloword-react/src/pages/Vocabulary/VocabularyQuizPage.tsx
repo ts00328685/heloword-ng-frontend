@@ -176,6 +176,7 @@ const VocabularyQuizPage: React.FC = () => {
               wordEnglishList: d.wordEnglishList || [],
               wordGermanList: d.wordGermanList || [],
               wordJapaneseList: d.wordJapaneseList || [],
+              wordJapaneseVerbList: d.wordJapaneseVerbList || [],
             };
             freshSentences = {
               sentenceEnglishList: d.sentenceEnglishList || [],
@@ -221,7 +222,7 @@ const VocabularyQuizPage: React.FC = () => {
       const alreadyPersistedGuest = settingList.some((s) => !!(s as any)._guestId);
       if (alreadyPersistedGuest) {
         settingList.forEach((s) => {
-          settingIdMapRef.current.set(s.tableName, (s as any)._guestId);
+          settingIdMapRef.current.set(s.type, (s as any)._guestId);
         });
         return;
       }
@@ -238,21 +239,21 @@ const VocabularyQuizPage: React.FC = () => {
           max: s.max ?? s.total,
           total: s.total,
         });
-        settingIdMapRef.current.set(s.tableName, id as any);
+        settingIdMapRef.current.set(s.type, id as any);
       });
       return;
     }
 
     const alreadyPersisted = settingList.some((s) => !!s.id);
     if (alreadyPersisted) {
-      settingList.forEach((s) => settingIdMapRef.current.set(s.tableName, s.id!));
+      settingList.forEach((s) => settingIdMapRef.current.set(s.type, s.id!));
       return;
     }
 
     try {
       const response = await doPost('/frontend-api/api/fe/quiz/save-setting-records', settingList);
       settingList.forEach((s, idx) => {
-        settingIdMapRef.current.set(s.tableName, response.data.ids[idx]);
+        settingIdMapRef.current.set(s.type, response.data.ids[idx]);
       });
     } catch {
       // Non-critical
@@ -266,7 +267,7 @@ const VocabularyQuizPage: React.FC = () => {
 
       const currentTime = new Date();
       const timeSpent = (currentTime.getTime() - startTimeRef.current.getTime()) / 1000;
-      const settingId = settingIdMapRef.current.get(word.tableName || '');
+      const settingId = settingIdMapRef.current.get(word._quizType || word.tableName || '');
 
       if (!isLoggedIn) {
         saveGuestRecord({
@@ -313,7 +314,7 @@ const VocabularyQuizPage: React.FC = () => {
       const s = quizSettings[key];
       const min = (s.min ?? 1) - 1;
       const max = s.max ?? combined[key].length;
-      list = [...list, ...combined[key].slice(min, max)];
+      list = [...list, ...combined[key].slice(min, max).map((w) => ({ ...w, _quizType: key }))];
     });
 
     list = list.sort(() => Math.random() - 0.5);
@@ -333,7 +334,7 @@ const VocabularyQuizPage: React.FC = () => {
     const hasFinished = Object.keys(finishedIdMap).length > 0;
     if (hasFinished) {
       list = list.filter((word) => {
-        const settingId = settingIdMapRef.current.get(word.tableName || '');
+        const settingId = settingIdMapRef.current.get(word._quizType || word.tableName || '');
         const finishedIds = settingId ? finishedIdMap[settingId] || [] : [];
         return !finishedIds.includes(word.id);
       });

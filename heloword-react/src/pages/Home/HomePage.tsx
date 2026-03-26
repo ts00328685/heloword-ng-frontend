@@ -80,6 +80,7 @@ const HomePage: React.FC = () => {
         wordEnglishList: d.wordEnglishList || [],
         wordGermanList: d.wordGermanList || [],
         wordJapaneseList: d.wordJapaneseList || [],
+        wordJapaneseVerbList: d.wordJapaneseVerbList || [],
       };
 
       updateWordStore(words);
@@ -118,6 +119,7 @@ const HomePage: React.FC = () => {
     { key: 'wordEnglishList', list: wordStore.wordEnglishList },
     { key: 'wordGermanList', list: wordStore.wordGermanList },
     { key: 'wordJapaneseList', list: wordStore.wordJapaneseList },
+    { key: 'wordJapaneseVerbList', list: wordStore.wordJapaneseVerbList },
     { key: 'sentenceEnglishList', list: sentenceStore.sentenceEnglishList },
     { key: 'sentenceGermanList', list: sentenceStore.sentenceGermanList },
     { key: 'sentenceJapaneseList', list: sentenceStore.sentenceJapaneseList },
