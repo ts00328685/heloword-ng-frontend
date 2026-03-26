@@ -13,6 +13,7 @@ const TYPE_COLOR: Record<string, { bg: string; dot: string; badge: string }> = {
   wordEnglishList:     { bg: 'bg-blue-50 dark:bg-blue-900/20',   dot: 'bg-blue-400',   badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300' },
   wordGermanList:      { bg: 'bg-red-50 dark:bg-red-900/20',     dot: 'bg-red-400',    badge: 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-300' },
   wordJapaneseList:    { bg: 'bg-pink-50 dark:bg-pink-900/20',   dot: 'bg-pink-400',   badge: 'bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-300' },
+  wordJapaneseVerbList:{ bg: 'bg-rose-50 dark:bg-rose-900/20',   dot: 'bg-rose-500',   badge: 'bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300' },
   sentenceEnglishList: { bg: 'bg-cyan-50 dark:bg-cyan-900/20',   dot: 'bg-cyan-400',   badge: 'bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-300' },
   sentenceGermanList:  { bg: 'bg-orange-50 dark:bg-orange-900/20', dot: 'bg-orange-400', badge: 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-300' },
   sentenceJapaneseList:{ bg: 'bg-purple-50 dark:bg-purple-900/20', dot: 'bg-purple-400', badge: 'bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300' },
@@ -241,6 +242,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
           wordEnglishList: d.wordEnglishList || [],
           wordGermanList: d.wordGermanList || [],
           wordJapaneseList: d.wordJapaneseList || [],
+          wordJapaneseVerbList: d.wordJapaneseVerbList || [],
         };
         const sentences = {
           sentenceEnglishList: d.sentenceEnglishList || [],
