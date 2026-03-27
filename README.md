@@ -2,11 +2,8 @@ A web app to learn and review vocabulary of various languages
 <img width="945" alt="圖片" src="https://user-images.githubusercontent.com/43750759/190847346-7781a0d9-f499-4290-8cc5-d6e6674fd59a.png">
 
 Frequently updated
-https://www.heloword.com/k8s/ng-frontend/v1
+https://www.heloword.com
 
-Intro:
-https://www.youtube.com/watch?v=zmdaJGhAMhE
-<!-- GETTING STARTED -->
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
