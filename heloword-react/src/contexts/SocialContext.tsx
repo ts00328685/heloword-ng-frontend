@@ -15,6 +15,7 @@ import {
   OnlineUser,
   acceptFriendRequest,
   computeRoomId,
+  fetchChatRooms,
   fetchFriends,
   fetchMessages,
   fetchOnlineUsers,
@@ -51,6 +52,10 @@ interface SocialContextType {
   /** roomId → messages[] */
   messageMap: Record<string, ChatMessage[]>;
 
+  /** Latest message per room, sorted by most recent */
+  chatRooms: ChatMessage[];
+  loadChatRooms: () => Promise<void>;
+
   activeChatUserId: string | null;
   openChat: (userId: string, displayName: string) => void;
   closeChat: () => void;
@@ -84,6 +89,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [friends, setFriends] = useState<Friend[]>([]);
   const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});
   const [messageMap, setMessageMap] = useState<Record<string, ChatMessage[]>>({});
+  const [chatRooms, setChatRooms] = useState<ChatMessage[]>([]);
   const [activeChatUserId, setActiveChatUserId] = useState<string | null>(null);
   const [notifications, setNotifications] = useState<MessageNotification[]>([]);
   const activeChatUserIdRef = useRef<string | null>(null);
@@ -305,6 +311,20 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [activeChatUserId, myUserId, myDisplayName]);
 
+  const loadChatRooms = useCallback(async () => {
+    if (!myUserId) return;
+    const rooms = await fetchChatRooms(myUserId).catch(() => [] as ChatMessage[]);
+    setChatRooms(rooms);
+    // Merge into messageMap so chats opened from the Messages tab have their last message pre-loaded
+    setMessageMap((prev) => {
+      const next = { ...prev };
+      rooms.forEach((msg) => {
+        if (!next[msg.roomId]) next[msg.roomId] = [msg];
+      });
+      return next;
+    });
+  }, [myUserId]);
+
   const refreshFriends = useCallback(async () => {
     if (!isLoggedIn) return;
     const f = await fetchFriends().catch(() => [] as Friend[]);
@@ -352,6 +372,8 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         friends,
         unreadCounts,
         messageMap,
+        chatRooms,
+        loadChatRooms,
         activeChatUserId,
         openChat,
         closeChat,

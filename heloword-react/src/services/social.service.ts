@@ -115,6 +115,11 @@ export async function fetchUnreadCounts(recipientUserId: string): Promise<Record
   return res.code === '0000' ? (res.data ?? {}) : {};
 }
 
+export async function fetchChatRooms(userId: string): Promise<ChatMessage[]> {
+  const res = await doGet('/frontend-api/api/fe/social/messages/rooms', { userId });
+  return res.code === '0000' ? (res.data ?? []) : [];
+}
+
 // ── Friends (logged-in only) ──────────────────────────────────────────────
 
 export async function fetchFriends(): Promise<Friend[]> {

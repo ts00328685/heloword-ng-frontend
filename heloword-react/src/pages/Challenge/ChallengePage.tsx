@@ -137,7 +137,7 @@ const ChallengePage: React.FC = () => {
     return <ChallengeRoomPage onLeave={leaveRoomAction} />;
   }
 
-  const systemRoom = rooms.find(r => r.system);
+  const systemRooms = rooms.filter(r => r.system);
   const userRooms = rooms.filter(r => !r.system);
 
   const handleJoin = async (roomId: string) => {
@@ -163,10 +163,12 @@ const ChallengePage: React.FC = () => {
           </button>
         )}
 
-        {systemRoom && (
+        {systemRooms.length > 0 && (
           <div>
             <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">{t('challenge.featured')}</p>
-            <RoomCard room={systemRoom} onJoin={handleJoin} />
+            <div className="space-y-2">
+              {systemRooms.map(room => <RoomCard key={room.id} room={room} onJoin={handleJoin} />)}
+            </div>
           </div>
         )}
 
@@ -181,7 +183,7 @@ const ChallengePage: React.FC = () => {
           </div>
         )}
 
-        {rooms.length === 0 && (
+        {userRooms.length === 0 && systemRooms.length === 0 && (
           <div className="text-center py-12 text-gray-400 dark:text-gray-500 text-sm">
             {t('challenge.noRooms')}
           </div>

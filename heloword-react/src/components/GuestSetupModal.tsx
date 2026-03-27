@@ -103,7 +103,7 @@ const GuestSetupModal: React.FC = () => {
             ref={inputRef}
             type="text"
             value={nickname}
-            onChange={(e) => setNickname(e.target.value.replace(/\s/g, '').slice(0, MAX_LENGTH))}
+            onChange={(e) => setNickname(e.target.value.slice(0, MAX_LENGTH))}
             onKeyDown={handleKeyDown}
             placeholder={t('guestSetup.placeholder')}
             className="w-full pl-[4.5rem] pr-3 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
