@@ -101,7 +101,7 @@ const VocabularyQuizPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
-  const { wordStore, sentenceStore, isWordStoreEmpty, updateWordStore, updateSentenceStore } = useData();
+  const { wordStore, sentenceStore, isFullyLoaded, loadFullDashboard, updateWordStore, updateSentenceStore } = useData();
   const { showToast, showAlert } = useUI();
   const { refreshGuest } = useNotifications();
 
@@ -168,23 +168,11 @@ const VocabularyQuizPage: React.FC = () => {
         // so fetch the dashboard and pass the fresh data directly.
         let freshWords: WordStore | undefined;
         let freshSentences: SentenceStore | undefined;
-        if (isWordStoreEmpty()) {
+        if (!isFullyLoaded) {
           try {
-            const response = await doPost('/frontend-api/api/fe/home/dashboard');
-            const d = response.data || {};
-            freshWords = {
-              wordEnglishList: d.wordEnglishList || [],
-              wordGermanList: d.wordGermanList || [],
-              wordJapaneseList: d.wordJapaneseList || [],
-              wordJapaneseVerbList: d.wordJapaneseVerbList || [],
-            };
-            freshSentences = {
-              sentenceEnglishList: d.sentenceEnglishList || [],
-              sentenceGermanList: d.sentenceGermanList || [],
-              sentenceJapaneseList: d.sentenceJapaneseList || [],
-            };
-            updateWordStore(freshWords);
-            updateSentenceStore(freshSentences);
+            const { words, sentences } = await loadFullDashboard();
+            freshWords = words;
+            freshSentences = sentences;
           } catch {
             // fall through — initWordList will navigate to /home if still empty
           }

@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { QuizSetting, Sentence, WordStore } from '../models';
+import { QuizSetting } from '../models';
 import { useData } from '../contexts/DataContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useUI } from '../contexts/UIContext';
-import { doPost } from '../services/api.service';
 import { DEFAULT_INTERVALS_MS, getIntervals, saveIntervals, formatInterval } from '../utils/ebbinghaus';
 
 // Language color palette keyed by list type
@@ -187,7 +186,7 @@ interface QuizSettingModalProps {
 }
 
 const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
-  const { wordStore, sentenceStore, isWordStoreEmpty, isSentenceStoreEmpty, updateWordStore, updateSentenceStore } = useData();
+  const { wordStore, sentenceStore, isFullyLoaded, loadFullDashboard } = useData();
   const { isLoggedIn } = useAuth();
   const { showAlert } = useUI();
   const { t } = useTranslation();
@@ -231,31 +230,12 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
   const [settings, setSettings] = useState<QuizSetting[]>(buildInitialSettings);
 
   useEffect(() => {
-    if (fetchedRef.current || !isWordStoreEmpty() || !isSentenceStoreEmpty()) return;
+    if (fetchedRef.current || isFullyLoaded) return;
     fetchedRef.current = true;
     setDataLoading(true);
     setLoadError(false);
-    doPost('/frontend-api/api/fe/home/dashboard')
-      .then((response) => {
-        const d = response.data || {};
-        const words: WordStore = {
-          wordEnglishList: d.wordEnglishList || [],
-          wordGermanList: d.wordGermanList || [],
-          wordJapaneseList: d.wordJapaneseList || [],
-          wordJapaneseVerbList: d.wordJapaneseVerbList || [],
-        };
-        const sentences = {
-          sentenceEnglishList: d.sentenceEnglishList || [],
-          sentenceGermanList: d.sentenceGermanList || [],
-          sentenceJapaneseList: d.sentenceJapaneseList || [],
-        };
-        if (isLoggedIn && d.sentenceEnglishList?.length) {
-          const sentenceMap: Record<string, string> = {};
-          (d.sentenceEnglishList as Sentence[]).forEach((s) => { if (s.word) sentenceMap[s.word] = s.sentence; });
-          (words.wordEnglishList || []).forEach((w) => { if (sentenceMap[w.word]) w.sentence = sentenceMap[w.word]; });
-        }
-        updateWordStore(words);
-        updateSentenceStore(sentences);
+    loadFullDashboard()
+      .then(({ words, sentences }) => {
         setSettings(buildInitialSettings(words, sentences));
       })
       .catch(() => setLoadError(true))

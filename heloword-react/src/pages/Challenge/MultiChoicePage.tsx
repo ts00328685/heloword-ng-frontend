@@ -114,7 +114,7 @@ const MultiChoicePage: React.FC = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const { wordStore, isWordStoreEmpty } = useData();
+  const { wordStore, isFullyLoaded, loadFullDashboard } = useData();
 
   const gameType: GameType = (location.state as { gameType?: GameType } | null)?.gameType ?? 'en';
 
@@ -195,6 +195,13 @@ const MultiChoicePage: React.FC = () => {
     if (advanceTimer.current) clearTimeout(advanceTimer.current);
   }, []);
 
+  // Auto-load full data if not yet loaded
+  useEffect(() => {
+    if (!isFullyLoaded) {
+      loadFullDashboard().catch(() => {});
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // ── Choice button styling ────────────────────────────────────────────────
 
   const choiceBtnClass = (word: Word): string => {
@@ -211,22 +218,15 @@ const MultiChoicePage: React.FC = () => {
     return `${base} bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 opacity-50`;
   };
 
-  // ── Empty store guard ────────────────────────────────────────────────────
+  // ── Loading guard ────────────────────────────────────────────────────────
 
-  if (isWordStoreEmpty()) {
+  if (!isFullyLoaded) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
         <Header title={t(gameType === 'en' ? 'multiChoice.titleEn' : 'multiChoice.titleJp')} />
-        <main className="flex-1 flex flex-col items-center justify-center px-6 text-center gap-4">
-          <p className="text-4xl">📚</p>
-          <p className="text-sm font-medium text-gray-600 dark:text-gray-300">{t('multiChoice.noData')}</p>
-          <p className="text-xs text-gray-400 dark:text-gray-500">{t('multiChoice.noDataHint')}</p>
-          <button
-            onClick={() => navigate('/home')}
-            className="px-6 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold"
-          >
-            {t('nav.home')} →
-          </button>
+        <main className="flex-1 flex flex-col items-center justify-center gap-3">
+          <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm text-gray-400 dark:text-gray-500">{t('common.loading')}</p>
         </main>
       </div>
     );

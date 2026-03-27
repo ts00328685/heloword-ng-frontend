@@ -19,9 +19,9 @@ const zh = {
     challenge: '挑戰',
   },
   home: {
-    quizTitle: '單字測驗',
-    quizSubtitle: '練習多語言單字與句子',
-    goToQuiz: '前往測驗 →',
+    quizTitle: '死記硬背絕對有用',
+    quizSubtitle: '善用遺忘曲線把單字留在長期記憶',
+    goToQuiz: '開始吧',
     dueWords: '{{count}} 個群組需要複習',
     dueCurve: '根據您的遺忘曲線',
     loading: '載入單字列表中...',
@@ -249,6 +249,7 @@ const zh = {
     confirm: '出發吧！',
     skip: '暫時跳過',
     preview: '你將顯示為：',
+    languageLabel: '介面語言',
   },
   cookie: {
     message: '我們使用 Cookie 進行工作階段管理與偏好設定。',
@@ -322,6 +323,36 @@ const zh = {
     sentenceEnglishList: '英文句子',
     sentenceGermanList: '德文句子',
     sentenceJapaneseList: '日文句子',
+  },
+  tour: {
+    skip: '跳過',
+    next: '下一步 →',
+    done: '知道了！',
+    stepOf: '{{current}} / {{total}}',
+    home: {
+      title: '首頁',
+      desc: '載入單字列表，快速查看即將到來的複習提醒。每次學習從這裡開始。',
+    },
+    quiz: {
+      title: '測驗',
+      desc: '開始詞彙測驗。選擇要練習的單字群組並設定範圍。',
+    },
+    review: {
+      title: '複習',
+      desc: '追蹤間隔重複學習進度。到期的複習群組會在這裡顯示，別錯過！',
+    },
+    stats: {
+      title: '統計',
+      desc: '查看正確率、總複習次數及隨時間推移的進度圖表。',
+    },
+    social: {
+      title: '社交',
+      desc: '查看在線用戶、發送好友邀請，並與其他學習者即時聊天。',
+    },
+    challenge: {
+      title: '挑戰',
+      desc: '參加即時單字遊戲，或嘗試句子重組和多選題小遊戲。',
+    },
   },
 } as const;
 

@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { useSocial } from '../contexts/SocialContext';
+import { changeLanguage, Language, LANGUAGES } from '../i18n';
 
 const MAX_LENGTH = 16;
 
 const GuestSetupModal: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isLoggedIn, hasCheckedLoginStatus } = useAuth();
   const { setGuestName } = useSocial();
 
@@ -70,6 +71,28 @@ const GuestSetupModal: React.FC = () => {
         <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-5">
           {t('guestSetup.subtitle')}
         </p>
+
+        {/* Language selection */}
+        <div className="mb-5">
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide text-center mb-2">
+            {t('guestSetup.languageLabel')}
+          </p>
+          <div className="flex gap-2 justify-center">
+            {LANGUAGES.map(({ code, label }) => (
+              <button
+                key={code}
+                onClick={() => changeLanguage(code as Language)}
+                className={`flex-1 py-2 rounded-xl text-sm font-semibold border transition-colors ${
+                  i18n.language === code
+                    ? 'bg-blue-500 border-blue-500 text-white'
+                    : 'bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-blue-400'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* Input */}
         <div className="relative mb-2">
