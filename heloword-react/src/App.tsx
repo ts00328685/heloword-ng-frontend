@@ -15,6 +15,7 @@ import { SocialProvider } from './contexts/SocialContext';
 import { ChallengeProvider } from './contexts/ChallengeContext';
 import ChallengePage from './pages/Challenge/ChallengePage';
 import SentenceScramblePage from './pages/Challenge/SentenceScramblePage';
+import MultiChoicePage from './pages/Challenge/MultiChoicePage';
 import GuestSetupModal from './components/GuestSetupModal';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import HomePage from './pages/Home/HomePage';
@@ -56,6 +57,7 @@ const AppLayout: React.FC = () => {
         <Route path="/social" element={<SocialPage />} />
         <Route path="/challenge" element={<ChallengePage />} />
         <Route path="/challenge/scramble" element={<SentenceScramblePage />} />
+        <Route path="/challenge/quiz" element={<MultiChoicePage />} />
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
