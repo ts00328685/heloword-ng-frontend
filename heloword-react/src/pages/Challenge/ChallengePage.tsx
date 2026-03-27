@@ -194,13 +194,15 @@ const ChallengePage: React.FC = () => {
           </p>
           <div className="space-y-2">
             {[
-              { lang: 'jp', icon: '🇯🇵', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)', titleKey: 'scramble.titleJp', descKey: 'scramble.descJp' },
-              { lang: 'en', icon: '🇬🇧', gradient: 'linear-gradient(135deg, #a29bfe, #6c5ce7)', titleKey: 'scramble.titleEn', descKey: 'scramble.descEn' },
-            ].map(({ lang: l, icon, gradient, titleKey, descKey }) => (
+              { path: '/challenge/scramble', state: { lang: 'jp' }, icon: '🇯🇵', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)', titleKey: 'scramble.titleJp',        descKey: 'scramble.descJp' },
+              { path: '/challenge/scramble', state: { lang: 'en' }, icon: '🇬🇧', gradient: 'linear-gradient(135deg, #a29bfe, #6c5ce7)', titleKey: 'scramble.titleEn',        descKey: 'scramble.descEn' },
+              { path: '/challenge/quiz',     state: { gameType: 'en' }, icon: '🔤', gradient: 'linear-gradient(135deg, #00b894, #00cec9)', titleKey: 'multiChoice.titleEn', descKey: 'multiChoice.descEn' },
+              { path: '/challenge/quiz',     state: { gameType: 'jp' }, icon: '🈶', gradient: 'linear-gradient(135deg, #fdcb6e, #e17055)', titleKey: 'multiChoice.titleJp', descKey: 'multiChoice.descJp' },
+            ].map(({ path, state, icon, gradient, titleKey, descKey }) => (
               <button
-                key={l}
-                onClick={() => navigate('/challenge/scramble', { state: { lang: l } })}
-                className="w-full flex items-center gap-3 p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-purple-400 dark:hover:border-purple-600 transition-colors text-left"
+                key={titleKey}
+                onClick={() => navigate(path, { state })}
+                className="w-full flex items-center gap-3 p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-blue-400 dark:hover:border-blue-600 transition-colors text-left"
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style={{ background: gradient }}>
                   {icon}
