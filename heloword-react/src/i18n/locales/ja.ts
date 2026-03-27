@@ -92,6 +92,7 @@ const ja = {
     ebbinghausTitle: '間隔反復（エビングハウス曲線）',
     ebbinghausDesc: 'グループを完了すると、Helowordが最適なタイミングで復習をスケジュールします：20分 → 1時間 → 8時間 → 1日 → 2日 → 6日 → 31日。復習を逃すと進捗がリセットされます！',
     recommendedSize: 'ヒント：グループは20〜50語が最も効果的です。',
+    quickSelect: 'クイック選択',
     customizeIntervals: '復習間隔（分）',
     resetIntervals: 'デフォルトにリセット',
     saveIntervals: '間隔を保存',

@@ -92,6 +92,7 @@ const en = {
     ebbinghausTitle: 'Spaced Repetition (Ebbinghaus Curve)',
     ebbinghausDesc: 'After finishing a group, Heloword schedules reviews at increasing intervals: 20 min → 1 h → 8 h → 1 day → 2 days → 6 days → 31 days. Miss a window and your progress resets — so review on time!',
     recommendedSize: 'Tip: Keep each group to 20–50 words for best results.',
+    quickSelect: 'Quick select',
     customizeIntervals: 'Review Intervals (minutes)',
     resetIntervals: 'Reset to defaults',
     saveIntervals: 'Save intervals',

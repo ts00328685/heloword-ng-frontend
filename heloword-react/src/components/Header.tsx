@@ -193,7 +193,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 ref={inputRef}
                 type="text"
                 value={draft}
-                onChange={(e) => setDraft(e.target.value.replace(/\s/g, '').slice(0, MAX_NICK))}
+                onChange={(e) => setDraft(e.target.value.slice(0, MAX_NICK))}
                 onKeyDown={handleKeyDown}
                 placeholder={isLoggedIn ? t('common.nicknamePlaceholder', 'Your nickname…') : t('guestSetup.placeholder')}
                 className={`w-full ${!isLoggedIn ? 'pl-[4.5rem]' : 'pl-3'} pr-3 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500`}

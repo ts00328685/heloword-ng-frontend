@@ -92,6 +92,7 @@ const zh = {
     ebbinghausTitle: '間隔重複（艾賓浩斯曲線）',
     ebbinghausDesc: '完成一個群組後，Heloword 按遞增間隔安排複習：20 分鐘 → 1 小時 → 8 小時 → 1 天 → 2 天 → 6 天 → 31 天。錯過窗口將重置進度——請準時複習！',
     recommendedSize: '提示：每組建議 20–50 個單字，效果最佳。',
+    quickSelect: '快速選擇',
     customizeIntervals: '複習間隔（分鐘）',
     resetIntervals: '重置為預設值',
     saveIntervals: '儲存間隔',
@@ -287,8 +288,8 @@ const zh = {
     scrambleDesc: '重組句子碎片 — 日文與英文',
     titleJp: '🔀 日文句子重組',
     titleEn: '🔀 英文句子重組',
-    descJp: '重組日文句子碎片（N2 程度）',
-    descEn: '重組英文句子碎片',
+    descJp: '重組日文句子',
+    descEn: '重組英文句子',
   },
   multiChoice: {
     titleEn: '🔤 英文多選測驗',

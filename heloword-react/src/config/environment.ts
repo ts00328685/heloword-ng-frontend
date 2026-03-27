@@ -13,8 +13,6 @@ export interface Environment {
     enableClientLog: boolean;
   };
   cipher: CipherConfig;
-  retrieveIpUrl: string;
-  userIp: string;
 }
 
 // Mutable environment config (cipher & userIp are populated at runtime)
@@ -28,6 +26,4 @@ export const environment: Environment = {
     enableClientLog: true,
   },
   cipher: { aesKey: '', aesIv: '' },
-  retrieveIpUrl: 'https://jsonip.com',
-  userIp: '0.0.0.0',
 };

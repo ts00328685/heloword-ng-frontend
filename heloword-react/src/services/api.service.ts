@@ -4,7 +4,6 @@ import { generateCV, generateUUID } from './utils.service';
 import { CommonResponse } from '../models';
 
 let _axiosInstance: AxiosInstance | null = null;
-let _ipFetchPromise: Promise<void> | null = null;
 
 /**
  * Build common headers that must be sent with every API request.
@@ -12,14 +11,12 @@ let _ipFetchPromise: Promise<void> | null = null;
  * X-REQUEST-ID: unique request identifier
  * Authorization: Bearer token placeholder
  * ChannelCode: identifies the frontend channel
- * ClientIp: user's detected IP
  */
 export const getCommonHeaders = (): Record<string, string> => ({
   cv: generateCV(environment.cipher.aesKey, environment.cipher.aesIv),
   'X-REQUEST-ID': generateUUID(),
   Authorization: 'Bearer /',
   ChannelCode: 'NG-FRONTEND',
-  ClientIp: environment.userIp,
 });
 
 const getAxiosInstance = (): AxiosInstance => {
@@ -60,29 +57,6 @@ const getAxiosInstance = (): AxiosInstance => {
 };
 
 /**
- * Ensure the client IP is resolved before making API calls.
- * The IP is sent in the ClientIp header.
- */
-const ensureIp = async (): Promise<void> => {
-  if (environment.userIp && environment.userIp !== '0.0.0.0') return;
-  if (_ipFetchPromise) return _ipFetchPromise;
-
-  _ipFetchPromise = fetch(environment.retrieveIpUrl)
-    .then((r) => r.json())
-    .then((data: { ip?: string }) => {
-      environment.userIp = data.ip || environment.userIp;
-    })
-    .catch(() => {
-      // Silently ignore IP fetch failures
-    })
-    .finally(() => {
-      _ipFetchPromise = null;
-    });
-
-  return _ipFetchPromise;
-};
-
-/**
  * POST request to the backend.
  * withCredentials is always true for session cookie support.
  */
@@ -91,7 +65,6 @@ export const doPost = async <T = any>(
   params: unknown = {},
   baseUrl: string = environment.backendBaseUrl
 ): Promise<CommonResponse<T>> => {
-  await ensureIp();
   const instance = getAxiosInstance();
   const response = await instance.post<CommonResponse<T>>(baseUrl + url, params);
   return response.data;
@@ -104,7 +77,6 @@ export const doGet = async <T = any>(
   url: string,
   params: Record<string, unknown> = {}
 ): Promise<CommonResponse<T>> => {
-  await ensureIp();
   const instance = getAxiosInstance();
   const response = await instance.get<CommonResponse<T>>(environment.backendBaseUrl + url, { params });
   return response.data;
@@ -118,7 +90,6 @@ export const doPut = async <T = any>(
   params: unknown = {},
   baseUrl: string = environment.backendBaseUrl
 ): Promise<CommonResponse<T>> => {
-  await ensureIp();
   const instance = getAxiosInstance();
   const response = await instance.put<CommonResponse<T>>(baseUrl + url, params);
   return response.data;
@@ -131,7 +102,6 @@ export const doDelete = async <T = any>(
   url: string,
   baseUrl: string = environment.backendBaseUrl
 ): Promise<CommonResponse<T>> => {
-  await ensureIp();
   const instance = getAxiosInstance();
   const response = await instance.delete<CommonResponse<T>>(baseUrl + url);
   return response.data;

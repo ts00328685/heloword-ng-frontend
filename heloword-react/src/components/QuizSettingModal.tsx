@@ -7,6 +7,14 @@ import { useAuth } from '../contexts/AuthContext';
 import { useUI } from '../contexts/UIContext';
 import { DEFAULT_INTERVALS_MS, getIntervals, saveIntervals, formatInterval } from '../utils/ebbinghaus';
 
+// Preset difficulty ranges for English word list
+const EN_WORD_PRESETS = [
+  { labelKey: 'multiChoice.easy',         coreLabel: 'Core 2000', descKey: 'multiChoice.enEasyDesc',         min: 1,    max: 2000 },
+  { labelKey: 'multiChoice.medium',       coreLabel: 'Core 4000', descKey: 'multiChoice.enMediumDesc',       min: 2001, max: 4000 },
+  { labelKey: 'multiChoice.intermediary', coreLabel: 'Core 7000', descKey: 'multiChoice.enIntermediaryDesc', min: 4001, max: 6421 },
+  { labelKey: 'multiChoice.advanced',     coreLabel: '',          descKey: 'multiChoice.enAdvancedDesc',     min: 6422, max: 9481 },
+] as const;
+
 // Language color palette keyed by list type
 const TYPE_COLOR: Record<string, { bg: string; dot: string; badge: string }> = {
   wordEnglishList:     { bg: 'bg-blue-50 dark:bg-blue-900/20',   dot: 'bg-blue-400',   badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300' },
@@ -81,6 +89,11 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
           <div className="min-w-0">
             <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{title}</p>
             <p className="text-xs text-gray-400 dark:text-gray-500">{t('quizModal.itemCount', { count: setting.total })}</p>
+            {setting.type === 'wordEnglishList' && (
+              <p className="text-xs text-blue-400 dark:text-blue-500 mt-0.5">
+                {t('multiChoice.easy')} · {t('multiChoice.medium')} · {t('multiChoice.intermediary')} · {t('multiChoice.advanced')}
+              </p>
+            )}
           </div>
         </div>
         <Toggle
@@ -92,6 +105,43 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
       {/* Range picker — revealed when selected */}
       {setting.isSelected && (
         <div className={`px-4 pb-4 pt-1 ${color.bg}`}>
+
+          {/* English word difficulty presets */}
+          {setting.type === 'wordEnglishList' && (
+            <div className="mb-3">
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">{t('quizModal.quickSelect')}</p>
+              <div className="grid grid-cols-2 gap-1.5">
+                {EN_WORD_PRESETS.map((preset) => {
+                  const isActive = setting.min === preset.min && setting.max === preset.max;
+                  return (
+                    <button
+                      key={preset.labelKey}
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMinStr(String(preset.min));
+                        setMaxStr(String(preset.max));
+                        onChange({ ...setting, min: preset.min, max: preset.max });
+                      }}
+                      className={`text-left px-3 py-2 rounded-xl border text-xs transition-colors ${
+                        isActive
+                          ? 'border-blue-400 bg-blue-500 text-white'
+                          : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-blue-300 dark:hover:border-blue-600'
+                      }`}
+                    >
+                      <span className="font-semibold block">
+                        {t(preset.labelKey)}{preset.coreLabel ? ` · ${preset.coreLabel}` : ''}
+                      </span>
+                      <span className={`block mt-0.5 ${isActive ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'}`}>
+                        {t(preset.descKey)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           <div className="flex items-center gap-2 mb-2">
             <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${color.badge}`}>
               {t('quizModal.range', { min: setting.min ?? 1, max: setting.max ?? setting.total })}
