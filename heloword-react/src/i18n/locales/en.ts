@@ -176,6 +176,7 @@ const en = {
   social: {
     tabOnline: 'Online',
     tabFriends: 'Friends',
+    tabMessages: 'Messages',
     loggedIn: 'Logged in',
     guestMode: 'Guest — log in to sync',
     guestUser: 'Guest',
@@ -204,6 +205,8 @@ const en = {
     messagePlaceholder: 'Type a message...',
     requestSent: 'Friend request sent!',
     requestFailed: 'Failed to send request',
+    noConversations: 'No conversations yet.',
+    you: 'You',
   },
   challenge: {
     createRoom: '+ Create Room',
@@ -325,7 +328,7 @@ const en = {
     sentenceJapaneseList: 'Japanese Sentences',
   },
   authorNote: {
-    buttonLabel: "Author's Note",
+    buttonLabel: 'About the Author',
     title: 'A Note from Ryan',
     body: "Hi there! I'm Ryan. I built this site to provide a practical vocabulary memorisation system. From my own self-taught English journey, I've found that mastering around 7,000 core words is enough to handle the vast majority of everyday and professional situations — as long as those words are truly locked into long-term memory.\n\nGrammar, writing, and speaking all require more time and practice on top of that, but having a solid vocabulary foundation makes everything else dramatically more efficient.\n\nI remember spending 3–4 hours a day for roughly half a year using the forgetting curve to drill through 7,000 words, then about one more month on grammar — and my TOEIC score cleared 900. Rote learning isn't useless. With the right method, it's actually the most powerful way to make things stick!",
   },

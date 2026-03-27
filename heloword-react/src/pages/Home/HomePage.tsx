@@ -195,12 +195,15 @@ const HomePage: React.FC = () => {
       navigate('/vocabulary/list', { state: { wordListOriginal: allData[key] ?? list } });
       return;
     }
+    showLoading();
     try {
       const { words, sentences } = await loadFullDashboard();
       const allData: Record<string, Sentence[]> = { ...words, ...sentences } as any;
       navigate('/vocabulary/list', { state: { wordListOriginal: allData[key] ?? list } });
     } catch {
       navigate('/vocabulary/list', { state: { wordListOriginal: list } });
+    } finally {
+      hideLoading();
     }
   };
 
@@ -224,7 +227,7 @@ const HomePage: React.FC = () => {
         <div className="relative bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-5 mb-6 text-white shadow-lg">
           <button
             onClick={() => setShowAuthor(true)}
-            className="absolute top-3 right-3 bg-white/20 hover:bg-white/30 text-white text-xs font-semibold px-3 py-1.5 rounded-xl transition-colors backdrop-blur-sm"
+            className="absolute top-3 right-3 bg-white text-blue-600 text-xs font-bold px-3 py-1.5 rounded-xl shadow-md hover:bg-blue-50 hover:shadow-lg active:scale-95 transition-all duration-150"
           >
             {t('authorNote.buttonLabel')}
           </button>

@@ -176,6 +176,7 @@ const zh = {
   social: {
     tabOnline: '線上',
     tabFriends: '好友',
+    tabMessages: '訊息',
     loggedIn: '已登入',
     guestMode: '訪客 — 登入以同步',
     guestUser: '訪客',
@@ -204,6 +205,8 @@ const zh = {
     messagePlaceholder: '輸入訊息...',
     requestSent: '好友邀請已送出！',
     requestFailed: '送出邀請失敗',
+    noConversations: '尚無對話紀錄。',
+    you: '我',
   },
   challenge: {
     createRoom: '+ 建立房間',
@@ -288,8 +291,8 @@ const zh = {
     descEn: '重組英文句子碎片',
   },
   multiChoice: {
-    titleEn: '🔤 英文單字測驗',
-    titleJp: '🈶 日文單字測驗',
+    titleEn: '🔤 英文多選測驗',
+    titleJp: '🈶 日文多選測驗',
     descEn: '從4個選項中選出正確的英文單字',
     descJp: '從4個選項中選出正確的日文單字',
     selectLevel: '選擇難度',
@@ -325,7 +328,7 @@ const zh = {
     sentenceJapaneseList: '日文句子',
   },
   authorNote: {
-    buttonLabel: '作者想說',
+    buttonLabel: '關於作者',
     title: '作者的話',
     body: '哈囉你好我是Ryan，做這個網站的目的旨在提供一個方便的單字記憶系統，根據我一路自學英文的經驗，只要熟記基本七千單字，就足夠應付絕大多數的日常及工作需求，但前提是要把這些單字都放進長期記憶中才行。\n\n當然文法、寫作、口說又需要更多時間的練習，但這些都是基於擁有一定程度的單字量，才能夠讓後續的學習事半功倍。\n\n還記得當初每天花3~4小時，總共約半年運用遺忘曲線背完七千單字，加上一個多月的研讀文法，多益就能過900了，死背不會沒用，只要用對方法，反而是最有效的記憶方式！',
   },

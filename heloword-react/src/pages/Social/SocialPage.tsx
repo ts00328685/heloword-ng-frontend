@@ -62,71 +62,73 @@ const ChatPanel: React.FC<{
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-white dark:bg-gray-900">
-      {/* Chat header */}
-      <div className="flex items-center gap-3 px-4 h-14 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
-        <button
-          onClick={onClose}
-          className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        >
-          <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <Avatar name={targetDisplayName} size="sm" />
-        <span className="font-semibold text-gray-800 dark:text-gray-100 flex-1 truncate">
-          {targetDisplayName}
-        </span>
-      </div>
+    <div className="fixed inset-0 z-50 flex flex-col bg-gray-100 dark:bg-gray-950 sm:items-center sm:justify-center">
+      <div className="flex flex-col w-full max-w-2xl h-full sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl bg-white dark:bg-gray-900 overflow-hidden">
+        {/* Chat header */}
+        <div className="flex items-center gap-3 px-4 h-14 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm flex-shrink-0">
+          <button
+            onClick={onClose}
+            className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <Avatar name={targetDisplayName} size="sm" />
+          <span className="font-semibold text-gray-800 dark:text-gray-100 flex-1 truncate">
+            {targetDisplayName}
+          </span>
+        </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
-        {messages.length === 0 && (
-          <p className="text-center text-xs text-gray-400 dark:text-gray-500 mt-8">
-            {t('social.noMessages')}
-          </p>
-        )}
-        {messages.map((msg) => {
-          const isMine = msg.senderUserId === myUserId;
-          return (
-            <div key={msg.id} className={`flex ${isMine ? 'justify-end' : 'justify-start'}`}>
-              <div
-                className={`max-w-[75%] rounded-2xl px-3 py-2 text-sm ${
-                  isMine
-                    ? 'bg-blue-500 text-white rounded-br-sm'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-sm'
-                }`}
-              >
-                {msg.content}
-                <div className={`text-[10px] mt-0.5 ${isMine ? 'text-blue-200' : 'text-gray-400'}`}>
-                  {new Date(msg.sentAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
+          {messages.length === 0 && (
+            <p className="text-center text-xs text-gray-400 dark:text-gray-500 mt-8">
+              {t('social.noMessages')}
+            </p>
+          )}
+          {messages.map((msg) => {
+            const isMine = msg.senderUserId === myUserId;
+            return (
+              <div key={msg.id} className={`flex ${isMine ? 'justify-end' : 'justify-start'}`}>
+                <div
+                  className={`max-w-[75%] rounded-2xl px-3 py-2 text-sm ${
+                    isMine
+                      ? 'bg-blue-500 text-white rounded-br-sm'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-sm'
+                  }`}
+                >
+                  {msg.content}
+                  <div className={`text-[10px] mt-0.5 ${isMine ? 'text-blue-200' : 'text-gray-400'}`}>
+                    {new Date(msg.sentAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-        <div ref={bottomRef} />
-      </div>
+            );
+          })}
+          <div ref={bottomRef} />
+        </div>
 
-      {/* Input */}
-      <div className="flex items-end gap-2 px-4 pb-6 pt-2 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-        <textarea
-          rows={1}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKey}
-          placeholder={t('social.messagePlaceholder')}
-          className="flex-1 resize-none rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <button
-          onClick={handleSend}
-          disabled={!input.trim()}
-          className="p-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white rounded-2xl transition-colors"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-          </svg>
-        </button>
+        {/* Input */}
+        <div className="flex items-end gap-2 px-4 pb-6 pt-2 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 flex-shrink-0">
+          <textarea
+            rows={1}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKey}
+            placeholder={t('social.messagePlaceholder')}
+            className="flex-1 resize-none rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <button
+            onClick={handleSend}
+            disabled={!input.trim()}
+            className="p-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white rounded-2xl transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -185,6 +187,9 @@ const SocialPage: React.FC = () => {
     onlineUsers,
     friends,
     unreadCounts,
+    messageMap,
+    chatRooms,
+    loadChatRooms,
     activeChatUserId,
     openChat,
     closeChat,
@@ -194,7 +199,14 @@ const SocialPage: React.FC = () => {
     doRemoveFriend,
   } = useSocial();
 
-  const [activeTab, setActiveTab] = useState<'online' | 'friends'>('online');
+  const [activeTab, setActiveTab] = useState<'online' | 'friends' | 'messages'>('online');
+  const [roomsLoading, setRoomsLoading] = useState(false);
+
+  React.useEffect(() => {
+    if (activeTab !== 'messages') return;
+    setRoomsLoading(true);
+    loadChatRooms().finally(() => setRoomsLoading(false));
+  }, [activeTab]);
   const [nicknameTarget, setNicknameTarget] = useState<Friend | null>(null);
   const [friendRequestInput, setFriendRequestInput] = useState('');
   const [sendingRequest, setSendingRequest] = useState(false);
@@ -221,6 +233,22 @@ const SocialPage: React.FC = () => {
   const acceptedFriends = friends.filter((f) => f.status === 'ACCEPTED');
   const pendingReceived = friends.filter((f) => f.status === 'PENDING_RECEIVED');
   const pendingSent = friends.filter((f) => f.status === 'PENDING_SENT');
+  const totalUnread = Object.values(unreadCounts).reduce((s, n) => s + n, 0);
+
+  // Resolve a display name: friends (with nickname) → online users → message senderDisplayName → userId
+  const resolveDisplayName = (userId: string, hint?: import('../../services/social.service').ChatMessage): string => {
+    const friend = acceptedFriends.find((f) => f.otherUserId === userId);
+    if (friend) return friend.myNickname || friend.displayName;
+    const online = onlineUsers.find((u) => u.userId === userId);
+    if (online) return online.displayName;
+    // Use display name stored in the message if the other person was the sender
+    if (hint && hint.senderUserId === userId) return hint.senderDisplayName;
+    // Scan already-loaded messages for that room to find one sent by them
+    const roomMsgs = messageMap[hint?.roomId ?? ''] ?? [];
+    const theirMsg = roomMsgs.find((m) => m.senderUserId === userId);
+    if (theirMsg) return theirMsg.senderDisplayName;
+    return userId;
+  };
 
   const handleSendFriendRequest = async () => {
     const target = friendRequestInput.trim();
@@ -267,7 +295,7 @@ const SocialPage: React.FC = () => {
 
         {/* Tabs */}
         <div className="flex bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-1 mb-4 gap-1">
-          {(['online', 'friends'] as const).map((tab) => (
+          {(['online', 'friends', 'messages'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -284,11 +312,18 @@ const SocialPage: React.FC = () => {
                     <span className="ml-1.5 text-xs bg-white/20 rounded-full px-1.5">{otherOnlineUsers.length}</span>
                   )}
                 </>
-              ) : (
+              ) : tab === 'friends' ? (
                 <>
                   {t('social.tabFriends')}
                   {pendingReceived.length > 0 && (
                     <span className="ml-1.5 text-xs bg-orange-400 text-white rounded-full px-1.5">{pendingReceived.length}</span>
+                  )}
+                </>
+              ) : (
+                <>
+                  {t('social.tabMessages')}
+                  {totalUnread > 0 && (
+                    <span className="ml-1.5 text-xs bg-red-500 text-white rounded-full px-1.5">{totalUnread > 99 ? '99+' : totalUnread}</span>
                   )}
                 </>
               )}
@@ -499,6 +534,58 @@ const SocialPage: React.FC = () => {
                   </div>
                 )}
               </>
+            )}
+          </div>
+        )}
+
+        {/* ── Messages tab ── */}
+        {activeTab === 'messages' && (
+          <div className="space-y-2">
+            {roomsLoading ? (
+              <div className="flex justify-center py-12">
+                <div className="w-6 h-6 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : chatRooms.length === 0 ? (
+              <div className="text-center py-12 text-gray-400 dark:text-gray-500 text-sm">
+                {t('social.noConversations')}
+              </div>
+            ) : (
+              chatRooms.map((msg) => {
+                const otherUserId = msg.senderUserId === myUserId ? msg.recipientUserId : msg.senderUserId;
+                const displayName = resolveDisplayName(otherUserId, msg);
+                const unread = unreadCounts[otherUserId] ?? 0;
+                const isMine = msg.senderUserId === myUserId;
+                const preview = isMine ? `${t('social.you')}: ${msg.content}` : msg.content;
+                const time = new Date(msg.sentAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+
+                return (
+                  <button
+                    key={msg.roomId}
+                    onClick={() => openChat(otherUserId, displayName)}
+                    className="w-full flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors text-left"
+                  >
+                    <div className="relative flex-shrink-0">
+                      <Avatar name={displayName} online={onlineUsers.some((u) => u.userId === otherUserId)} />
+                      {unread > 0 && (
+                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+                          {unread > 99 ? '99+' : unread}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-baseline justify-between gap-2">
+                        <p className={`text-sm font-semibold truncate ${unread > 0 ? 'text-gray-900 dark:text-gray-50' : 'text-gray-800 dark:text-gray-100'}`}>
+                          {displayName}
+                        </p>
+                        <span className="text-[11px] text-gray-400 dark:text-gray-500 flex-shrink-0">{time}</span>
+                      </div>
+                      <p className={`text-xs truncate mt-0.5 ${unread > 0 ? 'text-gray-700 dark:text-gray-300 font-medium' : 'text-gray-400 dark:text-gray-500'}`}>
+                        {preview}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })
             )}
           </div>
         )}
