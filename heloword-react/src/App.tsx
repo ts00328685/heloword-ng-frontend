@@ -17,6 +17,7 @@ import ChallengePage from './pages/Challenge/ChallengePage';
 import SentenceScramblePage from './pages/Challenge/SentenceScramblePage';
 import MultiChoicePage from './pages/Challenge/MultiChoicePage';
 import GuestSetupModal from './components/GuestSetupModal';
+import WalkthroughOverlay from './components/WalkthroughOverlay';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import HomePage from './pages/Home/HomePage';
 import InfoPage from './pages/Info/InfoPage';
@@ -68,8 +69,9 @@ const AppLayout: React.FC = () => {
       {/* Bottom navigation — hidden on quiz & login */}
       <BottomTabsWrapper />
 
-      {/* Guest nickname setup & cookie consent */}
+      {/* Guest nickname setup, first-visit walkthrough & cookie consent */}
       <GuestSetupModal />
+      <WalkthroughOverlay />
       <CookieConsentBanner />
     </AppInitializer>
   );

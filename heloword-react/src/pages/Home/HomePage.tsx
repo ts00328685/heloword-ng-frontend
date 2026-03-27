@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -57,7 +57,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
-  const { wordStore, sentenceStore, updateWordStore, updateSentenceStore, isWordStoreEmpty } = useData();
+  const { wordStore, sentenceStore, updateWordStore, updateSentenceStore, isWordStoreEmpty, isFullyLoaded, loadFullDashboard } = useData();
   const { dueCount } = useNotifications();
   const { showLoading, hideLoading } = useUI();
   const hasFetched = useRef(false);
@@ -67,13 +67,13 @@ const HomePage: React.FC = () => {
       return;
     }
     hasFetched.current = true;
-    fetchDashboard();
+    fetchPreview();
   }, []);
 
-  const fetchDashboard = async () => {
+  const fetchPreview = async () => {
     showLoading();
     try {
-      const response = await doPost('/frontend-api/api/fe/home/dashboard');
+      const response = await doPost('/frontend-api/api/fe/home/dashboard?previewSize=4');
       const d = response.data || {};
 
       const words: WordStore = {
@@ -111,8 +111,19 @@ const HomePage: React.FC = () => {
     });
   };
 
-  const handleViewAll = (list: Sentence[]) => {
-    navigate('/vocabulary/list', { state: { wordListOriginal: list } });
+  const handleViewAll = async (key: string, list: Sentence[]) => {
+    if (isFullyLoaded) {
+      const allData: Record<string, Sentence[]> = { ...wordStore, ...sentenceStore } as any;
+      navigate('/vocabulary/list', { state: { wordListOriginal: allData[key] ?? list } });
+      return;
+    }
+    try {
+      const { words, sentences } = await loadFullDashboard();
+      const allData: Record<string, Sentence[]> = { ...words, ...sentences } as any;
+      navigate('/vocabulary/list', { state: { wordListOriginal: allData[key] ?? list } });
+    } catch {
+      navigate('/vocabulary/list', { state: { wordListOriginal: list } });
+    }
   };
 
   const allSections = [
@@ -177,7 +188,7 @@ const HomePage: React.FC = () => {
             key={key}
             title={t(`wordLists.${key}`, key)}
             list={list}
-            onViewAll={() => handleViewAll(list)}
+            onViewAll={() => handleViewAll(key, list)}
           />
         ))}
       </main>

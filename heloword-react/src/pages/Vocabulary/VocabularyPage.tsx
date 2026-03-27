@@ -19,16 +19,16 @@ const VocabularyPage: React.FC = () => {
             </svg>
           </div>
 
-          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('vocabulary.startQuiz')}</h2>
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">{t('home.quizTitle')}</h2>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-            {t('vocabulary.description')}
+            {t('home.quizSubtitle')}
           </p>
 
           <button
             onClick={() => setShowModal(true)}
             className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold py-4 rounded-2xl transition-colors shadow-md text-base"
           >
-            {t('vocabulary.configureBtn')}
+            {t('home.goToQuiz')}
           </button>
         </div>
 

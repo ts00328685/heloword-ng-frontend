@@ -19,9 +19,9 @@ const en = {
     challenge: 'Challenge',
   },
   home: {
-    quizTitle: 'Vocabulary Quiz',
-    quizSubtitle: 'Practice words & sentences across multiple languages',
-    goToQuiz: 'Go to Quiz →',
+    quizTitle: 'Rote Learning Works',
+    quizSubtitle: 'Use the forgetting curve to move words into long-term memory',
+    goToQuiz: 'Start Now',
     dueWords: '{{count}} group(s) due for review',
     dueCurve: 'Based on your forgetting curve',
     loading: 'Loading word lists...',
@@ -249,6 +249,7 @@ const en = {
     confirm: "Let's Go!",
     skip: 'Skip for now',
     preview: 'You\'ll appear as:',
+    languageLabel: 'App Language',
   },
   cookie: {
     message: 'We use cookies for session management and preferences.',
@@ -322,6 +323,36 @@ const en = {
     sentenceEnglishList: 'English Sentences',
     sentenceGermanList: 'German Sentences',
     sentenceJapaneseList: 'Japanese Sentences',
+  },
+  tour: {
+    skip: 'Skip',
+    next: 'Next →',
+    done: 'Got it!',
+    stepOf: '{{current}} / {{total}}',
+    home: {
+      title: 'Home',
+      desc: 'Load your word lists and see upcoming review reminders. Start here every session.',
+    },
+    quiz: {
+      title: 'Quiz',
+      desc: 'Start a vocabulary quiz. Pick which word groups to practise and set your range.',
+    },
+    review: {
+      title: 'Review',
+      desc: 'Track your spaced-repetition schedule. Groups due for review show up here — don\'t miss them!',
+    },
+    stats: {
+      title: 'Stats',
+      desc: 'View your accuracy, total reviews, and progress charts over time.',
+    },
+    social: {
+      title: 'Social',
+      desc: 'See who\'s online, send friend requests, and chat with other learners in real time.',
+    },
+    challenge: {
+      title: 'Challenge',
+      desc: 'Compete in live word games or try the sentence scramble and multiple-choice mini-games.',
+    },
   },
 } as const;
 

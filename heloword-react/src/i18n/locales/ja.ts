@@ -19,9 +19,9 @@ const ja = {
     challenge: 'チャレンジ',
   },
   home: {
-    quizTitle: '単語クイズ',
-    quizSubtitle: '複数言語の単語・文章を練習しよう',
-    goToQuiz: 'クイズへ →',
+    quizTitle: '暗記は絶対に効果がある',
+    quizSubtitle: '忘却曲線を活用して単語を長期記憶に定着させよう',
+    goToQuiz: 'はじめる',
     dueWords: '{{count}} グループの復習が必要',
     dueCurve: '忘却曲線に基づく',
     loading: '単語リストを読み込み中...',
@@ -249,6 +249,7 @@ const ja = {
     confirm: 'はじめる！',
     skip: 'あとで設定する',
     preview: '表示名：',
+    languageLabel: 'アプリの言語',
   },
   cookie: {
     message: 'セッション管理と設定のためにCookieを使用しています。',
@@ -322,6 +323,36 @@ const ja = {
     sentenceEnglishList: '英語文章',
     sentenceGermanList: 'ドイツ語文章',
     sentenceJapaneseList: '日本語文章',
+  },
+  tour: {
+    skip: 'スキップ',
+    next: '次へ →',
+    done: 'わかった！',
+    stepOf: '{{current}} / {{total}}',
+    home: {
+      title: 'ホーム',
+      desc: '単語リストを読み込み、次回の復習リマインダーを確認できます。毎回ここからスタートしましょう。',
+    },
+    quiz: {
+      title: '小テスト',
+      desc: '語彙クイズを開始します。練習する単語グループと範囲を選択してください。',
+    },
+    review: {
+      title: '復習',
+      desc: '間隔反復のスケジュールを確認できます。期限切れのグループがここに表示されます — 忘れずに！',
+    },
+    stats: {
+      title: '統計',
+      desc: '正解率、総復習回数、時間経過による進捗グラフを確認できます。',
+    },
+    social: {
+      title: 'ソーシャル',
+      desc: 'オンラインのユーザーを確認し、フレンド申請を送り、他の学習者とリアルタイムでチャットできます。',
+    },
+    challenge: {
+      title: 'チャレンジ',
+      desc: 'ライブの単語ゲームに参加するか、文章並び替えや多肢選択ミニゲームを試してみましょう。',
+    },
   },
 } as const;
 

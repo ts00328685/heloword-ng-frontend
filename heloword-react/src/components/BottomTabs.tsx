@@ -66,6 +66,7 @@ const TabItem: React.FC<{
 }> = ({ path, label, icon, badge }) => (
   <NavLink
     to={path}
+    data-tour={`tab-${path.slice(1)}`}
     className={({ isActive }) =>
       `flex-1 flex flex-col items-center justify-center py-2 gap-0.5 min-h-[56px] transition-colors relative ${
         isActive ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400'

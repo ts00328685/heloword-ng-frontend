@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -7,22 +7,63 @@ import SentenceRenderer from '../../components/SentenceRenderer';
 import { useData } from '../../contexts/DataContext';
 import { Sentence } from '../../models';
 
+const PAGE_SIZE = 50;
+
 const VocabularyListPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { wordStore } = useData();
   const [showModal, setShowModal] = useState(false);
+  const [query, setQuery] = useState('');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   const list: Sentence[] =
     location.state?.wordListOriginal ||
     wordStore.wordEnglishList ||
     [];
 
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return list;
+    return list.filter((w) =>
+      (w.word || '').toLowerCase().includes(q) ||
+      (w.sentence || '').toLowerCase().includes(q) ||
+      (w.translateEn || '').toLowerCase().includes(q) ||
+      (w.translateCh || '').toLowerCase().includes(q)
+    );
+  }, [list, query]);
+
+  // Reset visible count whenever the filtered set changes
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [filtered]);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, filtered.length));
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [filtered.length]);
+
   if (list.length === 0) {
     navigate('/home', { replace: true });
     return null;
   }
+
+  const visible = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -44,10 +85,38 @@ const VocabularyListPage: React.FC = () => {
       />
 
       <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full">
-        <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">{t('wordList.itemCount', { count: list.length })}</p>
+        {/* Search */}
+        <div className="relative mb-3">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+          </svg>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t('review.searchPlaceholder')}
+            className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          {query && (
+            <button
+              onClick={() => setQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
+        </div>
+
+        <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">
+          {query
+            ? t('wordList.itemCount', { count: filtered.length })
+            : t('wordList.itemCount', { count: list.length })}
+        </p>
 
         <div className="space-y-2">
-          {list.map((word, index) => (
+          {visible.map((word, index) => (
             <div
               key={`${word.tableName}-${word.id}`}
               className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 flex gap-3 items-start hover:shadow-sm transition-shadow"
@@ -76,6 +145,19 @@ const VocabularyListPage: React.FC = () => {
               </span>
             </div>
           ))}
+
+          {query && filtered.length === 0 && (
+            <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-10">
+              {t('review.noResults')}
+            </p>
+          )}
+        </div>
+
+        {/* Sentinel — triggers next page load when scrolled into view */}
+        <div ref={sentinelRef} className="h-10 flex items-center justify-center mt-2">
+          {hasMore && (
+            <div className="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+          )}
         </div>
       </main>
 
