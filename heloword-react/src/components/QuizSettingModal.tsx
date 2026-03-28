@@ -244,7 +244,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
   const { showAlert } = useUI();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [dataLoading, setDataLoading] = useState(false);
+  const [dataLoading, setDataLoading] = useState(() => !isFullyLoaded);
   const [loadError, setLoadError] = useState(false);
   const fetchedRef = useRef(false);
   const [showOnboarding, setShowOnboarding] = useState(
