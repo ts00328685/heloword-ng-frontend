@@ -97,6 +97,52 @@ const zh = {
     resetIntervals: '重置為預設值',
     saveIntervals: '儲存間隔',
   },
+  onboarding: {
+    quiz: [
+      {
+        icon: '📋',
+        title: '選擇單字列表',
+        body: '開啟你想學習的列表。每張卡片顯示語言及可用單字總數。',
+      },
+      {
+        icon: '🎯',
+        title: '設定單字範圍',
+        body: '啟用列表後，使用數字範圍選擇要包含的單字。建議每組 20 至 50 個單字，效果最佳。',
+      },
+      {
+        icon: '🧠',
+        title: '內建間隔重複',
+        body: '完成測驗後，Heloword 會根據艾賓浩斯遺忘曲線自動排程複習。你的群組將出現在複習頁面，並顯示下次複習的倒數。',
+      },
+    ],
+    reviewCard: [
+      {
+        icon: '🏷️',
+        title: '狀態標籤',
+        body: '顯示群組的目前狀態：待複習（點擊開始複習）、進行中（繼續未完成的測驗）、已排程（即將到來的複習）或已遺忘（錯過複習——點擊重置等級）。',
+      },
+      {
+        icon: '📊',
+        title: '進度條',
+        body: '追蹤本輪循環中你答對的單字數量。進度條隨測驗完成而填滿，新一輪開始時重置。',
+      },
+      {
+        icon: '⬆️',
+        title: '複習等級與間隔',
+        body: '顯示目前的間隔步驟，例如「第 3 級 / 7 · 8h」表示這是第 3 次複習，兩次複習間隔 8 小時。每次成功複習會提升一級，等待時間也會延長。',
+      },
+      {
+        icon: '🗂️',
+        title: '單字範圍',
+        body: '此群組的單字列表和數字範圍，例如「英語單字（1–50）」。不同範圍的群組始終分開管理。',
+      },
+      {
+        icon: '⏰',
+        title: '下次複習時間',
+        body: '已排程的群組會顯示確切的下次複習時間。顯示「待複習」或「已遺忘」的群組可點擊——點擊卡片即可立即開始測驗！',
+      },
+    ],
+  },
   review: {
     loginRequired: '需要登入',
     loginHint: '登入以查看您的測驗歷史',
@@ -186,8 +232,8 @@ const zh = {
     chat: '聊天',
     addFriend: '加好友',
     loginForFriends: '登入以管理好友列表',
-    addFriendByUsername: '以用戶名加好友',
-    usernamePlaceholder: '輸入用戶名...',
+    addFriendByUsername: '以電子郵件加好友',
+    usernamePlaceholder: '輸入電子郵件地址...',
     add: '新增',
     pendingRequests: '好友邀請',
     friends: '好友',
@@ -206,6 +252,7 @@ const zh = {
     messagePlaceholder: '輸入訊息...',
     requestSent: '好友邀請已送出！',
     requestFailed: '送出邀請失敗',
+    acceptFailed: '接受邀請失敗，請再試一次。',
     noConversations: '尚無對話紀錄。',
     you: '我',
   },

@@ -6,6 +6,9 @@ import { useData } from '../contexts/DataContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useUI } from '../contexts/UIContext';
 import { DEFAULT_INTERVALS_MS, getIntervals, saveIntervals, formatInterval } from '../utils/ebbinghaus';
+import OnboardingModal from './OnboardingModal';
+
+const ONBOARDING_KEY = 'onboarding:quiz_modal';
 
 // Preset difficulty ranges for English word list
 const EN_WORD_PRESETS = [
@@ -244,6 +247,9 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
   const [dataLoading, setDataLoading] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const fetchedRef = useRef(false);
+  const [showOnboarding, setShowOnboarding] = useState(
+    () => !localStorage.getItem(ONBOARDING_KEY),
+  );
 
   // Interval configurator state (in minutes for display)
   const [showIntervalConfig, setShowIntervalConfig] = useState(false);
@@ -463,6 +469,20 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
           </button>
         </div>
       </div>
+
+      {showOnboarding && (() => {
+        const steps = (t('onboarding.quiz', { returnObjects: true }) as any[]).map((s: any) => ({
+          icon: s.icon,
+          iconBg: 'bg-blue-50 dark:bg-blue-900/20',
+          title: s.title,
+          body: s.body,
+        }));
+        const dismiss = () => {
+          localStorage.setItem(ONBOARDING_KEY, '1');
+          setShowOnboarding(false);
+        };
+        return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
+      })()}
     </div>
   );
 };

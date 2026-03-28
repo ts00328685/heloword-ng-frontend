@@ -97,6 +97,52 @@ const en = {
     resetIntervals: 'Reset to defaults',
     saveIntervals: 'Save intervals',
   },
+  onboarding: {
+    quiz: [
+      {
+        icon: '📋',
+        title: 'Choose your word lists',
+        body: 'Toggle on any list you want to study. Each card shows the language and the total number of words available.',
+      },
+      {
+        icon: '🎯',
+        title: 'Set a word range',
+        body: 'After enabling a list, use the number range to pick which words to include. Start small — 20 to 50 words per group gives the best results.',
+      },
+      {
+        icon: '🧠',
+        title: 'Spaced repetition built in',
+        body: 'Once you finish a quiz, Heloword auto-schedules reviews using the Ebbinghaus forgetting curve. Your groups will then appear on the Review page with a countdown to the next session.',
+      },
+    ],
+    reviewCard: [
+      {
+        icon: '🏷️',
+        title: 'Status badge',
+        body: 'Shows where the group stands: Due Now (tap to review), In Progress (resume an unfinished quiz), Scheduled (upcoming review), or Forgotten (missed review — tap to reset your level).',
+      },
+      {
+        icon: '📊',
+        title: 'Progress bar',
+        body: 'Tracks how many words in the current cycle you\'ve answered correctly. The bar fills as you complete the quiz and resets when a new review cycle begins.',
+      },
+      {
+        icon: '⬆️',
+        title: 'Review level & interval',
+        body: 'Shows which interval step you\'re on — e.g. "Level 3 / 7 · 8h" means this is your 3rd review with 8 hours between sessions. Each successful review moves you up one level with a longer wait.',
+      },
+      {
+        icon: '🗂️',
+        title: 'Word range',
+        body: 'The word list and number range for this group, e.g. "English Words (1–50)". Groups with different ranges are always kept separate.',
+      },
+      {
+        icon: '⏰',
+        title: 'Next review time',
+        body: 'Scheduled groups show exactly when the next review is due. Groups showing Due Now or Forgotten are tappable — tap the card to start the quiz immediately!',
+      },
+    ],
+  },
   review: {
     loginRequired: 'Login required',
     loginHint: 'Sign in to see your quiz history',
@@ -186,8 +232,8 @@ const en = {
     chat: 'Chat',
     addFriend: 'Add friend',
     loginForFriends: 'Log in to manage your friends list',
-    addFriendByUsername: 'Add friend by username',
-    usernamePlaceholder: 'Enter username...',
+    addFriendByUsername: 'Add friend by email',
+    usernamePlaceholder: 'Enter email address...',
     add: 'Add',
     pendingRequests: 'Friend requests',
     friends: 'Friends',
@@ -206,6 +252,7 @@ const en = {
     messagePlaceholder: 'Type a message...',
     requestSent: 'Friend request sent!',
     requestFailed: 'Failed to send request',
+    acceptFailed: 'Failed to accept request. Please try again.',
     noConversations: 'No conversations yet.',
     you: 'You',
   },

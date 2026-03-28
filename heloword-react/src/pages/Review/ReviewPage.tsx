@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
+import OnboardingModal from '../../components/OnboardingModal';
+
+const REVIEW_ONBOARDING_KEY = 'onboarding:review_card';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
 import { DueGroup, QuizSetting, TYPE_TO_TABLE_MAP } from '../../models';
@@ -50,6 +53,7 @@ const ReviewPage: React.FC = () => {
   const [groups, setGroups] = useState<QuizGroup[]>([]);
   const [loading, setLoading] = useState(false);
   const [showAllDue, setShowAllDue] = useState(false);
+  const [showReviewOnboarding, setShowReviewOnboarding] = useState(false);
 
   // Search + filter
   const [searchQuery, setSearchQuery] = useState('');
@@ -130,6 +134,9 @@ const ReviewPage: React.FC = () => {
       });
 
       setGroups(parsed);
+      if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY)) {
+        setShowReviewOnboarding(true);
+      }
       refresh();
     } finally {
       setLoading(false);
@@ -187,6 +194,9 @@ const ReviewPage: React.FC = () => {
       return b.date.getTime() - a.date.getTime();
     });
     setGroups(parsed);
+    if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY)) {
+      setShowReviewOnboarding(true);
+    }
   };
 
   // ─── Group state helpers ───────────────────────────────────────────────────
@@ -894,6 +904,20 @@ const ReviewPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {showReviewOnboarding && (() => {
+        const steps = (t('onboarding.reviewCard', { returnObjects: true }) as any[]).map((s: any) => ({
+          icon: s.icon,
+          iconBg: 'bg-green-50 dark:bg-green-900/20',
+          title: s.title,
+          body: s.body,
+        }));
+        const dismiss = () => {
+          localStorage.setItem(REVIEW_ONBOARDING_KEY, '1');
+          setShowReviewOnboarding(false);
+        };
+        return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
+      })()}
     </div>
   );
 };

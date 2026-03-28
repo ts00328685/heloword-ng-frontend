@@ -6,6 +6,25 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useSocial } from '../../contexts/SocialContext';
 import { computeRoomId, Friend, OnlineUser } from '../../services/social.service';
 
+// ── Helpers ───────────────────────────────────────────────────────────────
+
+/**
+ * If `name` looks like an email address, mask the local part so the user's
+ * email is never displayed in plain text.
+ *
+ * Examples:
+ *   "alice@example.com"  → "ali***"
+ *   "ab@example.com"     → "ab***"
+ *   "Alice"              → "Alice"   (unchanged — not an email)
+ */
+function maskIfEmail(name: string): string {
+  const atIdx = name.indexOf('@');
+  if (atIdx === -1) return name;
+  const local = name.slice(0, atIdx);
+  const visible = local.slice(0, Math.min(3, local.length));
+  return `${visible}***`;
+}
+
 // ── Sub-components ────────────────────────────────────────────────────────
 
 const Avatar: React.FC<{ name: string; online?: boolean; size?: 'sm' | 'md' }> = ({
@@ -13,7 +32,8 @@ const Avatar: React.FC<{ name: string; online?: boolean; size?: 'sm' | 'md' }> =
   online,
   size = 'md',
 }) => {
-  const initials = name.slice(0, 2).toUpperCase();
+  const safe = maskIfEmail(name);
+  const initials = safe.slice(0, 2).toUpperCase();
   const sz = size === 'sm' ? 'w-8 h-8 text-xs' : 'w-10 h-10 text-sm';
   return (
     <div className={`relative flex-shrink-0 ${sz} rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center font-semibold text-blue-600 dark:text-blue-400`}>
@@ -153,7 +173,7 @@ const NicknameModal: React.FC<{
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4" onClick={onClose}>
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 w-full max-w-sm shadow-xl" onClick={(e) => e.stopPropagation()}>
         <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-1">{t('social.setNickname')}</h3>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{t('social.nicknameHint', { name: friend.displayName })}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{t('social.nicknameHint', { name: maskIfEmail(friend.displayName) })}</p>
         <input
           autoFocus
           value={value}
@@ -197,16 +217,30 @@ const SocialPage: React.FC = () => {
     doAcceptFriendRequest,
     doRejectFriendRequest,
     doRemoveFriend,
+    refreshFriends,
   } = useSocial();
 
   const [activeTab, setActiveTab] = useState<'online' | 'friends' | 'messages'>('online');
   const [roomsLoading, setRoomsLoading] = useState(false);
+  const [acceptingId, setAcceptingId] = useState<number | null>(null);
+  const [friendActionError, setFriendActionError] = useState<string | null>(null);
 
   React.useEffect(() => {
-    if (activeTab !== 'messages') return;
-    setRoomsLoading(true);
-    loadChatRooms().finally(() => setRoomsLoading(false));
-  }, [activeTab]);
+    if (activeTab === 'messages') {
+      setRoomsLoading(true);
+      loadChatRooms().finally(() => setRoomsLoading(false));
+    } else if (activeTab === 'friends' && isLoggedIn) {
+      refreshFriends();
+    }
+  }, [activeTab, isLoggedIn, refreshFriends]);
+
+  // Poll friends list every 10 s while on the Friends tab so incoming requests
+  // are visible even when the WebSocket push is missed.
+  React.useEffect(() => {
+    if (activeTab !== 'friends' || !isLoggedIn) return;
+    const id = setInterval(() => { refreshFriends(); }, 10_000);
+    return () => clearInterval(id);
+  }, [activeTab, isLoggedIn, refreshFriends]);
   const [nicknameTarget, setNicknameTarget] = useState<Friend | null>(null);
   const [friendRequestInput, setFriendRequestInput] = useState('');
   const [sendingRequest, setSendingRequest] = useState(false);
@@ -217,7 +251,12 @@ const SocialPage: React.FC = () => {
   const chatTargetUser: OnlineUser | Friend | undefined =
     onlineUsers.find((u) => u.userId === activeChatUserId)
     ?? friends.find((f) => f.otherUserId === activeChatUserId);
-  const chatDisplayName = chatTargetUser?.displayName || activeChatUserId || '';
+  const chatDisplayName = maskIfEmail(
+    (chatTargetUser as any)?.myNickname
+    || chatTargetUser?.displayName
+    || activeChatUserId
+    || '',
+  );
 
   if (activeChatUserId) {
     return (
@@ -236,18 +275,19 @@ const SocialPage: React.FC = () => {
   const totalUnread = Object.values(unreadCounts).reduce((s, n) => s + n, 0);
 
   // Resolve a display name: friends (with nickname) → online users → message senderDisplayName → userId
+  // maskIfEmail is applied at every return point so no email ever reaches the UI.
   const resolveDisplayName = (userId: string, hint?: import('../../services/social.service').ChatMessage): string => {
     const friend = acceptedFriends.find((f) => f.otherUserId === userId);
-    if (friend) return friend.myNickname || friend.displayName;
+    if (friend) return friend.myNickname || maskIfEmail(friend.displayName);
     const online = onlineUsers.find((u) => u.userId === userId);
-    if (online) return online.displayName;
+    if (online) return maskIfEmail(online.displayName);
     // Use display name stored in the message if the other person was the sender
-    if (hint && hint.senderUserId === userId) return hint.senderDisplayName;
+    if (hint && hint.senderUserId === userId) return maskIfEmail(hint.senderDisplayName);
     // Scan already-loaded messages for that room to find one sent by them
     const roomMsgs = messageMap[hint?.roomId ?? ''] ?? [];
     const theirMsg = roomMsgs.find((m) => m.senderUserId === userId);
-    if (theirMsg) return theirMsg.senderDisplayName;
-    return userId;
+    if (theirMsg) return maskIfEmail(theirMsg.senderDisplayName);
+    return maskIfEmail(userId);
   };
 
   const handleSendFriendRequest = async () => {
@@ -344,9 +384,9 @@ const SocialPage: React.FC = () => {
                   key={u.userId}
                   className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 shadow-sm"
                 >
-                  <Avatar name={u.displayName} online={true} />
+                  <Avatar name={maskIfEmail(u.displayName)} online={true} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{u.displayName}</p>
+                    <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{maskIfEmail(u.displayName)}</p>
                     <p className="text-xs text-gray-400 dark:text-gray-500">
                       {u.isGuest ? t('social.guestUser') : t('social.member')}
                     </p>
@@ -368,7 +408,7 @@ const SocialPage: React.FC = () => {
                     </button>
                     {isLoggedIn && !u.isGuest && (
                       <button
-                        onClick={() => doSendFriendRequest(u.userId).catch(() => {})}
+                        onClick={() => doSendFriendRequest(u.userId).then(() => setActiveTab('friends')).catch(() => {})}
                         className="p-2 bg-green-50 dark:bg-green-900/40 hover:bg-green-100 dark:hover:bg-green-900/60 text-green-500 rounded-xl transition-colors"
                         title={t('social.addFriend')}
                       >
@@ -432,15 +472,36 @@ const SocialPage: React.FC = () => {
                     <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
                       {t('social.pendingRequests')} ({pendingReceived.length})
                     </p>
+                    {friendActionError && (
+                      <p className="text-xs text-red-500 dark:text-red-400 px-1 mb-2">{friendActionError}</p>
+                    )}
                     <div className="space-y-2">
                       {pendingReceived.map((f) => (
                         <div key={f.id} className="flex items-center gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-3 border border-orange-200 dark:border-orange-800">
-                          <Avatar name={f.displayName} />
-                          <p className="flex-1 text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{f.displayName}</p>
-                          <button onClick={() => doAcceptFriendRequest(f.id)} className="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-lg transition-colors">
-                            {t('social.accept')}
+                          <Avatar name={maskIfEmail(f.displayName)} />
+                          <p className="flex-1 text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{maskIfEmail(f.displayName)}</p>
+                          <button
+                            disabled={acceptingId === f.id}
+                            onClick={async () => {
+                              setAcceptingId(f.id);
+                              setFriendActionError(null);
+                              try {
+                                await doAcceptFriendRequest(f.id);
+                              } catch {
+                                setFriendActionError(t('social.acceptFailed'));
+                              } finally {
+                                setAcceptingId(null);
+                              }
+                            }}
+                            className="text-xs bg-green-500 hover:bg-green-600 disabled:opacity-50 text-white px-3 py-1.5 rounded-lg transition-colors"
+                          >
+                            {acceptingId === f.id ? '...' : t('social.accept')}
                           </button>
-                          <button onClick={() => doRejectFriendRequest(f.id)} className="text-xs text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors ml-1">
+                          <button
+                            disabled={acceptingId === f.id}
+                            onClick={() => doRejectFriendRequest(f.id).catch(() => {})}
+                            className="text-xs text-gray-400 hover:text-red-500 dark:hover:text-red-400 disabled:opacity-50 transition-colors ml-1"
+                          >
                             {t('social.reject')}
                           </button>
                         </div>
@@ -458,13 +519,13 @@ const SocialPage: React.FC = () => {
                     <div className="space-y-2">
                       {acceptedFriends.map((f) => (
                         <div key={f.id} className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 shadow-sm">
-                          <Avatar name={f.displayName} online={f.isOnline} />
+                          <Avatar name={f.myNickname || maskIfEmail(f.displayName)} online={f.isOnline} />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">
-                              {f.myNickname || f.displayName}
+                              {f.myNickname || maskIfEmail(f.displayName)}
                             </p>
                             {f.myNickname && (
-                              <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{f.otherUserId}</p>
+                              <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskIfEmail(f.otherUserId)}</p>
                             )}
                           </div>
                           <div className="flex gap-1">
@@ -516,8 +577,8 @@ const SocialPage: React.FC = () => {
                     <div className="space-y-2">
                       {pendingSent.map((f) => (
                         <div key={f.id} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 opacity-80">
-                          <Avatar name={f.displayName} />
-                          <p className="flex-1 text-sm text-gray-600 dark:text-gray-400 truncate">{f.displayName}</p>
+                          <Avatar name={maskIfEmail(f.displayName)} />
+                          <p className="flex-1 text-sm text-gray-600 dark:text-gray-400 truncate">{maskIfEmail(f.displayName)}</p>
                           <span className="text-xs text-gray-400 dark:text-gray-500">{t('social.pending')}</span>
                           <button onClick={() => doRemoveFriend(f.id).catch(() => {})} className="text-xs text-gray-300 hover:text-red-500 dark:hover:text-red-400 ml-2 transition-colors">
                             {t('social.cancel')}
