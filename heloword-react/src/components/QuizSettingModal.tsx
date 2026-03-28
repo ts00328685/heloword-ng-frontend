@@ -471,7 +471,9 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
       </div>
 
       {showOnboarding && (() => {
-        const steps = (t('onboarding.quiz', { returnObjects: true }) as any[]).map((s: any) => ({
+        const raw = t('onboarding.quiz', { returnObjects: true });
+        if (!Array.isArray(raw)) return null;
+        const steps = (raw as any[]).map((s: any) => ({
           icon: s.icon,
           iconBg: 'bg-blue-50 dark:bg-blue-900/20',
           title: s.title,

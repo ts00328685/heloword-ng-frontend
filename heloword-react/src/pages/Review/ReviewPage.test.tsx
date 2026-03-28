@@ -20,10 +20,11 @@
  *   and check .tagName to distinguish card badges (SPAN) from filter buttons.
  */
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { DueGroup } from '../../models';
 import type { GuestSetting, GuestRecord } from '../../services/guestStorage.service';
+import { doPost } from '../../services/api.service';
 
 // ─── Hoist mock state so vi.mock factories can reference them ────────────────
 
@@ -67,7 +68,9 @@ vi.mock('react-i18next', () => ({
 vi.mock('../../contexts/AuthContext', () => ({
   useAuth: () => ({
     isLoggedIn:           mocks.state.isLoggedIn,
-    user:                 null,
+    user:                 mocks.state.isLoggedIn
+                            ? { nickname: 'Tester', fullname: 'Test User', username: 'test@example.com' }
+                            : null,
     logout:               vi.fn(),
     updateUser:           vi.fn(),
     hasCheckedLoginStatus: true,
@@ -834,5 +837,671 @@ describe('ReviewPage — regression: level cap at 6', () => {
     expect(screen.getByText(/L7/)).toBeInTheDocument();
     // Should NOT show any higher level like L8
     expect(screen.queryByText(/L8/)).not.toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 14. Logged-in user
+// ===========================================================================
+
+describe('ReviewPage — logged-in user', () => {
+  beforeEach(() => {
+    mocks.state.isLoggedIn = true;
+  });
+
+  it('does NOT show the guest upsell banner when logged in', async () => {
+    render(<ReviewPage />);
+    // Wait for fetchData to settle, then confirm no guest banner
+    await waitFor(() =>
+      expect(screen.queryByText('review.guestBanner')).not.toBeInTheDocument(),
+    );
+  });
+
+  it('shows empty state CTA when no groups', async () => {
+    // doPost returns empty data → fetchData resolves with no groups
+    render(<ReviewPage />);
+    // loading=true hides the empty state initially; wait for it to appear
+    await waitFor(() =>
+      expect(screen.getByText('review.empty')).toBeInTheDocument(),
+    );
+  });
+
+  it('shows a group card normally when a group exists', async () => {
+    // For logged-in users fetchData drives the card list, not localStorage.
+    // Override doPost to return one QuizSetting for the group.
+    const group = dg({ min: 1, max: 5, status: 'SCHEDULED', level: 0 });
+    vi.mocked(doPost).mockResolvedValueOnce({
+      code: '0000',
+      data: {
+        wordEnglishList: [
+          {
+            type: 'wordEnglishList', min: 1, max: 5, total: 9481,
+            timestamp: new Date().toISOString(),
+            finishedCount: 5,
+            latestFinishedTime: new Date().toISOString(),
+          },
+        ],
+      },
+    });
+    mocks.state.groupStates = new Map([[group.groupKey, group]]);
+    render(<ReviewPage />);
+    await waitFor(() => expectBadge('review.groupStatusScheduled'));
+  });
+});
+
+// ===========================================================================
+// 15. Empty state button presence
+// ===========================================================================
+
+describe('ReviewPage — empty state button', () => {
+  it('"go configure groups" button is present and has correct text', () => {
+    render(<ReviewPage />);
+    const btn = screen.getByText('review.goConfigureGroups');
+    expect(btn).toBeInTheDocument();
+  });
+
+  it('filter bar is NOT shown when groups list is empty', () => {
+    render(<ReviewPage />);
+    expect(screen.queryByRole('button', { name: 'review.filterAll' })).not.toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 16. Filter bar — clicking filters
+// ===========================================================================
+
+describe('ReviewPage — filter bar interactions', () => {
+  function setupMultiGroup() {
+    const sDue  = gs({ id: 'gDue',  min: 1,  max: 5  });
+    const sSch  = gs({ id: 'gSch',  min: 6,  max: 10 });
+    const gDue  = dg({ min: 1,  max: 5,  status: 'DUE'       });
+    const gSch  = dg({ min: 6,  max: 10, status: 'SCHEDULED'  });
+
+    mocks.state.guestSettings = [sDue, sSch];
+    mocks.state.guestRecords  = [];
+    mocks.state.groupStates   = new Map([[gDue.groupKey, gDue], [gSch.groupKey, gSch]]);
+    mocks.state.dueGroups     = [gDue];
+    render(<ReviewPage />);
+  }
+
+  it('clicking DUE filter hides SCHEDULED badge spans', () => {
+    setupMultiGroup();
+    fireEvent.click(screen.getByRole('button', { name: 'review.groupStatusDue' }));
+    expectNoBadge('review.groupStatusScheduled');
+    expectBadge('review.groupStatusDue');
+  });
+
+  it('clicking SCHEDULED filter hides DUE badge spans', () => {
+    setupMultiGroup();
+    fireEvent.click(screen.getByRole('button', { name: 'review.groupStatusScheduled' }));
+    expectNoBadge('review.groupStatusDue');
+    expectBadge('review.groupStatusScheduled');
+  });
+
+  it('clicking All after a filter restores all badges', () => {
+    setupMultiGroup();
+    fireEvent.click(screen.getByRole('button', { name: 'review.groupStatusDue' }));
+    fireEvent.click(screen.getByRole('button', { name: 'review.filterAll' }));
+    expectBadge('review.groupStatusDue');
+    expectBadge('review.groupStatusScheduled');
+  });
+
+  it('clicking FRESH filter when no FRESH groups shows no cards', () => {
+    setupMultiGroup();
+    fireEvent.click(screen.getByRole('button', { name: 'review.groupStatusFresh' }));
+    expectNoBadge('review.groupStatusDue');
+    expectNoBadge('review.groupStatusScheduled');
+  });
+
+  it('clicking UNFINISHED filter when no UNFINISHED groups shows no cards', () => {
+    setupMultiGroup();
+    fireEvent.click(screen.getByRole('button', { name: 'review.groupStatusUnfinished' }));
+    expectNoBadge('review.groupStatusDue');
+    expectNoBadge('review.groupStatusScheduled');
+  });
+});
+
+// ===========================================================================
+// 17. Last activity display
+// ===========================================================================
+
+describe('ReviewPage — last activity', () => {
+  it('group with lastCompletionTime shows "review.lastActivity" text', () => {
+    const setting = gs({ min: 1, max: 5 });
+    const group: DueGroup = {
+      ...dg({ min: 1, max: 5, status: 'SCHEDULED', level: 0 }),
+      lastCompletionTime: new Date(BASE - 25 * MIN),
+    };
+    setupAndRender(setting, [gr(setting.id, 1)], group);
+    expect(screen.getByText('review.lastActivity')).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 18. Multi-cycle progress bar values
+// ===========================================================================
+
+describe('ReviewPage — multi-cycle progress', () => {
+  it('completed = total (exactly 1 full cycle) and DUE → cycleCompleted=0 → 0% bar', () => {
+    const setting = gs({ min: 1, max: 4 });
+    // 4 records = 1 full cycle
+    const records = [1, 2, 3, 4].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 4, status: 'DUE' });
+    setupAndRender(setting, records, group);
+    // cycleCompleted = 4 % 4 = 0 → pct = 0
+    const bar = document.querySelector('[style*="width: 0%"]');
+    expect(bar).toBeInTheDocument();
+    expect(screen.getByText('0/4')).toBeInTheDocument();
+  });
+
+  it('completed = total + 3 and UNFINISHED → cycleCompleted=3 → partial bar', () => {
+    // total = 4, need completed = 7 across two separate sessions for the same group.
+    // loadGuestData deduplicates answerId per-setting via Set, so the only way to
+    // accumulate completed > total is to have multiple settings with the same group key.
+    const s1 = gs({ min: 1, max: 4 }); // previous full cycle: answerIds 1-4 → +4
+    const s2 = gs({ min: 1, max: 4 }); // current partial session: answerIds 1-3 → +3
+    const r1 = [1, 2, 3, 4].map((id) => gr(s1.id, id));
+    const r2 = [1, 2, 3].map((id) => gr(s2.id, id));
+    const group = dg({ min: 1, max: 4, status: 'UNFINISHED' });
+    mocks.state.guestSettings = [s1, s2];
+    mocks.state.guestRecords  = [...r1, ...r2];
+    mocks.state.groupStates   = new Map([[group.groupKey, group]]);
+    mocks.state.dueGroups     = [group];
+    render(<ReviewPage />);
+    // completed=7, total=4 → cycleCompleted=7%4=3 → pct=Math.round(3/4*100)=75
+    const bar = document.querySelector('[style*="width: 75%"]');
+    expect(bar).toBeInTheDocument();
+    expect(screen.getByText('3/4')).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 19. Progress bar color
+// ===========================================================================
+
+describe('ReviewPage — progress bar color', () => {
+  it('100% progress bar has bg-green-400 class', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const records = [1, 2, 3].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 3, status: 'SCHEDULED' });
+    setupAndRender(setting, records, group);
+
+    const greenBar = document.querySelector('.bg-green-400');
+    expect(greenBar).toBeInTheDocument();
+  });
+
+  it('partial progress bar has bg-blue-500 class', () => {
+    const setting = gs({ min: 1, max: 5 });
+    // 2 of 5 records
+    const records = [1, 2].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 5, status: 'UNFINISHED' });
+    setupAndRender(setting, records, group);
+
+    const blueBar = document.querySelector('.bg-blue-500');
+    expect(blueBar).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 20. Group with no state in groupStates Map defaults to SCHEDULED
+// ===========================================================================
+
+describe('ReviewPage — group missing from groupStates', () => {
+  it('group with no state in groupStates Map shows SCHEDULED badge and 100% bar', () => {
+    const setting = gs({ min: 1, max: 5 });
+    const records = [1, 2, 3, 4, 5].map((id) => gr(setting.id, id));
+    // groupStates is empty — no entry for this group
+    mocks.state.guestSettings = [setting];
+    mocks.state.guestRecords  = records;
+    mocks.state.groupStates   = new Map(); // intentionally empty
+    mocks.state.dueGroups     = [];
+    render(<ReviewPage />);
+
+    // When groupStates has no key for this group, ReviewPage defaults to SCHEDULED
+    expectBadge('review.groupStatusScheduled');
+    const bar = document.querySelector('[style*="width: 100%"]');
+    expect(bar).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 21. UNFINISHED with 0 words completed
+// ===========================================================================
+
+describe('ReviewPage — UNFINISHED group with 0 words answered', () => {
+  it('shows 0% bar, 0/10 text, resume prompt, and no review-now prompt', () => {
+    const setting = gs({ min: 1, max: 10 });
+    const group = dg({ min: 1, max: 10, status: 'UNFINISHED', level: 0 });
+    setupAndRender(setting, [], group);
+
+    const bar = document.querySelector('[style*="width: 0%"]');
+    expect(bar).toBeInTheDocument();
+    expect(screen.getByText('0/10')).toBeInTheDocument();
+    expect(screen.getByText('review.resumePrompt')).toBeInTheDocument();
+    expect(screen.queryByText('review.reviewNow')).not.toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 22. All 4 states present in same render
+// ===========================================================================
+
+describe('ReviewPage — all 4 states simultaneously', () => {
+  it('renders all 4 status badge spans when all 4 states are present', () => {
+    const sDue   = gs({ id: 'gDue',   min: 1,  max: 5  });
+    const sFresh = gs({ id: 'gFresh', min: 6,  max: 10 });
+    const sSched = gs({ id: 'gSched', min: 11, max: 15 });
+    const sUnfin = gs({ id: 'gUnfin', min: 16, max: 20 });
+
+    const gDue   = dg({ min: 1,  max: 5,  status: 'DUE'        });
+    const gFresh = dg({ min: 6,  max: 10, status: 'FRESH'       });
+    const gSched = dg({ min: 11, max: 15, status: 'SCHEDULED'   });
+    const gUnfin = dg({ min: 16, max: 20, status: 'UNFINISHED'  });
+
+    mocks.state.guestSettings = [sDue, sFresh, sSched, sUnfin];
+    mocks.state.guestRecords  = [];
+    mocks.state.groupStates   = new Map([
+      [gDue.groupKey, gDue],
+      [gFresh.groupKey, gFresh],
+      [gSched.groupKey, gSched],
+      [gUnfin.groupKey, gUnfin],
+    ]);
+    mocks.state.dueGroups = [gDue, gFresh, gUnfin];
+    render(<ReviewPage />);
+
+    expectBadge('review.groupStatusDue');
+    expectBadge('review.groupStatusFresh');
+    expectBadge('review.groupStatusScheduled');
+    expectBadge('review.groupStatusUnfinished');
+  });
+});
+
+// ===========================================================================
+// 23. FRESH card level display
+// ===========================================================================
+
+describe('ReviewPage — FRESH card level display', () => {
+  it('FRESH group at reviewLevel=4 shows L5 (level before forgetting)', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const records = [1, 2, 3].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 3, status: 'FRESH', level: 4 });
+    setupAndRender(setting, records, group);
+    expect(screen.getByText(/L5/)).toBeInTheDocument();
+  });
+
+  it('FRESH group at reviewLevel=0 shows L1', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const group = dg({ min: 1, max: 3, status: 'FRESH', level: 0 });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText(/L1/)).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 24. DUE card with level > 0 shows correct interval
+// ===========================================================================
+
+describe('ReviewPage — DUE card level interval', () => {
+  it('DUE at level 3 shows the 1-day interval label', () => {
+    const setting = gs({ min: 1, max: 5 });
+    const group = dg({ min: 1, max: 5, status: 'DUE', level: 3 });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText(/1 day/)).toBeInTheDocument();
+  });
+
+  it('DUE at level 0 shows the 20 min interval label', () => {
+    const setting = gs({ min: 1, max: 5 });
+    const group = dg({ min: 1, max: 5, status: 'DUE', level: 0 });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText(/20 min/)).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 25. Completion ratio for SCHEDULED at exactly total words
+// ===========================================================================
+
+describe('ReviewPage — SCHEDULED completion ratio', () => {
+  it('SCHEDULED at exactly 5/5 shows "5/5"', () => {
+    const setting = gs({ min: 1, max: 5 });
+    const records = [1, 2, 3, 4, 5].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 5, status: 'SCHEDULED', level: 0 });
+    setupAndRender(setting, records, group);
+    expect(screen.getByText('5/5')).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 26. UNFINISHED with finishedCount = rangeSize - 1
+// ===========================================================================
+
+describe('ReviewPage — UNFINISHED one word left', () => {
+  it('UNFINISHED with 9 of 10 words done shows 90% progress', () => {
+    const setting = gs({ min: 1, max: 10 });
+    // 9 records (one word left)
+    const records = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 10, status: 'UNFINISHED', level: 0 });
+    setupAndRender(setting, records, group);
+    // completed=9, total=10 → cycleCompleted=9%10=9 → pct=90
+    const bar = document.querySelector('[style*="width: 90%"]');
+    expect(bar).toBeInTheDocument();
+    expect(screen.getByText('9/10')).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 27. Banner group count badge
+// ===========================================================================
+
+describe('ReviewPage — banner group count badge', () => {
+  it('banner shows count 2 when there are 2 DUE groups', () => {
+    const sA = gs({ id: 'gA', min: 1,  max: 5  });
+    const sB = gs({ id: 'gB', min: 6,  max: 10 });
+    const gA = dg({ min: 1,  max: 5,  status: 'DUE' });
+    const gB = dg({ min: 6,  max: 10, status: 'DUE' });
+
+    mocks.state.guestSettings = [sA, sB];
+    mocks.state.guestRecords  = [];
+    mocks.state.groupStates   = new Map([[gA.groupKey, gA], [gB.groupKey, gB]]);
+    mocks.state.dueGroups     = [gA, gB];
+    render(<ReviewPage />);
+
+    expect(screen.getByText('2')).toBeInTheDocument();
+  });
+
+  it('banner shows count 1 for a single FRESH group', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const group = dg({ min: 1, max: 3, status: 'FRESH' });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText('1')).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 28. "Review early" button — conditional display
+// ===========================================================================
+
+describe('ReviewPage — "review early" button conditions', () => {
+  it('shown ONLY when SCHEDULED AND pct === 100', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const records = [1, 2, 3].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 3, status: 'SCHEDULED' });
+    setupAndRender(setting, records, group);
+    expect(screen.getByText(/review\.reviewEarly/)).toBeInTheDocument();
+  });
+
+  it('NOT shown when SCHEDULED but pct < 100 (partial progress)', () => {
+    const setting = gs({ min: 1, max: 5 });
+    // Only 2 of 5 records (partial)
+    const records = [1, 2].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 5, status: 'UNFINISHED' });
+    setupAndRender(setting, records, group);
+    expect(screen.queryByText(/review\.reviewEarly/)).not.toBeInTheDocument();
+  });
+
+  it('NOT shown when DUE even though pct would be 0', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const records = [1, 2, 3].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 3, status: 'DUE' });
+    setupAndRender(setting, records, group);
+    expect(screen.queryByText(/review\.reviewEarly/)).not.toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 29. "Start Due Review" button calls navigate when clicked
+// ===========================================================================
+
+describe('ReviewPage — "Start Due Review" button', () => {
+  it('clicking "Start Due Review" calls navigate', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const group = dg({ min: 1, max: 3, status: 'DUE' });
+    setupAndRender(setting, [], group);
+
+    const btn = screen.getByText('review.startDueReview');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(mocks.navigate).toHaveBeenCalled();
+  });
+});
+
+// ===========================================================================
+// 30. UNFINISHED word range chip shows correct range
+// ===========================================================================
+
+describe('ReviewPage — UNFINISHED word range chip', () => {
+  it('UNFINISHED group shows correct range in the chip', () => {
+    const setting = gs({ min: 201, max: 300 });
+    const group = dg({ min: 201, max: 300, status: 'UNFINISHED' });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText(/\(201–300\)/)).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 31. Logged-in user with two different range sessions
+// ===========================================================================
+
+describe('ReviewPage — logged-in user multiple ranges', () => {
+  beforeEach(() => {
+    mocks.state.isLoggedIn = true;
+  });
+
+  it('two groups with different ranges render as two separate cards', async () => {
+    const gA = dg({ min: 1,    max: 1000, status: 'SCHEDULED' });
+    const gB = dg({ min: 1001, max: 2000, status: 'DUE'       });
+    // For logged-in users fetchData drives the card list via doPost.
+    vi.mocked(doPost).mockResolvedValueOnce({
+      code: '0000',
+      data: {
+        wordEnglishList: [
+          { type: 'wordEnglishList', min: 1,    max: 1000, total: 9481,
+            timestamp: new Date().toISOString(), finishedCount: 1000 },
+          { type: 'wordEnglishList', min: 1001, max: 2000, total: 9481,
+            timestamp: new Date().toISOString(), finishedCount: 0 },
+        ],
+      },
+    });
+    mocks.state.groupStates = new Map([[gA.groupKey, gA], [gB.groupKey, gB]]);
+    mocks.state.dueGroups   = [gB];
+    render(<ReviewPage />);
+
+    await waitFor(() => expect(screen.getByText(/\(1–1000\)/)).toBeInTheDocument());
+    expect(screen.getByText(/\(1001–2000\)/)).toBeInTheDocument();
+    expectBadge('review.groupStatusScheduled');
+    expectBadge('review.groupStatusDue');
+  });
+});
+
+// ===========================================================================
+// 32. Filter bar — FRESH and UNFINISHED filters
+// ===========================================================================
+
+describe('ReviewPage — filter bar FRESH and UNFINISHED', () => {
+  it('clicking FRESH filter shows only FRESH cards', () => {
+    const sFresh = gs({ id: 'gF', min: 1, max: 5  });
+    const sDue   = gs({ id: 'gD', min: 6, max: 10 });
+    const gFresh = dg({ min: 1, max: 5,  status: 'FRESH' });
+    const gDue   = dg({ min: 6, max: 10, status: 'DUE'   });
+
+    mocks.state.guestSettings = [sFresh, sDue];
+    mocks.state.guestRecords  = [];
+    mocks.state.groupStates   = new Map([[gFresh.groupKey, gFresh], [gDue.groupKey, gDue]]);
+    mocks.state.dueGroups     = [gFresh, gDue];
+    render(<ReviewPage />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'review.groupStatusFresh' }));
+    expectBadge('review.groupStatusFresh');
+    expectNoBadge('review.groupStatusDue');
+  });
+
+  it('clicking UNFINISHED filter shows only UNFINISHED cards', () => {
+    const sUnfin = gs({ id: 'gU', min: 1, max: 10 });
+    const sSched = gs({ id: 'gS', min: 11, max: 20 });
+    const gUnfin = dg({ min: 1,  max: 10, status: 'UNFINISHED' });
+    const gSched = dg({ min: 11, max: 20, status: 'SCHEDULED'  });
+
+    mocks.state.guestSettings = [sUnfin, sSched];
+    mocks.state.guestRecords  = [];
+    mocks.state.groupStates   = new Map([[gUnfin.groupKey, gUnfin], [gSched.groupKey, gSched]]);
+    mocks.state.dueGroups     = [gUnfin];
+    render(<ReviewPage />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'review.groupStatusUnfinished' }));
+    expectBadge('review.groupStatusUnfinished');
+    expectNoBadge('review.groupStatusScheduled');
+  });
+});
+
+// ===========================================================================
+// 33. "review early" button is absent for FRESH and UNFINISHED
+// ===========================================================================
+
+describe('ReviewPage — "review early" only for SCHEDULED 100%', () => {
+  it('NOT shown for FRESH group', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const group = dg({ min: 1, max: 3, status: 'FRESH' });
+    setupAndRender(setting, [], group);
+    expect(screen.queryByText(/review\.reviewEarly/)).not.toBeInTheDocument();
+  });
+
+  it('NOT shown for UNFINISHED group', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const group = dg({ min: 1, max: 3, status: 'UNFINISHED' });
+    setupAndRender(setting, [], group);
+    expect(screen.queryByText(/review\.reviewEarly/)).not.toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 34. Progress bar — additional percentage values
+// ===========================================================================
+
+describe('ReviewPage — progress bar additional percentages', () => {
+  it('UNFINISHED 5/10 = 50% bar', () => {
+    const setting = gs({ min: 1, max: 10 });
+    const records = [1, 2, 3, 4, 5].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 10, status: 'UNFINISHED' });
+    setupAndRender(setting, records, group);
+    expect(document.querySelector('[style*="width: 50%"]')).toBeInTheDocument();
+    expect(screen.getByText('5/10')).toBeInTheDocument();
+  });
+
+  it('UNFINISHED 1/4 = 25% bar', () => {
+    const setting = gs({ min: 1, max: 4 });
+    const records = [1].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 4, status: 'UNFINISHED' });
+    setupAndRender(setting, records, group);
+    expect(document.querySelector('[style*="width: 25%"]')).toBeInTheDocument();
+    expect(screen.getByText('1/4')).toBeInTheDocument();
+  });
+
+  it('SCHEDULED with total=1 shows 1/1 and 100% bar', () => {
+    const setting = gs({ min: 42, max: 42 });
+    const records = [gr(setting.id, 42)];
+    const group = dg({ min: 42, max: 42, status: 'SCHEDULED' });
+    setupAndRender(setting, records, group);
+    expect(screen.getByText('1/1')).toBeInTheDocument();
+    expect(document.querySelector('[style*="width: 100%"]')).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 35. Word type translation key in card
+// ===========================================================================
+
+describe('ReviewPage — word type label in card', () => {
+  it('wordEnglishList type shows "wordLists.wordEnglishList" translation key', () => {
+    const setting = gs({ type: 'wordEnglishList', min: 1, max: 5 });
+    const group = dg({ type: 'wordEnglishList', min: 1, max: 5, status: 'SCHEDULED' });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText(/wordLists\.wordEnglishList/)).toBeInTheDocument();
+  });
+
+  it('wordJapaneseList type shows "wordLists.wordJapaneseList" translation key', () => {
+    const setting = gs({ type: 'wordJapaneseList', min: 1, max: 5 });
+    const group = dg({ type: 'wordJapaneseList', min: 1, max: 5, status: 'SCHEDULED' });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText(/wordLists\.wordJapaneseList/)).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 36. Due banner group chips for UNFINISHED
+// ===========================================================================
+
+describe('ReviewPage — banner chips for UNFINISHED groups', () => {
+  it('UNFINISHED group appears in the due-for-review banner', () => {
+    const setting = gs({ min: 101, max: 200 });
+    const group = dg({ min: 101, max: 200, status: 'UNFINISHED' });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText('review.dueForReview')).toBeInTheDocument();
+    expect(screen.getAllByText(/101–200/).length).toBeGreaterThanOrEqual(1);
+  });
+});
+
+// ===========================================================================
+// 37. SCHEDULED group does not appear in the banner
+// ===========================================================================
+
+describe('ReviewPage — SCHEDULED group absent from banner', () => {
+  it('a SCHEDULED group is not listed in the banner due chips', () => {
+    const setting = gs({ min: 1, max: 5 });
+    const records = [1, 2, 3, 4, 5].map((id) => gr(setting.id, id));
+    const group = dg({ min: 1, max: 5, status: 'SCHEDULED' });
+    setupAndRender(setting, records, group);
+    // Banner should not appear at all for SCHEDULED-only groups
+    expect(screen.queryByText('review.dueForReview')).not.toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 38. No filter bar and no search bar when no groups
+// ===========================================================================
+
+describe('ReviewPage — filter and search bar absent with no groups', () => {
+  it('filter bar buttons are absent when no groups', () => {
+    render(<ReviewPage />);
+    expect(screen.queryByRole('button', { name: 'review.groupStatusDue' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'review.groupStatusFresh' })).not.toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 39. DUE group — additional badge and level assertions
+// ===========================================================================
+
+describe('ReviewPage — DUE group at higher levels', () => {
+  it('DUE at level 5 shows L6 badge and 6-day interval', () => {
+    const setting = gs({ min: 1, max: 5 });
+    const group = dg({ min: 1, max: 5, status: 'DUE', level: 5 });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText(/L6/)).toBeInTheDocument();
+    expect(screen.getByText(/6 days/)).toBeInTheDocument();
+  });
+
+  it('DUE at level 6 shows L7 badge and 31-day interval', () => {
+    const setting = gs({ min: 1, max: 5 });
+    const group = dg({ min: 1, max: 5, status: 'DUE', level: 6 });
+    setupAndRender(setting, [], group);
+    expect(screen.getByText(/L7/)).toBeInTheDocument();
+    expect(screen.getByText(/31 days/)).toBeInTheDocument();
+  });
+});
+
+// ===========================================================================
+// 40. nextReviewTime countdown for SCHEDULED at different levels
+// ===========================================================================
+
+describe('ReviewPage — SCHEDULED countdown shown', () => {
+  it('SCHEDULED group shows "review.nextReview" key (t returns the key)', () => {
+    const setting = gs({ min: 1, max: 3 });
+    const records = [1, 2, 3].map((id) => gr(setting.id, id));
+    const group = dg({
+      min: 1, max: 3, status: 'SCHEDULED', level: 2,
+      nextReviewTime: new Date(BASE + 8 * MIN * 60), // 8 hours from now
+    });
+    setupAndRender(setting, records, group);
+    expect(screen.getByText('review.nextReview')).toBeInTheDocument();
   });
 });
