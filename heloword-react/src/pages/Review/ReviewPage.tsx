@@ -906,7 +906,9 @@ const ReviewPage: React.FC = () => {
       )}
 
       {showReviewOnboarding && (() => {
-        const steps = (t('onboarding.reviewCard', { returnObjects: true }) as any[]).map((s: any) => ({
+        const raw = t('onboarding.reviewCard', { returnObjects: true });
+        if (!Array.isArray(raw)) return null;
+        const steps = (raw as any[]).map((s: any) => ({
           icon: s.icon,
           iconBg: 'bg-green-50 dark:bg-green-900/20',
           title: s.title,

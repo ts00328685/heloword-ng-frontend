@@ -21,10 +21,12 @@ import {
   deleteGuestGroup,
   saveGuestGroupOverride,
   getGuestGroupOverrides,
+  deleteGuestGroupOverride,
+  getFinishedIdsBySetting,
   GuestSetting,
   GuestRecord,
 } from './guestStorage.service';
-import { DEFAULT_INTERVALS_MS } from '../utils/ebbinghaus';
+import { DEFAULT_INTERVALS_MS, getIntervals, saveIntervals } from '../utils/ebbinghaus';
 
 // ─── Time constants ──────────────────────────────────────────────────────────
 const MIN  = 60_000;
@@ -496,5 +498,523 @@ describe('Ebbinghaus level progression via guest storage', () => {
     const g = states.get('wordEnglishList:1:2')!;
     expect(g.reviewLevel).toBe(0);
     expect(g.status).toBe('FRESH');
+  });
+});
+
+// ===========================================================================
+// 8. getIntervals / saveIntervals
+// ===========================================================================
+
+describe('getIntervals / saveIntervals', () => {
+  it('returns DEFAULT_INTERVALS_MS when localStorage is empty', () => {
+    expect(getIntervals()).toEqual(DEFAULT_INTERVALS_MS);
+  });
+
+  it('returns stored intervals when valid array is saved', () => {
+    const custom = [10 * MIN, 30 * MIN, 2 * HOUR];
+    saveIntervals(custom);
+    expect(getIntervals()).toEqual(custom);
+  });
+
+  it('returns DEFAULT when empty array is saved', () => {
+    saveIntervals([]);
+    expect(getIntervals()).toEqual(DEFAULT_INTERVALS_MS);
+  });
+
+  it('returns DEFAULT when array contains a zero value', () => {
+    saveIntervals([0, 30 * MIN]);
+    expect(getIntervals()).toEqual(DEFAULT_INTERVALS_MS);
+  });
+
+  it('returns DEFAULT when array contains a negative value', () => {
+    saveIntervals([-1, 30 * MIN]);
+    expect(getIntervals()).toEqual(DEFAULT_INTERVALS_MS);
+  });
+
+  it('returns DEFAULT when localStorage contains malformed JSON', () => {
+    localStorage.setItem('hw-review-intervals', 'not-json{{{');
+    expect(getIntervals()).toEqual(DEFAULT_INTERVALS_MS);
+  });
+
+  it('returns DEFAULT when localStorage contains a non-array JSON value', () => {
+    localStorage.setItem('hw-review-intervals', JSON.stringify({ foo: 123 }));
+    expect(getIntervals()).toEqual(DEFAULT_INTERVALS_MS);
+  });
+
+  it('saveIntervals then getIntervals round-trips correctly', () => {
+    const custom = [5 * MIN, 20 * MIN, HOUR, 6 * HOUR, DAY];
+    saveIntervals(custom);
+    expect(getIntervals()).toEqual(custom);
+  });
+});
+
+// ===========================================================================
+// 9. getFinishedIdsBySetting
+// ===========================================================================
+
+describe('getFinishedIdsBySetting', () => {
+  it('returns empty array when no records exist', () => {
+    expect(getFinishedIdsBySetting('s1')).toEqual([]);
+  });
+
+  it('returns only wrongCount=0 records for the given settingId', () => {
+    const s = makeSetting({ min: 1, max: 5 });
+    saveGuestSetting(s);
+    saveGuestRecord(makeRecord(s.id, 1, { wrongCount: 0 }));
+    saveGuestRecord(makeRecord(s.id, 2, { wrongCount: 1 })); // wrong — excluded
+    saveGuestRecord(makeRecord(s.id, 3, { wrongCount: 0 }));
+    const ids = getFinishedIdsBySetting(s.id);
+    expect(ids).toContain(1);
+    expect(ids).toContain(3);
+    expect(ids).not.toContain(2);
+    expect(ids).toHaveLength(2);
+  });
+
+  it('excludes records belonging to a different settingId', () => {
+    const sA = makeSetting({ min: 1, max: 5 });
+    const sB = makeSetting({ min: 6, max: 10 });
+    saveGuestSetting(sA);
+    saveGuestSetting(sB);
+    saveGuestRecord(makeRecord(sA.id, 1, { wrongCount: 0 }));
+    saveGuestRecord(makeRecord(sB.id, 6, { wrongCount: 0 }));
+    expect(getFinishedIdsBySetting(sA.id)).toEqual([1]);
+    expect(getFinishedIdsBySetting(sB.id)).toEqual([6]);
+  });
+
+  it('returns duplicate answerIds without deduplication (raw list)', () => {
+    // getFinishedIdsBySetting returns a raw list — same answerId twice is possible
+    const s = makeSetting({ min: 1, max: 5 });
+    saveGuestSetting(s);
+    saveGuestRecord(makeRecord(s.id, 5, { wrongCount: 0 }));
+    saveGuestRecord(makeRecord(s.id, 5, { wrongCount: 0 })); // same word, second correct record
+    const ids = getFinishedIdsBySetting(s.id);
+    expect(ids).toHaveLength(2); // not deduplicated here
+    expect(ids.filter((id) => id === 5)).toHaveLength(2);
+  });
+});
+
+// ===========================================================================
+// 10. deleteGuestGroup — edge cases
+// ===========================================================================
+
+describe('deleteGuestGroup — edge cases', () => {
+  it('delete when no records for that group — still removes the setting', () => {
+    const s = makeSetting({ min: 1, max: 10 });
+    saveGuestSetting(s);
+    // No records saved
+    deleteGuestGroup('wordEnglishList', 1, 10);
+    expect(getGuestSettings()).toHaveLength(0);
+  });
+
+  it('delete non-existent group — no error, storage unchanged', () => {
+    const s = makeSetting({ min: 1, max: 10 });
+    saveGuestSetting(s);
+    saveGuestRecord(makeRecord(s.id, 1));
+    // Delete a different group that does not exist
+    expect(() => deleteGuestGroup('wordEnglishList', 999, 9999)).not.toThrow();
+    // Original data unchanged
+    expect(getGuestSettings()).toHaveLength(1);
+    expect(getGuestRecords()).toHaveLength(1);
+  });
+
+  it('deleting one session of a multi-session group only removes matching settings', () => {
+    const s1 = makeSetting({ min: 1, max: 10, timestamp: isoAt(-DAY) });
+    const s2 = makeSetting({ min: 1, max: 10, timestamp: isoAt(-HOUR) });
+    const sOther = makeSetting({ min: 11, max: 20 });
+    saveGuestSetting(s1);
+    saveGuestSetting(s2);
+    saveGuestSetting(sOther);
+    saveGuestRecord(makeRecord(s1.id, 1));
+    saveGuestRecord(makeRecord(s2.id, 2));
+    saveGuestRecord(makeRecord(sOther.id, 11));
+
+    // Delete the group wordEnglishList:1:10 → removes both s1 and s2
+    deleteGuestGroup('wordEnglishList', 1, 10);
+
+    const remainingSettings = getGuestSettings();
+    expect(remainingSettings).toHaveLength(1);
+    expect(remainingSettings[0].min).toBe(11);
+    const remainingRecords = getGuestRecords();
+    expect(remainingRecords).toHaveLength(1);
+    expect(remainingRecords[0].answerId).toBe(11);
+  });
+});
+
+// ===========================================================================
+// 11. saveGuestGroupOverride / deleteGuestGroupOverride — edge cases
+// ===========================================================================
+
+describe('saveGuestGroupOverride — edge cases', () => {
+  it('saving override twice — second write wins', () => {
+    saveGuestGroupOverride('wordEnglishList:1:10', 2);
+    saveGuestGroupOverride('wordEnglishList:1:10', 5);
+    expect(getGuestGroupOverrides()['wordEnglishList:1:10'].level).toBe(5);
+  });
+
+  it('override with level=0 is stored correctly', () => {
+    saveGuestGroupOverride('wordEnglishList:1:10', 0);
+    expect(getGuestGroupOverrides()['wordEnglishList:1:10'].level).toBe(0);
+  });
+
+  it('getGuestGroupOverrides reads back a valid Date object for setAt', () => {
+    vi.setSystemTime(BASE);
+    saveGuestGroupOverride('wordEnglishList:1:10', 3);
+    const overrides = getGuestGroupOverrides();
+    const setAt = overrides['wordEnglishList:1:10'].setAt;
+    expect(setAt).toBeInstanceOf(Date);
+    expect(setAt.getTime()).toBeCloseTo(BASE, -3);
+  });
+});
+
+describe('deleteGuestGroupOverride — edge cases', () => {
+  it('delete non-existent key — no error, no crash', () => {
+    expect(() => deleteGuestGroupOverride('nonexistent:key')).not.toThrow();
+  });
+
+  it('delete one key, other keys remain intact', () => {
+    saveGuestGroupOverride('wordEnglishList:1:10', 2);
+    saveGuestGroupOverride('wordEnglishList:11:20', 4);
+    deleteGuestGroupOverride('wordEnglishList:1:10');
+    const overrides = getGuestGroupOverrides();
+    expect(overrides['wordEnglishList:1:10']).toBeUndefined();
+    expect(overrides['wordEnglishList:11:20']).toBeDefined();
+    expect(overrides['wordEnglishList:11:20'].level).toBe(4);
+  });
+});
+
+// ===========================================================================
+// 12. Multiple overrides for different groups
+// ===========================================================================
+
+describe('multiple overrides — independent groups', () => {
+  it('two different group overrides are both stored and retrievable', () => {
+    saveGuestGroupOverride('wordEnglishList:1:100', 2);
+    saveGuestGroupOverride('wordJapaneseList:1:50', 5);
+    const overrides = getGuestGroupOverrides();
+    expect(overrides['wordEnglishList:1:100'].level).toBe(2);
+    expect(overrides['wordJapaneseList:1:50'].level).toBe(5);
+  });
+
+  it('two override groups are each applied independently in computeAllGuestGroupStates', () => {
+    // Group A: completed 100 days ago, override at level 3 → SCHEDULED
+    const sA = makeSetting({ type: 'wordEnglishList', min: 1, max: 2, timestamp: isoAt(-100 * DAY) });
+    saveGuestSetting(sA);
+    [1, 2].forEach((id) =>
+      saveGuestRecord(makeRecord(sA.id, id, { wrongCount: 0, finishedTime: isoAt(-100 * DAY) })),
+    );
+
+    // Group B: completed 100 days ago, override at level 1 → SCHEDULED
+    const sB = makeSetting({ type: 'wordJapaneseList', min: 1, max: 2, timestamp: isoAt(-100 * DAY) });
+    saveGuestSetting(sB);
+    [1, 2].forEach((id) =>
+      saveGuestRecord(makeRecord(sB.id, id, { wrongCount: 0, finishedTime: isoAt(-100 * DAY) })),
+    );
+
+    // Both overrides set at BASE (now) → both SCHEDULED
+    saveGuestGroupOverride('wordEnglishList:1:2', 3);
+    saveGuestGroupOverride('wordJapaneseList:1:2', 1);
+
+    const states = computeAllGuestGroupStates();
+    expect(states.get('wordEnglishList:1:2')?.status).toBe('SCHEDULED');
+    expect(states.get('wordEnglishList:1:2')?.reviewLevel).toBe(3);
+    expect(states.get('wordJapaneseList:1:2')?.status).toBe('SCHEDULED');
+    expect(states.get('wordJapaneseList:1:2')?.reviewLevel).toBe(1);
+  });
+});
+
+// ===========================================================================
+// 13. computeGuestDueGroups with overrides
+// ===========================================================================
+
+describe('computeGuestDueGroups — with overrides', () => {
+  it('override-forced DUE group is included in due groups', () => {
+    const s = makeSetting({ min: 1, max: 2 });
+    saveGuestSetting(s);
+    [1, 2].forEach((id) =>
+      saveGuestRecord(makeRecord(s.id, id, { wrongCount: 0, finishedTime: isoAt(-100 * DAY) })),
+    );
+    // Without override: FRESH (very old)
+    // Override 25 min ago at level 0 → DUE (INT[0]=20min → dueTime = BASE - 5min, within grace)
+    vi.setSystemTime(new Date(BASE - 25 * MIN));
+    saveGuestGroupOverride('wordEnglishList:1:2', 0);
+    vi.setSystemTime(BASE); // restore to "now"
+
+    const due = computeGuestDueGroups();
+    expect(due).toHaveLength(1);
+    expect(due[0].status).toBe('DUE');
+  });
+
+  it('override-forced SCHEDULED group is NOT included in due groups', () => {
+    const s = makeSetting({ min: 1, max: 2 });
+    saveGuestSetting(s);
+    [1, 2].forEach((id) =>
+      saveGuestRecord(makeRecord(s.id, id, { wrongCount: 0, finishedTime: isoAt(-100 * DAY) })),
+    );
+    // Override right now at level 2 → SCHEDULED (INT[2]=8hr, due in 8hr)
+    saveGuestGroupOverride('wordEnglishList:1:2', 2);
+
+    const due = computeGuestDueGroups();
+    expect(due).toHaveLength(0);
+  });
+});
+
+// ===========================================================================
+// 14. Level cap end-to-end via guest storage
+// ===========================================================================
+
+describe('level cap end-to-end via guest storage', () => {
+  it('8+ on-time completions via guest storage → reviewLevel ≤ 6', () => {
+    const timestamps: Array<string> = [];
+    let cur = BASE - 400 * DAY;
+    timestamps.push(new Date(cur).toISOString());
+    const localIntervals = DEFAULT_INTERVALS_MS;
+    for (let i = 0; i < 9; i++) {
+      const intervalIdx = Math.min(i, localIntervals.length - 1);
+      // Advance by 110% of the interval (within grace of 150%)
+      cur = cur + localIntervals[intervalIdx] * 1.1;
+      timestamps.push(new Date(cur).toISOString());
+    }
+
+    // Create one GuestSetting + records per completion
+    timestamps.forEach((ts) => {
+      const s = makeSetting({ min: 1, max: 3, timestamp: ts });
+      saveGuestSetting(s);
+      [1, 2, 3].forEach((id) =>
+        saveGuestRecord(makeRecord(s.id, id, { wrongCount: 0, finishedTime: ts })),
+      );
+    });
+
+    const states = computeAllGuestGroupStates();
+    const g = states.get('wordEnglishList:1:3')!;
+    expect(g.reviewLevel).toBeLessThanOrEqual(6);
+  });
+});
+
+// ===========================================================================
+// 15. Single-word group (min=max, range=1) via guest storage
+// ===========================================================================
+
+describe('single-word group (min=max) via guest storage', () => {
+  it('1 correct record for range=1 → SCHEDULED', () => {
+    const s = makeSetting({ min: 50, max: 50, timestamp: isoAt(-10 * MIN) });
+    saveGuestSetting(s);
+    saveGuestRecord(makeRecord(s.id, 50, { wrongCount: 0, finishedTime: isoAt(-10 * MIN) }));
+
+    const states = computeAllGuestGroupStates();
+    expect(states.get('wordEnglishList:50:50')?.status).toBe('SCHEDULED');
+  });
+
+  it('0 correct records for range=1 → UNFINISHED', () => {
+    const s = makeSetting({ min: 50, max: 50, timestamp: isoAt(-10 * MIN) });
+    saveGuestSetting(s);
+    // No records saved
+
+    const states = computeAllGuestGroupStates();
+    expect(states.get('wordEnglishList:50:50')?.status).toBe('UNFINISHED');
+  });
+});
+
+// ===========================================================================
+// 16. guestSettingsToQuizSettings — additional edge cases
+// ===========================================================================
+
+describe('guestSettingsToQuizSettings — additional edge cases', () => {
+  it('records from a different settingId are ignored', () => {
+    const sA = makeSetting({ min: 1, max: 5 });
+    const sB = makeSetting({ min: 6, max: 10 });
+    saveGuestSetting(sA);
+    saveGuestSetting(sB);
+    // Only save records for sB
+    [6, 7, 8, 9, 10].forEach((id) =>
+      saveGuestRecord(makeRecord(sB.id, id, { wrongCount: 0 })),
+    );
+    const qs = guestSettingsToQuizSettings();
+    const qsA = qs.find((q) => q.min === 1 && q.max === 5)!;
+    expect(qsA.finishedCount).toBe(0);
+    expect(qsA.latestFinishedTime).toBeUndefined();
+  });
+
+  it('all records for a setting have wrongCount > 0 → finishedCount=0, no latestFinishedTime', () => {
+    const s = makeSetting({ min: 1, max: 3 });
+    saveGuestSetting(s);
+    [1, 2, 3].forEach((id) =>
+      saveGuestRecord(makeRecord(s.id, id, { wrongCount: 2 })),
+    );
+    const qs = guestSettingsToQuizSettings();
+    expect(qs[0].finishedCount).toBe(0);
+    expect(qs[0].latestFinishedTime).toBeUndefined();
+  });
+
+  it('setting with min=max=50 (rangeSize=1) → correctly maps to min=50 max=50', () => {
+    const s = makeSetting({ min: 50, max: 50 });
+    saveGuestSetting(s);
+    const qs = guestSettingsToQuizSettings();
+    expect(qs[0].min).toBe(50);
+    expect(qs[0].max).toBe(50);
+  });
+});
+
+// ===========================================================================
+// 17. computeAllGuestGroupStates with corrupted localStorage
+// ===========================================================================
+
+describe('computeAllGuestGroupStates — resilience to corrupted storage', () => {
+  it('corrupted settings JSON → returns empty map gracefully', () => {
+    localStorage.setItem('hw-guest-settings', 'CORRUPTED{{');
+    expect(() => computeAllGuestGroupStates()).not.toThrow();
+    expect(computeAllGuestGroupStates().size).toBe(0);
+  });
+
+  it('corrupted records JSON → falls back gracefully (settings present, records empty)', () => {
+    const s = makeSetting({ min: 1, max: 3, timestamp: isoAt(-10 * MIN) });
+    saveGuestSetting(s);
+    localStorage.setItem('hw-guest-records', 'NOT-VALID-JSON');
+    // Records read returns [] on parse error; finishedCount=0 → UNFINISHED
+    const states = computeAllGuestGroupStates();
+    expect(states.get('wordEnglishList:1:3')?.status).toBe('UNFINISHED');
+  });
+});
+
+// ===========================================================================
+// 18. saveGuestSetting — additional persistence tests
+// ===========================================================================
+
+describe('saveGuestSetting — additional tests', () => {
+  it('settings with same type but different ranges are stored as separate entries', () => {
+    const s1 = makeSetting({ min: 1,   max: 100 });
+    const s2 = makeSetting({ min: 101, max: 200 });
+    const s3 = makeSetting({ min: 201, max: 300 });
+    saveGuestSetting(s1);
+    saveGuestSetting(s2);
+    saveGuestSetting(s3);
+    const stored = getGuestSettings();
+    expect(stored).toHaveLength(3);
+    expect(stored.map((s) => s.min).sort((a,b)=>a-b)).toEqual([1, 101, 201]);
+  });
+
+  it('same setting saved twice creates two entries (no dedup at storage level)', () => {
+    const s = makeSetting({ min: 1, max: 10 });
+    saveGuestSetting(s);
+    saveGuestSetting(s);
+    expect(getGuestSettings()).toHaveLength(2);
+  });
+});
+
+// ===========================================================================
+// 19. saveGuestRecord — additional persistence tests
+// ===========================================================================
+
+describe('saveGuestRecord — additional tests', () => {
+  it('records with different settingIds are all stored', () => {
+    const r1 = makeRecord('s1', 1);
+    const r2 = makeRecord('s2', 2);
+    const r3 = makeRecord('s3', 3);
+    saveGuestRecord(r1);
+    saveGuestRecord(r2);
+    saveGuestRecord(r3);
+    expect(getGuestRecords()).toHaveLength(3);
+  });
+
+  it('record with wrongCount=5 is stored correctly', () => {
+    const r = makeRecord('s1', 1, { wrongCount: 5 });
+    saveGuestRecord(r);
+    expect(getGuestRecords()[0].wrongCount).toBe(5);
+  });
+});
+
+// ===========================================================================
+// 20. guestSettingsToQuizSettings — timestamp mapping
+// ===========================================================================
+
+describe('guestSettingsToQuizSettings — timestamp field', () => {
+  it('maps GuestSetting.timestamp string to Date object', () => {
+    const s = makeSetting({ min: 1, max: 5, timestamp: isoAt(-2 * HOUR) });
+    saveGuestSetting(s);
+    const qs = guestSettingsToQuizSettings();
+    expect(qs[0].timestamp).toBeInstanceOf(Date);
+    expect(qs[0].timestamp.getTime()).toBeCloseTo(BASE - 2 * HOUR, -3);
+  });
+
+  it('isSelected is always true', () => {
+    const s = makeSetting({ min: 1, max: 5 });
+    saveGuestSetting(s);
+    expect(guestSettingsToQuizSettings()[0].isSelected).toBe(true);
+  });
+
+  it('tableName is mapped correctly', () => {
+    const s = makeSetting({ min: 1, max: 5, tableName: 'word_japanese' });
+    saveGuestSetting(s);
+    expect(guestSettingsToQuizSettings()[0].tableName).toBe('word_japanese');
+  });
+});
+
+// ===========================================================================
+// 21. computeGuestDueGroups — additional tests
+// ===========================================================================
+
+describe('computeGuestDueGroups — additional edge cases', () => {
+  it('UNFINISHED group (no records) is included', () => {
+    const s = makeSetting({ min: 1, max: 5 });
+    saveGuestSetting(s);
+    // No records → finishedCount=0, rangeSize=5 → UNFINISHED
+    const due = computeGuestDueGroups();
+    expect(due).toHaveLength(1);
+    expect(due[0].status).toBe('UNFINISHED');
+  });
+
+  it('groupKey in DueGroup matches type:min:max pattern', () => {
+    const s = makeSetting({ min: 5, max: 10 });
+    saveGuestSetting(s);
+    [5, 6, 7, 8, 9, 10].forEach((id) =>
+      saveGuestRecord(makeRecord(s.id, id, { wrongCount: 0, finishedTime: isoAt(-25 * MIN) })),
+    );
+    const due = computeGuestDueGroups();
+    expect(due[0].groupKey).toBe('wordEnglishList:5:10');
+  });
+
+  it('DUE group has correct min, max, type fields', () => {
+    const s = makeSetting({ type: 'wordJapaneseList', min: 10, max: 20 });
+    saveGuestSetting(s);
+    [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].forEach((id) =>
+      saveGuestRecord(makeRecord(s.id, id, { wrongCount: 0, finishedTime: isoAt(-25 * MIN) })),
+    );
+    const due = computeGuestDueGroups();
+    expect(due[0].type).toBe('wordJapaneseList');
+    expect(due[0].min).toBe(10);
+    expect(due[0].max).toBe(20);
+  });
+});
+
+// ===========================================================================
+// 22. getGuestGroupOverrides — empty storage
+// ===========================================================================
+
+describe('getGuestGroupOverrides — baseline', () => {
+  it('returns empty object when no overrides saved', () => {
+    expect(getGuestGroupOverrides()).toEqual({});
+  });
+
+  it('returns empty object when overrides key contains malformed JSON', () => {
+    localStorage.setItem('hw-group-level-overrides', 'INVALID{');
+    expect(getGuestGroupOverrides()).toEqual({});
+  });
+});
+
+// ===========================================================================
+// 23. deleteGuestGroup removes override for that exact type:min:max
+// ===========================================================================
+
+describe('deleteGuestGroup — also removes override', () => {
+  it('deleteGuestGroup clears only the matching group override', () => {
+    saveGuestGroupOverride('wordEnglishList:1:10', 2);
+    saveGuestGroupOverride('wordEnglishList:11:20', 3);
+    const s = makeSetting({ min: 1, max: 10 });
+    saveGuestSetting(s);
+
+    deleteGuestGroup('wordEnglishList', 1, 10);
+
+    const overrides = getGuestGroupOverrides();
+    expect(overrides['wordEnglishList:1:10']).toBeUndefined();
+    expect(overrides['wordEnglishList:11:20']).toBeDefined();
   });
 });
