@@ -71,9 +71,15 @@ const ReviewPage: React.FC = () => {
     if (isLoggedIn) {
       fetchData();
     } else {
+      // Sync groupStates from localStorage before rendering cards.
+      // NotificationContext.refreshGuest() was last called on app mount or quiz
+      // completion; if the user dropped mid-quiz, the new GuestSetting is in
+      // localStorage but not yet in groupStates. Without this call the card would
+      // resolve to status=undefined → default SCHEDULED → wrongly show 100%.
+      refreshGuest();
       loadGuestData();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ─── Server-side (logged in) ───────────────────────────────────────────────
 
@@ -86,21 +92,34 @@ const ReviewPage: React.FC = () => {
 
       const data: Record<string, QuizSetting[]> = response.data;
 
-      const parsed: QuizGroup[] = Object.entries(data).map(([key, settings]) => {
-        const { completed, total } = settings.reduce(
-          (acc, curr) => ({
-            total: (curr.max ?? 0) - (curr.min ?? 1) + 1 + acc.total,
-            completed: (curr.finishedCount ?? 0) + acc.completed,
-          }),
-          { completed: 0, total: 0 },
+      // Re-bucket all sessions by group key (type:min:max) so different ranges of
+      // the same word type never get merged into one card.
+      const byGroupKey: Record<string, QuizSetting[]> = {};
+      for (const sessions of Object.values(data)) {
+        for (const s of sessions) {
+          const key = getGroupKey(s.type, s.min ?? 1, s.max ?? s.total);
+          (byGroupKey[key] ??= []).push(s);
+        }
+      }
+
+      const parsed: QuizGroup[] = Object.values(byGroupKey).map((sessions) => {
+        // Most recent session carries the current id and finishedCount for resume.
+        const sorted = [...sessions].sort(
+          (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
         );
-        const latestFinishedTime = settings.find((s) => s.latestFinishedTime)?.latestFinishedTime;
+        const mostRecent = sorted[0];
+        const total = (mostRecent.max ?? mostRecent.total) - (mostRecent.min ?? 1) + 1;
+        const completed = sessions.reduce((acc, s) => acc + (s.finishedCount ?? 0), 0);
+        const latestFinished = sessions
+          .filter((s) => s.latestFinishedTime)
+          .sort((a, b) => new Date(b.latestFinishedTime!).getTime() - new Date(a.latestFinishedTime!).getTime())[0]
+          ?.latestFinishedTime;
         return {
-          date: new Date(key),
-          records: settings,
+          date: new Date(mostRecent.timestamp),
+          records: [mostRecent],
           completed,
           total,
-          latestFinishedTime: latestFinishedTime ? new Date(latestFinishedTime) : undefined,
+          latestFinishedTime: latestFinished ? new Date(latestFinished) : undefined,
         };
       });
 
@@ -125,36 +144,48 @@ const ReviewPage: React.FC = () => {
     const records  = getGuestRecords();
     if (settings.length === 0) { setGroups([]); return; }
 
-    const byDate: Record<string, GuestSetting[]> = {};
+    // Group by type:min:max so different ranges never merge into one card.
+    const byGroupKey: Record<string, GuestSetting[]> = {};
     for (const s of settings) {
-      const dateKey = s.timestamp.slice(0, 10);
-      (byDate[dateKey] ??= []).push(s);
+      const key = `${s.type}:${s.min}:${s.max}`;
+      (byGroupKey[key] ??= []).push(s);
     }
 
-    const parsed: QuizGroup[] = Object.entries(byDate).map(([dateKey, daySettings]) => {
-      let completed = 0; let total = 0; let latestFinishedMs = 0;
-      for (const s of daySettings) {
+    const parsed: QuizGroup[] = Object.values(byGroupKey).map((groupSettings) => {
+      // Most recent session carries the _guestId needed for UNFINISHED resume.
+      const sorted = [...groupSettings].sort(
+        (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
+      );
+      const mostRecent = sorted[0];
+      let completed = 0; let latestFinishedMs = 0;
+      for (const s of groupSettings) {
         const settingRecords = records.filter((r) => r.settingId === s.id);
         const correctIds = new Set(settingRecords.filter((r) => r.wrongCount === 0).map((r) => r.answerId));
-        total += s.max - s.min + 1;
         completed += correctIds.size;
         for (const r of settingRecords) {
           const ms = new Date(r.finishedTime).getTime();
           if (ms > latestFinishedMs) latestFinishedMs = ms;
         }
       }
-      const records_qs: QuizSetting[] = daySettings.map((s) => ({
-        id: undefined, _guestId: s.id, timestamp: new Date(s.timestamp),
-        type: s.type, tableName: s.tableName, total: s.total,
-        isSelected: true, min: s.min, max: s.max,
-      } as any));
+      const record_qs: QuizSetting = {
+        id: undefined, _guestId: mostRecent.id, timestamp: new Date(mostRecent.timestamp),
+        type: mostRecent.type, tableName: mostRecent.tableName, total: mostRecent.total,
+        isSelected: true, min: mostRecent.min, max: mostRecent.max,
+      } as any;
       return {
-        date: new Date(dateKey), records: records_qs, completed, total,
+        date: new Date(mostRecent.timestamp),
+        records: [record_qs],
+        completed,
+        total: mostRecent.max - mostRecent.min + 1,
         latestFinishedTime: latestFinishedMs > 0 ? new Date(latestFinishedMs) : undefined,
       };
     });
 
-    parsed.sort((a, b) => b.date.getTime() - a.date.getTime());
+    parsed.sort((a, b) => {
+      if (a.latestFinishedTime && b.latestFinishedTime)
+        return b.latestFinishedTime.getTime() - a.latestFinishedTime.getTime();
+      return b.date.getTime() - a.date.getTime();
+    });
     setGroups(parsed);
   };
 
@@ -332,7 +363,10 @@ const ReviewPage: React.FC = () => {
 
   // ─── Stable group key (for selection) ────────────────────────────────────
 
-  const groupKey = (g: QuizGroup) => g.date.toISOString() + ':' + g.records.map((r) => r.type).join(',');
+  const groupKey = (g: QuizGroup) => {
+    const r = g.records[0];
+    return getGroupKey(r.type, r.min ?? 1, r.max ?? r.total);
+  };
 
   const toggleSelect = (key: string) => {
     setSelectedKeys((prev) => {
