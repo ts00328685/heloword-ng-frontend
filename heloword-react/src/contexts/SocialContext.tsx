@@ -327,8 +327,8 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const refreshFriends = useCallback(async () => {
     if (!isLoggedIn) return;
-    const f = await fetchFriends().catch(() => [] as Friend[]);
-    setFriends(f);
+    const f = await fetchFriends().catch(() => null);
+    if (f !== null) setFriends(f);
   }, [isLoggedIn]);
 
   refreshFriendsRef.current = refreshFriends;

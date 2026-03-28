@@ -192,16 +192,16 @@ const HomePage: React.FC = () => {
   const handleViewAll = async (key: string, list: Sentence[]) => {
     if (isFullyLoaded) {
       const allData: Record<string, Sentence[]> = { ...wordStore, ...sentenceStore } as any;
-      navigate('/vocabulary/list', { state: { wordListOriginal: allData[key] ?? list } });
+      navigate('/vocabulary/list', { state: { wordListOriginal: allData[key] ?? list, listType: key } });
       return;
     }
     showLoading();
     try {
       const { words, sentences } = await loadFullDashboard();
       const allData: Record<string, Sentence[]> = { ...words, ...sentences } as any;
-      navigate('/vocabulary/list', { state: { wordListOriginal: allData[key] ?? list } });
+      navigate('/vocabulary/list', { state: { wordListOriginal: allData[key] ?? list, listType: key } });
     } catch {
-      navigate('/vocabulary/list', { state: { wordListOriginal: list } });
+      navigate('/vocabulary/list', { state: { wordListOriginal: list, listType: key } });
     } finally {
       hideLoading();
     }

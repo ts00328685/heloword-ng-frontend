@@ -9,6 +9,46 @@ import { Sentence } from '../../models';
 
 const PAGE_SIZE = 50;
 
+interface FilterButton {
+  label: string;
+  min: number; // 1-based index inclusive
+  max: number; // 1-based index inclusive
+}
+
+function buildFilterButtons(listType: string | undefined, total: number): FilterButton[] {
+  if (!listType || total === 0) return [];
+
+  if (listType === 'wordEnglishList') {
+    return [
+      { label: 'Easy', min: 1, max: 2000 },
+      { label: 'Medium', min: 2001, max: 4000 },
+      { label: 'Intermediary', min: 4001, max: 6421 },
+      { label: 'Advanced', min: 6422, max: 9481 },
+    ].filter((b) => b.min <= total);
+  }
+
+  if (listType === 'wordJapaneseList') {
+    const size = Math.ceil(total / 5);
+    const labels = ['N5', 'N4', 'N3', 'N2', 'N1'];
+    return labels.map((label, i) => ({
+      label,
+      min: i * size + 1,
+      max: Math.min((i + 1) * size, total),
+    }));
+  }
+
+  if (listType === 'wordJapaneseVerbList') {
+    const buttons: FilterButton[] = [];
+    for (let start = 1; start <= total; start += 300) {
+      const end = Math.min(start + 299, total);
+      buttons.push({ label: `${start}–${end}`, min: start, max: end });
+    }
+    return buttons;
+  }
+
+  return [];
+}
+
 const VocabularyListPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,6 +56,7 @@ const VocabularyListPage: React.FC = () => {
   const { wordStore } = useData();
   const [showModal, setShowModal] = useState(false);
   const [query, setQuery] = useState('');
+  const [activeFilter, setActiveFilter] = useState<FilterButton | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -24,16 +65,30 @@ const VocabularyListPage: React.FC = () => {
     wordStore.wordEnglishList ||
     [];
 
+  const listType: string | undefined = location.state?.listType;
+
+  const filterButtons = useMemo(
+    () => buildFilterButtons(listType, list.length),
+    [listType, list.length]
+  );
+
   const filtered = useMemo(() => {
+    let base = list;
+
+    if (activeFilter) {
+      // activeFilter.min/max are 1-based inclusive
+      base = list.slice(activeFilter.min - 1, activeFilter.max);
+    }
+
     const q = query.trim().toLowerCase();
-    if (!q) return list;
-    return list.filter((w) =>
+    if (!q) return base;
+    return base.filter((w) =>
       (w.word || '').toLowerCase().includes(q) ||
       (w.sentence || '').toLowerCase().includes(q) ||
       (w.translateEn || '').toLowerCase().includes(q) ||
       (w.translateCh || '').toLowerCase().includes(q)
     );
-  }, [list, query]);
+  }, [list, query, activeFilter]);
 
   // Reset visible count whenever the filtered set changes
   useEffect(() => {
@@ -109,8 +164,37 @@ const VocabularyListPage: React.FC = () => {
           )}
         </div>
 
+        {/* Filter pills */}
+        {filterButtons.length > 0 && (
+          <div className="flex gap-2 overflow-x-auto pb-2 mb-2 scrollbar-hide">
+            <button
+              onClick={() => setActiveFilter(null)}
+              className={`flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+                activeFilter === null
+                  ? 'bg-blue-500 text-white border-blue-500'
+                  : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-400'
+              }`}
+            >
+              All
+            </button>
+            {filterButtons.map((btn) => (
+              <button
+                key={btn.label}
+                onClick={() => setActiveFilter(activeFilter?.label === btn.label ? null : btn)}
+                className={`flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+                  activeFilter?.label === btn.label
+                    ? 'bg-blue-500 text-white border-blue-500'
+                    : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-400'
+                }`}
+              >
+                {btn.label}
+              </button>
+            ))}
+          </div>
+        )}
+
         <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">
-          {query
+          {query || activeFilter
             ? t('wordList.itemCount', { count: filtered.length })
             : t('wordList.itemCount', { count: list.length })}
         </p>
@@ -122,7 +206,7 @@ const VocabularyListPage: React.FC = () => {
               className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 flex gap-3 items-start hover:shadow-sm transition-shadow"
             >
               <span className="text-xs text-gray-400 dark:text-gray-500 font-mono pt-0.5 min-w-[24px]">
-                {index + 1}
+                {activeFilter ? activeFilter.min + index : index + 1}
               </span>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">
@@ -146,7 +230,7 @@ const VocabularyListPage: React.FC = () => {
             </div>
           ))}
 
-          {query && filtered.length === 0 && (
+          {(query || activeFilter) && filtered.length === 0 && (
             <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-10">
               {t('review.noResults')}
             </p>
