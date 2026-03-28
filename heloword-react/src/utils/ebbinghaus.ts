@@ -192,7 +192,7 @@ export function computeGroupStates(
     for (let i = 1; i < completedTimes.length; i++) {
       const interval = intervals[Math.min(level, intervals.length - 1)];
       const graceEnd = prevTime + interval + interval * 0.5; // due + 50% grace
-      level = completedTimes[i] <= graceEnd ? level + 1 : 0;
+      level = completedTimes[i] <= graceEnd ? Math.min(level + 1, intervals.length - 1) : 0;
       prevTime = completedTimes[i];
     }
 
