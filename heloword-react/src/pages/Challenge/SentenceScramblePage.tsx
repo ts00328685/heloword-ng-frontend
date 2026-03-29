@@ -70,6 +70,7 @@ function speak(text: string, lang: Lang) {
 const ChunkButton: React.FC<{
   chunk: Chunk;
   disabled?: boolean;
+  invisible?: boolean;
   variant: 'bank' | 'answer';
   index: number;
   onTap: () => void;
@@ -77,7 +78,7 @@ const ChunkButton: React.FC<{
   onDragStart: (e: React.DragEvent) => void;
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (e: React.DragEvent) => void;
-}> = ({ chunk, disabled, variant, onTap, onLongPress, onDragStart, onDragOver, onDrop }) => {
+}> = ({ chunk, disabled, invisible, variant, onTap, onLongPress, onDragStart, onDragOver, onDrop }) => {
   const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isLongPress = useRef(false);
 
@@ -105,17 +106,18 @@ const ChunkButton: React.FC<{
   const answerStyle =
     'bg-blue-500 border-blue-600 text-white shadow-sm hover:bg-blue-600';
   const disabledStyle = 'opacity-30 cursor-not-allowed pointer-events-none';
+  const invisibleStyle = 'invisible pointer-events-none';
 
   return (
     <div
-      draggable={!disabled}
+      draggable={!disabled && !invisible}
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDrop={onDrop}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}
-      className={`${base} ${variant === 'bank' ? bankStyle : answerStyle} ${disabled ? disabledStyle : ''}`}
+      className={`${base} ${variant === 'bank' ? bankStyle : answerStyle} ${disabled ? disabledStyle : ''} ${invisible ? invisibleStyle : ''}`}
     >
       {chunk.text}
     </div>
@@ -138,6 +140,7 @@ const SentenceScramblePage: React.FC = () => {
   const [currentJp, setCurrentJp] = useState<JpSentence | null>(null);
   const [currentEn, setCurrentEn] = useState<EnSentence | null>(null);
   const [bankChunks, setBankChunks] = useState<Chunk[]>([]);
+  const [usedBankUids, setUsedBankUids] = useState<Set<string>>(new Set());
   const [answerChunks, setAnswerChunks] = useState<Chunk[]>([]);
   const [originalChunks, setOriginalChunks] = useState<Chunk[]>([]);
   const [status, setStatus] = useState<GameStatus>('playing');
@@ -190,6 +193,7 @@ const SentenceScramblePage: React.FC = () => {
       const orig = buildChunks(item.chunks);
       setOriginalChunks(orig);
       setBankChunks(shuffle(orig));
+      setUsedBankUids(new Set());
       setAnswerChunks([]);
     } else {
       if (!enDataRef.current) {
@@ -205,6 +209,7 @@ const SentenceScramblePage: React.FC = () => {
       const orig = buildEnChunks(item.sentence, chunkSize);
       setOriginalChunks(orig);
       setBankChunks(shuffle(orig));
+      setUsedBankUids(new Set());
       setAnswerChunks([]);
     }
   }, [lang, chunkSize]);
@@ -232,8 +237,8 @@ const SentenceScramblePage: React.FC = () => {
 
   const moveFromBank = (uid: string) => {
     const chunk = bankChunks.find(c => c.uid === uid);
-    if (!chunk || status !== 'playing') return;
-    setBankChunks(prev => prev.filter(c => c.uid !== uid));
+    if (!chunk || status !== 'playing' || usedBankUids.has(uid)) return;
+    setUsedBankUids(prev => new Set([...prev, uid]));
     setAnswerChunks(prev => [...prev, chunk]);
   };
 
@@ -241,16 +246,16 @@ const SentenceScramblePage: React.FC = () => {
     const chunk = answerChunks.find(c => c.uid === uid);
     if (!chunk || status !== 'playing') return;
     setAnswerChunks(prev => prev.filter(c => c.uid !== uid));
-    setBankChunks(prev => [...prev, chunk]);
+    setUsedBankUids(prev => { const s = new Set(prev); s.delete(uid); return s; });
   };
 
   const giveHint = () => {
     if (status !== 'playing') return;
     const nextCorrect = originalChunks[answerChunks.length];
     if (!nextCorrect) return;
-    const inBank = bankChunks.find(c => c.uid === nextCorrect.uid);
+    const inBank = bankChunks.find(c => c.uid === nextCorrect.uid && !usedBankUids.has(c.uid));
     if (inBank) {
-      setBankChunks(prev => prev.filter(c => c.uid !== inBank.uid));
+      setUsedBankUids(prev => new Set([...prev, inBank.uid]));
       setAnswerChunks(prev => [...prev, inBank]);
     }
   };
@@ -263,6 +268,7 @@ const SentenceScramblePage: React.FC = () => {
     setStatus('playing');
     setShowTranslation(false);
     setBankChunks(shuffle([...originalChunks]));
+    setUsedBankUids(new Set());
     setAnswerChunks([]);
     setAiResult('');
     setShowAiPanel(false);
@@ -271,7 +277,7 @@ const SentenceScramblePage: React.FC = () => {
 
   const showAnswer = () => {
     setAnswerChunks([...originalChunks]);
-    setBankChunks([]);
+    setUsedBankUids(new Set(bankChunks.map(c => c.uid)));
     setStatus('correct');
     setShowTranslation(true);
   };
@@ -321,7 +327,7 @@ const SentenceScramblePage: React.FC = () => {
     if (src.zone === 'bank') {
       const chunk = bankChunks.find(c => c.uid === src.uid);
       if (!chunk) return;
-      setBankChunks(prev => prev.filter(c => c.uid !== src.uid));
+      setUsedBankUids(prev => new Set([...prev, src.uid]));
       setAnswerChunks(prev => {
         const idx = prev.findIndex(c => c.uid === targetUid);
         const next = [...prev];
@@ -350,7 +356,7 @@ const SentenceScramblePage: React.FC = () => {
     if (src.zone === 'bank') {
       const chunk = bankChunks.find(c => c.uid === src.uid);
       if (!chunk) return;
-      setBankChunks(prev => prev.filter(c => c.uid !== src.uid));
+      setUsedBankUids(prev => new Set([...prev, src.uid]));
       setAnswerChunks(prev => [...prev, chunk]);
     }
     dragSource.current = null;
@@ -361,10 +367,9 @@ const SentenceScramblePage: React.FC = () => {
     e.preventDefault();
     const src = dragSource.current;
     if (!src || src.zone !== 'answer' || status !== 'playing') return;
-    const chunk = answerChunks.find(c => c.uid === src.uid);
-    if (!chunk) return;
+    if (!answerChunks.find(c => c.uid === src.uid)) return;
     setAnswerChunks(prev => prev.filter(c => c.uid !== src.uid));
-    setBankChunks(prev => [...prev, chunk]);
+    setUsedBankUids(prev => { const s = new Set(prev); s.delete(src.uid); return s; });
     dragSource.current = null;
   };
 
@@ -438,12 +443,14 @@ const SentenceScramblePage: React.FC = () => {
           )}
         </div>
 
-        {/* Status feedback */}
-        {status === 'correct' && (
-          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-2xl px-4 py-2 text-sm font-semibold text-green-700 dark:text-green-400 text-center">
-            {t('scramble.correct')} 🎉
-          </div>
-        )}
+        {/* Status feedback — always in DOM so it doesn't shift the answer zone */}
+        <div className={`rounded-2xl px-4 py-2 text-sm font-semibold text-center transition-colors ${
+          status === 'correct'
+            ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400'
+            : 'invisible'
+        }`}>
+          {t('scramble.correct')} 🎉
+        </div>
 
         {/* Answer zone */}
         <div>
@@ -491,7 +498,7 @@ const SentenceScramblePage: React.FC = () => {
             onDrop={handleDropOnBank}
             className="min-h-[52px] flex flex-wrap gap-2 p-3 rounded-2xl bg-gray-100 dark:bg-gray-800/60"
           >
-            {bankChunks.length === 0 && (
+            {bankChunks.every(c => usedBankUids.has(c.uid)) && (
               <span className="text-xs text-gray-300 dark:text-gray-600 self-center">
                 {t('scramble.bankEmpty')}
               </span>
@@ -502,6 +509,7 @@ const SentenceScramblePage: React.FC = () => {
                 chunk={chunk}
                 variant="bank"
                 index={0}
+                invisible={usedBankUids.has(chunk.uid)}
                 onTap={() => moveFromBank(chunk.uid)}
                 onLongPress={() => speak(chunk.text, lang)}
                 onDragStart={handleDragStart('bank', chunk.uid)}
