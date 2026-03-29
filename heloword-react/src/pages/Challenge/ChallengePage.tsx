@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useChallenge } from '../../contexts/ChallengeContext';
-import { ChallengeRoom, createRoom } from '../../services/challenge.service';
+import { ChallengeRoom, GameFormat, createRoom } from '../../services/challenge.service';
 import ChallengeRoomPage from './ChallengeRoomPage';
 
 const GAME_TYPE_KEYS: Record<string, string> = {
@@ -12,6 +12,16 @@ const GAME_TYPE_KEYS: Record<string, string> = {
   wordGermanList: 'wordLists.wordGermanList',
   wordJapaneseList: 'wordLists.wordJapaneseList',
 };
+
+// Chevron icon — rotates 180° when open
+const Chevron: React.FC<{ open: boolean }> = ({ open }) => (
+  <svg
+    className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+  </svg>
+);
 
 const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
   const { t } = useTranslation();
@@ -66,6 +76,43 @@ const RoomCard: React.FC<{ room: ChallengeRoom; onJoin: (id: string) => void }> 
       >
         {t('challenge.join')}
       </button>
+    </div>
+  );
+};
+
+/** Collapsible section wrapping a list of rooms. */
+const RoomSection: React.FC<{
+  title: string;
+  icon: string;
+  rooms: ChallengeRoom[];
+  onJoin: (id: string) => void;
+}> = ({ title, icon, rooms, onJoin }) => {
+  const [open, setOpen] = useState(false);
+  if (rooms.length === 0) return null;
+  return (
+    <div className="rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+      {/* Header row — click to expand/collapse */}
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="w-full flex items-center gap-2 px-3 py-2.5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+      >
+        <span className="text-base">{icon}</span>
+        <span className="flex-1 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
+          {title}
+        </span>
+        <span className="text-[10px] font-medium text-gray-400 mr-1">{rooms.length}</span>
+        <Chevron open={open} />
+      </button>
+
+      {open && (
+        <div className="border-t border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700 bg-gray-50 dark:bg-gray-900/30">
+          {rooms.map(room => (
+            <div key={room.id} className="p-2">
+              <RoomCard room={room} onJoin={onJoin} />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -137,8 +184,21 @@ const ChallengePage: React.FC = () => {
     return <ChallengeRoomPage onLeave={leaveRoomAction} />;
   }
 
-  const systemRooms = rooms.filter(r => r.system);
+  // Sort all system rooms by difficulty within each group
+  const DIFFICULTY_ORDER: Record<string, number> = { easy: 0, medium: 1, intermediate: 2, intermediary: 2, advanced: 3 };
+  const roomDifficulty = (name: string) => {
+    const lower = name.toLowerCase();
+    for (const [key, rank] of Object.entries(DIFFICULTY_ORDER)) {
+      if (lower.includes(key)) return rank;
+    }
+    return 99;
+  };
+
+  const sortedSystem = [...rooms.filter(r => r.system)].sort((a, b) => roomDifficulty(a.name) - roomDifficulty(b.name));
+  const typingRooms     = sortedSystem.filter(r => !r.gameFormat || r.gameFormat === 'TYPING');
+  const multiChoiceRooms = sortedSystem.filter(r => r.gameFormat === 'MULTI_CHOICE');
   const userRooms = rooms.filter(r => !r.system);
+  const hasSystemRooms = typingRooms.length > 0 || multiChoiceRooms.length > 0;
 
   const handleJoin = async (roomId: string) => {
     setJoining(roomId);
@@ -163,15 +223,30 @@ const ChallengePage: React.FC = () => {
           </button>
         )}
 
-        {systemRooms.length > 0 && (
+        {/* Featured system rooms — two collapsible panels */}
+        {hasSystemRooms && (
           <div>
-            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">{t('challenge.featured')}</p>
+            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
+              {t('challenge.featured')}
+            </p>
             <div className="space-y-2">
-              {systemRooms.map(room => <RoomCard key={room.id} room={room} onJoin={handleJoin} />)}
+              <RoomSection
+                title={t('challenge.typingRooms')}
+                icon="⌨️"
+                rooms={typingRooms}
+                onJoin={handleJoin}
+              />
+              <RoomSection
+                title={t('challenge.multiChoiceRooms')}
+                icon="🔢"
+                rooms={multiChoiceRooms}
+                onJoin={handleJoin}
+              />
             </div>
           </div>
         )}
 
+        {/* User-created rooms */}
         {userRooms.length > 0 && (
           <div>
             <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
@@ -183,13 +258,13 @@ const ChallengePage: React.FC = () => {
           </div>
         )}
 
-        {userRooms.length === 0 && systemRooms.length === 0 && (
+        {!hasSystemRooms && userRooms.length === 0 && (
           <div className="text-center py-12 text-gray-400 dark:text-gray-500 text-sm">
             {t('challenge.noRooms')}
           </div>
         )}
 
-        {/* Side Games section */}
+        {/* Side Games */}
         <div>
           <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
             {t('scramble.sideGames')}

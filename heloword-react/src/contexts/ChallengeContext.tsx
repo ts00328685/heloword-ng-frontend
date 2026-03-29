@@ -15,11 +15,16 @@ import {
   leaveRoom,
   startGame,
 } from '../services/challenge.service';
+import { getOrCreateGuestIdentity } from '../services/social.service';
+
+const IDLE_KICK_MS = 5 * 60 * 1000;   // 5 minutes → auto-leave
+const IDLE_WARN_MS = 4.5 * 60 * 1000; // 4 min 30 s → show warning banner
 
 interface ChallengeContextType {
   rooms: ChallengeRoom[];
   currentRoom: ChallengeRoom | null;
   lastEvent: ChallengeEvent | null;
+  idleWarning: boolean;
   joinRoomAction: (roomId: string) => Promise<void>;
   leaveRoomAction: () => Promise<void>;
   startGameAction: () => Promise<void>;
@@ -42,17 +47,22 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const stompClientRef = useRef<any>(null);
   const currentRoomRef = useRef<string | null>(null);
 
-  // Derive userId/displayName from auth or localStorage guest identity
-  const myUserId: string = (() => {
-    if (isLoggedIn && user) return user.username;
-    return localStorage.getItem('hw-guest-id') || `guest-${Date.now()}`;
-  })();
-  const myDisplayName: string = (() => {
-    if (isLoggedIn && user) return user.nickname || user.fullname || user.username;
-    const id = localStorage.getItem('hw-guest-id') || '';
-    const shortId = id.replace(/-/g, '').slice(-4).toUpperCase();
-    return localStorage.getItem('hw-guest-name') || `Guest-${shortId}`;
-  })();
+  // ── Idle-kick ──────────────────────────────────────────────────────────────
+  const lastActivityRef = useRef<number>(Date.now());
+  const idleIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [idleWarning, setIdleWarning] = useState(false);
+  // Keep a stable ref to leaveRoomAction so the interval always calls the
+  // latest version without needing to be in its dependency array.
+  const leaveRoomRef = useRef<() => Promise<void>>(async () => {});
+
+  // Derive userId/displayName from auth or a stable guest identity.
+  // getOrCreateGuestIdentity() ensures hw-guest-id is always written to localStorage
+  // before we read it, so the display name is never "Guest-" with an empty suffix.
+  const guestIdentity = isLoggedIn ? null : getOrCreateGuestIdentity();
+  const myUserId: string = isLoggedIn && user ? user.username : (guestIdentity?.userId ?? `guest-${Date.now()}`);
+  const myDisplayName: string = isLoggedIn && user
+    ? (user.nickname || user.fullname || user.username)
+    : (guestIdentity?.displayName ?? 'Guest');
   const isGuest = !isLoggedIn;
 
   // Connect STOMP and subscribe to room list
@@ -119,7 +129,22 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     if (room) {
       setCurrentRoom(room);
       currentRoomRef.current = roomId;
-      setLastEvent(null);
+      // If the game is already in progress, synthesize a QUESTION event from the
+      // room state so the late joiner sees the current word without waiting for
+      // the next round.  If the backend doesn't include currentQuestion the event
+      // is omitted and the player sees "Get ready…" until the next round starts.
+      if (room.status === 'PLAYING' && room.currentQuestion) {
+        setLastEvent({
+          type: 'QUESTION',
+          question: room.currentQuestion,
+          questionId: room.currentQuestionId,
+          hint: room.currentHint,
+          timeoutSeconds: room.remainingSeconds ?? 15,
+          choices: room.currentChoices,
+        });
+      } else {
+        setLastEvent(null);
+      }
       if (stompClientRef.current?.active) {
         subscribeToRoom(stompClientRef.current, roomId);
       }
@@ -134,6 +159,50 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     setLastEvent(null);
   }, [currentRoom, myUserId]);
 
+  // Keep the ref in sync so the idle interval always calls the latest version.
+  useEffect(() => { leaveRoomRef.current = leaveRoomAction; }, [leaveRoomAction]);
+
+  // Start idle tracking while in a room; tear it down on leave.
+  useEffect(() => {
+    if (!currentRoom) {
+      if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
+      idleIntervalRef.current = null;
+      setIdleWarning(false);
+      return;
+    }
+
+    // Reset the clock when entering a room.
+    lastActivityRef.current = Date.now();
+    setIdleWarning(false);
+
+    // Any user interaction counts as activity.
+    const onActivity = () => {
+      lastActivityRef.current = Date.now();
+      setIdleWarning(false);
+    };
+    document.addEventListener('pointerdown', onActivity, { passive: true });
+    document.addEventListener('keydown',     onActivity, { passive: true });
+    document.addEventListener('touchstart',  onActivity, { passive: true });
+
+    // Check every 10 seconds.
+    idleIntervalRef.current = setInterval(() => {
+      const idle = Date.now() - lastActivityRef.current;
+      if (idle >= IDLE_KICK_MS) {
+        leaveRoomRef.current();
+      } else if (idle >= IDLE_WARN_MS) {
+        setIdleWarning(true);
+      }
+    }, 10_000);
+
+    return () => {
+      document.removeEventListener('pointerdown', onActivity);
+      document.removeEventListener('keydown',     onActivity);
+      document.removeEventListener('touchstart',  onActivity);
+      if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
+      idleIntervalRef.current = null;
+    };
+  }, [currentRoom?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const startGameAction = useCallback(async () => {
     if (!currentRoom) return;
     await startGame(currentRoom.id, myUserId);
@@ -141,6 +210,9 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const submitAnswer = useCallback((answer: string, questionId: string) => {
     if (!currentRoom || !stompClientRef.current?.active) return;
+    // Submitting an answer is explicit activity — reset the idle clock.
+    lastActivityRef.current = Date.now();
+    setIdleWarning(false);
     stompClientRef.current.publish({
       destination: `/app/challenge/room/${currentRoom.id}/answer`,
       body: JSON.stringify({ userId: myUserId, displayName: myDisplayName, guest: isGuest, answer, questionId }),
@@ -149,7 +221,7 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   return (
     <ChallengeContext.Provider value={{
-      rooms, currentRoom, lastEvent,
+      rooms, currentRoom, lastEvent, idleWarning,
       joinRoomAction, leaveRoomAction, startGameAction, submitAnswer,
     }}>
       {children}

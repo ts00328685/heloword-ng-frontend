@@ -7,16 +7,27 @@ export interface ChallengePlayer {
   isGuest: boolean;
 }
 
+export type GameFormat = 'TYPING' | 'MULTI_CHOICE';
+
 export interface ChallengeRoom {
   id: string;
   name: string;
   hostUserId: string;
   gameType: string;
+  /** 'TYPING' = free-text input (default); 'MULTI_CHOICE' = 4-button pick one */
+  gameFormat?: GameFormat;
   status: 'WAITING' | 'PLAYING' | 'FINISHED';
   system: boolean;
   totalRounds: number;
   currentRound: number;
   players: ChallengePlayer[];
+  // Present in the join response when the game is already in progress,
+  // so late-joining players can see the ongoing question immediately.
+  currentQuestion?: string;
+  currentQuestionId?: string;
+  currentHint?: string;
+  remainingSeconds?: number;
+  currentChoices?: string[];
 }
 
 export interface ChallengeEvent {
@@ -28,6 +39,8 @@ export interface ChallengeEvent {
   questionId?: string;
   timeoutSeconds?: number;
   hint?: string;
+  /** Four answer choices sent with QUESTION events in MULTI_CHOICE rooms */
+  choices?: string[];
   winnerId?: string;
   winnerName?: string;
   correctAnswer?: string;

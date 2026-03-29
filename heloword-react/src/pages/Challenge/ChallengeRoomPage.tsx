@@ -26,7 +26,7 @@ const Scoreboard: React.FC<{ players: ChallengePlayer[]; myUserId: string }> = (
 
 const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave }) => {
   const { t } = useTranslation();
-  const { currentRoom, lastEvent, startGameAction, submitAnswer } = useChallenge();
+  const { currentRoom, lastEvent, startGameAction, submitAnswer, idleWarning } = useChallenge();
   const { isLoggedIn, user } = useAuth();
   const myUserId = isLoggedIn && user ? user.username : (localStorage.getItem('hw-guest-id') || '');
 
@@ -40,6 +40,10 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
   const [answered, setAnswered] = useState(false);
   // wrongFeedback=true shows a brief "wrong answer" flash without blocking input
   const [wrongFeedback, setWrongFeedback] = useState(false);
+  // Multi-choice state
+  const [choices, setChoices] = useState<string[]>([]);
+  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
+  const [revealedCorrect, setRevealedCorrect] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const wrongTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -57,6 +61,9 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
       setAnswered(false);
       setWrongFeedback(false);
       setRoundMsg(null);
+      setChoices(ev.choices ?? []);
+      setSelectedChoice(null);
+      setRevealedCorrect(null);
       inputRef.current?.focus();
       if (timerRef.current) clearInterval(timerRef.current);
       timerRef.current = setInterval(() => {
@@ -81,21 +88,25 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
     if (ev.type === 'ROUND_WIN') {
       clearInterval(timerRef.current!);
       setTimeLeft(null);
-      setQuestion(null);
       setAnswered(true);
+      if (ev.correctAnswer) setRevealedCorrect(ev.correctAnswer);
       const isMe = ev.winnerId === myUserId;
       const pts = ev.pointsAwarded ?? 1;
       setRoundMsg(isMe
         ? t('challenge.youGotIt', { points: pts })
         : t('challenge.someoneAnswered', { name: ev.winnerName, word: ev.correctAnswer, points: pts }));
+      // For typing mode clear question to show roundMsg panel; for multi-choice keep it so
+      // the color reveal is visible until the next QUESTION event clears it.
+      if (currentRoom?.gameFormat !== 'MULTI_CHOICE') setQuestion(null);
     }
 
     if (ev.type === 'QUESTION_TIMEOUT') {
       clearInterval(timerRef.current!);
       setTimeLeft(null);
-      setQuestion(null);
       setAnswered(true);
+      if (ev.correctAnswer) setRevealedCorrect(ev.correctAnswer);
       setRoundMsg(t('challenge.timesUp', { word: ev.correctAnswer }));
+      if (currentRoom?.gameFormat !== 'MULTI_CHOICE') setQuestion(null);
     }
 
     if (ev.type === 'GAME_OVER') {
@@ -104,7 +115,7 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
       setQuestion(null);
       setRoundMsg(null);
     }
-  }, [lastEvent, myUserId, t]);
+  }, [lastEvent, myUserId, t, currentRoom?.gameFormat]);
 
   useEffect(() => () => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -153,6 +164,12 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
         )}
       </div>
 
+      {idleWarning && (
+        <div className="bg-orange-500 text-white text-xs font-semibold text-center px-4 py-2">
+          {t('challenge.idleWarning')}
+        </div>
+      )}
+
       <main className="flex-1 pb-4 px-4 pt-4 max-w-2xl mx-auto w-full space-y-3">
 
         {/* Scoreboard */}
@@ -198,7 +215,9 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
             {question ? (
               <>
-                <p className="text-xs text-gray-400 dark:text-gray-500 mb-2 text-center">{t('challenge.typeWordMatch')}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mb-2 text-center">
+                  {currentRoom.gameFormat === 'MULTI_CHOICE' ? t('challenge.chooseAnswer') : t('challenge.typeWordMatch')}
+                </p>
                 <div className="text-center mb-4">
                   <p className="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">{question}</p>
                   {hint && timeLeft !== null && timeLeft <= 5 && timeLeft > 0 && (
@@ -207,37 +226,81 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                     </p>
                   )}
                 </div>
-                <div className="flex gap-2">
-                  <input
-                    ref={inputRef}
-                    value={answer}
-                    onChange={e => setAnswer(e.target.value)}
-                    onKeyDown={handleKey}
-                    disabled={answered}
-                    placeholder={t('challenge.typeAnswer')}
-                    autoFocus
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    spellCheck={false}
-                    className={`flex-1 rounded-xl border bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2.5 focus:outline-none focus:ring-2 transition-colors ${
-                      wrongFeedback
-                        ? 'border-red-400 focus:ring-red-400'
-                        : answered
-                          ? 'opacity-50 border-gray-200 dark:border-gray-700'
-                          : 'border-gray-200 dark:border-gray-700 focus:ring-blue-400'
-                    }`}
-                  />
-                  <button
-                    onClick={handleSubmit}
-                    disabled={!answer.trim() || answered}
-                    className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white text-sm font-semibold rounded-xl transition-colors"
-                  >
-                    ↵
-                  </button>
-                </div>
-                {wrongFeedback && (
-                  <p className="text-xs text-center text-red-500 mt-2">{t('challenge.wrongAnswer')}</p>
+
+                {currentRoom.gameFormat === 'MULTI_CHOICE' ? (
+                  /* ── Multi-choice 2×2 grid ── */
+                  <>
+                  {answered && roundMsg && (
+                    <p className="text-xs text-center font-medium text-gray-700 dark:text-gray-300 mb-3">{roundMsg}</p>
+                  )}
+                  <div className="grid grid-cols-2 gap-2">
+                    {choices.map(choice => {
+                      const isSelected = selectedChoice === choice;
+                      const isCorrect = revealedCorrect === choice;
+                      const isWrong = isSelected && revealedCorrect !== null && revealedCorrect !== choice;
+                      let cls = 'w-full py-3 px-3 text-sm font-semibold rounded-xl border-2 transition-colors text-left';
+                      if (isCorrect) {
+                        cls += ' bg-green-100 border-green-500 text-green-800 dark:bg-green-900/30 dark:text-green-300';
+                      } else if (isWrong) {
+                        cls += ' bg-red-100 border-red-500 text-red-800 dark:bg-red-900/30 dark:text-red-300';
+                      } else if (isSelected) {
+                        cls += ' bg-blue-100 border-blue-500 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300';
+                      } else {
+                        cls += ' bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-400 dark:hover:border-blue-500';
+                      }
+                      return (
+                        <button
+                          key={choice}
+                          disabled={selectedChoice !== null || answered}
+                          onClick={() => {
+                            if (selectedChoice || answered || !questionId) return;
+                            setSelectedChoice(choice);
+                            submitAnswer(choice, questionId);
+                          }}
+                          className={cls}
+                        >
+                          {choice}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  </>
+                ) : (
+                  /* ── Free-text typing input ── */
+                  <>
+                    <div className="flex gap-2">
+                      <input
+                        ref={inputRef}
+                        value={answer}
+                        onChange={e => setAnswer(e.target.value)}
+                        onKeyDown={handleKey}
+                        disabled={answered}
+                        placeholder={t('challenge.typeAnswer')}
+                        autoFocus
+                        autoComplete="off"
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck={false}
+                        className={`flex-1 rounded-xl border bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2.5 focus:outline-none focus:ring-2 transition-colors ${
+                          wrongFeedback
+                            ? 'border-red-400 focus:ring-red-400'
+                            : answered
+                              ? 'opacity-50 border-gray-200 dark:border-gray-700'
+                              : 'border-gray-200 dark:border-gray-700 focus:ring-blue-400'
+                        }`}
+                      />
+                      <button
+                        onClick={handleSubmit}
+                        disabled={!answer.trim() || answered}
+                        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white text-sm font-semibold rounded-xl transition-colors"
+                      >
+                        ↵
+                      </button>
+                    </div>
+                    {wrongFeedback && (
+                      <p className="text-xs text-center text-red-500 mt-2">{t('challenge.wrongAnswer')}</p>
+                    )}
+                  </>
                 )}
               </>
             ) : (
