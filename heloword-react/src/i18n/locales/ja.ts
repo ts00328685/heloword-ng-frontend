@@ -282,6 +282,7 @@ const ja = {
     gameOver: 'ゲームオーバー！',
     winner: '勝者：{{name}}、{{score}} ポイント',
     nextGameSoon: '次のゲームがもうすぐ始まります…',
+    idleWarning: '操作がありません — 30 秒後にルームから退出されます。',
     typeWordMatch: '対応する単語を入力してください：',
     hint: 'ヒント：{{hint}}',
     typeAnswer: '答えを入力…',
@@ -292,6 +293,9 @@ const ja = {
     timesUp: '⏰ 時間切れ！答え：{{word}}',
     wrongAnswer: '❌ 不正解！-1 ポイント',
     system: 'システム',
+    typingRooms: 'タイピングルーム',
+    multiChoiceRooms: '選択式ルーム',
+    chooseAnswer: '正しい答えを選んでください：',
   },
   guestSetup: {
     title: 'Heloword へようこそ！',

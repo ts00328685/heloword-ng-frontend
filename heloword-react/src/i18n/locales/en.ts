@@ -282,6 +282,7 @@ const en = {
     gameOver: 'Game Over!',
     winner: 'Winner: {{name}} with {{score}} pts',
     nextGameSoon: 'Next game starting soon…',
+    idleWarning: 'You have been inactive — you will be removed from the room in 30 seconds.',
     typeWordMatch: 'Type the word that matches:',
     hint: 'Hint: {{hint}}',
     typeAnswer: 'Type your answer…',
@@ -292,6 +293,9 @@ const en = {
     timesUp: "⏰ Time's up! Answer: {{word}}",
     wrongAnswer: '❌ Wrong! -1 point',
     system: 'SYSTEM',
+    typingRooms: 'Typing Rooms',
+    multiChoiceRooms: 'Multi-Choice Rooms',
+    chooseAnswer: 'Choose the correct answer:',
   },
   guestSetup: {
     title: 'Welcome to Heloword!',

@@ -282,6 +282,7 @@ const zh = {
     gameOver: '遊戲結束！',
     winner: '勝者：{{name}}，{{score}} 分',
     nextGameSoon: '下一局即將開始…',
+    idleWarning: '您已閒置 — 30 秒後將自動離開房間。',
     typeWordMatch: '輸入對應的單字：',
     hint: '提示：{{hint}}',
     typeAnswer: '輸入你的答案…',
@@ -292,6 +293,9 @@ const zh = {
     timesUp: '⏰ 時間到！答案：{{word}}',
     wrongAnswer: '❌ 答錯了！-1 分',
     system: '系統',
+    typingRooms: '拼字遊戲房間',
+    multiChoiceRooms: '選擇題遊戲房間',
+    chooseAnswer: '選擇正確答案：',
   },
   guestSetup: {
     title: '歡迎來到 Heloword！',
