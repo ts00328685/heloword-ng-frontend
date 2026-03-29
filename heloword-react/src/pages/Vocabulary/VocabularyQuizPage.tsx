@@ -40,23 +40,14 @@ const LANG_MAP: Record<string, string> = {
 
 /** Extract the kana-only reading from a Japanese word string.
  *  "さ 来週[らいしゅう]" → "さらいしゅう"
- *  Skips kanji and spaces; takes the content of [brackets] as the reading. */
+ *  "書く[かく]" → "かく"  (okurigana before bracket is part of the annotated unit)
+ *  Each word[reading] unit is replaced by its reading; remaining kana are kept. */
 const extractKanaAnswer = (wordStr: string): string => {
-  let result = '';
-  let i = 0;
-  while (i < wordStr.length) {
-    if (wordStr[i] === '[') {
-      const end = wordStr.indexOf(']', i);
-      if (end !== -1) { result += wordStr.slice(i + 1, end); i = end + 1; }
-      else i++;
-    } else if (/[一-龠々〆〤ヶ]/.test(wordStr[i]) || wordStr[i] === ' ') {
-      i++;
-    } else {
-      result += wordStr[i];
-      i++;
-    }
-  }
-  return result;
+  // Replace every "unit[reading]" block with just the reading.
+  // [^\s\[]* matches the kanji/kana unit before the bracket (including okurigana).
+  const withReadings = wordStr.replace(/[^\s\[]*\[([^\]]+)\]/g, '$1');
+  // Collect all hiragana/katakana runs; skip kanji, numbers, spaces, punctuation.
+  return (withReadings.match(/[ぁ-ゔァ-ヴー]+/g) || []).join('');
 };
 
 /** Split a kana string into max-9 display groups.
@@ -133,6 +124,7 @@ const VocabularyQuizPage: React.FC = () => {
   // Japanese button-input mode
   const [jpButtonMode, setJpButtonMode] = useState(true);
   const [builtAnswer, setBuiltAnswer] = useState<string[]>([]);
+  const [builtAnswerIndices, setBuiltAnswerIndices] = useState<number[]>([]);
   const [kanaGroups, setKanaGroups] = useState<string[]>([]);
   const [showJpSuccess, setShowJpSuccess] = useState(false);
 
@@ -198,6 +190,7 @@ const VocabularyQuizPage: React.FC = () => {
     const groups = splitKanaGroups(kana);
     setKanaGroups([...groups].sort(() => Math.random() - 0.5));
     setBuiltAnswer([]);
+    setBuiltAnswerIndices([]);
     setShowJpSuccess(false);
     jpSuccessFiredRef.current = false;
   }, [wordList[0]?.id, jpButtonMode]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -468,10 +461,20 @@ const VocabularyQuizPage: React.FC = () => {
     const kana = extractKanaAnswer(word.word || '');
     const next = [...builtAnswer, kanaGroups[idx]];
     setBuiltAnswer(next);
+    setBuiltAnswerIndices((prev) => [...prev, idx]);
     if (next.join('') === kana) {
       jpSuccessFiredRef.current = true;
+      // Reset per-word counters now so that any interaction during the 2-second
+      // success flash (e.g. pressing pronounce to hear the word, or clicking skip
+      // to skip the wait) does not inflate wrongCount and cause a spurious retest.
+      pronounceCountRef.current = 0;
+      deleteCountRef.current = 0;
       setShowJpSuccess(true);
       setTimeout(() => {
+        // If the word was already advanced (e.g. user tapped skip during the flash),
+        // the kana-reset effect will have set jpSuccessFiredRef to false — bail out
+        // to prevent a double-goNext that silently drops the next word from the queue.
+        if (!jpSuccessFiredRef.current) return;
         setShowJpSuccess(false);
         goNext(word);
       }, 2000);
@@ -487,6 +490,7 @@ const VocabularyQuizPage: React.FC = () => {
       if (e.key === 'Backspace') {
         e.preventDefault();
         setBuiltAnswer((p) => p.slice(0, -1));
+        setBuiltAnswerIndices((p) => p.slice(0, -1));
         return;
       }
       const n = parseInt(e.key, 10);
@@ -500,7 +504,8 @@ const VocabularyQuizPage: React.FC = () => {
   }, [wordList, jpButtonMode, kanaGroups, handleKanaClick]);
 
   const handleRevealAnswer = () => {
-    wrongCountRef.current += 5;
+    // Don't penalise after the word was already answered correctly (success flash showing).
+    if (!jpSuccessFiredRef.current) wrongCountRef.current += 5;
     const current = wordList[0];
     if (!current) return;
     let ans = getRawAnswer(current);
@@ -674,10 +679,56 @@ const VocabularyQuizPage: React.FC = () => {
 
         {/* Answer input */}
         {isJpButtonMode ? (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
-            {showJpSuccess ? (
-              /* 2-second success flash: show kanji + kana */
-              <div className="flex flex-col items-center justify-center py-2 gap-1">
+          <div className="relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
+            {/* Grid content — always in DOM so height never changes during success flash */}
+            <div className={showJpSuccess ? 'invisible' : ''}>
+              {/* Built-answer slots */}
+              <div className="flex flex-wrap gap-1.5 mb-3 min-h-[2.5rem] items-center">
+                {kanaGroups.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`inline-flex items-center justify-center min-w-[2.25rem] h-9 px-1.5 rounded-lg text-base font-bold border-2 transition-colors ${
+                      i < builtAnswer.length
+                        ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-200'
+                        : 'border-dashed border-gray-300 dark:border-gray-600 text-transparent select-none'
+                    }`}
+                  >
+                    {i < builtAnswer.length ? builtAnswer[i] : '　'}
+                  </span>
+                ))}
+                {builtAnswer.length > 0 && (
+                  <button
+                    onClick={() => { setBuiltAnswer((p) => p.slice(0, -1)); setBuiltAnswerIndices((p) => p.slice(0, -1)); }}
+                    className="h-9 px-2.5 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-gray-400 hover:text-red-400 hover:border-red-300 transition-colors text-sm font-medium"
+                  >⌫</button>
+                )}
+              </div>
+              {/* Shuffled kana buttons labeled 1–9 */}
+              {(() => {
+                const usedKanaIndices = new Set(builtAnswerIndices);
+                return (
+                  <div className="grid grid-cols-3 gap-2">
+                    {kanaGroups.map((group, i) => (
+                      usedKanaIndices.has(i) ? (
+                        <div key={i} className="h-12" aria-hidden="true" />
+                      ) : (
+                        <button
+                          key={i}
+                          onClick={() => handleKanaClick(i)}
+                          className="relative flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:scale-95 transition-all"
+                        >
+                          <span className="absolute top-0.5 left-1.5 text-[10px] font-mono text-gray-400 dark:text-gray-500">{i + 1}</span>
+                          <span className="text-lg font-bold text-gray-800 dark:text-gray-100">{group}</span>
+                        </button>
+                      )
+                    ))}
+                  </div>
+                );
+              })()}
+            </div>
+            {/* 2-second success flash — absolute overlay so container height is unchanged */}
+            {showJpSuccess && (
+              <div className="absolute inset-0 rounded-2xl bg-white dark:bg-gray-800 flex flex-col items-center justify-center gap-1 pointer-events-none">
                 <span className="text-green-500 text-xl font-bold">✓</span>
                 <p className="text-2xl font-bold text-gray-800 dark:text-gray-100 tracking-wide">
                   {(current.word || '').replace(/\[.*?\]/g, '').replace(/\s+/g, '')}
@@ -686,43 +737,6 @@ const VocabularyQuizPage: React.FC = () => {
                   {extractKanaAnswer(current.word || '')}
                 </p>
               </div>
-            ) : (
-              <>
-                {/* Built-answer slots */}
-                <div className="flex flex-wrap gap-1.5 mb-3 min-h-[2.5rem] items-center">
-                  {kanaGroups.map((_, i) => (
-                    <span
-                      key={i}
-                      className={`inline-flex items-center justify-center min-w-[2.25rem] h-9 px-1.5 rounded-lg text-base font-bold border-2 transition-colors ${
-                        i < builtAnswer.length
-                          ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-200'
-                          : 'border-dashed border-gray-300 dark:border-gray-600 text-transparent select-none'
-                      }`}
-                    >
-                      {i < builtAnswer.length ? builtAnswer[i] : '　'}
-                    </span>
-                  ))}
-                  {builtAnswer.length > 0 && (
-                    <button
-                      onClick={() => setBuiltAnswer((p) => p.slice(0, -1))}
-                      className="h-9 px-2.5 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-gray-400 hover:text-red-400 hover:border-red-300 transition-colors text-sm font-medium"
-                    >⌫</button>
-                  )}
-                </div>
-                {/* Shuffled kana buttons labeled 1–9 */}
-                <div className="grid grid-cols-3 gap-2">
-                  {kanaGroups.map((group, i) => (
-                    <button
-                      key={i}
-                      onClick={() => handleKanaClick(i)}
-                      className="relative flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:scale-95 transition-all"
-                    >
-                      <span className="absolute top-0.5 left-1.5 text-[10px] font-mono text-gray-400 dark:text-gray-500">{i + 1}</span>
-                      <span className="text-lg font-bold text-gray-800 dark:text-gray-100">{group}</span>
-                    </button>
-                  ))}
-                </div>
-              </>
             )}
           </div>
         ) : (

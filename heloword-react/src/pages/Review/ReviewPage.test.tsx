@@ -871,7 +871,7 @@ describe('ReviewPage — logged-in user', () => {
     // Override doPost to return one QuizSetting for the group.
     const group = dg({ min: 1, max: 5, status: 'SCHEDULED', level: 0 });
     vi.mocked(doPost).mockResolvedValueOnce({
-      code: '0000',
+      code: '0000', timestamp: new Date(), message: '',
       data: {
         wordEnglishList: [
           {
@@ -1292,7 +1292,7 @@ describe('ReviewPage — logged-in user multiple ranges', () => {
     const gB = dg({ min: 1001, max: 2000, status: 'DUE'       });
     // For logged-in users fetchData drives the card list via doPost.
     vi.mocked(doPost).mockResolvedValueOnce({
-      code: '0000',
+      code: '0000', timestamp: new Date(), message: '',
       data: {
         wordEnglishList: [
           { type: 'wordEnglishList', min: 1,    max: 1000, total: 9481,
