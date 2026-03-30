@@ -176,7 +176,15 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                   onChange={(e) => {
                     setMinStr(e.target.value);
                     const v = parseInt(e.target.value, 10);
-                    if (!isNaN(v)) onChange({ ...setting, min: v });
+                    if (!isNaN(v)) {
+                      const currentMax = parseInt(maxStr, 10) || (setting.max ?? setting.total);
+                      if (v > currentMax) {
+                        setMaxStr(String(v));
+                        onChange({ ...setting, min: v, max: v });
+                      } else {
+                        onChange({ ...setting, min: v });
+                      }
+                    }
                   }}
                   className="w-full text-sm text-center border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                 />
@@ -184,8 +192,14 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                   type="button"
                   onClick={() => {
                     const next = (parseInt(minStr, 10) || 1) + 50;
+                    const currentMax = parseInt(maxStr, 10) || (setting.max ?? setting.total);
                     setMinStr(String(next));
-                    onChange({ ...setting, min: next });
+                    if (next > currentMax) {
+                      setMaxStr(String(next));
+                      onChange({ ...setting, min: next, max: next });
+                    } else {
+                      onChange({ ...setting, min: next });
+                    }
                   }}
                   className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
                 >+</button>
@@ -315,13 +329,22 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
       showAlert(t('quizModal.selectList'));
       return;
     }
+    for (const s of selected) {
+      const min = s.min ?? 1;
+      const max = s.max ?? s.total;
+      if (max < min) {
+        showAlert(t('quizModal.errorEndLessThanStart'));
+        return;
+      }
+      if (max > s.total) {
+        showAlert(t('quizModal.errorEndExceedsTotal', { total: s.total }));
+        return;
+      }
+    }
     const timestamp = new Date();
     const quizSettings: Record<string, QuizSetting> = {};
     selected.forEach((s) => {
-      // Clamp at start time so mid-edit values don't cause invalid ranges
-      const min = Math.max(1, Math.min(s.min ?? 1, s.total));
-      const max = Math.max(min, Math.min(s.max ?? s.total, s.total));
-      quizSettings[s.type] = { ...s, timestamp, min, max };
+      quizSettings[s.type] = { ...s, timestamp, min: s.min ?? 1, max: s.max ?? s.total };
     });
     onClose();
     navigate('/vocabulary/quiz', { state: { quizSettings } });

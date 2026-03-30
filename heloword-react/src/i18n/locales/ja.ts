@@ -96,6 +96,8 @@ const ja = {
     customizeIntervals: '復習間隔（分）',
     resetIntervals: 'デフォルトにリセット',
     saveIntervals: '間隔を保存',
+    errorEndLessThanStart: '終了番号は開始番号より小さくできません。',
+    errorEndExceedsTotal: '終了番号は合計数（{{total}}）を超えられません。',
   },
   onboarding: {
     quiz: [

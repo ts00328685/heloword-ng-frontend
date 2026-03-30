@@ -96,6 +96,8 @@ const zh = {
     customizeIntervals: '複習間隔（分鐘）',
     resetIntervals: '重置為預設值',
     saveIntervals: '儲存間隔',
+    errorEndLessThanStart: '結束數字不能小於開始數字。',
+    errorEndExceedsTotal: '結束數字不能超過總數（{{total}}）。',
   },
   onboarding: {
     quiz: [

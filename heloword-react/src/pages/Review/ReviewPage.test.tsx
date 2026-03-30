@@ -355,8 +355,11 @@ describe('ReviewPage — DUE group', () => {
     expect(screen.getByText('review.dueForReview')).toBeInTheDocument();
   });
 
-  it('shows "Start Due Review" button in the banner', () => {
-    expect(screen.getByText('review.startDueReview')).toBeInTheDocument();
+  it('shows a clickable tag for the due group in the banner (no Start Review button)', () => {
+    // Tags are now buttons; the old "Start Due Review" button is removed
+    expect(screen.queryByText('review.startDueReview')).not.toBeInTheDocument();
+    const tagBtn = screen.getByRole('button', { name: /wordLists\.wordEnglishList/ });
+    expect(tagBtn).toBeInTheDocument();
   });
 
   it('progress bar is at 0% (starting a new review cycle)', () => {
@@ -1249,18 +1252,19 @@ describe('ReviewPage — "review early" button conditions', () => {
 });
 
 // ===========================================================================
-// 29. "Start Due Review" button calls navigate when clicked
+// 29. Clicking a due group tag in the banner calls navigate
 // ===========================================================================
 
-describe('ReviewPage — "Start Due Review" button', () => {
-  it('clicking "Start Due Review" calls navigate', () => {
+describe('ReviewPage — due group tag click', () => {
+  it('clicking a due group tag in the banner calls navigate', () => {
     const setting = gs({ min: 1, max: 3 });
     const group = dg({ min: 1, max: 3, status: 'DUE' });
     setupAndRender(setting, [], group);
 
-    const btn = screen.getByText('review.startDueReview');
-    expect(btn).toBeInTheDocument();
-    fireEvent.click(btn);
+    // Tags are now <button> elements; the old "Start Due Review" button is gone
+    expect(screen.queryByText('review.startDueReview')).not.toBeInTheDocument();
+    const tagBtn = screen.getByRole('button', { name: /wordLists\.wordEnglishList/ });
+    fireEvent.click(tagBtn);
     expect(mocks.navigate).toHaveBeenCalled();
   });
 });
@@ -1606,6 +1610,36 @@ describe('ReviewPage — logged-in FRESH group re-entry (progress bug regression
 
     // UNFINISHED → cycleCompleted = 3%10 = 3, displayCompleted = 3 → 3/10
     expect(screen.getByText('3/10')).toBeInTheDocument();
+  });
+
+  it('FRESH group: inflated finishedCount (stale data, finishedCount=11) → shows 0/10 not 1/10', async () => {
+    // Stale data from old bug: finishedCount was incremented past rangeSize (10→11)
+    // because VocabularyQuizPage reused the old session and appended a new record.
+    // completed = 11, 11 % 10 = 1, but FRESH must always display 0.
+    const group = dg({ min: 1, max: 10, status: 'FRESH', level: 0 });
+    vi.mocked(doPost).mockResolvedValueOnce({
+      code: '0000', timestamp: new Date(), message: '',
+      data: {
+        wordEnglishList: [
+          {
+            id: 'stale-session-id',
+            type: 'wordEnglishList', min: 1, max: 10, total: 9481,
+            timestamp: new Date().toISOString(),
+            finishedCount: 11,            // inflated beyond rangeSize by old bug
+            latestFinishedTime: new Date().toISOString(),
+          },
+        ],
+      },
+    });
+    mocks.state.groupStates = new Map([[group.groupKey, group]]);
+    mocks.state.dueGroups   = [group];
+    render(<ReviewPage />);
+
+    await waitFor(() => expectBadge('review.groupStatusFresh'));
+
+    // cycleCompleted = 11 % 10 = 1, but FRESH always forces displayCompleted = 0
+    expect(screen.queryByText('1/10')).not.toBeInTheDocument();
+    expect(screen.getByText('0/10')).toBeInTheDocument();
   });
 
   it('SCHEDULED group: most recent fully completed → shows 10/10 (correct for SCHEDULED)', async () => {

@@ -96,6 +96,8 @@ const en = {
     customizeIntervals: 'Review Intervals (minutes)',
     resetIntervals: 'Reset to defaults',
     saveIntervals: 'Save intervals',
+    errorEndLessThanStart: 'End number cannot be less than the start number.',
+    errorEndExceedsTotal: 'End number cannot exceed the total ({{total}}).',
   },
   onboarding: {
     quiz: [
