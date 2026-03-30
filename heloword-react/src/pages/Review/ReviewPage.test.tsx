@@ -1505,3 +1505,158 @@ describe('ReviewPage — SCHEDULED countdown shown', () => {
     expect(screen.getByText('review.nextReview')).toBeInTheDocument();
   });
 });
+
+// ===========================================================================
+// 41. Logged-in FRESH/DUE re-entry progress bug (regression)
+//
+// Bug: completing 1 word out of 10 after entering a FRESH or DUE group showed
+// 10/10 instead of 1/10 because fetchData() passed the most-recent session's
+// `id` even when it was already fully completed. VocabularyQuizPage reused the
+// old session, appended the new record, and the updated latestFinishedTime
+// caused computeGroupStates to return SCHEDULED → displayCompleted=group.total.
+//
+// Fix: id is cleared (set to undefined) on the record passed to `records[]`
+// when the most-recent session is fully completed (finishedCount >= rangeSize),
+// forcing VocabularyQuizPage to create a new session via the API.
+// ===========================================================================
+
+describe('ReviewPage — logged-in FRESH group re-entry (progress bug regression)', () => {
+  beforeEach(() => {
+    mocks.state.isLoggedIn = true;
+  });
+
+  it('FRESH group: mostRecent fully completed → records[0].id is undefined (new session forced)', async () => {
+    // Session completed with all 10 words answered, now in FRESH state
+    const group = dg({ min: 1, max: 10, status: 'FRESH', level: 0 });
+    vi.mocked(doPost).mockResolvedValueOnce({
+      code: '0000', timestamp: new Date(), message: '',
+      data: {
+        wordEnglishList: [
+          {
+            id: 'old-session-id',
+            type: 'wordEnglishList', min: 1, max: 10, total: 9481,
+            timestamp: new Date().toISOString(),
+            finishedCount: 10,          // fully completed
+            latestFinishedTime: new Date().toISOString(),
+          },
+        ],
+      },
+    });
+    mocks.state.groupStates = new Map([[group.groupKey, group]]);
+    mocks.state.dueGroups   = [group];
+    render(<ReviewPage />);
+
+    await waitFor(() => expectBadge('review.groupStatusFresh'));
+
+    // The card should show 0/10 (cycleCompleted = 10%10 = 0) for FRESH, not 10/10
+    // FRESH status → displayCompleted = cycleCompleted = 0
+    expect(screen.queryByText('10/10')).not.toBeInTheDocument();
+    expect(screen.getByText('0/10')).toBeInTheDocument();
+  });
+
+  it('DUE group: mostRecent fully completed → shows 0/10, not 10/10', async () => {
+    const group = dg({ min: 1, max: 10, status: 'DUE', level: 1 });
+    vi.mocked(doPost).mockResolvedValueOnce({
+      code: '0000', timestamp: new Date(), message: '',
+      data: {
+        wordEnglishList: [
+          {
+            id: 'old-session-id',
+            type: 'wordEnglishList', min: 1, max: 10, total: 9481,
+            timestamp: new Date().toISOString(),
+            finishedCount: 10,
+            latestFinishedTime: new Date().toISOString(),
+          },
+        ],
+      },
+    });
+    mocks.state.groupStates = new Map([[group.groupKey, group]]);
+    mocks.state.dueGroups   = [group];
+    render(<ReviewPage />);
+
+    await waitFor(() => expectBadge('review.groupStatusDue'));
+
+    // DUE → cycleCompleted = 10%10 = 0, displayCompleted = 0 → 0/10
+    expect(screen.queryByText('10/10')).not.toBeInTheDocument();
+    expect(screen.getByText('0/10')).toBeInTheDocument();
+  });
+
+  it('UNFINISHED group: mostRecent partially done → shows partial progress and keeps id', async () => {
+    // Session has 3/10 done → should display 3/10
+    const group = dg({ min: 1, max: 10, status: 'UNFINISHED', level: 0 });
+    vi.mocked(doPost).mockResolvedValueOnce({
+      code: '0000', timestamp: new Date(), message: '',
+      data: {
+        wordEnglishList: [
+          {
+            id: 'partial-session-id',
+            type: 'wordEnglishList', min: 1, max: 10, total: 9481,
+            timestamp: new Date().toISOString(),
+            finishedCount: 3,           // partial — genuinely unfinished
+            latestFinishedTime: new Date().toISOString(),
+          },
+        ],
+      },
+    });
+    mocks.state.groupStates = new Map([[group.groupKey, group]]);
+    mocks.state.dueGroups   = [group];
+    render(<ReviewPage />);
+
+    await waitFor(() => expectBadge('review.groupStatusUnfinished'));
+
+    // UNFINISHED → cycleCompleted = 3%10 = 3, displayCompleted = 3 → 3/10
+    expect(screen.getByText('3/10')).toBeInTheDocument();
+  });
+
+  it('SCHEDULED group: most recent fully completed → shows 10/10 (correct for SCHEDULED)', async () => {
+    // SCHEDULED is the one case where fully-completed session should show 100%
+    const group = dg({ min: 1, max: 10, status: 'SCHEDULED', level: 0 });
+    vi.mocked(doPost).mockResolvedValueOnce({
+      code: '0000', timestamp: new Date(), message: '',
+      data: {
+        wordEnglishList: [
+          {
+            id: 'completed-session-id',
+            type: 'wordEnglishList', min: 1, max: 10, total: 9481,
+            timestamp: new Date().toISOString(),
+            finishedCount: 10,
+            latestFinishedTime: new Date().toISOString(),
+          },
+        ],
+      },
+    });
+    mocks.state.groupStates = new Map([[group.groupKey, group]]);
+    mocks.state.dueGroups   = [];
+    render(<ReviewPage />);
+
+    await waitFor(() => expectBadge('review.groupStatusScheduled'));
+
+    // SCHEDULED → displayCompleted = group.total = 10 → 10/10 (intentional)
+    expect(screen.getByText('10/10')).toBeInTheDocument();
+  });
+});
+
+describe('ReviewPage — guest FRESH group re-entry (progress bug regression)', () => {
+  it('FRESH group: 1/10 words done in new session → shows 1/10, not 10/10', () => {
+    // Old session: all 10 words completed
+    const oldSession = gs({ id: 'old', min: 1, max: 10 });
+    const oldRecords = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((id) =>
+      gr(oldSession.id, id),
+    );
+    // New session (created by fixed code): only 1 word done
+    const newSession = gs({ id: 'new', min: 1, max: 10 });
+    const newRecord = gr(newSession.id, 3); // answerId=3
+
+    const group = dg({ min: 1, max: 10, status: 'UNFINISHED', level: 0 });
+    mocks.state.guestSettings = [oldSession, newSession];
+    mocks.state.guestRecords  = [...oldRecords, newRecord];
+    mocks.state.groupStates   = new Map([[group.groupKey, group]]);
+    mocks.state.dueGroups     = [group];
+    render(<ReviewPage />);
+
+    // completed = 10 (old) + 1 (new) = 11, total = 10
+    // cycleCompleted = 11 % 10 = 1 → displayCompleted = 1 → 1/10
+    expect(screen.getByText('1/10')).toBeInTheDocument();
+    expect(screen.queryByText('10/10')).not.toBeInTheDocument();
+  });
+});

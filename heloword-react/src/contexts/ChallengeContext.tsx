@@ -46,6 +46,7 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   // Instead, use a dedicated STOMP Client for challenge subscriptions.
   const stompClientRef = useRef<any>(null);
   const currentRoomRef = useRef<string | null>(null);
+  const roomSubRef = useRef<{ unsubscribe: () => void } | null>(null);
 
   // ── Idle-kick ──────────────────────────────────────────────────────────────
   const lastActivityRef = useRef<number>(Date.now());
@@ -102,7 +103,9 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }, []);
 
   const subscribeToRoom = (client: any, roomId: string) => {
-    client.subscribe(`/topic/challenge/room/${roomId}`, (frame: any) => {
+    // Unsubscribe from any previous room subscription first
+    roomSubRef.current?.unsubscribe();
+    roomSubRef.current = client.subscribe(`/topic/challenge/room/${roomId}`, (frame: any) => {
       try {
         const event: ChallengeEvent = JSON.parse(frame.body);
         setLastEvent(event);
@@ -154,6 +157,8 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const leaveRoomAction = useCallback(async () => {
     if (!currentRoom) return;
     await leaveRoom(currentRoom.id, myUserId).catch(() => {});
+    roomSubRef.current?.unsubscribe();
+    roomSubRef.current = null;
     setCurrentRoom(null);
     currentRoomRef.current = null;
     setLastEvent(null);
