@@ -118,9 +118,17 @@ const ReviewPage: React.FC = () => {
           .filter((s) => s.latestFinishedTime)
           .sort((a, b) => new Date(b.latestFinishedTime!).getTime() - new Date(a.latestFinishedTime!).getTime())[0]
           ?.latestFinishedTime;
+        // Only pass the session id (resume marker) when the most recent session is
+        // genuinely unfinished. For FRESH/DUE groups the most recent session was
+        // fully completed — passing its id causes VocabularyQuizPage to reuse it,
+        // which appends new records to the old session, updates latestFinishedTime
+        // to now, and falsely flips the group to SCHEDULED (showing 10/10 after
+        // completing just 1 word).
+        const mostRecentIsUnfinished = (mostRecent.finishedCount ?? 0) < total;
+        const recordForQuiz = mostRecentIsUnfinished ? mostRecent : { ...mostRecent, id: undefined };
         return {
           date: new Date(mostRecent.timestamp),
-          records: [mostRecent],
+          records: [recordForQuiz],
           completed,
           total,
           latestFinishedTime: latestFinished ? new Date(latestFinished) : undefined,
@@ -174,8 +182,20 @@ const ReviewPage: React.FC = () => {
           if (ms > latestFinishedMs) latestFinishedMs = ms;
         }
       }
+      // Only pass _guestId (resume marker) when the most recent session is genuinely
+      // unfinished. For FRESH/DUE groups the most recent session was fully completed —
+      // passing its ID would cause VocabularyQuizPage to append new records to the old
+      // session, which inflates finishedCount to >= rangeSize and falsely flips the
+      // group to SCHEDULED (showing 10/10 after completing just 1 word).
+      const rangeSize = mostRecent.max - mostRecent.min + 1;
+      const mostRecentCorrectIds = new Set(
+        records.filter((r) => r.settingId === mostRecent.id && r.wrongCount === 0).map((r) => r.answerId),
+      );
+      const mostRecentIsUnfinished = mostRecentCorrectIds.size < rangeSize;
       const record_qs: QuizSetting = {
-        id: undefined, _guestId: mostRecent.id, timestamp: new Date(mostRecent.timestamp),
+        id: undefined,
+        _guestId: mostRecentIsUnfinished ? mostRecent.id : undefined,
+        timestamp: new Date(mostRecent.timestamp),
         type: mostRecent.type, tableName: mostRecent.tableName, total: mostRecent.total,
         isSelected: true, min: mostRecent.min, max: mostRecent.max,
       } as any;

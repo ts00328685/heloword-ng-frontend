@@ -1018,3 +1018,165 @@ describe('deleteGuestGroup — also removes override', () => {
     expect(overrides['wordEnglishList:11:20']).toBeDefined();
   });
 });
+
+// ===========================================================================
+// 24. FRESH group re-entry progress bug — regression tests
+//
+// Bug: Guest enters a FRESH (forgotten) group, completes 1/10 words, returns
+// to the Review page and sees 10/10 instead of 1/10.
+//
+// Root cause: ReviewPage was passing _guestId for ALL groups (including
+// FRESH/DUE), causing VocabularyQuizPage to append new records to the OLD
+// fully-completed session. This kept finishedCount >= rangeSize, flipping
+// latestFinishedTime to now → computeGroupStates saw the session as just
+// completed → status=SCHEDULED → displayCompleted=group.total (10/10).
+//
+// Fix: _guestId is now only set when the most recent session is genuinely
+// unfinished (finishedCount < rangeSize). FRESH/DUE groups get a NEW session.
+// ===========================================================================
+
+describe('FRESH group re-entry — new session (correct behavior after fix)', () => {
+  // This mirrors what the fixed code does: a NEW GuestSetting is created for
+  // a FRESH group instead of reusing the old one.
+
+  it('entering a FRESH group creates a new session; 1/10 words → UNFINISHED', () => {
+    // Old session: all 10 words completed 35 minutes ago (FRESH: past 30-min grace)
+    const oldSession = makeSetting({ min: 1, max: 10, timestamp: isoAt(-35 * MIN) });
+    saveGuestSetting(oldSession);
+    for (let id = 1; id <= 10; id++) {
+      saveGuestRecord(makeRecord(oldSession.id, id, { wrongCount: 0, finishedTime: isoAt(-35 * MIN) }));
+    }
+    // Confirm baseline: group is FRESH
+    expect(computeAllGuestGroupStates().get('wordEnglishList:1:10')?.status).toBe('FRESH');
+
+    // User enters the group → NEW session created (fixed behavior)
+    const newSession = makeSetting({ min: 1, max: 10, timestamp: isoAt(0) });
+    saveGuestSetting(newSession);
+    // User completes 1 word
+    saveGuestRecord(makeRecord(newSession.id, 3, { wrongCount: 0, finishedTime: isoAt(0) }));
+
+    const states = computeAllGuestGroupStates();
+    const g = states.get('wordEnglishList:1:10')!;
+    // New session has finishedCount=1 < rangeSize=10 → UNFINISHED, not SCHEDULED
+    expect(g.status).toBe('UNFINISHED');
+  });
+
+  it('new session after FRESH: finishedCount reflects only the new session words', () => {
+    const oldSession = makeSetting({ min: 1, max: 10, timestamp: isoAt(-35 * MIN) });
+    saveGuestSetting(oldSession);
+    for (let id = 1; id <= 10; id++) {
+      saveGuestRecord(makeRecord(oldSession.id, id, { wrongCount: 0, finishedTime: isoAt(-35 * MIN) }));
+    }
+
+    // New session: answer 3 words
+    const newSession = makeSetting({ min: 1, max: 10, timestamp: isoAt(0) });
+    saveGuestSetting(newSession);
+    [1, 2, 3].forEach((id) =>
+      saveGuestRecord(makeRecord(newSession.id, id, { wrongCount: 0, finishedTime: isoAt(0) })),
+    );
+
+    // The new session has finishedCount=3 < 10 → UNFINISHED (not SCHEDULED)
+    const qs = guestSettingsToQuizSettings();
+    const newQs = qs.find((q) => q.min === 1 && q.max === 10 && q.finishedCount === 3);
+    expect(newQs).toBeDefined();
+    expect(newQs!.finishedCount).toBe(3);
+
+    const g = computeAllGuestGroupStates().get('wordEnglishList:1:10')!;
+    expect(g.status).toBe('UNFINISHED');
+  });
+
+  it('new session after FRESH: completing all 10 words → SCHEDULED', () => {
+    const oldSession = makeSetting({ min: 1, max: 10, timestamp: isoAt(-35 * MIN) });
+    saveGuestSetting(oldSession);
+    for (let id = 1; id <= 10; id++) {
+      saveGuestRecord(makeRecord(oldSession.id, id, { wrongCount: 0, finishedTime: isoAt(-35 * MIN) }));
+    }
+
+    // New session: complete all 10 words
+    const newSession = makeSetting({ min: 1, max: 10, timestamp: isoAt(0) });
+    saveGuestSetting(newSession);
+    for (let id = 1; id <= 10; id++) {
+      saveGuestRecord(makeRecord(newSession.id, id, { wrongCount: 0, finishedTime: isoAt(0) }));
+    }
+
+    const g = computeAllGuestGroupStates().get('wordEnglishList:1:10')!;
+    // Fully completed → SCHEDULED (level resets since old completion was out of grace)
+    expect(g.status).toBe('SCHEDULED');
+    expect(g.reviewLevel).toBe(0);
+  });
+});
+
+describe('FRESH group re-entry — old session reuse (demonstrates the bug)', () => {
+  // This mirrors what the BUGGY code did: appending new records to the old
+  // session's settingId instead of creating a new one.
+  // These tests document WHY the bug caused wrong output so it cannot regress.
+
+  it('appending 1 new record to a fully-completed old session keeps finishedCount >= rangeSize', () => {
+    const session = makeSetting({ min: 1, max: 10, timestamp: isoAt(-35 * MIN) });
+    saveGuestSetting(session);
+    for (let id = 1; id <= 10; id++) {
+      saveGuestRecord(makeRecord(session.id, id, { wrongCount: 0, finishedTime: isoAt(-35 * MIN) }));
+    }
+    // Bug: one new word appended to the SAME old session
+    saveGuestRecord(makeRecord(session.id, 11, { wrongCount: 0, finishedTime: isoAt(0) }));
+
+    // finishedCount is now 11 (new word is a unique ID) — still >= rangeSize=10
+    const qs = guestSettingsToQuizSettings();
+    expect(qs[0].finishedCount).toBeGreaterThanOrEqual(10);
+  });
+
+  it('appending a duplicate word ID to old session does not change finishedCount (Set dedup)', () => {
+    const session = makeSetting({ min: 1, max: 10, timestamp: isoAt(-35 * MIN) });
+    saveGuestSetting(session);
+    for (let id = 1; id <= 10; id++) {
+      saveGuestRecord(makeRecord(session.id, id, { wrongCount: 0, finishedTime: isoAt(-35 * MIN) }));
+    }
+    // Bug: the new word happens to be a duplicate of an already-answered word
+    saveGuestRecord(makeRecord(session.id, 5, { wrongCount: 0, finishedTime: isoAt(0) }));
+
+    const qs = guestSettingsToQuizSettings();
+    // Set dedup: finishedCount stays at 10 (not 11)
+    expect(qs[0].finishedCount).toBe(10);
+    // latestFinishedTime updates to now
+    expect(qs[0].latestFinishedTime?.getTime()).toBeCloseTo(BASE, -3);
+  });
+
+  it('appending to old session and updating latestFinishedTime flips status to SCHEDULED (the bug)', () => {
+    const session = makeSetting({ min: 1, max: 10, timestamp: isoAt(-35 * MIN) });
+    saveGuestSetting(session);
+    for (let id = 1; id <= 10; id++) {
+      saveGuestRecord(makeRecord(session.id, id, { wrongCount: 0, finishedTime: isoAt(-35 * MIN) }));
+    }
+    // Before re-entry: FRESH
+    expect(computeAllGuestGroupStates().get('wordEnglishList:1:10')?.status).toBe('FRESH');
+
+    // Bug simulation: new word appended to OLD session (finishedTime=now)
+    saveGuestRecord(makeRecord(session.id, 5, { wrongCount: 0, finishedTime: isoAt(0) }));
+
+    // latestFinishedTime = now → completedTimes = [now] → prevTime = now
+    // dueTime = now + 20min → now < dueTime → SCHEDULED (wrong!)
+    const g = computeAllGuestGroupStates().get('wordEnglishList:1:10')!;
+    expect(g.status).toBe('SCHEDULED'); // ← this is the buggy state
+  });
+});
+
+describe('DUE group re-entry — new session (correct behavior after fix)', () => {
+  it('entering a DUE group creates a new session; 1/5 words → UNFINISHED', () => {
+    // Old session: complete 5 words 25 min ago (DUE: past 20-min interval, within 30-min grace)
+    const oldSession = makeSetting({ min: 1, max: 5, timestamp: isoAt(-25 * MIN) });
+    saveGuestSetting(oldSession);
+    for (let id = 1; id <= 5; id++) {
+      saveGuestRecord(makeRecord(oldSession.id, id, { wrongCount: 0, finishedTime: isoAt(-25 * MIN) }));
+    }
+    expect(computeAllGuestGroupStates().get('wordEnglishList:1:5')?.status).toBe('DUE');
+
+    // New session (fixed behavior): create a fresh session
+    const newSession = makeSetting({ min: 1, max: 5, timestamp: isoAt(0) });
+    saveGuestSetting(newSession);
+    // User completes 1 word
+    saveGuestRecord(makeRecord(newSession.id, 2, { wrongCount: 0, finishedTime: isoAt(0) }));
+
+    const g = computeAllGuestGroupStates().get('wordEnglishList:1:5')!;
+    expect(g.status).toBe('UNFINISHED');
+  });
+});

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Root — canonical entry point -->
+  <url>
+    <loc>https://heloword.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/" />
+  </url>
+
+  <!-- Home dashboard -->
+  <url>
+    <loc>https://heloword.com/home</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/home" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/home" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/home" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/home" />
+  </url>
+
+  <!-- Vocabulary — quiz start / word list selector -->
+  <url>
+    <loc>https://heloword.com/vocabulary</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/vocabulary" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/vocabulary" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/vocabulary" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/vocabulary" />
+  </url>
+
+  <!-- Word list browser -->
+  <url>
+    <loc>https://heloword.com/vocabulary/list</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/vocabulary/list" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/vocabulary/list" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/vocabulary/list" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/vocabulary/list" />
+  </url>
+
+  <!-- Spaced-repetition review (forgetting curve) -->
+  <url>
+    <loc>https://heloword.com/review</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/review" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/review" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/review" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/review" />
+  </url>
+
+  <!-- Challenge lobby -->
+  <url>
+    <loc>https://heloword.com/challenge</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/challenge" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/challenge" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/challenge" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/challenge" />
+  </url>
+
+  <!-- Challenge — sentence scramble game -->
+  <url>
+    <loc>https://heloword.com/challenge/scramble</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/challenge/scramble" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/challenge/scramble" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/challenge/scramble" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/challenge/scramble" />
+  </url>
+
+  <!-- Challenge — multi-choice quiz game -->
+  <url>
+    <loc>https://heloword.com/challenge/quiz</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/challenge/quiz" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/challenge/quiz" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/challenge/quiz" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/challenge/quiz" />
+  </url>
+
+  <!-- Social / community -->
+  <url>
+    <loc>https://heloword.com/social</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/social" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/social" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/social" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/social" />
+  </url>
+
+  <!-- Info / about -->
+  <url>
+    <loc>https://heloword.com/info</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh-TW"    href="https://heloword.com/info" />
+    <xhtml:link rel="alternate" hreflang="en"        href="https://heloword.com/info" />
+    <xhtml:link rel="alternate" hreflang="ja"        href="https://heloword.com/info" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://heloword.com/info" />
+  </url>
+
+</urlset>
