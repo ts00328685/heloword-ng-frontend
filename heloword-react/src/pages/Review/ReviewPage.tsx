@@ -366,6 +366,15 @@ const ReviewPage: React.FC = () => {
   const onCardClick = (group: QuizGroup, forceNewSession?: boolean) =>
     isLoggedIn ? handleCardClick(group, forceNewSession) : handleGuestCardClick(group, forceNewSession);
 
+  const handleTagClick = (g: DueGroup) => {
+    const match = groups.find((grp) =>
+      grp.records.some(
+        (r) => r.type === g.type && (r.min ?? 1) === g.min && (r.max ?? r.total) === g.max,
+      ),
+    );
+    if (match) onCardClick(match);
+  };
+
   // ─── Delete group ─────────────────────────────────────────────────────────
 
   const handleDeleteGroup = async (group: QuizGroup) => {
@@ -561,27 +570,25 @@ const ReviewPage: React.FC = () => {
               </button>
             </div>
             <p className="text-xs text-orange-500 mb-3">{t('review.dueDescription')}</p>
-            <div className="flex flex-wrap gap-1.5 mb-3">
+            <div className="flex flex-wrap gap-1.5">
               {(showAllDue ? dueGroups : dueGroups.slice(0, 6)).map((g) => {
                 const cfg = STATUS_CONFIG[g.status];
                 return (
-                  <span key={g.groupKey} className={`text-xs px-2 py-0.5 rounded-lg font-medium flex items-center gap-1 ${cfg.color}`}>
+                  <button
+                    key={g.groupKey}
+                    onClick={() => handleTagClick(g)}
+                    className={`text-xs px-2 py-0.5 rounded-lg font-medium flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-75 active:scale-95 ${cfg.color}`}
+                  >
                     <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
                     {t(`wordLists.${g.type}`, g.type)} {g.min}–{g.max}
                     {' '}<span className="opacity-60">L{g.reviewLevel}</span>
-                  </span>
+                  </button>
                 );
               })}
               {!showAllDue && dueCount > 6 && (
                 <span className="text-xs text-orange-400 px-2 py-0.5">{t('review.moreItems', { count: dueCount - 6 })}</span>
               )}
             </div>
-            <button
-              onClick={handleDueReviewClick}
-              className="w-full py-2 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white text-sm font-semibold rounded-xl transition-colors"
-            >
-              {t('review.startDueReview')}
-            </button>
           </div>
         )}
 
@@ -680,8 +687,12 @@ const ReviewPage: React.FC = () => {
               const status = groupState?.status ?? 'SCHEDULED';
               // finishedCount accumulates across all review cycles, so use modulo to get
               // the current cycle's progress. SCHEDULED means just completed → show full.
+              // FRESH means the grace window was missed; by definition the most recent session
+              // is fully complete, so any non-zero cycleCompleted is stale data — always 0.
               const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
-              const displayCompleted = status === 'SCHEDULED' ? group.total : cycleCompleted;
+              const displayCompleted = status === 'SCHEDULED' ? group.total
+                : status === 'FRESH' ? 0
+                : cycleCompleted;
               const pct = group.total > 0 ? Math.round((displayCompleted / group.total) * 100) : 0;
               const cfg = STATUS_CONFIG[status];
               const isDue = status === 'DUE' || status === 'FRESH';
