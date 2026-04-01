@@ -1,5 +1,5 @@
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -12,6 +12,16 @@ import { doPost } from '../../services/api.service';
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  // LINE's in-app browser blocks Google OAuth. Redirect to external browser via
+  // LINE's built-in escape hatch: appending ?openExternalBrowser=1 to the URL.
+  useEffect(() => {
+    if (/Line\//i.test(navigator.userAgent)) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('openExternalBrowser', '1');
+      window.location.replace(url.toString());
+    }
+  }, []);
   const { updateUser } = useAuth();
   const { showSystemError, showLoading, hideLoading } = useUI();
 
