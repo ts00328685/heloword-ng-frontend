@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AppInitializer from './components/AppInitializer';
 import AlertDialog from './components/AlertDialog';
@@ -13,21 +13,23 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { SocialProvider } from './contexts/SocialContext';
 import { ChallengeProvider } from './contexts/ChallengeContext';
-import ChallengePage from './pages/Challenge/ChallengePage';
-import SentenceScramblePage from './pages/Challenge/SentenceScramblePage';
-import MultiChoicePage from './pages/Challenge/MultiChoicePage';
 import GuestSetupModal from './components/GuestSetupModal';
 import WalkthroughOverlay from './components/WalkthroughOverlay';
 import CookieConsentBanner from './components/CookieConsentBanner';
+// Eagerly loaded — first pages users land on
 import HomePage from './pages/Home/HomePage';
-import InfoPage from './pages/Info/InfoPage';
-import SocialPage from './pages/Social/SocialPage';
 import LoginPage from './pages/Login/LoginPage';
-import ReviewPage from './pages/Review/ReviewPage';
-import StatsPage from './pages/Stats/StatsPage';
-import VocabularyListPage from './pages/Vocabulary/VocabularyListPage';
-import VocabularyPage from './pages/Vocabulary/VocabularyPage';
-import VocabularyQuizPage from './pages/Vocabulary/VocabularyQuizPage';
+// Lazy loaded — split into separate chunks to reduce initial bundle
+const VocabularyPage      = React.lazy(() => import('./pages/Vocabulary/VocabularyPage'));
+const VocabularyListPage  = React.lazy(() => import('./pages/Vocabulary/VocabularyListPage'));
+const VocabularyQuizPage  = React.lazy(() => import('./pages/Vocabulary/VocabularyQuizPage'));
+const ReviewPage          = React.lazy(() => import('./pages/Review/ReviewPage'));
+const StatsPage           = React.lazy(() => import('./pages/Stats/StatsPage'));
+const InfoPage            = React.lazy(() => import('./pages/Info/InfoPage'));
+const SocialPage          = React.lazy(() => import('./pages/Social/SocialPage'));
+const ChallengePage       = React.lazy(() => import('./pages/Challenge/ChallengePage'));
+const SentenceScramblePage = React.lazy(() => import('./pages/Challenge/SentenceScramblePage'));
+const MultiChoicePage     = React.lazy(() => import('./pages/Challenge/MultiChoicePage'));
 
 // Pages where we don't show the bottom tabs
 const NO_TABS_PATHS = ['/vocabulary/quiz', '/login'];
@@ -44,24 +46,26 @@ const AppLayout: React.FC = () => {
       <Toast />
       <AlertDialog />
 
-      {/* Routes */}
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/vocabulary" element={<VocabularyPage />} />
-        <Route path="/vocabulary/list" element={<VocabularyListPage />} />
-        <Route path="/vocabulary/quiz" element={<VocabularyQuizPage />} />
-        <Route path="/review" element={<ReviewPage />} />
-        <Route path="/stats" element={<StatsPage />} />
-        <Route path="/info" element={<InfoPage />} />
-        <Route path="/social" element={<SocialPage />} />
-        <Route path="/challenge" element={<ChallengePage />} />
-        <Route path="/challenge/scramble" element={<SentenceScramblePage />} />
-        <Route path="/challenge/quiz" element={<MultiChoicePage />} />
-        {/* Catch-all */}
-        <Route path="*" element={<Navigate to="/home" replace />} />
-      </Routes>
+      {/* Routes — lazy chunks load silently; the global LoadingSpinner handles any visible wait */}
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/vocabulary" element={<VocabularyPage />} />
+          <Route path="/vocabulary/list" element={<VocabularyListPage />} />
+          <Route path="/vocabulary/quiz" element={<VocabularyQuizPage />} />
+          <Route path="/review" element={<ReviewPage />} />
+          <Route path="/stats" element={<StatsPage />} />
+          <Route path="/info" element={<InfoPage />} />
+          <Route path="/social" element={<SocialPage />} />
+          <Route path="/challenge" element={<ChallengePage />} />
+          <Route path="/challenge/scramble" element={<SentenceScramblePage />} />
+          <Route path="/challenge/quiz" element={<MultiChoicePage />} />
+          {/* Catch-all */}
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Routes>
+      </Suspense>
 
       {/* Real-time message notification toasts */}
       <MessageNotificationToast />

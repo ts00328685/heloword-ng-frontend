@@ -383,7 +383,7 @@ const SentenceScramblePage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
-      <Header title={t('scramble.title')} />
+      <Header title={t('scramble.title')} showBack />
       <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full space-y-3">
 
         {/* Language + EN chunk-size toggles */}

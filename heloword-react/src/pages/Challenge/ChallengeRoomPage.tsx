@@ -143,25 +143,27 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 h-14 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm sticky top-0 z-10">
-        <button onClick={onLeave} className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-          <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <div className="flex-1 min-w-0">
-          <p className="font-semibold text-gray-800 dark:text-gray-100 truncate text-sm">{currentRoom.name}</p>
-          <p className="text-xs text-gray-400">
-            {isPlaying
-              ? `${t('challenge.round')} ${currentRoom.currentRound} / ${currentRoom.totalRounds}`
-              : currentRoom.status}
-          </p>
-        </div>
-        {timeLeft != null && timeLeft > 0 && (
-          <div className={`text-lg font-bold tabular-nums ${timeLeft <= 5 ? 'text-red-500' : 'text-blue-500'}`}>
-            {timeLeft}s
+      <div className="border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm sticky top-0 z-10">
+        <div className="flex items-center gap-3 px-4 h-14 max-w-2xl mx-auto w-full">
+          <button onClick={onLeave} className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <div className="flex-1 min-w-0">
+            <p className="font-semibold text-gray-800 dark:text-gray-100 truncate text-sm">{currentRoom.name}</p>
+            <p className="text-xs text-gray-400">
+              {isPlaying
+                ? `${t('challenge.round')} ${currentRoom.currentRound} / ${currentRoom.totalRounds}`
+                : currentRoom.status}
+            </p>
           </div>
-        )}
+          {timeLeft != null && timeLeft > 0 && (
+            <div className={`text-lg font-bold tabular-nums ${timeLeft <= 5 ? 'text-red-500' : 'text-blue-500'}`}>
+              {timeLeft}s
+            </div>
+          )}
+        </div>
       </div>
 
       {idleWarning && (

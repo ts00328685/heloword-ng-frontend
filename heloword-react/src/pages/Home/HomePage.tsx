@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react'; // useRef kept for hasFetched
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -10,6 +10,7 @@ import { doPost } from '../../services/api.service';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { getWordInsight } from '../../services/llm.service';
+import { useAiInsight } from '../../hooks/useAiInsight';
 
 const WordSection: React.FC<{
   title: string;
@@ -21,49 +22,22 @@ const WordSection: React.FC<{
 }> = ({ title, list, onViewAll, isLoggedIn, lang, onLoginRequired }) => {
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [insightText, setInsightText] = useState('');
-  const [insightLoading, setInsightLoading] = useState(false);
-  const [insightError, setInsightError] = useState(false);
-  const cache = useRef<Map<number, string>>(new Map());
+  const insight = useAiInsight('home:insight');
 
   if (!list || list.length === 0) return null;
 
-  const handleInsight = async (word: Sentence) => {
-    const id = word.id;
-    if (selectedId === id) {
+  const handleInsight = (word: Sentence) => {
+    if (selectedId === word.id) {
       setSelectedId(null);
+      insight.clear();
       return;
     }
-    setSelectedId(id);
-    setInsightError(false);
-
-    if (cache.current.has(id)) {
-      setInsightText(cache.current.get(id)!);
-      return;
-    }
-
-    if (!isLoggedIn) {
-      onLoginRequired();
-      return;
-    }
-
-    setInsightLoading(true);
-    setInsightText('');
-    try {
-      const result = await getWordInsight(
-        word.word || word.sentence || '',
-        word.translateEn || '',
-        word.translateCh || '',
-        lang,
-        word.language || 'en',
-      );
-      cache.current.set(id, result);
-      setInsightText(result);
-    } catch {
-      setInsightError(true);
-    } finally {
-      setInsightLoading(false);
-    }
+    setSelectedId(word.id);
+    if (!isLoggedIn) { onLoginRequired(); return; }
+    insight.run(
+      String(word.id),
+      () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en'),
+    );
   };
 
   return (
@@ -120,19 +94,19 @@ const WordSection: React.FC<{
                   <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
                     {!isLoggedIn ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                    ) : insightLoading ? (
+                    ) : insight.loading ? (
                       <p className="text-xs text-purple-500 animate-pulse">{t('llm.thinking')}</p>
-                    ) : insightError ? (
+                    ) : insight.error ? (
                       <div className="flex items-center gap-2">
                         <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
                         <button
-                          onClick={() => { cache.current.delete(word.id); handleInsight(word); }}
+                          onClick={() => insight.retry(String(word.id), () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en'))}
                           className="text-xs text-blue-400 underline"
                         >↺</button>
                       </div>
                     ) : (
                       <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
-                        {insightText}
+                        {insight.text}
                       </p>
                     )}
                   </div>
@@ -267,6 +241,9 @@ const HomePage: React.FC = () => {
 
     } finally {
       hideLoading();
+      // Silently prefetch the full word lists in the background so "View All" is instant.
+      // Runs 3 seconds after preview renders to avoid competing with visible load.
+      setTimeout(() => { loadFullDashboard().catch(() => {}); }, 3000);
     }
   };
 
