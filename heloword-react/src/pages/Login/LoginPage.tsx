@@ -1,5 +1,5 @@
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -9,19 +9,18 @@ import { useUI } from '../../contexts/UIContext';
 import { User } from '../../models';
 import { doPost } from '../../services/api.service';
 
+// Build the external-browser URL once at module level (synchronous, no re-render needed).
+const lineExternalUrl = (() => {
+  const url = new URL(window.location.href);
+  url.searchParams.set('openExternalBrowser', '1');
+  return url.toString();
+})();
+
+const isLineWebview = /Line\//i.test(navigator.userAgent);
+
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-
-  // LINE's in-app browser blocks Google OAuth. Redirect to external browser via
-  // LINE's built-in escape hatch: appending ?openExternalBrowser=1 to the URL.
-  useEffect(() => {
-    if (/Line\//i.test(navigator.userAgent)) {
-      const url = new URL(window.location.href);
-      url.searchParams.set('openExternalBrowser', '1');
-      window.location.replace(url.toString());
-    }
-  }, []);
   const { updateUser } = useAuth();
   const { showSystemError, showLoading, hideLoading } = useUI();
 
@@ -79,16 +78,33 @@ const LoginPage: React.FC = () => {
                 {t('login.continueGoogle')}
               </h2>
 
-              <div className="flex justify-center">
-                <GoogleLogin
-                  onSuccess={handleGoogleSuccess}
-                  onError={handleGoogleError}
-                  size="large"
-                  shape="pill"
-                  text="signin_with"
-                  useOneTap={false}
-                />
-              </div>
+              {isLineWebview ? (
+                /* LINE's in-app browser blocks Google OAuth.
+                   A real <a> link with openExternalBrowser=1 is the only
+                   reliable way to hand off to the system browser. */
+                <div className="flex flex-col items-center gap-3">
+                  <p className="text-xs text-amber-600 dark:text-amber-400 text-center leading-relaxed">
+                    Google sign-in requires an external browser.
+                  </p>
+                  <a
+                    href={lineExternalUrl}
+                    className="w-full text-center bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors"
+                  >
+                    Open in Browser to Sign In
+                  </a>
+                </div>
+              ) : (
+                <div className="flex justify-center">
+                  <GoogleLogin
+                    onSuccess={handleGoogleSuccess}
+                    onError={handleGoogleError}
+                    size="large"
+                    shape="pill"
+                    text="signin_with"
+                    useOneTap={false}
+                  />
+                </div>
+              )}
 
               <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-4 leading-relaxed">
                 {t('login.agreement')}
