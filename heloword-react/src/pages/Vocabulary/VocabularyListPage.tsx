@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react'; // useRef kept for sentinelRef
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -8,6 +8,7 @@ import { useData } from '../../contexts/DataContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { Sentence } from '../../models';
 import { getWordInsight } from '../../services/llm.service';
+import { useAiInsight } from '../../hooks/useAiInsight';
 
 const PAGE_SIZE = 50;
 
@@ -65,44 +66,26 @@ const VocabularyListPage: React.FC = () => {
 
   // AI insight state
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
-  const [insightLoading, setInsightLoading] = useState(false);
-  const [insightText, setInsightText] = useState('');
-  const [insightError, setInsightError] = useState(false);
-  const insightCache = useRef<Map<number, string>>(new Map());
+  const insight = useAiInsight('vocab:insight');
 
-  const handleWordTap = async (word: Sentence) => {
-    const id = word.id;
-    if (selectedWordId === id) {
+  const handleWordTap = (word: Sentence) => {
+    if (selectedWordId === word.id) {
       setSelectedWordId(null);
+      insight.clear();
       return;
     }
-    setSelectedWordId(id);
-    setInsightError(false);
-
-    if (insightCache.current.has(id)) {
-      setInsightText(insightCache.current.get(id)!);
-      return;
-    }
-
-    if (!isLoggedIn) return; // guest — show login prompt, no fetch
-
-    setInsightLoading(true);
-    setInsightText('');
-    try {
-      const result = await getWordInsight(
+    setSelectedWordId(word.id);
+    if (!isLoggedIn) return; // guest — panel shows login prompt, no fetch
+    insight.run(
+      String(word.id),
+      () => getWordInsight(
         word.word || word.sentence || '',
         word.translateEn || '',
         word.translateCh || '',
         i18n.language,
         word.language || 'en',
-      );
-      insightCache.current.set(id, result);
-      setInsightText(result);
-    } catch {
-      setInsightError(true);
-    } finally {
-      setInsightLoading(false);
-    }
+      ),
+    );
   };
 
   const list: Sentence[] =
@@ -299,19 +282,19 @@ const VocabularyListPage: React.FC = () => {
                   <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
                     {!isLoggedIn ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                    ) : insightLoading ? (
+                    ) : insight.loading ? (
                       <p className="text-xs text-purple-500 animate-pulse">{t('llm.thinking')}</p>
-                    ) : insightError ? (
+                    ) : insight.error ? (
                       <div className="flex items-center gap-2">
                         <p className="text-xs text-red-400">{t('llm.error')}</p>
                         <button
-                          onClick={() => { insightCache.current.delete(word.id); handleWordTap(word); }}
+                          onClick={() => insight.retry(String(word.id), () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', i18n.language, word.language || 'en'))}
                           className="text-xs text-blue-400 underline"
                         >↺</button>
                       </div>
                     ) : (
                       <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
-                        {insightText}
+                        {insight.text}
                       </p>
                     )}
                   </div>
