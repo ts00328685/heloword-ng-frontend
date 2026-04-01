@@ -401,19 +401,19 @@ const en = {
     stepOf: '{{current}} / {{total}}',
     home: {
       title: 'Home',
-      desc: 'Load your word lists and see upcoming review reminders. Start here every session.',
+      desc: 'Browse today\'s word preview cards. Tap ✨ AI Insight on any word for an instant AI-powered definition and example sentence. Log in to unlock all AI features.',
     },
     quiz: {
       title: 'Quiz',
-      desc: 'Start a vocabulary quiz. Pick which word groups to practise and set your range.',
+      desc: 'Test yourself with typed answers. Logged-in users can tap ✨ Insight or 💬 Example on any word to get an AI explanation and a fresh sample sentence on demand.',
     },
     review: {
       title: 'Review',
-      desc: 'Track your spaced-repetition schedule. Groups due for review show up here — don\'t miss them!',
+      desc: 'Track your spaced-repetition schedule. Groups due for review appear here — complete them to keep your streak alive.',
     },
     stats: {
       title: 'Stats',
-      desc: 'View your accuracy, total reviews, and progress charts over time.',
+      desc: 'View your accuracy, review counts, and progress charts. Logged-in users can tap ✨ AI Study Coach for a personalised tip based on your recent performance.',
     },
     social: {
       title: 'Social',
@@ -421,7 +421,7 @@ const en = {
     },
     challenge: {
       title: 'Challenge',
-      desc: 'Compete in live word games or try the sentence scramble and multiple-choice mini-games.',
+      desc: 'Join live spelling or multiple-choice rooms — the panel header shows how many players are active right now. Or go solo with sentence scramble and word-quiz mini-games in EN or JP.',
     },
   },
 } as const;

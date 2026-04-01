@@ -100,7 +100,10 @@ const RoomSection: React.FC<{
         <span className="flex-1 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
           {title}
         </span>
-        <span className="text-[10px] font-medium text-gray-400 mr-1">{rooms.length}</span>
+        <span className="flex items-center gap-1 text-[10px] font-medium text-gray-400 mr-1">
+          <span>👥</span>
+          <span>{rooms.reduce((sum, r) => sum + r.players.length, 0)}</span>
+        </span>
         <Chevron open={open} />
       </button>
 
