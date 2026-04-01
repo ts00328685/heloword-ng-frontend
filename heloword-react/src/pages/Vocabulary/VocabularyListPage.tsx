@@ -5,7 +5,9 @@ import Header from '../../components/Header';
 import QuizSettingModal from '../../components/QuizSettingModal';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useData } from '../../contexts/DataContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { Sentence } from '../../models';
+import { getWordInsight } from '../../services/llm.service';
 
 const PAGE_SIZE = 50;
 
@@ -52,13 +54,56 @@ function buildFilterButtons(listType: string | undefined, total: number): Filter
 const VocabularyListPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { wordStore } = useData();
+  const { isLoggedIn } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [query, setQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<FilterButton | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // AI insight state
+  const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
+  const [insightLoading, setInsightLoading] = useState(false);
+  const [insightText, setInsightText] = useState('');
+  const [insightError, setInsightError] = useState(false);
+  const insightCache = useRef<Map<number, string>>(new Map());
+
+  const handleWordTap = async (word: Sentence) => {
+    const id = word.id;
+    if (selectedWordId === id) {
+      setSelectedWordId(null);
+      return;
+    }
+    setSelectedWordId(id);
+    setInsightError(false);
+
+    if (insightCache.current.has(id)) {
+      setInsightText(insightCache.current.get(id)!);
+      return;
+    }
+
+    if (!isLoggedIn) return; // guest — show login prompt, no fetch
+
+    setInsightLoading(true);
+    setInsightText('');
+    try {
+      const result = await getWordInsight(
+        word.word || word.sentence || '',
+        word.translateEn || '',
+        word.translateCh || '',
+        i18n.language,
+        word.language || 'en',
+      );
+      insightCache.current.set(id, result);
+      setInsightText(result);
+    } catch {
+      setInsightError(true);
+    } finally {
+      setInsightLoading(false);
+    }
+  };
 
   const list: Sentence[] =
     location.state?.wordListOriginal ||
@@ -200,35 +245,81 @@ const VocabularyListPage: React.FC = () => {
         </p>
 
         <div className="space-y-2">
-          {visible.map((word, index) => (
+          {visible.map((word, index) => {
+            const isSelected = selectedWordId === word.id;
+            return (
             <div
               key={`${word.tableName}-${word.id}`}
-              className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 flex gap-3 items-start hover:shadow-sm transition-shadow"
+              className={`bg-white dark:bg-gray-800 rounded-xl border transition-all ${
+                isSelected
+                  ? 'border-purple-300 dark:border-purple-700 shadow-sm'
+                  : 'border-gray-200 dark:border-gray-700 hover:shadow-sm'
+              }`}
             >
-              <span className="text-xs text-gray-400 dark:text-gray-500 font-mono pt-0.5 min-w-[24px]">
-                {activeFilter ? activeFilter.min + index : index + 1}
-              </span>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">
-                  <SentenceRenderer text={word.word || word.sentence} />
-                </p>
-                {word.translateEn && (
-                  <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>
-                )}
-                {word.translateCh && (
-                  <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>
-                )}
-                {word.sentence && word.word && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed">
-                    <SentenceRenderer text={word.sentence} />
+              {/* Main row */}
+              <div className="p-3 flex gap-3 items-start">
+                <span className="text-xs text-gray-400 dark:text-gray-500 font-mono pt-0.5 min-w-[24px]">
+                  {activeFilter ? activeFilter.min + index : index + 1}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+                    <SentenceRenderer text={word.word || word.sentence} />
                   </p>
-                )}
+                  {word.translateEn && (
+                    <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>
+                  )}
+                  {word.translateCh && (
+                    <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>
+                  )}
+                  {word.sentence && word.word && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed">
+                      <SentenceRenderer text={word.sentence} />
+                    </p>
+                  )}
+                  {/* AI button — always visible */}
+                  <button
+                    onClick={() => handleWordTap(word)}
+                    className={`mt-2 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold transition-colors ${
+                      isSelected
+                        ? 'bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:text-purple-600 dark:hover:text-purple-400'
+                    }`}
+                  >
+                    ✨ {isSelected ? t('llm.insight') + ' ▲' : t('llm.insight')}
+                  </button>
+                </div>
+                <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-0.5 rounded-md font-mono flex-shrink-0 mt-0.5">
+                  {word.language?.toUpperCase()}
+                </span>
               </div>
-              <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-0.5 rounded-md font-mono self-start flex-shrink-0">
-                {word.language?.toUpperCase()}
-              </span>
+
+              {/* AI insight panel — shown when tapped */}
+              {isSelected && (
+                <div className="px-3 pb-3 pt-0">
+                  <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
+                    {!isLoggedIn ? (
+                      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                    ) : insightLoading ? (
+                      <p className="text-xs text-purple-500 animate-pulse">{t('llm.thinking')}</p>
+                    ) : insightError ? (
+                      <div className="flex items-center gap-2">
+                        <p className="text-xs text-red-400">{t('llm.error')}</p>
+                        <button
+                          onClick={() => { insightCache.current.delete(word.id); handleWordTap(word); }}
+                          className="text-xs text-blue-400 underline"
+                        >↺</button>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                        {insightText}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
-          ))}
+            );
+          })}
 
           {(query || activeFilter) && filtered.length === 0 && (
             <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-10">

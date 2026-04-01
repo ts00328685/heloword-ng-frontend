@@ -99,6 +99,14 @@ const en = {
     errorEndLessThanStart: 'End number cannot be less than the start number.',
     errorEndExceedsTotal: 'End number cannot exceed the total ({{total}}).',
   },
+  llm: {
+    insight: '✨ Insight',
+    sampleSentence: '💬 Example',
+    studyCoach: '✨ AI Study Coach',
+    thinking: 'Thinking…',
+    loginRequired: 'Login to use AI features',
+    error: 'AI unavailable. Try again.',
+  },
   onboarding: {
     quiz: [
       {

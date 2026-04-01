@@ -14,6 +14,7 @@ import {
   saveGuestSetting,
   saveGuestRecord,
 } from '../../services/guestStorage.service';
+import { getWordInsight, getSampleSentence } from '../../services/llm.service';
 
 const normalizeGerman = (s: string) =>
   s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'b');
@@ -90,7 +91,7 @@ const pronounceWord = (word: string, lang: string, speed = 1.0, volume = 0.2) =>
 const VocabularyQuizPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isLoggedIn } = useAuth();
   const { wordStore, sentenceStore, isFullyLoaded, loadFullDashboard, updateWordStore, updateSentenceStore } = useData();
   const { showToast, showAlert } = useUI();
@@ -120,6 +121,16 @@ const VocabularyQuizPage: React.FC = () => {
   const [speed, setSpeed] = useState(1.0);
   const [volume, setVolume] = useState(0.2);
   const [showSettings, setShowSettings] = useState(false);
+
+  // AI insight / sample sentence
+  const [aiInsightText, setAiInsightText]       = useState('');
+  const [aiInsightLoading, setAiInsightLoading] = useState(false);
+  const [aiInsightError, setAiInsightError]     = useState(false);
+  const [aiSampleText, setAiSampleText]         = useState('');
+  const [aiSampleLoading, setAiSampleLoading]   = useState(false);
+  const [aiSampleError, setAiSampleError]       = useState(false);
+  const aiInsightCache = useRef<Map<number, string>>(new Map());
+  const aiSampleCache  = useRef<Map<number, string>>(new Map());
 
   // Japanese button-input mode
   const [jpButtonMode, setJpButtonMode] = useState(true);
@@ -537,6 +548,78 @@ const VocabularyQuizPage: React.FC = () => {
   };
 
   const current = wordList[0];
+
+  // Clear AI panels whenever the word changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setAiInsightText('');
+    setAiInsightLoading(false);
+    setAiInsightError(false);
+    setAiSampleText('');
+    setAiSampleLoading(false);
+    setAiSampleError(false);
+  }, [current?.id]);
+
+  const handleAiInsight = async () => {
+    if (!current) return;
+    if (!isLoggedIn) {
+      showAlert(t('llm.loginRequired'));
+      return;
+    }
+    const id = current.id;
+    if (aiInsightCache.current.has(id)) {
+      setAiInsightText(aiInsightCache.current.get(id)!);
+      return;
+    }
+    setAiInsightLoading(true);
+    setAiInsightError(false);
+    setAiInsightText('');
+    try {
+      const result = await getWordInsight(
+        current.word || current.sentence || '',
+        current.translateEn || '',
+        current.translateCh || '',
+        i18n.language,
+        current.language || 'en',
+      );
+      aiInsightCache.current.set(id, result);
+      setAiInsightText(result);
+    } catch {
+      setAiInsightError(true);
+    } finally {
+      setAiInsightLoading(false);
+    }
+  };
+
+  const handleAiSample = async () => {
+    if (!current) return;
+    if (!isLoggedIn) {
+      showAlert(t('llm.loginRequired'));
+      return;
+    }
+    const id = current.id;
+    if (aiSampleCache.current.has(id)) {
+      setAiSampleText(aiSampleCache.current.get(id)!);
+      return;
+    }
+    setAiSampleLoading(true);
+    setAiSampleError(false);
+    setAiSampleText('');
+    try {
+      const result = await getSampleSentence(
+        current.word || current.sentence || '',
+        current.translateEn || '',
+        i18n.language,
+        current.language || 'en',
+      );
+      aiSampleCache.current.set(id, result);
+      setAiSampleText(result);
+    } catch {
+      setAiSampleError(true);
+    } finally {
+      setAiSampleLoading(false);
+    }
+  };
   // Button mode: JP words only (not sentence-only entries)
   const isJpButtonMode = !!(current?.language === 'jp' && jpButtonMode && current?.word);
 
@@ -675,6 +758,52 @@ const VocabularyQuizPage: React.FC = () => {
               )}
             </div>
           )}
+
+          {/* AI buttons */}
+          <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+            <div className="flex gap-2 mb-2">
+              <button
+                onClick={handleAiInsight}
+                disabled={aiInsightLoading}
+                className="flex-1 py-1.5 text-xs font-semibold rounded-xl border border-purple-200 dark:border-purple-800 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 disabled:opacity-50 transition-colors"
+              >
+                {aiInsightLoading ? t('llm.thinking') : t('llm.insight')}
+              </button>
+              <button
+                onClick={handleAiSample}
+                disabled={aiSampleLoading}
+                className="flex-1 py-1.5 text-xs font-semibold rounded-xl border border-cyan-200 dark:border-cyan-800 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-900/20 disabled:opacity-50 transition-colors"
+              >
+                {aiSampleLoading ? t('llm.thinking') : t('llm.sampleSentence')}
+              </button>
+            </div>
+
+            {(aiInsightText || aiInsightError) && (
+              <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-2.5 mb-2">
+                {aiInsightError ? (
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
+                    <button onClick={() => { aiInsightCache.current.delete(current.id); handleAiInsight(); }} className="text-xs text-blue-400 underline">↺</button>
+                  </div>
+                ) : (
+                  <p className="text-xs text-purple-700 dark:text-purple-200 leading-relaxed whitespace-pre-wrap">{aiInsightText}</p>
+                )}
+              </div>
+            )}
+
+            {(aiSampleText || aiSampleError) && (
+              <div className="bg-cyan-50 dark:bg-cyan-900/20 rounded-xl p-2.5">
+                {aiSampleError ? (
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
+                    <button onClick={() => { aiSampleCache.current.delete(current.id); handleAiSample(); }} className="text-xs text-blue-400 underline">↺</button>
+                  </div>
+                ) : (
+                  <p className="text-xs text-cyan-700 dark:text-cyan-200 leading-relaxed whitespace-pre-wrap">{aiSampleText}</p>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Answer input */}

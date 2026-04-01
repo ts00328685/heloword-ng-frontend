@@ -9,29 +9,62 @@ import { Sentence, WordStore } from '../../models';
 import { doPost } from '../../services/api.service';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
-
-const WordCard: React.FC<{ word: Sentence }> = ({ word }) => (
-  <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 flex flex-col gap-0.5 hover:shadow-md transition-shadow">
-    <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate"><SentenceRenderer text={word.word || word.sentence} /></p>
-    {word.translateEn && (
-      <p className="text-xs text-blue-500 truncate">{word.translateEn}</p>
-    )}
-    {word.translateCh && (
-      <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{word.translateCh}</p>
-    )}
-    {word.sentence && word.word && (
-      <p className="text-xs text-gray-500 dark:text-gray-400 italic truncate mt-0.5"><SentenceRenderer text={word.sentence} /></p>
-    )}
-  </div>
-);
+import { getWordInsight } from '../../services/llm.service';
 
 const WordSection: React.FC<{
   title: string;
   list: Sentence[];
   onViewAll: () => void;
-}> = ({ title, list, onViewAll }) => {
+  isLoggedIn: boolean;
+  lang: string;
+  onLoginRequired: () => void;
+}> = ({ title, list, onViewAll, isLoggedIn, lang, onLoginRequired }) => {
   const { t } = useTranslation();
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [insightText, setInsightText] = useState('');
+  const [insightLoading, setInsightLoading] = useState(false);
+  const [insightError, setInsightError] = useState(false);
+  const cache = useRef<Map<number, string>>(new Map());
+
   if (!list || list.length === 0) return null;
+
+  const handleInsight = async (word: Sentence) => {
+    const id = word.id;
+    if (selectedId === id) {
+      setSelectedId(null);
+      return;
+    }
+    setSelectedId(id);
+    setInsightError(false);
+
+    if (cache.current.has(id)) {
+      setInsightText(cache.current.get(id)!);
+      return;
+    }
+
+    if (!isLoggedIn) {
+      onLoginRequired();
+      return;
+    }
+
+    setInsightLoading(true);
+    setInsightText('');
+    try {
+      const result = await getWordInsight(
+        word.word || word.sentence || '',
+        word.translateEn || '',
+        word.translateCh || '',
+        lang,
+        word.language || 'en',
+      );
+      cache.current.set(id, result);
+      setInsightText(result);
+    } catch {
+      setInsightError(true);
+    } finally {
+      setInsightLoading(false);
+    }
+  };
 
   return (
     <section className="mb-6">
@@ -45,9 +78,69 @@ const WordSection: React.FC<{
         </button>
       </div>
       <div className="grid grid-cols-2 gap-2">
-        {list.slice(0, 4).map((word, i) => (
-          <WordCard key={`${word.tableName}-${word.id}-${i}`} word={word} />
-        ))}
+        {list.slice(0, 4).map((word, i) => {
+          const isSelected = selectedId === word.id;
+          return (
+            <div
+              key={`${word.tableName}-${word.id}-${i}`}
+              className={`bg-white dark:bg-gray-800 rounded-xl border transition-all flex flex-col ${
+                isSelected
+                  ? 'border-purple-300 dark:border-purple-700 shadow-sm'
+                  : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
+              }`}
+            >
+              <div className="p-3 flex flex-col gap-0.5">
+                <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">
+                  <SentenceRenderer text={word.word || word.sentence} />
+                </p>
+                {word.translateEn && (
+                  <p className="text-xs text-blue-500 truncate">{word.translateEn}</p>
+                )}
+                {word.translateCh && (
+                  <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{word.translateCh}</p>
+                )}
+                {word.sentence && word.word && (
+                  <p className="text-xs text-gray-500 dark:text-gray-400 italic truncate mt-0.5">
+                    <SentenceRenderer text={word.sentence} />
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={() => handleInsight(word)}
+                className={`mx-3 mb-3 py-1 rounded-full text-xs font-semibold transition-colors ${
+                  isSelected
+                    ? 'bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:text-purple-600 dark:hover:text-purple-400'
+                }`}
+              >
+                ✨ {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
+              </button>
+              {isSelected && (
+                <div className="px-3 pb-3">
+                  <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
+                    {!isLoggedIn ? (
+                      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                    ) : insightLoading ? (
+                      <p className="text-xs text-purple-500 animate-pulse">{t('llm.thinking')}</p>
+                    ) : insightError ? (
+                      <div className="flex items-center gap-2">
+                        <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
+                        <button
+                          onClick={() => { cache.current.delete(word.id); handleInsight(word); }}
+                          className="text-xs text-blue-400 underline"
+                        >↺</button>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                        {insightText}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </section>
   );
@@ -132,11 +225,11 @@ const AuthorNoteModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isLoggedIn } = useAuth();
   const { wordStore, sentenceStore, updateWordStore, updateSentenceStore, isWordStoreEmpty, isFullyLoaded, loadFullDashboard } = useData();
   const { dueCount } = useNotifications();
-  const { showLoading, hideLoading } = useUI();
+  const { showLoading, hideLoading, showAlert } = useUI();
   const hasFetched = useRef(false);
   const [showAuthor, setShowAuthor] = useState(false);
 
@@ -276,6 +369,9 @@ const HomePage: React.FC = () => {
             title={t(`wordLists.${key}`, key)}
             list={list}
             onViewAll={() => handleViewAll(key, list)}
+            isLoggedIn={isLoggedIn}
+            lang={i18n.language}
+            onLoginRequired={() => showAlert(t('llm.loginRequired'))}
           />
         ))}
       </main>

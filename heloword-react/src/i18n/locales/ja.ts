@@ -99,6 +99,14 @@ const ja = {
     errorEndLessThanStart: '終了番号は開始番号より小さくできません。',
     errorEndExceedsTotal: '終了番号は合計数（{{total}}）を超えられません。',
   },
+  llm: {
+    insight: '✨ AI解説',
+    sampleSentence: '💬 例文',
+    studyCoach: '✨ AI学習コーチ',
+    thinking: '思考中…',
+    loginRequired: 'AIにはログインが必要です',
+    error: 'AI接続失敗。再試行してください。',
+  },
   onboarding: {
     quiz: [
       {
