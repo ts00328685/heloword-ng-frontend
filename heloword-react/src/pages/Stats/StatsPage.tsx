@@ -17,6 +17,7 @@ import { useUI } from '../../contexts/UIContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { doPost } from '../../services/api.service';
 import { DailyStat } from '../../models';
+import { getStudyCoach } from '../../services/llm.service';
 
 type Range = 7 | 30 | 0;
 
@@ -41,9 +42,13 @@ const StatsPage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { showLoading, hideLoading } = useUI();
   const { isDark } = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [range, setRange] = useState<Range>(7);
+
+  const [coachText, setCoachText]       = useState('');
+  const [coachLoading, setCoachLoading] = useState(false);
+  const [coachError, setCoachError]     = useState(false);
 
   const RANGES: { label: string; value: Range }[] = [
     { label: t('stats.range7d'),  value: 7  },
@@ -97,6 +102,20 @@ const StatsPage: React.FC = () => {
   const totalTimeMin  = +(stats.reduce((sum, s) => sum + s.timeSpent, 0) / 60).toFixed(1);
   const accuracy      = totalReviewed > 0 ? Math.round(((totalReviewed - totalWrong) / totalReviewed) * 100) : 0;
 
+  const handleStudyCoach = async () => {
+    setCoachLoading(true);
+    setCoachError(false);
+    setCoachText('');
+    try {
+      const result = await getStudyCoach(accuracy, totalWrong, i18n.language);
+      setCoachText(result);
+    } catch {
+      setCoachError(true);
+    } finally {
+      setCoachLoading(false);
+    }
+  };
+
   if (!isLoggedIn) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -146,12 +165,41 @@ const StatsPage: React.FC = () => {
         </div>
 
         {/* Summary cards */}
-        <div className="grid grid-cols-2 gap-3 mb-5">
+        <div className="grid grid-cols-2 gap-3 mb-4">
           <SummaryCard label={t('stats.reviews')} value={totalReviewed.toString()} color="blue" />
           <SummaryCard label={t('stats.accuracy')} value={`${accuracy}%`} color="green" />
           <SummaryCard label={t('stats.wrong')} value={totalWrong.toString()} color="red" />
           <SummaryCard label={t('stats.time')} value={`${totalTimeMin} min`} color="purple" />
         </div>
+
+        {/* AI Study Coach */}
+        {totalReviewed > 0 && (
+          <div className="mb-5">
+            <button
+              onClick={handleStudyCoach}
+              disabled={coachLoading}
+              className="w-full py-2.5 rounded-2xl text-sm font-semibold text-white disabled:opacity-60 transition-colors flex items-center justify-center gap-2"
+              style={{ background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' }}
+            >
+              {coachLoading
+                ? <><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />{t('llm.thinking')}</>
+                : t('llm.studyCoach')}
+            </button>
+            {(coachText || coachError) && (
+              <div className="mt-2 bg-white dark:bg-gray-800 rounded-2xl border border-purple-200 dark:border-purple-800 p-4 shadow-sm">
+                <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-1.5">{t('llm.studyCoach')}</p>
+                {coachError ? (
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm text-red-400 flex-1">{t('llm.error')}</p>
+                    <button onClick={handleStudyCoach} className="text-xs text-blue-400 underline">↺</button>
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{coachText}</p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
         {error && (
           <p className="text-center text-sm text-red-400 mb-4">{t('stats.errorLoading')}</p>

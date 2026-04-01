@@ -99,6 +99,14 @@ const zh = {
     errorEndLessThanStart: '結束數字不能小於開始數字。',
     errorEndExceedsTotal: '結束數字不能超過總數（{{total}}）。',
   },
+  llm: {
+    insight: '✨ AI 解析',
+    sampleSentence: '💬 例句',
+    studyCoach: '✨ AI 學習教練',
+    thinking: '思考中…',
+    loginRequired: '登入後使用 AI 功能',
+    error: 'AI 連線失敗，請重試。',
+  },
   onboarding: {
     quiz: [
       {
