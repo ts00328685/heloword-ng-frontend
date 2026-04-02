@@ -358,7 +358,12 @@ const VocabularyQuizPage: React.FC = () => {
 
     if (japaneseMode && word.language === 'jp') {
       const { ansKanjiFirst, ansKataFirst } = getJpAnswers(answer);
-      return input === ansKanjiFirst || input === ansKataFirst;
+      if (input === ansKanjiFirst || input === ansKataFirst) return true;
+      // Wrong if input reaches the answer length but doesn't match
+      if (input.length >= ansKanjiFirst.length) {
+        wrongCountRef.current++;
+      }
+      return false;
     }
 
     const lastChar = answer.charAt(answer.length - 1);
@@ -372,7 +377,8 @@ const VocabularyQuizPage: React.FC = () => {
     if (trimmedInput.length >= trimmedAns.length && trimmedInput.includes(trimmedAns)) {
       return true;
     }
-    if (trimmedInput.length > trimmedAns.length && !trimmedInput.includes(trimmedAns)) {
+    // Wrong if input reaches or exceeds the answer length but is still incorrect
+    if (trimmedInput.length >= trimmedAns.length && !trimmedInput.includes(trimmedAns)) {
       wrongCountRef.current++;
     }
     return false;
@@ -409,7 +415,7 @@ const VocabularyQuizPage: React.FC = () => {
       if (failWhenMaskOff && !enableSentenceMask) {
         wrongCountRef.current++;
       }
-      if (pronounceCountRef.current >= 3) {
+      if (pronounceCountRef.current >= 1) {
         wrongCountRef.current++;
       }
 
@@ -564,6 +570,7 @@ const VocabularyQuizPage: React.FC = () => {
   const handleAiInsight = () => {
     if (!current) return;
     if (!isLoggedIn) { showAlert(t('llm.loginRequired')); return; }
+    wrongCountRef.current++;
     aiInsight.run(
       String(current.id),
       () => getWordInsight(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'),
@@ -573,6 +580,7 @@ const VocabularyQuizPage: React.FC = () => {
   const handleAiSample = () => {
     if (!current) return;
     if (!isLoggedIn) { showAlert(t('llm.loginRequired')); return; }
+    wrongCountRef.current++;
     aiSample.run(
       String(current.id),
       () => getSampleSentence(current.word || current.sentence || '', current.translateEn || '', i18n.language, current.language || 'en'),

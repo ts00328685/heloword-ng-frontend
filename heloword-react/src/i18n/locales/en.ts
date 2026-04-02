@@ -124,6 +124,11 @@ const en = {
         title: 'Spaced repetition built in',
         body: 'Once you finish a quiz, Heloword auto-schedules reviews using the Ebbinghaus forgetting curve. Your groups will then appear on the Review page with a countdown to the next session.',
       },
+      {
+        icon: '🎖️',
+        title: 'What counts as correct',
+        body: 'A word is only marked correct if you type it accurately in one go. Using Pronounce, Explain, or Example counts as a mistake — the word will be retested until you can answer it without any help.',
+      },
     ],
     reviewCard: [
       {
