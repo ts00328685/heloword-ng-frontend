@@ -100,12 +100,12 @@ const zh = {
     errorEndExceedsTotal: '結束數字不能超過總數（{{total}}）。',
   },
   llm: {
-    insight: '✨ AI 解析',
-    sampleSentence: '💬 例句',
-    studyCoach: '✨ AI 學習教練',
-    thinking: '思考中…',
-    loginRequired: '登入後使用 AI 功能',
-    error: 'AI 連線失敗，請重試。',
+    insight: '解析',
+    sampleSentence: '例句',
+    studyCoach: '學習建議',
+    thinking: '處理中…',
+    loginRequired: '登入後解鎖此功能',
+    error: '連線失敗，請重試',
   },
   onboarding: {
     quiz: [
