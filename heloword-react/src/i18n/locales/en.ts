@@ -100,12 +100,12 @@ const en = {
     errorEndExceedsTotal: 'End number cannot exceed the total ({{total}}).',
   },
   llm: {
-    insight: '✨ Insight',
-    sampleSentence: '💬 Example',
-    studyCoach: '✨ AI Study Coach',
-    thinking: 'Thinking…',
-    loginRequired: 'Login to use AI features',
-    error: 'AI unavailable. Try again.',
+    insight: 'Explain',
+    sampleSentence: 'Example',
+    studyCoach: 'Study Tip',
+    thinking: 'Working…',
+    loginRequired: 'Sign in to unlock this feature',
+    error: 'Unavailable. Try again.',
   },
   onboarding: {
     quiz: [

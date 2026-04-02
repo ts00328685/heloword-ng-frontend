@@ -172,22 +172,23 @@ const StatsPage: React.FC = () => {
           <SummaryCard label={t('stats.time')} value={`${totalTimeMin} min`} color="purple" />
         </div>
 
-        {/* AI Study Coach */}
+        {/* Study Tip */}
         {totalReviewed > 0 && (
           <div className="mb-5">
-            <button
-              onClick={handleStudyCoach}
-              disabled={coachLoading}
-              className="w-full py-2.5 rounded-2xl text-sm font-semibold text-white disabled:opacity-60 transition-colors flex items-center justify-center gap-2"
-              style={{ background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' }}
-            >
-              {coachLoading
-                ? <><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />{t('llm.thinking')}</>
-                : t('llm.studyCoach')}
-            </button>
+            <div className="flex justify-center">
+              <button
+                onClick={handleStudyCoach}
+                disabled={coachLoading}
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide ring-1 ring-inset ring-gray-300 dark:ring-gray-600 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-900 hover:ring-gray-500 dark:hover:ring-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
+              >
+                {coachLoading
+                  ? <><span className="w-3 h-3 border-[1.5px] border-current border-t-transparent rounded-full animate-spin" />{t('llm.thinking')}</>
+                  : <><svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>{t('llm.studyCoach')}</>}
+              </button>
+            </div>
             {(coachText || coachError) && (
-              <div className="mt-2 bg-white dark:bg-gray-800 rounded-2xl border border-purple-200 dark:border-purple-800 p-4 shadow-sm">
-                <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-1.5">{t('llm.studyCoach')}</p>
+              <div className="mt-3 bg-gray-50 dark:bg-gray-800/60 rounded-2xl ring-1 ring-inset ring-gray-100 dark:ring-gray-700 p-4">
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5">{t('llm.studyCoach')}</p>
                 {coachError ? (
                   <div className="flex items-center gap-2">
                     <p className="text-sm text-red-400 flex-1">{t('llm.error')}</p>

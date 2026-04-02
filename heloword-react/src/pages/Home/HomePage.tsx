@@ -81,21 +81,22 @@ const WordSection: React.FC<{
               </div>
               <button
                 onClick={() => handleInsight(word)}
-                className={`mx-3 mb-3 py-1 rounded-full text-xs font-semibold transition-colors ${
+                className={`mx-3 mb-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                   isSelected
-                    ? 'bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:text-purple-600 dark:hover:text-purple-400'
+                    ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
+                    : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
                 }`}
               >
-                ✨ {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
+                <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
               </button>
               {isSelected && (
                 <div className="px-3 pb-3">
-                  <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3">
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                     {!isLoggedIn ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
                     ) : insight.loading ? (
-                      <p className="text-xs text-purple-500 animate-pulse">{t('llm.thinking')}</p>
+                      <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                     ) : insight.error ? (
                       <div className="flex items-center gap-2">
                         <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>

@@ -109,6 +109,9 @@ const VocabularyQuizPage: React.FC = () => {
   const pronounceCountRef = useRef(0);
   const deleteCountRef = useRef(0);
   const wrongCountRef = useRef(0);
+  // Accumulates wrongCount across retests so the final saved record reflects
+  // all mistakes made on a word, not just the last (successful) attempt.
+  const wrongAccumRef = useRef<Map<string, number>>(new Map());
 
   const [autoPronounce, setAutoPronounce] = useState(false);
   const [autoPronounceEn, setAutoPronounceEn] = useState(false);
@@ -248,13 +251,14 @@ const VocabularyQuizPage: React.FC = () => {
   };
 
   const saveSingleRecord = useCallback(
-    (word: Sentence) => {
+    (word: Sentence, totalWrongCount?: number) => {
       if (word.recordSaved) return;
       word.recordSaved = true;
 
       const currentTime = new Date();
       const timeSpent = (currentTime.getTime() - startTimeRef.current.getTime()) / 1000;
       const settingId = settingIdMapRef.current.get(word._quizType || word.tableName || '');
+      const wrongCount = totalWrongCount ?? wrongCountRef.current;
 
       if (!isLoggedIn) {
         saveGuestRecord({
@@ -264,7 +268,7 @@ const VocabularyQuizPage: React.FC = () => {
           answerTableName: word.tableName || '',
           timeSpent,
           finishedTime: currentTime.toISOString(),
-          wrongCount: wrongCountRef.current,
+          wrongCount,
           quizIndex: currentIndex,
         });
         return;
@@ -279,7 +283,7 @@ const VocabularyQuizPage: React.FC = () => {
         finishedTime: currentTime,
         pronounceCount: pronounceCountRef.current,
         deleteCount: deleteCountRef.current,
-        wrongCount: wrongCountRef.current,
+        wrongCount,
         recordQuizSettingId: settingId,
       }).then(() => {}).catch(() => {});
       pendingSavesRef.current.push(p);
@@ -409,8 +413,15 @@ const VocabularyQuizPage: React.FC = () => {
         wrongCountRef.current++;
       }
 
+      // Accumulate wrong count across retests for this word
+      const wordKey = `${current.id}:${current.tableName ?? ''}`;
+      const accumulated = (wrongAccumRef.current.get(wordKey) ?? 0) + wrongCountRef.current;
+      wrongAccumRef.current.set(wordKey, accumulated);
+
       if (wrongCountRef.current === 0) {
-        saveSingleRecord(current);
+        // Answered correctly — save with total accumulated wrong count across all attempts
+        saveSingleRecord(current, accumulated);
+        wrongAccumRef.current.delete(wordKey);
       } else {
         needRetest = true;
       }
@@ -709,47 +720,49 @@ const VocabularyQuizPage: React.FC = () => {
             </div>
           )}
 
-          {/* AI buttons */}
+          {/* Explain / Example buttons */}
           <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
             <div className="flex gap-2 mb-2">
               <button
                 onClick={handleAiInsight}
                 disabled={aiInsight.loading}
-                className="flex-1 py-1.5 text-xs font-semibold rounded-xl border border-purple-200 dark:border-purple-800 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 disabled:opacity-50 transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
               >
+                <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 {aiInsight.loading ? t('llm.thinking') : t('llm.insight')}
               </button>
               <button
                 onClick={handleAiSample}
                 disabled={aiSample.loading}
-                className="flex-1 py-1.5 text-xs font-semibold rounded-xl border border-cyan-200 dark:border-cyan-800 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-900/20 disabled:opacity-50 transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
               >
+                <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 {aiSample.loading ? t('llm.thinking') : t('llm.sampleSentence')}
               </button>
             </div>
 
             {(aiInsight.text || aiInsight.error) && (
-              <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-2.5 mb-2">
+              <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-2.5 mb-2 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                 {aiInsight.error ? (
                   <div className="flex items-center gap-2">
                     <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
                     <button onClick={() => aiInsight.retry(String(current.id), () => getWordInsight(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-xs text-purple-700 dark:text-purple-200 leading-relaxed whitespace-pre-wrap">{aiInsight.text}</p>
+                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{aiInsight.text}</p>
                 )}
               </div>
             )}
 
             {(aiSample.text || aiSample.error) && (
-              <div className="bg-cyan-50 dark:bg-cyan-900/20 rounded-xl p-2.5">
+              <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-2.5 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                 {aiSample.error ? (
                   <div className="flex items-center gap-2">
                     <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
                     <button onClick={() => aiSample.retry(String(current.id), () => getSampleSentence(current.word || current.sentence || '', current.translateEn || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-xs text-cyan-700 dark:text-cyan-200 leading-relaxed whitespace-pre-wrap">{aiSample.text}</p>
+                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{aiSample.text}</p>
                 )}
               </div>
             )}
