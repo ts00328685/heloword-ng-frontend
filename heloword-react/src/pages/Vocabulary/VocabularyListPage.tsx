@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'; // useRef kept for sentinelRef
 import { useLocation, useNavigate } from 'react-router-dom';
+import AddToGroupModal from '../../components/AddToGroupModal';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import QuizSettingModal from '../../components/QuizSettingModal';
@@ -67,6 +68,9 @@ const VocabularyListPage: React.FC = () => {
   // AI insight state
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
   const insight = useAiInsight('vocab:insight');
+
+  // Heart / add-to-group state
+  const [heartWord, setHeartWord] = useState<typeof list[0] | null>(null);
 
   const handleWordTap = (word: Sentence) => {
     if (selectedWordId === word.id) {
@@ -272,9 +276,22 @@ const VocabularyListPage: React.FC = () => {
                     {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
                   </button>
                 </div>
-                <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-0.5 rounded-md font-mono flex-shrink-0 mt-0.5">
-                  {word.language?.toUpperCase()}
-                </span>
+                <div className="flex flex-col items-end gap-1 flex-shrink-0 mt-0.5">
+                  <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-0.5 rounded-md font-mono">
+                    {word.language?.toUpperCase()}
+                  </span>
+                  {isLoggedIn && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setHeartWord(word); }}
+                      className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                      aria-label={t('userVocab.addToGroup')}
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* AI insight panel — shown when tapped */}
@@ -332,6 +349,7 @@ const VocabularyListPage: React.FC = () => {
       </button>
 
       {showModal && <QuizSettingModal onClose={() => setShowModal(false)} />}
+      {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
     </div>
   );
 };

@@ -30,6 +30,8 @@ const SocialPage          = React.lazy(() => import('./pages/Social/SocialPage')
 const ChallengePage       = React.lazy(() => import('./pages/Challenge/ChallengePage'));
 const SentenceScramblePage = React.lazy(() => import('./pages/Challenge/SentenceScramblePage'));
 const MultiChoicePage     = React.lazy(() => import('./pages/Challenge/MultiChoicePage'));
+const UserVocabPage       = React.lazy(() => import('./pages/UserVocab/UserVocabPage'));
+const UserVocabGroupPage  = React.lazy(() => import('./pages/UserVocab/UserVocabGroupPage'));
 
 // Pages where we don't show the bottom tabs
 const NO_TABS_PATHS = ['/vocabulary/quiz', '/login'];
@@ -66,6 +68,8 @@ const AppLayout: React.FC = () => {
           <Route path="/challenge" element={<ChallengePage />} />
           <Route path="/challenge/scramble" element={<SentenceScramblePage />} />
           <Route path="/challenge/quiz" element={<MultiChoicePage />} />
+          <Route path="/user-vocab" element={<UserVocabPage />} />
+          <Route path="/user-vocab/:groupId" element={<UserVocabGroupPage />} />
           {/* Catch-all */}
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
