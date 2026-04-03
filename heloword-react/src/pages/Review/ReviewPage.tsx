@@ -7,7 +7,7 @@ import OnboardingModal from '../../components/OnboardingModal';
 const REVIEW_ONBOARDING_KEY = 'onboarding:review_card';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
-import { DueGroup, QuizSetting, TYPE_TO_TABLE_MAP } from '../../models';
+import { DueGroup, QuizSetting, Sentence, TYPE_TO_TABLE_MAP } from '../../models';
 import { doPost } from '../../services/api.service';
 import { useNotifications } from '../../contexts/NotificationContext';
 import {
@@ -25,6 +25,7 @@ import {
   getGroupKey,
   getIntervals,
 } from '../../utils/ebbinghaus';
+import { fetchCustomWords, fetchCustomGroups } from '../../services/customVocab.service';
 
 interface QuizGroup {
   date: Date;
@@ -52,6 +53,7 @@ const ReviewPage: React.FC = () => {
 
   const { dueGroups, dueCount, groupStates, refresh, refreshGuest, recompute } = useNotifications();
   const [groups, setGroups] = useState<QuizGroup[]>([]);
+  const [customGroupMap, setCustomGroupMap] = useState<Map<number, { name: string; language: string }>>(new Map());
   const [loading, setLoading] = useState(false);
   const [showAllDue, setShowAllDue] = useState(false);
   const [showReviewOnboarding, setShowReviewOnboarding] = useState(false);
@@ -102,8 +104,13 @@ const ReviewPage: React.FC = () => {
     setLoading(true);
     showLoading();
     try {
-      const response = await doPost('/frontend-api/api/fe/quiz/get-quiz-settings');
+      const [response, customGroupsRaw] = await Promise.all([
+        doPost('/frontend-api/api/fe/quiz/get-quiz-settings'),
+        isLoggedIn ? fetchCustomGroups().catch(() => []) : Promise.resolve([]),
+      ]);
       if (response.code !== '0000' || !response.data) return;
+
+      setCustomGroupMap(new Map(customGroupsRaw.map((g: { id: number; name: string; language: string }) => [g.id, { name: g.name, language: g.language }])));
 
       const data: Record<string, QuizSetting[]> = response.data;
 
@@ -264,7 +271,7 @@ const ReviewPage: React.FC = () => {
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
         const matchType = g.records.some((r) =>
-          t(`wordLists.${r.type}`, r.type).toLowerCase().includes(q),
+          formatGroupType(r.type).toLowerCase().includes(q),
         );
         const matchDate = formatDate(g.date).toLowerCase().includes(q);
         if (!matchType && !matchDate) return false;
@@ -308,32 +315,62 @@ const ReviewPage: React.FC = () => {
 
   // ─── Navigation ───────────────────────────────────────────────────────────
 
+  const loadCustomGroupWords = async (type: string): Promise<Sentence[]> => {
+    const match = type.match(/^userCustomGroup:(\d+)$/);
+    if (!match) return [];
+    const groupId = Number(match[1]);
+    const words = await fetchCustomWords(groupId);
+    return words.map((w) => ({
+      id: w.id,
+      word: w.word,
+      sentence: w.sentence || '',
+      translateEn: w.translateEn,
+      translateCh: w.translateCh || '',
+      tableName: 'USER_CUSTOM_WORD',
+      language: (customGroupMap.get(groupId)?.language === 'JA' ? 'jp' : 'en') as any,
+      status: 1,
+      _quizType: type,
+    }));
+  };
+
   const handleCardClick = async (group: QuizGroup, forceNewSession = false) => {
     const state = resolveGroupState(group.records);
     const isDue = state && (state.status === 'DUE' || state.status === 'FRESH');
+    const isCustomGroup = group.records.some((r) => r.type.startsWith('userCustomGroup:'));
 
     if (isDue || forceNewSession) {
       const quizSettings: Record<string, QuizSetting> = {};
       group.records.forEach((s) => {
         quizSettings[s.type] = { ...s, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
       });
+      if (isCustomGroup) {
+        showLoading();
+        try {
+          const customWordArrays = await Promise.all(group.records.map((r) => loadCustomGroupWords(r.type)));
+          const preloadedWords = customWordArrays.flat();
+          navigate('/vocabulary/quiz', { state: { quizSettings, preloadedWords } });
+        } finally {
+          hideLoading();
+        }
+        return;
+      }
       navigate('/vocabulary/quiz', { state: { quizSettings } });
       return;
     }
 
-    // Use modulo so multi-cycle accumulated counts don't prevent resuming an unfinished session
-    const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
-    if (cycleCompleted === 0 && group.completed > 0) return; // fully completed this cycle
-
     const settingIds = group.records.map((s) => s.id).filter(Boolean);
     showLoading();
     try {
-      const response = await doPost('/frontend-api/api/fe/quiz/get-record-ids-by-setting-ids', settingIds);
+      const [response, ...customWordArrays] = await Promise.all([
+        doPost('/frontend-api/api/fe/quiz/get-record-ids-by-setting-ids', settingIds),
+        ...(isCustomGroup ? group.records.map((r) => loadCustomGroupWords(r.type)) : []),
+      ]);
       const quizSettings: Record<string, QuizSetting> = {};
       group.records.forEach((s) => {
         quizSettings[s.type] = { ...s, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
       });
-      navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap: response.data } });
+      const preloadedWords = isCustomGroup ? customWordArrays.flat() : undefined;
+      navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap: response.data, ...(preloadedWords ? { preloadedWords } : {}) } });
     } finally {
       hideLoading();
     }
@@ -351,9 +388,6 @@ const ReviewPage: React.FC = () => {
       navigate('/vocabulary/quiz', { state: { quizSettings } });
       return;
     }
-
-    const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
-    if (cycleCompleted === 0 && group.completed > 0) return;
 
     const quizSettings: Record<string, QuizSetting> = {};
     const finishedIdMap: Record<string, number[]> = {};
@@ -405,16 +439,25 @@ const ReviewPage: React.FC = () => {
       return;
     }
 
-    if (unfinishedSettingIds.length > 0) {
-      showLoading();
-      try {
-        const response = await doPost('/frontend-api/api/fe/quiz/get-record-ids-by-setting-ids', unfinishedSettingIds);
-        navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap: response.data } });
-      } finally {
-        hideLoading();
-      }
-    } else {
-      navigate('/vocabulary/quiz', { state: { quizSettings } });
+    const customGroupTypes = dueGroups.filter((g) => g.type.startsWith('userCustomGroup:'));
+    showLoading();
+    try {
+      const [finishedRes, ...customWordArrays] = await Promise.all([
+        unfinishedSettingIds.length > 0
+          ? doPost('/frontend-api/api/fe/quiz/get-record-ids-by-setting-ids', unfinishedSettingIds)
+          : Promise.resolve({ data: {} }),
+        ...customGroupTypes.map((g) => loadCustomGroupWords(g.type)),
+      ]);
+      const preloadedWords = customWordArrays.flat();
+      navigate('/vocabulary/quiz', {
+        state: {
+          quizSettings,
+          ...(unfinishedSettingIds.length > 0 ? { finishedIdMap: finishedRes.data } : {}),
+          ...(preloadedWords.length > 0 ? { preloadedWords } : {}),
+        },
+      });
+    } finally {
+      hideLoading();
     }
   };
 
@@ -572,6 +615,14 @@ const ReviewPage: React.FC = () => {
     return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
   };
 
+  const formatGroupType = (type: string): string => {
+    if (type.startsWith('userCustomGroup:')) {
+      const id = Number(type.split(':')[1]);
+      return customGroupMap.get(id)?.name ?? t('userVocab.myVocabGroup', 'My Vocab');
+    }
+    return t(`wordLists.${type}`, type);
+  };
+
   const statusLabel = (status: DueGroup['status']) => ({
     UNFINISHED: t('review.groupStatusUnfinished'),
     DUE:        t('review.groupStatusDue'),
@@ -643,7 +694,7 @@ const ReviewPage: React.FC = () => {
                     className={`text-xs px-2 py-0.5 rounded-lg font-medium flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-75 active:scale-95 ${cfg.color}`}
                   >
                     <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
-                    {t(`wordLists.${g.type}`, g.type)} {g.min}–{g.max}
+                    {formatGroupType(g.type)} {g.min}–{g.max}
                     {' '}<span className="opacity-60">L{g.reviewLevel}</span>
                   </button>
                 );
@@ -966,8 +1017,8 @@ const ReviewPage: React.FC = () => {
                   <div className="flex flex-wrap gap-1.5">
                     {group.records.map((r) => (
                       <span key={r.type} className="text-xs bg-blue-50 dark:bg-blue-900/40 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
-                        {t(`wordLists.${r.type}`, r.type)}
-                        {r.min && r.max ? ` (${r.min}–${r.max})` : ''}
+                        {formatGroupType(r.type)}
+                        {r.min && r.max && !r.type.startsWith('userCustomGroup:') ? ` (${r.min}–${r.max})` : ''}
                       </span>
                     ))}
                   </div>
@@ -1056,7 +1107,7 @@ const ReviewPage: React.FC = () => {
               <div className="flex flex-wrap gap-1.5 mb-5">
                 {editGroup.records.map((r) => (
                   <span key={r.type} className="text-xs bg-blue-50 dark:bg-blue-900/40 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
-                    {t(`wordLists.${r.type}`, r.type)} ({r.min}–{r.max})
+                    {formatGroupType(r.type)}{!r.type.startsWith('userCustomGroup:') ? ` (${r.min}–${r.max})` : ''}
                   </span>
                 ))}
               </div>

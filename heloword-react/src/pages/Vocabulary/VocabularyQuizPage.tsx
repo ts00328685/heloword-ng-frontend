@@ -16,6 +16,7 @@ import {
 } from '../../services/guestStorage.service';
 import { getWordInsight, getSampleSentence } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
+import AddToGroupModal from '../../components/AddToGroupModal';
 
 const normalizeGerman = (s: string) =>
   s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'b');
@@ -125,6 +126,7 @@ const VocabularyQuizPage: React.FC = () => {
   const [speed, setSpeed] = useState(1.0);
   const [volume, setVolume] = useState(0.2);
   const [showSettings, setShowSettings] = useState(false);
+  const [heartWord, setHeartWord] = useState<Sentence | null>(null);
 
   // AI insight / sample sentence
   const aiInsight = useAiInsight('quiz:insight');
@@ -299,6 +301,12 @@ const VocabularyQuizPage: React.FC = () => {
   ) => {
     const combined: Record<string, Sentence[]> = { ...(ws ?? wordStore), ...(ss ?? sentenceStore) } as any;
     let list: Sentence[] = [];
+
+    // Pre-tagged words (e.g. custom vocabulary groups) injected directly by the caller
+    const preloadedWords: Sentence[] = location.state?.preloadedWords ?? [];
+    if (preloadedWords.length > 0) {
+      list = [...list, ...preloadedWords];
+    }
 
     Object.keys(quizSettings).forEach((key) => {
       if (!combined[key]) return;
@@ -684,9 +692,22 @@ const VocabularyQuizPage: React.FC = () => {
         {/* Word card */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 mb-4 shadow-sm">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium uppercase">
-              {current.language}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium uppercase">
+                {current.language}
+              </span>
+              {isLoggedIn && (
+                <button
+                  onClick={() => setHeartWord(current)}
+                  className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                  aria-label={t('userVocab.addToGroup')}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </button>
+              )}
+            </div>
             <span className="text-xs text-gray-400 dark:text-gray-500">
               {t('quiz.wrongPronounce', { wrong: wrongCountRef.current, pronounce: pronounceCountRef.current })}
             </span>
@@ -885,6 +906,7 @@ const VocabularyQuizPage: React.FC = () => {
           </button>
         </div>
       </main>
+      {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
     </div>
   );
 };

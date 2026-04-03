@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'; // useRef kept for hasFetched
 import { useNavigate } from 'react-router-dom';
+import { CustomGroup, fetchCustomGroups } from '../../services/customVocab.service';
+import AddToGroupModal from '../../components/AddToGroupModal';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
@@ -19,7 +21,8 @@ const WordSection: React.FC<{
   isLoggedIn: boolean;
   lang: string;
   onLoginRequired: () => void;
-}> = ({ title, list, onViewAll, isLoggedIn, lang, onLoginRequired }) => {
+  onHeartWord?: (word: Sentence) => void;
+}> = ({ title, list, onViewAll, isLoggedIn, lang, onLoginRequired, onHeartWord }) => {
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const insight = useAiInsight('home:insight');
@@ -79,17 +82,30 @@ const WordSection: React.FC<{
                   </p>
                 )}
               </div>
-              <button
-                onClick={() => handleInsight(word)}
-                className={`mx-3 mb-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
-                  isSelected
-                    ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                    : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
-                }`}
-              >
-                <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
-                {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
-              </button>
+              <div className="mx-3 mb-2.5 flex items-center gap-1.5">
+                <button
+                  onClick={() => handleInsight(word)}
+                  className={`flex-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                    isSelected
+                      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
+                      : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                  }`}
+                >
+                  <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                  {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
+                </button>
+                {isLoggedIn && onHeartWord && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onHeartWord(word); }}
+                    className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                    aria-label={t('userVocab.addToGroup')}
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </button>
+                )}
+              </div>
               {isSelected && (
                 <div className="px-3 pb-3">
                   <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
@@ -207,6 +223,8 @@ const HomePage: React.FC = () => {
   const { showLoading, hideLoading, showAlert } = useUI();
   const hasFetched = useRef(false);
   const [showAuthor, setShowAuthor] = useState(false);
+  const [customGroups, setCustomGroups] = useState<CustomGroup[]>([]);
+  const [heartWord, setHeartWord] = useState<Sentence | null>(null);
 
   useEffect(() => {
     if (hasFetched.current || !isWordStoreEmpty()) {
@@ -215,6 +233,12 @@ const HomePage: React.FC = () => {
     hasFetched.current = true;
     fetchPreview();
   }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetchCustomGroups().then(setCustomGroups).catch(() => {});
+    }
+  }, [isLoggedIn]);
 
   const fetchPreview = async () => {
     showLoading();
@@ -341,6 +365,58 @@ const HomePage: React.FC = () => {
           </div>
         )}
 
+        {isLoggedIn && customGroups.length > 0 && (
+          <section className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{t('userVocab.title')}</h2>
+              <button
+                onClick={() => navigate('/user-vocab')}
+                className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
+              >
+                {t('home.viewAll')}
+              </button>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              {customGroups.slice(0, 4).map((group) => (
+                <button
+                  key={group.id}
+                  onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
+                  className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 text-left hover:shadow-md transition-all"
+                >
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className="text-[10px] bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-1.5 py-0.5 rounded font-medium">
+                      {group.language}
+                    </span>
+                    <span className="text-[10px] text-gray-400 dark:text-gray-500">
+                      {t('userVocab.wordCount', { count: group.wordCount })}
+                    </span>
+                  </div>
+                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 line-clamp-1">{group.name}</p>
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {isLoggedIn && customGroups.length === 0 && (
+          <div className="mb-6">
+            <button
+              onClick={() => navigate('/user-vocab')}
+              className="w-full flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-600 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors"
+            >
+              <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">{t('userVocab.title')}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500">{t('userVocab.emptyGroupsHint', 'Create your own vocabulary groups')}</p>
+              </div>
+            </button>
+          </div>
+        )}
+
         {allSections.map(({ key, list }) => (
           <WordSection
             key={key}
@@ -350,11 +426,13 @@ const HomePage: React.FC = () => {
             isLoggedIn={isLoggedIn}
             lang={i18n.language}
             onLoginRequired={() => showAlert(t('llm.loginRequired'))}
+            onHeartWord={isLoggedIn ? setHeartWord : undefined}
           />
         ))}
       </main>
 
       {showAuthor && <AuthorNoteModal onClose={() => setShowAuthor(false)} />}
+      {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
     </div>
   );
 };
