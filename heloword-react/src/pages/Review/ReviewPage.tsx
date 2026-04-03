@@ -25,7 +25,7 @@ import {
   getGroupKey,
   getIntervals,
 } from '../../utils/ebbinghaus';
-import { fetchCustomWords } from '../../services/customVocab.service';
+import { fetchCustomWords, fetchCustomGroups } from '../../services/customVocab.service';
 
 interface QuizGroup {
   date: Date;
@@ -53,6 +53,7 @@ const ReviewPage: React.FC = () => {
 
   const { dueGroups, dueCount, groupStates, refresh, refreshGuest, recompute } = useNotifications();
   const [groups, setGroups] = useState<QuizGroup[]>([]);
+  const [customGroupMap, setCustomGroupMap] = useState<Map<number, { name: string; language: string }>>(new Map());
   const [loading, setLoading] = useState(false);
   const [showAllDue, setShowAllDue] = useState(false);
   const [showReviewOnboarding, setShowReviewOnboarding] = useState(false);
@@ -103,8 +104,13 @@ const ReviewPage: React.FC = () => {
     setLoading(true);
     showLoading();
     try {
-      const response = await doPost('/frontend-api/api/fe/quiz/get-quiz-settings');
+      const [response, customGroupsRaw] = await Promise.all([
+        doPost('/frontend-api/api/fe/quiz/get-quiz-settings'),
+        isLoggedIn ? fetchCustomGroups().catch(() => []) : Promise.resolve([]),
+      ]);
       if (response.code !== '0000' || !response.data) return;
+
+      setCustomGroupMap(new Map(customGroupsRaw.map((g: { id: number; name: string; language: string }) => [g.id, { name: g.name, language: g.language }])));
 
       const data: Record<string, QuizSetting[]> = response.data;
 
@@ -321,7 +327,7 @@ const ReviewPage: React.FC = () => {
       translateEn: w.translateEn,
       translateCh: w.translateCh || '',
       tableName: 'USER_CUSTOM_WORD',
-      language: 'custom' as any,
+      language: (customGroupMap.get(groupId)?.language === 'JA' ? 'jp' : 'en') as any,
       status: 1,
       _quizType: type,
     }));
@@ -351,10 +357,6 @@ const ReviewPage: React.FC = () => {
       navigate('/vocabulary/quiz', { state: { quizSettings } });
       return;
     }
-
-    // Use modulo so multi-cycle accumulated counts don't prevent resuming an unfinished session
-    const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
-    if (cycleCompleted === 0 && group.completed > 0) return; // fully completed this cycle
 
     const settingIds = group.records.map((s) => s.id).filter(Boolean);
     showLoading();
@@ -386,9 +388,6 @@ const ReviewPage: React.FC = () => {
       navigate('/vocabulary/quiz', { state: { quizSettings } });
       return;
     }
-
-    const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
-    if (cycleCompleted === 0 && group.completed > 0) return;
 
     const quizSettings: Record<string, QuizSetting> = {};
     const finishedIdMap: Record<string, number[]> = {};
@@ -617,7 +616,10 @@ const ReviewPage: React.FC = () => {
   };
 
   const formatGroupType = (type: string): string => {
-    if (type.startsWith('userCustomGroup:')) return t('userVocab.myVocabGroup', 'My Vocab');
+    if (type.startsWith('userCustomGroup:')) {
+      const id = Number(type.split(':')[1]);
+      return customGroupMap.get(id)?.name ?? t('userVocab.myVocabGroup', 'My Vocab');
+    }
     return t(`wordLists.${type}`, type);
   };
 

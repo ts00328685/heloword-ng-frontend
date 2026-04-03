@@ -103,7 +103,7 @@ const UserVocabGroupPage: React.FC = () => {
         translateEn: w.translateEn,
         translateCh: w.translateCh || '',
         tableName: 'USER_CUSTOM_WORD',
-        language: 'custom' as any,
+        language: (group.language === 'JA' ? 'jp' : 'en') as any,
         status: 1,
         _quizType: quizType,
       }));

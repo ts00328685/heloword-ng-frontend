@@ -92,14 +92,13 @@ export function getGroupKey(type: string, min: number, max: number): string {
 }
 
 export function parseGroupKey(key: string): { type: string; min: number; max: number } {
-  const idx = key.indexOf(':');
-  const rest = key.slice(idx + 1);
-  const idx2 = rest.indexOf(':');
-  return {
-    type: key.slice(0, idx),
-    min: parseInt(rest.slice(0, idx2), 10),
-    max: parseInt(rest.slice(idx2 + 1), 10),
-  };
+  // min and max are always the last two colon-separated segments; everything before is the type.
+  // This handles types that themselves contain colons (e.g. "userCustomGroup:123:1:50").
+  const parts = key.split(':');
+  const max = parseInt(parts[parts.length - 1], 10);
+  const min = parseInt(parts[parts.length - 2], 10);
+  const type = parts.slice(0, -2).join(':');
+  return { type, min, max };
 }
 
 export interface GroupLevelOverride {
