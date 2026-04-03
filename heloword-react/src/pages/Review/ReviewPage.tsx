@@ -35,6 +35,7 @@ interface QuizGroup {
 }
 
 type StatusFilter = 'ALL' | 'UNFINISHED' | 'DUE' | 'FRESH' | 'SCHEDULED';
+type SortKey = 'recent' | 'level-asc' | 'level-desc' | 'progress' | 'next-review';
 
 const STATUS_CONFIG = {
   UNFINISHED: { color: 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400',    dot: 'bg-blue-400' },
@@ -49,7 +50,7 @@ const ReviewPage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { showLoading, hideLoading } = useUI();
 
-  const { dueGroups, dueCount, groupStates, refresh, refreshGuest } = useNotifications();
+  const { dueGroups, dueCount, groupStates, refresh, refreshGuest, recompute } = useNotifications();
   const [groups, setGroups] = useState<QuizGroup[]>([]);
   const [loading, setLoading] = useState(false);
   const [showAllDue, setShowAllDue] = useState(false);
@@ -58,6 +59,9 @@ const ReviewPage: React.FC = () => {
   // Search + filter
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('ALL');
+  const [levelFilter, setLevelFilter] = useState<number | 'ALL'>('ALL');
+  const [sortKey, setSortKey] = useState<SortKey>('recent');
+  const [showFilterPanel, setShowFilterPanel] = useState(false);
 
   // Selection mode
   const [selectionMode, setSelectionMode] = useState(false);
@@ -84,6 +88,13 @@ const ReviewPage: React.FC = () => {
       loadGuestData();
     }
   }, [isLoggedIn]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Recompute due statuses every minute while the page is open so that
+  // cards flip from SCHEDULED → DUE without requiring a manual refresh.
+  useEffect(() => {
+    const id = setInterval(recompute, 60_000);
+    return () => clearInterval(id);
+  }, [recompute]);
 
   // ─── Server-side (logged in) ───────────────────────────────────────────────
 
@@ -236,20 +247,64 @@ const ReviewPage: React.FC = () => {
 
   // ─── Filtering ────────────────────────────────────────────────────────────
 
-  const filteredGroups = groups.filter((g) => {
-    const state = resolveGroupState(g.records);
-    const status = state?.status ?? 'SCHEDULED';
-    if (statusFilter !== 'ALL' && status !== statusFilter) return false;
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      const matchType = g.records.some((r) =>
-        t(`wordLists.${r.type}`, r.type).toLowerCase().includes(q),
-      );
-      const matchDate = formatDate(g.date).toLowerCase().includes(q);
-      if (!matchType && !matchDate) return false;
-    }
-    return true;
-  });
+  const uniqueLevels: number[] = Array.from(
+    new Set(
+      groups
+        .map((g) => resolveGroupState(g.records)?.reviewLevel)
+        .filter((l): l is number => l !== undefined),
+    ),
+  ).sort((a, b) => a - b);
+
+  const filteredGroups = (() => {
+    const filtered = groups.filter((g) => {
+      const state = resolveGroupState(g.records);
+      const status = state?.status ?? 'SCHEDULED';
+      if (statusFilter !== 'ALL' && status !== statusFilter) return false;
+      if (levelFilter !== 'ALL' && (state?.reviewLevel ?? 0) !== levelFilter) return false;
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matchType = g.records.some((r) =>
+          t(`wordLists.${r.type}`, r.type).toLowerCase().includes(q),
+        );
+        const matchDate = formatDate(g.date).toLowerCase().includes(q);
+        if (!matchType && !matchDate) return false;
+      }
+      return true;
+    });
+
+    filtered.sort((a, b) => {
+      const stateA = resolveGroupState(a.records);
+      const stateB = resolveGroupState(b.records);
+      switch (sortKey) {
+        case 'level-asc':
+          return (stateA?.reviewLevel ?? 0) - (stateB?.reviewLevel ?? 0);
+        case 'level-desc':
+          return (stateB?.reviewLevel ?? 0) - (stateA?.reviewLevel ?? 0);
+        case 'progress': {
+          const pctA = a.total > 0 ? (a.completed % a.total) / a.total : 0;
+          const pctB = b.total > 0 ? (b.completed % b.total) / b.total : 0;
+          return pctB - pctA;
+        }
+        case 'next-review': {
+          const getNext = (g: QuizGroup) => {
+            const state = resolveGroupState(g.records);
+            if (!state?.reviewLevel || !g.latestFinishedTime) return Infinity;
+            const iv = intervals[Math.min(state.reviewLevel, intervals.length - 1)];
+            return g.latestFinishedTime.getTime() + iv;
+          };
+          return getNext(a) - getNext(b);
+        }
+        case 'recent':
+        default: {
+          if (a.latestFinishedTime && b.latestFinishedTime)
+            return b.latestFinishedTime.getTime() - a.latestFinishedTime.getTime();
+          return b.date.getTime() - a.date.getTime();
+        }
+      }
+    });
+
+    return filtered;
+  })();
 
   // ─── Navigation ───────────────────────────────────────────────────────────
 
@@ -534,6 +589,14 @@ const ReviewPage: React.FC = () => {
     { key: 'SCHEDULED',  label: t('review.groupStatusScheduled') },
   ];
 
+  const sortOptions: { key: SortKey; label: string }[] = [
+    { key: 'recent',      label: t('review.sortRecent') },
+    { key: 'level-asc',   label: t('review.sortLevelAsc') },
+    { key: 'level-desc',  label: t('review.sortLevelDesc') },
+    { key: 'progress',    label: t('review.sortProgress') },
+    { key: 'next-review', label: t('review.sortNextReview') },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header title={t('nav.review')} />
@@ -593,67 +656,184 @@ const ReviewPage: React.FC = () => {
         )}
 
         {/* Search + filter bar */}
-        {groups.length > 0 && (
-          <div className="mb-4 space-y-2">
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={t('review.searchPlaceholder')}
-                  className="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 dark:text-gray-200 placeholder-gray-400"
-                />
-                {searchQuery && (
-                  <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">×</button>
-                )}
-              </div>
-              {/* Select mode toggle */}
-              {!selectionMode ? (
+        {groups.length > 0 && (() => {
+          const activeFilterCount = (statusFilter !== 'ALL' ? 1 : 0) + (levelFilter !== 'ALL' ? 1 : 0) + (sortKey !== 'recent' ? 1 : 0);
+          return (
+            <div className="mb-4 space-y-2">
+              {/* Top row: search + filter toggle + select */}
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder={t('review.searchPlaceholder')}
+                    className="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 dark:text-gray-200 placeholder-gray-400"
+                  />
+                  {searchQuery && (
+                    <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">×</button>
+                  )}
+                </div>
+                {/* Filter toggle button */}
                 <button
-                  onClick={() => setSelectionMode(true)}
-                  className="shrink-0 text-xs px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium transition-colors"
-                >
-                  {t('review.select')}
-                </button>
-              ) : (
-                <button
-                  onClick={exitSelectionMode}
-                  className="shrink-0 text-xs px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium transition-colors"
-                >
-                  {t('review.cancel')}
-                </button>
-              )}
-            </div>
-            <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-none">
-              {filterButtons.map(({ key, label }) => (
-                <button
-                  key={key}
-                  onClick={() => setStatusFilter(key)}
-                  className={`shrink-0 text-xs px-3 py-1 rounded-full font-medium transition-colors ${
-                    statusFilter === key
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  onClick={() => setShowFilterPanel((v) => !v)}
+                  className={`relative shrink-0 flex items-center gap-1.5 text-xs px-3 py-2 rounded-xl border font-medium transition-colors ${
+                    showFilterPanel || activeFilterCount > 0
+                      ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                      : 'border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
                 >
-                  {label}
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M6 12h12M10 20h4" />
+                  </svg>
+                  {activeFilterCount > 0 && (
+                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-blue-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                      {activeFilterCount}
+                    </span>
+                  )}
                 </button>
-              ))}
-              {/* Select all (shown only in selection mode) */}
-              {selectionMode && filteredGroups.length > 0 && (
+                {/* Select mode toggle */}
+                {!selectionMode ? (
+                  <button
+                    onClick={() => setSelectionMode(true)}
+                    className="shrink-0 text-xs px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium transition-colors"
+                  >
+                    {t('review.select')}
+                  </button>
+                ) : (
+                  <button
+                    onClick={exitSelectionMode}
+                    className="shrink-0 text-xs px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium transition-colors"
+                  >
+                    {t('review.cancel')}
+                  </button>
+                )}
+              </div>
+
+              {/* Expandable filter panel */}
+              {showFilterPanel && (
+                <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-3 space-y-3">
+                  {/* Sort */}
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">{t('review.sortLabel')}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {sortOptions.map(({ key, label }) => (
+                        <button
+                          key={key}
+                          onClick={() => setSortKey(key)}
+                          className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+                            sortKey === key
+                              ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900'
+                              : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Status */}
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">{t('review.statusLabel')}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {filterButtons.map(({ key, label }) => (
+                        <button
+                          key={key}
+                          onClick={() => setStatusFilter(key)}
+                          className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+                            statusFilter === key
+                              ? 'bg-blue-500 text-white'
+                              : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Level (only when multiple levels exist) */}
+                  {uniqueLevels.length > 1 && (
+                    <div>
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">{t('review.levelLabel')}</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        <button
+                          onClick={() => setLevelFilter('ALL')}
+                          className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+                            levelFilter === 'ALL'
+                              ? 'bg-purple-500 text-white'
+                              : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                          }`}
+                        >
+                          {t('review.allLevels')}
+                        </button>
+                        {uniqueLevels.map((level) => (
+                          <button
+                            key={level}
+                            onClick={() => setLevelFilter(level)}
+                            className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+                              levelFilter === level
+                                ? 'bg-purple-500 text-white'
+                                : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                            }`}
+                          >
+                            {t('review.reviewLevel', { level: level + 1 })}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {/* Reset link */}
+                  {activeFilterCount > 0 && (
+                    <button
+                      onClick={() => { setStatusFilter('ALL'); setLevelFilter('ALL'); setSortKey('recent'); }}
+                      className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 underline underline-offset-2"
+                    >
+                      {t('review.resetFilters')}
+                    </button>
+                  )}
+                </div>
+              )}
+
+              {/* Active filter summary chips (collapsed state) */}
+              {!showFilterPanel && (statusFilter !== 'ALL' || levelFilter !== 'ALL' || selectionMode) && (
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  {statusFilter !== 'ALL' && (
+                    <span className="inline-flex items-center gap-1 text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-700">
+                      {filterButtons.find((b) => b.key === statusFilter)?.label}
+                      <button onClick={() => setStatusFilter('ALL')} className="opacity-60 hover:opacity-100 leading-none">×</button>
+                    </span>
+                  )}
+                  {levelFilter !== 'ALL' && (
+                    <span className="inline-flex items-center gap-1 text-xs bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-2 py-0.5 rounded-full border border-purple-200 dark:border-purple-700">
+                      {t('review.reviewLevel', { level: (levelFilter as number) + 1 })}
+                      <button onClick={() => setLevelFilter('ALL')} className="opacity-60 hover:opacity-100 leading-none">×</button>
+                    </span>
+                  )}
+                  {selectionMode && filteredGroups.length > 0 && (
+                    <button
+                      onClick={toggleSelectAll}
+                      className="text-xs text-blue-500 dark:text-blue-400 font-medium ml-auto"
+                    >
+                      {selectedKeys.size === filteredGroups.length ? t('review.deselectAll') : t('review.selectAll')}
+                    </button>
+                  )}
+                </div>
+              )}
+              {/* Select all when filter panel is open */}
+              {showFilterPanel && selectionMode && filteredGroups.length > 0 && (
                 <button
                   onClick={toggleSelectAll}
-                  className="shrink-0 text-xs px-3 py-1 rounded-full font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-blue-500 dark:text-blue-400 hover:bg-gray-200 dark:hover:bg-gray-700 ml-auto"
+                  className="text-xs text-blue-500 dark:text-blue-400 font-medium"
                 >
                   {selectedKeys.size === filteredGroups.length ? t('review.deselectAll') : t('review.selectAll')}
                 </button>
               )}
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {loading && (
           <div className="text-center py-12">

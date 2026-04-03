@@ -16,6 +16,8 @@ interface NotificationContextType {
   refresh: () => Promise<void>;
   /** Recompute from localStorage (guest users, call after finishing a quiz). */
   refreshGuest: () => void;
+  /** Recompute statuses from cached data without an API call (cheap, safe to call on a timer). */
+  recompute: () => void;
 }
 
 const NotificationContext = createContext<NotificationContextType>({
@@ -24,6 +26,7 @@ const NotificationContext = createContext<NotificationContextType>({
   dueCount: 0,
   refresh: async () => {},
   refreshGuest: () => {},
+  recompute: () => {},
 });
 
 export const useNotifications = () => useContext(NotificationContext);
@@ -33,8 +36,12 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
   const [dueGroups, setDueGroups]   = useState<DueGroup[]>([]);
   const [groupStates, setGroupStates] = useState<Map<string, DueGroup>>(new Map());
   const hasFetched = useRef(false);
+  const cachedSettingsRef = useRef<QuizSetting[]>([]);
+  const cachedOverridesRef = useRef<Record<string, GroupLevelOverride>>({});
 
   const applySettings = useCallback((settings: QuizSetting[], overrides?: Record<string, GroupLevelOverride>) => {
+    cachedSettingsRef.current = settings;
+    if (overrides) cachedOverridesRef.current = overrides;
     const states = computeGroupStates(settings, getIntervals(), overrides);
     setGroupStates(states);
     setDueGroups(
@@ -72,6 +79,16 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     setDueGroups(computeGuestDueGroups());
   }, []);
 
+  // Recompute statuses from cached data without an API call.
+  // Safe to call on a timer — no network cost.
+  const recompute = useCallback(() => {
+    if (!isLoggedIn) {
+      refreshGuest();
+    } else if (cachedSettingsRef.current.length > 0) {
+      applySettings(cachedSettingsRef.current, cachedOverridesRef.current);
+    }
+  }, [isLoggedIn, refreshGuest, applySettings]);
+
   useEffect(() => {
     if (isLoggedIn) {
       if (hasFetched.current) return;
@@ -97,6 +114,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
       dueCount: dueGroups.length,
       refresh,
       refreshGuest,
+      recompute,
     }}>
       {children}
     </NotificationContext.Provider>
