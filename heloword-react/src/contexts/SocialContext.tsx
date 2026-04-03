@@ -49,6 +49,10 @@ interface SocialContextType {
   friends: Friend[];
   unreadCounts: Record<string, number>;
 
+  mutedUserIds: Set<string>;
+  muteUser: (userId: string) => void;
+  unmuteUser: (userId: string) => void;
+
   /** roomId → messages[] */
   messageMap: Record<string, ChatMessage[]>;
 
@@ -92,7 +96,17 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [chatRooms, setChatRooms] = useState<ChatMessage[]>([]);
   const [activeChatUserId, setActiveChatUserId] = useState<string | null>(null);
   const [notifications, setNotifications] = useState<MessageNotification[]>([]);
+  const [mutedUserIds, setMutedUserIds] = useState<Set<string>>(() => {
+    try {
+      const stored = localStorage.getItem('hw-muted-users');
+      return stored ? new Set<string>(JSON.parse(stored)) : new Set<string>();
+    } catch {
+      return new Set<string>();
+    }
+  });
   const activeChatUserIdRef = useRef<string | null>(null);
+  const mutedUserIdsRef = useRef<Set<string>>(mutedUserIds);
+  mutedUserIdsRef.current = mutedUserIds;
   const refreshFriendsRef = useRef<() => void>(() => {});
 
   const heartbeatRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -160,19 +174,22 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             });
 
             if (activeChatUserIdRef.current !== msg.senderUserId) {
-              setUnreadCounts((prev) => ({
-                ...prev,
-                [msg.senderUserId]: (prev[msg.senderUserId] ?? 0) + 1,
-              }));
-              const notif: MessageNotification = {
-                id: `${msg.id}-${Date.now()}`,
-                senderUserId: msg.senderUserId,
-                senderDisplayName: msg.senderDisplayName,
-                content: msg.content,
-                roomId,
-                receivedAt: Date.now(),
-              };
-              setNotifications((prev) => [...prev, notif]);
+              const isMuted = mutedUserIdsRef.current.has(msg.senderUserId);
+              if (!isMuted) {
+                setUnreadCounts((prev) => ({
+                  ...prev,
+                  [msg.senderUserId]: (prev[msg.senderUserId] ?? 0) + 1,
+                }));
+                const notif: MessageNotification = {
+                  id: `${msg.id}-${Date.now()}`,
+                  senderUserId: msg.senderUserId,
+                  senderDisplayName: msg.senderDisplayName,
+                  content: msg.content,
+                  roomId,
+                  receivedAt: Date.now(),
+                };
+                setNotifications((prev) => [...prev, notif]);
+              }
             }
           } catch {
             // ignore parse errors
@@ -340,8 +357,17 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const doAcceptFriendRequest = useCallback(async (id: number) => {
     await acceptFriendRequest(id);
-    await refreshFriends();
-  }, [refreshFriends]);
+    const updated = await fetchFriends().catch(() => null);
+    if (updated !== null) {
+      setFriends(updated);
+      // Verify the request actually moved to ACCEPTED — if it's still PENDING the
+      // backend silently failed (e.g. service-record auth error swallowed upstream).
+      const stillPending = updated.some((f) => f.id === id && f.status !== 'ACCEPTED');
+      if (stillPending) {
+        throw new Error('Accept did not take effect — please try again');
+      }
+    }
+  }, []);
 
   const doRejectFriendRequest = useCallback(async (id: number) => {
     await rejectFriendRequest(id);
@@ -357,6 +383,24 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     await updateFriendNickname(id, nickname);
     await refreshFriends();
   }, [refreshFriends]);
+
+  const muteUser = useCallback((userId: string) => {
+    setMutedUserIds((prev) => {
+      const next = new Set(prev);
+      next.add(userId);
+      localStorage.setItem('hw-muted-users', JSON.stringify([...next]));
+      return next;
+    });
+  }, []);
+
+  const unmuteUser = useCallback((userId: string) => {
+    setMutedUserIds((prev) => {
+      const next = new Set(prev);
+      next.delete(userId);
+      localStorage.setItem('hw-muted-users', JSON.stringify([...next]));
+      return next;
+    });
+  }, []);
 
   const setGuestName = useCallback((name: string) => {
     localStorage.setItem('hw-guest-name', name);
@@ -387,6 +431,9 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         doUpdateFriendNickname,
         refreshFriends,
         setGuestName,
+        mutedUserIds,
+        muteUser,
+        unmuteUser,
       }}
     >
       {children}
