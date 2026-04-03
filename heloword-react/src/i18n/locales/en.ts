@@ -280,6 +280,9 @@ const en = {
     acceptFailed: 'Failed to accept request. Please try again.',
     noConversations: 'No conversations yet.',
     you: 'You',
+    mute: 'Mute notifications',
+    unmute: 'Unmute notifications',
+    muted: 'Muted',
   },
   challenge: {
     createRoom: '+ Create Room',

@@ -280,6 +280,9 @@ const zh = {
     acceptFailed: '接受邀請失敗，請再試一次。',
     noConversations: '尚無對話紀錄。',
     you: '我',
+    mute: '靜音通知',
+    unmute: '取消靜音',
+    muted: '已靜音',
   },
   challenge: {
     createRoom: '+ 建立房間',

@@ -75,7 +75,10 @@ const ChatPanel: React.FC<{
   };
 
   const handleKey = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    // Skip while IME composition is active (Chinese/Japanese/Korean input on Mac/Windows).
+    // Without this guard, pressing Enter to confirm an IME candidate also fires this
+    // handler and sends a duplicate message before the user intends to send.
+    if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
       handleSend();
     }
@@ -218,26 +221,33 @@ const SocialPage: React.FC = () => {
     doRejectFriendRequest,
     doRemoveFriend,
     refreshFriends,
+    mutedUserIds,
+    muteUser,
+    unmuteUser,
   } = useSocial();
 
   const [activeTab, setActiveTab] = useState<'online' | 'friends' | 'messages'>('online');
   const [roomsLoading, setRoomsLoading] = useState(false);
   const [acceptingId, setAcceptingId] = useState<number | null>(null);
   const [friendActionError, setFriendActionError] = useState<string | null>(null);
+  const [addingFriendId, setAddingFriendId] = useState<string | null>(null);
+  const [onlineTabError, setOnlineTabError] = useState<string | null>(null);
 
   React.useEffect(() => {
     if (activeTab === 'messages') {
       setRoomsLoading(true);
       loadChatRooms().finally(() => setRoomsLoading(false));
-    } else if (activeTab === 'friends' && isLoggedIn) {
+    } else if (isLoggedIn) {
+      // Refresh friends on both Online and Friends tabs so friendship status
+      // buttons in the Online tab stay accurate.
       refreshFriends();
     }
   }, [activeTab, isLoggedIn, refreshFriends]);
 
-  // Poll friends list every 10 s while on the Friends tab so incoming requests
-  // are visible even when the WebSocket push is missed.
+  // Poll friends list every 10 s on the Online and Friends tabs so incoming
+  // requests appear even when the WebSocket push is missed.
   React.useEffect(() => {
-    if (activeTab !== 'friends' || !isLoggedIn) return;
+    if (!isLoggedIn || activeTab === 'messages') return;
     const id = setInterval(() => { refreshFriends(); }, 10_000);
     return () => clearInterval(id);
   }, [activeTab, isLoggedIn, refreshFriends]);
@@ -272,6 +282,10 @@ const SocialPage: React.FC = () => {
   const acceptedFriends = friends.filter((f) => f.status === 'ACCEPTED');
   const pendingReceived = friends.filter((f) => f.status === 'PENDING_RECEIVED');
   const pendingSent = friends.filter((f) => f.status === 'PENDING_SENT');
+  // Map userId → friendship for O(1) status lookup in the Online tab
+  const friendshipByUserId = new Map(friends.map((f) => [f.otherUserId, f]));
+  // Display name from the online-users heartbeat (their own nickname/fullname, not masked)
+  const onlineDisplayByUserId = new Map(onlineUsers.map((u) => [u.userId, u.displayName]));
   const totalUnread = Object.values(unreadCounts).reduce((s, n) => s + n, 0);
 
   // Resolve a display name: friends (with nickname) → online users → message senderDisplayName → userId
@@ -374,6 +388,9 @@ const SocialPage: React.FC = () => {
         {/* ── Online tab ── */}
         {activeTab === 'online' && (
           <div className="space-y-2">
+            {onlineTabError && (
+              <p className="text-xs text-red-500 dark:text-red-400 px-1">{onlineTabError}</p>
+            )}
             {otherOnlineUsers.length === 0 ? (
               <div className="text-center py-12 text-gray-400 dark:text-gray-500 text-sm">
                 {t('social.noOneOnline')}
@@ -391,7 +408,7 @@ const SocialPage: React.FC = () => {
                       {u.isGuest ? t('social.guestUser') : t('social.member')}
                     </p>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     <button
                       onClick={() => openChat(u.userId, u.displayName)}
                       className="relative p-2 bg-blue-50 dark:bg-blue-900/40 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-500 rounded-xl transition-colors"
@@ -406,17 +423,72 @@ const SocialPage: React.FC = () => {
                         </span>
                       )}
                     </button>
-                    {isLoggedIn && !u.isGuest && (
-                      <button
-                        onClick={() => doSendFriendRequest(u.userId).then(() => setActiveTab('friends')).catch(() => {})}
-                        className="p-2 bg-green-50 dark:bg-green-900/40 hover:bg-green-100 dark:hover:bg-green-900/60 text-green-500 rounded-xl transition-colors"
-                        title={t('social.addFriend')}
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                        </svg>
-                      </button>
-                    )}
+                    {isLoggedIn && !u.isGuest && (() => {
+                      const fs = friendshipByUserId.get(u.userId);
+                      if (!fs) {
+                        // No relationship — show Add Friend button
+                        return (
+                          <button
+                            disabled={addingFriendId === u.userId}
+                            onClick={async () => {
+                              setAddingFriendId(u.userId);
+                              setOnlineTabError(null);
+                              try {
+                                await doSendFriendRequest(u.userId);
+                                setActiveTab('friends');
+                              } catch (e: any) {
+                                setOnlineTabError(e?.message || t('social.requestFailed'));
+                              } finally {
+                                setAddingFriendId(null);
+                              }
+                            }}
+                            className="p-2 bg-green-50 dark:bg-green-900/40 hover:bg-green-100 dark:hover:bg-green-900/60 disabled:opacity-50 text-green-500 rounded-xl transition-colors"
+                            title={t('social.addFriend')}
+                          >
+                            {addingFriendId === u.userId ? (
+                              <span className="w-4 h-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin inline-block" />
+                            ) : (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                              </svg>
+                            )}
+                          </button>
+                        );
+                      }
+                      if (fs.status === 'ACCEPTED') {
+                        // Already friends — no extra button needed (chat button above is enough)
+                        return null;
+                      }
+                      if (fs.status === 'PENDING_SENT') {
+                        // We already sent them a request
+                        return (
+                          <span className="text-xs text-gray-400 dark:text-gray-500 px-1">{t('social.pending')}</span>
+                        );
+                      }
+                      if (fs.status === 'PENDING_RECEIVED') {
+                        // They sent us a request — show Accept directly here
+                        return (
+                          <button
+                            disabled={acceptingId === fs.id}
+                            onClick={async () => {
+                              setAcceptingId(fs.id);
+                              setFriendActionError(null);
+                              try {
+                                await doAcceptFriendRequest(fs.id);
+                              } catch {
+                                setFriendActionError(t('social.acceptFailed'));
+                              } finally {
+                                setAcceptingId(null);
+                              }
+                            }}
+                            className="text-xs bg-green-500 hover:bg-green-600 disabled:opacity-50 text-white px-3 py-1.5 rounded-lg transition-colors"
+                          >
+                            {acceptingId === fs.id ? '...' : t('social.accept')}
+                          </button>
+                        );
+                      }
+                      return null;
+                    })()}
                   </div>
                 </div>
               ))
@@ -476,10 +548,16 @@ const SocialPage: React.FC = () => {
                       <p className="text-xs text-red-500 dark:text-red-400 px-1 mb-2">{friendActionError}</p>
                     )}
                     <div className="space-y-2">
-                      {pendingReceived.map((f) => (
+                      {pendingReceived.map((f) => {
+                        const theirName = onlineDisplayByUserId.get(f.otherUserId);
+                        const primaryName = theirName ? maskIfEmail(theirName) : maskIfEmail(f.displayName);
+                        return (
                         <div key={f.id} className="flex items-center gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-3 border border-orange-200 dark:border-orange-800">
-                          <Avatar name={maskIfEmail(f.displayName)} />
-                          <p className="flex-1 text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{maskIfEmail(f.displayName)}</p>
+                          <Avatar name={primaryName} />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{primaryName}</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskIfEmail(f.otherUserId)}</p>
+                          </div>
                           <button
                             disabled={acceptingId === f.id}
                             onClick={async () => {
@@ -505,7 +583,8 @@ const SocialPage: React.FC = () => {
                             {t('social.reject')}
                           </button>
                         </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -517,16 +596,15 @@ const SocialPage: React.FC = () => {
                       {t('social.friends')} ({acceptedFriends.length})
                     </p>
                     <div className="space-y-2">
-                      {acceptedFriends.map((f) => (
+                      {acceptedFriends.map((f) => {
+                        const theirName = onlineDisplayByUserId.get(f.otherUserId);
+                        const primaryName = f.myNickname || (theirName ? maskIfEmail(theirName) : maskIfEmail(f.displayName));
+                        return (
                         <div key={f.id} className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 shadow-sm">
-                          <Avatar name={f.myNickname || maskIfEmail(f.displayName)} online={f.isOnline} />
+                          <Avatar name={primaryName} online={f.isOnline} />
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">
-                              {f.myNickname || maskIfEmail(f.displayName)}
-                            </p>
-                            {f.myNickname && (
-                              <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskIfEmail(f.otherUserId)}</p>
-                            )}
+                            <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{primaryName}</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskIfEmail(f.otherUserId)}</p>
                           </div>
                           <div className="flex gap-1">
                             <button
@@ -553,6 +631,22 @@ const SocialPage: React.FC = () => {
                               </svg>
                             </button>
                             <button
+                              onClick={() => mutedUserIds.has(f.otherUserId) ? unmuteUser(f.otherUserId) : muteUser(f.otherUserId)}
+                              className={`p-2 rounded-xl transition-colors ${mutedUserIds.has(f.otherUserId) ? 'text-orange-400 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/30' : 'text-gray-300 hover:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
+                              title={mutedUserIds.has(f.otherUserId) ? t('social.unmute') : t('social.mute')}
+                            >
+                              {mutedUserIds.has(f.otherUserId) ? (
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3l18 18" />
+                                </svg>
+                              ) : (
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                              )}
+                            </button>
+                            <button
                               onClick={() => doRemoveFriend(f.id).catch(() => {})}
                               className="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition-colors"
                               title={t('social.removeFriend')}
@@ -563,7 +657,8 @@ const SocialPage: React.FC = () => {
                             </button>
                           </div>
                         </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -575,16 +670,23 @@ const SocialPage: React.FC = () => {
                       {t('social.pendingSent')} ({pendingSent.length})
                     </p>
                     <div className="space-y-2">
-                      {pendingSent.map((f) => (
+                      {pendingSent.map((f) => {
+                        const theirName = onlineDisplayByUserId.get(f.otherUserId);
+                        const primaryName = theirName ? maskIfEmail(theirName) : maskIfEmail(f.displayName);
+                        return (
                         <div key={f.id} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 opacity-80">
-                          <Avatar name={maskIfEmail(f.displayName)} />
-                          <p className="flex-1 text-sm text-gray-600 dark:text-gray-400 truncate">{maskIfEmail(f.displayName)}</p>
+                          <Avatar name={primaryName} />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm text-gray-600 dark:text-gray-400 truncate">{primaryName}</p>
+                            <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskIfEmail(f.otherUserId)}</p>
+                          </div>
                           <span className="text-xs text-gray-400 dark:text-gray-500">{t('social.pending')}</span>
                           <button onClick={() => doRemoveFriend(f.id).catch(() => {})} className="text-xs text-gray-300 hover:text-red-500 dark:hover:text-red-400 ml-2 transition-colors">
                             {t('social.cancel')}
                           </button>
                         </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -619,32 +721,54 @@ const SocialPage: React.FC = () => {
                 const preview = isMine ? `${t('social.you')}: ${msg.content}` : msg.content;
                 const time = new Date(msg.sentAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
 
+                const isMuted = mutedUserIds.has(otherUserId);
                 return (
-                  <button
+                  <div
                     key={msg.roomId}
-                    onClick={() => openChat(otherUserId, displayName)}
-                    className="w-full flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors text-left"
+                    className="w-full flex items-center bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden"
                   >
-                    <div className="relative flex-shrink-0">
-                      <Avatar name={displayName} online={onlineUsers.some((u) => u.userId === otherUserId)} />
-                      {unread > 0 && (
-                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
-                          {unread > 99 ? '99+' : unread}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-baseline justify-between gap-2">
-                        <p className={`text-sm font-semibold truncate ${unread > 0 ? 'text-gray-900 dark:text-gray-50' : 'text-gray-800 dark:text-gray-100'}`}>
-                          {displayName}
-                        </p>
-                        <span className="text-[11px] text-gray-400 dark:text-gray-500 flex-shrink-0">{time}</span>
+                    <button
+                      onClick={() => openChat(otherUserId, displayName)}
+                      className="flex-1 flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors text-left min-w-0"
+                    >
+                      <div className="relative flex-shrink-0">
+                        <Avatar name={displayName} online={onlineUsers.some((u) => u.userId === otherUserId)} />
+                        {unread > 0 && (
+                          <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+                            {unread > 99 ? '99+' : unread}
+                          </span>
+                        )}
                       </div>
-                      <p className={`text-xs truncate mt-0.5 ${unread > 0 ? 'text-gray-700 dark:text-gray-300 font-medium' : 'text-gray-400 dark:text-gray-500'}`}>
-                        {preview}
-                      </p>
-                    </div>
-                  </button>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-baseline justify-between gap-2">
+                          <p className={`text-sm font-semibold truncate ${unread > 0 ? 'text-gray-900 dark:text-gray-50' : 'text-gray-800 dark:text-gray-100'}`}>
+                            {displayName}
+                            {isMuted && <span className="ml-1.5 text-[10px] font-normal text-orange-400">{t('social.muted')}</span>}
+                          </p>
+                          <span className="text-[11px] text-gray-400 dark:text-gray-500 flex-shrink-0">{time}</span>
+                        </div>
+                        <p className={`text-xs truncate mt-0.5 ${unread > 0 ? 'text-gray-700 dark:text-gray-300 font-medium' : 'text-gray-400 dark:text-gray-500'}`}>
+                          {preview}
+                        </p>
+                      </div>
+                    </button>
+                    <button
+                      onClick={() => isMuted ? unmuteUser(otherUserId) : muteUser(otherUserId)}
+                      className={`flex-shrink-0 p-3 transition-colors ${isMuted ? 'text-orange-400 hover:text-orange-500' : 'text-gray-300 hover:text-gray-500'}`}
+                      title={isMuted ? t('social.unmute') : t('social.mute')}
+                    >
+                      {isMuted ? (
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3l18 18" />
+                        </svg>
+                      ) : (
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
                 );
               })
             )}

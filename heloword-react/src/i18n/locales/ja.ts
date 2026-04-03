@@ -280,6 +280,9 @@ const ja = {
     acceptFailed: '申請の承認に失敗しました。もう一度お試しください。',
     noConversations: 'まだ会話はありません。',
     you: '自分',
+    mute: '通知をミュート',
+    unmute: 'ミュート解除',
+    muted: 'ミュート中',
   },
   challenge: {
     createRoom: '+ ルーム作成',
