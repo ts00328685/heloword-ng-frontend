@@ -7,11 +7,11 @@ import { useSocial } from '../contexts/SocialContext';
 const BottomTabs: React.FC = () => {
   const { dueCount } = useNotifications();
   const { t } = useTranslation();
-  const { unreadCounts, friends } = useSocial();
+  const { unreadCounts, friends, vocabShares } = useSocial();
 
   const totalUnread = Object.values(unreadCounts).reduce((sum, n) => sum + n, 0);
   const pendingRequests = friends.filter((f) => f.status === 'PENDING_RECEIVED').length;
-  const socialBadge = totalUnread + pendingRequests;
+  const socialBadge = totalUnread + pendingRequests + vocabShares.length;
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 safe-area-bottom">

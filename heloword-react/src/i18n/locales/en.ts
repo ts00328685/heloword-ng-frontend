@@ -130,6 +130,28 @@ const en = {
         body: 'A word is only marked correct if you type it accurately in one go. Using Pronounce, Explain, or Example counts as a mistake — the word will be retested until you can answer it without any help.',
       },
     ],
+    myVocab: [
+      {
+        icon: '📚',
+        title: 'Your Personal Vocabulary',
+        body: 'My Vocabulary lets you build custom word groups from scratch. Add any word, phrase, or term you want to master — in any language.',
+      },
+      {
+        icon: '✨',
+        title: 'AI-Powered Word Fill',
+        body: 'Just type a word and tap "AI Fill" — Heloword will automatically generate the meaning, Chinese translation, and a sample sentence for you.',
+      },
+      {
+        icon: '📖',
+        title: 'Import from System Words',
+        body: 'Tap the heart ♡ button on any word in the vocabulary list or quiz to instantly add it to one of your custom groups.',
+      },
+      {
+        icon: '🔁',
+        title: 'Same Spaced-Repetition Engine',
+        body: 'Your custom groups use the exact same Ebbinghaus spaced-repetition quiz as built-in lists. Study, get scheduled for review, and track your progress — all in one place.',
+      },
+    ],
     reviewCard: [
       {
         icon: '🏷️',
@@ -155,6 +177,23 @@ const en = {
         icon: '⏰',
         title: 'Next review time',
         body: 'Scheduled groups show exactly when the next review is due. Groups showing Due Now or Forgotten are tappable — tap the card to start the quiz immediately!',
+      },
+    ],
+    groupShare: [
+      {
+        icon: '🔗',
+        title: 'Share this group with a friend',
+        body: 'Tap the share icon (↗) in the top-right corner to send this entire vocabulary group to any of your friends.',
+      },
+      {
+        icon: '📥',
+        title: 'How your friend receives it',
+        body: 'Your friend will see the share request in the Friends tab. Once accepted, a copy of all words is added to their own vocabulary — they can then study, edit, or quiz from it independently.',
+      },
+      {
+        icon: '✏️',
+        title: 'Independent copies',
+        body: 'Shared groups are fully independent. Changes you make after sharing do not affect your friend\'s copy, and vice versa.',
       },
     ],
   },
@@ -410,7 +449,7 @@ const en = {
   authorNote: {
     buttonLabel: 'About the Author',
     title: 'A Note from Ryan',
-    body: "Hi there! I'm Ryan. I built this site to provide a practical vocabulary memorisation system. From my own self-taught English journey, I've found that mastering around 7,000 core words is enough to handle the vast majority of everyday and professional situations — as long as those words are truly locked into long-term memory.\n\nGrammar, writing, and speaking all require more time and practice on top of that, but having a solid vocabulary foundation makes everything else dramatically more efficient.\n\nI remember spending 3–4 hours a day for roughly half a year using the forgetting curve to drill through 7,000 words, then about one more month on grammar — and my TOEIC score cleared 900. Rote learning isn't useless. With the right method, it's actually the most powerful way to make things stick!",
+    body: "Hi there! I'm Ryan. I built this site to provide a practical vocabulary memorisation system. From my own self-taught English journey, I've found that mastering around 7,000 core words is enough to handle the vast majority of everyday and professional situations — as long as those words are truly locked into long-term memory.\n\nGrammar, writing, and speaking all require more time and practice on top of that, but having a solid vocabulary foundation makes everything else dramatically more efficient.\n\nI remember spending 3–4 hours a day for roughly half a year using the forgetting curve to drill through 7,000 words, then about one more month on grammar — and my TOEIC score cleared 900. Rote learning isn't useless. With the right method, it's actually the most powerful way to make things stick!\n\nIf you find any bugs or have feature requests, feel free to reach out!",
   },
   tour: {
     skip: 'Skip',
@@ -474,6 +513,24 @@ const en = {
     confirmDeleteWord: 'Are you sure you want to delete this word?',
     createAndAdd: 'Create & Add',
     myVocabGroup: 'My Vocab',
+    introTitle: 'My Vocabulary',
+    createFirstGroup: 'Create your first group',
+    loginToStart: 'Sign in to get started',
+    loginToStartHint: 'Create a free account to build your own vocabulary groups',
+    jpKanjiHint: 'For kanji words, include the hiragana reading in square brackets next to each kanji. Example: 逃[に]げる',
+  },
+  vocabShare: {
+    shareTitle: 'Share Vocab Group',
+    send: 'Share',
+    sending: 'Sending…',
+    sent: 'Sent!',
+    sendError: 'Failed to send share request',
+    noFriends: 'No friends to share with yet.',
+    inboxTitle: 'Shared Vocab Groups',
+    from: 'From',
+    words: 'words',
+    accept: 'Accept',
+    reject: 'Decline',
   },
 } as const;
 

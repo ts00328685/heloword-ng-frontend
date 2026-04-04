@@ -5,6 +5,8 @@ import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
 import { aiExplainScramble } from '../../services/scramble.service';
+import AddToGroupModal from '../../components/AddToGroupModal';
+import { Sentence } from '../../models';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -144,6 +146,7 @@ const SentenceScramblePage: React.FC = () => {
   const [answerChunks, setAnswerChunks] = useState<Chunk[]>([]);
   const [originalChunks, setOriginalChunks] = useState<Chunk[]>([]);
   const [status, setStatus] = useState<GameStatus>('playing');
+  const [heartWord, setHeartWord] = useState<Sentence | null>(null);
   const [showTranslation, setShowTranslation] = useState(false);
 
   // AI state
@@ -427,7 +430,25 @@ const SentenceScramblePage: React.FC = () => {
             <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">{t('common.loading')}</p>
           ) : (
             <>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{t('scramble.translateCh')}</p>
+              <div className="flex items-center justify-between mb-1">
+                <p className="text-sm text-gray-500 dark:text-gray-400">{t('scramble.translateCh')}</p>
+                {isLoggedIn && (lang === 'jp' ? currentJp : currentEn) && (
+                  <button
+                    onClick={() => {
+                      const w: Sentence = lang === 'jp' && currentJp
+                        ? { id: 0, word: currentJp.japanese, translateEn: currentJp.english || '', translateCh: currentJp.translation, sentence: currentJp.japanese, language: 'jp', status: 1 }
+                        : { id: (currentEn as EnSentence).id, word: (currentEn as EnSentence).sentence, translateEn: (currentEn as EnSentence).sentence, translateCh: (currentEn as EnSentence).translate_ch || '', sentence: (currentEn as EnSentence).sentence, language: 'en', status: 1 };
+                      setHeartWord(w);
+                    }}
+                    className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                    aria-label={t('userVocab.addToGroup')}
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </button>
+                )}
+              </div>
               <p className="text-base font-medium text-gray-800 dark:text-gray-100 leading-relaxed">
                 {chineseTranslation ?? '…'}
               </p>
@@ -601,6 +622,7 @@ const SentenceScramblePage: React.FC = () => {
         )}
 
       </main>
+      {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
     </div>
   );
 };

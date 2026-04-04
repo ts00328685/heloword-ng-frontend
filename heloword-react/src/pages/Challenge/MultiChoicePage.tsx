@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useData } from '../../contexts/DataContext';
-import { Word } from '../../models';
+import { useAuth } from '../../contexts/AuthContext';
+import { Word, Sentence } from '../../models';
+import AddToGroupModal from '../../components/AddToGroupModal';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -115,6 +117,8 @@ const MultiChoicePage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { wordStore, isFullyLoaded, loadFullDashboard } = useData();
+  const { isLoggedIn } = useAuth();
+  const [heartWord, setHeartWord] = useState<Sentence | null>(null);
 
   const gameType: GameType = (location.state as { gameType?: GameType } | null)?.gameType ?? 'en';
 
@@ -267,9 +271,22 @@ const MultiChoicePage: React.FC = () => {
         {/* Clue card */}
         {correct && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm space-y-2">
-            <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
-              {t('multiChoice.pickWord')}
-            </p>
+            <div className="flex items-start justify-between gap-2">
+              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+                {t('multiChoice.pickWord')}
+              </p>
+              {isLoggedIn && (
+                <button
+                  onClick={() => setHeartWord({ ...correct, sentence: '' } as Sentence)}
+                  className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors shrink-0"
+                  aria-label={t('userVocab.addToGroup')}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </button>
+              )}
+            </div>
             <p className="text-lg font-semibold text-gray-800 dark:text-gray-100 leading-snug">
               {correct.translateCh}
             </p>
@@ -279,9 +296,9 @@ const MultiChoicePage: React.FC = () => {
           </div>
         )}
 
-        {/* 2×2 choice grid */}
+        {/* 4-row choice list */}
         {correct && (
-          <div className="grid grid-cols-2 gap-3">
+          <div className="flex flex-col gap-3">
             {choices.map(word => (
               <button
                 key={word.id}
@@ -318,6 +335,7 @@ const MultiChoicePage: React.FC = () => {
           onBack={() => navigate(-1)}
         />
       )}
+      {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
     </div>
   );
 };
