@@ -298,6 +298,7 @@ const zh = {
     tabFriends: '好友',
     tabMessages: '訊息',
     loggedIn: '已登入',
+    appearOnline: '顯示上線狀態',
     guestMode: '訪客 — 登入以同步',
     guestUser: '訪客',
     member: '會員',

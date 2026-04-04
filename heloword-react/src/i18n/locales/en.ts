@@ -298,6 +298,7 @@ const en = {
     tabFriends: 'Friends',
     tabMessages: 'Messages',
     loggedIn: 'Logged in',
+    appearOnline: 'Appear online',
     guestMode: 'Guest — log in to sync',
     guestUser: 'Guest',
     member: 'Member',
