@@ -6,6 +6,17 @@ import UserVocabWordFormModal from '../../components/UserVocabWordFormModal';
 import CreateGroupModal from '../../components/CreateGroupModal';
 import ShareVocabGroupModal from '../../components/ShareVocabGroupModal';
 import OnboardingModal from '../../components/OnboardingModal';
+
+const LANG_MAP: Record<string, string> = { en: 'en-US', de: 'de-DE', jp: 'ja-JP', ch: 'zh-TW' };
+const pronounceWord = (word: string, lang: string) => {
+  if (!word || !('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const cleaned = word.replace(/(\[.*?\]|\(.*?\)) */g, '').replace(/(<.*?>) */g, '');
+  const utterance = new SpeechSynthesisUtterance(cleaned);
+  utterance.voice = window.speechSynthesis.getVoices().find((v) => v.lang === (LANG_MAP[lang] || 'en-US')) || null;
+  utterance.pitch = 1.2; utterance.rate = 1.0; utterance.volume = 0.2;
+  window.speechSynthesis.speak(utterance);
+};
 import {
   CustomGroup,
   CustomWord,
@@ -36,6 +47,14 @@ const UserVocabGroupPage: React.FC = () => {
   const [deletingWord, setDeletingWord] = useState(false);
   const [quizLoading, setQuizLoading] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [hideMeanings, setHideMeanings] = useState(false);
+  const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
+  const toggleReveal = (id: number) => setRevealedIds((prev) => {
+    const next = new Set(prev);
+    next.has(id) ? next.delete(id) : next.add(id);
+    return next;
+  });
+  const isMeaningVisible = (id: number) => !hideMeanings || revealedIds.has(id);
 
   const GROUP_SHARE_ONBOARDING_KEY = 'onboarding:group_share';
   const [showShareOnboarding, setShowShareOnboarding] = useState(false);
@@ -239,18 +258,80 @@ const UserVocabGroupPage: React.FC = () => {
 
         {!loading && words.length > 0 && (
           <div className="space-y-2">
+            {/* Hide/show meanings toggle */}
+            <div className="flex justify-end mb-1">
+              <button
+                onClick={() => { setHideMeanings((v) => !v); setRevealedIds(new Set()); }}
+                className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-lg border transition-colors ${
+                  hideMeanings
+                    ? 'border-indigo-300 dark:border-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                }`}
+              >
+                {hideMeanings ? (
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                  </svg>
+                ) : (
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                )}
+                {hideMeanings ? t('wordList.showMeanings', 'Show meanings') : t('wordList.hideMeanings', 'Hide meanings')}
+              </button>
+            </div>
+
             {filtered.map((word) => (
               <div
                 key={word.id}
                 className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 flex gap-3 items-start"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
-                  {word.translateEn && <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>}
-                  {word.translateCh && <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>}
-                  {word.sentence && <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed line-clamp-2">{word.sentence}</p>}
+                  <div className="flex items-center gap-1.5">
+                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
+                    <button
+                      onClick={() => pronounceWord(word.word, group.language === 'JA' ? 'jp' : 'en')}
+                      className="shrink-0 p-0.5 rounded text-gray-300 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
+                      aria-label="Pronounce"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                      </svg>
+                    </button>
+                  </div>
+                  {isMeaningVisible(word.id) ? (
+                    <>
+                      {word.translateEn && <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>}
+                      {word.translateCh && <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>}
+                      {word.sentence && <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed line-clamp-2">{word.sentence}</p>}
+                    </>
+                  ) : (
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-24" />
+                      <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
+                    </div>
+                  )}
                 </div>
                 <div className="flex items-center gap-1 shrink-0">
+                  {hideMeanings && (
+                    <button
+                      onClick={() => toggleReveal(word.id)}
+                      className="p-1.5 rounded-xl transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400"
+                      aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
+                    >
+                      {isMeaningVisible(word.id) ? (
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                        </svg>
+                      ) : (
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                      )}
+                    </button>
+                  )}
                   <button
                     onClick={() => setEditingWord(word)}
                     className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"

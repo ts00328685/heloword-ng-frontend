@@ -26,6 +26,7 @@ import {
   getIntervals,
 } from '../../utils/ebbinghaus';
 import { fetchCustomWords, fetchCustomGroups } from '../../services/customVocab.service';
+import { useData } from '../../contexts/DataContext';
 
 interface QuizGroup {
   date: Date;
@@ -52,6 +53,7 @@ const ReviewPage: React.FC = () => {
   const { showLoading, hideLoading } = useUI();
 
   const { dueGroups, dueCount, groupStates, refresh, refreshGuest, recompute } = useNotifications();
+  const { wordStore, sentenceStore, loadFullDashboard } = useData();
   const [groups, setGroups] = useState<QuizGroup[]>([]);
   const [customGroupMap, setCustomGroupMap] = useState<Map<number, { name: string; language: string }>>(new Map());
   const [loading, setLoading] = useState(false);
@@ -66,6 +68,7 @@ const ReviewPage: React.FC = () => {
   const [showFilterPanel, setShowFilterPanel] = useState(false);
 
   // Selection mode
+  const [previewLoadingKey, setPreviewLoadingKey] = useState<string | null>(null);
   const [selectionMode, setSelectionMode] = useState(false);
   const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set());
   const [batchDeleting, setBatchDeleting] = useState(false);
@@ -331,6 +334,41 @@ const ReviewPage: React.FC = () => {
       status: 1,
       _quizType: type,
     }));
+  };
+
+  const formatGroupType = (type: string): string => {
+    if (type.startsWith('userCustomGroup:')) {
+      const id = Number(type.split(':')[1]);
+      return customGroupMap.get(id)?.name ?? t('userVocab.myVocabGroup', 'My Vocab');
+    }
+    return t(`wordLists.${type}`, type);
+  };
+
+  const handlePreview = async (e: React.MouseEvent, group: QuizGroup, key: string) => {
+    e.stopPropagation();
+    setPreviewLoadingKey(key);
+    try {
+      const isCustomGroup = group.records.some((r) => r.type.startsWith('userCustomGroup:'));
+      let words: Sentence[] = [];
+      if (isCustomGroup) {
+        const arrays = await Promise.all(group.records.map((r) => loadCustomGroupWords(r.type)));
+        words = arrays.flat();
+      } else {
+        const { words: ws, sentences: ss } = await loadFullDashboard();
+        const combined: Record<string, Sentence[]> = { ...ws, ...ss } as any;
+        group.records.forEach((r) => {
+          const list = combined[r.type];
+          if (!list) return;
+          const min = (r.min ?? 1) - 1;
+          const max = r.max ?? list.length;
+          words = [...words, ...list.slice(min, max)];
+        });
+      }
+      const groupName = group.records.map((r) => formatGroupType(r.type) + (r.min && r.max && !r.type.startsWith('userCustomGroup:') ? ` (${r.min}–${r.max})` : '')).join(', ');
+      navigate('/review/preview', { state: { words, groupName } });
+    } finally {
+      setPreviewLoadingKey(null);
+    }
   };
 
   const handleCardClick = async (group: QuizGroup, forceNewSession = false) => {
@@ -613,14 +651,6 @@ const ReviewPage: React.FC = () => {
   const formatTime = (d?: Date) => {
     if (!d) return '';
     return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-  };
-
-  const formatGroupType = (type: string): string => {
-    if (type.startsWith('userCustomGroup:')) {
-      const id = Number(type.split(':')[1]);
-      return customGroupMap.get(id)?.name ?? t('userVocab.myVocabGroup', 'My Vocab');
-    }
-    return t(`wordLists.${type}`, type);
   };
 
   const statusLabel = (status: DueGroup['status']) => ({
@@ -1023,24 +1053,48 @@ const ReviewPage: React.FC = () => {
                     ))}
                   </div>
 
-                  {status === 'SCHEDULED' && groupState?.nextReviewTime && (
-                    <p className="text-xs text-green-500 dark:text-green-400 font-medium mt-2 text-right">
-                      {t('review.nextReview', { time: formatRelativeTime(groupState.nextReviewTime) })}
-                    </p>
-                  )}
-                  {isDue && (
-                    <p className="text-xs text-orange-500 font-semibold mt-2 text-right">{t('review.reviewNow')}</p>
-                  )}
-                  {isUnfinished && (
-                    <p className="text-xs text-blue-500 font-medium mt-2 text-right">{t('review.resumePrompt')}</p>
-                  )}
-                  {status === 'SCHEDULED' && pct === 100 && (
-                    <button
-                      onClick={(e) => { e.stopPropagation(); onCardClick(group, true); }}
-                      className="text-xs text-gray-400 dark:text-gray-500 font-medium mt-2 w-full text-right hover:text-blue-500 transition-colors"
-                    >
-                      {t('review.reviewEarly')} →
-                    </button>
+                  {!selectionMode && (
+                    <div className="mt-2 flex items-center justify-between">
+                      {/* Preview — always on the left */}
+                      <button
+                        onClick={(e) => handlePreview(e, group, key)}
+                        disabled={previewLoadingKey === key}
+                        className="text-xs font-medium text-indigo-500 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 disabled:opacity-40 transition-colors flex items-center gap-1"
+                      >
+                        {previewLoadingKey === key ? (
+                          <span className="animate-pulse">…</span>
+                        ) : (
+                          <>
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            {t('review.preview', '先預習')}
+                          </>
+                        )}
+                      </button>
+
+                      {/* Right-side status action */}
+                      {status === 'SCHEDULED' && groupState?.nextReviewTime && (
+                        <p className="text-xs text-green-500 dark:text-green-400 font-medium">
+                          {t('review.nextReview', { time: formatRelativeTime(groupState.nextReviewTime) })}
+                        </p>
+                      )}
+                      {isDue && (
+                        <p className="text-xs text-orange-500 font-semibold">{t('review.reviewNow')}</p>
+                      )}
+                      {isUnfinished && (
+                        <p className="text-xs text-blue-500 font-medium">{t('review.resumePrompt')}</p>
+                      )}
+                      {status === 'SCHEDULED' && pct === 100 && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onCardClick(group, true); }}
+                          className="text-xs text-gray-400 dark:text-gray-500 font-medium hover:text-blue-500 transition-colors"
+                        >
+                          {t('review.reviewEarly')} →
+                        </button>
+                      )}
+                    </div>
                   )}
                 </div>
               );
