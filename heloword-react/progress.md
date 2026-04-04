@@ -8,8 +8,8 @@ This file tracks every plan and implementation step for the React rewrite of Hel
 
 Rewrite the Angular/Ionic `heloword-ng-frontend` project into a React SPA with no Ionic dependency,
 while keeping:
-- Identical API endpoints & authentication (AES + Google OAuth)
-- Same request security headers (cv, X-REQUEST-ID, ChannelCode, ClientIp)
+- Identical API endpoints & authentication (Google OAuth)
+- Same request security headers
 - Mobile-first, responsive design
 - All quiz logic including wrong-answer re-queuing and spaced repetition
 
@@ -36,7 +36,7 @@ while keeping:
 - [x] Read all Angular source files
 - [x] Catalogue all pages, services, guards, interceptors
 - [x] Document all API endpoints (9 POST endpoints)
-- [x] Understand auth flow (init-cookie → init-cipher → /fe/user)
+- [x] Understand auth flow
 - [x] Understand quiz logic (shuffle, validate, re-queue, track)
 
 ### Phase 2 — Project Scaffolding ✅
@@ -52,15 +52,10 @@ while keeping:
 - [x] `src/models/index.ts` — User, Word, Sentence, QuizSetting, CommonResponse, WordStore, SentenceStore, TYPE_TO_TABLE_MAP, WORD_SENTENCE_TITLE_MAP
 
 ### Phase 4 — Services ✅
-- [x] `src/services/utils.service.ts`
-  - `generateCV(key, iv)` — AES-encrypt timestamp for cv header
-  - `encryptAES` / `decryptAES` — symmetric AES
-  - `generateUUID()` — HMAC-MD5 for X-REQUEST-ID
+- [x] `src/services/utils.service.ts` — request signing helpers
 - [x] `src/services/api.service.ts`
   - Axios instance with `withCredentials: true`
-  - Request interceptor injects: `cv`, `X-REQUEST-ID`, `Authorization`, `ChannelCode`, `ClientIp`
-  - Response interceptor handles `9403` auth error (dispatches `hw:auth-error` event)
-  - IP auto-detection via fetch before first request
+  - Request/response interceptors; `9403` triggers logout
   - `doPost` / `doGet` exported functions
   - `resetApiInstance()` for post-logout cleanup
 
@@ -83,7 +78,7 @@ while keeping:
 ### Phase 6 — Components ✅
 - [x] `src/components/AppInitializer.tsx`
   - Equivalent of Angular `PageActivateGuard`
-  - Runs init-cookie → init-cipher → /fe/user on app first load
+  - Runs session bootstrap on app first load
   - Shows startup loading state; gates children until ready
 - [x] `src/components/Header.tsx` — sticky header, back button, user avatar, login/logout
 - [x] `src/components/BottomTabs.tsx` — 5-tab nav using NavLink with active state
@@ -140,28 +135,12 @@ while keeping:
 
 | Method | Path | Purpose |
 |---|---|---|
-| POST | `/service-auth/api/auth/init-cookie` | Bootstrap session cookie |
-| POST | `/service-auth/api/auth/init-cipher` | Get AES key + IV |
-| POST | `/service-auth/api/auth/verify-google-id` | Verify Google OAuth credential |
-| POST | `/service-auth/api/auth/logout` | Invalidate session |
 | POST | `/frontend-api/api/fe/user` | Get current user from session |
 | POST | `/frontend-api/api/fe/home/dashboard` | Get all word/sentence lists |
 | POST | `/frontend-api/api/fe/quiz/save-setting-records` | Save quiz settings batch |
 | POST | `/frontend-api/api/fe/quiz/save-single-record` | Save one quiz answer record |
 | POST | `/frontend-api/api/fe/quiz/get-quiz-settings` | Get quiz history |
 | POST | `/frontend-api/api/fe/quiz/get-record-ids-by-setting-ids` | Get finished record IDs for resume |
-
----
-
-## Security Implementation
-
-Every request includes:
-- `cv`: AES-encrypted current timestamp (key/IV from init-cipher response)
-- `X-REQUEST-ID`: HMAC-MD5 UUID
-- `Authorization: Bearer /`
-- `ChannelCode: NG-FRONTEND`
-- `ClientIp`: auto-detected user IP
-- `withCredentials: true` for all requests (session cookie)
 
 ---
 
@@ -175,7 +154,7 @@ Every request includes:
 | Toast / Alert UI | Ionic controllers | Custom React components |
 | Loading UI | Ionic LoadingController | Custom overlay component |
 | Route params | Angular BehaviorSubject store | React Router `location.state` |
-| JSONP for IP | Angular HttpClient JSONP | `fetch()` to jsonip.com |
+| IP detection | Angular HttpClient JSONP | `fetch()` to IP detection service |
 
 ---
 

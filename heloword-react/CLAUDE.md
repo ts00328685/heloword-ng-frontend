@@ -9,10 +9,10 @@
 - Prod base URL: `/k8s/micro-infra-gateway/v1` (proxied to `heloword.com`)
 - Controlled by `VITE_BACKEND_BASE_URL` in `.env.local` (set to `/k8s/micro-infra-gateway/v1` to hit prod from local)
 - All calls go through `src/services/api.service.ts` → `doPost()` / `doGet()`
-- Common headers (cv, X-REQUEST-ID, Authorization, ChannelCode, ClientIp) injected automatically
+- Security headers injected automatically by the Axios interceptor in `api.service.ts`
 
 ## Key services called
-- `/service-auth/api/auth/*` — init-cookie, init-cipher, login, logout, Google OAuth
+- `/service-auth/api/auth/*` — login, logout, Google OAuth
 - `/frontend-api/api/fe/user` — session check on app load
 - `/frontend-api/api/fe/home/dashboard` — home page word/sentence lists
 - `/frontend-api/api/fe/quiz/*` — quiz settings and records
