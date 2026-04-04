@@ -12,16 +12,7 @@ import { doPost } from '../../services/api.service';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
 
-const LANG_MAP: Record<string, string> = { en: 'en-US', de: 'de-DE', jp: 'ja-JP', ch: 'zh-TW' };
-const pronounceWord = (word: string, lang: string) => {
-  if (!word || !('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const cleaned = word.replace(/(\[.*?\]|\(.*?\)) */g, '').replace(/(<.*?>) */g, '');
-  const utterance = new SpeechSynthesisUtterance(cleaned);
-  utterance.voice = window.speechSynthesis.getVoices().find((v) => v.lang === (LANG_MAP[lang] || 'en-US')) || null;
-  utterance.pitch = 1.2; utterance.rate = 1.0; utterance.volume = 0.2;
-  window.speechSynthesis.speak(utterance);
-};
+import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';

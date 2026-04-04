@@ -17,6 +17,7 @@ import {
 import { getWordInsight, getSampleSentence } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import AddToGroupModal from '../../components/AddToGroupModal';
+import { pronounceWord, cancelPronouncing } from '../../services/tts.service';
 
 const normalizeGerman = (s: string) =>
   s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'b');
@@ -32,13 +33,6 @@ const getJpAnswers = (answer: string) => {
   const ansKataFirst = (answer.match(/(?<=\[).+?(?=\])[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+|[々〆〤ヶ]+|[0-9]+/g) || []).join('');
 
   return { ansKanjiFirst, ansKataFirst };
-};
-
-const LANG_MAP: Record<string, string> = {
-  en: 'en-US',
-  de: 'de-DE',
-  jp: 'ja-JP',
-  ch: 'zh-TW',
 };
 
 /** Extract the kana-only reading from a Japanese word string.
@@ -68,27 +62,6 @@ const splitKanaGroups = (kana: string): string[] => {
   return groups;
 };
 
-const cancelPronouncing = () => {
-  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-};
-
-const pronounceWord = (word: string, lang: string, speed = 1.0, volume = 0.2) => {
-  if (!word || !('speechSynthesis' in window)) return;
-  cancelPronouncing();
-
-  const cleaned = word.replace(/(\[.*?\]|\(.*?\)) */g, '').replace(/(<.*?>) */g, '');
-  const langCode = LANG_MAP[lang] || 'en-US';
-  const synthesis = window.speechSynthesis;
-  const voice = synthesis.getVoices().find((v) => v.lang === langCode) || null;
-
-  const utterance = new SpeechSynthesisUtterance(cleaned);
-  utterance.voice = voice;
-  utterance.pitch = 1.2;
-  utterance.rate = speed;
-  utterance.volume = volume;
-
-  synthesis.speak(utterance);
-};
 
 const VocabularyQuizPage: React.FC = () => {
   const location = useLocation();
@@ -469,12 +442,12 @@ const VocabularyQuizPage: React.FC = () => {
       if (!next) return;
 
       if (autoPronounce) {
-        pronounceWord(next.word || next.sentence || '', next.language, speed, volume);
+        pronounceWord(next.word || next.sentence || '', next.language, { speed, volume });
       }
       const delay = autoPronounce ? 1000 : 0;
-      if (autoPronounceEn) setTimeout(() => pronounceWord(next.translateEn, 'en', speed, volume), delay);
-      if (autoPronounceCh) setTimeout(() => pronounceWord(next.translateCh, 'ch', speed, volume), delay);
-      if (autoPronounceSentence) setTimeout(() => pronounceWord(next.sentence || '', next.language, speed, volume), delay);
+      if (autoPronounceEn) setTimeout(() => pronounceWord(next.translateEn, 'en', { speed, volume }), delay);
+      if (autoPronounceCh) setTimeout(() => pronounceWord(next.translateCh, 'ch', { speed, volume }), delay);
+      if (autoPronounceSentence) setTimeout(() => pronounceWord(next.sentence || '', next.language, { speed, volume }), delay);
 
       if (autoInputFocus) setTimeout(() => inputRef.current?.focus(), 50);
     },
@@ -553,7 +526,7 @@ const VocabularyQuizPage: React.FC = () => {
     const current = wordList[0];
     if (!current) return;
     pronounceCountRef.current++;
-    pronounceWord(current.word || current.sentence || '', current.language, speed, volume);
+    pronounceWord(current.word || current.sentence || '', current.language, { speed, volume });
     if (autoInputFocus) setTimeout(() => inputRef.current?.focus(), 50);
   };
 

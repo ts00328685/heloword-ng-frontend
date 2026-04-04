@@ -7,6 +7,7 @@ import { useUI } from '../../contexts/UIContext';
 import { aiExplainScramble } from '../../services/scramble.service';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { Sentence } from '../../models';
+import { pronounceWord } from '../../services/tts.service';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -59,12 +60,7 @@ function buildEnChunks(sentence: string, chunkSize: number): Chunk[] {
 }
 
 function speak(text: string, lang: Lang) {
-  if (!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = lang === 'jp' ? 'ja-JP' : 'en-US';
-  u.rate = lang === 'jp' ? 0.85 : 0.9;
-  window.speechSynthesis.speak(u);
+  pronounceWord(text, lang, { speed: lang === 'jp' ? 0.85 : 0.9 });
 }
 
 // ── Sub-components ─────────────────────────────────────────────────────────
