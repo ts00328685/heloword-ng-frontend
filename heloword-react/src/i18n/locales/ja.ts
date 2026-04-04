@@ -298,6 +298,7 @@ const ja = {
     tabFriends: 'フレンド',
     tabMessages: 'メッセージ',
     loggedIn: 'ログイン中',
+    appearOnline: 'オンライン表示',
     guestMode: 'ゲスト — ログインして同期',
     guestUser: 'ゲスト',
     member: 'メンバー',

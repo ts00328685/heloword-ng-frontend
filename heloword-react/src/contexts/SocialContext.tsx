@@ -59,6 +59,9 @@ interface SocialContextType {
   muteUser: (userId: string) => void;
   unmuteUser: (userId: string) => void;
 
+  hideOnlineStatus: boolean;
+  setHideOnlineStatus: (hide: boolean) => void;
+
   /** roomId → messages[] */
   messageMap: Record<string, ChatMessage[]>;
 
@@ -114,6 +117,12 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return new Set<string>();
     }
   });
+
+  const [hideOnlineStatus, setHideOnlineStatusState] = useState<boolean>(
+    () => localStorage.getItem('hw-hide-online') === 'true'
+  );
+  const hideOnlineStatusRef = useRef(hideOnlineStatus);
+  hideOnlineStatusRef.current = hideOnlineStatus;
   const activeChatUserIdRef = useRef<string | null>(null);
   const mutedUserIdsRef = useRef<Set<string>>(mutedUserIds);
   mutedUserIdsRef.current = mutedUserIds;
@@ -240,8 +249,11 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
     prevUserIdRef.current = myUserId;
 
-    const beat = () => sendHeartbeat(myUserId, myDisplayName, isGuest).catch(() => {});
-    beat();
+    const beat = () => {
+      if (hideOnlineStatusRef.current) return;
+      sendHeartbeat(myUserId, myDisplayName, isGuest).catch(() => {});
+    };
+    if (!hideOnlineStatusRef.current) beat();
     heartbeatRef.current = setInterval(beat, 30_000);
 
     connectWebSocket(myUserId);
@@ -439,6 +451,17 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     });
   }, []);
 
+  const setHideOnlineStatus = useCallback((hide: boolean) => {
+    hideOnlineStatusRef.current = hide;
+    setHideOnlineStatusState(hide);
+    localStorage.setItem('hw-hide-online', hide ? 'true' : 'false');
+    if (hide) {
+      removeOnlineUser(myUserId).catch(() => {});
+    } else {
+      sendHeartbeat(myUserId, myDisplayName, !isLoggedIn).catch(() => {});
+    }
+  }, [myUserId, myDisplayName, isLoggedIn]);
+
   const setGuestName = useCallback((name: string) => {
     localStorage.setItem('hw-guest-name', name);
     setMyDisplayName(name);
@@ -471,6 +494,8 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         mutedUserIds,
         muteUser,
         unmuteUser,
+        hideOnlineStatus,
+        setHideOnlineStatus,
         vocabShares,
         doAcceptVocabShare,
         doRejectVocabShare,
