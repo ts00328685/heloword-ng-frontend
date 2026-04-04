@@ -119,7 +119,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   mutedUserIdsRef.current = mutedUserIds;
   const refreshFriendsRef = useRef<() => void>(() => {});
   const [vocabShares, setVocabShares] = useState<VocabShareRequest[]>([]);
-  const refreshVocabSharesRef = useRef<() => void>(() => {});
+  const refreshVocabSharesRef = useRef<() => Promise<void>>(async () => {});
 
   const heartbeatRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const wsClientRef = useRef<Client | null>(null);
