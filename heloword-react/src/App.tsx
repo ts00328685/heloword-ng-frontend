@@ -32,6 +32,7 @@ const SentenceScramblePage = React.lazy(() => import('./pages/Challenge/Sentence
 const MultiChoicePage     = React.lazy(() => import('./pages/Challenge/MultiChoicePage'));
 const UserVocabPage       = React.lazy(() => import('./pages/UserVocab/UserVocabPage'));
 const UserVocabGroupPage  = React.lazy(() => import('./pages/UserVocab/UserVocabGroupPage'));
+const WordPreviewPage     = React.lazy(() => import('./pages/Review/WordPreviewPage'));
 
 // Pages where we don't show the bottom tabs
 const NO_TABS_PATHS = ['/vocabulary/quiz', '/login'];
@@ -62,6 +63,7 @@ const AppLayout: React.FC = () => {
           <Route path="/vocabulary/list" element={<VocabularyListPage />} />
           <Route path="/vocabulary/quiz" element={<VocabularyQuizPage />} />
           <Route path="/review" element={<ReviewPage />} />
+        <Route path="/review/preview" element={<WordPreviewPage />} />
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/info" element={<InfoPage />} />
           <Route path="/social" element={<SocialPage />} />

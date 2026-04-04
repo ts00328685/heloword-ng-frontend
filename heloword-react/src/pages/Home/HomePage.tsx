@@ -11,6 +11,17 @@ import { Sentence, WordStore } from '../../models';
 import { doPost } from '../../services/api.service';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
+
+const LANG_MAP: Record<string, string> = { en: 'en-US', de: 'de-DE', jp: 'ja-JP', ch: 'zh-TW' };
+const pronounceWord = (word: string, lang: string) => {
+  if (!word || !('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const cleaned = word.replace(/(\[.*?\]|\(.*?\)) */g, '').replace(/(<.*?>) */g, '');
+  const utterance = new SpeechSynthesisUtterance(cleaned);
+  utterance.voice = window.speechSynthesis.getVoices().find((v) => v.lang === (LANG_MAP[lang] || 'en-US')) || null;
+  utterance.pitch = 1.2; utterance.rate = 1.0; utterance.volume = 0.2;
+  window.speechSynthesis.speak(utterance);
+};
 import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
@@ -29,6 +40,10 @@ const WordSection: React.FC<{
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const insight = useAiInsight('home:insight');
+  const [hideMeanings, setHideMeanings] = useState(false);
+  const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
+  const toggleReveal = (id: number) => setRevealedIds((prev) => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  const isMeaningVisible = (id: number) => !hideMeanings || revealedIds.has(id);
 
   if (!list || list.length === 0) return null;
 
@@ -50,12 +65,30 @@ const WordSection: React.FC<{
     <section className="mb-6">
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{title}</h2>
-        <button
-          onClick={onViewAll}
-          className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
-        >
-          {t('home.viewAll')}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => { setHideMeanings((v) => !v); setRevealedIds(new Set()); }}
+            className={`p-1 rounded-lg transition-colors ${hideMeanings ? 'text-indigo-500 dark:text-indigo-400' : 'text-gray-300 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-400'}`}
+            aria-label={hideMeanings ? 'Show meanings' : 'Hide meanings'}
+          >
+            {hideMeanings ? (
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+              </svg>
+            ) : (
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            )}
+          </button>
+          <button
+            onClick={onViewAll}
+            className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
+          >
+            {t('home.viewAll')}
+          </button>
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-2">
         {list.slice(0, 4).map((word, i) => {
@@ -70,19 +103,39 @@ const WordSection: React.FC<{
               }`}
             >
               <div className="p-3 flex flex-col gap-0.5">
-                <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">
-                  <SentenceRenderer text={word.word || word.sentence} />
-                </p>
-                {word.translateEn && (
-                  <p className="text-xs text-blue-500 truncate">{word.translateEn}</p>
-                )}
-                {word.translateCh && (
-                  <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{word.translateCh}</p>
-                )}
-                {word.sentence && word.word && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 italic truncate mt-0.5">
-                    <SentenceRenderer text={word.sentence} />
+                <div className="flex items-center gap-1">
+                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate flex-1">
+                    <SentenceRenderer text={word.word || word.sentence} />
                   </p>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); pronounceWord(word.word || word.sentence || '', word.language ?? lang); }}
+                    className="shrink-0 p-0.5 rounded text-gray-300 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
+                    aria-label="Pronounce"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    </svg>
+                  </button>
+                </div>
+                {isMeaningVisible(word.id) ? (
+                  <>
+                    {word.translateEn && (
+                      <p className="text-xs text-blue-500 truncate">{word.translateEn}</p>
+                    )}
+                    {word.translateCh && (
+                      <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{word.translateCh}</p>
+                    )}
+                    {word.sentence && word.word && (
+                      <p className="text-xs text-gray-500 dark:text-gray-400 italic truncate mt-0.5">
+                        <SentenceRenderer text={word.sentence} />
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <div className="h-2 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
+                    <div className="h-2 rounded-full bg-gray-200 dark:bg-gray-700 w-10" />
+                  </div>
                 )}
               </div>
               <div className="mx-3 mb-2.5 flex items-center gap-1.5">
@@ -97,6 +150,24 @@ const WordSection: React.FC<{
                   <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                   {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
                 </button>
+                {hideMeanings && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); toggleReveal(word.id); }}
+                    className="p-1 rounded-lg transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400"
+                    aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
+                  >
+                    {isMeaningVisible(word.id) ? (
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                      </svg>
+                    ) : (
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    )}
+                  </button>
+                )}
                 {isLoggedIn && onHeartWord && (
                   <button
                     onClick={(e) => { e.stopPropagation(); onHeartWord(word); }}
