@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'; // useRef kept for hasFetched
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CustomGroup, fetchCustomGroups } from '../../services/customVocab.service';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +13,9 @@ import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
+import OnboardingModal from '../../components/OnboardingModal';
+
+const VOCAB_ONBOARDING_KEY = 'onboarding:my_vocab';
 
 const WordSection: React.FC<{
   title: string;
@@ -225,6 +228,8 @@ const HomePage: React.FC = () => {
   const [showAuthor, setShowAuthor] = useState(false);
   const [customGroups, setCustomGroups] = useState<CustomGroup[]>([]);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
+  const location = useLocation();
+  const [showVocabOnboarding, setShowVocabOnboarding] = useState(false);
 
   useEffect(() => {
     if (hasFetched.current || !isWordStoreEmpty()) {
@@ -239,6 +244,14 @@ const HomePage: React.FC = () => {
       fetchCustomGroups().then(setCustomGroups).catch(() => {});
     }
   }, [isLoggedIn]);
+
+  // Show vocab onboarding only after the quiz-modal onboarding has been seen.
+  // Re-check every time the user navigates back to this page.
+  useEffect(() => {
+    if (!localStorage.getItem(VOCAB_ONBOARDING_KEY) && localStorage.getItem('onboarding:quiz_modal')) {
+      setShowVocabOnboarding(true);
+    }
+  }, [location.key]);
 
   const fetchPreview = async () => {
     showLoading();
@@ -365,17 +378,31 @@ const HomePage: React.FC = () => {
           </div>
         )}
 
-        {isLoggedIn && customGroups.length > 0 && (
-          <section className="mb-6">
-            <div className="flex items-center justify-between mb-2">
+        {/* My Vocabulary section — always visible; interactive only when logged in */}
+        <section className="mb-6">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-1.5">
               <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{t('userVocab.title')}</h2>
+              <button
+                onClick={() => setShowVocabOnboarding(true)}
+                className="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 text-[10px] font-bold flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:text-blue-500 transition-colors"
+                aria-label={t('userVocab.introTitle')}
+              >
+                ?
+              </button>
+            </div>
+            {isLoggedIn && (
               <button
                 onClick={() => navigate('/user-vocab')}
                 className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
               >
                 {t('home.viewAll')}
               </button>
-            </div>
+            )}
+          </div>
+
+          {/* Logged-in: group cards */}
+          {isLoggedIn && customGroups.length > 0 && (
             <div className="grid grid-cols-2 gap-2">
               {customGroups.slice(0, 4).map((group) => (
                 <button
@@ -395,27 +422,44 @@ const HomePage: React.FC = () => {
                 </button>
               ))}
             </div>
-          </section>
-        )}
+          )}
 
-        {isLoggedIn && customGroups.length === 0 && (
-          <div className="mb-6">
+          {/* Logged-in: no groups yet */}
+          {isLoggedIn && customGroups.length === 0 && (
             <button
               onClick={() => navigate('/user-vocab')}
-              className="w-full flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-600 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors"
+              className="w-full flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-blue-300 dark:border-blue-700 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors"
             >
-              <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center shrink-0">
-                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
               </div>
               <div className="text-left">
-                <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">{t('userVocab.title')}</p>
-                <p className="text-xs text-gray-400 dark:text-gray-500">{t('userVocab.emptyGroupsHint', 'Create your own vocabulary groups')}</p>
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">{t('userVocab.createFirstGroup')}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500">{t('userVocab.emptyGroupsHint')}</p>
               </div>
             </button>
-          </div>
-        )}
+          )}
+
+          {/* Not logged in: sign-in prompt */}
+          {!isLoggedIn && (
+            <button
+              onClick={() => navigate('/login')}
+              className="w-full flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-600 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors"
+            >
+              <div className="w-8 h-8 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">{t('userVocab.loginToStart')}</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500">{t('userVocab.loginToStartHint')}</p>
+              </div>
+            </button>
+          )}
+        </section>
 
         {allSections.map(({ key, list }) => (
           <WordSection
@@ -433,6 +477,13 @@ const HomePage: React.FC = () => {
 
       {showAuthor && <AuthorNoteModal onClose={() => setShowAuthor(false)} />}
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
+      {showVocabOnboarding && (() => {
+        const raw = t('onboarding.myVocab', { returnObjects: true });
+        if (!Array.isArray(raw)) return null;
+        const steps = (raw as any[]).map((s: any) => ({ icon: s.icon, iconBg: 'bg-blue-50 dark:bg-blue-900/20', title: s.title, body: s.body }));
+        const dismiss = () => { localStorage.setItem(VOCAB_ONBOARDING_KEY, '1'); setShowVocabOnboarding(false); };
+        return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
+      })()}
     </div>
   );
 };

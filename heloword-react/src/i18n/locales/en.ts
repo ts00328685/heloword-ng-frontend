@@ -130,6 +130,28 @@ const en = {
         body: 'A word is only marked correct if you type it accurately in one go. Using Pronounce, Explain, or Example counts as a mistake — the word will be retested until you can answer it without any help.',
       },
     ],
+    myVocab: [
+      {
+        icon: '📚',
+        title: 'Your Personal Vocabulary',
+        body: 'My Vocabulary lets you build custom word groups from scratch. Add any word, phrase, or term you want to master — in any language.',
+      },
+      {
+        icon: '✨',
+        title: 'AI-Powered Word Fill',
+        body: 'Just type a word and tap "AI Fill" — Heloword will automatically generate the meaning, Chinese translation, and a sample sentence for you.',
+      },
+      {
+        icon: '📖',
+        title: 'Import from System Words',
+        body: 'Tap the heart ♡ button on any word in the vocabulary list or quiz to instantly add it to one of your custom groups.',
+      },
+      {
+        icon: '🔁',
+        title: 'Same Spaced-Repetition Engine',
+        body: 'Your custom groups use the exact same Ebbinghaus spaced-repetition quiz as built-in lists. Study, get scheduled for review, and track your progress — all in one place.',
+      },
+    ],
     reviewCard: [
       {
         icon: '🏷️',
@@ -474,6 +496,10 @@ const en = {
     confirmDeleteWord: 'Are you sure you want to delete this word?',
     createAndAdd: 'Create & Add',
     myVocabGroup: 'My Vocab',
+    introTitle: 'My Vocabulary',
+    createFirstGroup: 'Create your first group',
+    loginToStart: 'Sign in to get started',
+    loginToStartHint: 'Create a free account to build your own vocabulary groups',
   },
 } as const;
 
