@@ -3,33 +3,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { Sentence } from '../../models';
+import { pronounceWord } from '../../services/tts.service';
 
 interface PreviewState {
   words: Sentence[];
   groupName: string;
 }
-
-const LANG_MAP: Record<string, string> = {
-  en: 'en-US',
-  de: 'de-DE',
-  jp: 'ja-JP',
-  ch: 'zh-TW',
-};
-
-const pronounceWord = (word: string, lang: string) => {
-  if (!word || !('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const cleaned = word.replace(/(\[.*?\]|\(.*?\)) */g, '').replace(/(<.*?>) */g, '');
-  const langCode = LANG_MAP[lang] || 'en-US';
-  const synthesis = window.speechSynthesis;
-  const voice = synthesis.getVoices().find((v) => v.lang === langCode) || null;
-  const utterance = new SpeechSynthesisUtterance(cleaned);
-  utterance.voice = voice;
-  utterance.pitch = 1.2;
-  utterance.rate = 1.0;
-  utterance.volume = 0.2;
-  synthesis.speak(utterance);
-};
 
 const WordPreviewPage: React.FC = () => {
   const { t } = useTranslation();
