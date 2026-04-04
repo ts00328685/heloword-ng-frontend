@@ -500,6 +500,7 @@ const en = {
     createFirstGroup: 'Create your first group',
     loginToStart: 'Sign in to get started',
     loginToStartHint: 'Create a free account to build your own vocabulary groups',
+    jpKanjiHint: 'For kanji words, include the hiragana reading in square brackets next to each kanji. Example: 逃[に]げる',
   },
 } as const;
 

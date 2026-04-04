@@ -20,9 +20,11 @@ interface Props {
   onSave: (data: WordFormData) => Promise<void>;
   /** System word list to search from — passed in from the parent page */
   systemWords?: Sentence[];
+  /** Language of the parent custom group (e.g. 'JA', 'EN') */
+  language?: string;
 }
 
-const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, systemWords }) => {
+const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, systemWords, language }) => {
   const { t, i18n } = useTranslation();
   const [word, setWord] = useState(initial?.word ?? '');
   const [translateEn, setTranslateEn] = useState(initial?.translateEn ?? '');
@@ -163,6 +165,16 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, sys
               placeholder={t('userVocab.word')}
               className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            {language === 'JA' && (
+              <div className="mt-1.5 flex items-start gap-1.5 px-1">
+                <svg className="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-[11px] text-amber-600 dark:text-amber-400 leading-snug">
+                  {t('userVocab.jpKanjiHint')}
+                </p>
+              </div>
+            )}
           </div>
 
           <div>

@@ -500,6 +500,7 @@ const zh = {
     createFirstGroup: '建立第一個群組',
     loginToStart: '登入以開始使用',
     loginToStartHint: '免費註冊，打造專屬的單字群組',
+    jpKanjiHint: '含漢字的單字，請在每個漢字旁以方括號標注假名讀音，例如：逃[に]げる',
   },
 } as const;
 

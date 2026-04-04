@@ -500,6 +500,7 @@ const ja = {
     createFirstGroup: '最初のグループを作成',
     loginToStart: 'ログインして始める',
     loginToStartHint: '無料アカウントを作成して、自分だけの単語帳を作りましょう',
+    jpKanjiHint: '漢字を含む単語は、各漢字の横に角括弧でひらがなの読みを記入してください。例：逃[に]げる',
   },
 } as const;
 

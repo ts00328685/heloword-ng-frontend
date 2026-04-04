@@ -283,6 +283,7 @@ const UserVocabGroupPage: React.FC = () => {
           onClose={() => setShowAddModal(false)}
           onSave={handleAddWord}
           systemWords={systemWords}
+          language={group.language}
         />
       )}
 
@@ -298,6 +299,7 @@ const UserVocabGroupPage: React.FC = () => {
           onClose={() => setEditingWord(null)}
           onSave={handleUpdateWord}
           systemWords={systemWords}
+          language={group.language}
         />
       )}
 
