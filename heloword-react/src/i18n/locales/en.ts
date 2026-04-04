@@ -179,6 +179,23 @@ const en = {
         body: 'Scheduled groups show exactly when the next review is due. Groups showing Due Now or Forgotten are tappable — tap the card to start the quiz immediately!',
       },
     ],
+    groupShare: [
+      {
+        icon: '🔗',
+        title: 'Share this group with a friend',
+        body: 'Tap the share icon (↗) in the top-right corner to send this entire vocabulary group to any of your friends.',
+      },
+      {
+        icon: '📥',
+        title: 'How your friend receives it',
+        body: 'Your friend will see the share request in the Friends tab. Once accepted, a copy of all words is added to their own vocabulary — they can then study, edit, or quiz from it independently.',
+      },
+      {
+        icon: '✏️',
+        title: 'Independent copies',
+        body: 'Shared groups are fully independent. Changes you make after sharing do not affect your friend\'s copy, and vice versa.',
+      },
+    ],
   },
   review: {
     loginRequired: 'Login required',
@@ -501,6 +518,19 @@ const en = {
     loginToStart: 'Sign in to get started',
     loginToStartHint: 'Create a free account to build your own vocabulary groups',
     jpKanjiHint: 'For kanji words, include the hiragana reading in square brackets next to each kanji. Example: 逃[に]げる',
+  },
+  vocabShare: {
+    shareTitle: 'Share Vocab Group',
+    send: 'Share',
+    sending: 'Sending…',
+    sent: 'Sent!',
+    sendError: 'Failed to send share request',
+    noFriends: 'No friends to share with yet.',
+    inboxTitle: 'Shared Vocab Groups',
+    from: 'From',
+    words: 'words',
+    accept: 'Accept',
+    reject: 'Decline',
   },
 } as const;
 

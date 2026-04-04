@@ -10,6 +10,12 @@ import { Client } from '@stomp/stompjs';
 import { useAuth } from './AuthContext';
 import { environment } from '../config/environment';
 import {
+  VocabShareRequest,
+  fetchVocabShareInbox,
+  acceptVocabShare,
+  rejectVocabShare,
+} from '../services/vocabShare.service';
+import {
   ChatMessage,
   Friend,
   OnlineUser,
@@ -71,6 +77,10 @@ interface SocialContextType {
 
   doSendFriendRequest: (addresseeUsername: string) => Promise<void>;
   doAcceptFriendRequest: (id: number) => Promise<void>;
+  vocabShares: VocabShareRequest[];
+  doAcceptVocabShare: (id: number) => Promise<void>;
+  doRejectVocabShare: (id: number) => Promise<void>;
+  refreshVocabShares: () => Promise<void>;
   doRejectFriendRequest: (id: number) => Promise<void>;
   doRemoveFriend: (id: number) => Promise<void>;
   doUpdateFriendNickname: (id: number, nickname: string) => Promise<void>;
@@ -108,6 +118,8 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const mutedUserIdsRef = useRef<Set<string>>(mutedUserIds);
   mutedUserIdsRef.current = mutedUserIds;
   const refreshFriendsRef = useRef<() => void>(() => {});
+  const [vocabShares, setVocabShares] = useState<VocabShareRequest[]>([]);
+  const refreshVocabSharesRef = useRef<() => void>(() => {});
 
   const heartbeatRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const wsClientRef = useRef<Client | null>(null);
@@ -200,6 +212,10 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         client.subscribe(`/topic/social/${userId}/friend-requests`, () => {
           refreshFriendsRef.current();
         });
+
+        client.subscribe(`/topic/social/${userId}/vocab-share`, () => {
+          refreshVocabSharesRef.current();
+        });
       },
       onStompError: (frame) => {
         console.warn('STOMP error', frame.headers['message']);
@@ -233,6 +249,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     if (isLoggedIn) {
       fetchFriends().then(setFriends).catch(() => {});
       fetchUnreadCounts(myUserId).then(setUnreadCounts).catch(() => {});
+      refreshVocabSharesRef.current();
     }
 
     // Tab close: keepalive fetch completes even as the page unloads
@@ -350,6 +367,26 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   refreshFriendsRef.current = refreshFriends;
 
+  const refreshVocabShares = useCallback(async () => {
+    if (!isLoggedIn) return;
+    try {
+      const inbox = await fetchVocabShareInbox();
+      setVocabShares(inbox);
+    } catch { /* ignore */ }
+  }, [isLoggedIn]);
+
+  refreshVocabSharesRef.current = refreshVocabShares;
+
+  const doAcceptVocabShare = useCallback(async (id: number) => {
+    await acceptVocabShare(id);
+    await refreshVocabShares();
+  }, [refreshVocabShares]);
+
+  const doRejectVocabShare = useCallback(async (id: number) => {
+    await rejectVocabShare(id);
+    setVocabShares((prev) => prev.filter((s) => s.id !== id));
+  }, []);
+
   const doSendFriendRequest = useCallback(async (addresseeUsername: string) => {
     await sendFriendRequest(addresseeUsername);
     await refreshFriends();
@@ -434,6 +471,10 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         mutedUserIds,
         muteUser,
         unmuteUser,
+        vocabShares,
+        doAcceptVocabShare,
+        doRejectVocabShare,
+        refreshVocabShares: refreshVocabSharesRef.current,
       }}
     >
       {children}

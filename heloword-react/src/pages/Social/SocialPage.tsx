@@ -224,12 +224,16 @@ const SocialPage: React.FC = () => {
     mutedUserIds,
     muteUser,
     unmuteUser,
+    vocabShares,
+    doAcceptVocabShare,
+    doRejectVocabShare,
   } = useSocial();
 
   const [activeTab, setActiveTab] = useState<'online' | 'friends' | 'messages'>('online');
   const [roomsLoading, setRoomsLoading] = useState(false);
   const [acceptingId, setAcceptingId] = useState<number | null>(null);
   const [friendActionError, setFriendActionError] = useState<string | null>(null);
+  const [vocabShareActingId, setVocabShareActingId] = useState<number | null>(null);
   const [addingFriendId, setAddingFriendId] = useState<string | null>(null);
   const [onlineTabError, setOnlineTabError] = useState<string | null>(null);
 
@@ -583,6 +587,73 @@ const SocialPage: React.FC = () => {
                           >
                             {t('social.reject')}
                           </button>
+                        </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Vocab share requests */}
+                {vocabShares.length > 0 && (
+                  <div>
+                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
+                      {t('vocabShare.inboxTitle', 'Shared Vocab Groups')} ({vocabShares.length})
+                    </p>
+                    <div className="space-y-2">
+                      {vocabShares.map((share) => {
+                        const senderFriend = friends.find((f) => f.otherUserId === share.fromUsername);
+                        const senderName = senderFriend?.myNickname
+                          ? maskIfEmail(senderFriend.myNickname)
+                          : maskIfEmail(share.fromUsername);
+                        return (
+                        <div key={share.id} className="flex items-start gap-3 bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-3 border border-purple-200 dark:border-purple-800">
+                          <div className="w-9 h-9 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center shrink-0 mt-0.5">
+                            <svg className="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{share.groupName}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                              {t('vocabShare.from', 'From')} <span className="font-medium">{senderName}</span>
+                              {' · '}{share.wordCount} {t('vocabShare.words', 'words')}
+                              {share.language && <span className="ml-1 text-purple-600 dark:text-purple-400">[{share.language}]</span>}
+                            </p>
+                            {share.description && (
+                              <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 truncate">{share.description}</p>
+                            )}
+                          </div>
+                          <div className="flex flex-row gap-2 items-center shrink-0">
+                            <button
+                              disabled={vocabShareActingId === share.id}
+                              onClick={async () => {
+                                setVocabShareActingId(share.id);
+                                try {
+                                  await doAcceptVocabShare(share.id);
+                                } finally {
+                                  setVocabShareActingId(null);
+                                }
+                              }}
+                              className="text-xs bg-green-500 hover:bg-green-600 disabled:opacity-50 text-white px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
+                            >
+                              {vocabShareActingId === share.id ? '...' : t('vocabShare.accept', 'Accept')}
+                            </button>
+                            <button
+                              disabled={vocabShareActingId === share.id}
+                              onClick={async () => {
+                                setVocabShareActingId(share.id);
+                                try {
+                                  await doRejectVocabShare(share.id);
+                                } finally {
+                                  setVocabShareActingId(null);
+                                }
+                              }}
+                              className="text-xs text-gray-400 hover:text-red-500 dark:hover:text-red-400 disabled:opacity-50 transition-colors whitespace-nowrap"
+                            >
+                              {t('vocabShare.reject', 'Decline')}
+                            </button>
+                          </div>
                         </div>
                         );
                       })}

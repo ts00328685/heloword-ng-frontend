@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import UserVocabWordFormModal from '../../components/UserVocabWordFormModal';
 import CreateGroupModal from '../../components/CreateGroupModal';
+import ShareVocabGroupModal from '../../components/ShareVocabGroupModal';
+import OnboardingModal from '../../components/OnboardingModal';
 import {
   CustomGroup,
   CustomWord,
@@ -33,6 +35,15 @@ const UserVocabGroupPage: React.FC = () => {
   const [confirmDeleteWord, setConfirmDeleteWord] = useState<CustomWord | null>(null);
   const [deletingWord, setDeletingWord] = useState(false);
   const [quizLoading, setQuizLoading] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+
+  const GROUP_SHARE_ONBOARDING_KEY = 'onboarding:group_share';
+  const [showShareOnboarding, setShowShareOnboarding] = useState(false);
+  useEffect(() => {
+    if (!localStorage.getItem(GROUP_SHARE_ONBOARDING_KEY)) {
+      setShowShareOnboarding(true);
+    }
+  }, [location.key]);
 
   const id = Number(groupId);
 
@@ -166,14 +177,25 @@ const UserVocabGroupPage: React.FC = () => {
           {group.description && (
             <span className="text-xs text-gray-400 dark:text-gray-500 truncate flex-1">· {group.description}</span>
           )}
-          <button
-            onClick={() => setEditingGroup(true)}
-            className="ml-auto p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-          >
-            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
-          </button>
+          <div className="ml-auto flex items-center gap-1">
+            <button
+              onClick={() => setShowShareModal(true)}
+              className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              title={t('vocabShare.shareTitle', 'Share with friend')}
+            >
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setEditingGroup(true)}
+              className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Search */}
@@ -300,6 +322,22 @@ const UserVocabGroupPage: React.FC = () => {
           onSave={handleUpdateWord}
           systemWords={systemWords}
           language={group.language}
+        />
+      )}
+
+      {showShareOnboarding && (() => {
+        const raw = t('onboarding.groupShare', { returnObjects: true });
+        if (!Array.isArray(raw)) return null;
+        const steps = (raw as any[]).map((s: any) => ({ icon: s.icon, iconBg: 'bg-purple-50 dark:bg-purple-900/20', title: s.title, body: s.body }));
+        const dismiss = () => { localStorage.setItem(GROUP_SHARE_ONBOARDING_KEY, '1'); setShowShareOnboarding(false); };
+        return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
+      })()}
+
+      {showShareModal && group && (
+        <ShareVocabGroupModal
+          groupId={group.id}
+          groupName={group.name}
+          onClose={() => setShowShareModal(false)}
         />
       )}
 
