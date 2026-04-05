@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 shadow-sm">
+      <header className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60 shadow-[0_1px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_1px_16px_rgba(0,0,0,0.3)]">
         <div className="flex items-center justify-between px-4 h-14 max-w-2xl mx-auto">
           {/* Left: back button or display name chip */}
           <div className="flex items-center gap-2 min-w-[40px]">

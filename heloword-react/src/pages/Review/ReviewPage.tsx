@@ -969,7 +969,7 @@ const ReviewPage: React.FC = () => {
                 <div
                   key={i}
                   onClick={() => selectionMode && toggleSelect(key)}
-                  className={`bg-white dark:bg-gray-800 rounded-2xl border-2 p-4 transition-all shadow-sm ${
+                  className={`bg-white dark:bg-gray-800 rounded-2xl border-2 p-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
                     selectionMode ? 'cursor-pointer' : 'cursor-default'
                   } ${
                     isSelected

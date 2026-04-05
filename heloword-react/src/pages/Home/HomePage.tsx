@@ -87,10 +87,10 @@ const WordSection: React.FC<{
           return (
             <div
               key={`${word.tableName}-${word.id}-${i}`}
-              className={`bg-white dark:bg-gray-800 rounded-xl border transition-all flex flex-col ${
+              className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all flex flex-col ${
                 isSelected
                   ? 'rainbow-glow'
-                  : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
+                  : 'border-gray-200 dark:border-gray-700 hover:shadow-lg hover:-translate-y-0.5'
               }`}
             >
               <div className="p-3 flex flex-col gap-0.5">
@@ -470,7 +470,7 @@ const HomePage: React.FC = () => {
                 <button
                   key={group.id}
                   onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
-                  className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 text-left hover:shadow-md transition-all"
+                  className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-3 text-left hover:shadow-lg hover:-translate-y-0.5 transition-all"
                 >
                   <div className="flex items-center gap-1.5 mb-1">
                     <span className="text-[10px] bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-1.5 py-0.5 rounded font-medium">
