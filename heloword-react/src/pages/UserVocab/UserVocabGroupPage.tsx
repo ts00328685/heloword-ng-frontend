@@ -6,6 +6,7 @@ import UserVocabWordFormModal from '../../components/UserVocabWordFormModal';
 import CreateGroupModal from '../../components/CreateGroupModal';
 import ShareVocabGroupModal from '../../components/ShareVocabGroupModal';
 import OnboardingModal from '../../components/OnboardingModal';
+import ImportVocabModal from '../../components/ImportVocabModal';
 import { pronounceWord } from '../../services/tts.service';
 import {
   CustomGroup,
@@ -31,6 +32,7 @@ const UserVocabGroupPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
   const [editingWord, setEditingWord] = useState<CustomWord | null>(null);
   const [editingGroup, setEditingGroup] = useState(false);
   const [confirmDeleteWord, setConfirmDeleteWord] = useState<CustomWord | null>(null);
@@ -82,6 +84,12 @@ const UserVocabGroupPage: React.FC = () => {
     const created = await addCustomWord(id, data);
     setWords((prev) => [...prev, created]);
     setGroup((g) => ({ ...g, wordCount: g.wordCount + 1 }));
+  };
+
+  const handleImport = async (rows: Omit<import('../../services/customVocab.service').CustomWord, 'id' | 'groupId'>[]) => {
+    const results = await Promise.all(rows.map((row) => addCustomWord(id, row)));
+    setWords((prev) => [...prev, ...results]);
+    setGroup((g) => ({ ...g, wordCount: g.wordCount + results.length }));
   };
 
   const handleUpdateWord = async (data: any) => {
@@ -174,7 +182,7 @@ const UserVocabGroupPage: React.FC = () => {
         }
       />
 
-      <main className="flex-1 pb-32 px-4 pt-4 max-w-2xl mx-auto w-full">
+      <main className="flex-1 pb-44 px-4 pt-4 max-w-2xl mx-auto w-full">
         {/* Group info bar */}
         <div className="flex items-center gap-2 mb-4">
           <span className="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
@@ -207,25 +215,49 @@ const UserVocabGroupPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Search */}
-        <div className="relative mb-4">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-          </svg>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={t('review.searchPlaceholder')}
-            className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-          {query && (
-            <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+        {/* Search + actions row */}
+        <div className="flex items-center gap-2 mb-4">
+          <div className="relative flex-1">
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+            </svg>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t('review.searchPlaceholder')}
+              className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            {query && (
+              <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
+
+          {/* Desktop action buttons — inline with search bar */}
+          <div className="hidden sm:flex items-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden divide-x divide-gray-200 dark:divide-gray-700 shrink-0 shadow-sm">
+            <button
+              onClick={() => setShowImportModal(true)}
+              className="flex items-center gap-1.5 px-3 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors whitespace-nowrap"
+            >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M8 12l4-4m0 0l4 4m-4-4v12" />
               </svg>
+              {t('userVocab.importTitle')}
             </button>
-          )}
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 transition-colors whitespace-nowrap"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              {t('userVocab.addWord')}
+            </button>
+          </div>
         </div>
 
         {loading && (
@@ -344,17 +376,28 @@ const UserVocabGroupPage: React.FC = () => {
           </div>
         )}
 
-        {/* FAB */}
+        {/* Mobile FABs only (desktop uses inline toolbar buttons above) */}
         {!loading && (
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="fixed bottom-36 right-6 w-14 h-14 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-2xl shadow-lg flex items-center justify-center transition-colors z-30"
-            aria-label={t('userVocab.addWord')}
-          >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
+          <div className="sm:hidden fixed bottom-36 right-4 flex flex-col items-end gap-2 z-30">
+            <button
+              onClick={() => setShowImportModal(true)}
+              className="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300 rounded-2xl shadow-md flex items-center justify-center transition-colors"
+              aria-label={t('userVocab.importTitle')}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M8 12l4-4m0 0l4 4m-4-4v12" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="w-12 h-12 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-2xl shadow-lg flex items-center justify-center transition-colors"
+              aria-label={t('userVocab.addWord')}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </button>
+          </div>
         )}
       </main>
 
@@ -369,6 +412,13 @@ const UserVocabGroupPage: React.FC = () => {
             {quizLoading ? '…' : t('userVocab.startQuiz')}
           </button>
         </div>
+      )}
+
+      {showImportModal && (
+        <ImportVocabModal
+          onClose={() => setShowImportModal(false)}
+          onImport={handleImport}
+        />
       )}
 
       {showAddModal && (
