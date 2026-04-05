@@ -14,11 +14,9 @@ maintaining identical API contracts, authentication, and security headers.
 4. [Getting Started](#getting-started)
 5. [Environment Configuration](#environment-configuration)
 6. [How the App Works](#how-the-app-works)
-7. [Authentication & Security](#authentication--security)
-8. [API Reference](#api-reference)
-9. [Pages & Routes](#pages--routes)
-10. [Quiz Logic](#quiz-logic)
-11. [Development Notes](#development-notes)
+7. [Pages & Routes](#pages--routes)
+8. [Quiz Logic](#quiz-logic)
+9. [Development Notes](#development-notes)
 
 ---
 
@@ -31,7 +29,7 @@ maintaining identical API contracts, authentication, and security headers.
 - **Quiz progress tracking** — Resume incomplete quizzes from the Review tab
 - **Per-answer metrics** — Tracks time spent, pronounce count, backspace count, wrong count
 - **Mobile-first responsive design** — Works on phones, tablets, and desktops
-- **Secure API communication** — AES-encrypted headers, session cookies, UUID per request
+- **Secure API communication** — Encrypted headers, session cookies
 
 ---
 
@@ -45,7 +43,6 @@ maintaining identical API contracts, authentication, and security headers.
 | Routing | React Router v6 |
 | HTTP | Axios (with interceptors) |
 | Authentication | @react-oauth/google |
-| Encryption | crypto-js (AES-256) |
 | Language | TypeScript 5 |
 
 ---
@@ -65,18 +62,18 @@ heloword-react/
     ├── App.tsx                   # Provider tree + Router + Routes
     ├── index.css                 # Tailwind + global styles
     ├── config/
-    │   └── environment.ts        # Runtime config (base URLs, cipher, IP)
+    │   └── environment.ts        # Runtime config (base URLs)
     ├── models/
     │   └── index.ts              # TypeScript interfaces (User, Word, QuizSetting…)
     ├── services/
     │   ├── api.service.ts        # Axios instance, doPost/doGet, IP detection
-    │   └── utils.service.ts      # AES encrypt/decrypt, CV header, UUID
+    │   └── utils.service.ts      # Request signing utilities
     ├── contexts/
     │   ├── AuthContext.tsx       # User state, login/logout, role checks
     │   ├── DataContext.tsx       # Word & sentence store
     │   └── UIContext.tsx         # Toast, alert, loading overlay
     ├── components/
-    │   ├── AppInitializer.tsx    # Session bootstrap (init-cookie → init-cipher → /fe/user)
+    │   ├── AppInitializer.tsx    # Session bootstrap on app load
     │   ├── Header.tsx            # Sticky page header
     │   ├── BottomTabs.tsx        # 5-tab bottom navigation
     │   ├── Toast.tsx             # Top/bottom toast notification
@@ -148,9 +145,7 @@ The environment is configured in `src/config/environment.ts`:
 {
   appVersion: '2025.02.01.a',
   backendBaseUrl: '/k8s',                      // dev: '/k8s', prod: '/k8s/micro-infra-gateway/v1'
-  googleClientId: '268421074885-...',          // Google OAuth Client ID
-  cipher: { aesKey: '', aesIv: '' },          // Populated at runtime from /init-cipher
-  retrieveIpUrl: 'https://jsonip.com',         // For ClientIp header
+  googleClientId: '',                          // Set via VITE_GOOGLE_CLIENT_ID
   userIp: '0.0.0.0',                          // Populated at runtime
 }
 ```
@@ -171,22 +166,7 @@ VITE_BACKEND_BASE_URL=/k8s/micro-infra-gateway/v1
 
 ### Startup Sequence
 
-When the app first loads, `AppInitializer` runs a 3-step bootstrap:
-
-```
-1. POST /service-auth/api/auth/init-cookie
-   → Establishes a session cookie (withCredentials: true)
-
-2. POST /service-auth/api/auth/init-cipher
-   → Returns AES key + IV
-   → Stored in environment.cipher for use in subsequent request headers
-
-3. POST /frontend-api/api/fe/user
-   → Checks if a valid session cookie already exists
-   → If yes, auto-logs the user in (restores session)
-```
-
-This mirrors the Angular `PageActivateGuard` and runs only once per app lifecycle.
+When the app first loads, `AppInitializer` runs a bootstrap sequence to establish the session and restore login state. This runs only once per app lifecycle.
 
 ### Data Flow
 
@@ -210,61 +190,22 @@ Quiz page
 
 ---
 
-## Authentication & Security
+## Authentication
 
 ### Google OAuth
 
-1. User clicks "Sign in with Google" → Google popup
-2. Google returns an `idToken` credential
-3. Frontend sends it to: `POST /service-auth/api/auth/verify-google-id`
-4. Backend validates the token and creates a session
-5. AuthContext is updated with the user data
-
-### Request Security Headers
-
-Every API request automatically includes these headers (injected by the Axios interceptor):
-
-| Header | Value | Purpose |
-|---|---|---|
-| `cv` | AES-encrypted current timestamp | Anti-replay / request signing |
-| `X-REQUEST-ID` | HMAC-MD5 UUID | Unique request tracing |
-| `Authorization` | `Bearer /` | Auth placeholder |
-| `ChannelCode` | `NG-FRONTEND` | Frontend channel identifier |
-| `ClientIp` | Detected IP from jsonip.com | Client identification |
-
-The `cv` header is re-generated on every request with the current timestamp.
-
-### AES Encryption
-
-```typescript
-// From src/services/utils.service.ts
-generateCV(key, iv)  // Encrypts Date.now().toString()
-encryptAES(content, key, iv)  // AES-256 CBC
-decryptAES(content, key, iv)  // AES-256 CBC
-```
-
-The key and IV are obtained from `/service-auth/api/auth/init-cipher` on startup.
+User clicks "Sign in with Google" → Google returns a credential → backend validates and creates a session → `AuthContext` is updated.
 
 ### Session Management
 
 - Sessions use HTTP cookies with `withCredentials: true`
 - A `9403` response code from any endpoint triggers automatic logout
-- Logout calls `/service-auth/api/auth/logout` then reloads the page
 
 ---
 
 ## API Reference
 
 All endpoints are `POST`. The backend base URL is `/k8s` (dev) or `/k8s/micro-infra-gateway/v1` (prod).
-
-### Auth Endpoints
-
-| Endpoint | Payload | Response |
-|---|---|---|
-| `/service-auth/api/auth/init-cookie` | `{}` | Sets session cookie |
-| `/service-auth/api/auth/init-cipher` | `{}` | `{ aesKey, aesIv }` |
-| `/service-auth/api/auth/verify-google-id` | `{ credential, provider, idToken }` | User object |
-| `/service-auth/api/auth/logout` | `{}` | Clears session |
 
 ### Data Endpoints
 
@@ -366,6 +307,3 @@ const location = useLocation();
 const quizSettings = location.state?.quizSettings;
 ```
 
-### Modifying the cipher/security logic
-
-See `src/services/utils.service.ts` for AES helpers and `src/services/api.service.ts` for the Axios interceptor that injects all security headers.
