@@ -89,7 +89,7 @@ const WordSection: React.FC<{
               key={`${word.tableName}-${word.id}-${i}`}
               className={`bg-white dark:bg-gray-800 rounded-xl border transition-all flex flex-col ${
                 isSelected
-                  ? 'border-purple-300 dark:border-purple-700 shadow-sm'
+                  ? 'rainbow-glow'
                   : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
               }`}
             >
