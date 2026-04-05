@@ -199,7 +199,7 @@ function setupAndRender(setting: GuestSetting, records: GuestRecord[], group: Du
  */
 function expectBadge(statusKey: string) {
   const all = screen.getAllByText(statusKey);
-  const badge = all.find((el) => el.tagName === 'SPAN');
+  const badge = all.find((el: HTMLElement) => el.tagName === 'SPAN');
   expect(badge, `Expected a <span> badge with text "${statusKey}"`).toBeTruthy();
 }
 
@@ -209,7 +209,7 @@ function expectBadge(statusKey: string) {
  */
 function expectNoBadge(statusKey: string) {
   const all = screen.queryAllByText(statusKey);
-  const badge = all.find((el) => el.tagName === 'SPAN');
+  const badge = all.find((el: HTMLElement) => el.tagName === 'SPAN');
   expect(badge, `Expected NO <span> badge with text "${statusKey}"`).toBeFalsy();
 }
 
@@ -725,7 +725,7 @@ describe('ReviewPage — guest upsell banner', () => {
     // Assert the guest banner's underlined <span> is present.
     const loginSpans = screen.getAllByText('common.login');
     const bannerSpan = loginSpans.find(
-      (el) => el.tagName === 'SPAN' && el.className.includes('underline'),
+      (el: HTMLElement) => el.tagName === 'SPAN' && el.className.includes('underline'),
     );
     expect(bannerSpan).toBeTruthy();
   });

@@ -42,9 +42,11 @@ function parseSheet(wb: XLSX.WorkBook): ParsedRow[] {
   });
 }
 
+type ImportRow = Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>;
+
 interface Props {
   onClose: () => void;
-  onImport: (rows: Omit<CustomWord, 'id' | 'groupId'>[]) => Promise<void>;
+  onImport: (rows: ImportRow[]) => Promise<void>;
 }
 
 const ImportVocabModal: React.FC<Props> = ({ onClose, onImport }) => {
@@ -94,7 +96,7 @@ const ImportVocabModal: React.FC<Props> = ({ onClose, onImport }) => {
     setImporting(true);
     try {
       await onImport(
-        validRows.map((r) => ({
+        validRows.map((r): ImportRow => ({
           word: r.word!.trim(),
           translateEn: r.translateEn!.trim(),
           translateCh: r.translateCh?.trim() || undefined,
