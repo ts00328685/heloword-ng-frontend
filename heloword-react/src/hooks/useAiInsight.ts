@@ -32,6 +32,7 @@ export function useAiInsight(namespace: string): UseAiInsightReturn {
     error: false,
   });
   const memCache = useRef<Map<string, string>>(new Map());
+  const activeKeyRef = useRef<string | null>(null);
 
   const sessionKey = (key: string) => `ai:${namespace}:${key}`;
 
@@ -57,13 +58,16 @@ export function useAiInsight(namespace: string): UseAiInsightReturn {
       }
 
       // 3. Network fetch
+      activeKeyRef.current = key;
       setState({ text: '', loading: true, error: false });
       try {
         const result = await fetcher();
+        if (activeKeyRef.current !== key) return; // stale — a newer request took over
         memCache.current.set(key, result);
         try { sessionStorage.setItem(sessionKey(key), result); } catch { /* ignore quota errors */ }
         setState({ text: result, loading: false, error: false });
       } catch {
+        if (activeKeyRef.current !== key) return;
         setState({ text: '', loading: false, error: true });
       }
     },
