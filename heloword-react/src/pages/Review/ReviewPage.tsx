@@ -968,14 +968,16 @@ const ReviewPage: React.FC = () => {
               return (
                 <div
                   key={i}
-                  onClick={() => selectionMode ? toggleSelect(key) : isClickable && onCardClick(group)}
-                  className={`bg-white dark:bg-gray-800 rounded-2xl border-2 p-4 transition-all shadow-sm cursor-pointer ${
+                  onClick={() => selectionMode && toggleSelect(key)}
+                  className={`bg-white dark:bg-gray-800 rounded-2xl border-2 p-4 transition-all shadow-sm ${
+                    selectionMode ? 'cursor-pointer' : 'cursor-default'
+                  } ${
                     isSelected
                       ? 'border-blue-500 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/10'
                       : isDue && !selectionMode
-                        ? 'border-orange-300 dark:border-orange-700 hover:border-orange-400 hover:shadow-md active:scale-[0.99]'
+                        ? 'border-orange-300 dark:border-orange-700'
                         : isUnfinished && !selectionMode
-                          ? 'border-blue-300 dark:border-blue-700 hover:border-blue-400 hover:shadow-md active:scale-[0.99]'
+                          ? 'border-blue-300 dark:border-blue-700'
                           : selectionMode
                             ? 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                             : 'border-gray-200 dark:border-gray-700'
@@ -1081,10 +1083,20 @@ const ReviewPage: React.FC = () => {
                         </p>
                       )}
                       {isDue && (
-                        <p className="text-xs text-orange-500 font-semibold">{t('review.reviewNow')}</p>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
+                          className="text-xs text-orange-500 font-semibold hover:text-orange-600 transition-colors"
+                        >
+                          {t('review.reviewNow')} →
+                        </button>
                       )}
                       {isUnfinished && (
-                        <p className="text-xs text-blue-500 font-medium">{t('review.resumePrompt')}</p>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
+                          className="text-xs text-blue-500 font-medium hover:text-blue-600 transition-colors"
+                        >
+                          {t('review.resumePrompt')} →
+                        </button>
                       )}
                       {status === 'SCHEDULED' && pct === 100 && (
                         <button
