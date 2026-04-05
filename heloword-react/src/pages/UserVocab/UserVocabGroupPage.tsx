@@ -86,7 +86,7 @@ const UserVocabGroupPage: React.FC = () => {
     setGroup((g) => ({ ...g, wordCount: g.wordCount + 1 }));
   };
 
-  const handleImport = async (rows: Omit<import('../../services/customVocab.service').CustomWord, 'id' | 'groupId'>[]) => {
+  const handleImport = async (rows: Omit<import('../../services/customVocab.service').CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]) => {
     const results = await Promise.all(rows.map((row) => addCustomWord(id, row)));
     setWords((prev) => [...prev, ...results]);
     setGroup((g) => ({ ...g, wordCount: g.wordCount + results.length }));
