@@ -270,10 +270,10 @@ const VocabularyListPage: React.FC = () => {
             return (
             <div
               key={`${word.tableName}-${word.id}`}
-              className={`bg-white dark:bg-gray-800 rounded-xl border transition-all ${
+              className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all ${
                 isSelected
                   ? 'rainbow-glow'
-                  : 'border-gray-200 dark:border-gray-700 hover:shadow-sm'
+                  : 'border-gray-200 dark:border-gray-700 hover:shadow-md hover:-translate-y-0.5'
               }`}
             >
               {/* Main row */}

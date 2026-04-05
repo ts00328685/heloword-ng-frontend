@@ -8,6 +8,9 @@ import ShareVocabGroupModal from '../../components/ShareVocabGroupModal';
 import OnboardingModal from '../../components/OnboardingModal';
 import ImportVocabModal from '../../components/ImportVocabModal';
 import { pronounceWord } from '../../services/tts.service';
+import { getWordInsight } from '../../services/llm.service';
+import { useAiInsight } from '../../hooks/useAiInsight';
+import { useAuth } from '../../contexts/AuthContext';
 import {
   CustomGroup,
   CustomWord,
@@ -21,7 +24,7 @@ import { Sentence } from '../../models';
 import { useData } from '../../contexts/DataContext';
 
 const UserVocabGroupPage: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { groupId } = useParams<{ groupId: string }>();
   const location = useLocation();
@@ -33,6 +36,11 @@ const UserVocabGroupPage: React.FC = () => {
   const [query, setQuery] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+
+  // AI insight
+  const { isLoggedIn } = useAuth();
+  const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
+  const insight = useAiInsight('custom-vocab:insight');
   const [editingWord, setEditingWord] = useState<CustomWord | null>(null);
   const [editingGroup, setEditingGroup] = useState(false);
   const [confirmDeleteWord, setConfirmDeleteWord] = useState<CustomWord | null>(null);
@@ -78,6 +86,22 @@ const UserVocabGroupPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const wordLang = group.language === 'JA' ? 'jp' : 'en';
+
+  const handleWordTap = (word: CustomWord) => {
+    if (selectedWordId === word.id) {
+      setSelectedWordId(null);
+      insight.clear();
+      return;
+    }
+    setSelectedWordId(word.id);
+    if (!isLoggedIn) return;
+    insight.run(
+      String(word.id),
+      () => getWordInsight(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang),
+    );
   };
 
   const handleAddWord = async (data: any) => {
@@ -304,75 +328,122 @@ const UserVocabGroupPage: React.FC = () => {
               </button>
             </div>
 
-            {filtered.map((word) => (
-              <div
-                key={word.id}
-                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3 flex gap-3 items-start"
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
-                    <button
-                      onClick={() => pronounceWord(word.word, group.language === 'JA' ? 'jp' : 'en')}
-                      className="shrink-0 p-0.5 rounded text-gray-300 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
-                      aria-label="Pronounce"
-                    >
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                      </svg>
-                    </button>
+            {filtered.map((word) => {
+              const isSelected = selectedWordId === word.id;
+              return (
+                <div
+                  key={word.id}
+                  className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all ${
+                    isSelected
+                      ? 'rainbow-glow'
+                      : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
+                  }`}
+                >
+                  {/* Main row */}
+                  <div className="p-3 flex gap-3 items-start">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
+                        <button
+                          onClick={() => pronounceWord(word.word, wordLang)}
+                          className="shrink-0 p-0.5 rounded text-gray-300 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
+                          aria-label="Pronounce"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                          </svg>
+                        </button>
+                      </div>
+                      {isMeaningVisible(word.id) ? (
+                        <>
+                          {word.translateEn && <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>}
+                          {word.translateCh && <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>}
+                          {word.sentence && <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed line-clamp-2">{word.sentence}</p>}
+                        </>
+                      ) : (
+                        <div className="flex items-center gap-2 mt-1">
+                          <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-24" />
+                          <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
+                        </div>
+                      )}
+                      {/* AI Insight button */}
+                      <button
+                        onClick={() => handleWordTap(word)}
+                        className={`mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                          isSelected
+                            ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
+                            : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                        }`}
+                      >
+                        <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                        {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-1 shrink-0">
+                      {hideMeanings && (
+                        <button
+                          onClick={() => toggleReveal(word.id)}
+                          className="p-1.5 rounded-xl transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400"
+                          aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
+                        >
+                          {isMeaningVisible(word.id) ? (
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                            </svg>
+                          ) : (
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                          )}
+                        </button>
+                      )}
+                      <button
+                        onClick={() => setEditingWord(word)}
+                        className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={() => setConfirmDeleteWord(word)}
+                        className="p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                      >
+                        <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
-                  {isMeaningVisible(word.id) ? (
-                    <>
-                      {word.translateEn && <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>}
-                      {word.translateCh && <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>}
-                      {word.sentence && <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed line-clamp-2">{word.sentence}</p>}
-                    </>
-                  ) : (
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-24" />
-                      <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
+
+                  {/* AI insight panel */}
+                  {isSelected && (
+                    <div className="px-3 pb-3 pt-0">
+                      <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                        {!isLoggedIn ? (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                        ) : insight.loading ? (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                        ) : insight.error ? (
+                          <div className="flex items-center gap-2">
+                            <p className="text-xs text-red-400">{t('llm.error')}</p>
+                            <button
+                              onClick={() => insight.retry(String(word.id), () => getWordInsight(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang))}
+                              className="text-xs text-blue-400 underline"
+                            >↺</button>
+                          </div>
+                        ) : (
+                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                            {insight.text}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
-                <div className="flex items-center gap-1 shrink-0">
-                  {hideMeanings && (
-                    <button
-                      onClick={() => toggleReveal(word.id)}
-                      className="p-1.5 rounded-xl transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400"
-                      aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
-                    >
-                      {isMeaningVisible(word.id) ? (
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                        </svg>
-                      ) : (
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                      )}
-                    </button>
-                  )}
-                  <button
-                    onClick={() => setEditingWord(word)}
-                    className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                  >
-                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => setConfirmDeleteWord(word)}
-                    className="p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-                  >
-                    <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 

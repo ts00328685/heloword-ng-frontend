@@ -14,7 +14,7 @@ const BottomTabs: React.FC = () => {
   const socialBadge = totalUnread + pendingRequests + vocabShares.length;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border-t border-gray-200/60 dark:border-gray-700/60 shadow-[0_-4px_24px_rgba(0,0,0,0.07)] dark:shadow-[0_-4px_24px_rgba(0,0,0,0.3)] safe-area-bottom">
       <div className="flex items-stretch max-w-2xl mx-auto">
 
         <TabItem path="/home" label={t('nav.home')} icon={(active) => (
@@ -68,22 +68,25 @@ const TabItem: React.FC<{
     to={path}
     data-tour={`tab-${path.slice(1)}`}
     className={({ isActive }) =>
-      `flex-1 flex flex-col items-center justify-center py-2 gap-0.5 min-h-[56px] transition-colors relative ${
+      `flex-1 flex flex-col items-center justify-center py-2 gap-0.5 min-h-[56px] transition-all relative ${
         isActive ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400'
       }`
     }
   >
     {({ isActive }) => (
       <>
-        <span className="relative">
+        {isActive && (
+          <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] bg-blue-500 rounded-b-full" />
+        )}
+        <span className={`relative p-1.5 rounded-2xl transition-all ${isActive ? 'bg-blue-50 dark:bg-blue-900/25' : ''}`}>
           {icon(isActive)}
           {badge != null && badge > 0 && (
-            <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-orange-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+            <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 bg-orange-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
               {badge > 99 ? '99+' : badge}
             </span>
           )}
         </span>
-        <span className={`text-xs font-medium ${isActive ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'}`}>
+        <span className={`text-xs ${isActive ? 'font-semibold text-blue-500' : 'font-medium text-gray-400 dark:text-gray-500'}`}>
           {label}
         </span>
       </>
