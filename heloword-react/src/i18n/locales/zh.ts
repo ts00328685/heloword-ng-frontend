@@ -201,6 +201,23 @@ const zh = {
         body: '點擊「+ 新增單字」旁的上傳按鈕，即可批次匯入單字。下載範本檔案查看格式，每次最多匯入 500 個單字。',
       },
     ],
+    wordPreview: [
+      {
+        icon: '👁️',
+        title: '逐一顯示意思',
+        body: '每個單字預設隱藏意思。點擊卡片上的眼睛圖示即可顯示，或使用工具列的「全部隱藏」／「全部顯示」一次切換整個清單。',
+      },
+      {
+        icon: '🃏',
+        title: '閃卡模式',
+        body: '點擊工具列的「閃卡」按鈕，切換到全螢幕可滑動的卡片。正面顯示單字，點擊卡片即可翻面查看意思。',
+      },
+      {
+        icon: '👆',
+        title: '左右滑動切換',
+        body: '在閃卡模式中，向左滑動前往下一個單字，向右滑動返回上一個。點擊底部的圓點可直接跳到指定卡片。',
+      },
+    ],
   },
   review: {
     loginRequired: '需要登入',
@@ -238,6 +255,9 @@ const zh = {
     previewHide: '隱藏',
     previewReveal: '顯示',
     previewTapReveal: '點擊眼睛顯示',
+    flashcardMode: '閃卡',
+    flashcardTap: '點擊翻面',
+    flashcardSwipe: '← 左右滑動 →',
     filterAll: '全部',
     searchPlaceholder: '搜尋語言或日期…',
     noResults: '沒有符合篩選條件的群組。',
