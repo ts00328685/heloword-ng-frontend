@@ -1088,7 +1088,7 @@ const ReviewPage: React.FC = () => {
                           onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
                           className="text-xs font-semibold text-orange-600 dark:text-orange-300 bg-orange-100 dark:bg-orange-800/60 hover:bg-orange-200 dark:hover:bg-orange-700/70 border border-orange-200 dark:border-orange-700 transition-colors px-2.5 py-1 rounded-full"
                         >
-                          {t('review.reviewNow')} →
+                          {t('review.reviewNow')}
                         </button>
                       )}
                       {isUnfinished && (
@@ -1096,7 +1096,7 @@ const ReviewPage: React.FC = () => {
                           onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
                           className="text-xs font-semibold text-blue-600 dark:text-blue-300 bg-blue-100 dark:bg-blue-800/60 hover:bg-blue-200 dark:hover:bg-blue-700/70 border border-blue-200 dark:border-blue-700 transition-colors px-2.5 py-1 rounded-full"
                         >
-                          {t('review.resumePrompt')} →
+                          {t('review.resumePrompt')}
                         </button>
                       )}
                       {status === 'SCHEDULED' && pct === 100 && (
@@ -1104,7 +1104,7 @@ const ReviewPage: React.FC = () => {
                           onClick={(e) => { e.stopPropagation(); onCardClick(group, true); }}
                           className="text-xs font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 hover:text-blue-500 transition-colors px-2.5 py-1 rounded-full"
                         >
-                          {t('review.reviewEarly')} →
+                          {t('review.reviewEarly')}
                         </button>
                       )}
                     </div>
