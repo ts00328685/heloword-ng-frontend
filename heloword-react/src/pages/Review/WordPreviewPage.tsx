@@ -94,6 +94,8 @@ const WordPreviewPage: React.FC = () => {
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef(0);
+  const dragXRef = useRef(0);
+  const isDraggingRef = useRef(false);
   const [exitDir, setExitDir] = useState<'left' | 'right' | null>(null);
   const [enterDir, setEnterDir] = useState<'left' | 'right' | null>(null);
   const exitingRef = useRef(false);
@@ -183,18 +185,23 @@ const WordPreviewPage: React.FC = () => {
     if (exitingRef.current) return;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     dragStartX.current = e.clientX;
+    isDraggingRef.current = true;
     setIsDragging(true);
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    setDragX(e.clientX - dragStartX.current);
+    if (!isDraggingRef.current) return;
+    const dx = e.clientX - dragStartX.current;
+    dragXRef.current = dx;
+    setDragX(dx);
   };
 
   const handlePointerUp = () => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
     setIsDragging(false);
-    const dist = dragX;
+    const dist = dragXRef.current;
+    dragXRef.current = 0;
     if (Math.abs(dist) < 10) {
       setFlipped((f) => !f);
       setDragX(0);
@@ -290,7 +297,7 @@ const WordPreviewPage: React.FC = () => {
             {/* Active card — drag wrapper */}
             <div
               className="absolute inset-x-0 bottom-0 cursor-grab active:cursor-grabbing"
-              style={{ height: 300, zIndex: 20, ...cardStyle() }}
+              style={{ height: 300, zIndex: 20, touchAction: 'none', ...cardStyle() }}
               onPointerDown={handlePointerDown}
               onPointerMove={handlePointerMove}
               onPointerUp={handlePointerUp}
@@ -390,10 +397,32 @@ const WordPreviewPage: React.FC = () => {
             })}
           </div>
 
-          <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
-            {cardIndex + 1} / {words.length}
-            <span className="ml-2 opacity-60">{t('review.flashcardSwipe')}</span>
-          </p>
+          {/* Prev / counter / Next */}
+          <div className="flex items-center gap-4 mt-4">
+            <button
+              onClick={goPrev}
+              disabled={cardIndex === 0}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              aria-label="Previous card"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <span className="text-sm text-gray-400 dark:text-gray-500 min-w-[60px] text-center">
+              {cardIndex + 1} / {words.length}
+            </span>
+            <button
+              onClick={goNext}
+              disabled={cardIndex >= words.length - 1}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              aria-label="Next card"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </main>
       ) : (
         /* ── LIST MODE ── */
