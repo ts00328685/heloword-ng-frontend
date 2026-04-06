@@ -272,7 +272,7 @@ const UserVocabGroupPage: React.FC = () => {
     : words;
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header
         title={group.name || t('userVocab.title')}
         showBack
@@ -432,7 +432,7 @@ const UserVocabGroupPage: React.FC = () => {
               const cur = filtered[cardIndex];
               if (!cur) return null;
               return (
-                <div className="flex flex-col items-center py-4 select-none overflow-x-hidden">
+                <div className="flex flex-col items-center pt-4 pb-28 select-none overflow-x-hidden">
                   {/* Card stack */}
                   <div className="relative w-full max-w-sm" style={{ height: 340 }}>
                     {[2, 1].map((offset) => {
@@ -559,17 +559,18 @@ const UserVocabGroupPage: React.FC = () => {
                   </div>
                 </div>
               );
-            })() : filtered.map((word) => {
+            })() : filtered.map((word, idx) => {
               const isSelected = selectedWordId === word.id;
               const wordNo = words.indexOf(word) + 1;
               return (
                 <div
                   key={word.id}
-                  className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all ${
+                  className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all animate-fade-in-up ${
                     isSelected
                       ? 'rainbow-glow'
                       : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
                   }`}
+                  style={{ animationDelay: `${Math.min(idx, 10) * 40}ms` }}
                 >
                   {/* Main row */}
                   <div className="p-3 flex gap-3 items-start">
@@ -652,7 +653,7 @@ const UserVocabGroupPage: React.FC = () => {
 
                   {/* AI insight panel */}
                   {isSelected && (
-                    <div className="px-3 pb-3 pt-0">
+                    <div className="px-3 pb-3 pt-0 animate-slide-down">
                       <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                         {!isLoggedIn ? (
                           <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>

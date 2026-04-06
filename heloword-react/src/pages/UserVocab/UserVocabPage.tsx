@@ -65,7 +65,7 @@ const UserVocabPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header
         title={t('userVocab.title')}
         showBack
@@ -112,10 +112,11 @@ const UserVocabPage: React.FC = () => {
 
         {!loading && groups.length > 0 && (
           <div className="space-y-3">
-            {groups.map((group) => (
+            {groups.map((group, i) => (
               <div
                 key={group.id}
-                className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm"
+                className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm animate-fade-in-up"
+                style={{ animationDelay: `${i * 50}ms` }}
               >
                 <div className="flex items-start justify-between gap-2">
                   <button

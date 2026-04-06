@@ -266,7 +266,7 @@ const WordPreviewPage: React.FC = () => {
   // ── Render ──────────────────────────────────────────────────────────────────
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col animate-page-enter">
       <Header title={groupName || t('review.preview')} showBack />
 
       {/* Toolbar */}
@@ -353,7 +353,7 @@ const WordPreviewPage: React.FC = () => {
 
       {flashMode ? (
         /* ── FLASHCARD MODE ── */
-        <main className="flex-1 flex flex-col items-center justify-center px-6 py-8 select-none overflow-x-hidden overflow-y-auto">
+        <main className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-28 select-none overflow-x-hidden overflow-y-auto">
           {displayWords.length === 0 ? (
             <p className="text-sm text-gray-400 dark:text-gray-500">{t('review.previewNoResults', 'No words match your search.')}</p>
           ) : (
@@ -453,7 +453,7 @@ const WordPreviewPage: React.FC = () => {
 
               {/* AI insight panel for flashcard mode */}
               {flashInsightOpen && (
-                <div className="w-full max-w-sm mt-4 animate-fade-in">
+                <div className="w-full max-w-sm mt-4 animate-slide-down">
                   <InsightPanel
                     isLoggedIn={isLoggedIn}
                     loading={insight.loading}
@@ -527,9 +527,10 @@ const WordPreviewPage: React.FC = () => {
             return (
               <div
                 key={word.id ?? i}
-                className={`bg-white dark:bg-gray-800 rounded-2xl border shadow-sm overflow-hidden transition-all ${
+                className={`bg-white dark:bg-gray-800 rounded-2xl border shadow-sm overflow-hidden transition-all animate-fade-in-up ${
                   isInsightOpen ? 'rainbow-glow' : 'border-gray-100 dark:border-gray-700'
                 }`}
+                style={{ animationDelay: `${Math.min(i, 12) * 35}ms` }}
               >
                 {/* Word row */}
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
@@ -602,7 +603,7 @@ const WordPreviewPage: React.FC = () => {
 
                 {/* AI insight panel */}
                 {isInsightOpen && (
-                  <div className="px-4 pb-3 pt-0 animate-fade-in">
+                  <div className="px-4 pb-3 pt-0 animate-slide-down">
                     <InsightPanel
                       isLoggedIn={isLoggedIn}
                       loading={insight.loading}

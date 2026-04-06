@@ -679,7 +679,7 @@ const ReviewPage: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header title={t('nav.review')} />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
@@ -796,7 +796,7 @@ const ReviewPage: React.FC = () => {
 
               {/* Expandable filter panel */}
               {showFilterPanel && (
-                <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-3 space-y-3">
+                <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-3 space-y-3 animate-slide-down">
                   {/* Sort */}
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">{t('review.sortLabel')}</p>
@@ -969,7 +969,7 @@ const ReviewPage: React.FC = () => {
                 <div
                   key={i}
                   onClick={() => selectionMode && toggleSelect(key)}
-                  className={`bg-white dark:bg-gray-800 rounded-2xl border-2 p-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
+                  className={`bg-white dark:bg-gray-800 rounded-2xl border-2 p-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 animate-fade-in-up ${
                     selectionMode ? 'cursor-pointer' : 'cursor-default'
                   } ${
                     isSelected
@@ -982,6 +982,7 @@ const ReviewPage: React.FC = () => {
                             ? 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                             : 'border-gray-200 dark:border-gray-700'
                   }`}
+                  style={{ animationDelay: `${Math.min(i, 8) * 50}ms` }}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-start gap-2.5 min-w-0">
