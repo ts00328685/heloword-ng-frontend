@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -75,6 +75,8 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+const PAGE_SIZE = 50;
+
 const WordPreviewPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -94,6 +96,9 @@ const WordPreviewPage: React.FC = () => {
   const [shuffled, setShuffled] = useState(false);
   const [shuffledWords, setShuffledWords] = useState<Sentence[]>(words);
 
+  // Original 1-based index keyed by word id — stable across shuffle/filter
+  const originalIndex = useMemo(() => new Map(words.map((w, i) => [w.id, i + 1])), [words]);
+
   // displayWords: apply shuffle order first, then filter by query
   const displayWords = useMemo(() => {
     const base = shuffled ? shuffledWords : words;
@@ -105,6 +110,29 @@ const WordPreviewPage: React.FC = () => {
       (w.translateCh || '').toLowerCase().includes(q)
     );
   }, [shuffled, shuffledWords, words, query]);
+
+  // Incremental rendering — only render PAGE_SIZE items at a time in list mode
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  // Reset visible count when displayWords changes (query/shuffle)
+  useEffect(() => { setVisibleCount(PAGE_SIZE); }, [displayWords]);
+
+  // IntersectionObserver: load next page when sentinel scrolls into view
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, displayWords.length));
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [displayWords.length]);
 
   // List mode revealed state — keyed by word id so it survives reorder/filter
   const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
@@ -394,7 +422,7 @@ const WordPreviewPage: React.FC = () => {
 
                       {/* Front face */}
                       <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
-                        <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{cardIndex + 1}</span>
+                        <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{originalIndex.get(currentWord.id) ?? cardIndex + 1}</span>
                         <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">
                           {currentWord.word}
                         </p>
@@ -521,7 +549,7 @@ const WordPreviewPage: React.FC = () => {
               {t('review.previewNoResults', 'No words match your search.')}
             </p>
           )}
-          {displayWords.map((word, i) => {
+          {displayWords.slice(0, visibleCount).map((word, i) => {
             const isInsightOpen = selectedWordId === word.id;
             const isRevealed = revealedIds.has(word.id);
             return (
@@ -536,7 +564,7 @@ const WordPreviewPage: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5">
-                      <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600">{i + 1}</span>
+                      <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600">{originalIndex.get(word.id) ?? i + 1}</span>
                       <p className="text-base font-bold text-gray-900 dark:text-white leading-snug break-words">
                         {word.word}
                       </p>
@@ -619,6 +647,12 @@ const WordPreviewPage: React.FC = () => {
               </div>
             );
           })}
+          {/* Sentinel — triggers next batch when scrolled into view */}
+          <div ref={sentinelRef} className="h-10 flex items-center justify-center">
+            {visibleCount < displayWords.length && (
+              <div className="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+            )}
+          </div>
         </main>
       )}
 
