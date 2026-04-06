@@ -454,34 +454,42 @@ const UserVocabGroupPage: React.FC = () => {
                       <div className="flashcard-scene w-full h-full">
                         <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
                           {/* Front */}
-                          <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
+                          <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col px-8 py-6">
                             <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{cardIndex + 1}</span>
-                            <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">{cur.word}</p>
-                            {cur.phonetics && <p className="text-sm text-gray-400 dark:text-gray-500 text-center">{cur.phonetics}</p>}
-                            <button
-                              onPointerDown={(e) => e.stopPropagation()}
-                              onClick={(e) => { e.stopPropagation(); pronounceWord(cur.word, wordLang); }}
-                              className="mt-3 p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                              aria-label="Pronounce"
-                            >
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                              </svg>
-                            </button>
-                            {/* AI insight button */}
-                            <button
-                              onPointerDown={(e) => e.stopPropagation()}
-                              onClick={(e) => { e.stopPropagation(); handleWordTap(cur); }}
-                              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
-                                flashInsightOpen
-                                  ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                                  : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
-                              }`}
-                            >
-                              <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
-                              {flashInsightOpen ? `${t('llm.insight')} ▲` : t('llm.insight')}
-                            </button>
-                            <p className="text-[11px] text-gray-300 dark:text-gray-600 mt-auto">{t('review.flashcardTap')}</p>
+                            {/* Vertically centered word content */}
+                            <div className="flex-1 flex flex-col items-center justify-center gap-2">
+                              <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">{cur.word}</p>
+                              {cur.phonetics && <p className="text-sm text-gray-400 dark:text-gray-500 text-center">{cur.phonetics}</p>}
+                            </div>
+                            {/* Bottom bar: tap hint left, buttons right */}
+                            <div className="flex items-center justify-between">
+                              <p className="text-[11px] text-gray-300 dark:text-gray-600">{t('review.flashcardTap')}</p>
+                              <div className="flex items-center gap-2">
+                                <button
+                                  onPointerDown={(e) => e.stopPropagation()}
+                                  onClick={(e) => { e.stopPropagation(); pronounceWord(cur.word, wordLang); }}
+                                  className="p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                  aria-label="Pronounce"
+                                >
+                                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                  </svg>
+                                </button>
+                                {/* AI insight button */}
+                                <button
+                                  onPointerDown={(e) => e.stopPropagation()}
+                                  onClick={(e) => { e.stopPropagation(); handleWordTap(cur); }}
+                                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                                    flashInsightOpen
+                                      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
+                                      : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                                  }`}
+                                >
+                                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                                  {flashInsightOpen ? `${t('llm.insight')} ▲` : t('llm.insight')}
+                                </button>
+                              </div>
+                            </div>
                           </div>
                           {/* Back */}
                           <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
