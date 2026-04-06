@@ -666,6 +666,7 @@ const VocabularyQuizPage: React.FC = () => {
         <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 mb-4 shadow-sm">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
+              <span className="text-xs font-mono text-gray-300 dark:text-gray-600">{currentIndex + 1}</span>
               <span className="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium uppercase">
                 {current.language}
               </span>

@@ -457,6 +457,7 @@ const UserVocabGroupPage: React.FC = () => {
                         <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
                           {/* Front */}
                           <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
+                            <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{cardIndex + 1}</span>
                             <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">{cur.word}</p>
                             {cur.phonetics && <p className="text-sm text-gray-400 dark:text-gray-500 text-center">{cur.phonetics}</p>}
                             <button
@@ -560,6 +561,7 @@ const UserVocabGroupPage: React.FC = () => {
               );
             })() : filtered.map((word) => {
               const isSelected = selectedWordId === word.id;
+              const wordNo = words.indexOf(word) + 1;
               return (
                 <div
                   key={word.id}
@@ -571,6 +573,7 @@ const UserVocabGroupPage: React.FC = () => {
                 >
                   {/* Main row */}
                   <div className="p-3 flex gap-3 items-start">
+                    <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600 pt-0.5 w-7 text-right">{wordNo}</span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5">
                         <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
