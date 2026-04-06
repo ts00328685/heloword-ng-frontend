@@ -421,36 +421,44 @@ const WordPreviewPage: React.FC = () => {
                     <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
 
                       {/* Front face */}
-                      <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
+                      <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col px-8 py-6">
                         <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{originalIndex.get(currentWord.id) ?? cardIndex + 1}</span>
-                        <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">
-                          {currentWord.word}
-                        </p>
-                        {currentWord.sentence && (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic line-clamp-2 mt-1 px-2">
-                            {currentWord.sentence}
+                        {/* Vertically centered word content */}
+                        <div className="flex-1 flex flex-col items-center justify-center gap-2">
+                          <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">
+                            {currentWord.word}
                           </p>
-                        )}
-                        <button
-                          onPointerDown={(e) => e.stopPropagation()}
-                          onClick={(e) => { e.stopPropagation(); pronounceWord(currentWord.word, wordLang(currentWord)); }}
-                          className="mt-3 p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                          aria-label="Pronounce"
-                        >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                          </svg>
-                        </button>
-                        {/* AI Insight button on front face */}
-                        <InsightButton
-                          active={flashInsightOpen}
-                          label={t('llm.insight')}
-                          onPointerDown={(e) => e.stopPropagation()}
-                          onClick={(e) => { e.stopPropagation(); runInsight(currentWord); }}
-                        />
-                        <p className="text-[11px] text-gray-300 dark:text-gray-600 mt-auto">
-                          {t('review.flashcardTap')}
-                        </p>
+                          {currentWord.sentence && (
+                            <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic line-clamp-2 px-2">
+                              {currentWord.sentence}
+                            </p>
+                          )}
+                        </div>
+                        {/* Bottom bar: tap hint left, buttons right */}
+                        <div className="flex items-center justify-between">
+                          <p className="text-[11px] text-gray-300 dark:text-gray-600">
+                            {t('review.flashcardTap')}
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onPointerDown={(e) => e.stopPropagation()}
+                              onClick={(e) => { e.stopPropagation(); pronounceWord(currentWord.word, wordLang(currentWord)); }}
+                              className="p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                              aria-label="Pronounce"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                              </svg>
+                            </button>
+                            {/* AI Insight button on front face */}
+                            <InsightButton
+                              active={flashInsightOpen}
+                              label={t('llm.insight')}
+                              onPointerDown={(e) => e.stopPropagation()}
+                              onClick={(e) => { e.stopPropagation(); runInsight(currentWord); }}
+                            />
+                          </div>
+                        </div>
                       </div>
 
                       {/* Back face */}
