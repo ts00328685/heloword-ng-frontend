@@ -70,12 +70,9 @@ const UserVocabGroupPage: React.FC = () => {
   const isMeaningVisible = (id: number) => !hideMeanings || revealedIds.has(id);
 
   const GROUP_SHARE_ONBOARDING_KEY = 'onboarding:group_share';
-  const [showShareOnboarding, setShowShareOnboarding] = useState(false);
-  useEffect(() => {
-    if (!localStorage.getItem(GROUP_SHARE_ONBOARDING_KEY)) {
-      setShowShareOnboarding(true);
-    }
-  }, [location.key]);
+  const [showShareOnboarding, setShowShareOnboarding] = useState(
+    () => !localStorage.getItem(GROUP_SHARE_ONBOARDING_KEY)
+  );
 
   const id = Number(groupId);
 
