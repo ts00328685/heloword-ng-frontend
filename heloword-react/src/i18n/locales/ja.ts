@@ -529,6 +529,8 @@ const ja = {
     emptyGroupsHint: '自分だけの単語グループを作成',
     groupName: 'グループ名',
     groupNameRequired: 'グループ名を入力してください',
+    groupLimitReached: 'カスタムグループは最大30個まで作成できます。',
+    wordLimitReached: '各グループには最大500語まで追加できます。',
     groupDesc: '説明（任意）',
     language: '言語',
     addWord: '単語を追加',

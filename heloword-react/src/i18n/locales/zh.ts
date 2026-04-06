@@ -529,6 +529,8 @@ const zh = {
     emptyGroupsHint: '建立自己的單字群組',
     groupName: '群組名稱',
     groupNameRequired: '請輸入群組名稱',
+    groupLimitReached: '最多只能建立 30 個自訂群組。',
+    wordLimitReached: '每個群組最多可加入 500 個單字。',
     groupDesc: '說明（選填）',
     language: '語言',
     addWord: '新增單字',

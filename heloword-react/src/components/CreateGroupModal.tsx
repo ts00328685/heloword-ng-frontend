@@ -28,7 +28,8 @@ const CreateGroupModal: React.FC<Props> = ({ onClose, onSave, initialName = '', 
       await onSave(trimmedName, description.trim(), language);
       onClose();
     } catch (e: any) {
-      setError(e.message || 'Error');
+      const msg = e?.message === 'GROUP_LIMIT_EXCEEDED' ? t('userVocab.groupLimitReached') : (e?.message || 'Error');
+      setError(msg);
     } finally {
       setSaving(false);
     }
