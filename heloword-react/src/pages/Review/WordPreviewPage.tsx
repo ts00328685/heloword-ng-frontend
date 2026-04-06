@@ -228,7 +228,8 @@ const WordPreviewPage: React.FC = () => {
       <Header title={groupName || t('review.preview')} showBack />
 
       {/* Toolbar */}
-      <div className="sticky top-14 z-10 bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 px-4 py-2.5 flex items-center justify-between gap-3">
+      <div className="sticky top-14 z-10 bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-2xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
         <p className="text-xs text-gray-500 dark:text-gray-400">
           {t('review.previewWordCount', { count: words.length })}
         </p>
@@ -257,6 +258,7 @@ const WordPreviewPage: React.FC = () => {
               </button>
             </>
           )}
+        </div>
         </div>
       </div>
 

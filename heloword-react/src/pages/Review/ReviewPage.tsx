@@ -1061,7 +1061,7 @@ const ReviewPage: React.FC = () => {
                       <button
                         onClick={(e) => handlePreview(e, group, key)}
                         disabled={previewLoadingKey === key}
-                        className="text-xs font-medium text-indigo-500 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 disabled:opacity-40 transition-colors flex items-center gap-1"
+                        className="text-xs font-semibold text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-800/60 hover:bg-indigo-200 dark:hover:bg-indigo-700/70 border border-indigo-200 dark:border-indigo-700 disabled:opacity-40 transition-colors flex items-center gap-1 px-2.5 py-1 rounded-full"
                       >
                         {previewLoadingKey === key ? (
                           <span className="animate-pulse">…</span>
@@ -1085,7 +1085,7 @@ const ReviewPage: React.FC = () => {
                       {isDue && (
                         <button
                           onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
-                          className="text-xs text-orange-500 font-semibold hover:text-orange-600 transition-colors"
+                          className="text-xs font-semibold text-orange-600 dark:text-orange-300 bg-orange-100 dark:bg-orange-800/60 hover:bg-orange-200 dark:hover:bg-orange-700/70 border border-orange-200 dark:border-orange-700 transition-colors px-2.5 py-1 rounded-full"
                         >
                           {t('review.reviewNow')} →
                         </button>
@@ -1093,7 +1093,7 @@ const ReviewPage: React.FC = () => {
                       {isUnfinished && (
                         <button
                           onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
-                          className="text-xs text-blue-500 font-medium hover:text-blue-600 transition-colors"
+                          className="text-xs font-semibold text-blue-600 dark:text-blue-300 bg-blue-100 dark:bg-blue-800/60 hover:bg-blue-200 dark:hover:bg-blue-700/70 border border-blue-200 dark:border-blue-700 transition-colors px-2.5 py-1 rounded-full"
                         >
                           {t('review.resumePrompt')} →
                         </button>
@@ -1101,7 +1101,7 @@ const ReviewPage: React.FC = () => {
                       {status === 'SCHEDULED' && pct === 100 && (
                         <button
                           onClick={(e) => { e.stopPropagation(); onCardClick(group, true); }}
-                          className="text-xs text-gray-400 dark:text-gray-500 font-medium hover:text-blue-500 transition-colors"
+                          className="text-xs font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 hover:text-blue-500 transition-colors px-2.5 py-1 rounded-full"
                         >
                           {t('review.reviewEarly')} →
                         </button>
