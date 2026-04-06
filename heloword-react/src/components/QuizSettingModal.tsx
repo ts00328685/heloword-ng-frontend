@@ -400,7 +400,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full max-w-md max-h-[90vh] flex flex-col shadow-2xl animate-fade-in">
+      <div className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full max-w-md max-h-[calc(90vh-4rem)] sm:max-h-[90vh] flex flex-col shadow-2xl animate-fade-in mb-16 sm:mb-0">
 
         {/* Drag handle (mobile) */}
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
@@ -526,7 +526,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-4 border-t border-gray-100 dark:border-gray-800">
+        <div className="px-4 pt-4 pb-4 border-t border-gray-100 dark:border-gray-800" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
           <button
             onClick={handleStart}
             disabled={selectedCount === 0}
