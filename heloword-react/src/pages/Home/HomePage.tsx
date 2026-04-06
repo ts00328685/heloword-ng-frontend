@@ -87,11 +87,12 @@ const WordSection: React.FC<{
           return (
             <div
               key={`${word.tableName}-${word.id}-${i}`}
-              className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all flex flex-col ${
+              className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all flex flex-col animate-fade-in-up ${
                 isSelected
                   ? 'rainbow-glow'
                   : 'border-gray-200 dark:border-gray-700 hover:shadow-lg hover:-translate-y-0.5'
               }`}
+              style={{ animationDelay: `${i * 60}ms` }}
             >
               <div className="p-3 flex flex-col gap-0.5">
                 <div className="flex items-center gap-1">
@@ -172,7 +173,7 @@ const WordSection: React.FC<{
                 )}
               </div>
               {isSelected && (
-                <div className="px-3 pb-3">
+                <div className="px-3 pb-3 animate-slide-down">
                   <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                     {!isLoggedIn ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
@@ -390,7 +391,7 @@ const HomePage: React.FC = () => {
   const hasData = allSections.some((s) => s.list?.length > 0);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header title="Heloword" />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">

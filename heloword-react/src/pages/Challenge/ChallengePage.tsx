@@ -213,7 +213,7 @@ const ChallengePage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header title={t('nav.challenge')} />
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full space-y-4">
 

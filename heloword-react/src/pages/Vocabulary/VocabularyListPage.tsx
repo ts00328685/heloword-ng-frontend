@@ -164,7 +164,7 @@ const VocabularyListPage: React.FC = () => {
   const hasMore = visibleCount < filtered.length;
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header
         title={t('wordList.title')}
         showBack

@@ -8,7 +8,7 @@ const VocabularyPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header title="Vocabulary" />
 
       <main className="flex-1 pb-20 px-4 pt-8 max-w-2xl mx-auto w-full flex flex-col items-center">
