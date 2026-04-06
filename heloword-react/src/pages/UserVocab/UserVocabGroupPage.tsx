@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -41,6 +41,17 @@ const UserVocabGroupPage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
   const insight = useAiInsight('custom-vocab:insight');
+
+  // Flashcard mode
+  const [flashMode, setFlashMode] = useState(false);
+  const [cardIndex, setCardIndex] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const [dragX, setDragX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const [exitDir, setExitDir] = useState<'left' | 'right' | null>(null);
+  const [enterDir, setEnterDir] = useState<'left' | 'right' | null>(null);
+  const exitingRef = useRef(false);
   const [editingWord, setEditingWord] = useState<CustomWord | null>(null);
   const [editingGroup, setEditingGroup] = useState(false);
   const [confirmDeleteWord, setConfirmDeleteWord] = useState<CustomWord | null>(null);
@@ -102,6 +113,70 @@ const UserVocabGroupPage: React.FC = () => {
       String(word.id),
       () => getWordInsight(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang),
     );
+  };
+
+  // ── Flashcard helpers ────────────────────────────────────────────────────────
+
+  const clearInsight = () => { setSelectedWordId(null); insight.clear(); };
+
+  const flashGoNext = (list: CustomWord[]) => {
+    if (exitingRef.current || cardIndex >= list.length - 1) return;
+    exitingRef.current = true;
+    clearInsight();
+    setExitDir('left');
+    setTimeout(() => {
+      setCardIndex((i) => i + 1); setFlipped(false); setDragX(0); setExitDir(null);
+      setEnterDir('right');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        setEnterDir(null);
+        setTimeout(() => { exitingRef.current = false; }, 320);
+      }));
+    }, 280);
+  };
+
+  const flashGoPrev = () => {
+    if (exitingRef.current || cardIndex <= 0) return;
+    exitingRef.current = true;
+    clearInsight();
+    setExitDir('right');
+    setTimeout(() => {
+      setCardIndex((i) => i - 1); setFlipped(false); setDragX(0); setExitDir(null);
+      setEnterDir('left');
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        setEnterDir(null);
+        setTimeout(() => { exitingRef.current = false; }, 320);
+      }));
+    }, 280);
+  };
+
+  const flashPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (exitingRef.current) return;
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    dragStartX.current = e.clientX;
+    setIsDragging(true);
+  };
+
+  const flashPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    setDragX(e.clientX - dragStartX.current);
+  };
+
+  const flashPointerUp = (list: CustomWord[]) => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (Math.abs(dragX) < 10) { setFlipped((f) => !f); setDragX(0); }
+    else if (dragX < -60) flashGoNext(list);
+    else if (dragX > 60) flashGoPrev();
+    else setDragX(0);
+  };
+
+  const flashCardStyle = (): React.CSSProperties => {
+    if (exitDir === 'left')   return { transform: 'translateX(-130vw) rotate(-12deg)', transition: 'transform 0.28s ease-in, opacity 0.28s ease-in', opacity: 0 };
+    if (exitDir === 'right')  return { transform: 'translateX(130vw) rotate(12deg)',   transition: 'transform 0.28s ease-in, opacity 0.28s ease-in', opacity: 0 };
+    if (enterDir === 'right') return { transform: 'translateX(130vw)',  transition: 'none', opacity: 0 };
+    if (enterDir === 'left')  return { transform: 'translateX(-130vw)', transition: 'none', opacity: 0 };
+    if (isDragging)           return { transform: `translateX(${dragX}px) rotate(${dragX * 0.025}deg)`, transition: 'none' };
+    return { transform: 'translateX(0) rotate(0deg)', transition: 'transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.32s ease', opacity: 1 };
   };
 
   const handleAddWord = async (data: any) => {
@@ -304,8 +379,24 @@ const UserVocabGroupPage: React.FC = () => {
 
         {!loading && words.length > 0 && (
           <div className="space-y-2">
-            {/* Hide/show meanings toggle */}
-            <div className="flex justify-end mb-1">
+            {/* View controls: flashcard toggle + hide/show meanings */}
+            <div className="flex justify-between items-center mb-1">
+              {/* Flashcard toggle */}
+              <button
+                onClick={() => { setFlashMode((m) => !m); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
+                className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
+                  flashMode
+                    ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                {t('review.flashcardMode')}
+              </button>
+
+              {/* Hide/show meanings */}
               <button
                 onClick={() => { setHideMeanings((v) => !v); setRevealedIds(new Set()); }}
                 className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-lg border transition-colors ${
@@ -328,7 +419,113 @@ const UserVocabGroupPage: React.FC = () => {
               </button>
             </div>
 
-            {filtered.map((word) => {
+            {flashMode ? (() => {
+              const flashInsightOpen = selectedWordId === filtered[cardIndex]?.id;
+              const cur = filtered[cardIndex];
+              if (!cur) return null;
+              return (
+                <div className="flex flex-col items-center py-4 select-none overflow-x-hidden">
+                  {/* Card stack */}
+                  <div className="relative w-full max-w-sm" style={{ height: 340 }}>
+                    {[2, 1].map((offset) => {
+                      if (cardIndex + offset >= filtered.length) return null;
+                      return (
+                        <div key={offset}
+                          className="absolute inset-x-0 bottom-0 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-md"
+                          style={{ height: 300, transform: `translateY(-${offset * 10}px) scale(${1 - offset * 0.045})`, transformOrigin: 'bottom center', zIndex: 10 - offset, opacity: 1 - offset * 0.3 }}
+                        />
+                      );
+                    })}
+                    {/* Active card */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 cursor-grab active:cursor-grabbing"
+                      style={{ height: 300, zIndex: 20, ...flashCardStyle() }}
+                      onPointerDown={flashPointerDown}
+                      onPointerMove={flashPointerMove}
+                      onPointerUp={() => flashPointerUp(filtered)}
+                      onPointerCancel={() => flashPointerUp(filtered)}
+                    >
+                      <div className="flashcard-scene w-full h-full">
+                        <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
+                          {/* Front */}
+                          <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
+                            <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">{cur.word}</p>
+                            {cur.phonetics && <p className="text-sm text-gray-400 dark:text-gray-500 text-center">{cur.phonetics}</p>}
+                            <button
+                              onPointerDown={(e) => e.stopPropagation()}
+                              onClick={(e) => { e.stopPropagation(); pronounceWord(cur.word, wordLang); }}
+                              className="mt-3 p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                              aria-label="Pronounce"
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                              </svg>
+                            </button>
+                            {/* AI insight button */}
+                            <button
+                              onPointerDown={(e) => e.stopPropagation()}
+                              onClick={(e) => { e.stopPropagation(); handleWordTap(cur); }}
+                              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                                flashInsightOpen
+                                  ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
+                                  : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                              }`}
+                            >
+                              <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                              {flashInsightOpen ? `${t('llm.insight')} ▲` : t('llm.insight')}
+                            </button>
+                            <p className="text-[11px] text-gray-300 dark:text-gray-600 mt-auto">{t('review.flashcardTap')}</p>
+                          </div>
+                          {/* Back */}
+                          <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
+                            <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 text-center">{cur.word}</p>
+                            <div className="w-8 h-px bg-blue-200 dark:bg-gray-500 my-1" />
+                            <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug break-words">{cur.translateEn}</p>
+                            {cur.translateCh && <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">{cur.translateCh}</p>}
+                            {cur.sentence && <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic mt-3 leading-relaxed line-clamp-3 px-2">{cur.sentence}</p>}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* AI insight panel */}
+                  {flashInsightOpen && (
+                    <div className="w-full max-w-sm mt-4 animate-fade-in">
+                      <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                        {!isLoggedIn ? (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                        ) : insight.loading ? (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                        ) : insight.error ? (
+                          <div className="flex items-center gap-2">
+                            <p className="text-xs text-red-400">{t('llm.error')}</p>
+                            <button onClick={() => insight.retry(String(cur.id), () => getWordInsight(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
+                          </div>
+                        ) : (
+                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{insight.text}</p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Progress dots */}
+                  <div className="flex items-center gap-1.5 mt-6 flex-wrap justify-center max-w-xs">
+                    {filtered.map((_, i) => (
+                      <button key={i}
+                        onClick={() => { if (!exitingRef.current) { setCardIndex(i); setFlipped(false); setDragX(0); clearInsight(); } }}
+                        className={`rounded-full transition-all duration-200 ${i === cardIndex ? 'w-5 h-2 bg-blue-500' : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`}
+                        aria-label={`Card ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
+                    {cardIndex + 1} / {filtered.length}
+                    <span className="ml-2 opacity-60">{t('review.flashcardSwipe')}</span>
+                  </p>
+                </div>
+              );
+            })() : filtered.map((word) => {
               const isSelected = selectedWordId === word.id;
               return (
                 <div
@@ -447,8 +644,8 @@ const UserVocabGroupPage: React.FC = () => {
           </div>
         )}
 
-        {/* Mobile FABs only (desktop uses inline toolbar buttons above) */}
-        {!loading && (
+        {/* Mobile FABs — hidden in flashcard mode */}
+        {!loading && !flashMode && (
           <div className="sm:hidden fixed bottom-36 right-4 flex flex-col items-end gap-2 z-30">
             <button
               onClick={() => setShowImportModal(true)}
@@ -472,8 +669,8 @@ const UserVocabGroupPage: React.FC = () => {
         )}
       </main>
 
-      {/* Start Quiz button */}
-      {!loading && words.length > 0 && (
+      {/* Start Quiz button — hidden in flashcard mode */}
+      {!loading && words.length > 0 && !flashMode && (
         <div className="fixed bottom-20 left-0 right-0 px-4 pb-2 z-20 max-w-2xl mx-auto">
           <button
             onClick={handleStartQuiz}
