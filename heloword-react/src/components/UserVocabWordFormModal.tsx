@@ -48,7 +48,8 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, sys
       await onSave({ word: word.trim(), translateEn: translateEn.trim(), translateCh: translateCh.trim(), sentence: sentence.trim(), phonetics: phonetics.trim(), sourceWordId, sourceTableName });
       onClose();
     } catch (e: any) {
-      setError(e.message || 'Error');
+      const msg = e?.message === 'WORD_LIMIT_EXCEEDED' ? t('userVocab.wordLimitReached') : (e?.message || 'Error');
+      setError(msg);
     } finally {
       setSaving(false);
     }

@@ -529,6 +529,8 @@ const en = {
     emptyGroupsHint: 'Create your own vocabulary groups',
     groupName: 'Group name',
     groupNameRequired: 'Group name is required',
+    groupLimitReached: 'You can create up to 30 custom groups.',
+    wordLimitReached: 'Each group can have at most 500 words.',
     groupDesc: 'Description (optional)',
     language: 'Language',
     addWord: 'Add Word',

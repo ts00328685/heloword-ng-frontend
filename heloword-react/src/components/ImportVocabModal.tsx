@@ -105,6 +105,9 @@ const ImportVocabModal: React.FC<Props> = ({ onClose, onImport }) => {
         }))
       );
       onClose();
+    } catch (e: any) {
+      const msg = e?.message === 'WORD_LIMIT_EXCEEDED' ? t('userVocab.wordLimitReached') : (e?.message || t('userVocab.importParseError'));
+      setError(msg);
     } finally {
       setImporting(false);
     }

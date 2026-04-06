@@ -42,7 +42,8 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
       setSaved(group.id);
       setTimeout(onClose, 800);
     } catch (e: any) {
-      setError(e.message || 'Failed to add word');
+      const msg = e?.message === 'WORD_LIMIT_EXCEEDED' ? t('userVocab.wordLimitReached') : (e?.message || 'Failed to add word');
+      setError(msg);
     } finally {
       setSaving(null);
     }
@@ -60,7 +61,10 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
       setNewGroupName('');
       await handleAddToGroup(created);
     } catch (e: any) {
-      setError(e.message || 'Failed to create group');
+      const msg = e?.message === 'GROUP_LIMIT_EXCEEDED' ? t('userVocab.groupLimitReached')
+        : e?.message === 'WORD_LIMIT_EXCEEDED' ? t('userVocab.wordLimitReached')
+        : (e?.message || 'Failed to create group');
+      setError(msg);
     } finally {
       setCreating(false);
     }
