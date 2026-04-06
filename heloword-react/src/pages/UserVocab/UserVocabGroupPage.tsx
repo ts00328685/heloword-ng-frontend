@@ -49,6 +49,8 @@ const UserVocabGroupPage: React.FC = () => {
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef(0);
+  const dragXRef = useRef(0);
+  const isDraggingRef = useRef(false);
   const [exitDir, setExitDir] = useState<'left' | 'right' | null>(null);
   const [enterDir, setEnterDir] = useState<'left' | 'right' | null>(null);
   const exitingRef = useRef(false);
@@ -153,20 +155,26 @@ const UserVocabGroupPage: React.FC = () => {
     if (exitingRef.current) return;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     dragStartX.current = e.clientX;
+    isDraggingRef.current = true;
     setIsDragging(true);
   };
 
   const flashPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    setDragX(e.clientX - dragStartX.current);
+    if (!isDraggingRef.current) return;
+    const dx = e.clientX - dragStartX.current;
+    dragXRef.current = dx;
+    setDragX(dx);
   };
 
   const flashPointerUp = (list: CustomWord[]) => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
     setIsDragging(false);
-    if (Math.abs(dragX) < 10) { setFlipped((f) => !f); setDragX(0); }
-    else if (dragX < -60) flashGoNext(list);
-    else if (dragX > 60) flashGoPrev();
+    const dist = dragXRef.current;
+    dragXRef.current = 0;
+    if (Math.abs(dist) < 10) { setFlipped((f) => !f); setDragX(0); }
+    else if (dist < -60) flashGoNext(list);
+    else if (dist > 60) flashGoPrev();
     else setDragX(0);
   };
 
@@ -439,7 +447,7 @@ const UserVocabGroupPage: React.FC = () => {
                     {/* Active card */}
                     <div
                       className="absolute inset-x-0 bottom-0 cursor-grab active:cursor-grabbing"
-                      style={{ height: 300, zIndex: 20, ...flashCardStyle() }}
+                      style={{ height: 300, zIndex: 20, touchAction: 'none', ...flashCardStyle() }}
                       onPointerDown={flashPointerDown}
                       onPointerMove={flashPointerMove}
                       onPointerUp={() => flashPointerUp(filtered)}
@@ -522,10 +530,32 @@ const UserVocabGroupPage: React.FC = () => {
                       );
                     })}
                   </div>
-                  <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
-                    {cardIndex + 1} / {filtered.length}
-                    <span className="ml-2 opacity-60">{t('review.flashcardSwipe')}</span>
-                  </p>
+                  {/* Prev / counter / Next */}
+                  <div className="flex items-center gap-4 mt-4">
+                    <button
+                      onClick={() => flashGoPrev()}
+                      disabled={cardIndex === 0}
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      aria-label="Previous card"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <span className="text-sm text-gray-400 dark:text-gray-500 min-w-[60px] text-center">
+                      {cardIndex + 1} / {filtered.length}
+                    </span>
+                    <button
+                      onClick={() => flashGoNext(filtered)}
+                      disabled={cardIndex >= filtered.length - 1}
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      aria-label="Next card"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               );
             })() : filtered.map((word) => {
