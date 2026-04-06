@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { CustomGroup, addCustomWord, fetchCustomGroups, createCustomGroup } from '../services/customVocab.service';
 import { Sentence } from '../models';
@@ -70,7 +71,7 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
     }
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
       <div
         className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm max-h-[80vh] flex flex-col"
@@ -166,7 +167,8 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
           {error && <p className="text-xs text-red-500">{error}</p>}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

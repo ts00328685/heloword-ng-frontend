@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
@@ -35,7 +36,7 @@ const CreateGroupModal: React.FC<Props> = ({ onClose, onSave, initialName = '', 
     }
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
       <div
         className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm"
@@ -117,7 +118,8 @@ const CreateGroupModal: React.FC<Props> = ({ onClose, onSave, initialName = '', 
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

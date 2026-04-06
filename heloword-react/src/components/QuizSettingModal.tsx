@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { QuizSetting } from '../models';
@@ -398,7 +399,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
     navigate('/vocabulary/quiz', { state: { quizSettings } });
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm">
       <div className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full max-w-md max-h-[calc(90vh-4rem)] sm:max-h-[90vh] flex flex-col shadow-2xl animate-fade-in mb-16 sm:mb-0">
 
@@ -556,7 +557,8 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         };
         return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
       })()}
-    </div>
+    </div>,
+    document.body
   );
 };
 
