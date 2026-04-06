@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import * as XLSX from 'xlsx';
 import { CustomWord } from '../services/customVocab.service';
@@ -115,7 +116,7 @@ const ImportVocabModal: React.FC<Props> = ({ onClose, onImport }) => {
 
   const previewRows = rows.slice(0, PREVIEW_ROWS);
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
       <div
         className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full sm:max-w-2xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl"
@@ -275,7 +276,8 @@ const ImportVocabModal: React.FC<Props> = ({ onClose, onImport }) => {
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

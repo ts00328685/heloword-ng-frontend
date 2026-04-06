@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useSocial } from '../contexts/SocialContext';
 import { sendVocabShare } from '../services/vocabShare.service';
@@ -36,7 +37,7 @@ const ShareVocabGroupModal: React.FC<Props> = ({ groupId, groupName, onClose }) 
     if (e.target === e.currentTarget) onClose();
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm"
       onClick={handleBackdrop}
@@ -119,7 +120,8 @@ const ShareVocabGroupModal: React.FC<Props> = ({ groupId, groupName, onClose }) 
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
