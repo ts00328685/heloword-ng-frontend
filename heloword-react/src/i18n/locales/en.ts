@@ -201,6 +201,23 @@ const en = {
         body: 'Tap the upload button next to "+ Add Word" to import words in bulk. Download a sample file to see the required format — up to 500 words at a time.',
       },
     ],
+    wordPreview: [
+      {
+        icon: '👁️',
+        title: 'Reveal meanings one by one',
+        body: 'Each word starts hidden. Tap the eye icon on any card to reveal its meaning, or use Hide All / Show All in the toolbar to toggle the entire list at once.',
+      },
+      {
+        icon: '🃏',
+        title: 'Flashcard mode',
+        body: 'Tap the Flashcard button in the toolbar to switch to full-screen swipeable cards. The front shows the word — tap the card to flip it and see the meaning.',
+      },
+      {
+        icon: '👆',
+        title: 'Swipe to navigate',
+        body: 'In flashcard mode, swipe left to advance to the next word and swipe right to go back. Tap any dot at the bottom to jump directly to that card.',
+      },
+    ],
   },
   review: {
     loginRequired: 'Login required',
@@ -238,6 +255,9 @@ const en = {
     previewHide: 'Hide',
     previewReveal: 'Reveal',
     previewTapReveal: 'Tap eye to reveal',
+    flashcardMode: 'Flashcard',
+    flashcardTap: 'Tap to flip',
+    flashcardSwipe: '← swipe →',
     filterAll: 'All',
     searchPlaceholder: 'Search by language or date…',
     noResults: 'No groups match the current filter.',
