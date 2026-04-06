@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -1149,7 +1150,7 @@ const ReviewPage: React.FC = () => {
       )}
 
       {/* Edit Group Modal */}
-      {editGroup && (
+      {editGroup && ReactDOM.createPortal(
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setEditGroup(null)}>
           <div
             className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full max-w-md shadow-2xl animate-fade-in"
@@ -1231,7 +1232,8 @@ const ReviewPage: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {showReviewOnboarding && (() => {

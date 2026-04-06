@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'; // useRef kept for hasFetched
+import ReactDOM from 'react-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { CustomGroup, fetchCustomGroups } from '../../services/customVocab.service';
 import AddToGroupModal from '../../components/AddToGroupModal';
@@ -207,7 +208,7 @@ const AuthorNoteModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const { t } = useTranslation();
   const paragraphs = t('authorNote.body').split('\n\n');
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
       <div
         className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm animate-fade-in"
@@ -276,7 +277,8 @@ const AuthorNoteModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

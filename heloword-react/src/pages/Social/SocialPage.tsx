@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -84,7 +85,7 @@ const ChatPanel: React.FC<{
     }
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex flex-col bg-gray-100 dark:bg-gray-950 sm:items-center sm:justify-center">
       <div className="flex flex-col w-full max-w-2xl h-full sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl bg-white dark:bg-gray-900 overflow-hidden">
         {/* Chat header */}
@@ -153,7 +154,8 @@ const ChatPanel: React.FC<{
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
@@ -172,7 +174,7 @@ const NicknameModal: React.FC<{
     onClose();
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4" onClick={onClose}>
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 w-full max-w-sm shadow-xl" onClick={(e) => e.stopPropagation()}>
         <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-1">{t('social.setNickname')}</h3>
@@ -194,7 +196,8 @@ const NicknameModal: React.FC<{
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
