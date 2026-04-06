@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export interface OnboardingStep {
   icon: string;
@@ -18,7 +19,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({ steps, onDone, onSkip
   const isLast = current === steps.length - 1;
   const step = steps[current];
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm px-4">
       <div className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full max-w-sm shadow-2xl overflow-hidden animate-fade-in mb-16 sm:mb-0 max-h-[calc(90vh-4rem)] sm:max-h-[90vh] flex flex-col">
 
@@ -85,7 +86,8 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({ steps, onDone, onSkip
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
