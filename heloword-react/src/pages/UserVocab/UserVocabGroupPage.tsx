@@ -509,15 +509,18 @@ const UserVocabGroupPage: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Progress dots */}
-                  <div className="flex items-center gap-1.5 mt-6 flex-wrap justify-center max-w-xs">
-                    {filtered.map((_, i) => (
-                      <button key={i}
-                        onClick={() => { if (!exitingRef.current) { setCardIndex(i); setFlipped(false); setDragX(0); clearInsight(); } }}
-                        className={`rounded-full transition-all duration-200 ${i === cardIndex ? 'w-5 h-2 bg-blue-500' : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`}
-                        aria-label={`Card ${i + 1}`}
-                      />
-                    ))}
+                  {/* Progress dots — show current ± 5 */}
+                  <div className="flex items-center gap-1.5 mt-6 justify-center">
+                    {filtered.map((_, i) => {
+                      if (i < cardIndex - 5 || i > cardIndex + 5) return null;
+                      return (
+                        <button key={i}
+                          onClick={() => { if (!exitingRef.current) { setCardIndex(i); setFlipped(false); setDragX(0); clearInsight(); } }}
+                          className={`rounded-full transition-all duration-200 ${i === cardIndex ? 'w-5 h-2 bg-blue-500' : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`}
+                          aria-label={`Card ${i + 1}`}
+                        />
+                      );
+                    })}
                   </div>
                   <p className="mt-3 text-xs text-gray-400 dark:text-gray-500">
                     {cardIndex + 1} / {filtered.length}

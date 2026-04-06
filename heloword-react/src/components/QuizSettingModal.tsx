@@ -18,6 +18,15 @@ const EN_WORD_PRESETS = [
   { labelKey: 'multiChoice.advanced',     coreLabel: '',          descKey: 'multiChoice.enAdvancedDesc',     min: 6422, max: 9481 },
 ] as const;
 
+// Preset JLPT levels for Japanese word list (9117 words split evenly into 5 levels)
+const JP_WORD_PRESETS = [
+  { coreLabel: 'N5', descKey: 'multiChoice.jpN5Desc', min: 1,    max: 1823 },
+  { coreLabel: 'N4', descKey: 'multiChoice.jpN4Desc', min: 1824, max: 3646 },
+  { coreLabel: 'N3', descKey: 'multiChoice.jpN3Desc', min: 3647, max: 5469 },
+  { coreLabel: 'N2', descKey: 'multiChoice.jpN2Desc', min: 5470, max: 7292 },
+  { coreLabel: 'N1', descKey: 'multiChoice.jpN1Desc', min: 7293, max: 9117 },
+] as const;
+
 // Language color palette keyed by list type
 const TYPE_COLOR: Record<string, { bg: string; dot: string; badge: string }> = {
   wordEnglishList:     { bg: 'bg-blue-50 dark:bg-blue-900/20',   dot: 'bg-blue-400',   badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300' },
@@ -97,6 +106,11 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                 {t('multiChoice.easy')} · {t('multiChoice.medium')} · {t('multiChoice.intermediary')} · {t('multiChoice.advanced')}
               </p>
             )}
+            {setting.type === 'wordJapaneseList' && (
+              <p className="text-xs text-pink-400 dark:text-pink-500 mt-0.5">
+                N5 · N4 · N3 · N2 · N1
+              </p>
+            )}
           </div>
         </div>
         <Toggle
@@ -136,6 +150,40 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                         {t(preset.labelKey)}{preset.coreLabel ? ` · ${preset.coreLabel}` : ''}
                       </span>
                       <span className={`block mt-0.5 ${isActive ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'}`}>
+                        {t(preset.descKey)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Japanese word JLPT level presets */}
+          {setting.type === 'wordJapaneseList' && (
+            <div className="mb-3">
+              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">{t('quizModal.quickSelect')}</p>
+              <div className="grid grid-cols-5 gap-1.5">
+                {JP_WORD_PRESETS.map((preset) => {
+                  const isActive = setting.min === preset.min && setting.max === preset.max;
+                  return (
+                    <button
+                      key={preset.coreLabel}
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMinStr(String(preset.min));
+                        setMaxStr(String(preset.max));
+                        onChange({ ...setting, min: preset.min, max: preset.max });
+                      }}
+                      className={`text-center px-2 py-2 rounded-xl border text-xs transition-colors ${
+                        isActive
+                          ? 'border-pink-400 bg-pink-500 text-white'
+                          : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-pink-300 dark:hover:border-pink-600'
+                      }`}
+                    >
+                      <span className="font-bold block">{preset.coreLabel}</span>
+                      <span className={`block mt-0.5 text-[10px] leading-tight ${isActive ? 'text-pink-100' : 'text-gray-400 dark:text-gray-500'}`}>
                         {t(preset.descKey)}
                       </span>
                     </button>
