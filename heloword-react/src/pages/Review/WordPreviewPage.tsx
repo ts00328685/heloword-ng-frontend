@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -66,6 +66,15 @@ const InsightButton: React.FC<{
   </button>
 );
 
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 const WordPreviewPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -80,10 +89,37 @@ const WordPreviewPage: React.FC = () => {
   const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem(PREVIEW_ONBOARDING_KEY));
   const dismissOnboarding = () => { localStorage.setItem(PREVIEW_ONBOARDING_KEY, '1'); setShowOnboarding(false); };
 
-  // List mode state
-  const [revealed, setRevealed] = useState<boolean[]>(() => words.map(() => false));
-  const allHidden = revealed.every((v) => !v);
-  const allRevealed = revealed.every((v) => v);
+  // Search & shuffle
+  const [query, setQuery] = useState('');
+  const [shuffled, setShuffled] = useState(false);
+  const [shuffledWords, setShuffledWords] = useState<Sentence[]>(words);
+
+  // displayWords: apply shuffle order first, then filter by query
+  const displayWords = useMemo(() => {
+    const base = shuffled ? shuffledWords : words;
+    const q = query.trim().toLowerCase();
+    if (!q) return base;
+    return base.filter(w =>
+      w.word.toLowerCase().includes(q) ||
+      (w.translateEn || '').toLowerCase().includes(q) ||
+      (w.translateCh || '').toLowerCase().includes(q)
+    );
+  }, [shuffled, shuffledWords, words, query]);
+
+  // List mode revealed state — keyed by word id so it survives reorder/filter
+  const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
+  const allHidden = displayWords.every(w => !revealedIds.has(w.id));
+  const allRevealed = displayWords.length > 0 && displayWords.every(w => revealedIds.has(w.id));
+
+  const toggleReveal = (id: number) => {
+    setRevealedIds(prev => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+  const hideAll = () => setRevealedIds(new Set());
+  const showAll = () => setRevealedIds(new Set(displayWords.map(w => w.id)));
 
   // Flashcard mode state
   const [flashMode, setFlashMode] = useState(false);
@@ -126,25 +162,24 @@ const WordPreviewPage: React.FC = () => {
     );
   };
 
-  // ── List mode handlers ──────────────────────────────────────────────────────
+  // ── Shuffle toggle ──────────────────────────────────────────────────────────
 
-  const toggleOne = (i: number) => {
-    setRevealed((prev) => {
-      const next = [...prev];
-      next[i] = !next[i];
-      return next;
-    });
+  const toggleShuffle = () => {
+    const next = !shuffled;
+    setShuffled(next);
+    if (next) setShuffledWords(shuffle(words));
+    setCardIndex(0);
+    setFlipped(false);
+    setDragX(0);
+    clearInsight();
   };
-
-  const hideAll = () => setRevealed(words.map(() => false));
-  const showAll = () => setRevealed(words.map(() => true));
 
   // ── Flashcard navigation ────────────────────────────────────────────────────
 
   const clearInsight = () => { setSelectedWordId(null); insight.clear(); };
 
   const goNext = () => {
-    if (exitingRef.current || cardIndex >= words.length - 1) return;
+    if (exitingRef.current || cardIndex >= displayWords.length - 1) return;
     exitingRef.current = true;
     clearInsight();
     setExitDir('left');
@@ -225,7 +260,7 @@ const WordPreviewPage: React.FC = () => {
     return { transform: 'translateX(0) rotate(0deg)', transition: 'transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.32s ease', opacity: 1 };
   };
 
-  const currentWord = words[cardIndex];
+  const currentWord = displayWords[cardIndex];
   const flashInsightOpen = selectedWordId === currentWord?.id;
 
   // ── Render ──────────────────────────────────────────────────────────────────
@@ -236,199 +271,259 @@ const WordPreviewPage: React.FC = () => {
 
       {/* Toolbar */}
       <div className="sticky top-14 z-10 bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-2xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          {t('review.previewWordCount', { count: words.length })}
-        </p>
-        <div className="flex gap-2 items-center">
-          <button
-            onClick={() => { setFlashMode((m) => !m); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
-            className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
-              flashMode
-                ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
-                : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
-            }`}
-          >
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            {t('review.flashcardMode')}
-          </button>
+        <div className="max-w-2xl mx-auto px-4 pt-2 pb-2 space-y-2">
 
-          {!flashMode && (
-            <>
-              <button onClick={hideAll} disabled={allHidden} className="text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 disabled:opacity-40 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
-                {t('review.previewHideAll')}
+          {/* Search row */}
+          <div className="flex items-center gap-2">
+            <div className="relative flex-1">
+              <svg className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 dark:text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z" />
+              </svg>
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => { setQuery(e.target.value); setCardIndex(0); }}
+                placeholder={t('review.previewSearch', 'Search words…')}
+                className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+              />
+              {query && (
+                <button
+                  onClick={() => { setQuery(''); setCardIndex(0); }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+
+            {/* Shuffle toggle */}
+            <button
+              onClick={toggleShuffle}
+              title={shuffled ? t('review.previewUnshuffle', 'Original order') : t('review.previewShuffle', 'Shuffle')}
+              className={`shrink-0 p-1.5 rounded-lg border transition-colors ${
+                shuffled
+                  ? 'bg-purple-500 border-purple-500 text-white'
+                  : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 3h5v5M4 20l16-16M21 16v5h-5M15 15l6 6M4 4l5 5" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Controls row */}
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs text-gray-400 dark:text-gray-500">
+              {query
+                ? t('review.previewFiltered', { shown: displayWords.length, total: words.length })
+                : t('review.previewWordCount', { count: words.length })}
+            </p>
+            <div className="flex gap-1.5 items-center">
+              <button
+                onClick={() => { setFlashMode((m) => !m); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
+                className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
+                  flashMode
+                    ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                {t('review.flashcardMode')}
               </button>
-              <button onClick={showAll} disabled={allRevealed} className="text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 disabled:opacity-40 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
-                {t('review.previewShowAll')}
-              </button>
-            </>
-          )}
-        </div>
+
+              {!flashMode && (
+                <>
+                  <button onClick={hideAll} disabled={allHidden} className="text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 disabled:opacity-40 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
+                    {t('review.previewHideAll')}
+                  </button>
+                  <button onClick={showAll} disabled={allRevealed} className="text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 disabled:opacity-40 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
+                    {t('review.previewShowAll')}
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
       {flashMode ? (
         /* ── FLASHCARD MODE ── */
         <main className="flex-1 flex flex-col items-center justify-center px-6 py-8 select-none overflow-x-hidden overflow-y-auto">
-          {/* Card stack */}
-          <div className="relative w-full max-w-sm" style={{ height: 340 }}>
+          {displayWords.length === 0 ? (
+            <p className="text-sm text-gray-400 dark:text-gray-500">{t('review.previewNoResults', 'No words match your search.')}</p>
+          ) : (
+            <>
+              {/* Card stack */}
+              <div className="relative w-full max-w-sm" style={{ height: 340 }}>
 
-            {/* Stacked peek cards */}
-            {[2, 1].map((offset) => {
-              const peekIdx = cardIndex + offset;
-              if (peekIdx >= words.length) return null;
-              return (
-                <div
-                  key={peekIdx}
-                  className="absolute inset-x-0 bottom-0 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-md"
-                  style={{
-                    height: 300,
-                    transform: `translateY(-${offset * 10}px) scale(${1 - offset * 0.045})`,
-                    transformOrigin: 'bottom center',
-                    zIndex: 10 - offset,
-                    opacity: 1 - offset * 0.3,
-                  }}
-                />
-              );
-            })}
-
-            {/* Active card — drag wrapper */}
-            <div
-              className="absolute inset-x-0 bottom-0 cursor-grab active:cursor-grabbing"
-              style={{ height: 300, zIndex: 20, touchAction: 'none', ...cardStyle() }}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              onPointerCancel={handlePointerUp}
-            >
-              <div className="flashcard-scene w-full h-full">
-                <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
-
-                  {/* Front face */}
-                  <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
-                    <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">
-                      {currentWord.word}
-                    </p>
-                    {currentWord.sentence && (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic line-clamp-2 mt-1 px-2">
-                        {currentWord.sentence}
-                      </p>
-                    )}
-                    <button
-                      onPointerDown={(e) => e.stopPropagation()}
-                      onClick={(e) => { e.stopPropagation(); pronounceWord(currentWord.word, wordLang(currentWord)); }}
-                      className="mt-3 p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                      aria-label="Pronounce"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                      </svg>
-                    </button>
-                    {/* AI Insight button on front face */}
-                    <InsightButton
-                      active={flashInsightOpen}
-                      label={t('llm.insight')}
-                      onPointerDown={(e) => e.stopPropagation()}
-                      onClick={(e) => { e.stopPropagation(); runInsight(currentWord); }}
+                {/* Stacked peek cards */}
+                {[2, 1].map((offset) => {
+                  const peekIdx = cardIndex + offset;
+                  if (peekIdx >= displayWords.length) return null;
+                  return (
+                    <div
+                      key={peekIdx}
+                      className="absolute inset-x-0 bottom-0 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-md"
+                      style={{
+                        height: 300,
+                        transform: `translateY(-${offset * 10}px) scale(${1 - offset * 0.045})`,
+                        transformOrigin: 'bottom center',
+                        zIndex: 10 - offset,
+                        opacity: 1 - offset * 0.3,
+                      }}
                     />
-                    <p className="text-[11px] text-gray-300 dark:text-gray-600 mt-auto">
-                      {t('review.flashcardTap')}
-                    </p>
-                  </div>
+                  );
+                })}
 
-                  {/* Back face */}
-                  <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
-                    <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 text-center">
-                      {currentWord.word}
-                    </p>
-                    <div className="w-8 h-px bg-blue-200 dark:bg-gray-500 my-1" />
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug break-words">
-                      {currentWord.translateEn}
-                    </p>
-                    {currentWord.translateCh && (
-                      <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
-                        {currentWord.translateCh}
-                      </p>
-                    )}
-                    {currentWord.sentence && (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic mt-3 leading-relaxed line-clamp-3 px-2">
-                        {currentWord.sentence}
-                      </p>
-                    )}
-                  </div>
+                {/* Active card — drag wrapper */}
+                <div
+                  className="absolute inset-x-0 bottom-0 cursor-grab active:cursor-grabbing"
+                  style={{ height: 300, zIndex: 20, touchAction: 'none', ...cardStyle() }}
+                  onPointerDown={handlePointerDown}
+                  onPointerMove={handlePointerMove}
+                  onPointerUp={handlePointerUp}
+                  onPointerCancel={handlePointerUp}
+                >
+                  <div className="flashcard-scene w-full h-full">
+                    <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
 
+                      {/* Front face */}
+                      <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
+                        <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{cardIndex + 1}</span>
+                        <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">
+                          {currentWord.word}
+                        </p>
+                        {currentWord.sentence && (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic line-clamp-2 mt-1 px-2">
+                            {currentWord.sentence}
+                          </p>
+                        )}
+                        <button
+                          onPointerDown={(e) => e.stopPropagation()}
+                          onClick={(e) => { e.stopPropagation(); pronounceWord(currentWord.word, wordLang(currentWord)); }}
+                          className="mt-3 p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                          aria-label="Pronounce"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.9M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                          </svg>
+                        </button>
+                        {/* AI Insight button on front face */}
+                        <InsightButton
+                          active={flashInsightOpen}
+                          label={t('llm.insight')}
+                          onPointerDown={(e) => e.stopPropagation()}
+                          onClick={(e) => { e.stopPropagation(); runInsight(currentWord); }}
+                        />
+                        <p className="text-[11px] text-gray-300 dark:text-gray-600 mt-auto">
+                          {t('review.flashcardTap')}
+                        </p>
+                      </div>
+
+                      {/* Back face */}
+                      <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
+                        <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 text-center">
+                          {currentWord.word}
+                        </p>
+                        <div className="w-8 h-px bg-blue-200 dark:bg-gray-500 my-1" />
+                        <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug break-words">
+                          {currentWord.translateEn}
+                        </p>
+                        {currentWord.translateCh && (
+                          <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
+                            {currentWord.translateCh}
+                          </p>
+                        )}
+                        {currentWord.sentence && (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic mt-3 leading-relaxed line-clamp-3 px-2">
+                            {currentWord.sentence}
+                          </p>
+                        )}
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* AI insight panel for flashcard mode */}
-          {flashInsightOpen && (
-            <div className="w-full max-w-sm mt-4 animate-fade-in">
-              <InsightPanel
-                isLoggedIn={isLoggedIn}
-                loading={insight.loading}
-                error={insight.error}
-                text={insight.text}
-                noLoginLabel={t('llm.loginRequired')}
-                thinkingLabel={t('llm.thinking')}
-                errorLabel={t('llm.error')}
-                onRetry={() => insight.retry(String(currentWord.id), () => getWordInsight(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))}
-              />
-            </div>
-          )}
+              {/* AI insight panel for flashcard mode */}
+              {flashInsightOpen && (
+                <div className="w-full max-w-sm mt-4 animate-fade-in">
+                  <InsightPanel
+                    isLoggedIn={isLoggedIn}
+                    loading={insight.loading}
+                    error={insight.error}
+                    text={insight.text}
+                    noLoginLabel={t('llm.loginRequired')}
+                    thinkingLabel={t('llm.thinking')}
+                    errorLabel={t('llm.error')}
+                    onRetry={() => insight.retry(String(currentWord.id), () => getWordInsight(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))}
+                  />
+                </div>
+              )}
 
-          {/* Progress dots — show current ± 5 */}
-          <div className="flex items-center gap-1.5 mt-6 justify-center">
-            {words.map((_, i) => {
-              if (i < cardIndex - 5 || i > cardIndex + 5) return null;
-              return (
+              {/* Progress dots — show current ± 5 */}
+              <div className="flex items-center gap-1.5 mt-6 justify-center">
+                {displayWords.map((_, i) => {
+                  if (i < cardIndex - 5 || i > cardIndex + 5) return null;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => { if (!exitingRef.current) { setCardIndex(i); setFlipped(false); setDragX(0); clearInsight(); } }}
+                      className={`rounded-full transition-all duration-200 ${
+                        i === cardIndex ? 'w-5 h-2 bg-blue-500' : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                      }`}
+                      aria-label={`Card ${i + 1}`}
+                    />
+                  );
+                })}
+              </div>
+
+              {/* Prev / counter / Next */}
+              <div className="flex items-center gap-4 mt-4">
                 <button
-                  key={i}
-                  onClick={() => { if (!exitingRef.current) { setCardIndex(i); setFlipped(false); setDragX(0); clearInsight(); } }}
-                  className={`rounded-full transition-all duration-200 ${
-                    i === cardIndex ? 'w-5 h-2 bg-blue-500' : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-                  }`}
-                  aria-label={`Card ${i + 1}`}
-                />
-              );
-            })}
-          </div>
-
-          {/* Prev / counter / Next */}
-          <div className="flex items-center gap-4 mt-4">
-            <button
-              onClick={goPrev}
-              disabled={cardIndex === 0}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Previous card"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <span className="text-sm text-gray-400 dark:text-gray-500 min-w-[60px] text-center">
-              {cardIndex + 1} / {words.length}
-            </span>
-            <button
-              onClick={goNext}
-              disabled={cardIndex >= words.length - 1}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Next card"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
+                  onClick={goPrev}
+                  disabled={cardIndex === 0}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  aria-label="Previous card"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <span className="text-sm text-gray-400 dark:text-gray-500 min-w-[60px] text-center">
+                  {cardIndex + 1} / {displayWords.length}
+                </span>
+                <button
+                  onClick={goNext}
+                  disabled={cardIndex >= displayWords.length - 1}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  aria-label="Next card"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </>
+          )}
         </main>
       ) : (
         /* ── LIST MODE ── */
         <main className="flex-1 overflow-y-auto px-4 py-3 space-y-2.5 max-w-xl mx-auto w-full pb-8">
-          {words.map((word, i) => {
+          {displayWords.length === 0 && (
+            <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-12">
+              {t('review.previewNoResults', 'No words match your search.')}
+            </p>
+          )}
+          {displayWords.map((word, i) => {
             const isInsightOpen = selectedWordId === word.id;
+            const isRevealed = revealedIds.has(word.id);
             return (
               <div
                 key={word.id ?? i}
@@ -440,6 +535,7 @@ const WordPreviewPage: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5">
+                      <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600">{i + 1}</span>
                       <p className="text-base font-bold text-gray-900 dark:text-white leading-snug break-words">
                         {word.word}
                       </p>
@@ -469,11 +565,11 @@ const WordPreviewPage: React.FC = () => {
                   </div>
                   {/* Toggle button */}
                   <button
-                    onClick={() => toggleOne(i)}
+                    onClick={() => toggleReveal(word.id)}
                     className="shrink-0 p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-400 dark:text-gray-500"
-                    aria-label={revealed[i] ? t('review.previewHide') : t('review.previewReveal')}
+                    aria-label={isRevealed ? t('review.previewHide') : t('review.previewReveal')}
                   >
-                    {revealed[i] ? (
+                    {isRevealed ? (
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
                       </svg>
@@ -488,7 +584,7 @@ const WordPreviewPage: React.FC = () => {
 
                 {/* Meaning area */}
                 <div className="border-t border-gray-100 dark:border-gray-700 px-4 py-2.5 min-h-[40px] flex items-center">
-                  {revealed[i] ? (
+                  {isRevealed ? (
                     <div>
                       <p className="text-sm text-gray-700 dark:text-gray-200 font-medium">{word.translateEn}</p>
                       {word.translateCh && (

@@ -12,10 +12,10 @@ const ONBOARDING_KEY = 'onboarding:quiz_modal';
 
 // Preset difficulty ranges for English word list
 const EN_WORD_PRESETS = [
-  { labelKey: 'multiChoice.easy',         coreLabel: 'Core 2000', descKey: 'multiChoice.enEasyDesc',         min: 1,    max: 2000 },
-  { labelKey: 'multiChoice.medium',       coreLabel: 'Core 4000', descKey: 'multiChoice.enMediumDesc',       min: 2001, max: 4000 },
-  { labelKey: 'multiChoice.intermediary', coreLabel: 'Core 7000', descKey: 'multiChoice.enIntermediaryDesc', min: 4001, max: 6421 },
-  { labelKey: 'multiChoice.advanced',     coreLabel: '',          descKey: 'multiChoice.enAdvancedDesc',     min: 6422, max: 9481 },
+  { labelKey: 'multiChoice.easy',         coreLabel: 'Core 2000', descKey: 'multiChoice.enEasyDesc',         min: 1,    max: 2088 },
+  { labelKey: 'multiChoice.medium',       coreLabel: 'Core 4000', descKey: 'multiChoice.enMediumDesc',       min: 2089, max: 4234 },
+  { labelKey: 'multiChoice.intermediary', coreLabel: 'Core 7000', descKey: 'multiChoice.enIntermediaryDesc', min: 4235, max: 6421 },
+  { labelKey: 'multiChoice.advanced',     coreLabel: '', descKey: 'multiChoice.enAdvancedDesc',     min: 6422, max: 9481 },
 ] as const;
 
 // Preset JLPT levels for Japanese word list (9117 words split evenly into 5 levels)
