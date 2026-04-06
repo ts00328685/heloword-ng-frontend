@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -81,7 +82,7 @@ const LevelPickerModal: React.FC<{
   const { t } = useTranslation();
   const levels = gameType === 'en' ? EN_LEVELS : JP_LEVELS;
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50" onClick={onBack}>
       <div
         className="bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-2xl p-5 w-full sm:max-w-sm shadow-xl"
@@ -106,7 +107,8 @@ const LevelPickerModal: React.FC<{
           ))}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

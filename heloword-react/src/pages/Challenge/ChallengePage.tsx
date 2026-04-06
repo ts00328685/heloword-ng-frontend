@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -141,7 +142,7 @@ const CreateRoomModal: React.FC<{ onClose: () => void; onCreate: (room: Challeng
     }
   };
 
-  return (
+  return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50" onClick={onClose}>
       <div className="bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-2xl p-5 w-full sm:max-w-sm shadow-xl" onClick={e => e.stopPropagation()}>
         <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-4">{t('challenge.createRoomTitle')}</h3>
@@ -171,7 +172,8 @@ const CreateRoomModal: React.FC<{ onClose: () => void; onCreate: (room: Challeng
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
