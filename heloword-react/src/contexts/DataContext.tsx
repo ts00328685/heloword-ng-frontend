@@ -4,9 +4,11 @@ import { doPost } from '../services/api.service';
 
 interface DataContextType {
   wordStore: WordStore;
+  previewWordStore: WordStore;
   sentenceStore: SentenceStore;
   isFullyLoaded: boolean;
   updateWordStore: (store: WordStore) => void;
+  updatePreviewWordStore: (store: WordStore) => void;
   updateSentenceStore: (store: SentenceStore) => void;
   clearAllStore: () => void;
   isWordStoreEmpty: () => boolean;
@@ -31,17 +33,29 @@ const DataContext = createContext<DataContextType>({} as DataContextType);
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [wordStore, setWordStore] = useState<WordStore>(EMPTY_WORD_STORE);
+    const [previewWordStore, setPreviewWordStore] = useState<WordStore>({
+        wordEnglishList: [],
+        wordGermanList: [],
+        wordJapaneseList: [],
+        wordJapaneseVerbList: []
+  });
   const [sentenceStore, setSentenceStore] = useState<SentenceStore>(EMPTY_SENTENCE_STORE);
   const [isFullyLoaded, setIsFullyLoaded] = useState(false);
 
   // Refs mirror state so loadFullDashboard can return current values synchronously
   const wordStoreRef = useRef<WordStore>(EMPTY_WORD_STORE);
+  const previewWordStoreRef = useRef<WordStore>(EMPTY_WORD_STORE);
   const sentenceStoreRef = useRef<SentenceStore>(EMPTY_SENTENCE_STORE);
   const fullLoadPromiseRef = useRef<Promise<{ words: WordStore; sentences: SentenceStore }> | null>(null);
 
   const updateWordStore = useCallback((store: WordStore) => {
     wordStoreRef.current = store;
     setWordStore(store);
+  }, []);
+
+  const updatePreviewWordStore = useCallback((store: WordStore) => {
+    previewWordStoreRef.current = store;
+    setPreviewWordStore(store);
   }, []);
 
   const updateSentenceStore = useCallback((store: SentenceStore) => {
@@ -113,9 +127,11 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     <DataContext.Provider
       value={{
         wordStore,
+        previewWordStore,
         sentenceStore,
         isFullyLoaded,
         updateWordStore,
+        updatePreviewWordStore,
         updateSentenceStore,
         clearAllStore,
         isWordStoreEmpty,

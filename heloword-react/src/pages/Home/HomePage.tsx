@@ -286,7 +286,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const { isLoggedIn } = useAuth();
-  const { wordStore, sentenceStore, updateWordStore, updateSentenceStore, isWordStoreEmpty, isFullyLoaded, loadFullDashboard } = useData();
+  const { wordStore, previewWordStore, sentenceStore, updateWordStore, updatePreviewWordStore, updateSentenceStore, isWordStoreEmpty, isFullyLoaded, loadFullDashboard } = useData();
   const { dueCount } = useNotifications();
   const { showLoading, hideLoading, showAlert } = useUI();
   const hasFetched = useRef(false);
@@ -295,6 +295,7 @@ const HomePage: React.FC = () => {
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
   const location = useLocation();
   const [showVocabOnboarding, setShowVocabOnboarding] = useState(false);
+
 
   useEffect(() => {
     if (hasFetched.current || !isWordStoreEmpty()) {
@@ -331,6 +332,8 @@ const HomePage: React.FC = () => {
         wordJapaneseVerbList: d.wordJapaneseVerbList || [],
       };
 
+      updatePreviewWordStore(words);
+
       updateWordStore(words);
       updateSentenceStore({
         sentenceEnglishList: d.sentenceEnglishList || [],
@@ -346,7 +349,7 @@ const HomePage: React.FC = () => {
       hideLoading();
       // Silently prefetch the full word lists in the background so "View All" is instant.
       // Runs 3 seconds after preview renders to avoid competing with visible load.
-      setTimeout(() => { loadFullDashboard().catch(() => {}); }, 3000);
+      // setTimeout(() => { loadFullDashboard().catch(() => {}); }, 3000);
     }
   };
 
@@ -381,10 +384,10 @@ const HomePage: React.FC = () => {
   };
 
   const allSections = [
-    { key: 'wordEnglishList', list: wordStore.wordEnglishList },
-    { key: 'wordGermanList', list: wordStore.wordGermanList },
-    { key: 'wordJapaneseList', list: wordStore.wordJapaneseList },
-    { key: 'wordJapaneseVerbList', list: wordStore.wordJapaneseVerbList },
+    { key: 'wordEnglishList', list: previewWordStore.wordEnglishList },
+    { key: 'wordGermanList', list: previewWordStore.wordGermanList },
+    { key: 'wordJapaneseList', list: previewWordStore.wordJapaneseList },
+    { key: 'wordJapaneseVerbList', list: previewWordStore.wordJapaneseVerbList },
     { key: 'sentenceEnglishList', list: sentenceStore.sentenceEnglishList },
     { key: 'sentenceGermanList', list: sentenceStore.sentenceGermanList },
     { key: 'sentenceJapaneseList', list: sentenceStore.sentenceJapaneseList },
