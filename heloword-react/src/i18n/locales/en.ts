@@ -329,6 +329,8 @@ const en = {
     member: 'Member',
     noOneOnline: 'No one else online right now',
     chat: 'Chat',
+    loginToChat: 'Log in to send messages',
+    cannotMessageGuest: 'Cannot message guest users',
     addFriend: 'Add friend',
     loginForFriends: 'Log in to manage your friends list',
     addFriendByUsername: 'Add friend by email',

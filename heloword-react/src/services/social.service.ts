@@ -104,19 +104,17 @@ export async function fetchMessages(roomId: string, since?: number): Promise<Cha
   return res.code === '0000' ? (res.data ?? []) : [];
 }
 
-export async function markRoomRead(roomId: string, recipientUserId: string) {
-  return doPost(
-    `/frontend-api/api/fe/social/messages/read/${encodeURIComponent(roomId)}?recipientUserId=${encodeURIComponent(recipientUserId)}`
-  );
+export async function markRoomRead(roomId: string) {
+  return doPost(`/frontend-api/api/fe/social/messages/read/${encodeURIComponent(roomId)}`);
 }
 
-export async function fetchUnreadCounts(recipientUserId: string): Promise<Record<string, number>> {
-  const res = await doGet('/frontend-api/api/fe/social/messages/unread', { recipientUserId });
+export async function fetchUnreadCounts(): Promise<Record<string, number>> {
+  const res = await doGet('/frontend-api/api/fe/social/messages/unread');
   return res.code === '0000' ? (res.data ?? {}) : {};
 }
 
-export async function fetchChatRooms(userId: string): Promise<ChatMessage[]> {
-  const res = await doGet('/frontend-api/api/fe/social/messages/rooms', { userId });
+export async function fetchChatRooms(): Promise<ChatMessage[]> {
+  const res = await doGet('/frontend-api/api/fe/social/messages/rooms');
   return res.code === '0000' ? (res.data ?? []) : [];
 }
 

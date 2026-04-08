@@ -329,6 +329,8 @@ const zh = {
     member: '會員',
     noOneOnline: '目前沒有其他人在線',
     chat: '聊天',
+    loginToChat: '登入以傳送訊息',
+    cannotMessageGuest: '無法傳訊息給訪客',
     addFriend: '加好友',
     loginForFriends: '登入以管理好友列表',
     addFriendByUsername: '以電子郵件加好友',

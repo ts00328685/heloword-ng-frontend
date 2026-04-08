@@ -434,14 +434,15 @@ const SocialPage: React.FC = () => {
                   </div>
                   <div className="flex gap-2 items-center">
                     <button
-                      onClick={() => openChat(u.userId, u.displayName)}
-                      className="relative p-2 bg-blue-50 dark:bg-blue-900/40 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-500 rounded-xl transition-colors"
-                      title={t('social.chat')}
+                      onClick={isLoggedIn && !u.isGuest ? () => openChat(u.userId, u.displayName) : undefined}
+                      disabled={!isLoggedIn || u.isGuest}
+                      title={!isLoggedIn ? t('social.loginToChat') : u.isGuest ? t('social.cannotMessageGuest') : t('social.chat')}
+                      className={`relative p-2 rounded-xl transition-colors ${isLoggedIn && !u.isGuest ? 'bg-blue-50 dark:bg-blue-900/40 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-500 cursor-pointer' : 'bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed opacity-50'}`}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                       </svg>
-                      {(unreadCounts[u.userId] ?? 0) > 0 && (
+                      {isLoggedIn && !u.isGuest && (unreadCounts[u.userId] ?? 0) > 0 && (
                         <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
                           {unreadCounts[u.userId] > 99 ? '99+' : unreadCounts[u.userId]}
                         </span>
@@ -535,33 +536,6 @@ const SocialPage: React.FC = () => {
               </div>
             ) : (
               <>
-                {/* Send friend request */}
-                <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-3 shadow-sm">
-                  <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">{t('social.addFriendByUsername')}</p>
-                  <div className="flex gap-2">
-                    <input
-                      value={friendRequestInput}
-                      onChange={(e) => { setFriendRequestInput(e.target.value); setFriendRequestError(null); setFriendRequestSuccess(false); }}
-                      onKeyDown={(e) => e.key === 'Enter' && handleSendFriendRequest()}
-                      placeholder={t('social.usernamePlaceholder')}
-                      className={`flex-1 rounded-xl border bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 ${friendRequestError ? 'border-red-400 dark:border-red-500' : 'border-gray-200 dark:border-gray-700'}`}
-                    />
-                    <button
-                      onClick={handleSendFriendRequest}
-                      disabled={sendingRequest || !friendRequestInput.trim()}
-                      className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white text-sm rounded-xl transition-colors"
-                    >
-                      {sendingRequest ? '...' : t('social.add')}
-                    </button>
-                  </div>
-                  {friendRequestError && (
-                    <p className="mt-1.5 text-xs text-red-500 dark:text-red-400">{friendRequestError}</p>
-                  )}
-                  {friendRequestSuccess && (
-                    <p className="mt-1.5 text-xs text-green-500 dark:text-green-400">{t('social.requestSent')}</p>
-                  )}
-                </div>
-
                 {/* Pending received */}
                 {pendingReceived.length > 0 && (
                   <div>
@@ -715,6 +689,7 @@ const SocialPage: React.FC = () => {
                                 </span>
                               )}
                             </button>
+                            {/* Friends tab is only shown to logged-in members; button always active here */}
                             <button
                               onClick={() => setNicknameTarget(f)}
                               className="p-2 text-gray-400 hover:text-blue-500 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-xl transition-colors"
