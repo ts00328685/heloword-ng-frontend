@@ -140,7 +140,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => {
     if (!hasCheckedLoginStatus) return;
     if (isLoggedIn && user) {
-      setMyUserId(user.username);
+      setMyUserId(user.uuid || user.username);
       setMyDisplayName(user.nickname || user.fullname || user.username);
     } else {
       const { userId, displayName } = getOrCreateGuestIdentity();
@@ -260,7 +260,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     if (isLoggedIn) {
       fetchFriends().then(setFriends).catch(() => {});
-      fetchUnreadCounts(myUserId).then(setUnreadCounts).catch(() => {});
+      fetchUnreadCounts().then(setUnreadCounts).catch(() => {});
       refreshVocabSharesRef.current();
     }
 
@@ -301,7 +301,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             lastMsgTimestampRef.current = new Date(updated[updated.length - 1].sentAt).getTime();
             return { ...prev, [roomId]: updated };
           });
-          markRoomRead(roomId, myUserId).catch(() => {});
+          markRoomRead(roomId).catch(() => {});
         }
       }).catch(() => {});
     };
@@ -359,7 +359,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const loadChatRooms = useCallback(async () => {
     if (!myUserId) return;
-    const rooms = await fetchChatRooms(myUserId).catch(() => [] as ChatMessage[]);
+    const rooms = await fetchChatRooms().catch(() => [] as ChatMessage[]);
     setChatRooms(rooms);
     // Merge into messageMap so chats opened from the Messages tab have their last message pre-loaded
     setMessageMap((prev) => {

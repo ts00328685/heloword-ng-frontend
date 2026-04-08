@@ -235,7 +235,7 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                   {answered && roundMsg && (
                     <p className="text-xs text-center font-medium text-gray-700 dark:text-gray-300 mb-3">{roundMsg}</p>
                   )}
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 gap-2">
                     {choices.map(choice => {
                       const isSelected = selectedChoice === choice;
                       const isCorrect = revealedCorrect === choice;

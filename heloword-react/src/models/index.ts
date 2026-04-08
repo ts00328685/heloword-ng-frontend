@@ -5,6 +5,7 @@ export interface Role {
 }
 
 export interface User {
+  uuid: string;
   username: string;
   fullname: string;
   nickname: string;

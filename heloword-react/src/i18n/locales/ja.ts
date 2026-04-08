@@ -329,6 +329,8 @@ const ja = {
     member: 'メンバー',
     noOneOnline: '今はほかにオンラインのユーザーがいません',
     chat: 'チャット',
+    loginToChat: 'メッセージを送るにはログインしてください',
+    cannotMessageGuest: 'ゲストユーザーにはメッセージを送れません',
     addFriend: 'フレンド申請',
     loginForFriends: 'フレンドリストを管理するにはログインしてください',
     addFriendByUsername: 'メールアドレスでフレンド追加',
