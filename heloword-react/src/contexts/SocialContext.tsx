@@ -311,7 +311,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       if (msgs.length > 0) {
         lastMsgTimestampRef.current = new Date(msgs[msgs.length - 1].sentAt).getTime();
       }
-      markRoomRead(roomId, myUserId).catch(() => {});
+      markRoomRead(roomId).catch(() => {});
     }).catch(() => {});
 
     pollChatRef.current = setInterval(pollMessages, 5_000);
