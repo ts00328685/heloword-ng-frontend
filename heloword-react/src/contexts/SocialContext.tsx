@@ -176,8 +176,10 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             setOnlineUsers(users.sort((a, b) => {
               if (a.displayName && b.displayName) {
                 return a.displayName.localeCompare(b.displayName)
-              } else {
+              } else if (a.userId && b.userId) {
                 return a.userId.localeCompare(b.userId);
+              } else {
+                return 1;
               }
             }));
           } catch {
