@@ -172,8 +172,16 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         // Online users broadcast
         client.subscribe('/topic/online-users', (frame) => {
           try {
-            const users: OnlineUser[] = JSON.parse(frame.body);
-            setOnlineUsers(users);
+            const users: OnlineUser[] = JSON.parse(frame.body) || [];
+            setOnlineUsers(users.sort((a, b) => {
+              if (a.displayName && b.displayName) {
+                return a.displayName.localeCompare(b.displayName)
+              } else if (a.userId && b.userId) {
+                return a.userId.localeCompare(b.userId);
+              } else {
+                return 1;
+              }
+            }));
           } catch {
             // ignore parse errors
           }
