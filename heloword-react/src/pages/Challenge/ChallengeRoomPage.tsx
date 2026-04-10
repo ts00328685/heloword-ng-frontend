@@ -28,7 +28,7 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
   const { t } = useTranslation();
   const { currentRoom, lastEvent, startGameAction, submitAnswer, idleWarning } = useChallenge();
   const { isLoggedIn, user } = useAuth();
-  const myUserId = isLoggedIn && user ? user.username : (localStorage.getItem('hw-guest-id') || '');
+  const myUserId = isLoggedIn && user ? user.uuid : (localStorage.getItem('hw-guest-id') || '');
 
   const [answer, setAnswer] = useState('');
   const [timeLeft, setTimeLeft] = useState<number | null>(null);

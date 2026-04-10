@@ -60,9 +60,9 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   // getOrCreateGuestIdentity() ensures hw-guest-id is always written to localStorage
   // before we read it, so the display name is never "Guest-" with an empty suffix.
   const guestIdentity = isLoggedIn ? null : getOrCreateGuestIdentity();
-  const myUserId: string = isLoggedIn && user ? user.username : (guestIdentity?.userId ?? `guest-${Date.now()}`);
+  const myUserId: string = isLoggedIn && user ? user.uuid : (guestIdentity?.userId ?? `guest-${Date.now()}`);
   const myDisplayName: string = isLoggedIn && user
-    ? (user.nickname || user.fullname || user.username)
+    ? (user.nickname || user.fullname)
     : (guestIdentity?.displayName ?? 'Guest');
   const isGuest = !isLoggedIn;
 
