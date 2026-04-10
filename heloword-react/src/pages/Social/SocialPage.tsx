@@ -594,9 +594,9 @@ const SocialPage: React.FC = () => {
                     <div className="space-y-2">
                       {vocabShares.map((share) => {
                         const senderFriend = friends.find((f) => f.otherUserId === share.fromUsername);
-                        const senderName = senderFriend?.myNickname
-                          ? maskIfEmail(senderFriend.myNickname)
-                          : maskIfEmail(share.fromUsername);
+                        const senderName = senderFriend?.displayName
+                          ? maskIfEmail(senderFriend.displayName)
+                          : maskIfEmail(share.groupName);
                         return (
                         <div key={share.id} className="flex items-start gap-3 bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-3 border border-purple-200 dark:border-purple-800">
                           <div className="w-9 h-9 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center shrink-0 mt-0.5">
