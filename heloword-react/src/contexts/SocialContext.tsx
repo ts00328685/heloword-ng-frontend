@@ -161,19 +161,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     // Dev:  Vite proxy rule for /k8s/frontend-api/api/fe/ws routes directly to localhost:7001
     const wsBasePath = environment.production ? '/k8s/frontend-api/v1' : '/k8s/frontend-api/api';
     const wsUrl = `${proto}://${window.location.host}${wsBasePath}/fe/ws`;
-
-    const client = new Client({
-      brokerURL: wsUrl,
-      reconnectDelay: 5000,
-      onConnect: () => {
-        // Fetch current list immediately so the UI isn't empty until next heartbeat
-        fetchOnlineUsers().then(setOnlineUsers).catch(() => {});
-
-        // Online users broadcast
-        client.subscribe('/topic/online-users', (frame) => {
-          try {
-            const users: OnlineUser[] = JSON.parse(frame.body) || [];
-            setOnlineUsers(users.sort((a, b) => {
+    const sortUsers = (users: OnlineUser[] = []) => users.sort((a, b) => {
               if (a.displayName && b.displayName) {
                 return a.displayName.localeCompare(b.displayName)
               } else if (a.userId && b.userId) {
@@ -181,7 +169,21 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
               } else {
                 return 1;
               }
-            }));
+            });
+    const client = new Client({
+      brokerURL: wsUrl,
+      reconnectDelay: 5000,
+      onConnect: () => {
+        // Fetch current list immediately so the UI isn't empty until next heartbeat
+        fetchOnlineUsers().then(users => {
+          setOnlineUsers(sortUsers(users))
+        }).catch(() => {});
+
+        // Online users broadcast
+        client.subscribe('/topic/online-users', (frame) => {
+          try {
+            const users: OnlineUser[] = JSON.parse(frame.body) || [];
+            setOnlineUsers(sortUsers(users));
           } catch {
             // ignore parse errors
           }
