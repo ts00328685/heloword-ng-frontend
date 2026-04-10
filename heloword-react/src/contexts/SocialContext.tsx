@@ -140,8 +140,8 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => {
     if (!hasCheckedLoginStatus) return;
     if (isLoggedIn && user) {
-      setMyUserId(user.uuid || user.username);
-      setMyDisplayName(user.nickname || user.fullname || user.username);
+      setMyUserId(user.uuid);
+      setMyDisplayName(user.nickname || user.fullname);
     } else {
       const { userId, displayName } = getOrCreateGuestIdentity();
       setMyUserId(userId);

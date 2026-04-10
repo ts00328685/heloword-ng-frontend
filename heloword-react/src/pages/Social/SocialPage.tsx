@@ -547,15 +547,12 @@ const SocialPage: React.FC = () => {
                     )}
                     <div className="space-y-2">
                       {pendingReceived.map((f) => {
-                        const maskedEmail = maskIfEmail(f.otherUserId);
-                        const theirName = onlineDisplayByUserId.get(f.otherUserId);
-                        const primaryName = theirName ? maskIfEmail(theirName) : maskedEmail;
+                        const primaryName = f.displayName;
                         return (
                         <div key={f.id} className="flex items-center gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-3 border border-orange-200 dark:border-orange-800">
                           <Avatar name={primaryName} />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{primaryName}</p>
-                            {primaryName !== maskedEmail && <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskedEmail}</p>}
                           </div>
                           <button
                             disabled={acceptingId === f.id}
@@ -663,16 +660,14 @@ const SocialPage: React.FC = () => {
                     </p>
                     <div className="space-y-2">
                       {acceptedFriends.map((f) => {
-                        const maskedEmail = maskIfEmail(f.otherUserId);
-                        const theirName = onlineDisplayByUserId.get(f.otherUserId);
                         // maskIfEmail handles the case where myNickname was auto-populated with their username (an email)
-                        const primaryName = (f.myNickname ? maskIfEmail(f.myNickname) : null) || (theirName ? maskIfEmail(theirName) : maskedEmail);
+                        const primaryName = f.displayName;
                         return (
                         <div key={f.id} className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 shadow-sm">
                           <Avatar name={primaryName} online={f.isOnline} />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{primaryName}</p>
-                            {primaryName !== maskedEmail && <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskedEmail}</p>}
+                            {/* {primaryName !== maskedEmail && <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskedEmail}</p>} */}
                           </div>
                           <div className="flex gap-1">
                             <button
@@ -740,15 +735,12 @@ const SocialPage: React.FC = () => {
                     </p>
                     <div className="space-y-2">
                       {pendingSent.map((f) => {
-                        const maskedEmail = maskIfEmail(f.otherUserId);
-                        const theirName = onlineDisplayByUserId.get(f.otherUserId);
-                        const primaryName = theirName ? maskIfEmail(theirName) : maskedEmail;
+                        const primaryName = f.displayName
                         return (
                         <div key={f.id} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 opacity-80">
                           <Avatar name={primaryName} />
                           <div className="flex-1 min-w-0">
                             <p className="text-sm text-gray-600 dark:text-gray-400 truncate">{primaryName}</p>
-                            {primaryName !== maskedEmail && <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskedEmail}</p>}
                           </div>
                           <span className="text-xs text-gray-400 dark:text-gray-500">{t('social.pending')}</span>
                           <button onClick={() => doRemoveFriend(f.id).catch(() => {})} className="text-xs text-gray-300 hover:text-red-500 dark:hover:text-red-400 ml-2 transition-colors">
