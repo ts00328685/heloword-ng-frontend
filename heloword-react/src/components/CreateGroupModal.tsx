@@ -1,32 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
   onClose: () => void;
-  onSave: (name: string, description: string, language: string) => Promise<void>;
+  onSave: (name: string, description: string, language: string, tags: string) => Promise<void>;
   initialName?: string;
   initialDescription?: string;
   initialLanguage?: string;
+  initialTags?: string;
 }
 
 const LANGUAGES = ['EN', 'JA', 'DE', 'Other'];
 
-const CreateGroupModal: React.FC<Props> = ({ onClose, onSave, initialName = '', initialDescription = '', initialLanguage = 'EN' }) => {
+const CreateGroupModal: React.FC<Props> = ({
+  onClose, onSave,
+  initialName = '', initialDescription = '', initialLanguage = 'EN', initialTags = '',
+}) => {
   const { t } = useTranslation();
   const [name, setName] = useState(initialName);
   const [description, setDescription] = useState(initialDescription);
   const [language, setLanguage] = useState(initialLanguage);
+  const [tags, setTags] = useState<string[]>(
+    initialTags ? initialTags.split(',').map((t) => t.trim()).filter(Boolean) : []
+  );
+  const [tagInput, setTagInput] = useState('');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
+  const tagInputRef = useRef<HTMLInputElement>(null);
+  const composingRef = useRef(false);
+
+  const addTag = (value: string) => {
+    const trimmed = value.trim().toLowerCase();
+    if (trimmed && !tags.includes(trimmed)) {
+      setTags((prev) => [...prev, trimmed]);
+    }
+    setTagInput('');
+  };
+
+  const removeTag = (tag: string) => setTags((prev) => prev.filter((t) => t !== tag));
+
+  const handleTagKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if ((e.key === 'Enter' || e.key === ',') && !composingRef.current) {
+      e.preventDefault();
+      addTag(tagInput);
+    } else if (e.key === 'Backspace' && !tagInput && tags.length > 0) {
+      setTags((prev) => prev.slice(0, -1));
+    }
+  };
 
   const handleSave = async () => {
     const trimmedName = name.trim();
     if (!trimmedName) { setError(t('userVocab.groupNameRequired', 'Group name is required')); return; }
     setSaving(true);
     setError('');
+    // Flush any pending tag input
+    const finalTags = tagInput.trim()
+      ? [...tags, tagInput.trim().toLowerCase()].filter((v, i, a) => a.indexOf(v) === i)
+      : tags;
     try {
-      await onSave(trimmedName, description.trim(), language);
+      await onSave(trimmedName, description.trim(), language, finalTags.join(','));
       onClose();
     } catch (e: any) {
       const msg = e?.message === 'GROUP_LIMIT_EXCEEDED' ? t('userVocab.groupLimitReached') : (e?.message || 'Error');
@@ -98,6 +131,45 @@ const CreateGroupModal: React.FC<Props> = ({ onClose, onSave, initialName = '', 
                   </button>
                 ))}
               </div>
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+                {t('userVocab.tags')}
+              </label>
+              <div
+                className="flex flex-wrap gap-1.5 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 cursor-text min-h-[42px]"
+                onClick={() => tagInputRef.current?.focus()}
+              >
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="flex items-center gap-1 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2 py-0.5 rounded-md"
+                  >
+                    {tag}
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); removeTag(tag); }}
+                      className="text-blue-400 hover:text-blue-600 dark:hover:text-blue-200 leading-none"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+                <input
+                  ref={tagInputRef}
+                  type="text"
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  onKeyDown={handleTagKeyDown}
+                  onCompositionStart={() => { composingRef.current = true; }}
+                  onCompositionEnd={() => { composingRef.current = false; }}
+                  onBlur={() => { if (tagInput.trim() && !composingRef.current) addTag(tagInput); }}
+                  placeholder={tags.length === 0 ? t('userVocab.tagsPlaceholder') : ''}
+                  className="flex-1 min-w-[80px] bg-transparent text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none"
+                />
+              </div>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{t('userVocab.tagsHint')}</p>
             </div>
           </div>
 

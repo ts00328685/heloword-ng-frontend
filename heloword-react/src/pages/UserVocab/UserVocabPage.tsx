@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import CreateGroupModal from '../../components/CreateGroupModal';
+import ShareVocabGroupModal from '../../components/ShareVocabGroupModal';
 import {
   CustomGroup,
   fetchCustomGroups,
@@ -11,6 +12,8 @@ import {
   updateCustomGroup,
   deleteCustomGroup,
 } from '../../services/customVocab.service';
+
+const ALL_LANGS = ['EN', 'JA', 'DE', 'Other'];
 
 const UserVocabPage: React.FC = () => {
   const { t } = useTranslation();
@@ -22,6 +25,11 @@ const UserVocabPage: React.FC = () => {
   const [confirmDelete, setConfirmDelete] = useState<CustomGroup | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState('');
+  const [shareGroup, setShareGroup] = useState<CustomGroup | null>(null);
+
+  // Search / filter state
+  const [query, setQuery] = useState('');
+  const [langFilter, setLangFilter] = useState<string>('');
 
   useEffect(() => {
     loadGroups();
@@ -39,14 +47,14 @@ const UserVocabPage: React.FC = () => {
     }
   };
 
-  const handleCreate = async (name: string, description: string, language: string) => {
-    const created = await createCustomGroup(name, description, language);
+  const handleCreate = async (name: string, description: string, language: string, tags: string) => {
+    const created = await createCustomGroup(name, description, language, tags);
     setGroups((prev) => [created, ...prev]);
   };
 
-  const handleUpdate = async (name: string, description: string, language: string) => {
+  const handleUpdate = async (name: string, description: string, language: string, tags: string) => {
     if (!editingGroup) return;
-    const updated = await updateCustomGroup(editingGroup.id, name, description, language);
+    const updated = await updateCustomGroup(editingGroup.id, name, description, language, tags);
     setGroups((prev) => prev.map((g) => (g.id === updated.id ? updated : g)));
     setEditingGroup(null);
   };
@@ -64,6 +72,25 @@ const UserVocabPage: React.FC = () => {
       setDeleting(false);
     }
   };
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return groups.filter((g) => {
+      if (langFilter && g.language !== langFilter) return false;
+      if (!q) return true;
+      const tagList = g.tags ? g.tags.split(',').map((t) => t.trim()) : [];
+      return (
+        g.name.toLowerCase().includes(q) ||
+        tagList.some((tag) => tag.includes(q))
+      );
+    });
+  }, [groups, query, langFilter]);
+
+  // Collect all unique languages present in groups for the filter bar
+  const presentLangs = useMemo(() => {
+    const set = new Set(groups.map((g) => g.language).filter(Boolean));
+    return ALL_LANGS.filter((l) => set.has(l));
+  }, [groups]);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
@@ -112,59 +139,139 @@ const UserVocabPage: React.FC = () => {
         )}
 
         {!loading && groups.length > 0 && (
-          <div className="space-y-3">
-            {groups.map((group, i) => (
-              <div
-                key={group.id}
-                className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm animate-fade-in-up"
-                style={{ animationDelay: `${i * 50}ms` }}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <button
-                    onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
-                    className="flex-1 text-left min-w-0"
-                  >
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
-                        {group.language}
-                      </span>
-                      <span className="text-xs text-gray-400 dark:text-gray-500">
-                        {t('userVocab.wordCount', { count: group.wordCount })}
-                      </span>
-                    </div>
-                    <p className="text-sm font-bold text-gray-800 dark:text-gray-100">{group.name}</p>
-                    {group.description && (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 line-clamp-1">{group.description}</p>
-                    )}
+          <>
+            {/* Search + language filter */}
+            <div className="mb-4 space-y-2">
+              <div className="relative">
+                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+                </svg>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder={t('userVocab.searchGroups')}
+                  className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+                {query && (
+                  <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                   </button>
-                  <div className="flex items-center gap-1 shrink-0">
+                )}
+              </div>
+
+              {presentLangs.length > 1 && (
+                <div className="flex gap-1.5 flex-wrap">
+                  <button
+                    onClick={() => setLangFilter('')}
+                    className={`px-3 py-1 rounded-lg text-xs font-semibold border transition-colors ${
+                      !langFilter
+                        ? 'bg-blue-500 text-white border-blue-500'
+                        : 'bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-blue-400'
+                    }`}
+                  >
+                    {t('userVocab.allLangs')}
+                  </button>
+                  {presentLangs.map((lang) => (
                     <button
-                      onClick={() => setEditingGroup(group)}
-                      className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      key={lang}
+                      onClick={() => setLangFilter(lang === langFilter ? '' : lang)}
+                      className={`px-3 py-1 rounded-lg text-xs font-semibold border transition-colors ${
+                        langFilter === lang
+                          ? 'bg-blue-500 text-white border-blue-500'
+                          : 'bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-blue-400'
+                      }`}
                     >
-                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
+                      {lang}
                     </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-3">
+              {filtered.length === 0 && (
+                <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-8">{t('userVocab.noResults')}</p>
+              )}
+              {filtered.map((group, i) => {
+                const tagList = group.tags ? group.tags.split(',').map((t) => t.trim()).filter(Boolean) : [];
+                return (
+                  <div
+                    key={group.id}
+                    className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm animate-fade-in-up"
+                    style={{ animationDelay: `${i * 50}ms` }}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <button
+                        onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
+                        className="flex-1 text-left min-w-0"
+                      >
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
+                            {group.language}
+                          </span>
+                          <span className="text-xs text-gray-400 dark:text-gray-500">
+                            {t('userVocab.wordCount', { count: group.wordCount })}
+                          </span>
+                        </div>
+                        <p className="text-sm font-bold text-gray-800 dark:text-gray-100">{group.name}</p>
+                        {group.description && (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 line-clamp-1">{group.description}</p>
+                        )}
+                        {tagList.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-1.5">
+                            {tagList.map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-1.5 py-0.5 rounded-md"
+                              >
+                                #{tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </button>
+                      <div className="flex items-center gap-1 shrink-0">
+                        <button
+                          onClick={() => setShareGroup(group)}
+                          className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                          title={t('vocabShare.shareTitle', 'Share with friend')}
+                        >
+                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => setEditingGroup(group)}
+                          className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                        >
+                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => setConfirmDelete(group)}
+                          className="p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        >
+                          <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
                     <button
-                      onClick={() => setConfirmDelete(group)}
-                      className="p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                      onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
+                      className="mt-3 w-full text-center text-xs text-blue-500 font-medium hover:text-blue-700 transition-colors"
                     >
-                      <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
+                      {t('home.viewAll')} →
                     </button>
                   </div>
-                </div>
-                <button
-                  onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
-                  className="mt-3 w-full text-center text-xs text-blue-500 font-medium hover:text-blue-700 transition-colors"
-                >
-                  {t('home.viewAll')} →
-                </button>
-              </div>
-            ))}
-          </div>
+                );
+              })}
+            </div>
+          </>
         )}
 
         {/* FAB */}
@@ -195,6 +302,15 @@ const UserVocabPage: React.FC = () => {
           initialName={editingGroup.name}
           initialDescription={editingGroup.description}
           initialLanguage={editingGroup.language}
+          initialTags={editingGroup.tags}
+        />
+      )}
+
+      {shareGroup && (
+        <ShareVocabGroupModal
+          groupId={shareGroup.id}
+          groupName={shareGroup.name}
+          onClose={() => setShareGroup(null)}
         />
       )}
 

@@ -216,8 +216,8 @@ const UserVocabGroupPage: React.FC = () => {
     }
   };
 
-  const handleUpdateGroup = async (name: string, description: string, language: string) => {
-    const updated = await updateCustomGroup(id, name, description, language);
+  const handleUpdateGroup = async (name: string, description: string, language: string, tags: string) => {
+    const updated = await updateCustomGroup(id, name, description, language, tags);
     setGroup(updated);
   };
 
@@ -424,6 +424,17 @@ const UserVocabGroupPage: React.FC = () => {
                 {hideMeanings ? t('wordList.showMeanings', 'Show meanings') : t('wordList.hideMeanings', 'Hide meanings')}
               </button>
             </div>
+
+            {/* Start Quiz button — hidden in flashcard mode */}
+            {!flashMode && (
+              <button
+                onClick={handleStartQuiz}
+                disabled={quizLoading}
+                className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 text-white font-bold py-3.5 rounded-2xl shadow-lg transition-colors mb-2"
+              >
+                {quizLoading ? '…' : t('userVocab.startQuiz')}
+              </button>
+            )}
 
             {flashMode ? (() => {
               const flashInsightOpen = selectedWordId === filtered[cardIndex]?.id;
@@ -712,18 +723,6 @@ const UserVocabGroupPage: React.FC = () => {
         )}
       </main>
 
-      {/* Start Quiz button — hidden in flashcard mode */}
-      {!loading && words.length > 0 && !flashMode && (
-        <div className="fixed bottom-20 left-0 right-0 px-4 pb-2 z-20 max-w-2xl mx-auto">
-          <button
-            onClick={handleStartQuiz}
-            disabled={quizLoading}
-            className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 text-white font-bold py-3.5 rounded-2xl shadow-lg transition-colors"
-          >
-            {quizLoading ? '…' : t('userVocab.startQuiz')}
-          </button>
-        </div>
-      )}
 
       {showImportModal && (
         <ImportVocabModal
@@ -780,6 +779,7 @@ const UserVocabGroupPage: React.FC = () => {
           initialName={group.name}
           initialDescription={group.description}
           initialLanguage={group.language}
+          initialTags={group.tags}
         />
       )}
 

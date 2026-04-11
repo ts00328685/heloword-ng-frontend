@@ -5,6 +5,7 @@ export interface CustomGroup {
   name: string;
   description: string;
   language: string;
+  tags?: string;
   wordCount: number;
   createDate: string;
 }
@@ -29,14 +30,14 @@ export async function fetchCustomGroups(): Promise<CustomGroup[]> {
   return res.data ?? [];
 }
 
-export async function createCustomGroup(name: string, description: string, language: string): Promise<CustomGroup> {
-  const res = await doPost<CustomGroup>('/frontend-api/api/fe/custom-vocab/groups', { name, description, language });
+export async function createCustomGroup(name: string, description: string, language: string, tags?: string): Promise<CustomGroup> {
+  const res = await doPost<CustomGroup>('/frontend-api/api/fe/custom-vocab/groups', { name, description, language, tags });
   if (res.code !== '0000' || !res.data) throw new Error(res.message || 'Failed to create group');
   return res.data;
 }
 
-export async function updateCustomGroup(id: number, name: string, description: string, language: string): Promise<CustomGroup> {
-  const res = await doPut<CustomGroup>(`/frontend-api/api/fe/custom-vocab/groups/${id}`, { name, description, language });
+export async function updateCustomGroup(id: number, name: string, description: string, language: string, tags?: string): Promise<CustomGroup> {
+  const res = await doPut<CustomGroup>(`/frontend-api/api/fe/custom-vocab/groups/${id}`, { name, description, language, tags });
   if (res.code !== '0000' || !res.data) throw new Error(res.message || 'Failed to update group');
   return res.data;
 }

@@ -487,6 +487,15 @@ const HomePage: React.FC = () => {
                     </span>
                   </div>
                   <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 line-clamp-1">{group.name}</p>
+                  {group.tags && (
+                    <div className="flex gap-1 mt-1.5 overflow-hidden">
+                      {group.tags.split(',').map(s => s.trim()).filter(Boolean).map(tag => (
+                        <span key={tag} className="shrink-0 text-[9px] font-medium px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </button>
               ))}
             </div>
