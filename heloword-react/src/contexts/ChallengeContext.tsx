@@ -16,6 +16,8 @@ import {
   startGame,
 } from '../services/challenge.service';
 import { getOrCreateGuestIdentity } from '../services/social.service';
+import { getCommonHeaders } from '../services/api.service';
+import { environment } from '../config/environment';
 
 const IDLE_KICK_MS = 5 * 60 * 1000;   // 5 minutes → auto-leave
 const IDLE_WARN_MS = 4.5 * 60 * 1000; // 4 min 30 s → show warning banner
@@ -166,6 +168,29 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   // Keep the ref in sync so the idle interval always calls the latest version.
   useEffect(() => { leaveRoomRef.current = leaveRoomAction; }, [leaveRoomAction]);
+
+  // Keep myUserId in a ref so the beforeunload handler always has the latest value.
+  const myUserIdRef = useRef<string>(myUserId);
+  useEffect(() => { myUserIdRef.current = myUserId; }, [myUserId]);
+
+  // When in a room, send a keepalive leave request on tab/browser close.
+  // fetch() with keepalive:true survives page unload; sendBeacon cannot set headers.
+  useEffect(() => {
+    if (!currentRoom) return;
+    const handleBeforeUnload = () => {
+      const roomId = currentRoomRef.current;
+      if (!roomId) return;
+      fetch(`${environment.backendBaseUrl}/frontend-api/api/fe/challenge/rooms/${roomId}/leave`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...getCommonHeaders() },
+        body: JSON.stringify({ userId: myUserIdRef.current }),
+        keepalive: true,
+        credentials: 'include',
+      });
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [currentRoom?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Start idle tracking while in a room; tear it down on leave.
   useEffect(() => {
