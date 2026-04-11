@@ -42,6 +42,7 @@ const en = {
     ebbinghausTitle: 'How Spaced Repetition Works',
     ebbinghausText: 'Heloword uses the Ebbinghaus Forgetting Curve to schedule reviews at the optimal moment — just before you forget. Complete a group, then review it at: 20 min → 1 h → 8 h → 1 day → 2 days → 6 days → 31 days. Miss a review window and the streak resets, so stay on schedule!',
     recommendedGroupSize: 'Recommended group size: 20–50 words.',
+    repetitionTrial: 'If you have any doubts, try selecting three brand-new words and completing a spelling test according to the designated schedule. Remember, the task is only considered complete if you do it without playing the pronunciation or looking at the answers. Once the entire cycle is finished, verify whether you have successfully retained these three words in your long-term memory!',
   },
   wordList: {
     title: 'Word List',
