@@ -26,7 +26,7 @@ import {
   getGroupKey,
   getIntervals,
 } from '../../utils/ebbinghaus';
-import { fetchCustomWords, fetchCustomGroups } from '../../services/customVocab.service';
+import { fetchCustomWords, fetchCustomGroups, fetchSharedGroups } from '../../services/customVocab.service';
 import { useData } from '../../contexts/DataContext';
 
 interface QuizGroup {
@@ -57,6 +57,7 @@ const ReviewPage: React.FC = () => {
   const { wordStore, sentenceStore, loadFullDashboard } = useData();
   const [groups, setGroups] = useState<QuizGroup[]>([]);
   const [customGroupMap, setCustomGroupMap] = useState<Map<number, { name: string; language: string }>>(new Map());
+  const [sharedGroupMap, setSharedGroupMap] = useState<Map<number, { name: string; language: string }>>(new Map());
   const [loading, setLoading] = useState(false);
   const [showAllDue, setShowAllDue] = useState(false);
   const [showReviewOnboarding, setShowReviewOnboarding] = useState(false);
@@ -108,13 +109,15 @@ const ReviewPage: React.FC = () => {
     setLoading(true);
     showLoading();
     try {
-      const [response, customGroupsRaw] = await Promise.all([
+      const [response, customGroupsRaw, sharedGroupsRaw] = await Promise.all([
         doPost('/frontend-api/api/fe/quiz/get-quiz-settings'),
         isLoggedIn ? fetchCustomGroups().catch(() => []) : Promise.resolve([]),
+        fetchSharedGroups().catch(() => []),
       ]);
       if (response.code !== '0000' || !response.data) return;
 
       setCustomGroupMap(new Map(customGroupsRaw.map((g: { id: number; name: string; language: string }) => [g.id, { name: g.name, language: g.language }])));
+      setSharedGroupMap(new Map(sharedGroupsRaw.map((g: { id: number; name: string; language: string }) => [g.id, { name: g.name, language: g.language }])));
 
       const data: Record<string, QuizSetting[]> = response.data;
 
@@ -320,27 +323,50 @@ const ReviewPage: React.FC = () => {
   // ─── Navigation ───────────────────────────────────────────────────────────
 
   const loadCustomGroupWords = async (type: string): Promise<Sentence[]> => {
-    const match = type.match(/^userCustomGroup:(\d+)$/);
-    if (!match) return [];
-    const groupId = Number(match[1]);
-    const words = await fetchCustomWords(groupId);
-    return words.map((w) => ({
-      id: w.id,
-      word: w.word,
-      sentence: w.sentence || '',
-      translateEn: w.translateEn,
-      translateCh: w.translateCh || '',
-      tableName: 'USER_CUSTOM_WORD',
-      language: (customGroupMap.get(groupId)?.language === 'JA' ? 'jp' : 'en') as any,
-      status: 1,
-      _quizType: type,
-    }));
+    const customMatch = type.match(/^userCustomGroup:(\d+)$/);
+    if (customMatch) {
+      const groupId = Number(customMatch[1]);
+      const words = await fetchCustomWords(groupId);
+      return words.map((w) => ({
+        id: w.id,
+        word: w.word,
+        sentence: w.sentence || '',
+        translateEn: w.translateEn,
+        translateCh: w.translateCh || '',
+        tableName: 'USER_CUSTOM_WORD',
+        language: (customGroupMap.get(groupId)?.language === 'JA' ? 'jp' : 'en') as any,
+        status: 1,
+        _quizType: type,
+      }));
+    }
+    const sharedMatch = type.match(/^sharedVocabGroup:(\d+)$/);
+    if (sharedMatch) {
+      const shareId = Number(sharedMatch[1]);
+      const { fetchSharedGroupWords } = await import('../../services/customVocab.service');
+      const words = await fetchSharedGroupWords(shareId);
+      return words.map((w) => ({
+        id: w.id,
+        word: w.word,
+        sentence: w.sentence || '',
+        translateEn: w.translateEn,
+        translateCh: w.translateCh || '',
+        tableName: 'USER_CUSTOM_WORD',
+        language: (sharedGroupMap.get(shareId)?.language === 'JA' ? 'jp' : 'en') as any,
+        status: 1,
+        _quizType: type,
+      }));
+    }
+    return [];
   };
 
   const formatGroupType = (type: string): string => {
     if (type.startsWith('userCustomGroup:')) {
       const id = Number(type.split(':')[1]);
       return customGroupMap.get(id)?.name ?? t('userVocab.myVocabGroup', 'My Vocab');
+    }
+    if (type.startsWith('sharedVocabGroup:')) {
+      const id = Number(type.split(':')[1]);
+      return sharedGroupMap.get(id)?.name ?? t('sharedVocab.title', 'Shared Vocab');
     }
     return t(`wordLists.${type}`, type);
   };
@@ -349,7 +375,9 @@ const ReviewPage: React.FC = () => {
     e.stopPropagation();
     setPreviewLoadingKey(key);
     try {
-      const isCustomGroup = group.records.some((r) => r.type.startsWith('userCustomGroup:'));
+      const isCustomGroup = group.records.some(
+        (r) => r.type.startsWith('userCustomGroup:') || r.type.startsWith('sharedVocabGroup:')
+      );
       let words: Sentence[] = [];
       if (isCustomGroup) {
         const arrays = await Promise.all(group.records.map((r) => loadCustomGroupWords(r.type)));
@@ -365,7 +393,8 @@ const ReviewPage: React.FC = () => {
           words = [...words, ...list.slice(min, max)];
         });
       }
-      const groupName = group.records.map((r) => formatGroupType(r.type) + (r.min && r.max && !r.type.startsWith('userCustomGroup:') ? ` (${r.min}–${r.max})` : '')).join(', ');
+      const isGroupType = (type: string) => type.startsWith('userCustomGroup:') || type.startsWith('sharedVocabGroup:');
+      const groupName = group.records.map((r) => formatGroupType(r.type) + (r.min && r.max && !isGroupType(r.type) ? ` (${r.min}–${r.max})` : '')).join(', ');
       navigate('/review/preview', { state: { words, groupName } });
     } finally {
       setPreviewLoadingKey(null);
@@ -375,7 +404,9 @@ const ReviewPage: React.FC = () => {
   const handleCardClick = async (group: QuizGroup, forceNewSession = false) => {
     const state = resolveGroupState(group.records);
     const isDue = state && (state.status === 'DUE' || state.status === 'FRESH');
-    const isCustomGroup = group.records.some((r) => r.type.startsWith('userCustomGroup:'));
+    const isCustomGroup = group.records.some(
+      (r) => r.type.startsWith('userCustomGroup:') || r.type.startsWith('sharedVocabGroup:')
+    );
 
     if (isDue || forceNewSession) {
       const quizSettings: Record<string, QuizSetting> = {};
@@ -1052,7 +1083,7 @@ const ReviewPage: React.FC = () => {
                     {group.records.map((r) => (
                       <span key={r.type} className="text-xs bg-blue-50 dark:bg-blue-900/40 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
                         {formatGroupType(r.type)}
-                        {r.min && r.max && !r.type.startsWith('userCustomGroup:') ? ` (${r.min}–${r.max})` : ''}
+                        {r.min && r.max && !r.type.startsWith('userCustomGroup:') && !r.type.startsWith('sharedVocabGroup:') ? ` (${r.min}–${r.max})` : ''}
                       </span>
                     ))}
                   </div>
@@ -1175,7 +1206,7 @@ const ReviewPage: React.FC = () => {
               <div className="flex flex-wrap gap-1.5 mb-5">
                 {editGroup.records.map((r) => (
                   <span key={r.type} className="text-xs bg-blue-50 dark:bg-blue-900/40 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
-                    {formatGroupType(r.type)}{!r.type.startsWith('userCustomGroup:') ? ` (${r.min}–${r.max})` : ''}
+                    {formatGroupType(r.type)}{!r.type.startsWith('userCustomGroup:') && !r.type.startsWith('sharedVocabGroup:') ? ` (${r.min}–${r.max})` : ''}
                   </span>
                 ))}
               </div>

@@ -1,7 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'; // useRef kept for hasFetched
 import ReactDOM from 'react-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { CustomGroup, fetchCustomGroups } from '../../services/customVocab.service';
+import {
+  CustomGroup,
+  fetchCustomGroups,
+  SharedVocabGroup,
+  SharedGroupRequest,
+  fetchSharedGroups,
+  fetchPendingSharedRequests,
+  approveSharedRequest,
+  rejectSharedRequest,
+  deleteSharedGroup,
+} from '../../services/customVocab.service';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -19,6 +29,7 @@ import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
 
 const VOCAB_ONBOARDING_KEY = 'onboarding:my_vocab';
+const SHARED_VOCAB_ONBOARDING_KEY = 'onboarding:shared_vocab';
 
 const WordSection: React.FC<{
   title: string;
@@ -285,16 +296,21 @@ const AuthorNoteModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, hasAnyRole } = useAuth();
+  const isAdmin = hasAnyRole(['ADMIN']);
   const { wordStore, previewWordStore, sentenceStore, updateWordStore, updatePreviewWordStore, updateSentenceStore, isWordStoreEmpty, isFullyLoaded, loadFullDashboard } = useData();
   const { dueCount } = useNotifications();
   const { showLoading, hideLoading, showAlert } = useUI();
   const hasFetched = useRef(false);
   const [showAuthor, setShowAuthor] = useState(false);
   const [customGroups, setCustomGroups] = useState<CustomGroup[]>([]);
+  const [sharedGroups, setSharedGroups] = useState<SharedVocabGroup[]>([]);
+  const [pendingRequests, setPendingRequests] = useState<SharedGroupRequest[]>([]);
+  const [adminActionLoading, setAdminActionLoading] = useState<number | null>(null);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
   const location = useLocation();
   const [showVocabOnboarding, setShowVocabOnboarding] = useState(false);
+  const [showSharedVocabOnboarding, setShowSharedVocabOnboarding] = useState(false);
 
 
   useEffect(() => {
@@ -310,6 +326,47 @@ const HomePage: React.FC = () => {
       fetchCustomGroups().then(setCustomGroups).catch(() => {});
     }
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    fetchSharedGroups().then(setSharedGroups).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (isLoggedIn && isAdmin) {
+      fetchPendingSharedRequests().then(setPendingRequests).catch(() => {});
+    }
+  }, [isLoggedIn, isAdmin]);
+
+  const handleApproveRequest = async (shareId: number) => {
+    setAdminActionLoading(shareId);
+    try {
+      await approveSharedRequest(shareId);
+      setPendingRequests((prev) => prev.filter((r) => r.id !== shareId));
+      fetchSharedGroups().then(setSharedGroups).catch(() => {});
+    } finally {
+      setAdminActionLoading(null);
+    }
+  };
+
+  const handleRejectRequest = async (shareId: number) => {
+    setAdminActionLoading(shareId);
+    try {
+      await rejectSharedRequest(shareId);
+      setPendingRequests((prev) => prev.filter((r) => r.id !== shareId));
+    } finally {
+      setAdminActionLoading(null);
+    }
+  };
+
+  const handleDeleteSharedGroup = async (shareId: number) => {
+    setAdminActionLoading(shareId);
+    try {
+      await deleteSharedGroup(shareId);
+      setSharedGroups((prev) => prev.filter((g) => g.id !== shareId));
+    } finally {
+      setAdminActionLoading(null);
+    }
+  };
 
   // Show vocab onboarding only after the quiz-modal onboarding has been seen.
   // Re-check every time the user navigates back to this page.
@@ -538,6 +595,120 @@ const HomePage: React.FC = () => {
           )}
         </section>
 
+        {/* Shared Vocabulary section */}
+        <section className="mb-6">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-1.5">
+              <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{t('sharedVocab.title')}</h2>
+              <button
+                onClick={() => setShowSharedVocabOnboarding(true)}
+                className="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 text-[10px] font-bold flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:text-blue-500 transition-colors"
+                aria-label={t('sharedVocab.title')}
+              >
+                ?
+              </button>
+            </div>
+            {sharedGroups.length > 4 && (
+              <button
+                onClick={() => navigate('/shared-vocab')}
+                className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
+              >
+                {t('sharedVocab.viewAll')}
+              </button>
+            )}
+          </div>
+
+          {/* Admin: pending requests */}
+          {isAdmin && pendingRequests.length > 0 && (
+            <div className="mb-3 rounded-xl border border-amber-200 dark:border-amber-700 bg-amber-50 dark:bg-amber-900/20 p-3">
+              <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-2">
+                {t('sharedVocab.adminPendingTitle')} ({pendingRequests.length})
+              </p>
+              <ul className="space-y-2">
+                {pendingRequests.map((req) => (
+                  <li key={req.id} className="flex items-center gap-2 bg-white dark:bg-gray-800 rounded-lg px-3 py-2 border border-amber-100 dark:border-amber-800">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{req.name}</p>
+                      <p className="text-[11px] text-gray-400 dark:text-gray-500">
+                        {req.requesterDisplayName} · {t('userVocab.wordCount', { count: req.wordCount })}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleApproveRequest(req.id)}
+                      disabled={adminActionLoading === req.id}
+                      className="shrink-0 text-xs font-medium px-2.5 py-1 rounded-lg bg-green-500 hover:bg-green-600 disabled:opacity-50 text-white transition-colors"
+                    >
+                      {adminActionLoading === req.id ? '…' : t('sharedVocab.approve')}
+                    </button>
+                    <button
+                      onClick={() => handleRejectRequest(req.id)}
+                      disabled={adminActionLoading === req.id}
+                      className="shrink-0 text-xs font-medium px-2.5 py-1 rounded-lg bg-red-500 hover:bg-red-600 disabled:opacity-50 text-white transition-colors"
+                    >
+                      {adminActionLoading === req.id ? '…' : t('sharedVocab.reject')}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Approved shared groups grid */}
+          {sharedGroups.length > 0 ? (
+            <div className="grid grid-cols-2 gap-2">
+              {sharedGroups.slice(0, 4).map((sg) => (
+                <div
+                  key={sg.id}
+                  className="relative bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-3 text-left hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                  onClick={() => navigate(`/shared-vocab/${sg.id}`, { state: { group: sg } })}
+                >
+                  {isAdmin && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleDeleteSharedGroup(sg.id); }}
+                      disabled={adminActionLoading === sg.id}
+                      className="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30 text-red-500 hover:bg-red-200 dark:hover:bg-red-800/40 disabled:opacity-40 transition-colors"
+                      aria-label={t('sharedVocab.delete', 'Delete')}
+                    >
+                      {adminActionLoading === sg.id ? (
+                        <span className="text-[8px]">…</span>
+                      ) : (
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      )}
+                    </button>
+                  )}
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className="text-[10px] bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 px-1.5 py-0.5 rounded font-medium">
+                      {sg.language}
+                    </span>
+                    <span className="text-[10px] text-gray-400 dark:text-gray-500">
+                      {t('userVocab.wordCount', { count: sg.wordCount })}
+                    </span>
+                  </div>
+                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 line-clamp-1">{sg.name}</p>
+                  <p className="text-[10px] text-blue-400 dark:text-blue-500 mt-0.5 truncate">
+                    {t('sharedVocab.sharedBy', { name: sg.sharerDisplayName })}
+                  </p>
+                  {sg.tags && (
+                    <div className="flex gap-1 mt-1.5 overflow-hidden">
+                      {sg.tags.split(',').map((s) => s.trim()).filter(Boolean).map((tag) => (
+                        <span key={tag} className="shrink-0 text-[9px] font-medium px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              {t('sharedVocab.noSharedGroups')}
+            </p>
+          )}
+        </section>
+
         {allSections.map(({ key, list }) => (
           <WordSection
             key={key}
@@ -559,6 +730,13 @@ const HomePage: React.FC = () => {
         if (!Array.isArray(raw)) return null;
         const steps = (raw as any[]).map((s: any) => ({ icon: s.icon, iconBg: 'bg-blue-50 dark:bg-blue-900/20', title: s.title, body: s.body }));
         const dismiss = () => { localStorage.setItem(VOCAB_ONBOARDING_KEY, '1'); setShowVocabOnboarding(false); };
+        return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
+      })()}
+      {showSharedVocabOnboarding && (() => {
+        const raw = t('onboarding.sharedVocab', { returnObjects: true });
+        if (!Array.isArray(raw)) return null;
+        const steps = (raw as any[]).map((s: any) => ({ icon: s.icon, iconBg: 'bg-green-50 dark:bg-green-900/20', title: s.title, body: s.body }));
+        const dismiss = () => { localStorage.setItem(SHARED_VOCAB_ONBOARDING_KEY, '1'); setShowSharedVocabOnboarding(false); };
         return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
       })()}
     </div>
