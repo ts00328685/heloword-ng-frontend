@@ -48,6 +48,9 @@ const VocabularyPage: React.FC = () => {
           <p className="text-xs text-purple-500 dark:text-purple-500 font-semibold mt-2">
             {t('vocabulary.recommendedGroupSize')}
           </p>
+          <p className="text-xs text-red-500 dark:text-red-500 font-semibold mt-2">
+            {t('vocabulary.repetitionTrial')}
+          </p>
         </div>
       </main>
 
