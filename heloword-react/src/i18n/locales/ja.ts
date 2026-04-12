@@ -26,6 +26,7 @@ const ja = {
     dueCurve: '忘却曲線に基づく',
     loading: '単語リストを読み込み中...',
     viewAll: 'すべて見る →',
+    funArticleTitle: '楽しい単語ストーリー',
   },
   login: {
     welcome: 'おかえりなさい',

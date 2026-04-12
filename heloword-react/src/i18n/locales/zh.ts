@@ -26,6 +26,7 @@ const zh = {
     dueCurve: '根據您的遺忘曲線',
     loading: '載入單字列表中...',
     viewAll: '查看全部 →',
+    funArticleTitle: '趣文學單字',
   },
   login: {
     welcome: '歡迎回來',

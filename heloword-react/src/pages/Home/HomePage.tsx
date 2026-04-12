@@ -27,6 +27,9 @@ import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
+import { FunArticle, fetchFunArticlePreview, fetchAllFunArticles } from '../../services/funArticle.service';
+import ReactMarkdown from 'react-markdown';
+import { latexToUnicode } from '../../utils/latexToUnicode';
 
 const VOCAB_ONBOARDING_KEY = 'onboarding:my_vocab';
 const SHARED_VOCAB_ONBOARDING_KEY = 'onboarding:shared_vocab';
@@ -293,6 +296,131 @@ const AuthorNoteModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   );
 };
 
+const PREVIEW_LENGTH = 120;
+
+const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
+  <ReactMarkdown
+    components={{
+      p: ({ children }) => <p className="leading-relaxed">{children}</p>,
+      h1: ({ children }) => <p className="text-base font-bold text-gray-900 dark:text-gray-100 mt-3">{children}</p>,
+      h2: ({ children }) => <p className="text-sm font-bold text-gray-800 dark:text-gray-100 mt-2">{children}</p>,
+      h3: ({ children }) => <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-2">{children}</p>,
+      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+      ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{children}</ul>,
+      ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{children}</ol>,
+      li: ({ children }) => <li>{children}</li>,
+    }}
+  >
+    {latexToUnicode(text)}
+  </ReactMarkdown>
+);
+
+const FunArticlesModal: React.FC<{ articles: FunArticle[]; onClose: () => void }> = ({ articles, onClose }) => {
+  const { t } = useTranslation();
+  return ReactDOM.createPortal(
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
+      <div
+        className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-lg animate-fade-in flex flex-col max-h-[85vh]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-center pt-3 pb-1 sm:hidden shrink-0">
+          <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+        </div>
+        <div className="px-5 pt-4 pb-3 flex items-center justify-between shrink-0 border-b border-gray-100 dark:border-gray-700">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">📚</span>
+            <h2 className="text-base font-bold text-gray-900 dark:text-gray-100">{t('home.funArticleTitle')}</h2>
+          </div>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div className="overflow-y-auto px-5 py-4 space-y-5">
+          {articles.map((a, i) => (
+            <div key={i} className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300">
+                  #{i + 1}
+                </span>
+                <span className="text-sm font-bold text-gray-800 dark:text-gray-100">{a.word}</span>
+              </div>
+              <div className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
+                <AiMarkdown text={a.content} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
+
+const FunArticlesSection: React.FC = () => {
+  const { t } = useTranslation();
+  const [preview, setPreview] = React.useState<FunArticle | null>(null);
+  const [allArticles, setAllArticles] = React.useState<FunArticle[]>([]);
+  const [showModal, setShowModal] = React.useState(false);
+  const [loadingAll, setLoadingAll] = React.useState(false);
+
+  React.useEffect(() => {
+    fetchFunArticlePreview().then(setPreview).catch(() => {});
+  }, []);
+
+  const handleViewAll = async () => {
+    if (allArticles.length > 0) { setShowModal(true); return; }
+    setLoadingAll(true);
+    try {
+      const articles = await fetchAllFunArticles();
+      setAllArticles(articles);
+      setShowModal(true);
+    } finally {
+      setLoadingAll(false);
+    }
+  };
+
+  if (!preview) return null;
+
+  const truncated = preview.content.length > PREVIEW_LENGTH
+    ? preview.content.slice(0, PREVIEW_LENGTH).trimEnd() + '…'
+    : preview.content;
+
+  return (
+    <section className="mb-6">
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-1.5">
+          <span className="text-base">📚</span>
+          <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{t('home.funArticleTitle')}</h2>
+        </div>
+        <button
+          onClick={handleViewAll}
+          disabled={loadingAll}
+          className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300 disabled:opacity-50"
+        >
+          {loadingAll ? '…' : t('home.viewAll')}
+        </button>
+      </div>
+      <button
+        onClick={handleViewAll}
+        disabled={loadingAll}
+        className="w-full text-left bg-white dark:bg-gray-800 rounded-2xl border border-purple-100 dark:border-purple-900/40 shadow-sm p-4 hover:shadow-md hover:-translate-y-0.5 transition-all"
+      >
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300">
+            {preview.word}
+          </span>
+        </div>
+        <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed space-y-1.5">
+          <AiMarkdown text={truncated} />
+        </div>
+      </button>
+      {showModal && <FunArticlesModal articles={allArticles} onClose={() => setShowModal(false)} />}
+    </section>
+  );
+};
+
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -497,6 +625,8 @@ const HomePage: React.FC = () => {
             </svg>
           </div>
         )}
+
+        <FunArticlesSection />
 
         {!hasData && (
           <div className="text-center py-12">

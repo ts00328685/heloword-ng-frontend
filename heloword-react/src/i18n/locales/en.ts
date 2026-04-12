@@ -26,6 +26,7 @@ const en = {
     dueCurve: 'Based on your forgetting curve',
     loading: 'Loading word lists...',
     viewAll: 'View all →',
+    funArticleTitle: 'Fun Word Stories',
   },
   login: {
     welcome: 'Welcome Back',
