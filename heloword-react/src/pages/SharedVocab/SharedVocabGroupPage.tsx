@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import MultiChoicePanel from '../../components/MultiChoicePanel';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -40,6 +41,7 @@ const SharedVocabGroupPage: React.FC = () => {
 
   // Flashcard mode
   const [flashMode, setFlashMode] = useState(false);
+  const [multiMode, setMultiMode] = useState(false);
   const [cardIndex, setCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [dragX, setDragX] = useState(0);
@@ -291,20 +293,36 @@ const SharedVocabGroupPage: React.FC = () => {
           <div className="space-y-2">
             {/* View controls row */}
             <div className="flex justify-between items-center mb-1">
-              {/* Flashcard toggle */}
-              <button
-                onClick={() => { setFlashMode((m) => !m); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
-                className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
-                  flashMode
-                    ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
-                }`}
-              >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-                {t('review.flashcardMode')}
-              </button>
+              <div className="flex items-center gap-1.5">
+                {/* Flashcard toggle */}
+                <button
+                  onClick={() => { setFlashMode((m) => !m); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
+                  className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
+                    flashMode
+                      ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
+                      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  {t('review.flashcardMode')}
+                </button>
+
+                <button
+                  onClick={() => { if (multiMode) { setMultiMode(false); } else { setFlashMode(false); setMultiMode(true); } }}
+                  className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
+                    multiMode
+                      ? 'bg-emerald-500 border-emerald-500 text-white shadow-sm'
+                      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {t('review.multiChoiceMode')}
+                </button>
+              </div>
 
               {/* Hide/show meanings */}
               <button
@@ -329,8 +347,10 @@ const SharedVocabGroupPage: React.FC = () => {
               </button>
             </div>
 
-            {/* ── Flashcard mode ─────────────────────────────────────────────── */}
-            {flashMode ? (() => {
+            {/* ── Flashcard / Multi-choice mode ────────────────────────────── */}
+            {multiMode ? (
+              <MultiChoicePanel words={filtered} onExit={() => setMultiMode(false)} />
+            ) : flashMode ? (() => {
               const flashInsightOpen = selectedWordId === filtered[cardIndex]?.id;
               const cur = filtered[cardIndex];
               if (!cur) return null;
