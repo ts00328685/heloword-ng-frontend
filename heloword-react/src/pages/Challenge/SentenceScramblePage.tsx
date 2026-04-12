@@ -122,6 +122,56 @@ const ChunkButton: React.FC<{
   );
 };
 
+// ── AI Markdown renderer ───────────────────────────────────────────────────
+
+const AiMarkdown: React.FC<{ text: string }> = ({ text }) => {
+  const lines = text.split('\n');
+  const elements: React.ReactNode[] = [];
+  let listItems: string[] = [];
+
+  const flushList = (key: string) => {
+    if (listItems.length > 0) {
+      elements.push(
+        <ul key={key} className="list-disc list-outside pl-5 space-y-1">
+          {listItems.map((item, i) => (
+            <li key={i}>{renderInline(item)}</li>
+          ))}
+        </ul>
+      );
+      listItems = [];
+    }
+  };
+
+  const renderInline = (raw: string): React.ReactNode => {
+    // Bold: **text**
+    const parts = raw.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
+  lines.forEach((line, idx) => {
+    const listMatch = line.match(/^\s*[\*\-]\s+(.+)/);
+    if (listMatch) {
+      listItems.push(listMatch[1]);
+    } else {
+      flushList(`list-${idx}`);
+      const trimmed = line.trim();
+      if (trimmed === '') {
+        // skip blank lines (space-y-2 on parent handles gaps)
+      } else {
+        elements.push(<p key={idx}>{renderInline(trimmed)}</p>);
+      }
+    }
+  });
+  flushList('list-end');
+
+  return <>{elements}</>;
+};
+
 // ── Main Page ──────────────────────────────────────────────────────────────
 
 const SentenceScramblePage: React.FC = () => {
@@ -594,7 +644,7 @@ const SentenceScramblePage: React.FC = () => {
 
         {/* AI panel */}
         {showAiPanel && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-purple-200 dark:border-purple-800 p-4 shadow-sm">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border-2 rainbow-glow p-4 shadow-sm">
             <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-2">
               ✨ {t('scramble.aiGrammar')}
             </p>
@@ -610,9 +660,9 @@ const SentenceScramblePage: React.FC = () => {
                 {t('scramble.aiThinking')}
               </p>
             ) : (
-              <p className="text-sm text-gray-700 dark:text-gray-200 whitespace-pre-wrap leading-relaxed">
-                {aiResult}
-              </p>
+              <div className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
+                <AiMarkdown text={aiResult} />
+              </div>
             )}
           </div>
         )}
