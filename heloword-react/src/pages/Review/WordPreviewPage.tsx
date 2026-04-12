@@ -155,6 +155,16 @@ const WordPreviewPage: React.FC = () => {
   const [cardIndex, setCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
 
+  // Multi-choice mode state
+  const [multiMode, setMultiMode] = useState(false);
+  const [showTooFew, setShowTooFew] = useState(false);
+  const [mcWords, setMcWords] = useState<Sentence[]>([]);
+  const [mcIndex, setMcIndex] = useState(0);
+  const [mcOptions, setMcOptions] = useState<Sentence[]>([]);
+  const [mcSelected, setMcSelected] = useState<number | null>(null);
+  const [mcScore, setMcScore] = useState(0);
+  const [mcDone, setMcDone] = useState(false);
+
   // Drag / swipe state
   const [dragX, setDragX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -191,6 +201,44 @@ const WordPreviewPage: React.FC = () => {
       () => getWordInsight(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)),
     );
   };
+
+  // ── Multi-choice helpers ────────────────────────────────────────────────────
+
+  const generateMcOptions = (correct: Sentence, pool: Sentence[]): Sentence[] => {
+    const others = shuffle(pool.filter(w => w.id !== correct.id));
+    return shuffle([correct, ...others.slice(0, 3)]);
+  };
+
+  const enterMultiChoice = () => {
+    if (displayWords.length < 4) { setShowTooFew(true); return; }
+    const order = shuffle(displayWords);
+    setMcWords(order);
+    setMcIndex(0);
+    setMcScore(0);
+    setMcSelected(null);
+    setMcDone(false);
+    setMcOptions(generateMcOptions(order[0], displayWords));
+    setMultiMode(true);
+  };
+
+  const handleMcSelect = (word: Sentence) => {
+    if (mcSelected !== null) return;
+    const correct = mcWords[mcIndex];
+    if (word.id === correct.id) setMcScore(s => s + 1);
+    setMcSelected(word.id);
+    setTimeout(() => {
+      const next = mcIndex + 1;
+      if (next >= mcWords.length) {
+        setMcDone(true);
+      } else {
+        setMcIndex(next);
+        setMcSelected(null);
+        setMcOptions(generateMcOptions(mcWords[next], displayWords));
+      }
+    }, 1000);
+  };
+
+  const exitMultiChoice = () => { setMultiMode(false); setMcSelected(null); setMcDone(false); };
 
   // ── Shuffle toggle ──────────────────────────────────────────────────────────
 
@@ -353,7 +401,7 @@ const WordPreviewPage: React.FC = () => {
             </p>
             <div className="flex gap-1.5 items-center">
               <button
-                onClick={() => { setFlashMode((m) => !m); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
+                onClick={() => { setFlashMode((m) => !m); setMultiMode(false); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
                 className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
                   flashMode
                     ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
@@ -364,6 +412,20 @@ const WordPreviewPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
                 {t('review.flashcardMode')}
+              </button>
+
+              <button
+                onClick={() => { if (multiMode) { exitMultiChoice(); } else { setFlashMode(false); enterMultiChoice(); } }}
+                className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
+                  multiMode
+                    ? 'bg-emerald-500 border-emerald-500 text-white shadow-sm'
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                }`}
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                多選
               </button>
 
               {!flashMode && (
@@ -381,7 +443,109 @@ const WordPreviewPage: React.FC = () => {
         </div>
       </div>
 
-      {flashMode ? (
+      {multiMode ? (
+        /* ── MULTI-CHOICE MODE ── */
+        <main className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-28 select-none">
+          {mcDone ? (
+            /* Results screen */
+            <div className="w-full max-w-sm flex flex-col items-center gap-6">
+              <div className="w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                <svg className="w-10 h-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{mcScore} / {mcWords.length}</p>
+                <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+                  {mcScore === mcWords.length ? '全部正確！' : mcScore >= mcWords.length * 0.7 ? '做得好！' : '繼續加油！'}
+                </p>
+              </div>
+              <div className="flex gap-3 w-full">
+                <button
+                  onClick={() => {
+                    const order = shuffle(displayWords);
+                    setMcWords(order);
+                    setMcIndex(0);
+                    setMcScore(0);
+                    setMcSelected(null);
+                    setMcDone(false);
+                    setMcOptions(generateMcOptions(order[0], displayWords));
+                  }}
+                  className="flex-1 py-3 rounded-2xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition-colors"
+                >
+                  再試一次
+                </button>
+                <button
+                  onClick={exitMultiChoice}
+                  className="flex-1 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                >
+                  離開
+                </button>
+              </div>
+            </div>
+          ) : (
+            /* Question screen */
+            <div className="w-full max-w-sm flex flex-col gap-5">
+              {/* Progress bar */}
+              <div className="flex items-center gap-3">
+                <div className="flex-1 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                    style={{ width: `${(mcIndex / mcWords.length) * 100}%` }}
+                  />
+                </div>
+                <span className="text-xs text-gray-400 dark:text-gray-500 shrink-0">{mcIndex + 1} / {mcWords.length}</span>
+              </div>
+
+              {/* Question card — shows meaning */}
+              <div className="bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg px-8 py-8 flex flex-col items-center gap-3">
+                <p className="text-[11px] font-medium uppercase tracking-widest text-gray-400 dark:text-gray-500">選出正確的單字</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug">
+                  {mcWords[mcIndex]?.translateEn}
+                </p>
+                {mcWords[mcIndex]?.translateCh && (
+                  <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+                    {mcWords[mcIndex].translateCh}
+                  </p>
+                )}
+                {mcWords[mcIndex]?.sentence && (
+                  <p className="text-xs text-gray-400 dark:text-gray-500 italic text-center line-clamp-2 mt-1">
+                    {mcWords[mcIndex].sentence}
+                  </p>
+                )}
+              </div>
+
+              {/* Option buttons */}
+              <div className="grid grid-cols-1 gap-3">
+                {mcOptions.map((opt) => {
+                  const correct = mcWords[mcIndex];
+                  const isCorrect = opt.id === correct.id;
+                  const isChosen = mcSelected === opt.id;
+                  const revealed = mcSelected !== null;
+
+                  let cls = 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:border-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20';
+                  if (revealed) {
+                    if (isCorrect) cls = 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300';
+                    else if (isChosen) cls = 'border-red-400 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400';
+                    else cls = 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-600 opacity-50';
+                  }
+
+                  return (
+                    <button
+                      key={opt.id}
+                      onClick={() => handleMcSelect(opt)}
+                      disabled={revealed}
+                      className={`py-4 px-3 rounded-2xl border-2 text-sm font-semibold text-center transition-all duration-200 ${cls}`}
+                    >
+                      {opt.word}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </main>
+      ) : flashMode ? (
         /* ── FLASHCARD MODE ── */
         <main className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-28 select-none overflow-x-hidden overflow-y-auto">
           {displayWords.length === 0 ? (
@@ -697,6 +861,29 @@ const WordPreviewPage: React.FC = () => {
         return <OnboardingModal steps={steps} onDone={dismissOnboarding} onSkip={dismissOnboarding} />;
       })()}
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
+
+      {/* Too-few-words popup */}
+      {showTooFew && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setShowTooFew(false)}>
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-7 mx-6 max-w-xs w-full flex flex-col items-center gap-4" onClick={e => e.stopPropagation()}>
+            <div className="w-14 h-14 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+              <svg className="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              </svg>
+            </div>
+            <div className="text-center">
+              <p className="text-base font-bold text-gray-900 dark:text-white">單字不足</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">多選模式需要至少 4 個單字才能開始。</p>
+            </div>
+            <button
+              onClick={() => setShowTooFew(false)}
+              className="w-full py-2.5 rounded-xl bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              確定
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
