@@ -28,6 +28,8 @@ import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
 import { FunArticle, fetchFunArticlePreview, fetchAllFunArticles } from '../../services/funArticle.service';
+import ReactMarkdown from 'react-markdown';
+import { latexToUnicode } from '../../utils/latexToUnicode';
 
 const VOCAB_ONBOARDING_KEY = 'onboarding:my_vocab';
 const SHARED_VOCAB_ONBOARDING_KEY = 'onboarding:shared_vocab';
@@ -296,86 +298,22 @@ const AuthorNoteModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
 const PREVIEW_LENGTH = 120;
 
-const AiMarkdown: React.FC<{ text: string }> = ({ text }) => {
-  const renderInline = (raw: string): React.ReactNode => {
-    const parts = raw.split(/(\*\*[^*]+\*\*)/g);
-    return parts.map((part, i) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={i}>{part.slice(2, -2)}</strong>;
-      }
-      return part;
-    });
-  };
-
-  type ListItem = { text: string; indent: number };
-  const elements: React.ReactNode[] = [];
-  let listBuffer: ListItem[] = [];
-
-  const flushList = (key: string) => {
-    if (listBuffer.length === 0) return;
-    const items = [...listBuffer];
-    listBuffer = [];
-    const renderItems = (pool: ListItem[], baseIndent: number): React.ReactNode => {
-      const result: React.ReactNode[] = [];
-      let i = 0;
-      while (i < pool.length) {
-        const item = pool[i];
-        if (item.indent < baseIndent) break;
-        if (item.indent === baseIndent) {
-          const children: ListItem[] = [];
-          let j = i + 1;
-          while (j < pool.length && pool[j].indent > baseIndent) { children.push(pool[j]); j++; }
-          result.push(
-            <li key={i}>
-              {renderInline(item.text)}
-              {children.length > 0 && (
-                <ul className="list-disc list-outside pl-4 mt-1 space-y-0.5">{renderItems(children, children[0].indent)}</ul>
-              )}
-            </li>
-          );
-          i = j;
-        } else { i++; }
-      }
-      return result;
-    };
-    const isOrdered = items.every(it => (it as any).ordered);
-    const Tag = isOrdered ? 'ol' : 'ul';
-    const listClass = isOrdered ? 'list-decimal list-outside pl-5 space-y-1' : 'list-disc list-outside pl-5 space-y-1';
-    elements.push(<Tag key={key} className={listClass}>{renderItems(items, items[0].indent)}</Tag>);
-  };
-
-  const lines = text.split('\n');
-  lines.forEach((line, idx) => {
-    const bulletMatch = line.match(/^(\s*)[\*\-]\s+(.+)/);
-    const orderedMatch = line.match(/^(\s*)\d+[.)]\s+(.+)/);
-    if (bulletMatch) {
-      const indent = bulletMatch[1].length;
-      if (listBuffer.length > 0 && (listBuffer[0] as any).ordered) flushList(`list-${idx}`);
-      listBuffer.push({ text: bulletMatch[2], indent });
-    } else if (orderedMatch) {
-      const indent = orderedMatch[1].length;
-      if (listBuffer.length > 0 && !(listBuffer[0] as any).ordered) flushList(`list-${idx}`);
-      listBuffer.push(Object.assign({ text: orderedMatch[2], indent }, { ordered: true }));
-    } else {
-      flushList(`list-${idx}`);
-      const headingMatch = line.match(/^(#{1,3})\s+(.+)/);
-      if (headingMatch) {
-        const level = headingMatch[1].length;
-        const headingClass = level === 1
-          ? 'text-base font-bold text-gray-900 dark:text-gray-100 mt-3'
-          : level === 2
-          ? 'text-sm font-bold text-gray-800 dark:text-gray-100 mt-2'
-          : 'text-sm font-semibold text-gray-700 dark:text-gray-200 mt-2';
-        elements.push(<p key={idx} className={headingClass}>{renderInline(headingMatch[2])}</p>);
-      } else {
-        const trimmed = line.trim();
-        if (trimmed !== '') elements.push(<p key={idx}>{renderInline(trimmed)}</p>);
-      }
-    }
-  });
-  flushList('list-end');
-  return <>{elements}</>;
-};
+const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
+  <ReactMarkdown
+    components={{
+      p: ({ children }) => <p className="leading-relaxed">{children}</p>,
+      h1: ({ children }) => <p className="text-base font-bold text-gray-900 dark:text-gray-100 mt-3">{children}</p>,
+      h2: ({ children }) => <p className="text-sm font-bold text-gray-800 dark:text-gray-100 mt-2">{children}</p>,
+      h3: ({ children }) => <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-2">{children}</p>,
+      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+      ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{children}</ul>,
+      ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{children}</ol>,
+      li: ({ children }) => <li>{children}</li>,
+    }}
+  >
+    {latexToUnicode(text)}
+  </ReactMarkdown>
+);
 
 const FunArticlesModal: React.FC<{ articles: FunArticle[]; onClose: () => void }> = ({ articles, onClose }) => {
   const { t } = useTranslation();
