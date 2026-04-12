@@ -18,6 +18,7 @@ import {
   CustomWord,
   fetchCustomWords,
   addCustomWord,
+  batchAddCustomWords,
   updateCustomWord,
   deleteCustomWord,
   updateCustomGroup,
@@ -213,7 +214,7 @@ const UserVocabGroupPage: React.FC = () => {
   };
 
   const handleImport = async (rows: Omit<import('../../services/customVocab.service').CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]) => {
-    const results = await Promise.all(rows.map((row) => addCustomWord(id, row)));
+    const results = await batchAddCustomWords(id, rows);
     setWords((prev) => [...prev, ...results]);
     setGroup((g) => ({ ...g, wordCount: g.wordCount + results.length }));
   };

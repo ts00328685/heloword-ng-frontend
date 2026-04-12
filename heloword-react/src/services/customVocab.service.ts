@@ -57,6 +57,12 @@ export async function addCustomWord(groupId: number, dto: Omit<CustomWord, 'id' 
   return { ...res.data, tableName: 'USER_CUSTOM_WORD', language: 'custom' };
 }
 
+export async function batchAddCustomWords(groupId: number, dtos: Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]): Promise<CustomWord[]> {
+  const res = await doPost<CustomWord[]>(`/frontend-api/api/fe/custom-vocab/groups/${groupId}/words/batch`, dtos);
+  if (res.code !== '0000' || !res.data) throw new Error(res.message || 'Failed to batch add words');
+  return res.data.map(w => ({ ...w, tableName: 'USER_CUSTOM_WORD' as const, language: 'custom' as const }));
+}
+
 export async function updateCustomWord(wordId: number, dto: Partial<Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>>): Promise<CustomWord> {
   const res = await doPut<CustomWord>(`/frontend-api/api/fe/custom-vocab/words/${wordId}`, dto);
   if (res.code !== '0000' || !res.data) throw new Error(res.message || 'Failed to update word');
