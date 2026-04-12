@@ -358,7 +358,9 @@ const HomePage: React.FC = () => {
     }
   };
 
-  const handleDeleteSharedGroup = async (shareId: number) => {
+  const handleDeleteSharedGroup = async (e: React.MouseEvent, shareId: number) => {
+    e.stopPropagation();
+    if (!window.confirm(t('sharedVocab.deleteConfirm', 'Delete this shared group? This cannot be undone.'))) return;
     setAdminActionLoading(shareId);
     try {
       await deleteSharedGroup(shareId);
@@ -664,7 +666,7 @@ const HomePage: React.FC = () => {
                 >
                   {isAdmin && (
                     <button
-                      onClick={(e) => { e.stopPropagation(); handleDeleteSharedGroup(sg.id); }}
+                      onClick={(e) => handleDeleteSharedGroup(e, sg.id)}
                       disabled={adminActionLoading === sg.id}
                       className="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30 text-red-500 hover:bg-red-200 dark:hover:bg-red-800/40 disabled:opacity-40 transition-colors"
                       aria-label={t('sharedVocab.delete', 'Delete')}
