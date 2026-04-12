@@ -296,7 +296,16 @@ const AuthorNoteModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   );
 };
 
-const PREVIEW_LENGTH = 120;
+const PREVIEW_LENGTH = 180;
+
+function stripWordHeading(word: string, content: string): string {
+  // Remove leading markdown heading/bold/plain line that matches the word
+  return content
+    .replace(new RegExp(`^#{1,6}\\s*\\*{0,2}${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\*{0,2}\\s*\\n+`, 'i'), '')
+    .replace(new RegExp(`^\\*{1,2}${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\*{1,2}\\s*\\n+`, 'i'), '')
+    .replace(new RegExp(`^${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\n+`, 'i'), '')
+    .trimStart();
+}
 
 const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
   <ReactMarkdown
@@ -339,15 +348,15 @@ const FunArticlesModal: React.FC<{ articles: FunArticle[]; onClose: () => void }
         </div>
         <div className="overflow-y-auto px-5 py-4 space-y-5">
           {articles.map((a, i) => (
-            <div key={i} className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300">
-                  #{i + 1}
+            <div key={i} className="rounded-2xl overflow-hidden shadow-sm">
+              <div className="bg-gradient-to-r from-sky-400 to-blue-500 dark:from-sky-600 dark:to-blue-700 px-4 py-2.5 flex items-center gap-2.5">
+                <span className="text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full bg-white/20 text-white shrink-0">
+                  {i + 1}
                 </span>
-                <span className="text-sm font-bold text-gray-800 dark:text-gray-100">{a.word}</span>
+                <span className="text-base font-bold text-white tracking-wide">{a.word}</span>
               </div>
-              <div className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
-                <AiMarkdown text={a.content} />
+              <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
+                <AiMarkdown text={stripWordHeading(a.word, a.content)} />
               </div>
             </div>
           ))}
@@ -385,9 +394,10 @@ const FunArticlesSection: React.FC = () => {
   const preview = allArticles[0] ?? null;
   if (!preview) return null;
 
-  const truncated = preview.content.length > PREVIEW_LENGTH
-    ? preview.content.slice(0, PREVIEW_LENGTH).trimEnd() + '…'
-    : preview.content;
+  const cleanContent = stripWordHeading(preview.word, preview.content);
+  const truncated = cleanContent.length > PREVIEW_LENGTH
+    ? cleanContent.slice(0, PREVIEW_LENGTH).trimEnd() + '…'
+    : cleanContent;
 
   return (
     <section className="mb-6">
@@ -407,24 +417,25 @@ const FunArticlesSection: React.FC = () => {
             </svg>
           </button>
         </div>
-        <button
-          onClick={handleViewAll}
-          className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
-        >
-          {t('home.viewAll')}
-        </button>
       </div>
       <button
         onClick={handleViewAll}
-        className="w-full text-left bg-white dark:bg-gray-800 rounded-2xl border border-purple-100 dark:border-purple-900/40 shadow-sm p-4 hover:shadow-md hover:-translate-y-0.5 transition-all"
+        className="w-full text-left rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group"
       >
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300">
-            {preview.word}
-          </span>
+        {/* Gradient header with word */}
+        <div className="bg-gradient-to-r from-sky-400 to-blue-500 dark:from-sky-600 dark:to-blue-700 px-4 pt-3.5 pb-3 flex items-center justify-between">
+          <div>
+            <p className="text-sky-100 dark:text-sky-200 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Featured Word</p>
+            <h3 className="text-white text-xl font-bold tracking-wide">{preview.word}</h3>
+          </div>
+          <span className="text-3xl opacity-70 group-hover:scale-110 transition-transform">📖</span>
         </div>
-        <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed space-y-1.5">
-          <AiMarkdown text={truncated} />
+        {/* Article preview */}
+        <div className="bg-white dark:bg-gray-800 border border-t-0 border-sky-100 dark:border-sky-900/40 px-4 py-3 rounded-b-2xl">
+          <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">
+            <AiMarkdown text={truncated} />
+          </div>
+          <p className="mt-2 text-xs text-sky-400 font-medium">Tap to read more →</p>
         </div>
       </button>
       {showModal && <FunArticlesModal articles={allArticles} onClose={() => setShowModal(false)} />}
