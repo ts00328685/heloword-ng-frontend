@@ -39,8 +39,9 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
     return { order, options: generateOptions(order[0], words) };
   };
 
-  const [mcWords, setMcWords] = useState<MCWord[]>(() => tooFew ? [] : initState().order);
-  const [mcOptions, setMcOptions] = useState<MCWord[]>(() => tooFew ? [] : initState().options);
+  const [{ order: initOrder, options: initOptions }] = useState(() => tooFew ? { order: [], options: [] } : initState());
+  const [mcWords, setMcWords] = useState<MCWord[]>(initOrder);
+  const [mcOptions, setMcOptions] = useState<MCWord[]>(initOptions);
   const [mcIndex, setMcIndex] = useState(0);
   const [mcSelected, setMcSelected] = useState<number | null>(null);
   const [mcScore, setMcScore] = useState(0);
