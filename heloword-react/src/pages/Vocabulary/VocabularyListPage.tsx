@@ -92,7 +92,7 @@ const VocabularyListPage: React.FC = () => {
     setSelectedWordId(word.id);
     if (!isLoggedIn) return; // guest — panel shows login prompt, no fetch
     insight.run(
-      String(word.id),
+      `${word.language || 'en'}:${word.id}`,
       () => getWordInsight(
         word.word || word.sentence || '',
         word.translateEn || '',
@@ -137,6 +137,12 @@ const VocabularyListPage: React.FC = () => {
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
   }, [filtered]);
+
+  // Close insight panel when the list itself changes (e.g. navigating JP→EN)
+  useEffect(() => {
+    setSelectedWordId(null);
+    insight.clear();
+  }, [list]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const sentinel = sentinelRef.current;
@@ -377,7 +383,7 @@ const VocabularyListPage: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <p className="text-xs text-red-400">{t('llm.error')}</p>
                         <button
-                          onClick={() => insight.retry(String(word.id), () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', i18n.language, word.language || 'en'))}
+                          onClick={() => insight.retry(`${word.language || 'en'}:${word.id}`, () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', i18n.language, word.language || 'en'))}
                           className="text-xs text-blue-400 underline"
                         >↺</button>
                       </div>

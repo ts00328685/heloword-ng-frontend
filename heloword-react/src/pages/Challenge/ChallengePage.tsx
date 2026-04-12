@@ -276,8 +276,8 @@ const ChallengePage: React.FC = () => {
           </p>
           <div className="space-y-2">
             {[
-              { path: '/challenge/scramble', state: { lang: 'jp' }, icon: '🇯🇵', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)', titleKey: 'scramble.titleJp',        descKey: 'scramble.descJp' },
               { path: '/challenge/scramble', state: { lang: 'en' }, icon: '🇬🇧', gradient: 'linear-gradient(135deg, #a29bfe, #6c5ce7)', titleKey: 'scramble.titleEn',        descKey: 'scramble.descEn' },
+              { path: '/challenge/scramble', state: { lang: 'jp' }, icon: '🇯🇵', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)', titleKey: 'scramble.titleJp',        descKey: 'scramble.descJp' },
               { path: '/challenge/quiz',     state: { gameType: 'en' }, icon: '🔤', gradient: 'linear-gradient(135deg, #00b894, #00cec9)', titleKey: 'multiChoice.titleEn', descKey: 'multiChoice.descEn' },
               { path: '/challenge/quiz',     state: { gameType: 'jp' }, icon: '🈶', gradient: 'linear-gradient(135deg, #fdcb6e, #e17055)', titleKey: 'multiChoice.titleJp', descKey: 'multiChoice.descJp' },
             ].map(({ path, state, icon, gradient, titleKey, descKey }) => (
