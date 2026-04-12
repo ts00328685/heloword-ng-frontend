@@ -83,6 +83,7 @@ const VocabularyQuizPage: React.FC = () => {
   const pronounceCountRef = useRef(0);
   const deleteCountRef = useRef(0);
   const wrongCountRef = useRef(0);
+  const pronounceTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   // Accumulates wrongCount across retests so the final saved record reflects
   // all mistakes made on a word, not just the last (successful) attempt.
   const wrongAccumRef = useRef<Map<string, number>>(new Map());
@@ -383,13 +384,15 @@ const VocabularyQuizPage: React.FC = () => {
     if (e.key === 'Enter') {
       wrongCountRef.current += 5;
       const ans = getRawAnswer(wordList[0]);
-      showToast(t('quiz.correctAnswer', { answer: ans }), 700, 'bottom');
+      showToast(t('quiz.correctAnswer', { answer: ans }), 700, 'top');
     }
   };
 
   const goNext = useCallback(
     async (current: Sentence) => {
       cancelPronouncing();
+      pronounceTimeoutsRef.current.forEach(clearTimeout);
+      pronounceTimeoutsRef.current = [];
 
       let needRetest = false;
 
@@ -438,16 +441,18 @@ const VocabularyQuizPage: React.FC = () => {
         return;
       }
 
-      const next = wordList[needRetest ? wordList.length - 1 : 1];
+      // After slicing off current, the next displayed word is always wordList[1].
+      // Exception: if this is the only word and it's being retested, re-pronounce current.
+      const next = (needRetest && wordList.length === 1) ? current : wordList[1];
       if (!next) return;
 
       if (autoPronounce) {
         pronounceWord(next.word || next.sentence || '', next.language, { speed, volume });
       }
       const delay = autoPronounce ? 1000 : 0;
-      if (autoPronounceEn) setTimeout(() => pronounceWord(next.translateEn, 'en', { speed, volume }), delay);
-      if (autoPronounceCh) setTimeout(() => pronounceWord(next.translateCh, 'ch', { speed, volume }), delay);
-      if (autoPronounceSentence) setTimeout(() => pronounceWord(next.sentence || '', next.language, { speed, volume }), delay);
+      if (autoPronounceEn) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.translateEn, 'en', { speed, volume }), delay));
+      if (autoPronounceCh) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.translateCh, 'ch', { speed, volume }), delay));
+      if (autoPronounceSentence) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.sentence || '', next.language, { speed, volume }), delay));
 
       if (autoInputFocus) setTimeout(() => inputRef.current?.focus(), 50);
     },
@@ -515,9 +520,9 @@ const VocabularyQuizPage: React.FC = () => {
     let ans = getRawAnswer(current);
     if (japaneseMode && current.language === 'jp') {
       const { ansKanjiFirst, ansKataFirst } = getJpAnswers(ans);
-      showToast(t('quiz.correctAnswerJp', { ans1: ansKanjiFirst, ans2: ansKataFirst }), 2000, 'bottom');
+      showToast(t('quiz.correctAnswerJp', { ans1: ansKanjiFirst, ans2: ansKataFirst }), 2000, 'top');
     } else {
-      showToast(t('quiz.correctAnswer', { answer: ans }), 2000, 'bottom');
+      showToast(t('quiz.correctAnswer', { answer: ans }), 2000, 'top');
     }
     if (autoInputFocus) inputRef.current?.focus();
   };
