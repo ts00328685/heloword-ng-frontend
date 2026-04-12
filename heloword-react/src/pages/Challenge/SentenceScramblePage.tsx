@@ -125,25 +125,7 @@ const ChunkButton: React.FC<{
 // ── AI Markdown renderer ───────────────────────────────────────────────────
 
 const AiMarkdown: React.FC<{ text: string }> = ({ text }) => {
-  const lines = text.split('\n');
-  const elements: React.ReactNode[] = [];
-  let listItems: string[] = [];
-
-  const flushList = (key: string) => {
-    if (listItems.length > 0) {
-      elements.push(
-        <ul key={key} className="list-disc list-outside pl-5 space-y-1">
-          {listItems.map((item, i) => (
-            <li key={i}>{renderInline(item)}</li>
-          ))}
-        </ul>
-      );
-      listItems = [];
-    }
-  };
-
   const renderInline = (raw: string): React.ReactNode => {
-    // Bold: **text**
     const parts = raw.split(/(\*\*[^*]+\*\*)/g);
     return parts.map((part, i) => {
       if (part.startsWith('**') && part.endsWith('**')) {
@@ -153,16 +135,76 @@ const AiMarkdown: React.FC<{ text: string }> = ({ text }) => {
     });
   };
 
+  type ListItem = { text: string; indent: number };
+  const elements: React.ReactNode[] = [];
+  let listBuffer: ListItem[] = [];
+
+  const flushList = (key: string) => {
+    if (listBuffer.length === 0) return;
+    const items = [...listBuffer];
+    listBuffer = [];
+
+    const renderItems = (pool: ListItem[], baseIndent: number): React.ReactNode => {
+      const result: React.ReactNode[] = [];
+      let i = 0;
+      while (i < pool.length) {
+        const item = pool[i];
+        if (item.indent < baseIndent) break;
+        if (item.indent === baseIndent) {
+          // collect children (deeper indent)
+          const children: ListItem[] = [];
+          let j = i + 1;
+          while (j < pool.length && pool[j].indent > baseIndent) {
+            children.push(pool[j]);
+            j++;
+          }
+          result.push(
+            <li key={i}>
+              {renderInline(item.text)}
+              {children.length > 0 && (
+                <ul className="list-disc list-outside pl-4 mt-1 space-y-0.5">
+                  {renderItems(children, children[0].indent)}
+                </ul>
+              )}
+            </li>
+          );
+          i = j;
+        } else {
+          i++;
+        }
+      }
+      return result;
+    };
+
+    // detect if ordered (all items from numbered list) — use ol if so
+    const isOrdered = items.every(it => (it as any).ordered);
+    const Tag = isOrdered ? 'ol' : 'ul';
+    const listClass = isOrdered
+      ? 'list-decimal list-outside pl-5 space-y-1'
+      : 'list-disc list-outside pl-5 space-y-1';
+    elements.push(
+      <Tag key={key} className={listClass}>
+        {renderItems(items, items[0].indent)}
+      </Tag>
+    );
+  };
+
+  const lines = text.split('\n');
   lines.forEach((line, idx) => {
-    const listMatch = line.match(/^\s*[\*\-]\s+(.+)/);
-    if (listMatch) {
-      listItems.push(listMatch[1]);
+    const bulletMatch = line.match(/^(\s*)[\*\-]\s+(.+)/);
+    const orderedMatch = line.match(/^(\s*)\d+[.)]\s+(.+)/);
+    if (bulletMatch) {
+      const indent = bulletMatch[1].length;
+      if (listBuffer.length > 0 && (listBuffer[0] as any).ordered) flushList(`list-${idx}`);
+      listBuffer.push({ text: bulletMatch[2], indent });
+    } else if (orderedMatch) {
+      const indent = orderedMatch[1].length;
+      if (listBuffer.length > 0 && !(listBuffer[0] as any).ordered) flushList(`list-${idx}`);
+      listBuffer.push(Object.assign({ text: orderedMatch[2], indent }, { ordered: true }));
     } else {
       flushList(`list-${idx}`);
       const trimmed = line.trim();
-      if (trimmed === '') {
-        // skip blank lines (space-y-2 on parent handles gaps)
-      } else {
+      if (trimmed !== '') {
         elements.push(<p key={idx}>{renderInline(trimmed)}</p>);
       }
     }
