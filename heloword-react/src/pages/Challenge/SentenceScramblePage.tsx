@@ -203,9 +203,20 @@ const AiMarkdown: React.FC<{ text: string }> = ({ text }) => {
       listBuffer.push(Object.assign({ text: orderedMatch[2], indent }, { ordered: true }));
     } else {
       flushList(`list-${idx}`);
-      const trimmed = line.trim();
-      if (trimmed !== '') {
-        elements.push(<p key={idx}>{renderInline(trimmed)}</p>);
+      const headingMatch = line.match(/^(#{1,3})\s+(.+)/);
+      if (headingMatch) {
+        const level = headingMatch[1].length;
+        const headingClass = level === 1
+          ? 'text-base font-bold text-gray-900 dark:text-gray-100 mt-3'
+          : level === 2
+          ? 'text-sm font-bold text-gray-800 dark:text-gray-100 mt-2'
+          : 'text-sm font-semibold text-gray-700 dark:text-gray-200 mt-2';
+        elements.push(<p key={idx} className={headingClass}>{renderInline(headingMatch[2])}</p>);
+      } else {
+        const trimmed = line.trim();
+        if (trimmed !== '') {
+          elements.push(<p key={idx}>{renderInline(trimmed)}</p>);
+        }
       }
     }
   });
