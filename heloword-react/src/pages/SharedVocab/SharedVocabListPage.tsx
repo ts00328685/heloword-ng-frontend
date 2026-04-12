@@ -24,6 +24,7 @@ const SharedVocabListPage: React.FC = () => {
 
   const handleDelete = async (e: React.MouseEvent, id: number) => {
     e.stopPropagation();
+    if (!window.confirm(t('sharedVocab.deleteConfirm', 'Delete this shared group? This cannot be undone.'))) return;
     setDeleteLoading(id);
     try {
       await deleteSharedGroup(id);

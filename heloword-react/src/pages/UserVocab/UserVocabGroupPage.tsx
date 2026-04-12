@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import * as XLSX from 'xlsx';
 import Header from '../../components/Header';
 import UserVocabWordFormModal from '../../components/UserVocabWordFormModal';
 import CreateGroupModal from '../../components/CreateGroupModal';
@@ -61,6 +62,7 @@ const UserVocabGroupPage: React.FC = () => {
   const [deletingWord, setDeletingWord] = useState(false);
   const [quizLoading, setQuizLoading] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const [hideMeanings, setHideMeanings] = useState(false);
   const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
   const toggleReveal = (id: number) => setRevealedIds((prev) => {
@@ -96,6 +98,25 @@ const UserVocabGroupPage: React.FC = () => {
       setWords(data);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      const rows = words.map((w) => ({
+        Word: w.word,
+        'English Translation': w.translateEn,
+        'Chinese Translation': w.translateCh ?? '',
+        Sentence: w.sentence ?? '',
+        Phonetics: w.phonetics ?? '',
+      }));
+      const ws = XLSX.utils.json_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Words');
+      XLSX.writeFile(wb, `${group.name}.xlsx`);
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -300,6 +321,20 @@ const UserVocabGroupPage: React.FC = () => {
             <span className="text-xs text-gray-400 dark:text-gray-500 truncate flex-1">· {group.description}</span>
           )}
           <div className="ml-auto flex items-center gap-1">
+            <button
+              onClick={handleDownload}
+              disabled={downloading}
+              className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-40"
+              title="Download as Excel"
+            >
+              {downloading ? (
+                <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              )}
+            </button>
             <button
               onClick={() => setShowShareModal(true)}
               className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"

@@ -635,6 +635,7 @@ const en = {
     copySuccess: 'Copied to My Vocab!',
     copyError: 'Copy failed, please try again',
     delete: 'Remove',
+    deleteConfirm: 'Delete this shared group? This cannot be undone.',
     noSharedGroups: 'No shared vocabulary groups yet.',
     startQuiz: 'Start Quiz',
     viewAll: 'View All',

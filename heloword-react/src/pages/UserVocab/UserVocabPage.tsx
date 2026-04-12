@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import * as XLSX from 'xlsx';
 import Header from '../../components/Header';
 import CreateGroupModal from '../../components/CreateGroupModal';
 import ShareVocabGroupModal from '../../components/ShareVocabGroupModal';
@@ -11,6 +12,7 @@ import {
   createCustomGroup,
   updateCustomGroup,
   deleteCustomGroup,
+  fetchCustomWords,
 } from '../../services/customVocab.service';
 
 const ALL_LANGS = ['EN', 'JA', 'DE', 'Other'];
@@ -26,6 +28,7 @@ const UserVocabPage: React.FC = () => {
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState('');
   const [shareGroup, setShareGroup] = useState<CustomGroup | null>(null);
+  const [downloadingId, setDownloadingId] = useState<number | null>(null);
 
   // Search / filter state
   const [query, setQuery] = useState('');
@@ -70,6 +73,28 @@ const UserVocabPage: React.FC = () => {
       setError('Failed to delete group');
     } finally {
       setDeleting(false);
+    }
+  };
+
+  const handleDownload = async (group: CustomGroup) => {
+    setDownloadingId(group.id);
+    try {
+      const words = await fetchCustomWords(group.id);
+      const rows = words.map((w) => ({
+        Word: w.word,
+        'English Translation': w.translateEn,
+        'Chinese Translation': w.translateCh ?? '',
+        Sentence: w.sentence ?? '',
+        Phonetics: w.phonetics ?? '',
+      }));
+      const ws = XLSX.utils.json_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Words');
+      XLSX.writeFile(wb, `${group.name}.xlsx`);
+    } catch {
+      setError('Failed to download words');
+    } finally {
+      setDownloadingId(null);
     }
   };
 
@@ -235,6 +260,20 @@ const UserVocabPage: React.FC = () => {
                       </button>
                       <div className="flex items-center gap-1 shrink-0">
                         <button
+                          onClick={() => handleDownload(group)}
+                          disabled={downloadingId === group.id}
+                          className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-40"
+                          title="Download as Excel"
+                        >
+                          {downloadingId === group.id ? (
+                            <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+                          ) : (
+                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                          )}
+                        </button>
+                        <button
                           onClick={() => setShareGroup(group)}
                           className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                           title={t('vocabShare.shareTitle', 'Share with friend')}
@@ -265,7 +304,7 @@ const UserVocabPage: React.FC = () => {
                       onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
                       className="mt-3 w-full text-center text-xs text-blue-500 font-medium hover:text-blue-700 transition-colors"
                     >
-                      {t('home.viewAll')} →
+                      {t('home.viewAll')}
                     </button>
                   </div>
                 );
