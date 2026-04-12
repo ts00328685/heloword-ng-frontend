@@ -27,7 +27,7 @@ import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
-import { FunArticle, fetchFunArticlePreview, fetchAllFunArticles } from '../../services/funArticle.service';
+import { FunArticle, fetchAllFunArticles } from '../../services/funArticle.service';
 import ReactMarkdown from 'react-markdown';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 
@@ -360,27 +360,29 @@ const FunArticlesModal: React.FC<{ articles: FunArticle[]; onClose: () => void }
 
 const FunArticlesSection: React.FC = () => {
   const { t } = useTranslation();
-  const [preview, setPreview] = React.useState<FunArticle | null>(null);
   const [allArticles, setAllArticles] = React.useState<FunArticle[]>([]);
   const [showModal, setShowModal] = React.useState(false);
-  const [loadingAll, setLoadingAll] = React.useState(false);
+  const [refreshing, setRefreshing] = React.useState(false);
 
-  React.useEffect(() => {
-    fetchFunArticlePreview().then(setPreview).catch(() => {});
+  const loadArticles = React.useCallback(() => {
+    fetchAllFunArticles().then(setAllArticles).catch(() => {});
   }, []);
 
-  const handleViewAll = async () => {
-    if (allArticles.length > 0) { setShowModal(true); return; }
-    setLoadingAll(true);
+  React.useEffect(() => { loadArticles(); }, [loadArticles]);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
     try {
       const articles = await fetchAllFunArticles();
       setAllArticles(articles);
-      setShowModal(true);
     } finally {
-      setLoadingAll(false);
+      setRefreshing(false);
     }
   };
 
+  const handleViewAll = () => setShowModal(true);
+
+  const preview = allArticles[0] ?? null;
   if (!preview) return null;
 
   const truncated = preview.content.length > PREVIEW_LENGTH
@@ -393,18 +395,27 @@ const FunArticlesSection: React.FC = () => {
         <div className="flex items-center gap-1.5">
           <span className="text-base">📚</span>
           <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{t('home.funArticleTitle')}</h2>
+          <button
+            onClick={handleRefresh}
+            disabled={refreshing}
+            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 disabled:opacity-40 transition-colors"
+            aria-label="Refresh"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 2v6h-6" /><path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
+              <path d="M3 22v-6h6" /><path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
+            </svg>
+          </button>
         </div>
         <button
           onClick={handleViewAll}
-          disabled={loadingAll}
-          className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300 disabled:opacity-50"
+          className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
         >
-          {loadingAll ? '…' : t('home.viewAll')}
+          {t('home.viewAll')}
         </button>
       </div>
       <button
         onClick={handleViewAll}
-        disabled={loadingAll}
         className="w-full text-left bg-white dark:bg-gray-800 rounded-2xl border border-purple-100 dark:border-purple-900/40 shadow-sm p-4 hover:shadow-md hover:-translate-y-0.5 transition-all"
       >
         <div className="flex items-center gap-2 mb-2">
