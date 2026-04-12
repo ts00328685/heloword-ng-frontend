@@ -269,6 +269,18 @@ const ReviewPage: React.FC = () => {
     ),
   ).sort((a, b) => a - b);
 
+  const formatGroupType = (type: string): string => {
+    if (type.startsWith('userCustomGroup:')) {
+      const id = Number(type.split(':')[1]);
+      return customGroupMap.get(id)?.name ?? t('userVocab.myVocabGroup', 'My Vocab');
+    }
+    if (type.startsWith('sharedVocabGroup:')) {
+      const id = Number(type.split(':')[1]);
+      return sharedGroupMap.get(id)?.name ?? t('sharedVocab.title', 'Shared Vocab');
+    }
+    return t(`wordLists.${type}`, type);
+  };
+
   const filteredGroups = (() => {
     const filtered = groups.filter((g) => {
       const state = resolveGroupState(g.records);
@@ -357,18 +369,6 @@ const ReviewPage: React.FC = () => {
       }));
     }
     return [];
-  };
-
-  const formatGroupType = (type: string): string => {
-    if (type.startsWith('userCustomGroup:')) {
-      const id = Number(type.split(':')[1]);
-      return customGroupMap.get(id)?.name ?? t('userVocab.myVocabGroup', 'My Vocab');
-    }
-    if (type.startsWith('sharedVocabGroup:')) {
-      const id = Number(type.split(':')[1]);
-      return sharedGroupMap.get(id)?.name ?? t('sharedVocab.title', 'Shared Vocab');
-    }
-    return t(`wordLists.${type}`, type);
   };
 
   const handlePreview = async (e: React.MouseEvent, group: QuizGroup, key: string) => {
