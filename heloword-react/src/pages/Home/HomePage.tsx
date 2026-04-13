@@ -307,6 +307,34 @@ function stripWordHeading(word: string, content: string): string {
     .trimStart();
 }
 
+/** Strip markdown syntax so TTS doesn't read asterisks, hashes, etc. */
+function stripMarkdownForTTS(text: string, langCode?: string): string {
+  let result = text
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/\*\*(.*?)\*\*/gs, '$1')
+    .replace(/\*(.*?)\*/gs, '$1')
+    .replace(/`(.*?)`/g, '$1')
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+    .replace(/^\s*[-*+]\s+/gm, '')
+    .replace(/^\s*\d+\.\s+/gm, '')
+    .replace(/\n{3,}/g, '\n\n');
+  // For Japanese, strip furigana annotations like 探偵(たんてい) — kana in parens repeat the kanji
+  if (langCode === 'ja-JP') {
+    result = result.replace(/\([^)]*[\u3040-\u30FF][^)]*\)/g, '');
+  }
+  return result.trim();
+}
+
+/** Split article content into per-language sections. */
+function parseArticleSections(content: string): { en: string; zh?: string; ja?: string } {
+  const zhIdx = content.search(/繁體中文翻譯/);
+  const jaIdx = content.search(/日本語訳/);
+  const en = zhIdx > -1 ? content.slice(0, zhIdx) : jaIdx > -1 ? content.slice(0, jaIdx) : content;
+  const zh = zhIdx > -1 ? (jaIdx > -1 ? content.slice(zhIdx, jaIdx) : content.slice(zhIdx)) : undefined;
+  const ja = jaIdx > -1 ? content.slice(jaIdx) : undefined;
+  return { en: en.trim(), zh: zh?.trim(), ja: ja?.trim() };
+}
+
 const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
   <ReactMarkdown
     components={{
@@ -324,8 +352,87 @@ const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
   </ReactMarkdown>
 );
 
+const ArticleItem: React.FC<{ article: FunArticle; index: number }> = ({ article, index }) => {
+  const [activeLang, setActiveLang] = React.useState<string | null>(null);
+
+  const sections = React.useMemo(
+    () => parseArticleSections(stripWordHeading(article.word, article.content)),
+    [article],
+  );
+
+  const speakSection = (text: string, langCode: string, langKey: string) => {
+    window.speechSynthesis.cancel();
+    if (activeLang === langKey) {
+      setActiveLang(null);
+      return;
+    }
+    setActiveLang(langKey);
+    const plain = stripMarkdownForTTS(text, langCode);
+    const utt = new SpeechSynthesisUtterance(plain);
+    utt.lang = langCode;
+    utt.rate = 0.9;
+    utt.volume = 1.0;
+    utt.onend = () => setActiveLang(null);
+    utt.onerror = () => setActiveLang(null);
+    window.speechSynthesis.speak(utt);
+  };
+
+  const speakWord = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    pronounceWord(article.word, 'en', { speed: 0.9, volume: 1.0, pitch: 1.0 });
+  };
+
+  const langBtn = (label: string, text: string, langCode: string, langKey: string) => (
+    <button
+      onClick={() => speakSection(text, langCode, langKey)}
+      className={`text-xs px-2.5 py-1 rounded-full font-medium transition-colors flex items-center gap-1 ${
+        activeLang === langKey
+          ? 'bg-sky-500 text-white'
+          : 'bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900/40'
+      }`}
+    >
+      <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5L6 9H2v6h4l5 4V5zm4.54 3.46a5 5 0 010 7.07" />
+      </svg>
+      {label}
+    </button>
+  );
+
+  return (
+    <div className="rounded-2xl overflow-hidden shadow-sm">
+      <div className="bg-gradient-to-r from-sky-400 to-blue-500 dark:from-sky-600 dark:to-blue-700 px-4 py-2.5 flex items-center gap-2.5">
+        <span className="text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full bg-white/20 text-white shrink-0">
+          {index + 1}
+        </span>
+        <span className="text-base font-bold text-white tracking-wide flex-1">{article.word}</span>
+        <button
+          onClick={speakWord}
+          title="Pronounce word"
+          className="text-white/80 hover:text-white transition-colors p-1 rounded-full hover:bg-white/20"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5L6 9H2v6h4l5 4V5zm4.54 3.46a5 5 0 010 7.07" />
+          </svg>
+        </button>
+      </div>
+      <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
+        <div className="flex flex-wrap gap-2 pb-2 border-b border-gray-200 dark:border-gray-600">
+          {langBtn('EN', sections.en, 'en-US', 'en')}
+          {sections.zh && langBtn('中', sections.zh, 'zh-TW', 'zh')}
+          {sections.ja && langBtn('日', sections.ja, 'ja-JP', 'ja')}
+        </div>
+        <AiMarkdown text={stripWordHeading(article.word, article.content)} />
+      </div>
+    </div>
+  );
+};
+
 const FunArticlesModal: React.FC<{ articles: FunArticle[]; onClose: () => void }> = ({ articles, onClose }) => {
   const { t } = useTranslation();
+
+  // Cancel TTS when modal closes
+  React.useEffect(() => () => { window.speechSynthesis?.cancel(); }, []);
+
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
       <div
@@ -348,17 +455,7 @@ const FunArticlesModal: React.FC<{ articles: FunArticle[]; onClose: () => void }
         </div>
         <div className="overflow-y-auto px-5 py-4 space-y-5">
           {articles.map((a, i) => (
-            <div key={i} className="rounded-2xl overflow-hidden shadow-sm">
-              <div className="bg-gradient-to-r from-sky-400 to-blue-500 dark:from-sky-600 dark:to-blue-700 px-4 py-2.5 flex items-center gap-2.5">
-                <span className="text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full bg-white/20 text-white shrink-0">
-                  {i + 1}
-                </span>
-                <span className="text-base font-bold text-white tracking-wide">{a.word}</span>
-              </div>
-              <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
-                <AiMarkdown text={stripWordHeading(a.word, a.content)} />
-              </div>
-            </div>
+            <ArticleItem key={i} article={a} index={i} />
           ))}
         </div>
       </div>
