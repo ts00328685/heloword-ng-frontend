@@ -27,6 +27,7 @@ const en = {
     loading: 'Loading word lists...',
     viewAll: 'View all →',
     funArticleTitle: 'Fun Word Stories',
+    tapToReadMore: 'Tap to read more →',
   },
   login: {
     welcome: 'Welcome Back',

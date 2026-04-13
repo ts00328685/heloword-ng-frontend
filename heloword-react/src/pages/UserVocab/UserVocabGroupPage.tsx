@@ -13,6 +13,8 @@ import ImportVocabModal from '../../components/ImportVocabModal';
 import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
+import { useProgressiveList } from '../../hooks/useProgressiveList';
+import ProgressiveListSentinel from '../../components/ProgressiveListSentinel';
 import { useAuth } from '../../contexts/AuthContext';
 import {
   CustomGroup,
@@ -293,6 +295,9 @@ const UserVocabGroupPage: React.FC = () => {
       )
     : words;
 
+  const { visible: visibleWords, hasMore: hasMoreWords, sentinelRef: listSentinelRef } =
+    useProgressiveList(filtered);
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header
@@ -422,6 +427,7 @@ const UserVocabGroupPage: React.FC = () => {
         )}
 
         {!loading && words.length > 0 && (
+          <>
           <div className="space-y-2">
             {/* View controls: flashcard toggle + hide/show meanings */}
             <div className="flex justify-between items-center mb-1">
@@ -632,7 +638,7 @@ const UserVocabGroupPage: React.FC = () => {
                   </div>
                 </div>
               );
-            })() : filtered.map((word, idx) => {
+            })() : visibleWords.map((word, idx) => {
               const isSelected = selectedWordId === word.id;
               const wordNo = words.indexOf(word) + 1;
               return (
@@ -752,6 +758,8 @@ const UserVocabGroupPage: React.FC = () => {
               );
             })}
           </div>
+          <ProgressiveListSentinel sentinelRef={listSentinelRef} hasMore={hasMoreWords} />
+          </>
         )}
 
         {/* Mobile FABs — hidden in flashcard mode */}
@@ -857,7 +865,7 @@ const UserVocabGroupPage: React.FC = () => {
                 disabled={deletingWord}
                 className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-sm font-semibold disabled:opacity-40 transition-colors"
               >
-                {deletingWord ? '…' : t('review.deleteGroup')}
+                {deletingWord ? '…' : t('userVocab.deleteWord', 'Delete Word')}
               </button>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'; // useRef kept for sentinelRef
+import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { useTranslation } from 'react-i18next';
@@ -10,9 +10,9 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Sentence } from '../../models';
 import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
+import { useProgressiveList } from '../../hooks/useProgressiveList';
+import ProgressiveListSentinel from '../../components/ProgressiveListSentinel';
 import { pronounceWord } from '../../services/tts.service';
-
-const PAGE_SIZE = 50;
 
 interface FilterButton {
   label: string;
@@ -63,8 +63,6 @@ const VocabularyListPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [query, setQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<FilterButton | null>(null);
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const sentinelRef = useRef<HTMLDivElement>(null);
 
   // AI insight state
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
@@ -133,10 +131,7 @@ const VocabularyListPage: React.FC = () => {
     );
   }, [list, query, activeFilter]);
 
-  // Reset visible count whenever the filtered set changes
-  useEffect(() => {
-    setVisibleCount(PAGE_SIZE);
-  }, [filtered]);
+  const { visible, hasMore, sentinelRef } = useProgressiveList(filtered);
 
   // Close insight panel when the list itself changes (e.g. navigating JP→EN)
   useEffect(() => {
@@ -144,30 +139,10 @@ const VocabularyListPage: React.FC = () => {
     insight.clear();
   }, [list]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    const sentinel = sentinelRef.current;
-    if (!sentinel) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, filtered.length));
-        }
-      },
-      { rootMargin: '200px' }
-    );
-
-    observer.observe(sentinel);
-    return () => observer.disconnect();
-  }, [filtered.length]);
-
   if (list.length === 0) {
     navigate('/home', { replace: true });
     return null;
   }
-
-  const visible = filtered.slice(0, visibleCount);
-  const hasMore = visibleCount < filtered.length;
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
@@ -406,12 +381,7 @@ const VocabularyListPage: React.FC = () => {
           )}
         </div>
 
-        {/* Sentinel — triggers next page load when scrolled into view */}
-        <div ref={sentinelRef} className="h-10 flex items-center justify-center mt-2">
-          {hasMore && (
-            <div className="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
-          )}
-        </div>
+        <ProgressiveListSentinel sentinelRef={sentinelRef} hasMore={hasMore} />
       </main>
 
       <button

@@ -403,7 +403,6 @@ const FunArticlesSection: React.FC = () => {
     <section className="mb-6">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-1.5">
-          <span className="text-base">📚</span>
           <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{t('home.funArticleTitle')}</h2>
           <button
             onClick={handleRefresh}
@@ -425,17 +424,21 @@ const FunArticlesSection: React.FC = () => {
         {/* Gradient header with word */}
         <div className="bg-gradient-to-r from-sky-400 to-blue-500 dark:from-sky-600 dark:to-blue-700 px-4 pt-3.5 pb-3 flex items-center justify-between">
           <div>
-            <p className="text-sky-100 dark:text-sky-200 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Featured Word</p>
+            <p className="text-[9px] font-bold uppercase tracking-[0.22em] mb-1 text-white/50">Featured Word</p>
             <h3 className="text-white text-xl font-bold tracking-wide">{preview.word}</h3>
           </div>
-          <span className="text-3xl opacity-70 group-hover:scale-110 transition-transform">📖</span>
+          <div className="flex flex-col items-center opacity-75 group-hover:opacity-100 group-hover:scale-110 transition-all select-none leading-none">
+            <span className="text-white font-bold" style={{ fontFamily: 'serif', fontSize: '1.35rem', lineHeight: 1 }}>文</span>
+            <div className="w-5 border-t border-white/60 my-0.5" />
+            <span className="text-white/90 font-semibold tracking-widest" style={{ fontSize: '0.6rem', letterSpacing: '0.18em' }}>EN</span>
+          </div>
         </div>
         {/* Article preview */}
         <div className="bg-white dark:bg-gray-800 border border-t-0 border-sky-100 dark:border-sky-900/40 px-4 py-3 rounded-b-2xl">
           <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">
             <AiMarkdown text={truncated} />
           </div>
-          <p className="mt-2 text-xs text-sky-400 font-medium">Tap to read more →</p>
+          <p className="mt-2 text-xs text-sky-400 font-medium">{t('home.tapToReadMore')}</p>
         </div>
       </button>
       {showModal && <FunArticlesModal articles={allArticles} onClose={() => setShowModal(false)} />}
@@ -629,9 +632,9 @@ const HomePage: React.FC = () => {
         {dueCount > 0 && (
           <div
             onClick={() => navigate('/review')}
-            className="flex items-center gap-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-2xl p-4 mb-5 cursor-pointer hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors"
+            className="notification-breathe flex items-center gap-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-2xl p-4 mb-5 cursor-pointer hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors"
           >
-            <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center shrink-0">
+            <div className="bell-shine w-10 h-10 bg-orange-100 dark:bg-orange-900/40 rounded-xl flex items-center justify-center shrink-0">
               <svg className="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
