@@ -6,6 +6,9 @@ import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
 import { useAiInsight } from '../../hooks/useAiInsight';
+import { useProgressiveList } from '../../hooks/useProgressiveList';
+import ProgressiveListSentinel from '../../components/ProgressiveListSentinel';
+import AddToGroupModal from '../../components/AddToGroupModal';
 import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight } from '../../services/llm.service';
 import {
@@ -34,6 +37,7 @@ const SharedVocabGroupPage: React.FC = () => {
   const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
   const [copying, setCopying] = useState(false);
   const [quizLoading, setQuizLoading] = useState(false);
+  const [heartWord, setHeartWord] = useState<CustomWord | null>(null);
 
   // AI insight
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
@@ -79,6 +83,9 @@ const SharedVocabGroupPage: React.FC = () => {
           (w.translateCh || '').includes(query),
       )
     : words;
+
+  const { visible: visibleWords, hasMore: hasMoreWords, sentinelRef: listSentinelRef } =
+    useProgressiveList(filtered);
 
   // ── AI insight ────────────────────────────────────────────────────────────────
 
@@ -495,7 +502,7 @@ const SharedVocabGroupPage: React.FC = () => {
                   {t('userVocab.noResults')}
                 </p>
               ) : (
-                filtered.map((word, idx) => {
+                visibleWords.map((word, idx) => {
                   const isSelected = selectedWordId === word.id;
                   const wordNo = words.indexOf(word) + 1;
                   return (
@@ -548,24 +555,37 @@ const SharedVocabGroupPage: React.FC = () => {
                             {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
                           </button>
                         </div>
-                        {hideMeanings && (
-                          <button
-                            onClick={() => toggleReveal(word.id)}
-                            className="p-1.5 rounded-xl transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400 shrink-0"
-                            aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
-                          >
-                            {isMeaningVisible(word.id) ? (
+                        <div className="flex flex-col items-end gap-1 shrink-0">
+                          {hideMeanings && (
+                            <button
+                              onClick={() => toggleReveal(word.id)}
+                              className="p-1.5 rounded-xl transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400"
+                              aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
+                            >
+                              {isMeaningVisible(word.id) ? (
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                </svg>
+                              ) : (
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                              )}
+                            </button>
+                          )}
+                          {isLoggedIn && (
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setHeartWord(word); }}
+                              className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                              aria-label={t('userVocab.addToGroup')}
+                            >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                               </svg>
-                            ) : (
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                              </svg>
-                            )}
-                          </button>
-                        )}
+                            </button>
+                          )}
+                        </div>
                       </div>
 
                       {/* AI insight panel */}
@@ -595,9 +615,16 @@ const SharedVocabGroupPage: React.FC = () => {
                 })
               )
             )}
+            <ProgressiveListSentinel sentinelRef={listSentinelRef} hasMore={hasMoreWords} />
           </div>
         )}
       </main>
+      {heartWord && (
+        <AddToGroupModal
+          word={{ ...heartWord, status: 1, sentence: heartWord.sentence ?? '' } as any}
+          onClose={() => setHeartWord(null)}
+        />
+      )}
     </div>
   );
 };

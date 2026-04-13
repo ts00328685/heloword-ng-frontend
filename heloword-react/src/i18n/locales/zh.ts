@@ -27,6 +27,7 @@ const zh = {
     loading: '載入單字列表中...',
     viewAll: '查看全部 →',
     funArticleTitle: '趣文學單字',
+    tapToReadMore: '點擊閱讀更多 →',
   },
   login: {
     welcome: '歡迎回來',

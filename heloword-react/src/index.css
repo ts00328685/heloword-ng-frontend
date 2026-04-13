@@ -169,6 +169,58 @@ ruby rt {
   border-width: 2px;
 }
 
+/* Notification banner breathing glow — orange pulse that expands and contracts */
+@keyframes notification-breathe {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(251, 146, 60, 0), 0 0 8px 0 rgba(251, 146, 60, 0);
+    border-color: rgba(253, 186, 116, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 16px 4px rgba(251, 146, 60, 0.35), 0 0 32px 8px rgba(251, 146, 60, 0.15);
+    border-color: rgba(251, 146, 60, 0.9);
+  }
+}
+.notification-breathe {
+  animation: notification-breathe 2.4s ease-in-out infinite;
+  border-width: 1.5px;
+}
+
+/* Bell icon light-shine sweep — diagonal glare that sweeps every 3s */
+@keyframes bell-shine {
+  0%, 20% {
+    transform: translateX(-120%) skewX(-20deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(220%) skewX(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(220%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+.bell-shine {
+  position: relative;
+  overflow: hidden;
+}
+.bell-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.7) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%) skewX(-20deg);
+  animation: bell-shine 3s ease-in-out infinite;
+}
+
 /* Number input arrows hidden */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
