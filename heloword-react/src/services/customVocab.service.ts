@@ -73,6 +73,11 @@ export async function deleteCustomWord(wordId: number): Promise<void> {
   await doDelete(`/frontend-api/api/fe/custom-vocab/words/${wordId}`);
 }
 
+export async function batchDeleteCustomWords(groupId: number, wordIds: number[]): Promise<void> {
+  if (wordIds.length === 0) return;
+  await doPost(`/frontend-api/api/fe/custom-vocab/groups/${groupId}/words/batch-delete`, wordIds);
+}
+
 export async function parsePhotoWords(
   imageFile: File
 ): Promise<Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]> {

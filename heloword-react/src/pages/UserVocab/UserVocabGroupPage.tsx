@@ -25,6 +25,7 @@ import {
   batchAddCustomWords,
   updateCustomWord,
   deleteCustomWord,
+  batchDeleteCustomWords,
   updateCustomGroup,
 } from '../../services/customVocab.service';
 import { Sentence } from '../../models';
@@ -256,11 +257,16 @@ const UserVocabGroupPage: React.FC = () => {
 
   const handleBatchDelete = async () => {
     if (selectedIds.size === 0) return;
+    // Only delete IDs that belong to this group (owned by the user)
+    const ownedWordIds = words.map((w) => w.id);
+    const safeIds = Array.from(selectedIds).filter((wid) => ownedWordIds.includes(wid));
+    if (safeIds.length === 0) return;
     setDeletingSelected(true);
     try {
-      await Promise.all(Array.from(selectedIds).map((wid) => deleteCustomWord(wid)));
-      setWords((prev) => prev.filter((w) => !selectedIds.has(w.id)));
-      setGroup((g) => ({ ...g, wordCount: Math.max(0, g.wordCount - selectedIds.size) }));
+      await batchDeleteCustomWords(id, safeIds);
+      const deleted = new Set(safeIds);
+      setWords((prev) => prev.filter((w) => !deleted.has(w.id)));
+      setGroup((g) => ({ ...g, wordCount: Math.max(0, g.wordCount - deleted.size) }));
       setSelectedIds(new Set());
       setSelectMode(false);
     } finally {
