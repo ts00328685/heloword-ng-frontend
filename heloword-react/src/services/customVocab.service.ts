@@ -73,6 +73,19 @@ export async function deleteCustomWord(wordId: number): Promise<void> {
   await doDelete(`/frontend-api/api/fe/custom-vocab/words/${wordId}`);
 }
 
+export async function parsePhotoWords(
+  imageFile: File
+): Promise<Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]> {
+  const formData = new FormData();
+  formData.append('image', imageFile);
+  const res = await doPost<Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]>(
+    '/frontend-api/api/fe/custom-vocab/parse-photo',
+    formData
+  );
+  if (res.code !== '0000' || !res.data) throw new Error(res.message || 'Failed to parse photo');
+  return res.data;
+}
+
 // ── Shared Vocabulary (公開共享) ──────────────────────────────────────────────
 
 export interface SharedVocabGroup {
