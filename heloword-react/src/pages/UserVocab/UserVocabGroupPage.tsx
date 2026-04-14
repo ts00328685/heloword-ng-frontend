@@ -10,6 +10,7 @@ import CreateGroupModal from '../../components/CreateGroupModal';
 import ShareVocabGroupModal from '../../components/ShareVocabGroupModal';
 import OnboardingModal from '../../components/OnboardingModal';
 import ImportVocabModal from '../../components/ImportVocabModal';
+import PhotoParseModal from '../../components/PhotoParseModal';
 import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
@@ -24,6 +25,7 @@ import {
   batchAddCustomWords,
   updateCustomWord,
   deleteCustomWord,
+  batchDeleteCustomWords,
   updateCustomGroup,
 } from '../../services/customVocab.service';
 import { Sentence } from '../../models';
@@ -42,9 +44,11 @@ const UserVocabGroupPage: React.FC = () => {
   const [query, setQuery] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
 
   // AI insight
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, hasAnyRole } = useAuth();
+  const isAdmin = hasAnyRole(['ADMIN']);
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
   const insight = useAiInsight('custom-vocab:insight');
 
@@ -70,6 +74,9 @@ const UserVocabGroupPage: React.FC = () => {
   const [downloading, setDownloading] = useState(false);
   const [hideMeanings, setHideMeanings] = useState(false);
   const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
+  const [selectMode, setSelectMode] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [deletingSelected, setDeletingSelected] = useState(false);
   const toggleReveal = (id: number) => setRevealedIds((prev) => {
     const next = new Set(prev);
     next.has(id) ? next.delete(id) : next.add(id);
@@ -217,6 +224,12 @@ const UserVocabGroupPage: React.FC = () => {
     setGroup((g) => ({ ...g, wordCount: g.wordCount + 1 }));
   };
 
+  const handleBatchAddWord = async (dataList: any[]) => {
+    const created = await batchAddCustomWords(id, dataList);
+    setWords((prev) => [...prev, ...created]);
+    setGroup((g) => ({ ...g, wordCount: g.wordCount + created.length }));
+  };
+
   const handleImport = async (rows: Omit<import('../../services/customVocab.service').CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]) => {
     const results = await batchAddCustomWords(id, rows);
     setWords((prev) => [...prev, ...results]);
@@ -240,6 +253,33 @@ const UserVocabGroupPage: React.FC = () => {
     } finally {
       setDeletingWord(false);
     }
+  };
+
+  const handleBatchDelete = async () => {
+    if (selectedIds.size === 0) return;
+    // Only delete IDs that belong to this group (owned by the user)
+    const ownedWordIds = words.map((w) => w.id);
+    const safeIds = Array.from(selectedIds).filter((wid) => ownedWordIds.includes(wid));
+    if (safeIds.length === 0) return;
+    setDeletingSelected(true);
+    try {
+      await batchDeleteCustomWords(id, safeIds);
+      const deleted = new Set(safeIds);
+      setWords((prev) => prev.filter((w) => !deleted.has(w.id)));
+      setGroup((g) => ({ ...g, wordCount: Math.max(0, g.wordCount - deleted.size) }));
+      setSelectedIds(new Set());
+      setSelectMode(false);
+    } finally {
+      setDeletingSelected(false);
+    }
+  };
+
+  const toggleSelectId = (id: number) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
   };
 
   const handleUpdateGroup = async (name: string, description: string, language: string, tags: string) => {
@@ -396,6 +436,18 @@ const UserVocabGroupPage: React.FC = () => {
               </svg>
               {t('userVocab.importTitle')}
             </button>
+            {isAdmin && (
+              <button
+                onClick={() => setShowPhotoModal(true)}
+                className="flex items-center gap-1.5 px-3 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors whitespace-nowrap"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                {t('userVocab.photoImportTitle')}
+              </button>
+            )}
             <button
               onClick={() => setShowAddModal(true)}
               className="flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 transition-colors whitespace-nowrap"
@@ -462,7 +514,8 @@ const UserVocabGroupPage: React.FC = () => {
                 </button>
               </div>
 
-              {/* Hide/show meanings */}
+              {/* Right-side controls: hide meanings + select */}
+              <div className="flex items-center gap-1.5">
               <button
                 onClick={() => { setHideMeanings((v) => !v); setRevealedIds(new Set()); }}
                 className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-lg border transition-colors ${
@@ -483,10 +536,61 @@ const UserVocabGroupPage: React.FC = () => {
                 )}
                 {hideMeanings ? t('wordList.showMeanings', 'Show meanings') : t('wordList.hideMeanings', 'Hide meanings')}
               </button>
+              <button
+                onClick={() => { setSelectMode((v) => !v); setSelectedIds(new Set()); }}
+                className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-lg border transition-colors ${
+                  selectMode
+                    ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400'
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                }`}
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7 7h10M7 12h5M7 17h10" />
+                </svg>
+                {selectMode ? t('userVocab.cancelSelect', 'Cancel') : t('userVocab.selectWords', 'Select')}
+              </button>
+              </div>
             </div>
 
-            {/* Start Quiz button — hidden in flashcard mode */}
-            {!flashMode && (
+            {/* Select mode action bar */}
+            {selectMode && (
+              <div className="flex items-center gap-2 py-2 animate-fade-in">
+                <button
+                  onClick={() => {
+                    if (selectedIds.size === filtered.length) {
+                      setSelectedIds(new Set());
+                    } else {
+                      setSelectedIds(new Set(filtered.map((w) => w.id)));
+                    }
+                  }}
+                  className="text-xs text-blue-500 hover:text-blue-600 font-medium"
+                >
+                  {selectedIds.size === filtered.length
+                    ? t('userVocab.deselectAll', 'Deselect all')
+                    : t('userVocab.selectAll', 'Select all')}
+                </button>
+                <span className="text-xs text-gray-400 dark:text-gray-500">
+                  {t('userVocab.selectedCount', '{{count}} selected', { count: selectedIds.size })}
+                </span>
+                <button
+                  onClick={handleBatchDelete}
+                  disabled={selectedIds.size === 0 || deletingSelected}
+                  className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-xs font-semibold disabled:opacity-40 transition-colors"
+                >
+                  {deletingSelected ? (
+                    <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  )}
+                  {t('userVocab.deleteSelected', 'Delete selected')}
+                </button>
+              </div>
+            )}
+
+            {/* Start Quiz button — hidden in flashcard mode or select mode */}
+            {!flashMode && !selectMode && (
               <button
                 onClick={handleStartQuiz}
                 disabled={quizLoading}
@@ -640,20 +744,38 @@ const UserVocabGroupPage: React.FC = () => {
               );
             })() : visibleWords.map((word, idx) => {
               const isSelected = selectedWordId === word.id;
+              const isChecked = selectedIds.has(word.id);
               const wordNo = words.indexOf(word) + 1;
               return (
                 <div
                   key={word.id}
                   className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all animate-fade-in-up ${
-                    isSelected
+                    selectMode && isChecked
+                      ? 'border-red-300 dark:border-red-600 bg-red-50/30 dark:bg-red-900/10'
+                      : isSelected
                       ? 'rainbow-glow'
                       : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
                   }`}
                   style={{ animationDelay: `${Math.min(idx, 10) * 40}ms` }}
+                  onClick={selectMode ? () => toggleSelectId(word.id) : undefined}
                 >
                   {/* Main row */}
                   <div className="p-3 flex gap-3 items-start">
-                    <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600 pt-0.5 w-7 text-right">{wordNo}</span>
+                    {selectMode ? (
+                      <div className={`shrink-0 mt-0.5 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
+                        isChecked
+                          ? 'bg-red-500 border-red-500'
+                          : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800'
+                      }`}>
+                        {isChecked && (
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600 pt-0.5 w-7 text-right">{wordNo}</span>
+                    )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5">
                         <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
@@ -692,6 +814,7 @@ const UserVocabGroupPage: React.FC = () => {
                         {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
                       </button>
                     </div>
+                    {!selectMode && (
                     <div className="flex items-center gap-1 shrink-0">
                       {hideMeanings && (
                         <button
@@ -728,10 +851,11 @@ const UserVocabGroupPage: React.FC = () => {
                         </svg>
                       </button>
                     </div>
+                    )}
                   </div>
 
                   {/* AI insight panel */}
-                  {isSelected && (
+                  {!selectMode && isSelected && (
                     <div className="px-3 pb-3 pt-0 animate-slide-down">
                       <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                         {!isLoggedIn ? (
@@ -774,6 +898,18 @@ const UserVocabGroupPage: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M8 12l4-4m0 0l4 4m-4-4v12" />
               </svg>
             </button>
+            {isAdmin && (
+              <button
+                onClick={() => setShowPhotoModal(true)}
+                className="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-purple-500 dark:text-purple-400 rounded-2xl shadow-md flex items-center justify-center transition-colors"
+                aria-label={t('userVocab.photoImportTitle')}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </button>
+            )}
             <button
               onClick={() => setShowAddModal(true)}
               className="w-12 h-12 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-2xl shadow-lg flex items-center justify-center transition-colors"
@@ -795,10 +931,18 @@ const UserVocabGroupPage: React.FC = () => {
         />
       )}
 
+      {showPhotoModal && (
+        <PhotoParseModal
+          onClose={() => setShowPhotoModal(false)}
+          onImport={handleImport}
+        />
+      )}
+
       {showAddModal && (
         <UserVocabWordFormModal
           onClose={() => setShowAddModal(false)}
           onSave={handleAddWord}
+          onBatchSave={handleBatchAddWord}
           systemWords={systemWords}
           language={group.language}
         />
