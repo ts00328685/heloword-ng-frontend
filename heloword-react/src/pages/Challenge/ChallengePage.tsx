@@ -280,6 +280,8 @@ const ChallengePage: React.FC = () => {
               { path: '/challenge/scramble', state: { lang: 'jp' }, icon: '🇯🇵', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)', titleKey: 'scramble.titleJp',        descKey: 'scramble.descJp' },
               { path: '/challenge/quiz',     state: { gameType: 'en' }, icon: '🔤', gradient: 'linear-gradient(135deg, #00b894, #00cec9)', titleKey: 'multiChoice.titleEn', descKey: 'multiChoice.descEn' },
               { path: '/challenge/quiz',     state: { gameType: 'jp' }, icon: '🈶', gradient: 'linear-gradient(135deg, #fdcb6e, #e17055)', titleKey: 'multiChoice.titleJp', descKey: 'multiChoice.descJp' },
+              { path: '/challenge/speaking',    state: {}, icon: '🎤', gradient: 'linear-gradient(135deg, #55efc4, #00b894)',   titleKey: 'speaking.title',   descKey: 'speaking.desc' },
+              { path: '/challenge/speaking-jp', state: {}, icon: '🎙️', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)',   titleKey: 'speaking.titleJp', descKey: 'speaking.descJp' },
             ].map(({ path, state, icon, gradient, titleKey, descKey }) => (
               <button
                 key={titleKey}

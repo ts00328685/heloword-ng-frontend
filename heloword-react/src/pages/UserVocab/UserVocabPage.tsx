@@ -313,19 +313,21 @@ const UserVocabPage: React.FC = () => {
           </>
         )}
 
-        {/* FAB */}
-        {!loading && (
-          <button
-            onClick={() => setShowCreateModal(true)}
-            className="fixed bottom-24 right-6 w-14 h-14 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-2xl shadow-lg flex items-center justify-center transition-colors z-30"
-            aria-label={t('userVocab.newGroup')}
-          >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
-        )}
       </main>
+
+      {/* FAB — portalled to body to escape animation stacking context */}
+      {!loading && ReactDOM.createPortal(
+        <button
+          onClick={() => setShowCreateModal(true)}
+          className="fixed bottom-24 right-6 w-14 h-14 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-2xl shadow-lg flex items-center justify-center transition-colors z-30"
+          aria-label={t('userVocab.newGroup')}
+        >
+          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+        </button>,
+        document.body
+      )}
 
       {showCreateModal && (
         <CreateGroupModal
