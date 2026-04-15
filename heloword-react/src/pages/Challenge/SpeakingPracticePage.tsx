@@ -15,11 +15,6 @@ interface EnSentence {
 
 type GameState = 'loading' | 'ready' | 'tts-ch' | 'tts-en' | 'recording' | 'result';
 
-declare global {
-  interface Window {
-    webkitSpeechRecognition: typeof SpeechRecognition;
-  }
-}
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 

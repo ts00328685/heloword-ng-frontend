@@ -16,11 +16,6 @@ interface JpSentence {
 
 type GameState = 'loading' | 'ready' | 'tts-ch' | 'tts-jp' | 'recording' | 'result';
 
-declare global {
-  interface Window {
-    webkitSpeechRecognition: typeof SpeechRecognition;
-  }
-}
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
