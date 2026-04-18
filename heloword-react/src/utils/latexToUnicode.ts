@@ -223,5 +223,16 @@ export function latexToUnicode(text: string): string {
   text = text.replace(/\$\$([^$]+)\$\$/g, (_, inner) => convertToken(inner));
   // Inline math $...$
   text = text.replace(/\$([^$\n]+)\$/g, (_, inner) => convertToken(inner));
+
+  // Clean up LaTeX commands that leak outside math delimiters (AI-generated pseudo-LaTeX)
+  // \text{content}, \textbf{content}, \textit{content}, etc. → content
+  text = text.replace(/\\text(?:bf|it|rm|sf|tt|normal|up|sl|sc)?\{([^}]*)\}/g, '$1');
+  // \textSubject / \textis style (no braces) — \text followed directly by a word
+  text = text.replace(/\\text(?:bf|it|rm|sf|tt|normal|up|sl|sc)?([A-Za-z]+)/g, '$1');
+  // Other \command{content} → content (e.g. \frac{1} outside $ )
+  text = text.replace(/\\[A-Za-z]+\{([^}]*)\}/g, '$1');
+  // Strip any remaining bare \command sequences
+  text = text.replace(/\\[A-Za-z]+/g, '');
+
   return text;
 }

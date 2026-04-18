@@ -1,9 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { cancelPronouncing } from '../../services/tts.service';
+import { useAuth } from '../../contexts/AuthContext';
+import { aiExplainScramble } from '../../services/scramble.service';
+import { latexToUnicode } from '../../utils/latexToUnicode';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -62,6 +66,25 @@ function getPref(key: string, fallback: boolean): boolean {
   catch { return fallback; }
 }
 
+// ── AI Markdown renderer ───────────────────────────────────────────────────
+
+const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
+  <ReactMarkdown
+    components={{
+      p: ({ children }) => <p className="leading-relaxed">{children}</p>,
+      h1: ({ children }) => <p className="text-base font-bold text-gray-900 dark:text-gray-100 mt-3">{children}</p>,
+      h2: ({ children }) => <p className="text-sm font-bold text-gray-800 dark:text-gray-100 mt-2">{children}</p>,
+      h3: ({ children }) => <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-2">{children}</p>,
+      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+      ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{children}</ul>,
+      ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{children}</ol>,
+      li: ({ children }) => <li>{children}</li>,
+    }}
+  >
+    {latexToUnicode(text)}
+  </ReactMarkdown>
+);
+
 // ── Sub-components ─────────────────────────────────────────────────────────
 
 const Toggle: React.FC<{ label: string; sub?: string; checked: boolean; onChange: () => void }> = ({
@@ -114,6 +137,7 @@ const HighlightedJapanese: React.FC<{ sentence: string; spokenChars: Set<string>
 const SpeakingPracticeJpPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
   const dataRef = useRef<JpSentence[] | null>(null);
 
   const [sentences, setSentences] = useState<JpSentence[]>([]);
@@ -126,6 +150,12 @@ const SpeakingPracticeJpPage: React.FC = () => {
   const [countdown, setCountdown] = useState(5);
 
   const [showIntro, setShowIntro] = useState(true);
+
+  // AI state
+  const [aiResult, setAiResult] = useState('');
+  const [aiLoading, setAiLoading] = useState(false);
+  const [showAiPanel, setShowAiPanel] = useState(false);
+  const [showLoginHint, setShowLoginHint] = useState(false);
 
   const [showSettings, setShowSettings] = useState(false);
   const [showJapanese, setShowJapanese] = useState(() => getPref('hw-sp-jp-show-jp', false));
@@ -258,6 +288,27 @@ const SpeakingPracticeJpPage: React.FC = () => {
 
   // ── Navigation ────────────────────────────────────────────────────────────
 
+  const handleAiExplain = async () => {
+    if (!isLoggedIn) {
+      setShowLoginHint(true);
+      setShowAiPanel(true);
+      return;
+    }
+    if (!currentSentence) return;
+    setShowAiPanel(true);
+    setShowLoginHint(false);
+    setAiLoading(true);
+    setAiResult('');
+    try {
+      const result = await aiExplainScramble({ lang: 'jp', sentence: currentSentence.japanese, translation: currentSentence.translation });
+      setAiResult(result);
+    } catch {
+      setAiResult(t('scramble.aiError'));
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
   const nextQuestion = useCallback(() => {
     autoAdvanceGenRef.current += 1;
     if (autoAdvanceTimerRef.current !== null) {
@@ -270,6 +321,9 @@ const SpeakingPracticeJpPage: React.FC = () => {
     setSpokenText('');
     setScore(0);
     setRecError(null);
+    setAiResult('');
+    setShowAiPanel(false);
+    setShowLoginHint(false);
     setCurrentIndex(prev => (prev + 1) % sentences.length);
     setGameState('ready');
   }, [sentences.length]);
@@ -598,6 +652,43 @@ const SpeakingPracticeJpPage: React.FC = () => {
           >
             {t('speakingGame.skipBtn')}
           </button>
+        )}
+
+        {/* AI Grammar button */}
+        <button
+          onClick={handleAiExplain}
+          disabled={aiLoading}
+          className="w-full py-2.5 rounded-2xl text-sm font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+          style={{ background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' }}
+        >
+          <span>✨</span>
+          <span>{t('scramble.aiExplain')}</span>
+          {!isLoggedIn && <span className="text-xs opacity-75">({t('scramble.loginRequired')})</span>}
+        </button>
+
+        {/* AI panel */}
+        {showAiPanel && (
+          <div className="bg-white dark:bg-gray-800 rounded-2xl border-2 rainbow-glow p-4 shadow-sm">
+            <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-2">
+              ✨ {t('scramble.aiGrammar')}
+            </p>
+            {showLoginHint ? (
+              <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
+                <p>{t('scramble.aiLoginHint')}</p>
+                <a href="/login" className="text-blue-500 underline text-xs">
+                  {t('common.login')} →
+                </a>
+              </div>
+            ) : aiLoading ? (
+              <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">
+                {t('scramble.aiThinking')}
+              </p>
+            ) : (
+              <div className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
+                <AiMarkdown text={aiResult} />
+              </div>
+            )}
+          </div>
         )}
 
       </main>

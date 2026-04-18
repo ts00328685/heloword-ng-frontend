@@ -28,6 +28,18 @@ export interface Friend {
   isOnline: boolean;
 }
 
+export interface OfficialMessage {
+  id: number;
+  title: string;
+  content: string;
+  publishedAt: string;
+}
+
+export async function fetchOfficialMessages(): Promise<OfficialMessage[]> {
+  const res = await doGet('/frontend-api/api/fe/official-messages');
+  return res.code === '0000' ? (res.data ?? []) : [];
+}
+
 /** Compute a deterministic room ID from two user IDs */
 export function computeRoomId(a: string, b: string): string {
   return [a, b].sort().join(':');

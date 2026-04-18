@@ -47,8 +47,7 @@ const UserVocabGroupPage: React.FC = () => {
   const [showPhotoModal, setShowPhotoModal] = useState(false);
 
   // AI insight
-  const { isLoggedIn, hasAnyRole } = useAuth();
-  const isAdmin = hasAnyRole(['ADMIN']);
+  const { isLoggedIn } = useAuth();
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
   const insight = useAiInsight('custom-vocab:insight');
 
@@ -436,7 +435,7 @@ const UserVocabGroupPage: React.FC = () => {
               </svg>
               {t('userVocab.importTitle')}
             </button>
-            {isAdmin && (
+            {
               <button
                 onClick={() => setShowPhotoModal(true)}
                 className="flex items-center gap-1.5 px-3 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors whitespace-nowrap"
@@ -447,7 +446,7 @@ const UserVocabGroupPage: React.FC = () => {
                 </svg>
                 {t('userVocab.photoImportTitle')}
               </button>
-            )}
+            }
             <button
               onClick={() => setShowAddModal(true)}
               className="flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 transition-colors whitespace-nowrap"
@@ -900,7 +899,7 @@ const UserVocabGroupPage: React.FC = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M8 12l4-4m0 0l4 4m-4-4v12" />
             </svg>
           </button>
-          {isAdmin && (
+          {
             <button
               onClick={() => setShowPhotoModal(true)}
               className="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-purple-500 dark:text-purple-400 rounded-2xl shadow-md flex items-center justify-center transition-colors"
@@ -911,7 +910,7 @@ const UserVocabGroupPage: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </button>
-          )}
+          }
           <button
             onClick={() => setShowAddModal(true)}
             className="w-12 h-12 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-2xl shadow-lg flex items-center justify-center transition-colors"
