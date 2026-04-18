@@ -767,6 +767,15 @@ const ja = {
     startQuiz: 'クイズを開始',
     viewAll: 'すべて見る',
   },
+  inAppBrowser: {
+    opening: 'ブラウザで開いています…',
+    title: '外部ブラウザで開いてください',
+    subtitle: '外部ブラウザを使用すると、Googleログイン・クイズなど、Helowordのすべての機能をご利用いただけます。',
+    copyLabel: 'リンクをコピーしてブラウザで開いてください',
+    copy: 'コピー',
+    copied: 'コピーしました！',
+    instruction: '現在のアプリのメニュー（⋯ または ⋮）をタップし、「ブラウザで開く」を選んでください。',
+  },
   vocabShare: {
     shareTitle: '単語グループを共有',
     send: '共有',

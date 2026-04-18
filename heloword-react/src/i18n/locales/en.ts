@@ -768,6 +768,15 @@ const en = {
     startQuiz: 'Start Quiz',
     viewAll: 'View All',
   },
+  inAppBrowser: {
+    opening: 'Opening in browser…',
+    title: 'Open in Your Browser',
+    subtitle: 'Using an external browser unlocks the full Heloword experience — Google sign-in, quizzes, and more.',
+    copyLabel: 'Copy the link and open it in your browser',
+    copy: 'Copy',
+    copied: 'Copied!',
+    instruction: 'Tap the menu (⋯ or ⋮) in your current app and choose "Open in browser".',
+  },
   vocabShare: {
     shareTitle: 'Share Vocab Group',
     send: 'Share',

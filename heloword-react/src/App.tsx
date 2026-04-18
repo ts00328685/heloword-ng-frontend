@@ -16,6 +16,7 @@ import { ChallengeProvider } from './contexts/ChallengeContext';
 import GuestSetupModal from './components/GuestSetupModal';
 import WalkthroughOverlay from './components/WalkthroughOverlay';
 import CookieConsentBanner from './components/CookieConsentBanner';
+import InAppBrowserGate from './components/InAppBrowserGate';
 // Eagerly loaded — first pages users land on
 import HomePage from './pages/Home/HomePage';
 import LoginPage from './pages/Login/LoginPage';
@@ -119,21 +120,23 @@ const BottomTabsWrapper: React.FC = () => {
 const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <UIProvider>
-        <AuthProvider>
-          <DataProvider>
-            <NotificationProvider>
-              <SocialProvider>
-                <ChallengeProvider>
-                  <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-                    <AppLayout />
-                  </Router>
-                </ChallengeProvider>
-              </SocialProvider>
-            </NotificationProvider>
-          </DataProvider>
-        </AuthProvider>
-      </UIProvider>
+      <InAppBrowserGate>
+        <UIProvider>
+          <AuthProvider>
+            <DataProvider>
+              <NotificationProvider>
+                <SocialProvider>
+                  <ChallengeProvider>
+                    <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+                      <AppLayout />
+                    </Router>
+                  </ChallengeProvider>
+                </SocialProvider>
+              </NotificationProvider>
+            </DataProvider>
+          </AuthProvider>
+        </UIProvider>
+      </InAppBrowserGate>
     </ThemeProvider>
   );
 };
