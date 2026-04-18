@@ -16,6 +16,7 @@ import { ChallengeProvider } from './contexts/ChallengeContext';
 import GuestSetupModal from './components/GuestSetupModal';
 import WalkthroughOverlay from './components/WalkthroughOverlay';
 import CookieConsentBanner from './components/CookieConsentBanner';
+import InAppBrowserGate from './components/InAppBrowserGate';
 // Eagerly loaded — first pages users land on
 import HomePage from './pages/Home/HomePage';
 import LoginPage from './pages/Login/LoginPage';
@@ -33,6 +34,7 @@ const MultiChoicePage     = React.lazy(() => import('./pages/Challenge/MultiChoi
 const SpeakingPracticePage = React.lazy(() => import('./pages/Challenge/SpeakingPracticePage'));
 const SpeakingPracticeJpPage = React.lazy(() => import('./pages/Challenge/SpeakingPracticeJpPage'));
 const WrittenTranslationPage = React.lazy(() => import('./pages/Challenge/WrittenTranslationPage'));
+const KirbyGamePage           = React.lazy(() => import('./pages/Challenge/KirbyGame/KirbyGamePage'));
 const UserVocabPage           = React.lazy(() => import('./pages/UserVocab/UserVocabPage'));
 const UserVocabGroupPage      = React.lazy(() => import('./pages/UserVocab/UserVocabGroupPage'));
 const SharedVocabGroupPage    = React.lazy(() => import('./pages/SharedVocab/SharedVocabGroupPage'));
@@ -78,6 +80,7 @@ const AppLayout: React.FC = () => {
           <Route path="/challenge/speaking" element={<SpeakingPracticePage />} />
           <Route path="/challenge/speaking-jp" element={<SpeakingPracticeJpPage />} />
           <Route path="/challenge/written" element={<WrittenTranslationPage />} />
+          <Route path="/challenge/kirby" element={<KirbyGamePage />} />
           <Route path="/user-vocab" element={<UserVocabPage />} />
           <Route path="/user-vocab/:groupId" element={<UserVocabGroupPage />} />
           <Route path="/shared-vocab" element={<SharedVocabListPage />} />
@@ -119,21 +122,23 @@ const BottomTabsWrapper: React.FC = () => {
 const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <UIProvider>
-        <AuthProvider>
-          <DataProvider>
-            <NotificationProvider>
-              <SocialProvider>
-                <ChallengeProvider>
-                  <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-                    <AppLayout />
-                  </Router>
-                </ChallengeProvider>
-              </SocialProvider>
-            </NotificationProvider>
-          </DataProvider>
-        </AuthProvider>
-      </UIProvider>
+      <InAppBrowserGate>
+        <UIProvider>
+          <AuthProvider>
+            <DataProvider>
+              <NotificationProvider>
+                <SocialProvider>
+                  <ChallengeProvider>
+                    <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+                      <AppLayout />
+                    </Router>
+                  </ChallengeProvider>
+                </SocialProvider>
+              </NotificationProvider>
+            </DataProvider>
+          </AuthProvider>
+        </UIProvider>
+      </InAppBrowserGate>
     </ThemeProvider>
   );
 };

@@ -603,6 +603,7 @@ const ja = {
     nextBtnCountdown: '次の問題 ({{n}})',
     skipBtn: 'スキップ →',
     introBody: 'ゲームに入ると自動的に音声が再生されます。\nデバイスの音量を上げ、マイクへのアクセスを許可してください。',
+    introSettingsTip: '設定アイコン (⚙️) をタップして、学習体験をカスタマイズしてください。',
     startBtn: '練習を始める',
   },
   wordLists: {
@@ -766,6 +767,15 @@ const ja = {
     noSharedGroups: '現在、共有されている単語グループはありません。',
     startQuiz: 'クイズを開始',
     viewAll: 'すべて見る',
+  },
+  inAppBrowser: {
+    opening: 'ブラウザで開いています…',
+    title: '外部ブラウザで開いてください',
+    subtitle: '外部ブラウザを使用すると、Googleログイン・クイズなど、Helowordのすべての機能をご利用いただけます。',
+    copyLabel: 'リンクをコピーしてブラウザで開いてください',
+    copy: 'コピー',
+    copied: 'コピーしました！',
+    instruction: '現在のアプリのメニュー（⋯ または ⋮）をタップし、「ブラウザで開く」を選んでください。',
   },
   vocabShare: {
     shareTitle: '単語グループを共有',

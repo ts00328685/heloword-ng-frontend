@@ -603,6 +603,7 @@ const zh = {
     nextBtnCountdown: '下一題 ({{n}})',
     skipBtn: '跳過此題 →',
     introBody: '進入遊戲後將自動播放音訊。\n請確保裝置音量已開啟，並允許麥克風存取。',
+    introSettingsTip: '點擊設定圖示 (⚙️) 來自訂你的學習體驗。',
     startBtn: '開始練習',
   },
   wordLists: {
@@ -767,6 +768,15 @@ const zh = {
     noSharedGroups: '目前沒有共享的單字群組。',
     startQuiz: '開始測驗',
     viewAll: '查看全部 →',
+  },
+  inAppBrowser: {
+    opening: '正在開啟瀏覽器…',
+    title: '請用外部瀏覽器開啟',
+    subtitle: '使用外部瀏覽器可體驗完整的 Heloword 功能，包括 Google 登入、測驗等。',
+    copyLabel: '複製連結並在瀏覽器中開啟',
+    copy: '複製',
+    copied: '已複製！',
+    instruction: '點選目前 App 的選單（⋯ 或 ⋮），選擇「在瀏覽器中開啟」。',
   },
   vocabShare: {
     shareTitle: '分享單字群組',
