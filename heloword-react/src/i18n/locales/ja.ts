@@ -603,6 +603,7 @@ const ja = {
     nextBtnCountdown: '次の問題 ({{n}})',
     skipBtn: 'スキップ →',
     introBody: 'ゲームに入ると自動的に音声が再生されます。\nデバイスの音量を上げ、マイクへのアクセスを許可してください。',
+    introSettingsTip: '設定アイコン (⚙️) をタップして、学習体験をカスタマイズしてください。',
     startBtn: '練習を始める',
   },
   wordLists: {

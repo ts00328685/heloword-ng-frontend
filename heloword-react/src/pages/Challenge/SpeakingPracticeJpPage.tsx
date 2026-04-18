@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
-import { cancelPronouncing } from '../../services/tts.service';
+import { cancelPronouncing, toLangCode } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
 import { latexToUnicode } from '../../utils/latexToUnicode';
@@ -64,6 +64,16 @@ function scoreInfo(score: number): { labelKey: string; color: string; barColor: 
 function getPref(key: string, fallback: boolean): boolean {
   try { return JSON.parse(localStorage.getItem(key) ?? 'null') ?? fallback; }
   catch { return fallback; }
+}
+
+function findVoice(langCode: string): SpeechSynthesisVoice | null {
+  const voices = window.speechSynthesis.getVoices();
+  const prefix = langCode.split('-')[0];
+  return (
+    voices.find((v) => v.lang === langCode) ??
+    voices.find((v) => v.lang.startsWith(prefix)) ??
+    null
+  );
 }
 
 // ── AI Markdown renderer ───────────────────────────────────────────────────
@@ -208,7 +218,9 @@ const SpeakingPracticeJpPage: React.FC = () => {
 
     const speak = (text: string, lang: string, rate: number, onDone: () => void) => {
       const utt = new SpeechSynthesisUtterance(text);
-      utt.lang = lang;
+      const langCode = toLangCode(lang);
+      utt.lang = langCode;
+      utt.voice = findVoice(langCode);
       utt.rate = rate;
       utt.volume = 1.0;
       utt.pitch = 1.1;
@@ -220,16 +232,16 @@ const SpeakingPracticeJpPage: React.FC = () => {
     const go = () => {
       if (readChinese && readJapanese) {
         setGameState('tts-ch');
-        speak(sentence.translation, 'zh-TW', 0.9, () => {
+        speak(sentence.translation, 'ch', 0.9, () => {
           setGameState('tts-jp');
-          setTimeout(() => speak(sentence.japanese, 'ja-JP', 0.85, () => setGameState('recording')), 500);
+          setTimeout(() => speak(sentence.japanese, 'ja', 0.85, () => setGameState('recording')), 500);
         });
       } else if (readChinese) {
         setGameState('tts-ch');
-        speak(sentence.translation, 'zh-TW', 0.9, () => setGameState('recording'));
+        speak(sentence.translation, 'ch', 0.9, () => setGameState('recording'));
       } else {
         setGameState('tts-jp');
-        speak(sentence.japanese, 'ja-JP', 0.85, () => setGameState('recording'));
+        speak(sentence.japanese, 'ja', 0.85, () => setGameState('recording'));
       }
     };
 
@@ -702,12 +714,15 @@ const SpeakingPracticeJpPage: React.FC = () => {
                 <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
               </svg>
             </div>
-            <div className="text-center">
-              <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100 mb-1">
+            <div className="text-center space-y-3">
+              <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100">
                 {t('speakingGame.jpTitle')}
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
                 {t('speakingGame.introBody')}
+              </p>
+              <p className="text-xs text-gray-400 dark:text-gray-500">
+                💡 {t('speakingGame.introSettingsTip')}
               </p>
             </div>
             <button

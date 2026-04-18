@@ -603,6 +603,7 @@ const en = {
     nextBtnCountdown: 'Next ({{n}})',
     skipBtn: 'Skip →',
     introBody: 'Audio will play automatically when you enter.\nMake sure your device volume is on and allow microphone access.',
+    introSettingsTip: 'Tap the settings icon (⚙️) to customize your learning experience.',
     startBtn: 'Start Practice',
   },
   wordLists: {
