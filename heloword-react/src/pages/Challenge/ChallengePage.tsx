@@ -248,6 +248,7 @@ const ChallengePage: React.FC = () => {
           </div>
         )}
 
+
         {/* Side Games */}
         <div>
           <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
@@ -281,8 +282,52 @@ const ChallengePage: React.FC = () => {
           </div>
         </div>
 
+        {/* External Links — desktop only, collapsed by default */}
+        <ExternalLinksSection onNavigate={navigate} />
+
       </main>
 
+    </div>
+  );
+};
+
+interface ExternalLinksSection {
+  onNavigate: (path: string) => void;
+}
+
+const ExternalLinksSection: React.FC<ExternalLinksSection> = ({ onNavigate }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="hidden md:block">
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+        <button
+          onClick={() => setOpen(v => !v)}
+          className="w-full flex items-center gap-2 px-3 py-2.5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        >
+          <span className="text-base">🔗</span>
+          <span className="flex-1 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
+            外站連結
+          </span>
+          <Chevron open={open} />
+        </button>
+        {open && (
+          <div className="border-t border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700 bg-gray-50 dark:bg-gray-900/30 p-2">
+            <button
+              onClick={() => onNavigate('/challenge/kirby')}
+              className="w-full flex items-center gap-3 p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-pink-400 dark:hover:border-pink-600 transition-colors text-left"
+            >
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-2xl flex-shrink-0" style={{ background: 'linear-gradient(135deg, #ff9ff3, #f368e0)' }}>
+                ⭐
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">Kirby Adventure</p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 truncate">3-stage platformer · earn your high score</p>
+              </div>
+              <span className="text-gray-300 dark:text-gray-600">›</span>
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
