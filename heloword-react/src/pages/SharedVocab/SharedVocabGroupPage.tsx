@@ -10,7 +10,7 @@ import { useProgressiveList } from '../../hooks/useProgressiveList';
 import ProgressiveListSentinel from '../../components/ProgressiveListSentinel';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { pronounceWord } from '../../services/tts.service';
-import { getWordInsight } from '../../services/llm.service';
+import { getWordInsight, getWordComparison } from '../../services/llm.service';
 import {
   SharedVocabGroup,
   CustomWord,
@@ -39,9 +39,11 @@ const SharedVocabGroupPage: React.FC = () => {
   const [quizLoading, setQuizLoading] = useState(false);
   const [heartWord, setHeartWord] = useState<CustomWord | null>(null);
 
-  // AI insight
+  // AI insight / compare
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
+  const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
   const insight = useAiInsight('shared-vocab:insight');
+  const compare = useAiInsight('shared-vocab:compare');
 
   // Flashcard mode
   const [flashMode, setFlashMode] = useState(false);
@@ -87,9 +89,9 @@ const SharedVocabGroupPage: React.FC = () => {
   const { visible: visibleWords, hasMore: hasMoreWords, sentinelRef: listSentinelRef } =
     useProgressiveList(filtered);
 
-  // ── AI insight ────────────────────────────────────────────────────────────────
+  // ── AI insight / compare ──────────────────────────────────────────────────────
 
-  const clearInsight = () => { setSelectedWordId(null); insight.clear(); };
+  const clearInsight = () => { setSelectedWordId(null); insight.clear(); setSelectedCompareId(null); compare.clear(); };
 
   const handleWordTap = (word: CustomWord) => {
     if (selectedWordId === word.id) { clearInsight(); return; }
@@ -98,6 +100,20 @@ const SharedVocabGroupPage: React.FC = () => {
     insight.run(
       String(word.id),
       () => getWordInsight(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang),
+    );
+  };
+
+  const handleCompareTap = (word: CustomWord) => {
+    if (selectedCompareId === word.id) {
+      setSelectedCompareId(null);
+      compare.clear();
+      return;
+    }
+    setSelectedCompareId(word.id);
+    if (!isLoggedIn) return;
+    compare.run(
+      String(word.id),
+      () => getWordComparison(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang),
     );
   };
 
@@ -359,6 +375,7 @@ const SharedVocabGroupPage: React.FC = () => {
               <MultiChoicePanel words={filtered} onExit={() => setMultiMode(false)} />
             ) : flashMode ? (() => {
               const flashInsightOpen = selectedWordId === filtered[cardIndex]?.id;
+              const flashCompareOpen = selectedCompareId === filtered[cardIndex]?.id;
               const cur = filtered[cardIndex];
               if (!cur) return null;
               return (
@@ -417,6 +434,19 @@ const SharedVocabGroupPage: React.FC = () => {
                                   <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                                   {flashInsightOpen ? `${t('llm.insight')} ▲` : t('llm.insight')}
                                 </button>
+                                {/* AI compare button */}
+                                <button
+                                  onPointerDown={(e) => e.stopPropagation()}
+                                  onClick={(e) => { e.stopPropagation(); handleCompareTap(cur); }}
+                                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                                    flashCompareOpen
+                                      ? 'bg-indigo-600 dark:bg-indigo-400 text-white dark:text-gray-900 ring-1 ring-indigo-600 dark:ring-indigo-400'
+                                      : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                                  }`}
+                                >
+                                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                                  {flashCompareOpen ? `${t('llm.compare')} ▲` : t('llm.compare')}
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -448,6 +478,25 @@ const SharedVocabGroupPage: React.FC = () => {
                           </div>
                         ) : (
                           <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{insight.text}</p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  {/* AI compare panel */}
+                  {flashCompareOpen && (
+                    <div className="w-full max-w-sm mt-4 animate-fade-in">
+                      <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-3 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+                        {!isLoggedIn ? (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                        ) : compare.loading ? (
+                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                        ) : compare.error ? (
+                          <div className="flex items-center gap-2">
+                            <p className="text-xs text-red-400">{t('llm.error')}</p>
+                            <button onClick={() => compare.retry(String(cur.id), () => getWordComparison(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
+                          </div>
+                        ) : (
+                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
                         )}
                       </div>
                     </div>
@@ -504,12 +553,13 @@ const SharedVocabGroupPage: React.FC = () => {
               ) : (
                 visibleWords.map((word, idx) => {
                   const isSelected = selectedWordId === word.id;
+                  const isCompareSelected = selectedCompareId === word.id;
                   const wordNo = words.indexOf(word) + 1;
                   return (
                     <div
                       key={word.id}
                       className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all animate-fade-in-up ${
-                        isSelected
+                        isSelected || isCompareSelected
                           ? 'rainbow-glow'
                           : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
                       }`}
@@ -542,18 +592,31 @@ const SharedVocabGroupPage: React.FC = () => {
                               <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
                             </div>
                           )}
-                          {/* AI Insight button */}
-                          <button
-                            onClick={() => handleWordTap(word)}
-                            className={`mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
-                              isSelected
-                                ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                                : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
-                            }`}
-                          >
-                            <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
-                            {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
-                          </button>
+                          {/* AI Insight / Compare buttons */}
+                          <div className="mt-1.5 flex items-center gap-1.5">
+                            <button
+                              onClick={() => handleWordTap(word)}
+                              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                                isSelected
+                                  ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
+                                  : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                              }`}
+                            >
+                              <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                              {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
+                            </button>
+                            <button
+                              onClick={() => handleCompareTap(word)}
+                              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                                isCompareSelected
+                                  ? 'bg-indigo-600 dark:bg-indigo-400 text-white dark:text-gray-900 ring-1 ring-indigo-600 dark:ring-indigo-400'
+                                  : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                              }`}
+                            >
+                              <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                              {isCompareSelected ? `${t('llm.compare')} ▲` : t('llm.compare')}
+                            </button>
+                          </div>
                         </div>
                         <div className="flex flex-col items-end gap-1 shrink-0">
                           {hideMeanings && (
@@ -606,6 +669,28 @@ const SharedVocabGroupPage: React.FC = () => {
                               </div>
                             ) : (
                               <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{insight.text}</p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {/* AI compare panel */}
+                      {isCompareSelected && (
+                        <div className="px-3 pb-3 pt-0 animate-slide-down">
+                          <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-3 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+                            {!isLoggedIn ? (
+                              <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                            ) : compare.loading ? (
+                              <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                            ) : compare.error ? (
+                              <div className="flex items-center gap-2">
+                                <p className="text-xs text-red-400">{t('llm.error')}</p>
+                                <button
+                                  onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang))}
+                                  className="text-xs text-blue-400 underline"
+                                >↺</button>
+                              </div>
+                            ) : (
+                              <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
                             )}
                           </div>
                         </div>

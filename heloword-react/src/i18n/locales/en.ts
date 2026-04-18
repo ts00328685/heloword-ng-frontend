@@ -104,6 +104,7 @@ const en = {
   },
   llm: {
     insight: 'Explain',
+    compare: 'Compare',
     sampleSentence: 'Example',
     studyCoach: 'Study Tip',
     thinking: 'Working…',

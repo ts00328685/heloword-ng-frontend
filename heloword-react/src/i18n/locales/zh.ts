@@ -104,6 +104,7 @@ const zh = {
   },
   llm: {
     insight: '解析',
+    compare: '比較',
     sampleSentence: '例句',
     studyCoach: '學習建議',
     thinking: '處理中…',
