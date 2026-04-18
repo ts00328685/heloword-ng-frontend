@@ -76,6 +76,10 @@ const en = {
     reveal: 'Reveal',
     skip: 'Skip →',
     retestNote: 'Note that if you type the wrong answer or reveal the answer in any way, this word will show up again later for a retest!',
+    idleTitle: 'You\'ve been idle for 3 minutes',
+    idleMessage: 'Your session has paused due to inactivity. Would you like to continue or leave the quiz?',
+    idleContinue: 'Continue',
+    idleLeave: 'Leave',
   },
   quizModal: {
     title: 'Configure Quiz',
@@ -176,6 +180,16 @@ const en = {
         icon: '🔁',
         title: 'Same Spaced-Repetition Engine',
         body: 'Your custom groups use the exact same Ebbinghaus spaced-repetition quiz as built-in lists. Study, get scheduled for review, and track your progress — all in one place.',
+      },
+      {
+        icon: '📊',
+        title: 'Import from Excel',
+        body: 'Bulk upload words from Excel or CSV files. Download a sample file to see the format — you can add word, meaning, Chinese translation, example sentences, and phonetics. Up to 500 words per import.',
+      },
+      {
+        icon: '📸',
+        title: 'Extract Words from Photos',
+        body: 'Snap a photo of text or flashcards, and Heloword\'s AI will automatically extract vocabulary words for you. Perfect for capturing words from books, notes, or any printed material.',
       },
     ],
     reviewCard: [
