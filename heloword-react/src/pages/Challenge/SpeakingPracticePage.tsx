@@ -696,6 +696,9 @@ const SpeakingPracticePage: React.FC = () => {
               <p className="text-xs text-gray-400 dark:text-gray-500">
                 💡 {t('speakingGame.introSettingsTip')}
               </p>
+              <p className="text-xs text-gray-400 dark:text-gray-500">
+                🌐 {t('speakingGame.chromeRecommendation')}
+              </p>
             </div>
             <button
               onClick={() => setShowIntro(false)}

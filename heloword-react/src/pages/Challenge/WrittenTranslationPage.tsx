@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiAnalyzeTranslation } from '../../services/scramble.service';
@@ -106,6 +106,7 @@ const WrittenTranslationPage: React.FC = () => {
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const initialLang: Lang = (location.state as { lang?: Lang } | null)?.lang ?? 'jp';
   const [lang, setLang] = useState<Lang>(initialLang);
@@ -321,33 +322,18 @@ const WrittenTranslationPage: React.FC = () => {
           >
             📊 {t('writtenTranslation.compare')}
           </button>
-          <div className="relative">
-            <button
-              onClick={isLoggedIn ? handleAiAnalyze : undefined}
-              disabled={submitState === 'ai-loading' || !userInput.trim() || dataLoading}
-              className={`w-full py-3 rounded-2xl text-sm font-semibold transition-colors disabled:opacity-40 flex items-center justify-center gap-1.5 ${
-                isLoggedIn
-                  ? 'text-white'
-                  : 'text-white opacity-80 cursor-not-allowed'
-              }`}
-              style={{ background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' }}
-            >
-              <span>✨</span>
-              <span>{t('writtenTranslation.aiAnalyze')}</span>
-              {!isLoggedIn && (
-                <span className="text-[10px] opacity-75 hidden sm:inline">({t('scramble.loginRequired')})</span>
-              )}
-            </button>
+          <button
+            onClick={isLoggedIn ? handleAiAnalyze : () => navigate('/login')}
+            disabled={submitState === 'ai-loading' || !userInput.trim() || dataLoading}
+            className="w-full py-3 rounded-2xl text-sm font-semibold transition-colors disabled:opacity-40 flex items-center justify-center gap-1.5 text-white"
+            style={{ background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' }}
+          >
+            <span>✨</span>
+            <span>{t('writtenTranslation.aiAnalyze')}</span>
             {!isLoggedIn && (
-              <a
-                href="/login"
-                className="absolute inset-0 flex items-center justify-center rounded-2xl"
-                onClick={e => e.stopPropagation()}
-              >
-                <span className="sr-only">{t('common.login')}</span>
-              </a>
+              <span className="text-[10px] opacity-75 hidden sm:inline">({t('scramble.loginRequired')})</span>
             )}
-          </div>
+          </button>
         </div>
 
         {/* Show answer / next controls */}
