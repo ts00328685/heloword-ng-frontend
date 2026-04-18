@@ -104,6 +104,7 @@ const ja = {
   },
   llm: {
     insight: '解説',
+    compare: '比較',
     sampleSentence: '例文',
     studyCoach: '学習ヒント',
     thinking: '処理中…',

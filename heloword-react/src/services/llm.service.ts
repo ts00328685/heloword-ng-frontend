@@ -48,6 +48,25 @@ export async function getSampleSentence(
   throw new Error(res.message || 'AI sample sentence failed');
 }
 
+/** Synonyms / similar words and guidance on when to use each. */
+export async function getWordComparison(
+  word: string,
+  translateEn: string,
+  translateCh: string,
+  lang: string,
+  wordLang: string,
+): Promise<string> {
+  const res = await doPost<string>('/frontend-api/api/fe/ai/word-compare', {
+    word,
+    translateEn,
+    translateCh,
+    lang,
+    wordLang,
+  });
+  if (res.code === '0000' && res.data) return res.data;
+  throw new Error(res.message || 'AI word comparison failed');
+}
+
 /** Personalised study tip based on recent performance. */
 export async function getStudyCoach(
   accuracyPct: number,

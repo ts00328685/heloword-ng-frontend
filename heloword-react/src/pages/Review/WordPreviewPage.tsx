@@ -7,7 +7,7 @@ import AddToGroupModal from '../../components/AddToGroupModal';
 import MultiChoicePanel from '../../components/MultiChoicePanel';
 import { Sentence } from '../../models';
 import { pronounceWord } from '../../services/tts.service';
-import { getWordInsight } from '../../services/llm.service';
+import { getWordInsight, getWordComparison } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -169,9 +169,11 @@ const WordPreviewPage: React.FC = () => {
   const [enterDir, setEnterDir] = useState<'left' | 'right' | null>(null);
   const exitingRef = useRef(false);
 
-  // AI insight
+  // AI insight / compare
   const insight = useAiInsight('preview:insight');
+  const compare = useAiInsight('preview:compare');
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
+  const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
 
   if (!state || words.length === 0) {
@@ -196,6 +198,20 @@ const WordPreviewPage: React.FC = () => {
     );
   };
 
+  const runCompare = (word: Sentence) => {
+    if (selectedCompareId === word.id) {
+      setSelectedCompareId(null);
+      compare.clear();
+      return;
+    }
+    setSelectedCompareId(word.id);
+    if (!isLoggedIn) return;
+    compare.run(
+      String(word.id),
+      () => getWordComparison(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)),
+    );
+  };
+
   // ── Shuffle toggle ──────────────────────────────────────────────────────────
 
   const toggleShuffle = () => {
@@ -210,7 +226,7 @@ const WordPreviewPage: React.FC = () => {
 
   // ── Flashcard navigation ────────────────────────────────────────────────────
 
-  const clearInsight = () => { setSelectedWordId(null); insight.clear(); };
+  const clearInsight = () => { setSelectedWordId(null); insight.clear(); setSelectedCompareId(null); compare.clear(); };
 
   const goNext = () => {
     if (exitingRef.current || cardIndex >= displayWords.length - 1) return;
@@ -296,6 +312,7 @@ const WordPreviewPage: React.FC = () => {
 
   const currentWord = displayWords[cardIndex];
   const flashInsightOpen = selectedWordId === currentWord?.id;
+  const flashCompareOpen = selectedCompareId === currentWord?.id;
 
   // ── Render ──────────────────────────────────────────────────────────────────
 
@@ -469,6 +486,12 @@ const WordPreviewPage: React.FC = () => {
                               onPointerDown={(e) => e.stopPropagation()}
                               onClick={(e) => { e.stopPropagation(); runInsight(currentWord); }}
                             />
+                            <InsightButton
+                              active={flashCompareOpen}
+                              label={t('llm.compare')}
+                              onPointerDown={(e) => e.stopPropagation()}
+                              onClick={(e) => { e.stopPropagation(); runCompare(currentWord); }}
+                            />
                             <button
                               onPointerDown={(e) => e.stopPropagation()}
                               onClick={(e) => { e.stopPropagation(); pronounceWord(currentWord.word, wordLang(currentWord)); }}
@@ -537,6 +560,25 @@ const WordPreviewPage: React.FC = () => {
                   />
                 </div>
               )}
+              {/* AI compare panel for flashcard mode */}
+              {flashCompareOpen && (
+                <div className="w-full max-w-sm mt-4 animate-slide-down">
+                  <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-3 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+                    {!isLoggedIn ? (
+                      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                    ) : compare.loading ? (
+                      <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                    ) : compare.error ? (
+                      <div className="flex items-center gap-2">
+                        <p className="text-xs text-red-400">{t('llm.error')}</p>
+                        <button onClick={() => compare.retry(String(currentWord.id), () => getWordComparison(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))} className="text-xs text-blue-400 underline">↺</button>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Progress dots — show current ± 5 */}
               <div className="flex items-center gap-1.5 mt-6 justify-center">
@@ -594,12 +636,13 @@ const WordPreviewPage: React.FC = () => {
           )}
           {displayWords.slice(0, visibleCount).map((word, i) => {
             const isInsightOpen = selectedWordId === word.id;
+            const isCompareOpen = selectedCompareId === word.id;
             const isRevealed = revealedIds.has(word.id);
             return (
               <div
                 key={word.id ?? i}
                 className={`bg-white dark:bg-gray-800 rounded-2xl border shadow-sm overflow-hidden transition-all animate-fade-in-up ${
-                  isInsightOpen ? 'rainbow-glow' : 'border-gray-100 dark:border-gray-700'
+                  isInsightOpen || isCompareOpen ? 'rainbow-glow' : 'border-gray-100 dark:border-gray-700'
                 }`}
                 style={{ animationDelay: `${Math.min(i, 12) * 35}ms` }}
               >
@@ -626,12 +669,17 @@ const WordPreviewPage: React.FC = () => {
                         {word.sentence}
                       </p>
                     )}
-                    {/* AI Insight button */}
-                    <div className="mt-1.5">
+                    {/* AI Insight / Compare buttons */}
+                    <div className="mt-1.5 flex items-center gap-1.5">
                       <InsightButton
                         active={isInsightOpen}
                         label={t('llm.insight')}
                         onClick={() => runInsight(word)}
+                      />
+                      <InsightButton
+                        active={isCompareOpen}
+                        label={t('llm.compare')}
+                        onClick={() => runCompare(word)}
                       />
                     </div>
                   </div>
@@ -698,6 +746,25 @@ const WordPreviewPage: React.FC = () => {
                       errorLabel={t('llm.error')}
                       onRetry={() => insight.retry(String(word.id), () => getWordInsight(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)))}
                     />
+                  </div>
+                )}
+                {/* AI compare panel */}
+                {isCompareOpen && (
+                  <div className="px-4 pb-3 pt-0 animate-slide-down">
+                    <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-3 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+                      {!isLoggedIn ? (
+                        <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                      ) : compare.loading ? (
+                        <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                      ) : compare.error ? (
+                        <div className="flex items-center gap-2">
+                          <p className="text-xs text-red-400">{t('llm.error')}</p>
+                          <button onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)))} className="text-xs text-blue-400 underline">↺</button>
+                        </div>
+                      ) : (
+                        <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
