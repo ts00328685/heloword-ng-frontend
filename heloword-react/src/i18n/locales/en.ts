@@ -438,6 +438,8 @@ const en = {
     system: 'SYSTEM',
     typingRooms: 'Typing Rooms',
     multiChoiceRooms: 'Multi-Choice Rooms',
+    englishGames: 'English Games',
+    japaneseGames: 'Japanese Games',
     chooseAnswer: 'Choose the correct answer:',
   },
   guestSetup: {
@@ -487,8 +489,8 @@ const en = {
   },
   writtenTranslation: {
     title: 'Written Translation',
-    titleEn: '✍️ 英文翻譯練習',
-    titleJp: '📝 日文翻譯練習',
+    titleEn: '✍️ English Translation Practice',
+    titleJp: '📝 Japanese Translation Practice',
     descEn: 'Read Chinese, type the English sentence',
     descJp: 'Read Chinese & English, type the Japanese sentence',
     chinesePrompt: 'Translate this into',
@@ -716,6 +718,7 @@ const en = {
     importParseError: 'Could not read the file. Please check the format and try again.',
     photoImportTitle: '拍照上傳',
     photoImportHint: 'Select a photo from your gallery or take a new photo. AI will extract vocabulary words automatically.',
+    photoParseLimit: 'Photo upload currently supports parsing up to 5 words at a time.',
     photoPickGallery: 'Choose Photo',
     photoTakePhoto: 'Take Photo',
     photoAnalyzing: 'Analyzing photo with AI…',

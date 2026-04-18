@@ -1021,6 +1021,7 @@ const UserVocabGroupPage: React.FC = () => {
         <PhotoParseModal
           onClose={() => setShowPhotoModal(false)}
           onImport={handleImport}
+          lang={group.language}
         />
       )}
 

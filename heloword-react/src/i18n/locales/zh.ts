@@ -438,6 +438,8 @@ const zh = {
     system: '系統',
     typingRooms: '拼字遊戲房間',
     multiChoiceRooms: '選擇題遊戲房間',
+    englishGames: '英文遊戲',
+    japaneseGames: '日文遊戲',
     chooseAnswer: '選擇正確答案：',
   },
   guestSetup: {
@@ -716,6 +718,7 @@ const zh = {
     importParseError: '無法讀取檔案，請確認格式後重試。',
     photoImportTitle: '拍照上傳',
     photoImportHint: '從相簿選取照片或直接拍照，AI 將自動識別圖片中的單字。',
+    photoParseLimit: '照片上傳目前一次最多支援解析 5 個單字。',
     photoPickGallery: '選擇照片',
     photoTakePhoto: '拍照',
     photoAnalyzing: 'AI 分析照片中…',

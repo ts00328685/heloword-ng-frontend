@@ -79,12 +79,13 @@ export async function batchDeleteCustomWords(groupId: number, wordIds: number[])
 }
 
 export async function parsePhotoWords(
-  imageFile: File
+  imageFile: File,
+  lang = 'EN'
 ): Promise<Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]> {
   const formData = new FormData();
   formData.append('image', imageFile);
   const res = await doPost<Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>[]>(
-    '/frontend-api/api/fe/custom-vocab/parse-photo',
+    `/frontend-api/api/fe/custom-vocab/parse-photo?lang=${encodeURIComponent(lang)}`,
     formData
   );
   if (res.code !== '0000' || !res.data) throw new Error(res.message || 'Failed to parse photo');

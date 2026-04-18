@@ -438,6 +438,8 @@ const ja = {
     system: 'システム',
     typingRooms: 'タイピングルーム',
     multiChoiceRooms: '選択式ルーム',
+    englishGames: '英語ゲーム',
+    japaneseGames: '日本語ゲーム',
     chooseAnswer: '正しい答えを選んでください：',
   },
   guestSetup: {
@@ -487,8 +489,8 @@ const ja = {
   },
   writtenTranslation: {
     title: '筆記翻訳',
-    titleEn: '✍️ 英文翻譯練習',
-    titleJp: '📝 日文翻譯練習',
+    titleEn: '✍️ 英文翻訳練習',
+    titleJp: '📝 日本語翻訳練習',
     descEn: '中国語を読んで英語の文を入力する',
     descJp: '中国語・英語を読んで日本語の文を入力する',
     chinesePrompt: 'これを翻訳してください',
@@ -716,6 +718,7 @@ const ja = {
     importParseError: 'ファイルを読み込めません。形式を確認して再試行してください。',
     photoImportTitle: '拍照上傳',
     photoImportHint: 'ギャラリーから写真を選ぶか、新しく撮影してください。AIが単語を自動認識します。',
+    photoParseLimit: '写真アップロードは現在、一度に最大5単語の解析に対応しています。',
     photoPickGallery: '写真を選ぶ',
     photoTakePhoto: '写真を撮る',
     photoAnalyzing: 'AIが写真を解析中…',
