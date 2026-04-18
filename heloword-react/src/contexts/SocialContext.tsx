@@ -18,12 +18,14 @@ import {
 import {
   ChatMessage,
   Friend,
+  OfficialMessage,
   OnlineUser,
   acceptFriendRequest,
   computeRoomId,
   fetchChatRooms,
   fetchFriends,
   fetchMessages,
+  fetchOfficialMessages,
   fetchOnlineUsers,
   fetchUnreadCounts,
   getOrCreateGuestIdentity,
@@ -37,6 +39,8 @@ import {
   sendHeartbeat,
   updateFriendNickname,
 } from '../services/social.service';
+
+const OFFICIAL_LS_KEY = 'hw-official-last-seen';
 
 export interface MessageNotification {
   id: string;
@@ -90,6 +94,11 @@ interface SocialContextType {
 
   refreshFriends: () => Promise<void>;
   setGuestName: (name: string) => void;
+
+  officialMessages: OfficialMessage[];
+  officialUnread: number;
+  markOfficialSeen: () => void;
+  refreshOfficialMessages: () => Promise<void>;
 }
 
 const SocialContext = createContext<SocialContextType>({} as SocialContextType);
@@ -477,6 +486,31 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setMyDisplayName(name);
   }, []);
 
+  // ── Official Messages ─────────────────────────────────────────────────────
+
+  const [officialMessages, setOfficialMessages] = useState<OfficialMessage[]>([]);
+  const [officialLastSeenId, setOfficialLastSeenId] = useState<number>(
+    () => parseInt(localStorage.getItem(OFFICIAL_LS_KEY) ?? '0', 10)
+  );
+
+  const officialUnread = officialMessages.filter((m) => m.id > officialLastSeenId).length;
+
+  const refreshOfficialMessages = useCallback(async () => {
+    const msgs = await fetchOfficialMessages().catch(() => [] as OfficialMessage[]);
+    setOfficialMessages(msgs);
+  }, []);
+
+  const markOfficialSeen = useCallback(() => {
+    if (officialMessages.length === 0) return;
+    const maxId = Math.max(...officialMessages.map((m) => m.id));
+    localStorage.setItem(OFFICIAL_LS_KEY, String(maxId));
+    setOfficialLastSeenId(maxId);
+  }, [officialMessages]);
+
+  useEffect(() => {
+    refreshOfficialMessages();
+  }, [refreshOfficialMessages]);
+
   return (
     <SocialContext.Provider
       value={{
@@ -510,6 +544,10 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         doAcceptVocabShare,
         doRejectVocabShare,
         refreshVocabShares: refreshVocabSharesRef.current,
+        officialMessages,
+        officialUnread,
+        markOfficialSeen,
+        refreshOfficialMessages,
       }}
     >
       {children}

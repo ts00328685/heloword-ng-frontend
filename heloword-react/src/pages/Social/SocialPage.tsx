@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useSocial } from '../../contexts/SocialContext';
-import { computeRoomId, Friend, OnlineUser } from '../../services/social.service';
+import { computeRoomId, Friend, OfficialMessage, OnlineUser } from '../../services/social.service';
 
 // ── Helpers ───────────────────────────────────────────────────────────────
 
@@ -159,6 +159,49 @@ const ChatPanel: React.FC<{
   );
 };
 
+// ── Official Messages Panel ───────────────────────────────────────────────
+
+const OfficialPanel: React.FC<{
+  messages: OfficialMessage[];
+  onClose: () => void;
+}> = ({ messages, onClose }) => {
+  const { t } = useTranslation();
+  const sorted = [...messages].sort((a, b) => b.id - a.id);
+
+  return ReactDOM.createPortal(
+    <div className="fixed inset-0 z-50 flex flex-col bg-gray-100 dark:bg-gray-950 sm:items-center sm:justify-center">
+      <div className="flex flex-col w-full max-w-2xl h-full sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl bg-white dark:bg-gray-900 overflow-hidden">
+        <div className="flex items-center gap-3 px-4 h-14 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm flex-shrink-0">
+          <button
+            onClick={onClose}
+            className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <span className="font-semibold text-gray-800 dark:text-gray-100 flex-1">{t('social.officialChannelTitle')}</span>
+        </div>
+        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+          {sorted.length === 0 && (
+            <p className="text-center text-xs text-gray-400 mt-8">{t('social.officialChannelEmpty')}</p>
+          )}
+          {sorted.map((msg) => (
+            <div key={msg.id} className="bg-gray-100 dark:bg-gray-800 rounded-2xl px-4 py-3">
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{msg.title}</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 mb-1">
+                {new Date(msg.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+              </p>
+              <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{msg.content}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
+
 // ── Nickname edit modal ───────────────────────────────────────────────────
 
 const NicknameModal: React.FC<{
@@ -232,10 +275,14 @@ const SocialPage: React.FC = () => {
     doRejectVocabShare,
     hideOnlineStatus,
     setHideOnlineStatus,
+    officialMessages,
+    officialUnread,
+    markOfficialSeen,
   } = useSocial();
 
   const [activeTab, setActiveTab] = useState<'online' | 'friends' | 'messages'>('online');
   const [roomsLoading, setRoomsLoading] = useState(false);
+  const [officialPanelOpen, setOfficialPanelOpen] = useState(false);
   const [acceptingId, setAcceptingId] = useState<number | null>(null);
   const [friendActionError, setFriendActionError] = useState<string | null>(null);
   const [vocabShareActingId, setVocabShareActingId] = useState<number | null>(null);
@@ -285,6 +332,10 @@ const SocialPage: React.FC = () => {
         onClose={closeChat}
       />
     );
+  }
+
+  if (officialPanelOpen) {
+    return <OfficialPanel messages={officialMessages} onClose={() => setOfficialPanelOpen(false)} />;
   }
 
   const otherOnlineUsers = onlineUsers.filter((u) => u.userId !== myUserId);
@@ -400,8 +451,8 @@ const SocialPage: React.FC = () => {
               ) : (
                 <>
                   {t('social.tabMessages')}
-                  {totalUnread > 0 && (
-                    <span className="ml-1.5 text-xs bg-red-500 text-white rounded-full px-1.5">{totalUnread > 99 ? '99+' : totalUnread}</span>
+                  {(totalUnread + officialUnread) > 0 && (
+                    <span className="ml-1.5 text-xs bg-red-500 text-white rounded-full px-1.5">{(totalUnread + officialUnread) > 99 ? '99+' : (totalUnread + officialUnread)}</span>
                   )}
                 </>
               )}
@@ -766,12 +817,44 @@ const SocialPage: React.FC = () => {
         {/* ── Messages tab ── */}
         {activeTab === 'messages' && (
           <div className="space-y-2">
+            {/* Pinned official channel — always visible */}
+            <button
+              onClick={() => { markOfficialSeen(); setOfficialPanelOpen(true); }}
+              className="w-full flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-950 rounded-2xl border border-blue-200 dark:border-blue-800 shadow-sm hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors text-left"
+            >
+              <div className="relative flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                  </svg>
+                </div>
+                {officialUnread > 0 && (
+                  <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+                    {officialUnread > 99 ? '99+' : officialUnread}
+                  </span>
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-baseline justify-between gap-2">
+                  <p className="text-sm font-semibold text-blue-700 dark:text-blue-300 truncate">{t('social.officialChannel')}</p>
+                  {officialMessages.length > 0 && (
+                    <span className="text-[11px] text-gray-400 dark:text-gray-500 flex-shrink-0">
+                      {new Date(officialMessages[0].publishedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs text-gray-400 dark:text-gray-500 truncate mt-0.5">
+                  {officialMessages[0]?.content ?? t('social.officialChannelEmpty')}
+                </p>
+              </div>
+            </button>
+
             {roomsLoading ? (
               <div className="flex justify-center py-12">
                 <div className="w-6 h-6 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
               </div>
             ) : chatRooms.length === 0 ? (
-              <div className="text-center py-12 text-gray-400 dark:text-gray-500 text-sm">
+              <div className="text-center py-8 text-gray-400 dark:text-gray-500 text-sm">
                 {t('social.noConversations')}
               </div>
             ) : (
