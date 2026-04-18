@@ -12,6 +12,19 @@ import { doPost } from './api.service';
  * Each returns CommonResponse<String> with the AI-generated text.
  */
 
+export interface WordFillResult {
+  translateEn: string;
+  translateCh: string;
+  sentence: string;
+}
+
+/** Structured AI fill for the custom vocab form — language-aware, no label parsing needed. */
+export async function getWordFill(word: string, wordLang: string): Promise<WordFillResult> {
+  const res = await doPost<WordFillResult>('/frontend-api/api/fe/ai/word-fill', { word, wordLang });
+  if (res.code === '0000' && res.data) return res.data;
+  throw new Error(res.message || 'AI fill failed');
+}
+
 /** Definition + example sentence for a vocabulary word. */
 export async function getWordInsight(
   word: string,
