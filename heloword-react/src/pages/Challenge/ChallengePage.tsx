@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
-import { useAuth } from '../../contexts/AuthContext';
 import { useChallenge } from '../../contexts/ChallengeContext';
-import { ChallengeRoom, GameFormat, createRoom } from '../../services/challenge.service';
+import { ChallengeRoom } from '../../services/challenge.service';
 import ChallengeRoomPage from './ChallengeRoomPage';
 
 const GAME_TYPE_KEYS: Record<string, string> = {
@@ -121,68 +119,65 @@ const RoomSection: React.FC<{
   );
 };
 
-const CreateRoomModal: React.FC<{ onClose: () => void; onCreate: (room: ChallengeRoom) => void }> = ({ onClose, onCreate }) => {
-  const { t } = useTranslation();
-  const [name, setName] = useState('');
-  const [gameType, setGameType] = useState('wordEnglishList');
-  const [rounds, setRounds] = useState(10);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleCreate = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const room = await createRoom(name, gameType, rounds);
-      if (room) onCreate(room);
-    } catch (e: any) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+interface GameEntry {
+  path: string;
+  state: object;
+  icon: string;
+  gradient: string;
+  titleKey: string;
+  descKey: string;
+}
 
-  return ReactDOM.createPortal(
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50" onClick={onClose}>
-      <div className="bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-2xl p-5 w-full sm:max-w-sm shadow-xl" onClick={e => e.stopPropagation()}>
-        <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-4">{t('challenge.createRoomTitle')}</h3>
-        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">{t('challenge.roomNameLabel')}</label>
-        <input
-          value={name} onChange={e => setName(e.target.value)}
-          placeholder={t('challenge.roomNamePlaceholder')}
-          className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">{t('challenge.wordListLabel')}</label>
-        <select
-          value={gameType} onChange={e => setGameType(e.target.value)}
-          className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          {Object.entries(GAME_TYPE_KEYS).map(([k, tKey]) => <option key={k} value={k}>{t(tKey)}</option>)}
-        </select>
-        <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1">{t('challenge.roundsLabel', { count: rounds })}</label>
-        <input
-          type="range" min={5} max={20} value={rounds} onChange={e => setRounds(Number(e.target.value))}
-          className="w-full mb-4"
-        />
-        {error && <p className="text-xs text-red-500 mb-2">{error}</p>}
-        <div className="flex gap-2">
-          <button onClick={onClose} className="flex-1 py-2 text-sm text-gray-500 border border-gray-200 dark:border-gray-700 rounded-xl">{t('social.cancel')}</button>
-          <button onClick={handleCreate} disabled={loading} className="flex-1 py-2 text-sm bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white rounded-xl">
-            {loading ? '...' : t('challenge.create')}
-          </button>
+const GameSection: React.FC<{
+  icon: string;
+  title: string;
+  games: GameEntry[];
+  onNavigate: (path: string, opts: { state: object }) => void;
+  t: (key: string) => string;
+}> = ({ icon, title, games, onNavigate, t }) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div className="rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="w-full flex items-center gap-2 px-3 py-2.5 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+      >
+        <span className="text-base">{icon}</span>
+        <span className="flex-1 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
+          {title}
+        </span>
+        <span className="text-[10px] text-gray-400 mr-1">{games.length} games</span>
+        <Chevron open={open} />
+      </button>
+      {open && (
+        <div className="border-t border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700 bg-gray-50 dark:bg-gray-900/30">
+          {games.map(({ path, state, icon: gIcon, gradient, titleKey, descKey }) => (
+            <div key={titleKey} className="p-2">
+              <button
+                onClick={() => onNavigate(path, { state })}
+                className="w-full flex items-center gap-3 p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-blue-400 dark:hover:border-blue-600 transition-colors text-left"
+              >
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style={{ background: gradient }}>
+                  {gIcon}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{t(titleKey)}</p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{t(descKey)}</p>
+                </div>
+                <span className="text-gray-300 dark:text-gray-600">›</span>
+              </button>
+            </div>
+          ))}
         </div>
-      </div>
-    </div>,
-    document.body
+      )}
+    </div>
   );
 };
 
 const ChallengePage: React.FC = () => {
   const { t } = useTranslation();
-  const { isLoggedIn } = useAuth();
   const { rooms, currentRoom, joinRoomAction, leaveRoomAction } = useChallenge();
-  const [showCreate, setShowCreate] = useState(false);
-  const [joining, setJoining] = useState<string | null>(null);
   const navigate = useNavigate();
 
   if (currentRoom) {
@@ -205,28 +200,12 @@ const ChallengePage: React.FC = () => {
   const userRooms = rooms.filter(r => !r.system);
   const hasSystemRooms = typingRooms.length > 0 || multiChoiceRooms.length > 0;
 
-  const handleJoin = async (roomId: string) => {
-    setJoining(roomId);
-    try {
-      await joinRoomAction(roomId);
-    } finally {
-      setJoining(null);
-    }
-  };
+  const handleJoin = (roomId: string) => joinRoomAction(roomId);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header title={t('nav.challenge')} />
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full space-y-4">
-
-        {isLoggedIn && (
-          <button
-            onClick={() => setShowCreate(true)}
-            className="w-full py-3 rounded-2xl bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm transition-colors shadow-sm"
-          >
-            {t('challenge.createRoom')}
-          </button>
-        )}
 
         {/* Featured system rooms — two collapsible panels */}
         {hasSystemRooms && (
@@ -276,41 +255,34 @@ const ChallengePage: React.FC = () => {
           </p>
           <div className="space-y-2">
             {[
-              { path: '/challenge/scramble', state: { lang: 'en' }, icon: '🇬🇧', gradient: 'linear-gradient(135deg, #a29bfe, #6c5ce7)', titleKey: 'scramble.titleEn',        descKey: 'scramble.descEn' },
-              { path: '/challenge/scramble', state: { lang: 'jp' }, icon: '🇯🇵', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)', titleKey: 'scramble.titleJp',        descKey: 'scramble.descJp' },
-              { path: '/challenge/quiz',     state: { gameType: 'en' }, icon: '🔤', gradient: 'linear-gradient(135deg, #00b894, #00cec9)', titleKey: 'multiChoice.titleEn', descKey: 'multiChoice.descEn' },
-              { path: '/challenge/quiz',     state: { gameType: 'jp' }, icon: '🈶', gradient: 'linear-gradient(135deg, #fdcb6e, #e17055)', titleKey: 'multiChoice.titleJp', descKey: 'multiChoice.descJp' },
-              { path: '/challenge/written',      state: { lang: 'en' }, icon: '✍️', gradient: 'linear-gradient(135deg, #00cec9, #0984e3)', titleKey: 'writtenTranslation.titleEn', descKey: 'writtenTranslation.descEn' },
-              { path: '/challenge/written',      state: { lang: 'jp' }, icon: '📝', gradient: 'linear-gradient(135deg, #e17055, #d63031)', titleKey: 'writtenTranslation.titleJp', descKey: 'writtenTranslation.descJp' },
-              { path: '/challenge/speaking',    state: {}, icon: '🎤', gradient: 'linear-gradient(135deg, #55efc4, #00b894)',   titleKey: 'speaking.title',   descKey: 'speaking.desc' },
-              { path: '/challenge/speaking-jp', state: {}, icon: '🎙️', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)',   titleKey: 'speaking.titleJp', descKey: 'speaking.descJp' },
-            ].map(({ path, state, icon, gradient, titleKey, descKey }) => (
-              <button
-                key={titleKey}
-                onClick={() => navigate(path, { state })}
-                className="w-full flex items-center gap-3 p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-blue-400 dark:hover:border-blue-600 transition-colors text-left"
-              >
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style={{ background: gradient }}>
-                  {icon}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{t(titleKey)}</p>
-                  <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{t(descKey)}</p>
-                </div>
-                <span className="text-gray-300 dark:text-gray-600">›</span>
-              </button>
+              {
+                sectionIcon: '🇬🇧',
+                sectionTitle: t('challenge.englishGames'),
+                games: [
+                  { path: '/challenge/scramble', state: { lang: 'en' },       icon: '🇬🇧', gradient: 'linear-gradient(135deg, #a29bfe, #6c5ce7)', titleKey: 'scramble.titleEn',              descKey: 'scramble.descEn' },
+                  { path: '/challenge/quiz',     state: { gameType: 'en' },   icon: '🔤', gradient: 'linear-gradient(135deg, #00b894, #00cec9)', titleKey: 'multiChoice.titleEn',           descKey: 'multiChoice.descEn' },
+                  { path: '/challenge/written',  state: { lang: 'en' },       icon: '✍️', gradient: 'linear-gradient(135deg, #00cec9, #0984e3)', titleKey: 'writtenTranslation.titleEn',    descKey: 'writtenTranslation.descEn' },
+                  { path: '/challenge/speaking', state: {},                   icon: '🎤', gradient: 'linear-gradient(135deg, #55efc4, #00b894)',   titleKey: 'speaking.title',               descKey: 'speaking.desc' },
+                ],
+              },
+              {
+                sectionIcon: '🇯🇵',
+                sectionTitle: t('challenge.japaneseGames'),
+                games: [
+                  { path: '/challenge/scramble',    state: { lang: 'jp' },     icon: '🇯🇵', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)', titleKey: 'scramble.titleJp',             descKey: 'scramble.descJp' },
+                  { path: '/challenge/quiz',        state: { gameType: 'jp' }, icon: '🈶', gradient: 'linear-gradient(135deg, #fdcb6e, #e17055)', titleKey: 'multiChoice.titleJp',          descKey: 'multiChoice.descJp' },
+                  { path: '/challenge/written',     state: { lang: 'jp' },     icon: '📝', gradient: 'linear-gradient(135deg, #e17055, #d63031)', titleKey: 'writtenTranslation.titleJp',   descKey: 'writtenTranslation.descJp' },
+                  { path: '/challenge/speaking-jp', state: {},                 icon: '🎙️', gradient: 'linear-gradient(135deg, #fd79a8, #e84393)',   titleKey: 'speaking.titleJp',            descKey: 'speaking.descJp' },
+                ],
+              },
+            ].map(({ sectionIcon, sectionTitle, games }) => (
+              <GameSection key={sectionTitle} icon={sectionIcon} title={sectionTitle} games={games} onNavigate={navigate} t={t} />
             ))}
           </div>
         </div>
 
       </main>
 
-      {showCreate && (
-        <CreateRoomModal
-          onClose={() => setShowCreate(false)}
-          onCreate={(room) => { setShowCreate(false); joinRoomAction(room.id); }}
-        />
-      )}
     </div>
   );
 };

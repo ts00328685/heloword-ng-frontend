@@ -16,6 +16,7 @@ type ImportRow = Omit<CustomWord, 'id' | 'groupId' | 'tableName' | 'language'>;
 interface Props {
   onClose: () => void;
   onImport: (rows: ImportRow[]) => Promise<void>;
+  lang?: string;
 }
 
 const COLUMNS: { key: keyof ParsedRow; label: string; required: boolean; width: string }[] = [
@@ -52,7 +53,7 @@ function compressImage(file: File, maxPx = 1600, quality = 0.82): Promise<File> 
   });
 }
 
-const PhotoParseModal: React.FC<Props> = ({ onClose, onImport }) => {
+const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) => {
   const { t } = useTranslation();
   const galleryRef = useRef<HTMLInputElement>(null);
   const cameraRef = useRef<HTMLInputElement>(null);
@@ -74,7 +75,7 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport }) => {
     setParsing(true);
     try {
       const compressed = await compressImage(file);
-      const parsed = await parsePhotoWords(compressed);
+      const parsed = await parsePhotoWords(compressed, lang);
       if (parsed.length === 0) {
         setError(t('userVocab.photoNoWords'));
         return;
@@ -179,6 +180,14 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport }) => {
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {t('userVocab.photoImportHint')}
               </p>
+              <div className="flex items-start gap-2 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl px-3 py-2.5">
+                <svg className="w-4 h-4 text-yellow-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                </svg>
+                <p className="text-xs text-yellow-700 dark:text-yellow-400">
+                  {t('userVocab.photoParseLimit')}
+                </p>
+              </div>
               <div className="flex gap-3">
                 <button
                   onClick={() => galleryRef.current?.click()}
