@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { CustomWord } from '../services/customVocab.service';
-import { getWordInsight } from '../services/llm.service';
+import { getWordFill } from '../services/llm.service';
 import { Sentence } from '../models';
 
 interface WordFormData {
@@ -38,7 +38,7 @@ interface Props {
 }
 
 const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onBatchSave, systemWords, language }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // Mode toggle — only available in add mode (no initial word)
   const canBulk = !initial?.word && !!onBatchSave;
@@ -83,19 +83,17 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
     }
   };
 
+  const wordLang = language ? language.toLowerCase() : 'en';
+
   const handleAiFill = async () => {
     if (!word.trim()) { setError(t('userVocab.wordRequired', 'Word is required to use AI Fill')); return; }
     setAiLoading(true);
     setError('');
     try {
-      const result = await getWordInsight(word.trim(), translateEn, translateCh, i18n.language, 'en');
-      if (!translateEn.trim() && result) {
-        const lines = result.split('\n').filter(Boolean);
-        if (lines.length > 0) setTranslateEn(lines[0].replace(/^[*-]\s*/, '').slice(0, 200));
-        if (lines.length > 1) setSentence(lines.slice(1).join(' ').slice(0, 500));
-      } else {
-        setSentence((prev) => prev || result.split('\n').filter(Boolean).slice(1).join(' ').slice(0, 500));
-      }
+      const result = await getWordFill(word.trim(), wordLang);
+      if (!translateEn.trim()) setTranslateEn(result.translateEn);
+      if (!translateCh.trim()) setTranslateCh(result.translateCh);
+      if (!sentence.trim()) setSentence(result.sentence);
     } catch (e: any) {
       setError(t('llm.error'));
     } finally {
@@ -143,21 +141,17 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
     if (!rowWord) return;
     setRows((prev) => prev.map((r, i) => i === idx ? { ...r, aiLoading: true } : r));
     try {
-      const result = await getWordInsight(rowWord, rows[idx].translateEn, '', i18n.language, 'en');
-      if (result) {
-        const lines = result.split('\n').filter(Boolean);
-        const meaning = lines[0]?.replace(/^[*-]\s*/, '').slice(0, 200) ?? '';
-        const exSentence = lines.slice(1).join(' ').slice(0, 500);
-        setRows((prev) => prev.map((r, i) => {
-          if (i !== idx) return r;
-          return {
-            ...r,
-            translateEn: r.translateEn.trim() || meaning,
-            sentence: r.sentence.trim() || exSentence,
-            aiLoading: false,
-          };
-        }));
-      }
+      const result = await getWordFill(rowWord, wordLang);
+      setRows((prev) => prev.map((r, i) => {
+        if (i !== idx) return r;
+        return {
+          ...r,
+          translateEn: r.translateEn.trim() || result.translateEn,
+          translateCh: r.translateCh.trim() || result.translateCh,
+          sentence: r.sentence.trim() || result.sentence,
+          aiLoading: false,
+        };
+      }));
     } catch {
       setRows((prev) => prev.map((r, i) => i === idx ? { ...r, aiLoading: false } : r));
     }
