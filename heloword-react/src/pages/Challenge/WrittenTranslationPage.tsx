@@ -56,12 +56,23 @@ function scoreAnswer(userInput: string, answer: string): number {
   const userNorm = normalize(userInput);
   const ansNorm = normalize(answer);
   if (userNorm === ansNorm) return 100;
-  // Word-overlap scoring
-  const userWords = new Set(userNorm.split(/\s+/).filter(Boolean));
-  const ansWords = ansNorm.split(/\s+/).filter(Boolean);
-  if (ansWords.length === 0) return 0;
-  const matches = ansWords.filter(w => userWords.has(w)).length;
-  return Math.round((matches / ansWords.length) * 100);
+
+  const hasCJK = /[\u3000-\u9fff]/.test(ansNorm);
+  if (hasCJK) {
+    // Character-based scoring for Japanese/CJK
+    const userChars = new Set(userNorm.split('').filter(Boolean));
+    const ansChars = ansNorm.split('').filter(Boolean);
+    if (ansChars.length === 0) return 0;
+    const matches = ansChars.filter(c => userChars.has(c)).length;
+    return Math.round((matches / ansChars.length) * 100);
+  } else {
+    // Word-based scoring for English
+    const userWords = new Set(userNorm.split(/\s+/).filter(Boolean));
+    const ansWords = ansNorm.split(/\s+/).filter(Boolean);
+    if (ansWords.length === 0) return 0;
+    const matches = ansWords.filter(w => userWords.has(w)).length;
+    return Math.round((matches / ansWords.length) * 100);
+  }
 }
 
 function scoreColor(score: number): string {
