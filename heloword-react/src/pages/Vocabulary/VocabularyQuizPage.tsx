@@ -80,6 +80,11 @@ const VocabularyQuizPage: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [totalLength, setTotalLength] = useState(0);
 
+  const [showIdleModal, setShowIdleModal] = useState(false);
+  const lastActivityRef = useRef<Date>(new Date());
+  const idleTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const IDLE_THRESHOLD = 3 * 60 * 1000;
+
   const pronounceCountRef = useRef(0);
   const deleteCountRef = useRef(0);
   const wrongCountRef = useRef(0);
@@ -122,6 +127,16 @@ const VocabularyQuizPage: React.FC = () => {
   const quizSettingsRef = useRef<Record<string, QuizSetting>>({});
   const saveSettingsPromiseRef = useRef<Promise<void> | null>(null);
 
+  const resetIdleTimer = useCallback(() => {
+    lastActivityRef.current = new Date();
+    if (idleTimeoutRef.current) {
+      clearTimeout(idleTimeoutRef.current);
+    }
+    idleTimeoutRef.current = setTimeout(() => {
+      setShowIdleModal(true);
+    }, IDLE_THRESHOLD);
+  }, [IDLE_THRESHOLD]);
+
   useEffect(() => {
     const quizSettings: Record<string, QuizSetting> = location.state?.quizSettings;
     const finishedIdMap: Record<string, number[]> = location.state?.finishedIdMap || {};
@@ -159,6 +174,7 @@ const VocabularyQuizPage: React.FC = () => {
       };
       saveSettingsPromiseRef.current = run();
     }
+    resetIdleTimer();
   }, []);
 
   useEffect(() => {
@@ -167,6 +183,18 @@ const VocabularyQuizPage: React.FC = () => {
       inputRef.current.focus();
     }
   }, [currentIndex, autoInputFocus, jpButtonMode, wordList]);
+
+  useEffect(() => {
+    const events = ['mousedown', 'keydown', 'touchstart', 'click', 'scroll'];
+    const handler = () => resetIdleTimer();
+
+    events.forEach(event => document.addEventListener(event, handler));
+
+    return () => {
+      events.forEach(event => document.removeEventListener(event, handler));
+      if (idleTimeoutRef.current) clearTimeout(idleTimeoutRef.current);
+    };
+  }, [resetIdleTimer]);
 
   // Reset kana buttons whenever the word changes or button mode is toggled
   useEffect(() => {
@@ -583,6 +611,18 @@ const VocabularyQuizPage: React.FC = () => {
       () => getWordComparison(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'),
     );
   };
+
+  const handleIdleContinue = () => {
+    setShowIdleModal(false);
+    startTimeRef.current = new Date();
+    resetIdleTimer();
+  };
+
+  const handleIdleLeave = async () => {
+    setShowIdleModal(false);
+    await Promise.all(pendingSavesRef.current);
+    navigate('/review', { replace: true });
+  };
   // Button mode: JP words only (not sentence-only entries)
   const isJpButtonMode = !!(current?.language === 'jp' && jpButtonMode && current?.word);
 
@@ -910,6 +950,31 @@ const VocabularyQuizPage: React.FC = () => {
         </div>
       </main>
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
+
+      {showIdleModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-sm w-full p-6">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('quiz.idleTitle')}</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
+              {t('quiz.idleMessage')}
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={handleIdleLeave}
+                className="flex-1 px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              >
+                {t('quiz.idleLeave')}
+              </button>
+              <button
+                onClick={handleIdleContinue}
+                className="flex-1 px-4 py-2.5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium transition-colors"
+              >
+                {t('quiz.idleContinue')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
