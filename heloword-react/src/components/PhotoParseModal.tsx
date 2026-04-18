@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import Cropper from 'react-easy-crop';
+import type { Area } from 'react-easy-crop';
 import { CustomWord, parsePhotoWords } from '../services/customVocab.service';
 
 type ParsedRow = {
@@ -53,6 +55,29 @@ function compressImage(file: File, maxPx = 1600, quality = 0.82): Promise<File> 
   });
 }
 
+function getCroppedImg(imageSrc: string, pixelCrop: Area): Promise<File> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = pixelCrop.width;
+      canvas.height = pixelCrop.height;
+      canvas.getContext('2d')!.drawImage(
+        img, pixelCrop.x, pixelCrop.y, pixelCrop.width, pixelCrop.height,
+        0, 0, pixelCrop.width, pixelCrop.height
+      );
+      canvas.toBlob(
+        (blob) => blob
+          ? resolve(new File([blob], 'cropped.jpg', { type: 'image/jpeg' }))
+          : reject(new Error('crop failed')),
+        'image/jpeg', 0.92
+      );
+    };
+    img.onerror = reject;
+    img.src = imageSrc;
+  });
+}
+
 const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) => {
   const { t } = useTranslation();
   const galleryRef = useRef<HTMLInputElement>(null);
@@ -63,6 +88,16 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
   const [parsing, setParsing] = useState(false);
   const [importing, setImporting] = useState(false);
   const [error, setError] = useState('');
+  const [cropFile, setCropFile] = useState<File | null>(null);
+  const [cropPreview, setCropPreview] = useState('');
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
+  const [cropping, setCropping] = useState(false);
+  const [cropAspect, setCropAspect] = useState<number | undefined>(4 / 3);
+  const [customAspectW, setCustomAspectW] = useState('4');
+  const [customAspectH, setCustomAspectH] = useState('3');
+  const cropperRef = useRef<HTMLDivElement>(null);
 
   const handlePhotoSelected = async (file: File) => {
     setError('');
@@ -98,9 +133,96 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) handlePhotoSelected(file);
+    if (!file) return;
     e.target.value = '';
+    setError('');
+    setRows([]);
+    setCrop({ x: 0, y: 0 });
+    setZoom(1);
+    setCroppedAreaPixels(null);
+    setCropAspect(undefined);
+    setCropFile(file);
+    const reader = new FileReader();
+    reader.onload = (ev) => setCropPreview(ev.target?.result as string);
+    reader.readAsDataURL(file);
   };
+
+  const handleCropConfirm = async () => {
+    if (!cropFile || !croppedAreaPixels || !cropPreview) return;
+    setCropping(true);
+    try {
+      const cropped = await getCroppedImg(cropPreview, croppedAreaPixels);
+      setCropFile(null);
+      setCropPreview('');
+      await handlePhotoSelected(cropped);
+    } catch {
+      setError(t('userVocab.photoParseError'));
+    } finally {
+      setCropping(false);
+    }
+  };
+
+  const handleSkipCrop = async () => {
+    if (!cropFile) return;
+    const file = cropFile;
+    setCropFile(null);
+    setCropPreview('');
+    await handlePhotoSelected(file);
+  };
+
+  const handleCropBack = () => {
+    setCropFile(null);
+    setCropPreview('');
+    setError('');
+  };
+
+  const applyCustomAspect = (w?: string, h?: string) => {
+    const width = w !== undefined ? parseFloat(w) : parseFloat(customAspectW);
+    const height = h !== undefined ? parseFloat(h) : parseFloat(customAspectH);
+    if (!isNaN(width) && !isNaN(height) && width > 0 && height > 0) {
+      setCropAspect(width / height);
+    }
+  };
+
+  const incrementW = () => {
+    const newW = (parseFloat(customAspectW) || 1) + 1;
+    setCustomAspectW(newW.toString());
+    applyCustomAspect(newW.toString(), customAspectH);
+  };
+
+  const decrementW = () => {
+    const newW = Math.max(1, (parseFloat(customAspectW) || 1) - 1);
+    setCustomAspectW(newW.toString());
+    applyCustomAspect(newW.toString(), customAspectH);
+  };
+
+  const incrementH = () => {
+    const newH = (parseFloat(customAspectH) || 1) + 1;
+    setCustomAspectH(newH.toString());
+    applyCustomAspect(customAspectW, newH.toString());
+  };
+
+  const decrementH = () => {
+    const newH = Math.max(1, (parseFloat(customAspectH) || 1) - 1);
+    setCustomAspectH(newH.toString());
+    applyCustomAspect(customAspectW, newH.toString());
+  };
+
+  React.useEffect(() => {
+    applyCustomAspect();
+  }, [customAspectW, customAspectH]);
+
+  React.useEffect(() => {
+    if (!cropFile) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        setCropAspect(undefined);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [cropFile]);
 
   const updateRow = (idx: number, field: keyof ParsedRow, value: string) => {
     setRows((prev) => prev.map((r, i) => (i === idx ? { ...r, [field]: value } : r)));
@@ -174,8 +296,8 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
         {/* Body */}
         <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
 
-          {/* Photo selection — shown when no rows yet and not parsing */}
-          {!parsing && rows.length === 0 && (
+          {/* Photo selection — shown when no rows yet and not parsing and not cropping */}
+          {!cropFile && !parsing && rows.length === 0 && (
             <div className="space-y-3">
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {t('userVocab.photoImportHint')}
@@ -232,6 +354,121 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
             className="hidden"
             onChange={handleFileChange}
           />
+
+          {/* Crop UI */}
+          {cropFile && !parsing && rows.length === 0 && (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {t('userVocab.photoCropTitle')}
+                </p>
+                <button
+                  onClick={() => setCropAspect(undefined)}
+                  title="Free-form crop (or press F)"
+                  className={`text-xs font-medium px-2.5 py-1 rounded-lg transition-colors ${
+                    cropAspect === undefined
+                      ? 'bg-purple-500 text-white'
+                      : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  }`}
+                >
+                  Free
+                </button>
+              </div>
+
+              {/* Aspect ratio inputs with increment/decrement */}
+              <div className="flex items-center gap-2 bg-gray-50 dark:bg-gray-800 rounded-lg p-2.5">
+                <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Ratio:</span>
+
+                {/* Width input */}
+                <div className="flex items-center">
+                  <button
+                    onClick={decrementW}
+                    className="p-1 rounded-l-lg border border-r-0 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                    </svg>
+                  </button>
+                  <input
+                    id="customAspectW"
+                    type="number"
+                    value={customAspectW}
+                    onChange={(e) => setCustomAspectW(e.target.value)}
+                    placeholder="W"
+                    className="w-12 px-2 py-1.5 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-xs text-center focus:outline-none focus:ring-1 focus:ring-purple-400"
+                  />
+                  <button
+                    onClick={incrementW}
+                    className="p-1 rounded-r-lg border border-l-0 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                  </button>
+                </div>
+
+                <span className="text-xs font-medium text-gray-600 dark:text-gray-400">:</span>
+
+                {/* Height input */}
+                <div className="flex items-center">
+                  <button
+                    onClick={decrementH}
+                    className="p-1 rounded-l-lg border border-r-0 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                    </svg>
+                  </button>
+                  <input
+                    id="customAspectH"
+                    type="number"
+                    value={customAspectH}
+                    onChange={(e) => setCustomAspectH(e.target.value)}
+                    placeholder="H"
+                    className="w-12 px-2 py-1.5 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-xs text-center focus:outline-none focus:ring-1 focus:ring-purple-400"
+                  />
+                  <button
+                    onClick={incrementH}
+                    className="p-1 rounded-r-lg border border-l-0 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 transition-colors"
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div ref={cropperRef} className="relative w-full h-64 rounded-xl overflow-hidden bg-gray-900">
+                <Cropper
+                  image={cropPreview}
+                  crop={crop}
+                  zoom={zoom}
+                  aspect={cropAspect}
+                  onCropChange={setCrop}
+                  onZoomChange={setZoom}
+                  onCropComplete={(_, area) => setCroppedAreaPixels(area)}
+                  showGrid={false}
+                  restrictPosition={true}
+                  minZoom={1}
+                  maxZoom={10}
+                />
+              </div>
+              <div className="flex items-center justify-between gap-2">
+                <input
+                  type="range"
+                  min={1}
+                  max={10}
+                  step={0.05}
+                  value={zoom}
+                  onChange={(e) => setZoom(Number(e.target.value))}
+                  className="flex-1 accent-purple-500"
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                  Press <kbd className="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-[10px] font-medium">F</kbd> for free-form
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Parsing state */}
           {parsing && (
@@ -356,20 +593,46 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
 
         {/* Footer */}
         <div className="shrink-0 px-5 py-4 border-t border-gray-100 dark:border-gray-800 flex gap-3">
-          <button
-            onClick={onClose}
-            className="flex-1 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-          >
-            {t('review.cancel')}
-          </button>
-          {rows.length > 0 && (
-            <button
-              onClick={handleSave}
-              disabled={validRows.length === 0 || importing}
-              className="flex-1 py-3 rounded-2xl bg-purple-500 hover:bg-purple-600 disabled:opacity-40 text-white text-sm font-bold transition-colors"
-            >
-              {importing ? '…' : t('userVocab.importConfirm', { count: validRows.length })}
-            </button>
+          {cropFile && !parsing && rows.length === 0 ? (
+            <>
+              <button
+                onClick={handleCropBack}
+                className="flex-1 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                {t('review.cancel')}
+              </button>
+              <button
+                onClick={handleSkipCrop}
+                className="flex-1 py-3 rounded-2xl border border-purple-300 dark:border-purple-700 text-sm font-medium text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
+              >
+                {t('userVocab.photoCropSkip')}
+              </button>
+              <button
+                onClick={handleCropConfirm}
+                disabled={cropping}
+                className="flex-1 py-3 rounded-2xl bg-purple-500 hover:bg-purple-600 disabled:opacity-40 text-white text-sm font-bold transition-colors"
+              >
+                {cropping ? '…' : t('userVocab.photoCropConfirm')}
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={onClose}
+                className="flex-1 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                {t('review.cancel')}
+              </button>
+              {rows.length > 0 && (
+                <button
+                  onClick={handleSave}
+                  disabled={validRows.length === 0 || importing}
+                  className="flex-1 py-3 rounded-2xl bg-purple-500 hover:bg-purple-600 disabled:opacity-40 text-white text-sm font-bold transition-colors"
+                >
+                  {importing ? '…' : t('userVocab.importConfirm', { count: validRows.length })}
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
