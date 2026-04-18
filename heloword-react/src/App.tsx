@@ -32,6 +32,7 @@ const SentenceScramblePage = React.lazy(() => import('./pages/Challenge/Sentence
 const MultiChoicePage     = React.lazy(() => import('./pages/Challenge/MultiChoicePage'));
 const SpeakingPracticePage = React.lazy(() => import('./pages/Challenge/SpeakingPracticePage'));
 const SpeakingPracticeJpPage = React.lazy(() => import('./pages/Challenge/SpeakingPracticeJpPage'));
+const WrittenTranslationPage = React.lazy(() => import('./pages/Challenge/WrittenTranslationPage'));
 const UserVocabPage           = React.lazy(() => import('./pages/UserVocab/UserVocabPage'));
 const UserVocabGroupPage      = React.lazy(() => import('./pages/UserVocab/UserVocabGroupPage'));
 const SharedVocabGroupPage    = React.lazy(() => import('./pages/SharedVocab/SharedVocabGroupPage'));
@@ -76,6 +77,7 @@ const AppLayout: React.FC = () => {
           <Route path="/challenge/quiz" element={<MultiChoicePage />} />
           <Route path="/challenge/speaking" element={<SpeakingPracticePage />} />
           <Route path="/challenge/speaking-jp" element={<SpeakingPracticeJpPage />} />
+          <Route path="/challenge/written" element={<WrittenTranslationPage />} />
           <Route path="/user-vocab" element={<UserVocabPage />} />
           <Route path="/user-vocab/:groupId" element={<UserVocabGroupPage />} />
           <Route path="/shared-vocab" element={<SharedVocabListPage />} />
