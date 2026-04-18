@@ -145,7 +145,7 @@ export class KirbyGame {
     this.ctx = canvas.getContext('2d')!;
     this.cb  = cb;
 
-    const b = '/kirby-game/';
+    const b = `${import.meta.env.BASE_URL}kirby-game/`;
     const l = (n: string) => loadImg(b + n);
     Object.assign(this.imgs, {
       fly:  l('fly.png'),  flyleft:  l('flyleft.png'),
