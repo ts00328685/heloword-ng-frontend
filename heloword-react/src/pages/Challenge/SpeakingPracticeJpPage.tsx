@@ -171,9 +171,9 @@ const SpeakingPracticeJpPage: React.FC = () => {
   const [showJapanese, setShowJapanese] = useState(() => getPref('hw-sp-jp-show-jp', false));
   const [showChinese, setShowChinese]   = useState(() => getPref('hw-sp-jp-show-ch', true));
   const [showEnglish, setShowEnglish]   = useState(() => getPref('hw-sp-jp-show-en', true));
-  const [readChinese, setReadChinese]   = useState(() => getPref('hw-sp-jp-read-ch', true));
+  const [readChinese, setReadChinese]   = useState(() => getPref('hw-sp-jp-read-ch', false));
   const [readJapanese, setReadJapanese] = useState(() => getPref('hw-sp-jp-read-jp', true));
-  const [autoRecord, setAutoRecord]     = useState(() => getPref('hw-sp-jp-auto-rec', false));
+  const [autoRecord, setAutoRecord]     = useState(() => getPref('hw-sp-jp-auto-rec', true));
   const [autoAdvance, setAutoAdvance]   = useState(() => getPref('hw-sp-jp-auto-adv', false));
 
   const togglePref = (key: string, setter: React.Dispatch<React.SetStateAction<boolean>>) => () =>
