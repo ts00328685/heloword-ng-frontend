@@ -21068,5 +21068,6793 @@
       "values",
       "social"
     ]
+  },
+  {
+    "id": "1044",
+    "japanese": "最近は 暇な時に ネットフリックスで 海外ドラマを 見るのが 習慣に なったよ。",
+    "chunks": [
+      "最近は",
+      "暇な時に",
+      "ネットフリックスで",
+      "海外ドラマを",
+      "見るのが",
+      "習慣に",
+      "なったよ。"
+    ],
+    "translation": "最近有空的時候，在 Netflix 看海外劇變成了我的習慣。",
+    "english": "Recently, watching foreign dramas on Netflix in my free time has become a habit.",
+    "difficulty": "easy",
+    "tags": [
+      "hobbies",
+      "N4"
+    ]
+  },
+  {
+    "id": "1045",
+    "japanese": "仕事が 忙しすぎて、 自分の 趣味に 使える 時間が 全然 ないんだよね。",
+    "chunks": [
+      "仕事が",
+      "忙しすぎて、",
+      "自分の",
+      "趣味に",
+      "使える",
+      "時間が",
+      "全然",
+      "ないんだよね。"
+    ],
+    "translation": "工作太忙了，完全沒有能用在自己愛好上的時間呢。",
+    "english": "Work has been so busy that I have absolutely no time to spend on my hobbies.",
+    "difficulty": "medium",
+    "tags": [
+      "daily routine",
+      "N3"
+    ]
+  },
+  {
+    "id": "1046",
+    "japanese": "意識的に 早起きを 心がけてるんだけど、 つい 二度寝しちゃって 失敗することが 多いな。",
+    "chunks": [
+      "意識的に",
+      "早起きを",
+      "心がけてるんだけど、",
+      "つい",
+      "二度寝しちゃって",
+      "失敗することが",
+      "多いな。"
+    ],
+    "translation": "雖然我有意識地努力早起，但總是會不小心睡回籠覺而失敗，次數還挺多的。",
+    "english": "I'm consciously trying to wake up early, but I often fail because I end up falling back asleep.",
+    "difficulty": "hard",
+    "tags": [
+      "personal habits",
+      "N2"
+    ]
+  },
+  {
+    "id": "1047",
+    "japanese": "休みの日には いつも ゆっくり 寝て、 本を 読んだり して すごします。",
+    "chunks": [
+      "休みの日には",
+      "いつも",
+      "ゆっくり",
+      "寝て、",
+      "本を",
+      "読んだり",
+      "して",
+      "すごします。"
+    ],
+    "translation": "休息日我總是睡個懶覺，然後讀讀書這樣度過。",
+    "english": "On my days off, I always sleep in and spend time doing things like reading books.",
+    "difficulty": "easy",
+    "tags": [
+      "daily routine",
+      "N4"
+    ]
+  },
+  {
+    "id": "1048",
+    "japanese": "最近 料理に ハマってて、 週末は 新しい レシピに 挑戦 するように してるんだ。",
+    "chunks": [
+      "最近",
+      "料理に",
+      "ハマってて、",
+      "週末は",
+      "新しい",
+      "レシピに",
+      "挑戦するように",
+      "してるんだ。"
+    ],
+    "translation": "最近很迷料理，所以週末我都會試著挑戰新的食譜。",
+    "english": "I've been really into cooking lately, so I'm trying to challenge myself with new recipes on weekends.",
+    "difficulty": "medium",
+    "tags": [
+      "hobbies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1049",
+    "japanese": "ついつい 夜更かし しちゃう 癖が あるから、 早寝 早起き するのは 結構 難しいよね。",
+    "chunks": [
+      "ついつい",
+      "夜更かししちゃう",
+      "癖が",
+      "あるから、",
+      "早寝早起き",
+      "するのは",
+      "結構",
+      "難しいよね。"
+    ],
+    "translation": "因為我有不自覺熬夜的習慣，所以要早睡早起其實挺困難的吧。",
+    "english": "Since I have a habit of accidentally staying up late, waking up early is actually quite difficult, isn't it?",
+    "difficulty": "hard",
+    "tags": [
+      "habits",
+      "N2"
+    ]
+  },
+  {
+    "id": "1050",
+    "japanese": "最近 忙しくて、 ゆっくり 趣味の 時間を 取れなくて 寂しいよ。",
+    "chunks": [
+      "最近",
+      "忙しくて、",
+      "ゆっくり",
+      "趣味の",
+      "時間を",
+      "取れなくて",
+      "寂しいよ。"
+    ],
+    "translation": "最近太忙了，沒辦法好好抽出時間從事愛好，覺得很寂寞。",
+    "english": "I've been so busy lately that I'm sad I can't find time for my hobbies.",
+    "difficulty": "medium",
+    "tags": [
+      "hobbies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1051",
+    "japanese": "朝 起きて すぐに 冷たい 水を 飲む 習慣が あるんだ。",
+    "chunks": [
+      "朝",
+      "起きて",
+      "すぐに",
+      "冷たい",
+      "水を",
+      "飲む",
+      "習慣が",
+      "あるんだ。"
+    ],
+    "translation": "我有個習慣，就是早上起床後立刻喝冰水。",
+    "english": "I have a habit of drinking cold water immediately after waking up in the morning.",
+    "difficulty": "easy",
+    "tags": [
+      "routine",
+      "N4"
+    ]
+  },
+  {
+    "id": "1052",
+    "japanese": "週末は 家で ダラダラ するのが 一番の 贅沢だと思わない？",
+    "chunks": [
+      "週末は",
+      "家で",
+      "ダラダラ",
+      "するのが",
+      "一番の",
+      "贅沢だと",
+      "思わない？"
+    ],
+    "translation": "你不覺得週末在回家裡懶散地放空才是最大的奢侈嗎？",
+    "english": "Don't you think lounging around at home on the weekends is the ultimate luxury?",
+    "difficulty": "medium",
+    "tags": [
+      "lifestyle",
+      "N3"
+    ]
+  },
+  {
+    "id": "1053",
+    "japanese": "料理を 始めたんだけど、 味付けが 難しくて 何回も 失敗しちゃった。",
+    "chunks": [
+      "料理を",
+      "始めたんだけど、",
+      "味付けが",
+      "難しくて",
+      "何回も",
+      "失敗しちゃった。"
+    ],
+    "translation": "我開始學做菜了，但調味很困難，失敗了好幾次。",
+    "english": "I started cooking, but the seasoning is hard, so I messed up many times.",
+    "difficulty": "medium",
+    "tags": [
+      "hobbies",
+      "N4"
+    ]
+  },
+  {
+    "id": "1054",
+    "japanese": "仕事の ストレスを 解消するために、 夜に 散歩に 行くように してるよ。",
+    "chunks": [
+      "仕事の",
+      "ストレスを",
+      "解消するために、",
+      "夜に",
+      "散歩に",
+      "行くように",
+      "してるよ。"
+    ],
+    "translation": "為了紓解工作壓力，我現在習慣在晚上去散步。",
+    "english": "I make it a point to go for a walk at night to relieve work stress.",
+    "difficulty": "hard",
+    "tags": [
+      "routine",
+      "N2"
+    ]
+  },
+  {
+    "id": "1055",
+    "japanese": "前から 英語を 勉強したいと 思ってたけど、 つい 後回しに しちゃうんだよね。",
+    "chunks": [
+      "前から",
+      "英語を",
+      "勉強したいと",
+      "思ってたけど、",
+      "つい",
+      "後回しに",
+      "しちゃうんだよね。"
+    ],
+    "translation": "雖然一直想學英文，但總是不自覺地把它往後推。",
+    "english": "I've been wanting to study English for a while, but I keep putting it off.",
+    "difficulty": "hard",
+    "tags": [
+      "habits",
+      "N2"
+    ]
+  },
+  {
+    "id": "1056",
+    "japanese": "たまには 外食も いいけど、 やっぱり 自炊が 一番 健康的だよね。",
+    "chunks": [
+      "たまには",
+      "外食も",
+      "いいけど、",
+      "やっぱり",
+      "自炊が",
+      "一番",
+      "健康的だよね。"
+    ],
+    "translation": "雖然偶爾外食也不錯，但果然還是自己煮最健康吧。",
+    "english": "Eating out is nice once in a while, but cooking for yourself is the healthiest, isn't it?",
+    "difficulty": "easy",
+    "tags": [
+      "lifestyle",
+      "N4"
+    ]
+  },
+  {
+    "id": "1057",
+    "japanese": "今日の 夕飯、 何に しようか 迷ってるんだよね。",
+    "chunks": [
+      "今日の",
+      "夕飯、",
+      "何に",
+      "しようか",
+      "迷ってるん",
+      "だよね。"
+    ],
+    "translation": "今天的晚餐，我還在煩惱要決定做什麼好。",
+    "english": "I'm wondering what to make for dinner tonight.",
+    "difficulty": "easy",
+    "tags": [
+      "dinner",
+      "N4"
+    ]
+  },
+  {
+    "id": "1058",
+    "japanese": "この レシピ通りに 作ってみたけど、 どうしても 味付けが 濃くなっちゃった。",
+    "chunks": [
+      "この",
+      "レシピ通りに",
+      "作ってみたけど、",
+      "どうしても",
+      "味付けが",
+      "濃くなっちゃった。"
+    ],
+    "translation": "雖然試著照著這個食譜做，但味道不管怎樣都變得太濃了。",
+    "english": "I tried making it according to this recipe, but the seasoning ended up too strong no matter what.",
+    "difficulty": "medium",
+    "tags": [
+      "cooking",
+      "N3"
+    ]
+  },
+  {
+    "id": "1059",
+    "japanese": "最近の 自炊ブームで、 意外と 凝った 料理が できるように なった気がする。",
+    "chunks": [
+      "最近の",
+      "自炊ブームで、",
+      "意外と",
+      "凝った",
+      "料理が",
+      "できるように",
+      "なった",
+      "気がする。"
+    ],
+    "translation": "因為最近的自炊熱潮，我覺得自己變得意外地能做出很講究的料理。",
+    "english": "With the recent home-cooking boom, I feel like I've become able to make unexpectedly elaborate dishes.",
+    "difficulty": "hard",
+    "tags": [
+      "experience",
+      "N2"
+    ]
+  },
+  {
+    "id": "1060",
+    "japanese": "あそこの お店、 安いのに 量が多くて コスパ 最高だよね。",
+    "chunks": [
+      "あそこの",
+      "お店、",
+      "安いのに",
+      "量が多くて",
+      "コスパ",
+      "最高だよね。"
+    ],
+    "translation": "那家店雖然便宜但分量很多，CP值最高了吧。",
+    "english": "That place over there is cheap but the portions are huge; the value is amazing, right?",
+    "difficulty": "easy",
+    "tags": [
+      "restaurant",
+      "N4"
+    ]
+  },
+  {
+    "id": "1061",
+    "japanese": "野菜を 刻むとき、 指を 切らないように 十分に 気をつけてね。",
+    "chunks": [
+      "野菜を",
+      "刻むとき、",
+      "指を",
+      "切らないように",
+      "十分に",
+      "気をつけてね。"
+    ],
+    "translation": "切蔬菜的時候，請十分小心不要切到手指。",
+    "english": "When you chop vegetables, please be very careful not to cut your fingers.",
+    "difficulty": "medium",
+    "tags": [
+      "safety",
+      "N3"
+    ]
+  },
+  {
+    "id": "1062",
+    "japanese": "この 料理に 何を 足せば いいか 分からないから、 ちょっと 教えてくれる？",
+    "chunks": [
+      "この",
+      "料理に",
+      "何を",
+      "足せば",
+      "いいか",
+      "分からないから、",
+      "ちょっと",
+      "教えてくれる？"
+    ],
+    "translation": "我不清楚這道料理要加什麼才好，能跟我說一下嗎？",
+    "english": "I don't know what to add to this dish, so could you tell me for a second?",
+    "difficulty": "medium",
+    "tags": [
+      "recipe",
+      "N3"
+    ]
+  },
+  {
+    "id": "1063",
+    "japanese": "次の 休みは どこか 遠くに 行きたいね。",
+    "chunks": [
+      "次の",
+      "休みは",
+      "どこか",
+      "遠くに",
+      "行きたいね。"
+    ],
+    "translation": "下次假期想去個遠方的地方呢。",
+    "english": "I want to go somewhere far away for the next holiday.",
+    "difficulty": "easy",
+    "tags": [
+      "travel",
+      "N4"
+    ]
+  },
+  {
+    "id": "1064",
+    "japanese": "ガイドブックに 乗ってない 穴場スポットを 探してみたいんだ。",
+    "chunks": [
+      "ガイドブックに",
+      "乗ってない",
+      "穴場スポットを",
+      "探して",
+      "みたいんだ。"
+    ],
+    "translation": "我想試著找找那些旅遊指南上沒記載的秘境。",
+    "english": "I want to try searching for hidden gems that aren't in the guidebooks.",
+    "difficulty": "medium",
+    "tags": [
+      "tourism",
+      "N3"
+    ]
+  },
+  {
+    "id": "1065",
+    "japanese": "バックパッカーで 回った 頃の 経験が 今でも 生きてるよ。",
+    "chunks": [
+      "バックパッカーで",
+      "回った",
+      "頃の",
+      "経験が",
+      "今でも",
+      "生きてるよ。"
+    ],
+    "translation": "以前背包客旅行時的經驗，直到現在都很有幫助。",
+    "english": "The experiences from when I traveled as a backpacker are still useful today.",
+    "difficulty": "hard",
+    "tags": [
+      "adventure",
+      "N2"
+    ]
+  },
+  {
+    "id": "1066",
+    "japanese": "現地の人と 喋るのが 一番の 楽しみなんだけど、自信がないなあ。",
+    "chunks": [
+      "現地の人と",
+      "喋るのが",
+      "一番の",
+      "楽しみなんだけど、",
+      "自信が",
+      "ないなあ。"
+    ],
+    "translation": "跟當地人聊天是我最期待的事，但我沒什麼自信啊。",
+    "english": "Talking with locals is the thing I look forward to most, but I lack confidence.",
+    "difficulty": "medium",
+    "tags": [
+      "culture",
+      "N3"
+    ]
+  },
+  {
+    "id": "1067",
+    "japanese": "プランを 決めずに 行く 旅のほうが 意外と 面白いよね。",
+    "chunks": [
+      "プランを",
+      "決めずに",
+      "行く",
+      "旅のほうが",
+      "意外と",
+      "面白いよね。"
+    ],
+    "translation": "不決定計畫就出發的旅行，意外地更有趣吧。",
+    "english": "Traveling without a set plan is surprisingly more interesting, isn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "travel",
+      "N3"
+    ]
+  },
+  {
+    "id": "1068",
+    "japanese": "あそこの 料理、 見た目は 凄いけど 味は まあまあだったよ。",
+    "chunks": [
+      "あそこの",
+      "料理、",
+      "見た目は",
+      "凄いけど",
+      "味は",
+      "まあまあ",
+      "だったよ。"
+    ],
+    "translation": "那家的料理雖然賣相很驚人，但味道就普普通通。",
+    "english": "The food over there looked amazing, but the taste was just so-so.",
+    "difficulty": "easy",
+    "tags": [
+      "food",
+      "N4"
+    ]
+  },
+  {
+    "id": "1069",
+    "japanese": "一人旅に 挑戦してみたいけど、治安が 心配で 迷ってるんだ。",
+    "chunks": [
+      "一人旅に",
+      "挑戦して",
+      "みたいけど、",
+      "治安が",
+      "心配で",
+      "迷ってるんだ。"
+    ],
+    "translation": "雖然想嘗試一個人旅行，但因為擔心治安而猶豫不決。",
+    "english": "I want to try solo traveling, but I'm hesitating because I'm worried about safety.",
+    "difficulty": "hard",
+    "tags": [
+      "adventure",
+      "N2"
+    ]
+  },
+  {
+    "id": "1070",
+    "japanese": "最近 仕事が 忙しすぎて、 全然 自分の 時間が ありません。",
+    "chunks": [
+      "最近",
+      "仕事が",
+      "忙しすぎて、",
+      "全然",
+      "自分の",
+      "時間が",
+      "ありません。"
+    ],
+    "translation": "最近工作太忙了，完全沒有自己的時間。",
+    "english": "Work has been so busy lately that I have no time for myself at all.",
+    "difficulty": "easy",
+    "tags": [
+      "work-life balance",
+      "N4"
+    ]
+  },
+  {
+    "id": "1071",
+    "japanese": "今の 会社も いいけど、 もっと 挑戦 できる 環境に 移りたいな。",
+    "chunks": [
+      "今の",
+      "会社も",
+      "いいけど、",
+      "もっと",
+      "挑戦できる",
+      "環境に",
+      "移りたいな。"
+    ],
+    "translation": "現在公司雖然也不錯，但我想要移到一個更能挑戰自我的環境。",
+    "english": "My current company is fine, but I want to move to an environment where I can take on more challenges.",
+    "difficulty": "medium",
+    "tags": [
+      "career",
+      "N3"
+    ]
+  },
+  {
+    "id": "1072",
+    "japanese": "上司の 言い方が ちょっと きついから、 正直 精神的に きついです。",
+    "chunks": [
+      "上司の",
+      "言い方が",
+      "ちょっと",
+      "きついから、",
+      "正直",
+      "精神的に",
+      "きついです。"
+    ],
+    "translation": "上司說話的方式有點兇，老實說精神上壓力很大。",
+    "english": "My boss's way of speaking is a bit harsh, so honestly, it's mentally draining.",
+    "difficulty": "medium",
+    "tags": [
+      "workplace",
+      "N3"
+    ]
+  },
+  {
+    "id": "1073",
+    "japanese": "もしかして、 副業 始めてみた ほうが いいのかなって 考えてるんだ。",
+    "chunks": [
+      "もしかして、",
+      "副業",
+      "始めてみた",
+      "ほうが",
+      "いいのかなって",
+      "考えてるんだ。"
+    ],
+    "translation": "我在想，是不是該試著開始做副業比較好。",
+    "english": "I'm wondering if maybe I should try starting a side hustle.",
+    "difficulty": "hard",
+    "tags": [
+      "side hustle",
+      "N2"
+    ]
+  },
+  {
+    "id": "1074",
+    "japanese": "明日から リモートワーク に なるから、 通勤 時間が なくなるね。",
+    "chunks": [
+      "明日から",
+      "リモートワークに",
+      "なるから、",
+      "通勤時間が",
+      "なくなるね。"
+    ],
+    "translation": "從明天起要改成遠端辦公了，所以就沒有通勤時間了呢。",
+    "english": "Since I'll be working remotely starting tomorrow, I won't have a commute anymore.",
+    "difficulty": "easy",
+    "tags": [
+      "remote work",
+      "N4"
+    ]
+  },
+  {
+    "id": "1075",
+    "japanese": "スキルアップ したいけど、 何から 手をつければ いいか 分からないよ。",
+    "chunks": [
+      "スキルアップ",
+      "したいけど、",
+      "何から",
+      "手をつければ",
+      "いいか",
+      "分からないよ。"
+    ],
+    "translation": "雖然想要提升技能，但不知道該從何著手。",
+    "english": "I want to improve my skills, but I don't know where to start.",
+    "difficulty": "medium",
+    "tags": [
+      "self-improvement",
+      "N3"
+    ]
+  },
+  {
+    "id": "1076",
+    "japanese": "結局、 給料 よりは 仕事の 内容や 納得感の ほうが 大事だと思う。",
+    "chunks": [
+      "結局、",
+      "給料よりは",
+      "仕事の",
+      "内容や",
+      "納得感の",
+      "ほうが",
+      "大事だと",
+      "思う。"
+    ],
+    "translation": "說到底，我覺得工作內容和滿足感比薪水更重要。",
+    "english": "In the end, I think the content of the work and a sense of fulfillment are more important than the salary.",
+    "difficulty": "hard",
+    "tags": [
+      "career values",
+      "N2"
+    ]
+  },
+  {
+    "id": "1077",
+    "japanese": "彼とは 価値観が 合わない 部分も あるけど、 お互い 尊重し合えてると思う。",
+    "chunks": [
+      "彼とは",
+      "価値観が",
+      "合わない",
+      "部分も",
+      "あるけど、",
+      "お互い",
+      "尊重し合えてる",
+      "と思う。"
+    ],
+    "translation": "雖然我和他有些價值觀不合的地方，但我覺得我們能互相尊重。",
+    "english": "There are parts where our values don't align, but I think we respect each other.",
+    "difficulty": "hard",
+    "tags": [
+      "relationships",
+      "N2"
+    ]
+  },
+  {
+    "id": "1078",
+    "japanese": "学生時代の 友達に 久しぶりに 会ったんだけど、 全然 変わってなくて びっくりしたよ。",
+    "chunks": [
+      "学生時代の",
+      "友達に",
+      "久しぶりに",
+      "会ったんだけど、",
+      "全然",
+      "変わってなくて",
+      "びっくりしたよ。"
+    ],
+    "translation": "久違地見到了學生時代的朋友，發現對方完全沒變，讓我大吃一驚。",
+    "english": "I met a friend from my student days after a long time, and I was surprised that they hadn't changed at all.",
+    "difficulty": "medium",
+    "tags": [
+      "friends",
+      "N3"
+    ]
+  },
+  {
+    "id": "1079",
+    "japanese": "親に 干渉 されるのは 面倒だけど、 やっぱり 心配してくれてるのは 分かるしね。",
+    "chunks": [
+      "親に",
+      "干渉されるのは",
+      "面倒だけど、",
+      "やっぱり",
+      "心配してくれてる",
+      "のは",
+      "分かるしね。"
+    ],
+    "translation": "雖然被父母干涉很煩，但還是能明白他們是因為擔心我。",
+    "english": "It's annoying to be interfered with by my parents, but I do understand that they are worrying about me.",
+    "difficulty": "hard",
+    "tags": [
+      "family",
+      "N2"
+    ]
+  },
+  {
+    "id": "1080",
+    "japanese": "今度の 週末、 仲の良い 友達と キャンプに 行く予定なんだ。",
+    "chunks": [
+      "今度の",
+      "週末、",
+      "仲の良い",
+      "友達と",
+      "キャンプに",
+      "行く",
+      "予定なんだ。"
+    ],
+    "translation": "這週末我打算和關係很好的朋友去露營。",
+    "english": "I'm planning to go camping with some close friends this coming weekend.",
+    "difficulty": "easy",
+    "tags": [
+      "friends",
+      "N4"
+    ]
+  },
+  {
+    "id": "1081",
+    "japanese": "付き合いが 長くなると、 つい 遠慮が なくなって 喧嘩しちゃうこと あるよね。",
+    "chunks": [
+      "付き合いが",
+      "長くなると、",
+      "つい",
+      "遠慮が",
+      "なくなって",
+      "喧嘩しちゃう",
+      "こと",
+      "あるよね。"
+    ],
+    "translation": "相處久了之後，往往會因為不再客氣而吵架，對吧。",
+    "english": "When you've been together for a long time, you tend to stop being reserved and end up fighting, right?",
+    "difficulty": "medium",
+    "tags": [
+      "relationships",
+      "N3"
+    ]
+  },
+  {
+    "id": "1082",
+    "japanese": "たまには 兄弟で 集まって、 子供の頃の 話でも したいもんだね。",
+    "chunks": [
+      "たまには",
+      "兄弟で",
+      "集まって、",
+      "子供の頃の",
+      "話でも",
+      "したいもんだね。"
+    ],
+    "translation": "偶爾想讓兄弟姊妹聚在一起，聊聊小時候的話題呢。",
+    "english": "Every once in a while, I feel like we should get together as siblings and talk about things from when we were kids.",
+    "difficulty": "medium",
+    "tags": [
+      "family",
+      "N3"
+    ]
+  },
+  {
+    "id": "1083",
+    "japanese": "最近 ずっと 雨が 続いてるから、 早く 晴れて ほしいよね。",
+    "chunks": [
+      "最近",
+      "ずっと",
+      "雨が",
+      "続いてるから、",
+      "早く",
+      "晴れて",
+      "ほしいよね。"
+    ],
+    "translation": "最近一直下雨，真希望快點轉晴呢。",
+    "english": "It's been raining constantly lately, so I really want it to clear up soon.",
+    "difficulty": "easy",
+    "tags": [
+      "weather",
+      "N4"
+    ]
+  },
+  {
+    "id": "1084",
+    "japanese": "今年の 夏は 例年に 比べても、 異常に 暑くない？",
+    "chunks": [
+      "今年の",
+      "夏は",
+      "例年に",
+      "比べても、",
+      "異常に",
+      "暑くない？"
+    ],
+    "translation": "今年的夏天比起往年，是不是異常地熱？",
+    "english": "Isn't this summer unusually hot, even compared to normal years?",
+    "difficulty": "medium",
+    "tags": [
+      "season",
+      "N3"
+    ]
+  },
+  {
+    "id": "1085",
+    "japanese": "明日 晴れたら、 久しぶりに 山へ ハイキングに 行かない？",
+    "chunks": [
+      "明日",
+      "晴れたら、",
+      "久しぶりに",
+      "山へ",
+      "ハイキングに",
+      "行かない？"
+    ],
+    "translation": "如果明天天氣好的話，要不要久違地去山裡健行？",
+    "english": "If it's sunny tomorrow, why don't we go hiking in the mountains for the first time in a while?",
+    "difficulty": "easy",
+    "tags": [
+      "nature",
+      "N4"
+    ]
+  },
+  {
+    "id": "1086",
+    "japanese": "紅葉が 見頃を 迎えたみたいだから、 今週末 行ってみようよ。",
+    "chunks": [
+      "紅葉が",
+      "見頃を",
+      "迎えた",
+      "みたいだから、",
+      "今週末",
+      "行ってみようよ。"
+    ],
+    "translation": "紅葉好像正值最佳觀賞期，這個週末去看看吧。",
+    "english": "It looks like the autumn leaves are at their peak, so let's try going this weekend.",
+    "difficulty": "medium",
+    "tags": [
+      "season",
+      "N3"
+    ]
+  },
+  {
+    "id": "1087",
+    "japanese": "急に 冷え込んできたし、 風邪を ひかないように 気をつけてね。",
+    "chunks": [
+      "急に",
+      "冷え込んできたし、",
+      "風邪を",
+      "ひかないように",
+      "気をつけてね。"
+    ],
+    "translation": "天氣突然變冷了，小心不要感冒喔。",
+    "english": "It's suddenly gotten chilly, so be careful not to catch a cold.",
+    "difficulty": "medium",
+    "tags": [
+      "weather",
+      "N3"
+    ]
+  },
+  {
+    "id": "1088",
+    "japanese": "都会の 喧騒を 離れて、 自然に 囲まれた 生活を してみたいもんだよ。",
+    "chunks": [
+      "都会の",
+      "喧騒を",
+      "離れて、",
+      "自然に",
+      "囲まれた",
+      "生活を",
+      "してみたいもんだよ。"
+    ],
+    "translation": "真想遠離城市的喧囂，過著被大自然環繞的生活啊。",
+    "english": "I really wish I could leave the hustle and bustle of the city and live surrounded by nature.",
+    "difficulty": "hard",
+    "tags": [
+      "nature",
+      "N2"
+    ]
+  },
+  {
+    "id": "1089",
+    "japanese": "昨日の 台風で 庭の 木が 倒れちゃって、 かなり 慌てたよ。",
+    "chunks": [
+      "昨日の",
+      "台風で",
+      "庭の",
+      "木が",
+      "倒れちゃって、",
+      "かなり",
+      "慌てたよ。"
+    ],
+    "translation": "因為昨天的颱風，院子裡的樹倒了，讓我相當慌張。",
+    "english": "The tree in the garden fell over because of yesterday's typhoon, and I panicked quite a bit.",
+    "difficulty": "medium",
+    "tags": [
+      "weather",
+      "N3"
+    ]
+  },
+  {
+    "id": "1090",
+    "japanese": "最近 おすすめの 映画 ある？ 何か 面白いの 見たいんだけど。",
+    "chunks": [
+      "最近",
+      "おすすめの",
+      "映画",
+      "ある？",
+      "何か",
+      "面白いの",
+      "見たいん",
+      "だけど。"
+    ],
+    "translation": "最近有推薦的電影嗎？我想看點有趣的。",
+    "english": "Do you have any movie recommendations lately? I want to watch something interesting.",
+    "difficulty": "easy",
+    "tags": [
+      "movies",
+      "N4"
+    ]
+  },
+  {
+    "id": "1091",
+    "japanese": "あのゲーム、 グラフィックは すごいけど、 ストーリーが ちょっと 物足りないよね。",
+    "chunks": [
+      "あのゲーム、",
+      "グラフィックは",
+      "すごいけど、",
+      "ストーリーが",
+      "ちょっと",
+      "物足りない",
+      "よね。"
+    ],
+    "translation": "那個遊戲畫面雖然很強，但劇情感覺稍微有點不足吧。",
+    "english": "The graphics of that game are amazing, but the story is a bit lacking, isn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "games",
+      "N3"
+    ]
+  },
+  {
+    "id": "1092",
+    "japanese": "週末に 友達と 映画館に 行ったんだけど、 結局 どっちが 正解だったか 分からなくなった。",
+    "chunks": [
+      "週末に",
+      "友達と",
+      "映画館に",
+      "行ったんだけど、",
+      "結局",
+      "どっちが",
+      "正解だったか",
+      "分からなくなった。"
+    ],
+    "translation": "週末和朋友去了電影院，但結果反而搞不清楚哪個才是正確答案。",
+    "english": "I went to the movie theater with a friend over the weekend, but in the end, I stopped knowing which one was the right answer.",
+    "difficulty": "medium",
+    "tags": [
+      "movies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1093",
+    "japanese": "今の ゲームって 課金しないと 攻略するの 難しすぎない？",
+    "chunks": [
+      "今の",
+      "ゲームって",
+      "課金しないと",
+      "攻略するの",
+      "難しすぎない？"
+    ],
+    "translation": "現在的手遊如果不課金的話，要破關是不是太難了？",
+    "english": "Aren't current games too difficult to beat without spending money?",
+    "difficulty": "medium",
+    "tags": [
+      "games",
+      "N3"
+    ]
+  },
+  {
+    "id": "1094",
+    "japanese": "前から 気になってた 舞台だったから、 チケット 買えたときは 本当に 嬉しかったよ。",
+    "chunks": [
+      "前から",
+      "気になってた",
+      "舞台だったから、",
+      "チケット",
+      "買えたときは",
+      "本当に",
+      "嬉しかったよ。"
+    ],
+    "translation": "因為是從以前就很感興趣的舞台劇，所以買到票的時候真的很高興。",
+    "english": "Since it was a play I've been interested in for a while, I was really happy when I managed to buy tickets.",
+    "difficulty": "hard",
+    "tags": [
+      "entertainment",
+      "N2"
+    ]
+  },
+  {
+    "id": "1095",
+    "japanese": "実写版の 映画より、 やっぱり 原作の アニメの方が 雰囲気 出てるよね。",
+    "chunks": [
+      "実写版の",
+      "映画より、",
+      "やっぱり",
+      "原作の",
+      "アニメの方が",
+      "雰囲気",
+      "出てるよね。"
+    ],
+    "translation": "比起真人版電影，果然還是原作動畫更有氛圍感吧。",
+    "english": "Compared to the live-action movie, the original anime definitely captures the atmosphere better.",
+    "difficulty": "medium",
+    "tags": [
+      "movies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1096",
+    "japanese": "仕事 終わったあとに 軽く ゲームして、 ストレス 発散するのが 日課なんだ。",
+    "chunks": [
+      "仕事",
+      "終わったあとに",
+      "軽く",
+      "ゲームして、",
+      "ストレス",
+      "発散するのが",
+      "日課なんだ。"
+    ],
+    "translation": "下班後簡單玩玩遊戲來紓解壓力，是我每天的例行公事。",
+    "english": "Playing games for a bit after work to relieve stress is my daily routine.",
+    "difficulty": "hard",
+    "tags": [
+      "games",
+      "N2"
+    ]
+  },
+  {
+    "id": "1097",
+    "japanese": "最近は 独学で 英語を 勉強して いるんだけど、 やっぱり 先生に 教わった 方が 早いよね。",
+    "chunks": [
+      "最近は",
+      "独学で",
+      "英語を",
+      "勉強して",
+      "いるんだけど、",
+      "やっぱり",
+      "先生に",
+      "教わった方が早いよね。"
+    ],
+    "translation": "最近雖然在自學英文，但果然還是有老師教比較快吧。",
+    "english": "I've been studying English on my own lately, but I guess it's faster to be taught by a teacher after all.",
+    "difficulty": "medium",
+    "tags": [
+      "language learning",
+      "N3"
+    ]
+  },
+  {
+    "id": "1098",
+    "japanese": "大学の 課題が 多すぎて、 全然 寝る 時間が ないんだよ。",
+    "chunks": [
+      "大学の",
+      "課題が",
+      "多すぎて、",
+      "全然",
+      "寝る",
+      "時間が",
+      "ないんだよ。"
+    ],
+    "translation": "大學的作業太多了，完全沒有睡覺的時間。",
+    "english": "I have so many university assignments that I have no time to sleep at all.",
+    "difficulty": "easy",
+    "tags": [
+      "university",
+      "N4"
+    ]
+  },
+  {
+    "id": "1099",
+    "japanese": "効率的に 覚えるには、 単語を 繰り返して 使うのが 一番 いいと思うよ。",
+    "chunks": [
+      "効率的に",
+      "覚えるには、",
+      "単語を",
+      "繰り返して",
+      "使うのが",
+      "一番",
+      "いいと",
+      "思うよ。"
+    ],
+    "translation": "我想要高效地記憶，反覆使用單字是最好的方法。",
+    "english": "I think the best way to memorize efficiently is to use the words repeatedly.",
+    "difficulty": "medium",
+    "tags": [
+      "study tips",
+      "N3"
+    ]
+  },
+  {
+    "id": "1100",
+    "japanese": "社会人に なってから、 勉強の 大切さに 気がついたんだけど、 今さら 始めても 遅くないかな？",
+    "chunks": [
+      "社会人に",
+      "なってから、",
+      "勉強の",
+      "大切さに",
+      "気がついたんだけど、",
+      "今さら",
+      "始めても",
+      "遅くないかな？"
+    ],
+    "translation": "進入社會後才意識到學習的重要性，現在才開始會太晚嗎？",
+    "english": "I realized the importance of learning after becoming a working adult; do you think it's too late to start now?",
+    "difficulty": "hard",
+    "tags": [
+      "lifelong learning",
+      "N2"
+    ]
+  },
+  {
+    "id": "1101",
+    "japanese": "明日 テスト なのに、 まだ 全然 勉強してないから 焦ってるんだ。",
+    "chunks": [
+      "明日",
+      "テストなのに、",
+      "まだ",
+      "全然",
+      "勉強してないから",
+      "焦ってるんだ。"
+    ],
+    "translation": "明天就要考試了，但我還完全沒讀書，所以很焦慮。",
+    "english": "I'm panicking because I haven't studied at all even though the test is tomorrow.",
+    "difficulty": "easy",
+    "tags": [
+      "exam",
+      "N4"
+    ]
+  },
+  {
+    "id": "1102",
+    "japanese": "オンライン授業って、 集中力を 維つのが 結構 難しいよね。",
+    "chunks": [
+      "オンライン授業って、",
+      "集中力を",
+      "維持するのが",
+      "結構",
+      "難しいよね。"
+    ],
+    "translation": "線上課程要維持注意力還挺困難的吧。",
+    "english": "Maintaining focus in online classes is actually quite difficult, isn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "online education",
+      "N3"
+    ]
+  },
+  {
+    "id": "1103",
+    "japanese": "資格の 試験に 合格して、 自分の 可能性を 広げたいと 思ってるんだ。",
+    "chunks": [
+      "資格の",
+      "試験に",
+      "合格して、",
+      "自分の",
+      "可能性を",
+      "広げたいと",
+      "思ってるんだ。"
+    ],
+    "translation": "我想通過資格考試，來擴展自己的可能性。",
+    "english": "I'm thinking that I want to pass the certification exam and expand my possibilities.",
+    "difficulty": "hard",
+    "tags": [
+      "certification",
+      "N2"
+    ]
+  },
+  {
+    "id": "1104",
+    "japanese": "最近 SNS を やりすぎて、 寝不足に なっちゃったよ。",
+    "chunks": [
+      "最近",
+      "SNSを",
+      "やりすぎて、",
+      "寝不足に",
+      "なっちゃったよ。"
+    ],
+    "translation": "最近社群媒體玩過頭，導致睡眠不足了。",
+    "english": "I've been using social media too much lately, and now I'm sleep-deprived.",
+    "difficulty": "easy",
+    "tags": [
+      "social media",
+      "N4"
+    ]
+  },
+  {
+    "id": "1105",
+    "japanese": "新しい スマホに 買い替えたいけど、 高すぎて 手が出ないよね。",
+    "chunks": [
+      "新しい",
+      "スマホに",
+      "買い替えたいけど、",
+      "高すぎて",
+      "手が",
+      "出ないよね。"
+    ],
+    "translation": "想換新手機，但太貴了根本買不起吧。",
+    "english": "I want to upgrade to a new smartphone, but it's so expensive I can't afford it.",
+    "difficulty": "medium",
+    "tags": [
+      "technology",
+      "N3"
+    ]
+  },
+  {
+    "id": "1106",
+    "japanese": "AI が 進化して 便利に はなったけど、 逆に 思考力が 衰える気が するよ。",
+    "chunks": [
+      "AIが",
+      "進化して",
+      "便利には",
+      "なったけど、",
+      "逆に",
+      "思考力が",
+      "衰える気が",
+      "するよ。"
+    ],
+    "translation": "雖然 AI 進化後變得方便了，但反而覺得思考能力在退化。",
+    "english": "AI has evolved and become convenient, but I feel like it's actually making our thinking skills decline.",
+    "difficulty": "hard",
+    "tags": [
+      "AI",
+      "N2"
+    ]
+  },
+  {
+    "id": "1107",
+    "japanese": "インスタの 投稿、 フィルター かけすぎて 誰だか 分からなくない？",
+    "chunks": [
+      "インスタの",
+      "投稿、",
+      "フィルター",
+      "かけすぎて",
+      "誰だか",
+      "分からなくない？"
+    ],
+    "translation": "Instagram 的貼文濾鏡開太強，強到認不出是誰了吧？",
+    "english": "Aren't the Instagram posts using so many filters that you can't even tell who it is?",
+    "difficulty": "medium",
+    "tags": [
+      "social media",
+      "N3"
+    ]
+  },
+  {
+    "id": "1108",
+    "japanese": "ネットで 予約 できるから、 もう 行列に 並ぶ 必要 ないよね。",
+    "chunks": [
+      "ネットで",
+      "予約できるから、",
+      "もう",
+      "行列に",
+      "並ぶ",
+      "必要",
+      "ないよね。"
+    ],
+    "translation": "因為可以用網路預約，所以不用再排隊了吧。",
+    "english": "Since we can make reservations online, there's no need to stand in line anymore, right?",
+    "difficulty": "easy",
+    "tags": [
+      "technology",
+      "N4"
+    ]
+  },
+  {
+    "id": "1109",
+    "japanese": "デジタルデトックス してみたけど、 やっぱり スマホ が ないと 不安で しか ない。",
+    "chunks": [
+      "デジタルデトックス",
+      "してみたけど、",
+      "やっぱり",
+      "スマホが",
+      "ないと",
+      "不安で",
+      "しかない。"
+    ],
+    "translation": "試著做了數位排毒，但果然沒有手機就只有不安感。",
+    "english": "I tried a digital detox, but as expected, I'm just anxious without my phone.",
+    "difficulty": "hard",
+    "tags": [
+      "lifestyle",
+      "N2"
+    ]
+  },
+  {
+    "id": "1110",
+    "japanese": "この アプリ、 使い勝手 良いから みんなに おすすめ したいな。",
+    "chunks": [
+      "この",
+      "アプリ、",
+      "使い勝手",
+      "良いから",
+      "みんなに",
+      "おすすめ",
+      "したいな。"
+    ],
+    "translation": "這個 App 的易用性很高，好想推薦給大家啊。",
+    "english": "This app is so user-friendly that I want to recommend it to everyone.",
+    "difficulty": "medium",
+    "tags": [
+      "technology",
+      "N3"
+    ]
+  },
+  {
+    "id": "1111",
+    "japanese": "最近 運動不足 だから、 ジムに 通おう かな と 思ってるんだ。",
+    "chunks": [
+      "最近",
+      "運動不足",
+      "だから、",
+      "ジムに",
+      "通おう",
+      "かな",
+      "と",
+      "思ってるんだ。"
+    ],
+    "translation": "最近缺乏運動，所以我在想是不是該去健身房了。",
+    "english": "I've been lacking exercise lately, so I'm thinking of joining a gym.",
+    "difficulty": "easy",
+    "tags": [
+      "fitness",
+      "N4"
+    ]
+  },
+  {
+    "id": "1112",
+    "japanese": "健康を 保つ ために、 バランス の 良い 食事を 心がけています。",
+    "chunks": [
+      "健康を",
+      "保つ",
+      "ために、",
+      "バランス",
+      "の",
+      "良い",
+      "食事を",
+      "心がけています。"
+    ],
+    "translation": "為了維持健康，我一直努力保持營養均衡的飲食。",
+    "english": "In order to maintain health, I make an effort to have a balanced diet.",
+    "difficulty": "medium",
+    "tags": [
+      "health",
+      "N3"
+    ]
+  },
+  {
+    "id": "1113",
+    "japanese": "明日から ダイエット するから、 甘い ものは もう 食べない ように するよ。",
+    "chunks": [
+      "明日から",
+      "ダイエット",
+      "するから、",
+      "甘い",
+      "ものは",
+      "もう",
+      "食べない",
+      "ようにするよ。"
+    ],
+    "translation": "從明天開始我要減肥，所以決定不再吃甜食了。",
+    "english": "I'm starting a diet tomorrow, so I'll make sure not to eat any more sweets.",
+    "difficulty": "easy",
+    "tags": [
+      "fitness",
+      "N4"
+    ]
+  },
+  {
+    "id": "1114",
+    "japanese": "仕事が 忙しくて、 最近は ゆっくり 休む 時間 さえ ないよ。",
+    "chunks": [
+      "仕事が",
+      "忙しくて、",
+      "最近は",
+      "ゆっくり",
+      "休む",
+      "時間",
+      "さえ",
+      "ないよ。"
+    ],
+    "translation": "工作太忙了，最近連好好休息的時間都沒有。",
+    "english": "I've been so busy with work that lately I don't even have time to relax.",
+    "difficulty": "medium",
+    "tags": [
+      "health",
+      "N3"
+    ]
+  },
+  {
+    "id": "1115",
+    "japanese": "学生時代は サッカーに 打ち込んでいた けど、 今は 観戦する だけ になった。",
+    "chunks": [
+      "学生時代は",
+      "サッカーに",
+      "打ち込んでいた",
+      "けど、",
+      "今は",
+      "観戦する",
+      "だけ",
+      "になった。"
+    ],
+    "translation": "學生時代我非常熱衷於足球，但現在變成只是在看比賽而已。",
+    "english": "I was really into soccer back in my student days, but now I've just become a spectator.",
+    "difficulty": "hard",
+    "tags": [
+      "sports",
+      "N2"
+    ]
+  },
+  {
+    "id": "1116",
+    "japanese": "無理に 走るよりは、 まずは 散歩から 始めて みたら どう？",
+    "chunks": [
+      "無理に",
+      "走るよりは、",
+      "まずは",
+      "散歩から",
+      "始めて",
+      "みたら",
+      "どう？"
+    ],
+    "translation": "與其勉強跑步，不如先試著從散步開始如何？",
+    "english": "Instead of forcing yourself to run, why not try starting with walks first?",
+    "difficulty": "medium",
+    "tags": [
+      "fitness",
+      "N3"
+    ]
+  },
+  {
+    "id": "1117",
+    "japanese": "睡眠不足が 続くと、 集中力が 低下して 効率が 悪くなるよね。",
+    "chunks": [
+      "睡眠不足が",
+      "続くと、",
+      "集中力が",
+      "低下して",
+      "効率が",
+      "悪く",
+      "なる",
+      "よね。"
+    ],
+    "translation": "睡眠不足持續下去的話，集中力會下降，效率也會變差吧。",
+    "english": "When lack of sleep continues, concentration drops and efficiency gets worse, right?",
+    "difficulty": "hard",
+    "tags": [
+      "health",
+      "N2"
+    ]
+  },
+  {
+    "id": "1118",
+    "japanese": "この靴、 デザインは いいけど、 ちょっと サイズが 合わないかも。",
+    "chunks": [
+      "この靴、",
+      "デザインは",
+      "いいけど、",
+      "ちょっと",
+      "サイズが",
+      "合わない",
+      "かも。"
+    ],
+    "translation": "這雙鞋設計很不錯，但尺寸可能稍微有點不合。",
+    "english": "These shoes have a great design, but the size might be a bit off.",
+    "difficulty": "easy",
+    "tags": [
+      "clothing",
+      "N4"
+    ]
+  },
+  {
+    "id": "1119",
+    "japanese": "最近は 店に 行かずに、 ネットで 済ませちゃう ことが 多いな。",
+    "chunks": [
+      "最近は",
+      "店に",
+      "行かずに、",
+      "ネットで",
+      "済ませちゃう",
+      "ことが",
+      "多いな。"
+    ],
+    "translation": "最近比起去店裡，更多時候是用網路購物解決。",
+    "english": "Recently, I've been doing most of my shopping online instead of going to stores.",
+    "difficulty": "medium",
+    "tags": [
+      "online shopping",
+      "N3"
+    ]
+  },
+  {
+    "id": "1120",
+    "japanese": "あのお店、 店員さんの 対応が 悪くて、 もう 二度と 行きたくない。",
+    "chunks": [
+      "あのお店、",
+      "店員さんの",
+      "対応が",
+      "悪くて、",
+      "もう",
+      "二度と",
+      "行きたくない。"
+    ],
+    "translation": "那家店店員態度很差，我再也不想去了。",
+    "english": "The staff at that shop were so rude that I never want to go back again.",
+    "difficulty": "medium",
+    "tags": [
+      "customer service",
+      "N3"
+    ]
+  },
+  {
+    "id": "1121",
+    "japanese": "セールに なり次第、 すぐに 買いに 行こう と 思ってるんだ。",
+    "chunks": [
+      "セールに",
+      "なり次第、",
+      "すぐに",
+      "買いに",
+      "行こうと",
+      "思ってるんだ。"
+    ],
+    "translation": "我打算一開始打折就立刻去買。",
+    "english": "I'm planning to go buy it as soon as it goes on sale.",
+    "difficulty": "hard",
+    "tags": [
+      "sale",
+      "N2"
+    ]
+  },
+  {
+    "id": "1122",
+    "japanese": "もしかして、 この商品、 在庫 切らしてない ですか？",
+    "chunks": [
+      "もしかして、",
+      "この商品、",
+      "在庫",
+      "切らしてない",
+      "ですか？"
+    ],
+    "translation": "請問這個商品該不會已經沒貨了吧？",
+    "english": "By any chance, is this item out of stock?",
+    "difficulty": "easy",
+    "tags": [
+      "inventory",
+      "N4"
+    ]
+  },
+  {
+    "id": "1123",
+    "japanese": "安さに 釣られて 買ったけど、 案外 耐久性が 低くて びっくりしたよ。",
+    "chunks": [
+      "安さに",
+      "釣られて",
+      "買ったけど、",
+      "案外",
+      "耐久性が",
+      "低くて",
+      "びっくりしたよ。"
+    ],
+    "translation": "被便宜的價格吸引而買了，但出乎意料地耐用度很低，讓我很吃驚。",
+    "english": "I bought it because it was cheap, but I was surprised by how poor the durability was.",
+    "difficulty": "hard",
+    "tags": [
+      "quality",
+      "N2"
+    ]
+  },
+  {
+    "id": "1124",
+    "japanese": "これ、 試着して みても いいですか？",
+    "chunks": [
+      "これ、",
+      "試着して",
+      "みても",
+      "いいですか？"
+    ],
+    "translation": "這個可以試穿看看嗎？",
+    "english": "Can I try this on?",
+    "difficulty": "easy",
+    "tags": [
+      "clothing",
+      "N4"
+    ]
+  },
+  {
+    "id": "1125",
+    "japanese": "最近の 若い人たちは 自由で いいけど、 礼儀に 欠けてる気が するよ。",
+    "chunks": [
+      "最近の",
+      "若い人たちは",
+      "自由で",
+      "いいけど、",
+      "礼儀に",
+      "欠けてる",
+      "気が",
+      "するよ。"
+    ],
+    "translation": "最近的年輕人雖然自由且不錯，但感覺有點缺乏禮貌。",
+    "english": "Young people these days are free and that's great, but I feel they lack manners.",
+    "difficulty": "medium",
+    "tags": [
+      "generation gap",
+      "N3"
+    ]
+  },
+  {
+    "id": "1126",
+    "japanese": "日本の 職場文化 って、 まだまだ 保守的な 部分が 多いよね。",
+    "chunks": [
+      "日本の",
+      "職場文化って、",
+      "まだまだ",
+      "保守的な",
+      "部分が",
+      "多いよね。"
+    ],
+    "translation": "日本的工作文化，感覺還是有很多保守的部分呢。",
+    "english": "Japanese workplace culture still has a lot of conservative parts, doesn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "work culture",
+      "N3"
+    ]
+  },
+  {
+    "id": "1127",
+    "japanese": "SNSの 発信内容 が、 社会の 価値観を 変えて しまうのは 怖いよね。",
+    "chunks": [
+      "SNSの",
+      "発信内容が、",
+      "社会の",
+      "価値観を",
+      "変えて",
+      "しまうのは",
+      "怖いよね。"
+    ],
+    "translation": "社群媒體發布的內容，會改變社會的價值觀，這點挺可怕的吧。",
+    "english": "It's scary how the content posted on SNS can change society's values.",
+    "difficulty": "hard",
+    "tags": [
+      "social media",
+      "N2"
+    ]
+  },
+  {
+    "id": "1128",
+    "japanese": "伝統を 守るのも 大切だけど、 時代に 合わせて 変える 必要も あると思う。",
+    "chunks": [
+      "伝統を",
+      "守るのも",
+      "大切だけど、",
+      "時代に",
+      "合わせて",
+      "変える",
+      "必要も",
+      "あると思う。"
+    ],
+    "translation": "守護傳統雖然很重要，但我也認為有必要配合時代做出改變。",
+    "english": "Preserving tradition is important, but I think it's also necessary to change it to suit the times.",
+    "difficulty": "hard",
+    "tags": [
+      "tradition",
+      "N2"
+    ]
+  },
+  {
+    "id": "1129",
+    "japanese": "海外の 文化を 知ると、 自分の 国の 常識が 絶対じゃない って 気づくよね。",
+    "chunks": [
+      "海外の",
+      "文化を",
+      "知ると、",
+      "自分の",
+      "国の",
+      "常識が",
+      "絶対じゃないって",
+      "気づくよね。"
+    ],
+    "translation": "了解國外文化後，就會發現自己國家的常識並非絕對。",
+    "english": "Once you learn about foreign cultures, you realize that your own country's common sense isn't absolute.",
+    "difficulty": "medium",
+    "tags": [
+      "globalization",
+      "N3"
+    ]
+  },
+  {
+    "id": "1130",
+    "japanese": "今の 時代、 どこに 住んでも ネットが あれば 生活 できるよね。",
+    "chunks": [
+      "今の",
+      "時代、",
+      "どこに",
+      "住んでも",
+      "ネットが",
+      "あれば",
+      "生活",
+      "できるよね。"
+    ],
+    "translation": "在現在這個時代，無論住在哪裡，只要有網路就能生活吧。",
+    "english": "In this day and age, no matter where you live, you can get by as long as there's internet.",
+    "difficulty": "easy",
+    "tags": [
+      "lifestyle",
+      "N4"
+    ]
+  },
+  {
+    "id": "1131",
+    "japanese": "少子高齢化が 進んで、 将来の 社会保障が どうなるか 本当に 心配だわ。",
+    "chunks": [
+      "少子高齢化が",
+      "進んで、",
+      "将来の",
+      "社会保障が",
+      "どうなるか",
+      "本当に",
+      "心配だわ。"
+    ],
+    "translation": "少子高齡化日益嚴重，真的很擔心未來的社會保障會變成怎樣。",
+    "english": "With the declining birthrate and aging population progressing, I'm really worried about what will happen to future social security.",
+    "difficulty": "hard",
+    "tags": [
+      "society",
+      "N2"
+    ]
+  },
+  {
+    "id": "1132",
+    "japanese": "将来は 海外で 働いて みたいけど、 まだ 英語が 全然 だめなんだよね。",
+    "chunks": [
+      "将来は",
+      "海外で",
+      "働いて",
+      "みたいけど、",
+      "まだ",
+      "英語が",
+      "全然",
+      "だめなんだよね。"
+    ],
+    "translation": "雖然將來想在國外工作，但現在英文還完全不行呢。",
+    "english": "I want to try working abroad in the future, but my English is still not good at all.",
+    "difficulty": "easy",
+    "tags": [
+      "aspiration",
+      "N4"
+    ]
+  },
+  {
+    "id": "1133",
+    "japanese": "いつか 自分の お店を 出すのが 夢なんだけど、 現実的に 考えたら かなり 難しいかも。",
+    "chunks": [
+      "いつか",
+      "自分の",
+      "お店を",
+      "出すのが",
+      "夢なんだけど、",
+      "現実的に",
+      "考えたら",
+      "かなり難しいかも。"
+    ],
+    "translation": "雖然我的夢想是有一天能開自己的店，但從現實面考慮的話，可能相當困難。",
+    "english": "My dream is to open my own shop someday, but thinking realistically, it might be quite difficult.",
+    "difficulty": "medium",
+    "tags": [
+      "dreams",
+      "N3"
+    ]
+  },
+  {
+    "id": "1134",
+    "japanese": "大学を 卒業したら、 すぐに 就職 するつもり？ それとも しばらく 休むの？",
+    "chunks": [
+      "大学を",
+      "卒業したら、",
+      "すぐに",
+      "就職",
+      "するつもり？",
+      "それとも",
+      "しばらく",
+      "休むの？"
+    ],
+    "translation": "大學畢業後打算馬上就職？還是要休息一陣子？",
+    "english": "Do you plan to get a job right after graduating from university? Or are you taking a break for a while?",
+    "difficulty": "easy",
+    "tags": [
+      "plans",
+      "N4"
+    ]
+  },
+  {
+    "id": "1135",
+    "japanese": "今の 仕事に 満足 してるけど、 将来的に は もっと 専門的な スキルを 身につけたいな。",
+    "chunks": [
+      "今の",
+      "仕事に",
+      "満足してるけど、",
+      "将来的に",
+      "は",
+      "もっと",
+      "専門的な",
+      "スキルを身につけたいな。"
+    ],
+    "translation": "雖然對現在的工作很滿意，但將來想掌握更多專業的技能。",
+    "english": "I'm satisfied with my current job, but in the future, I'd like to acquire more specialized skills.",
+    "difficulty": "medium",
+    "tags": [
+      "career",
+      "N3"
+    ]
+  },
+  {
+    "id": "1136",
+    "japanese": "あんな 風に 自由に 世界中を 旅して 回る 生活に、 すごく 憧れるんだよね。",
+    "chunks": [
+      "あんな",
+      "風に",
+      "自由に",
+      "世界中を",
+      "旅して",
+      "回る",
+      "生活に、",
+      "すごく憧れるんだよね。"
+    ],
+    "translation": "我很嚮往像那樣自由地環遊世界的生活呢。",
+    "english": "I really admire the kind of life where you can travel freely all over the world.",
+    "difficulty": "medium",
+    "tags": [
+      "dreams",
+      "N3"
+    ]
+  },
+  {
+    "id": "1137",
+    "japanese": "やりたいことは たくさん あるけど、 何から 手をつければ いいか 分からなくて 迷ってるんだ。",
+    "chunks": [
+      "やりたいことは",
+      "たくさん",
+      "あるけど、",
+      "何から",
+      "手をつければ",
+      "いいか",
+      "分からなくて",
+      "迷ってるんだ。"
+    ],
+    "translation": "雖然想做的事情很多，但不知道該從哪裡著手，所以還在猶豫。",
+    "english": "There are many things I want to do, but I'm lost because I don't know where to start.",
+    "difficulty": "hard",
+    "tags": [
+      "aspiration",
+      "N2"
+    ]
+  },
+  {
+    "id": "1138",
+    "japanese": "結局、 夢を 追いかけるのも いいけど、 生活の 安定も 捨てがたい 気が するよ。",
+    "chunks": [
+      "結局、",
+      "夢を",
+      "追いかけるのも",
+      "いいけど、",
+      "生活の",
+      "安定も",
+      "捨てがたい",
+      "気がするよ。"
+    ],
+    "translation": "結果來說，追求夢想雖然很好，但我覺得生活的穩定也讓人捨不得放棄。",
+    "english": "In the end, while chasing dreams is great, I feel that stability in life is also hard to give up.",
+    "difficulty": "hard",
+    "tags": [
+      "opinions",
+      "N2"
+    ]
+  },
+  {
+    "id": "1139",
+    "japanese": "子供の 時に よく 遊んだ 公園、 今も まだ あるかな？",
+    "chunks": [
+      "子供の",
+      "時に",
+      "よく遊んだ",
+      "公園、",
+      "今も",
+      "まだ",
+      "あるかな？"
+    ],
+    "translation": "小時候常去的那個公園，現在還在嗎？",
+    "english": "I wonder if the park I used to play in as a child is still there?",
+    "difficulty": "easy",
+    "tags": [
+      "childhood",
+      "N4"
+    ]
+  },
+  {
+    "id": "1140",
+    "japanese": "この 香りを かぐと、 急に 昔の 記憶が 蘇ってくるよ。",
+    "chunks": [
+      "この",
+      "香りを",
+      "かぐと、",
+      "急に",
+      "昔の",
+      "記憶が",
+      "蘇ってくるよ。"
+    ],
+    "translation": "聞到這個香味，突然之間舊的回憶就湧上來了。",
+    "english": "Whenever I smell this scent, memories from the past suddenly come rushing back.",
+    "difficulty": "medium",
+    "tags": [
+      "scent",
+      "N3"
+    ]
+  },
+  {
+    "id": "1141",
+    "japanese": "学生 時代は 毎日 友達と バカやってたのが、 今では いい 思い出だね。",
+    "chunks": [
+      "学生時代は",
+      "毎日",
+      "友達と",
+      "バカやってたのが、",
+      "今では",
+      "いい",
+      "思い出だね。"
+    ],
+    "translation": "學生時代每天和朋友胡鬧，現在回想起來都是美好的回憶呢。",
+    "english": "Messing around with friends every day back in student days is a great memory now.",
+    "difficulty": "medium",
+    "tags": [
+      "school",
+      "N3"
+    ]
+  },
+  {
+    "id": "1142",
+    "japanese": "たまに 昔の 写真を 見返して、 しみじみと 懐かしい 気分に なるんだ。",
+    "chunks": [
+      "たまに",
+      "昔の",
+      "写真を",
+      "見返して、",
+      "しみじみと",
+      "懐かしい",
+      "気分に",
+      "なるんだ。"
+    ],
+    "translation": "偶爾翻看以前的照片，會深深地感到懷舊。",
+    "english": "Occasionally, I look back at old photos and feel a deep sense of nostalgia.",
+    "difficulty": "hard",
+    "tags": [
+      "photos",
+      "N2"
+    ]
+  },
+  {
+    "id": "1143",
+    "japanese": "あの 頃の 自分に、 何か アドバイス してあげたい 気分だよ。",
+    "chunks": [
+      "あの",
+      "頃の",
+      "自分に、",
+      "何か",
+      "アドバイス",
+      "してあげたい",
+      "気分だよ。"
+    ],
+    "translation": "真想給那個時期的自己一些建議啊。",
+    "english": "I feel like I want to give some advice to my past self.",
+    "difficulty": "medium",
+    "tags": [
+      "reflection",
+      "N3"
+    ]
+  },
+  {
+    "id": "1144",
+    "japanese": "地元に 帰ったら、 昔 通った 道の 景色が 変わりすぎてて びっくりしたよ。",
+    "chunks": [
+      "地元に",
+      "帰ったら、",
+      "昔通った",
+      "道の",
+      "景色が",
+      "変わりすぎてて",
+      "びっくりしたよ。"
+    ],
+    "translation": "回到家鄉後，發現以前走過的路風景變太快了，讓我很吃驚。",
+    "english": "When I went back to my hometown, I was surprised that the scenery of the roads I used to take had changed so much.",
+    "difficulty": "hard",
+    "tags": [
+      "hometown",
+      "N2"
+    ]
+  },
+  {
+    "id": "1145",
+    "japanese": "小さい 時、 夏休みに おばあちゃんの 家に 泊まったの 覚えてる？",
+    "chunks": [
+      "小さい時、",
+      "夏休みに",
+      "おばあちゃんの",
+      "家に",
+      "泊まったの",
+      "覚えてる？"
+    ],
+    "translation": "你還記得小時候暑假住在奶奶家的事情嗎？",
+    "english": "Do you remember staying at grandma's house during summer vacation when we were little?",
+    "difficulty": "easy",
+    "tags": [
+      "family",
+      "N4"
+    ]
+  },
+  {
+    "id": "1146",
+    "japanese": "おすすめの カフェ があれば、 教えて いただけませんか？",
+    "chunks": [
+      "おすすめの",
+      "カフェが",
+      "あれば、",
+      "教えて",
+      "いただけませんか？"
+    ],
+    "translation": "如果有推薦的咖啡廳，能告訴我嗎？",
+    "english": "If you have any recommended cafes, could you please tell me?",
+    "difficulty": "easy",
+    "tags": [
+      "recommendation",
+      "N4"
+    ]
+  },
+  {
+    "id": "1147",
+    "japanese": "無理に 勉強 するより、 まずは 習慣に するのが いいと思うよ。",
+    "chunks": [
+      "無理に",
+      "勉強するより、",
+      "まずは",
+      "習慣に",
+      "するのが",
+      "いいと",
+      "思うよ。"
+    ],
+    "translation": "比起勉強學習，我覺得先把它變成習慣會比較好。",
+    "english": "I think it's better to first make it a habit rather than forcing yourself to study.",
+    "difficulty": "medium",
+    "tags": [
+      "advice",
+      "N3"
+    ]
+  },
+  {
+    "id": "1148",
+    "japanese": "あそこ の ラーメン屋、 行列 してるけど、 待つ 価値は あるよ。",
+    "chunks": [
+      "あそこの",
+      "ラーメン屋、",
+      "行列してるけど、",
+      "待つ",
+      "価値は",
+      "あるよ。"
+    ],
+    "translation": "那家拉麵店雖然在排隊，但絕對值得等待。",
+    "english": "That ramen shop has a line, but it's worth the wait.",
+    "difficulty": "medium",
+    "tags": [
+      "food",
+      "N3"
+    ]
+  },
+  {
+    "id": "1149",
+    "japanese": "仕事 が 溜まったら、 一回 休憩 を 入れた 方が 効率いいしね。",
+    "chunks": [
+      "仕事が",
+      "溜まったら、",
+      "一回",
+      "休憩を",
+      "入れた",
+      "方が",
+      "効率いいしね。"
+    ],
+    "translation": "工作堆積起來的時候，先休息一下效率反而會更高。",
+    "english": "When work piles up, it's more efficient to take a break first.",
+    "difficulty": "medium",
+    "tags": [
+      "work",
+      "N3"
+    ]
+  },
+  {
+    "id": "1150",
+    "japanese": "もし 時間 が あるなら、 週末に あの 展示会 に 行ってみたら？",
+    "chunks": [
+      "もし",
+      "時間があるなら、",
+      "週末に",
+      "あの",
+      "展示会に",
+      "行ってみたら？"
+    ],
+    "translation": "如果你有時間的話，週末去看看那個展覽如何？",
+    "english": "If you have time, why don't you try going to that exhibition this weekend?",
+    "difficulty": "easy",
+    "tags": [
+      "suggestion",
+      "N4"
+    ]
+  },
+  {
+    "id": "1151",
+    "japanese": "今の 状況を 考えると、 ここで 手を 打つのが 最善の策 かもしれない。",
+    "chunks": [
+      "今の",
+      "状況を",
+      "考えると、",
+      "ここで",
+      "手を打つのが",
+      "最善の策",
+      "かもしれない。"
+    ],
+    "translation": "考慮到現在的情況，現在採取行動或許才是上策。",
+    "english": "Considering the current situation, taking action now might be the best strategy.",
+    "difficulty": "hard",
+    "tags": [
+      "opinion",
+      "N2"
+    ]
+  },
+  {
+    "id": "1152",
+    "japanese": "慣れる まで は 大変だけど、 根気強く 続ける こと が 大事だよ。",
+    "chunks": [
+      "慣れる",
+      "までは",
+      "大変だけど、",
+      "根気強く",
+      "続ける",
+      "ことが",
+      "大事だよ。"
+    ],
+    "translation": "在習慣之前雖然很辛苦，但有耐心地堅持下去是很重要的。",
+    "english": "It's hard until you get used to it, but the important thing is to persevere.",
+    "difficulty": "hard",
+    "tags": [
+      "advice",
+      "N2"
+    ]
+  },
+  {
+    "id": "1153",
+    "japanese": "最近 忙しすぎて、 ゆっくり 趣味に 時間を 使うのが 難しいんだよね。",
+    "chunks": [
+      "最近",
+      "忙しすぎて、",
+      "ゆっくり",
+      "趣味に",
+      "時間を",
+      "使うのが",
+      "難しいんだよね。"
+    ],
+    "translation": "最近太忙了，很難慢下來花時間在興趣上呢。",
+    "english": "I've been so busy lately that it's hard to find time to slowly enjoy my hobbies.",
+    "difficulty": "medium",
+    "tags": [
+      "hobbies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1154",
+    "japanese": "たまには 家で 映画を 見て、 のんびり 過ごすのも いいなって 思うよ。",
+    "chunks": [
+      "たまには",
+      "家で",
+      "映画を",
+      "見て、",
+      "のんびり",
+      "過ごすのも",
+      "いいなと",
+      "思うよ。"
+    ],
+    "translation": "我覺得偶爾在家看電影、悠閒地度過也很不錯。",
+    "english": "I think it's also nice to just relax and watch a movie at home once in a while.",
+    "difficulty": "medium",
+    "tags": [
+      "hobbies",
+      "N4"
+    ]
+  },
+  {
+    "id": "1155",
+    "japanese": "昔から 読書が 好きだったけど、 最近は 電子書籍に 乗り換えたんだ。",
+    "chunks": [
+      "昔から",
+      "読書が",
+      "好きだったけど、",
+      "最近は",
+      "電子書籍に",
+      "乗り換えたんだ。"
+    ],
+    "translation": "我從以前就很喜歡閱讀，但最近換成用電子書了。",
+    "english": "I've always liked reading, but recently I've switched over to e-books.",
+    "difficulty": "hard",
+    "tags": [
+      "hobbies",
+      "N2"
+    ]
+  },
+  {
+    "id": "1156",
+    "japanese": "寝る 前に スマホを いじってると、 ついつい 夜更かし しちゃうよね。",
+    "chunks": [
+      "寝る",
+      "前に",
+      "スマホを",
+      "いじってると、",
+      "ついつい",
+      "夜更かし",
+      "しちゃうよね。"
+    ],
+    "translation": "睡前如果在弄手機，不知不覺就會熬夜呢。",
+    "english": "When you mess around with your smartphone before bed, you end up staying up late without realizing it, right?",
+    "difficulty": "medium",
+    "tags": [
+      "habits",
+      "N3"
+    ]
+  },
+  {
+    "id": "1157",
+    "japanese": "週末は 誰にも 邪魔されずに、 自分の 時間を 楽しみたい 感じかな。",
+    "chunks": [
+      "週末は",
+      "誰にも",
+      "邪魔されずに、",
+      "自分の",
+      "時間を",
+      "楽しみたい",
+      "感じかな。"
+    ],
+    "translation": "週末的話，大概是想在不被任何人打擾的情況下，享受自己的時光吧。",
+    "english": "On weekends, I guess I just want to enjoy my own time without being disturbed by anyone.",
+    "difficulty": "hard",
+    "tags": [
+      "lifestyle",
+      "N2"
+    ]
+  },
+  {
+    "id": "1158",
+    "japanese": "たまには 外食 して、 気分転換 するのも いいよね。",
+    "chunks": [
+      "たまには",
+      "外食して、",
+      "気分転換",
+      "するのも",
+      "いいよね。"
+    ],
+    "translation": "偶爾出去吃頓飯，轉換一下心情也不錯吧。",
+    "english": "It's nice to eat out once in a while to change the mood, isn't it?",
+    "difficulty": "easy",
+    "tags": [
+      "food",
+      "N4"
+    ]
+  },
+  {
+    "id": "1159",
+    "japanese": "自炊 を 始めたんだけど、 野菜の 切り方 が 全然 コツを 掴めないんだ。",
+    "chunks": [
+      "自炊を",
+      "始めたんだけど、",
+      "野菜の",
+      "切り方が",
+      "全然",
+      "コツを",
+      "掴めないん",
+      "だ。"
+    ],
+    "translation": "我開始嘗試自己下廚，但切菜的方法完全掌握不到訣竅。",
+    "english": "I started cooking for myself, but I can't seem to get the hang of how to cut vegetables.",
+    "difficulty": "hard",
+    "tags": [
+      "cooking",
+      "N2"
+    ]
+  },
+  {
+    "id": "1160",
+    "japanese": "この お店 の パスタ、 麺 の 茹で加減 が 絶妙だね。",
+    "chunks": [
+      "この",
+      "お店の",
+      "パスタ、",
+      "麺の",
+      "茹で加減が",
+      "絶妙だね。"
+    ],
+    "translation": "這家店的義大利麵，麵條的熟度掌握得恰到好處呢。",
+    "english": "The pasta at this restaurant is cooked to absolute perfection.",
+    "difficulty": "medium",
+    "tags": [
+      "food",
+      "N3"
+    ]
+  },
+  {
+    "id": "1161",
+    "japanese": "最近 健康に 気を使って、 砂糖を 控えめに する ように してるんだ。",
+    "chunks": [
+      "最近",
+      "健康に",
+      "気を使って、",
+      "砂糖を",
+      "控えめに",
+      "するように",
+      "してるん",
+      "だ。"
+    ],
+    "translation": "最近為了健康，我正努力嘗試減少糖分的攝取。",
+    "english": "I've been trying to limit my sugar intake lately for the sake of my health.",
+    "difficulty": "medium",
+    "tags": [
+      "health",
+      "N3"
+    ]
+  },
+  {
+    "id": "1162",
+    "japanese": "冷蔵庫の 残り物 だけで、 こんなに 美味しい 料理が 作れるなんて 驚きだよね。",
+    "chunks": [
+      "冷蔵庫の",
+      "残り物だけで、",
+      "こんなに",
+      "美味しい",
+      "料理が",
+      "作れるなんて",
+      "驚きだよね。"
+    ],
+    "translation": "僅僅用冰箱裡的剩菜就能做出這麼好吃的料理，真是令人驚訝吧。",
+    "english": "It's surprising that you can make such a delicious dish using only leftovers from the fridge.",
+    "difficulty": "hard",
+    "tags": [
+      "cooking",
+      "N2"
+    ]
+  },
+  {
+    "id": "1163",
+    "japanese": "ガイドブック には 載ってない 穴場スポット を 探してみたい。",
+    "chunks": [
+      "ガイドブックには",
+      "載ってない",
+      "穴場スポットを",
+      "探してみたい。"
+    ],
+    "translation": "我想找找看旅遊指南上沒有記載的秘境景點。",
+    "english": "I want to try and find some hidden gems that aren't listed in the guidebooks.",
+    "difficulty": "medium",
+    "tags": [
+      "tourism",
+      "N3"
+    ]
+  },
+  {
+    "id": "1164",
+    "japanese": "一人旅 だからこそ、 自分の ペースで 動けるのが いいよね。",
+    "chunks": [
+      "一人旅",
+      "だからこそ、",
+      "自分の",
+      "ペースで",
+      "動けるのが",
+      "いいよね。"
+    ],
+    "translation": "正因為是獨自旅行，才能按照自己的步調行動，真的很棒吧。",
+    "english": "Since it's a solo trip, it's great that you can move at your own pace.",
+    "difficulty": "medium",
+    "tags": [
+      "travel",
+      "N3"
+    ]
+  },
+  {
+    "id": "1165",
+    "japanese": "海外 で 迷子に なった 経験が、 今では いい 思い出に なってるよ。",
+    "chunks": [
+      "海外で",
+      "迷子に",
+      "なった",
+      "経験が、",
+      "今では",
+      "いい",
+      "思い出に",
+      "なってるよ。"
+    ],
+    "translation": "在國外迷路過的經驗，現在反而成了美好的回憶。",
+    "english": "The experience of getting lost abroad has now become a fond memory.",
+    "difficulty": "hard",
+    "tags": [
+      "adventure",
+      "N2"
+    ]
+  },
+  {
+    "id": "1166",
+    "japanese": "現地の 料理を 食べるのが 楽しみで、 ずっと 待ちきれないよ。",
+    "chunks": [
+      "現地の",
+      "料理を",
+      "食べるのが",
+      "楽しみで、",
+      "ずっと",
+      "待ちきれないよ。"
+    ],
+    "translation": "我很期待品嚐當地料理，等得快不耐煩了。",
+    "english": "I'm looking forward to eating the local food so much that I can't wait.",
+    "difficulty": "easy",
+    "tags": [
+      "food",
+      "N4"
+    ]
+  },
+  {
+    "id": "1167",
+    "japanese": "予定 を 詰め込み すぎて、 結局 疲れ切って 帰ってくる ことが多いな。",
+    "chunks": [
+      "予定を",
+      "詰め込み",
+      "すぎて、",
+      "結局",
+      "疲れ切って",
+      "帰ってくる",
+      "ことが",
+      "多いな。"
+    ],
+    "translation": "我經常因為行程排太滿，結果回來時精疲力竭。",
+    "english": "I often overpack my schedule and end up coming home completely exhausted.",
+    "difficulty": "hard",
+    "tags": [
+      "tourism",
+      "N2"
+    ]
+  },
+  {
+    "id": "1168",
+    "japanese": "バックパッカー として 世界 を 回るなんて、 かなり 思い切った ことだね。",
+    "chunks": [
+      "バックパッカーとして",
+      "世界を",
+      "回るなんて、",
+      "かなり",
+      "思い切った",
+      "ことだね。"
+    ],
+    "translation": "以背包客的身分環遊世界，這決定相當大膽呢。",
+    "english": "Traveling the world as a backpacker is quite a bold move, isn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "adventure",
+      "N3"
+    ]
+  },
+  {
+    "id": "1169",
+    "japanese": "今の 職場も 悪くないけど、 キャリアアップのために 転職を 考えてるんだ。",
+    "chunks": [
+      "今の",
+      "職場も",
+      "悪くないけど、",
+      "キャリアアップの",
+      "ために",
+      "転職を",
+      "考えてるんだ。"
+    ],
+    "translation": "現在的工作環境雖然也不錯，但為了職涯提升，我正在考慮轉職。",
+    "english": "My current workplace isn't bad, but I'm thinking of changing jobs for my career advancement.",
+    "difficulty": "medium",
+    "tags": [
+      "career",
+      "N3"
+    ]
+  },
+  {
+    "id": "1170",
+    "japanese": "上司に 相談したんだけど、 具体的な 解決策が 出なくて 途方に暮れてるよ。",
+    "chunks": [
+      "上司に",
+      "相談したんだけど、",
+      "具体的な",
+      "解決策が",
+      "出なくて",
+      "途方に",
+      "暮れてるよ。"
+    ],
+    "translation": "我跟上司商量過了，但沒能得出具體的解決方案，現在真是束手無策。",
+    "english": "I consulted my boss, but no concrete solution came up and I'm at a complete loss.",
+    "difficulty": "hard",
+    "tags": [
+      "workplace",
+      "N2"
+    ]
+  },
+  {
+    "id": "1171",
+    "japanese": "リモートワークに なってから、 通勤の ストレスが なくなって 本当に 楽になった。",
+    "chunks": [
+      "リモートワークに",
+      "なってから、",
+      "通勤の",
+      "ストレスが",
+      "なくなって",
+      "本当に",
+      "楽になった。"
+    ],
+    "translation": "變成遠端工作後，通勤的壓力消失了，真的輕鬆很多。",
+    "english": "Ever since switching to remote work, the stress of commuting has disappeared and it's become so much easier.",
+    "difficulty": "medium",
+    "tags": [
+      "lifestyle",
+      "N3"
+    ]
+  },
+  {
+    "id": "1172",
+    "japanese": "新しい プロジェクトに 配属されたけど、 全く 分からないこと ばかりで 焦ってるよ。",
+    "chunks": [
+      "新しい",
+      "プロジェクトに",
+      "配属されたけど、",
+      "全く",
+      "分からないこと",
+      "ばかりで",
+      "焦ってるよ。"
+    ],
+    "translation": "雖然被分配到新專案，但全是完全不懂的事情，讓我很焦慮。",
+    "english": "I was assigned to a new project, but I'm panicking because there are so many things I don't understand.",
+    "difficulty": "medium",
+    "tags": [
+      "experience",
+      "N3"
+    ]
+  },
+  {
+    "id": "1173",
+    "japanese": "今の仕事、 ぶっちゃけ 給料の ことしか考えてない って 言われるけど、 正解だと思うし。",
+    "chunks": [
+      "今の仕事、",
+      "ぶっちゃけ",
+      "給料のことしか",
+      "考えてないって",
+      "言われるけど、",
+      "正解だと",
+      "思うし。"
+    ],
+    "translation": "坦白說，雖然有人說我現在的工作只考慮薪水，但我覺得這才是正確的。",
+    "english": "To be honest, people tell me I only think about the salary in my current job, but I think that's the right way to be.",
+    "difficulty": "hard",
+    "tags": [
+      "opinion",
+      "N2"
+    ]
+  },
+  {
+    "id": "1174",
+    "japanese": "明日までに この資料を まとめなきゃいけないから、 今日は 残業に なりそう。",
+    "chunks": [
+      "明日までに",
+      "この資料を",
+      "まとめなきゃ",
+      "いけないから、",
+      "今日は",
+      "残業に",
+      "なりそう。"
+    ],
+    "translation": "明天之前必須把這份資料整理好，所以今天看來得加班了。",
+    "english": "I have to put these materials together by tomorrow, so it looks like I'll be working overtime today.",
+    "difficulty": "easy",
+    "tags": [
+      "deadline",
+      "N4"
+    ]
+  },
+  {
+    "id": "1175",
+    "japanese": "週末に 家族で ご飯に 行く 予定なんだけど、 おすすめの 店 ある？",
+    "chunks": [
+      "週末に",
+      "家族で",
+      "ご飯に",
+      "行く",
+      "予定なんだけど、",
+      "おすすめの",
+      "店",
+      "ある？"
+    ],
+    "translation": "我計畫週末和家人一起去吃飯，你有推薦的店嗎？",
+    "english": "I'm planning to go out for a meal with my family this weekend, do you have any recommended restaurants?",
+    "difficulty": "easy",
+    "tags": [
+      "family",
+      "N4"
+    ]
+  },
+  {
+    "id": "1176",
+    "japanese": "最近 彼氏と ちょっと 喧嘩しちゃって、 気まずい 感じが 続いてるんだよね。",
+    "chunks": [
+      "最近",
+      "彼氏と",
+      "ちょっと",
+      "喧嘩しちゃって、",
+      "気まずい",
+      "感じが",
+      "続いてるんだよね。"
+    ],
+    "translation": "最近跟男朋友吵了一小架，一直處在尷尬的氛圍中。",
+    "english": "I had a little fight with my boyfriend recently, and things have been awkward between us.",
+    "difficulty": "medium",
+    "tags": [
+      "relationships",
+      "N3"
+    ]
+  },
+  {
+    "id": "1177",
+    "japanese": "親の 考え方と 自分の 価値観が 合わないとき、 どうやって 対処してる？",
+    "chunks": [
+      "親の",
+      "考え方と",
+      "自分の",
+      "価値観が",
+      "合わないとき、",
+      "どうやって",
+      "対処してる？"
+    ],
+    "translation": "當父母的想法與自己的價值觀不合時，你通常怎麼處理？",
+    "english": "How do you deal with it when your parents' way of thinking doesn't align with your values?",
+    "difficulty": "hard",
+    "tags": [
+      "family",
+      "N2"
+    ]
+  },
+  {
+    "id": "1178",
+    "japanese": "そんなに 構えなくて いいよ、 彼って 本当に 気さくな 人だから。",
+    "chunks": [
+      "そんなに",
+      "構えなくて",
+      "いいよ、",
+      "彼って",
+      "本当に",
+      "気さくな",
+      "人だから。"
+    ],
+    "translation": "不用這麼緊張，他真的是個很隨和的人。",
+    "english": "You don't have to be so tense; he's a really easy-going person.",
+    "difficulty": "medium",
+    "tags": [
+      "friends",
+      "N3"
+    ]
+  },
+  {
+    "id": "1179",
+    "japanese": "結婚しても 自分の 時間を 大切に できる 関係を 築きたいなって 思うな。",
+    "chunks": [
+      "結婚しても",
+      "自分の",
+      "時間を",
+      "大切に",
+      "できる",
+      "関係を",
+      "築きたいなって",
+      "思うな。"
+    ],
+    "translation": "我覺得即使結婚後，也想要建立一種能重視自我時間的關係。",
+    "english": "I feel like I want to build a relationship where we can still value our own personal time even after getting married.",
+    "difficulty": "hard",
+    "tags": [
+      "relationships",
+      "N2"
+    ]
+  },
+  {
+    "id": "1180",
+    "japanese": "もう 何年も 会ってないけど、 今でも 信頼 できる 親友が いるのは 心強いよね。",
+    "chunks": [
+      "もう",
+      "何年も",
+      "会ってないけど、",
+      "今でも",
+      "信頼できる",
+      "親友が",
+      "いるのは",
+      "心強いよね。"
+    ],
+    "translation": "雖然已經好幾年沒見面了，但現在仍有可以信賴的好友，真的很令人安心吧。",
+    "english": "Even though we haven't met for years, it's reassuring to still have a best friend you can trust.",
+    "difficulty": "medium",
+    "tags": [
+      "friends",
+      "N3"
+    ]
+  },
+  {
+    "id": "1181",
+    "japanese": "明日から 急に 寒く なるみたいだから、 厚い 服 を 出しておいた方が いいよ。",
+    "chunks": [
+      "明日から",
+      "急に",
+      "寒く",
+      "なるみたいだから、",
+      "厚い",
+      "服を",
+      "出しておいた方が",
+      "いいよ。"
+    ],
+    "translation": "聽說明天開始會突然變冷，最好把厚衣服拿出來準備喔。",
+    "english": "It looks like it'll get cold suddenly starting tomorrow, so you'd better get your warm clothes out.",
+    "difficulty": "medium",
+    "tags": [
+      "weather",
+      "N4"
+    ]
+  },
+  {
+    "id": "1182",
+    "japanese": "最近の 夏は 暑すぎて、 外に 出るだけで 汗が だらだら 流れて しまうよね。",
+    "chunks": [
+      "最近の",
+      "夏は",
+      "暑すぎて、",
+      "外に",
+      "出るだけで",
+      "汗が",
+      "だらだら",
+      "流れてしまうよね。"
+    ],
+    "translation": "最近的夏天太熱了，光是走到室外汗就止不住地流下來呢。",
+    "english": "Recent summers are so hot that just stepping outside makes you sweat buckets, doesn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "summer",
+      "N3"
+    ]
+  },
+  {
+    "id": "1183",
+    "japanese": "週末に 近くの 山へ 行ったんだけど、 紅葉が ちょうど 見頃で 本当に綺麗だったよ。",
+    "chunks": [
+      "週末に",
+      "近くの",
+      "山へ",
+      "行ったんだけど、",
+      "紅葉が",
+      "ちょうど",
+      "見頃で",
+      "本当に綺麗だったよ。"
+    ],
+    "translation": "週末去了附近的山，紅葉正好在最美的時節，真的非常漂亮。",
+    "english": "I went to a nearby mountain over the weekend, and the autumn leaves were at their peak; it was truly beautiful.",
+    "difficulty": "hard",
+    "tags": [
+      "nature",
+      "N3"
+    ]
+  },
+  {
+    "id": "1184",
+    "japanese": "雨が 降り出しそうだけど、 傘 持ってないから 誰かに 借りよう かな。",
+    "chunks": [
+      "雨が",
+      "降り出しそうだけど、",
+      "傘",
+      "持ってないから",
+      "誰かに",
+      "借りよう",
+      "かな。"
+    ],
+    "translation": "好像要下雨了，但我沒帶傘，在想要不要跟誰借一下。",
+    "english": "It looks like it's about to start raining, and since I don't have an umbrella, I wonder if I should borrow one from someone.",
+    "difficulty": "medium",
+    "tags": [
+      "weather",
+      "N4"
+    ]
+  },
+  {
+    "id": "1185",
+    "japanese": "春になると どこかで 花の 香りがして、 なんだか 落ち着かない 気分に なるね。",
+    "chunks": [
+      "春になると",
+      "どこかで",
+      "花の",
+      "香りがして、",
+      "なんだか",
+      "落ち着かない",
+      "気分に",
+      "なるね。"
+    ],
+    "translation": "一到春天，不知在哪裡能聞到花香，心情總覺得有些躁動不安呢。",
+    "english": "When spring comes, I can smell flowers somewhere, and it makes me feel somewhat restless.",
+    "difficulty": "hard",
+    "tags": [
+      "season",
+      "N2"
+    ]
+  },
+  {
+    "id": "1186",
+    "japanese": "あそこの 公園、 冬に 行くと 雪が 積もってて 最高に 幻想的な 景色 に なるんだよ。",
+    "chunks": [
+      "あそこの",
+      "公園、",
+      "冬に",
+      "行くと",
+      "雪が",
+      "積もってて",
+      "最高に",
+      "幻想的な 景色に なるんだよ。"
+    ],
+    "translation": "那間公園冬天去的話，積雪後的景色會變得超級夢幻的喔。",
+    "english": "If you go to that park in winter, the snow piles up and the scenery becomes incredibly mystical.",
+    "difficulty": "medium",
+    "tags": [
+      "winter",
+      "N3"
+    ]
+  },
+  {
+    "id": "1187",
+    "japanese": "今日は 風が 強いから、 洗濯物を 外に 干しておくと 飛ばされちゃい そうだね。",
+    "chunks": [
+      "今日は",
+      "風が",
+      "強いから、",
+      "洗濯物を",
+      "外に",
+      "干しておくと",
+      "飛ばされちゃい",
+      "そうだね。"
+    ],
+    "translation": "今天風很大，如果把洗好的衣服晾在外面，感覺會被吹走呢。",
+    "english": "The wind is strong today, so if you hang the laundry outside, it looks like it might get blown away.",
+    "difficulty": "hard",
+    "tags": [
+      "weather",
+      "N3"
+    ]
+  },
+  {
+    "id": "1188",
+    "japanese": "最近 どこの 映画館が 一番 快適か 知ってる？",
+    "chunks": [
+      "最近",
+      "どこの",
+      "映画館が",
+      "一番",
+      "快適か",
+      "知ってる？"
+    ],
+    "translation": "最近你知道哪家電影院最舒服嗎？",
+    "english": "Do you know which movie theater is the most comfortable lately?",
+    "difficulty": "easy",
+    "tags": [
+      "movies",
+      "N4"
+    ]
+  },
+  {
+    "id": "1189",
+    "japanese": "あの映画 期待しすぎたかも しれないけど、 結構 面白かったよ。",
+    "chunks": [
+      "あの映画",
+      "期待しすぎたかも",
+      "しれないけど、",
+      "結構",
+      "面白かったよ。"
+    ],
+    "translation": "那部電影我也許是期待過頭了，但其實還挺有趣的。",
+    "english": "I might have overhyped that movie, but it was actually pretty good.",
+    "difficulty": "medium",
+    "tags": [
+      "movies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1190",
+    "japanese": "このゲーム 難しすぎて 全然 クリア できないんだけど、 どうすればいい？",
+    "chunks": [
+      "このゲーム",
+      "難しすぎて",
+      "全然",
+      "クリア",
+      "できないんだけど、",
+      "どうすれば",
+      "いい？"
+    ],
+    "translation": "這個遊戲太難了，我完全沒辦法破關，該怎麼辦才好？",
+    "english": "This game is too hard and I can't clear it at all; what should I do?",
+    "difficulty": "medium",
+    "tags": [
+      "games",
+      "N3"
+    ]
+  },
+  {
+    "id": "1191",
+    "japanese": "久しぶりに 昔の ゲーム やってみたけど、 操作感に 全然 慣れないや。",
+    "chunks": [
+      "久しぶりに",
+      "昔の",
+      "ゲーム",
+      "やってみたけど、",
+      "操作感に",
+      "全然",
+      "慣れないや。"
+    ],
+    "translation": "久違地玩了一下以前的遊戲，但完全不習慣的操作感。",
+    "english": "I tried playing an old game for the first time in a while, but I can't get used to the controls at all.",
+    "difficulty": "medium",
+    "tags": [
+      "games",
+      "N3"
+    ]
+  },
+  {
+    "id": "1192",
+    "japanese": "ネタバレ されたくないから、 映画 見るまで 詳細を 調べるのは やめておくよ。",
+    "chunks": [
+      "ネタバレ",
+      "されたくないから、",
+      "映画",
+      "見るまで",
+      "詳細を",
+      "調べるのは",
+      "やめておくよ。"
+    ],
+    "translation": "因為不想被劇透，在看電影之前我決定先不去查詳細內容。",
+    "english": "I don't want to get spoiled, so I'll stop looking up details until I see the movie.",
+    "difficulty": "hard",
+    "tags": [
+      "movies",
+      "N2"
+    ]
+  },
+  {
+    "id": "1193",
+    "japanese": "次に出る アップデートで どんな 機能が 追加されるか すごく 楽しみだね。",
+    "chunks": [
+      "次に",
+      "出る",
+      "アップデートで",
+      "どんな",
+      "機能が",
+      "追加されるか",
+      "すごく",
+      "楽しみだね。"
+    ],
+    "translation": "很期待下一次更新會增加什麼樣的功能呢。",
+    "english": "I'm really looking forward to seeing what features will be added in the next update.",
+    "difficulty": "medium",
+    "tags": [
+      "games",
+      "N3"
+    ]
+  },
+  {
+    "id": "1194",
+    "japanese": "最近 英語の 勉強を 始めたんだけど、 単語を 覚えるのが 本当に 苦手なんだ。",
+    "chunks": [
+      "最近",
+      "英語の",
+      "勉強を",
+      "始めたんだけど、",
+      "単語を",
+      "覚えるのが",
+      "本当に",
+      "苦手なんだ。"
+    ],
+    "translation": "最近開始學英文了，但我真的很不擅長記單字。",
+    "english": "I recently started studying English, but I'm really bad at memorizing vocabulary.",
+    "difficulty": "easy",
+    "tags": [
+      "language learning",
+      "N4"
+    ]
+  },
+  {
+    "id": "1195",
+    "japanese": "独学で やってみたけど、 やっぱり 先生に 教わった 方が 効率いいよね。",
+    "chunks": [
+      "独学で",
+      "やってみたけど、",
+      "やっぱり",
+      "先生に",
+      "教わった",
+      "方が",
+      "効率いいよね。"
+    ],
+    "translation": "雖然試過自學，但果然還是請老師教比較有效率吧。",
+    "english": "I tried teaching myself, but as expected, it's more efficient to be taught by a teacher.",
+    "difficulty": "medium",
+    "tags": [
+      "study method",
+      "N3"
+    ]
+  },
+  {
+    "id": "1196",
+    "japanese": "大学の 講義、 内容が 難しすぎて 全然 理解 できた気が しないよ。",
+    "chunks": [
+      "大学の",
+      "講義、",
+      "内容が",
+      "難しすぎて",
+      "全然",
+      "理解できた",
+      "気が",
+      "しないよ。"
+    ],
+    "translation": "大學的課程內容太難了，我覺得自己完全沒聽懂。",
+    "english": "The university lecture content was too difficult; I don't feel like I understood it at all.",
+    "difficulty": "medium",
+    "tags": [
+      "university",
+      "N3"
+    ]
+  },
+  {
+    "id": "1197",
+    "japanese": "社会人になっても、 何か 新しいことを 学び 続けたい と 思ってるんだ。",
+    "chunks": [
+      "社会人に",
+      "なっても、",
+      "何か",
+      "新しいことを",
+      "学び",
+      "続けたいと",
+      "思ってるんだ。"
+    ],
+    "translation": "即使變成社會人士，我還是希望能夠持續學習新事物。",
+    "english": "Even after entering the workforce, I want to keep learning new things.",
+    "difficulty": "medium",
+    "tags": [
+      "lifelong learning",
+      "N3"
+    ]
+  },
+  {
+    "id": "1198",
+    "japanese": "今の 時代、 ネットで 勉強できるから、 どこに いても 学習 可能だよね。",
+    "chunks": [
+      "今の",
+      "時代、",
+      "ネットで",
+      "勉強できるから、",
+      "どこに",
+      "いても",
+      "学習",
+      "可能だよね。"
+    ],
+    "translation": "現在這個時代可以在網路上學習，所以無論在哪裡都能學習吧。",
+    "english": "In this day and age, you can study online, so learning is possible no matter where you are.",
+    "difficulty": "hard",
+    "tags": [
+      "technology",
+      "N2"
+    ]
+  },
+  {
+    "id": "1199",
+    "japanese": "勉強しすぎても 効率が 落ちるから、 適度に 休憩を 挟むのが 大事だと思うよ。",
+    "chunks": [
+      "勉強しすぎても",
+      "効率が",
+      "落ちるから、",
+      "適度に",
+      "休憩を",
+      "挟むのが",
+      "大事だと",
+      "思うよ。"
+    ],
+    "translation": "學習過頭反而會降低效率，所以我認為適度地穿插休息是很重要的。",
+    "english": "Studying too much lowers efficiency, so I think it's important to take moderate breaks.",
+    "difficulty": "hard",
+    "tags": [
+      "study habits",
+      "N2"
+    ]
+  },
+  {
+    "id": "1200",
+    "japanese": "最近の スマホ、 機能が 多すぎて 使いこなせてないよ。",
+    "chunks": [
+      "最近の",
+      "スマホ、",
+      "機能が",
+      "多すぎて",
+      "使いこなせて",
+      "ないよ。"
+    ],
+    "translation": "最近的智慧型手機功能太多了，我根本沒辦法全部用好。",
+    "english": "Recent smartphones have too many functions; I can't use them all properly.",
+    "difficulty": "medium",
+    "tags": [
+      "technology",
+      "N3"
+    ]
+  },
+  {
+    "id": "1201",
+    "japanese": "SNSを やりすぎると、 時間が あっという間に 過ぎちゃうよね。",
+    "chunks": [
+      "SNSを",
+      "やりすぎると、",
+      "時間が",
+      "あっという間に",
+      "過ぎちゃう",
+      "よね。"
+    ],
+    "translation": "社交媒體要是玩過頭，時間一下子就過去了呢。",
+    "english": "If you spend too much time on social media, time just flies by, doesn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "social media",
+      "N3"
+    ]
+  },
+  {
+    "id": "1202",
+    "japanese": "新しい アプリを 入れたんだけど、 設定が 難しくて 苦戦してる。",
+    "chunks": [
+      "新しい",
+      "アプリを",
+      "入れたんだけど、",
+      "設定が",
+      "難しくて",
+      "苦戦して",
+      "る。"
+    ],
+    "translation": "我裝了個新 App，但設定很困難，正苦戰中。",
+    "english": "I installed a new app, but the settings are difficult, so I'm struggling.",
+    "difficulty": "medium",
+    "tags": [
+      "technology",
+      "N3"
+    ]
+  },
+  {
+    "id": "1203",
+    "japanese": "AIが 進化して 便利に はなったけど、 逆に 思考力が 衰えるん じゃないかと 心配だよ。",
+    "chunks": [
+      "AIが",
+      "進化して",
+      "便利に",
+      "はなったけど、",
+      "逆に",
+      "思考力が",
+      "衰えるん",
+      "じゃないかと心配だよ。"
+    ],
+    "translation": "AI 雖然進化到很方便，但我也擔心反倒會讓思考能力退化。",
+    "english": "AI has evolved and become convenient, but I'm worried that conversely, our ability to think might decline.",
+    "difficulty": "hard",
+    "tags": [
+      "AI",
+      "N2"
+    ]
+  },
+  {
+    "id": "1204",
+    "japanese": "ネットの 評判 だけじゃなくて、 実際に 使ってみてから 決めたいな。",
+    "chunks": [
+      "ネットの",
+      "評判",
+      "だけじゃなくて、",
+      "実際に",
+      "使ってみて",
+      "から",
+      "決めたいな。"
+    ],
+    "translation": "我不只想看網路上的評價，想在實際用過之後再決定。",
+    "english": "I want to decide after actually trying it, not just based on online reviews.",
+    "difficulty": "medium",
+    "tags": [
+      "shopping",
+      "N3"
+    ]
+  },
+  {
+    "id": "1205",
+    "japanese": "たまには デジタルデトックス して、 スマホを 完全に 切りたいよね。",
+    "chunks": [
+      "たまには",
+      "デジタルデトックス",
+      "して、",
+      "スマホを",
+      "完全に",
+      "切りたいよね。"
+    ],
+    "translation": "偶爾也想做數位排毒，把手機完全關掉呢。",
+    "english": "Once in a while, I want to do a digital detox and completely switch off my phone.",
+    "difficulty": "medium",
+    "tags": [
+      "lifestyle",
+      "N3"
+    ]
+  },
+  {
+    "id": "1206",
+    "japanese": "この サイト、 広告が 多すぎて 読みづらくない？",
+    "chunks": [
+      "この",
+      "サイト、",
+      "広告が",
+      "多すぎて",
+      "読みづらくない？"
+    ],
+    "translation": "這個網站廣告太多，是不是很難閱讀？",
+    "english": "Isn't this site hard to read because there are too many ads?",
+    "difficulty": "easy",
+    "tags": [
+      "internet",
+      "N4"
+    ]
+  },
+  {
+    "id": "1207",
+    "japanese": "最近 体を 動かして ないから、 体力が 落ちた気が するよ。",
+    "chunks": [
+      "最近",
+      "体を",
+      "動かして",
+      "ないから、",
+      "体力が",
+      "落ちた",
+      "気が",
+      "するよ。"
+    ],
+    "translation": "最近沒什麼運動，感覺體力下降了。",
+    "english": "I feel like my physical strength has decreased because I haven't been active lately.",
+    "difficulty": "easy",
+    "tags": [
+      "fitness",
+      "N4"
+    ]
+  },
+  {
+    "id": "1208",
+    "japanese": "ジムに 通い 始めたんだけど、 結構 筋肉痛が ひどくて びっくりした。",
+    "chunks": [
+      "ジムに",
+      "通い",
+      "始めたんだけど、",
+      "結構",
+      "筋肉痛が",
+      "ひどくて",
+      "びっくり",
+      "した。"
+    ],
+    "translation": "我開始去健身房了，但肌肉痠痛得比想像中嚴重，嚇了我一跳。",
+    "english": "I started going to the gym, but I was surprised by how bad the muscle soreness is.",
+    "difficulty": "medium",
+    "tags": [
+      "fitness",
+      "N3"
+    ]
+  },
+  {
+    "id": "1209",
+    "japanese": "無理に ダイエット するより、 軽い ウォーキングから 始めてみた 方が いいよ。",
+    "chunks": [
+      "無理に",
+      "ダイエットするより、",
+      "軽い",
+      "ウォーキングから",
+      "始めてみた",
+      "方が",
+      "いいよ。"
+    ],
+    "translation": "比起強迫自己減肥，試著從輕量散步開始會比較好喔。",
+    "english": "Instead of forcing a strict diet, it's better to try starting with light walking.",
+    "difficulty": "hard",
+    "tags": [
+      "fitness",
+      "N2"
+    ]
+  },
+  {
+    "id": "1210",
+    "japanese": "昔は スポーツ 万能 だったのに、 今じゃ 走るだけで 息切れしちゃうよ。",
+    "chunks": [
+      "昔は",
+      "スポーツ万能",
+      "だったのに、",
+      "今じゃ",
+      "走るだけで",
+      "息切れ",
+      "しちゃうよ。"
+    ],
+    "translation": "以前我可是運動萬能，現在才跑一下就喘不過氣了。",
+    "english": "I used to be great at all sports, but now I get out of breath just by running.",
+    "difficulty": "hard",
+    "tags": [
+      "sports",
+      "N2"
+    ]
+  },
+  {
+    "id": "1211",
+    "japanese": "すみません、 この 商品の 在庫、 まだ ありますか？",
+    "chunks": [
+      "すみません、",
+      "この",
+      "商品の",
+      "在庫、",
+      "まだ",
+      "ありますか？"
+    ],
+    "translation": "不好意思，請問這件商品的庫存還有嗎？",
+    "english": "Excuse me, do you still have this item in stock?",
+    "difficulty": "easy",
+    "tags": [
+      "shopping",
+      "N4"
+    ]
+  },
+  {
+    "id": "1212",
+    "japanese": "ネットで 買った 服、 思ったより サイズが 大きくて 失敗したよ。",
+    "chunks": [
+      "ネットで",
+      "買った",
+      "服、",
+      "思ったより",
+      "サイズが",
+      "大きくて",
+      "失敗したよ。"
+    ],
+    "translation": "在網路上買的衣服，尺寸比想像中大，買錯了。",
+    "english": "The clothes I bought online were bigger than I expected, so it was a fail.",
+    "difficulty": "medium",
+    "tags": [
+      "online shopping",
+      "N3"
+    ]
+  },
+  {
+    "id": "1213",
+    "japanese": "あそこの 店、 いつも 行列が できてるけど、 そんなに 美味しいのかな？",
+    "chunks": [
+      "あそこの",
+      "店、",
+      "いつも",
+      "行列が",
+      "できててるけど、",
+      "そんなに",
+      "美味しいのかな？"
+    ],
+    "translation": "那家店總是排長龍，真的有那麼好吃嗎？",
+    "english": "That shop always has a line; I wonder if it's really that good?",
+    "difficulty": "medium",
+    "tags": [
+      "dining",
+      "N3"
+    ]
+  },
+  {
+    "id": "1214",
+    "japanese": "コスパを 考えたら、 やっぱり この ブランドが 一番 合理的だと思うな。",
+    "chunks": [
+      "コスパを",
+      "考えたら、",
+      "やっぱり",
+      "この",
+      "ブランドが",
+      "一番",
+      "合理的だ",
+      "と思うな。"
+    ],
+    "translation": "考慮到性價比的話，我覺得果然這個品牌是最合理的。",
+    "english": "Considering the cost-performance, I think this brand is the most reasonable after all.",
+    "difficulty": "hard",
+    "tags": [
+      "consumerism",
+      "N2"
+    ]
+  },
+  {
+    "id": "1215",
+    "japanese": "ちょっと 高いけど、 長く 使えるし、 思い切って 買っちゃおうかな。",
+    "chunks": [
+      "ちょっと",
+      "高いけど、",
+      "長く",
+      "使えるし、",
+      "思い切って",
+      "買っちゃおうかな。"
+    ],
+    "translation": "雖然有點貴，但可以使用很久，乾脆就買了吧。",
+    "english": "It's a bit expensive, but since it lasts a long time, maybe I'll just go for it and buy it.",
+    "difficulty": "medium",
+    "tags": [
+      "shopping",
+      "N3"
+    ]
+  },
+  {
+    "id": "1216",
+    "japanese": "店員の 対応が 悪すぎて、 もう 二度と ここには 来ないと思う。",
+    "chunks": [
+      "店員の",
+      "対応が",
+      "悪すぎて、",
+      "もう",
+      "二度と",
+      "ここには",
+      "来ない",
+      "と思う。"
+    ],
+    "translation": "店員態度太差了，我想我再也不會來這裡了。",
+    "english": "The staff's service was so bad that I don't think I'll ever come here again.",
+    "difficulty": "hard",
+    "tags": [
+      "experience",
+      "N2"
+    ]
+  },
+  {
+    "id": "1217",
+    "japanese": "明日から セール みたいだから、 今週末に 行ってみない？",
+    "chunks": [
+      "明日から",
+      "セール",
+      "みたいだから、",
+      "今週末に",
+      "行ってみない？"
+    ],
+    "translation": "聽說明天開始打折，這週末要不要去看看？",
+    "english": "It looks like there's a sale starting tomorrow, so why don't we check it out this weekend?",
+    "difficulty": "easy",
+    "tags": [
+      "shopping",
+      "N4"
+    ]
+  },
+  {
+    "id": "1218",
+    "japanese": "最近の 若い人は 自由な 考えを 持っていて 羨ましいよね。",
+    "chunks": [
+      "最近の",
+      "若い人は",
+      "自由な",
+      "考えを",
+      "持っていて",
+      "羨ましいよね。"
+    ],
+    "translation": "最近的年輕人想法很自由，真令人羨慕呢。",
+    "english": "I envy how young people these days have such free-thinking mindsets.",
+    "difficulty": "easy",
+    "tags": [
+      "generation gap",
+      "N4"
+    ]
+  },
+  {
+    "id": "1219",
+    "japanese": "日本の 礼儀正しい 文化は 素敵だけど、 時々 堅苦しすぎると 感じるよ。",
+    "chunks": [
+      "日本の",
+      "礼儀正しい",
+      "文化は",
+      "素敵だけど、",
+      "時々",
+      "堅苦しすぎると",
+      "感じるよ。"
+    ],
+    "translation": "日本有禮貌的文化很棒，但有時候我覺得太死板了。",
+    "english": "Japan's polite culture is wonderful, but sometimes I feel it's too formal.",
+    "difficulty": "medium",
+    "tags": [
+      "culture",
+      "N3"
+    ]
+  },
+  {
+    "id": "1220",
+    "japanese": "仕事と プライベートの バランスを 取るのが、 今の 時代は 大事だよね。",
+    "chunks": [
+      "仕事と",
+      "プライベートの",
+      "バランスを",
+      "取るのが、",
+      "今の",
+      "時代は",
+      "大事だよね。"
+    ],
+    "translation": "在現在這個時代，平衡工作與私生活是非常重要的吧。",
+    "english": "Balancing work and private life is important in this day and age, isn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "work-life balance",
+      "N3"
+    ]
+  },
+  {
+    "id": "1221",
+    "japanese": "海外の 生活に 慣れるまで、 文化の 違いに 驚くことが 多かったな。",
+    "chunks": [
+      "海外の",
+      "生活に",
+      "慣れるまで、",
+      "文化の",
+      "違いに",
+      "驚くことが",
+      "多かったな。"
+    ],
+    "translation": "在習慣海外生活之前，對文化差異感到驚訝的事情很多呢。",
+    "english": "Before I got used to living abroad, there were many things that surprised me about the cultural differences.",
+    "difficulty": "medium",
+    "tags": [
+      "experience",
+      "N3"
+    ]
+  },
+  {
+    "id": "1222",
+    "japanese": "最近は キャッシュレスに なったから、 現金を 持ってなくても 大丈夫だね。",
+    "chunks": [
+      "最近は",
+      "キャッシュレスに",
+      "なったから、",
+      "現金を",
+      "持ってなくても",
+      "大丈夫だね。"
+    ],
+    "translation": "最近變成電子支付了，所以就算沒帶現金也沒關係呢。",
+    "english": "Since we've moved to cashless payments recently, it's okay even if you don't have cash.",
+    "difficulty": "easy",
+    "tags": [
+      "society",
+      "N4"
+    ]
+  },
+  {
+    "id": "1223",
+    "japanese": "卒業したら、 一人で 海外旅行に 行ってみたいと思ってる。",
+    "chunks": [
+      "卒業したら、",
+      "一人で",
+      "海外旅行に",
+      "行ってみたいと",
+      "思ってる。"
+    ],
+    "translation": "我想著畢業後要嘗試一個人去海外旅行。",
+    "english": "I'm thinking that I want to try traveling abroad alone after graduation.",
+    "difficulty": "medium",
+    "tags": [
+      "plans",
+      "N3"
+    ]
+  },
+  {
+    "id": "1224",
+    "japanese": "今の 仕事も いいけど、 将来的には 独立して 自由に 働きたいな。",
+    "chunks": [
+      "今の仕事も",
+      "いいけど、",
+      "将来的には",
+      "独立して",
+      "自由に",
+      "働きたいな。"
+    ],
+    "translation": "現在的工作雖然也不錯，但將來我想獨立，自由地工作。",
+    "english": "My current job is fine, but in the future, I want to be independent and work freely.",
+    "difficulty": "medium",
+    "tags": [
+      "aspirations",
+      "N3"
+    ]
+  },
+  {
+    "id": "1225",
+    "japanese": "そんな 高い 目標を 持ってるなんて、 本当に すごいと思うよ。",
+    "chunks": [
+      "そんな",
+      "高い目標を",
+      "持ってるなんて、",
+      "本当に",
+      "すごいと",
+      "思うよ。"
+    ],
+    "translation": "竟然有這麼高的目標，我覺得真的很厲害。",
+    "english": "I think it's truly amazing that you have such a high goal.",
+    "difficulty": "medium",
+    "tags": [
+      "aspirations",
+      "N3"
+    ]
+  },
+  {
+    "id": "1226",
+    "japanese": "現実的に 考えると、 今から 勉強し直さないと 間に合わないかも。",
+    "chunks": [
+      "現実的に",
+      "考えると、",
+      "今から",
+      "勉強し直さないと",
+      "間に合わない",
+      "かも。"
+    ],
+    "translation": "從現實面考慮，現在如果不重新開始學習的話，可能來不及。",
+    "english": "Thinking realistically, I might not make it if I don't start studying again now.",
+    "difficulty": "hard",
+    "tags": [
+      "plans",
+      "N2"
+    ]
+  },
+  {
+    "id": "1227",
+    "japanese": "子供の頃は 宇宙飛行士に なりたいと 信じて 疑わなかったよね。",
+    "chunks": [
+      "子供の頃は",
+      "宇宙飛行士に",
+      "なりたいと",
+      "信じて",
+      "疑わなかった",
+      "よね。"
+    ],
+    "translation": "小時候我們深信著一定要成為太空人，對吧。",
+    "english": "When we were kids, we believed without a doubt that we wanted to become astronauts, didn't we?",
+    "difficulty": "hard",
+    "tags": [
+      "dreams",
+      "N2"
+    ]
+  },
+  {
+    "id": "1228",
+    "japanese": "将来の 計画について、 具体的に どう考えてるのか 聞かせてよ。",
+    "chunks": [
+      "将来の",
+      "計画について、",
+      "具体的に",
+      "どう考えてるのか",
+      "聞かせてよ。"
+    ],
+    "translation": "關於將來的計劃，跟我分享一下具體是怎么考慮的吧。",
+    "english": "Tell me specifically how you're thinking about your future plans.",
+    "difficulty": "medium",
+    "tags": [
+      "plans",
+      "N3"
+    ]
+  },
+  {
+    "id": "1229",
+    "japanese": "この曲を 聞くと、 子供の頃の 記憶が ぶわっと 蘇るよね。",
+    "chunks": [
+      "この曲を",
+      "聞くと、",
+      "子供の頃の",
+      "記憶が",
+      "ぶわっと",
+      "蘇るよね。"
+    ],
+    "translation": "聽到這首歌，小時候的記憶就猛然湧現了呢。",
+    "english": "When I hear this song, memories of my childhood just flood back, right?",
+    "difficulty": "medium",
+    "tags": [
+      "music",
+      "N3"
+    ]
+  },
+  {
+    "id": "1230",
+    "japanese": "昔の写真を 見てたら、 懐かしくて しまわしに 涙が 出てきちゃった。",
+    "chunks": [
+      "昔の写真を",
+      "見てたら、",
+      "懐かしくて",
+      "しまわしに",
+      "涙が",
+      "出てきちゃった。"
+    ],
+    "translation": "看著以前的照片，因為太懷念了，竟然不自覺地流下了淚。",
+    "english": "While I was looking at old photos, I got so nostalgic that I ended up tearing up.",
+    "difficulty": "medium",
+    "tags": [
+      "photos",
+      "N3"
+    ]
+  },
+  {
+    "id": "1231",
+    "japanese": "ここ、 10年前に 来たこと あるけど、 全然 景色が 変わってないね。",
+    "chunks": [
+      "ここ、",
+      "10年前に",
+      "来たこと",
+      "あるけど、",
+      "全然",
+      "景色が",
+      "変わってないね。"
+    ],
+    "translation": "這裡我十年前來過，但風景完全沒變呢。",
+    "english": "I've been here ten years ago, but the scenery hasn't changed at all, has it?",
+    "difficulty": "easy",
+    "tags": [
+      "travel",
+      "N4"
+    ]
+  },
+  {
+    "id": "1232",
+    "japanese": "実家の 匂いを かぐと、 なぜか 安心する 気持ちに なります。",
+    "chunks": [
+      "実家の",
+      "匂いを",
+      "かぐと、",
+      "なぜか",
+      "安心する",
+      "気持ちに",
+      "なります。"
+    ],
+    "translation": "聞到老家的味道，不知為何會有一種安心的感覺。",
+    "english": "Whenever I smell the scent of my parents' home, for some reason I feel at peace.",
+    "difficulty": "medium",
+    "tags": [
+      "family",
+      "N3"
+    ]
+  },
+  {
+    "id": "1233",
+    "japanese": "あの頃の 悩みなんて、 今考えれば 本当に 些細な ことだったのにね。",
+    "chunks": [
+      "あの頃の",
+      "悩みなんて、",
+      "今考えれば",
+      "本当に",
+      "些細な",
+      "ことだったのにね。"
+    ],
+    "translation": "那時候的煩惱，現在想起來明明是非常微不足道的小事呢。",
+    "english": "The things I worried about back then were actually such trivial matters when I think about it now.",
+    "difficulty": "hard",
+    "tags": [
+      "reflection",
+      "N2"
+    ]
+  },
+  {
+    "id": "1234",
+    "japanese": "たまには 昔の仲間に 会って、 ゆっくり 思い出話に 花を 咲かせたいよ。",
+    "chunks": [
+      "たまには",
+      "昔の仲間に",
+      "会って、",
+      "ゆっくり",
+      "思い出話に",
+      "花を",
+      "咲かせたいよ。"
+    ],
+    "translation": "偶爾想見見以前的朋友，悠閒地聊聊往事，聊得熱火朝天。",
+    "english": "Once in a while, I want to meet up with old friends and have a long, lively chat about our memories.",
+    "difficulty": "hard",
+    "tags": [
+      "friends",
+      "N2"
+    ]
+  },
+  {
+    "id": "1235",
+    "japanese": "ここらへんで おすすめの カフェ、 どこか 知らない？",
+    "chunks": [
+      "ここらへんで",
+      "おすすめの",
+      "カフェ、",
+      "どこか",
+      "知らない？"
+    ],
+    "translation": "你知道這附近有推薦的咖啡店嗎？",
+    "english": "Do you know any recommended cafes around here?",
+    "difficulty": "easy",
+    "tags": [
+      "recommendation",
+      "N4"
+    ]
+  },
+  {
+    "id": "1236",
+    "japanese": "疲れてるみたいだし、 今日は ゆっくり 休んだほうが いいよ。",
+    "chunks": [
+      "疲れてる",
+      "みたいだし、",
+      "今日は",
+      "ゆっくり",
+      "休んだほうが",
+      "いいよ。"
+    ],
+    "translation": "你看起來很累，今天最好好好休息。",
+    "english": "You look tired, so it's better if you take a good rest today.",
+    "difficulty": "medium",
+    "tags": [
+      "advice",
+      "N4"
+    ]
+  },
+  {
+    "id": "1237",
+    "japanese": "英語を 早く 習得したければ、 毎日 少しでも 話す ことが 大事だよ。",
+    "chunks": [
+      "英語を",
+      "早く",
+      "習得したければ、",
+      "毎日",
+      "少しでも",
+      "話すことが",
+      "大事だよ。"
+    ],
+    "translation": "如果想快點掌握英文，每天哪怕一點點地開口說是很重要的。",
+    "english": "If you want to acquire English quickly, it's important to speak it every day, even just a little.",
+    "difficulty": "medium",
+    "tags": [
+      "learning",
+      "N3"
+    ]
+  },
+  {
+    "id": "1238",
+    "japanese": "そんなに 無理してたら、 いつか 体を 壊しちゃうから 気をつけてね。",
+    "chunks": [
+      "そんなに",
+      "無理してたら、",
+      "いつか",
+      "体を",
+      "壊しちゃうから",
+      "気をつけてね。"
+    ],
+    "translation": "一直這麼勉強自己，總有一天會累垮身體的，要小心喔。",
+    "english": "If you keep pushing yourself that hard, you'll eventually break your health, so please be careful.",
+    "difficulty": "hard",
+    "tags": [
+      "health",
+      "N3"
+    ]
+  },
+  {
+    "id": "1239",
+    "japanese": "迷ったら、 一回 誰かに 相談して見たほうが 確実だと思うよ。",
+    "chunks": [
+      "迷ったら、",
+      "一回",
+      "誰かに",
+      "相談して見たほうが",
+      "確実だと",
+      "思うよ。"
+    ],
+    "translation": "如果猶豫不決的話，我覺得先試著向某人諮詢會比較穩妥。",
+    "english": "If you're undecided, I think it's more certain to try consulting someone first.",
+    "difficulty": "hard",
+    "tags": [
+      "advice",
+      "N2"
+    ]
+  },
+  {
+    "id": "1240",
+    "japanese": "この 本、 内容が すごく 面白いから ぜひ 読んでみて！",
+    "chunks": [
+      "この本、",
+      "内容が",
+      "すごく",
+      "面白いから",
+      "ぜひ",
+      "読んでみて！"
+    ],
+    "translation": "這本書的內容非常有趣，請一定要讀讀看！",
+    "english": "The content of this book is really interesting, so please give it a read!",
+    "difficulty": "easy",
+    "tags": [
+      "recommendation",
+      "N4"
+    ]
+  },
+  {
+    "id": "1241",
+    "japanese": "最近の トレンドを 抑えておきたいなら、 SNSを チェックするのが 一番だよ。",
+    "chunks": [
+      "最近の",
+      "トレンドを",
+      "抑えておきたいなら、",
+      "SNSを",
+      "チェックするのが",
+      "一番だよ。"
+    ],
+    "translation": "如果你想掌握最近的趨勢，查看社群媒體是最有效的。",
+    "english": "If you want to keep up with recent trends, checking social media is the best way.",
+    "difficulty": "hard",
+    "tags": [
+      "lifestyle",
+      "N2"
+    ]
+  },
+  {
+    "id": "1242",
+    "japanese": "夜更かし しすぎると 翌日 ずっと 眠いし、 効率が 落ちるから やめたほうが いいよ。",
+    "chunks": [
+      "夜更かし",
+      "しすぎると",
+      "翌日",
+      "ずっと眠いし、",
+      "効率が",
+      "落ちるから",
+      "やめたほうが",
+      "いいよ。"
+    ],
+    "translation": "熬夜太晚的話，隔天會一直很睏，效率也會下降，所以最好不要這樣。",
+    "english": "If you stay up too late, you'll be sleepy all the next day and your efficiency will drop, so you should stop doing that.",
+    "difficulty": "hard",
+    "tags": [
+      "habits",
+      "N2"
+    ]
+  },
+  {
+    "id": "1243",
+    "japanese": "週末は いつも 何か 新しいことに 挑戦してみたい タイプなの？",
+    "chunks": [
+      "週末は",
+      "いつも",
+      "何か",
+      "新しいことに",
+      "挑戦してみたい",
+      "タイプなの？"
+    ],
+    "translation": "你是不是那種週末總是想挑戰些新事物的類型？",
+    "english": "Are you the type of person who always wants to try something new on the weekends?",
+    "difficulty": "medium",
+    "tags": [
+      "personality",
+      "N3"
+    ]
+  },
+  {
+    "id": "1244",
+    "japanese": "今日のご飯、 何にする？ 何か 食べたいもの ある？",
+    "chunks": [
+      "今日の",
+      "ご飯、",
+      "何にする？",
+      "何か",
+      "食べたいもの",
+      "ある？"
+    ],
+    "translation": "今天的晚餐要吃什麼？有什麼想吃的嗎？",
+    "english": "What should we have for dinner today? Is there anything you want to eat?",
+    "difficulty": "easy",
+    "tags": [
+      "daily",
+      "N4"
+    ]
+  },
+  {
+    "id": "1245",
+    "japanese": "この 料理の レシピ、 教えて くれる？ すごく 美味しそう！",
+    "chunks": [
+      "この",
+      "料理の",
+      "レシピ、",
+      "教えて",
+      "くれる？",
+      "すごく",
+      "美味しそう！"
+    ],
+    "translation": "能告訴我這道菜的食譜嗎？看起來非常好吃！",
+    "english": "Can you tell me the recipe for this dish? It looks delicious!",
+    "difficulty": "easy",
+    "tags": [
+      "recipe",
+      "N4"
+    ]
+  },
+  {
+    "id": "1246",
+    "japanese": "自炊を 始めたけど、 野菜を 切るのが 面倒で ついつい 外食に なるんだよね。",
+    "chunks": [
+      "自炊を",
+      "始めたけど、",
+      "野菜を",
+      "切るのが",
+      "面倒で",
+      "ついつい",
+      "外食に",
+      "なるんだよね。"
+    ],
+    "translation": "雖然開始自己下廚了，但因為切蔬菜很麻煩，結果總是不自覺地變成在外就餐。",
+    "english": "I started cooking for myself, but chopping vegetables is such a pain that I end up eating out.",
+    "difficulty": "medium",
+    "tags": [
+      "cooking",
+      "N3"
+    ]
+  },
+  {
+    "id": "1247",
+    "japanese": "味付けが ちょっと 薄い気が するから、 塩を 少し 足した方が いいかも。",
+    "chunks": [
+      "味付けが",
+      "ちょっと",
+      "薄い気が",
+      "するから、",
+      "塩を",
+      "少し",
+      "足した方が",
+      "いいかも。"
+    ],
+    "translation": "我覺得調味稍微淡了點，或許多加一點鹽會比較好。",
+    "english": "I feel the seasoning is a bit light, so it might be better to add a little salt.",
+    "difficulty": "medium",
+    "tags": [
+      "taste",
+      "N3"
+    ]
+  },
+  {
+    "id": "1248",
+    "japanese": "子供の頃、 おばあちゃんが 作ってくれた 肉じゃがの味が 今でも 忘れられないんだ。",
+    "chunks": [
+      "子供の頃、",
+      "おばあちゃんが",
+      "作ってくれた",
+      "肉じゃがの味が",
+      "今でも",
+      "忘れられないんだ。"
+    ],
+    "translation": "小時候奶奶做給我的肉馬鈴薯燉菜的味道，直到現在我都忘不了。",
+    "english": "I still can't forget the taste of the meat and potato stew my grandmother used to make for me when I was a kid.",
+    "difficulty": "medium",
+    "tags": [
+      "memory",
+      "N3"
+    ]
+  },
+  {
+    "id": "1249",
+    "japanese": "最近の 電子レンジって 本当に 便利で、 ボタン一つで 完璧な 温度に 調整してくれるよね。",
+    "chunks": [
+      "最近の",
+      "電子レンジって",
+      "本当に",
+      "便利で、",
+      "ボタン一つで",
+      "完璧な",
+      "温度に",
+      "調整してくれるよね。"
+    ],
+    "translation": "最近的微波爐真的很方便，只要按一個按鈕就能調整到完美的溫度呢。",
+    "english": "Modern microwaves are truly convenient; they adjust the temperature perfectly with just one button.",
+    "difficulty": "hard",
+    "tags": [
+      "gadgets",
+      "N2"
+    ]
+  },
+  {
+    "id": "1250",
+    "japanese": "来月の 夏休み、 どこか 遠いところへ 行きたい ね。",
+    "chunks": [
+      "来月の",
+      "夏休み、",
+      "どこか",
+      "遠いところへ",
+      "行きたい",
+      "ね。"
+    ],
+    "translation": "下個月的暑假，想去個遠一點的地方呢。",
+    "english": "I want to go somewhere far away for next month's summer vacation, right?",
+    "difficulty": "easy",
+    "tags": [
+      "travel",
+      "N4"
+    ]
+  },
+  {
+    "id": "1251",
+    "japanese": "一人旅って 自由で いいけど、 時々 寂しくなる ことも あるよね。",
+    "chunks": [
+      "一人旅って",
+      "自由で",
+      "いいけど、",
+      "時々",
+      "寂しくなる",
+      "ことも",
+      "あるよね。"
+    ],
+    "translation": "獨自旅行雖然自由很好，但有時候也會覺得寂寞吧。",
+    "english": "Solo travel is great because of the freedom, but sometimes you do feel lonely, don't you?",
+    "difficulty": "medium",
+    "tags": [
+      "experience",
+      "N3"
+    ]
+  },
+  {
+    "id": "1252",
+    "japanese": "せっかく 日本に 来たんだし、 地方の 温泉にも 行ってみたい な。",
+    "chunks": [
+      "せっかく",
+      "日本に",
+      "来たんだし、",
+      "地方の",
+      "温泉にも",
+      "行ってみたい",
+      "な。"
+    ],
+    "translation": "既然都來日本了，我也想去看看地方上的溫泉。",
+    "english": "Since I've come all the way to Japan, I'd like to try visiting some hot springs in the countryside.",
+    "difficulty": "medium",
+    "tags": [
+      "tourism",
+      "N3"
+    ]
+  },
+  {
+    "id": "1253",
+    "japanese": "計画を 立てずに 行くのが、 本当の 旅の 醍醐味だと 思うよ。",
+    "chunks": [
+      "計画を",
+      "立てずに",
+      "行くのが、",
+      "本当の",
+      "旅の",
+      "醍醐味だと",
+      "思うよ。"
+    ],
+    "translation": "我覺得不做計劃就出發，才是旅行真正的精髓。",
+    "english": "I think going without a plan is the true essence of traveling.",
+    "difficulty": "hard",
+    "tags": [
+      "opinion",
+      "N2"
+    ]
+  },
+  {
+    "id": "1254",
+    "japanese": "飛行機の チケット、 今予約したら 安く 上がるかな？",
+    "chunks": [
+      "飛行機の",
+      "チケット、",
+      "今予約したら",
+      "安く",
+      "上がるかな？"
+    ],
+    "translation": "現在預訂機票的話，會比較便宜嗎？",
+    "english": "I wonder if the plane tickets would be cheaper if I book them now?",
+    "difficulty": "easy",
+    "tags": [
+      "travel",
+      "N4"
+    ]
+  },
+  {
+    "id": "1255",
+    "japanese": "今の 仕事、 正直言って かなり きつくて 限界に近いかも。",
+    "chunks": [
+      "今の",
+      "仕事、",
+      "正直言って",
+      "かなり",
+      "きつくて",
+      "限界に",
+      "近いかも。"
+    ],
+    "translation": "說實話，現在的工作相當辛苦，可能快到極限了。",
+    "english": "To be honest, my current job is pretty tough and I might be reaching my limit.",
+    "difficulty": "medium",
+    "tags": [
+      "workload",
+      "N3"
+    ]
+  },
+  {
+    "id": "1256",
+    "japanese": "将来は 独立して 自分の 店を 出したいって 思ってるんだ。",
+    "chunks": [
+      "将来は",
+      "独立して",
+      "自分の",
+      "店を",
+      "出したいって",
+      "思ってるんだ。"
+    ],
+    "translation": "我希望將來能獨立創業，開一家自己的店。",
+    "english": "I'm thinking that I want to go independent and open my own shop in the future.",
+    "difficulty": "medium",
+    "tags": [
+      "career",
+      "N4"
+    ]
+  },
+  {
+    "id": "1257",
+    "japanese": "最近の 若い子は 昇進より ワークライフバランスを 重視する傾向にあるよね。",
+    "chunks": [
+      "最近の",
+      "若い子は",
+      "昇進より",
+      "ワークライフバランスを",
+      "重視する",
+      "傾向に",
+      "あるよね。"
+    ],
+    "translation": "最近的年輕人比起升職，更有重視工作與生活平衡的傾向呢。",
+    "english": "Young people these days tend to value work-life balance over promotions, don't they?",
+    "difficulty": "hard",
+    "tags": [
+      "society",
+      "N2"
+    ]
+  },
+  {
+    "id": "1258",
+    "japanese": "明日から 新しい プロジェクトに 抜擢されたから、 ちょっと 緊張してる。",
+    "chunks": [
+      "明日から",
+      "新しい",
+      "プロジェクトに",
+      "抜擢されたから、",
+      "ちょっと",
+      "緊張してる。"
+    ],
+    "translation": "因為從明天起被選中參與新項目，所以有點緊張。",
+    "english": "I'm a bit nervous because I've been hand-picked for a new project starting tomorrow.",
+    "difficulty": "hard",
+    "tags": [
+      "promotion",
+      "N2"
+    ]
+  },
+  {
+    "id": "1259",
+    "japanese": "転職を 考えてるんだけど、 どの エージェントに 相談するのが 一番いいかな？",
+    "chunks": [
+      "転職を",
+      "考えてるんだけど、",
+      "どの",
+      "エージェントに",
+      "相談するのが",
+      "一番いいかな？"
+    ],
+    "translation": "我想考慮換工作，請問諮詢哪一家獵頭公司最合適呢？",
+    "english": "I'm thinking about changing jobs; which agent do you think is the best to consult?",
+    "difficulty": "medium",
+    "tags": [
+      "job hunting",
+      "N3"
+    ]
+  },
+  {
+    "id": "1260",
+    "japanese": "昨日の 会議、 上司に 猛烈に 怒られたから メンタル やられたよ。",
+    "chunks": [
+      "昨日の",
+      "会議、",
+      "上司に",
+      "猛烈に",
+      "怒られたから",
+      "メンタル",
+      "やられたよ。"
+    ],
+    "translation": "昨天的會議被上司狠狠地罵了一頓，精神快崩潰了。",
+    "english": "I got chewed out by my boss during yesterday's meeting, so my mental state is shot.",
+    "difficulty": "medium",
+    "tags": [
+      "workplace",
+      "N3"
+    ]
+  },
+  {
+    "id": "1261",
+    "japanese": "今の 会社は 福利厚生が 手厚いから、 あまり 辞めたくないんだよね。",
+    "chunks": [
+      "今の",
+      "会社は",
+      "福利厚生が",
+      "手厚いから、",
+      "あまり",
+      "辞めたくないん",
+      "だよね。"
+    ],
+    "translation": "現在公司的福利待遇很好，所以我不太想辭職。",
+    "english": "The benefits at my current company are generous, so I don't really want to quit.",
+    "difficulty": "easy",
+    "tags": [
+      "benefits",
+      "N4"
+    ]
+  },
+  {
+    "id": "1262",
+    "japanese": "最近 家族と ゆっくり 話す 時間が ほとんど ないんだよね。",
+    "chunks": [
+      "最近",
+      "家族と",
+      "ゆっくり",
+      "話す",
+      "時間が",
+      "ほとんど",
+      "ないんだよね。"
+    ],
+    "translation": "最近幾乎沒有時間能跟家人好好聊聊天呢。",
+    "english": "Lately, I hardly have any time to talk slowly with my family.",
+    "difficulty": "easy",
+    "tags": [
+      "family",
+      "N4"
+    ]
+  },
+  {
+    "id": "1263",
+    "japanese": "親友には 何を 言っても 分かって くれると 信じてるよ。",
+    "chunks": [
+      "親友には",
+      "何を",
+      "言っても",
+      "分かって",
+      "くれると",
+      "信じてるよ。"
+    ],
+    "translation": "我相信對好朋友來說，無論我說什麼他都能理解。",
+    "english": "I trust that my best friend will understand no matter what I say.",
+    "difficulty": "medium",
+    "tags": [
+      "friends",
+      "N3"
+    ]
+  },
+  {
+    "id": "1264",
+    "japanese": "恋人と 価値観が 合わないと、 やっぱり 疲れるよね。",
+    "chunks": [
+      "恋人と",
+      "価値観が",
+      "合わないと、",
+      "やっぱり",
+      "疲れるよね。"
+    ],
+    "translation": "跟戀人的價值觀不合的話，果然還是很累吧。",
+    "english": "When you don't share the same values as your partner, it's definitely exhausting, isn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "relationship",
+      "N3"
+    ]
+  },
+  {
+    "id": "1265",
+    "japanese": "昔の 友達に 久しぶりに 会ったけど、 全然 変わってなかったよ。",
+    "chunks": [
+      "昔の",
+      "友達に",
+      "久しぶりに",
+      "会ったけど、",
+      "全然",
+      "変わってなかったよ。"
+    ],
+    "translation": "久久地跟以前的朋友見面，對方完全沒變呢。",
+    "english": "I met an old friend after a long time, and they hadn't changed at all.",
+    "difficulty": "easy",
+    "tags": [
+      "friends",
+      "N4"
+    ]
+  },
+  {
+    "id": "1266",
+    "japanese": "親の 言うことは 正論だけど、 正直 納得いかない 部分もあるし。",
+    "chunks": [
+      "親の",
+      "言うことは",
+      "正論だけど、",
+      "正直",
+      "納得いかない",
+      "部分も",
+      "あるし。"
+    ],
+    "translation": "父母說的雖然是正論，但坦白說也有我不認同的部分。",
+    "english": "What my parents say is logically correct, but honestly, there are parts I can't agree with.",
+    "difficulty": "hard",
+    "tags": [
+      "family",
+      "N2"
+    ]
+  },
+  {
+    "id": "1267",
+    "japanese": "付き合いが 長い 友達とは、 無言で いても 気にせず 過ごせるよね。",
+    "chunks": [
+      "付き合いが",
+      "長い",
+      "友達とは、",
+      "無言で",
+      "いても",
+      "気にせず",
+      "過ごせるよね。"
+    ],
+    "translation": "跟交情深的朋友在一起，就算沉默不語也能自在地度過吧。",
+    "english": "With friends you've known for a long time, you can spend time together in silence without worrying about it, right?",
+    "difficulty": "hard",
+    "tags": [
+      "friends",
+      "N2"
+    ]
+  },
+  {
+    "id": "1268",
+    "japanese": "たまには 喧嘩も するけど、 それで 逆に 絆が 深まると思うんだ。",
+    "chunks": [
+      "たまには",
+      "喧嘩も",
+      "するけど、",
+      "それで",
+      "逆に",
+      "絆が",
+      "深まると思うんだ。"
+    ],
+    "translation": "雖然偶爾會吵架，但我認為這樣反而會加深彼此的羈絆。",
+    "english": "We fight once in a while, but I think that actually deepens our bond.",
+    "difficulty": "medium",
+    "tags": [
+      "relationship",
+      "N3"
+    ]
+  },
+  {
+    "id": "1269",
+    "japanese": "ここの 山の 景色は 絶景だけど、 冬は 雪が 深くて 歩くのが 大変そう。",
+    "chunks": [
+      "ここの",
+      "山の",
+      "景色は",
+      "絶景だけど、",
+      "冬は",
+      "雪が",
+      "深くて",
+      "歩くのが大変そう。"
+    ],
+    "translation": "這座山的景色雖然絕美，但冬天積雪深，走起來好像很辛苦。",
+    "english": "The scenery of this mountain is breathtaking, but it looks like walking would be tough in winter because of the deep snow.",
+    "difficulty": "hard",
+    "tags": [
+      "nature",
+      "N2"
+    ]
+  },
+  {
+    "id": "1270",
+    "japanese": "やっと 春に なったね。 桜が 咲き始めたら 一緒に お花見に 行かない？",
+    "chunks": [
+      "やっと",
+      "春に",
+      "なったね。",
+      "桜が",
+      "咲き始めたら",
+      "一緒に",
+      "お花見に",
+      "行かない？"
+    ],
+    "translation": "終於到春天了呢。等櫻花開始開的時候，要不要一起去賞花？",
+    "english": "Spring is finally here. Once the cherry blossoms start blooming, do you want to go flower viewing together?",
+    "difficulty": "easy",
+    "tags": [
+      "seasons",
+      "N4"
+    ]
+  },
+  {
+    "id": "1271",
+    "japanese": "台風が 来るみたいだから、 窓の 対策を しっかり しておいた方が 安心だね。",
+    "chunks": [
+      "台風が",
+      "来るみたいだから、",
+      "窓の",
+      "対策を",
+      "しっかり",
+      "しておいた方が",
+      "安心だね。"
+    ],
+    "translation": "好像颱風要來了，把窗戶的防護措施做好比較安心吧。",
+    "english": "It looks like a typhoon is coming, so it'll be more reassuring to properly prepare the windows.",
+    "difficulty": "medium",
+    "tags": [
+      "weather",
+      "N3"
+    ]
+  },
+  {
+    "id": "1272",
+    "japanese": "たまには 都市を 離れて、 自然に 囲まれて ゆっくり 過ごしたいよね。",
+    "chunks": [
+      "たまには",
+      "都市を",
+      "離れて、",
+      "自然に",
+      "囲まれて",
+      "ゆっくり",
+      "過ごしたいよね。"
+    ],
+    "translation": "偶爾想離開都市，在被自然環繞的環境下悠閒地度過呢。",
+    "english": "Every once in a while, I just want to leave the city and spend some relaxing time surrounded by nature.",
+    "difficulty": "medium",
+    "tags": [
+      "nature",
+      "N3"
+    ]
+  },
+  {
+    "id": "1273",
+    "japanese": "最近 流行ってる あの映画、 もう 見に行った？",
+    "chunks": [
+      "最近",
+      "流行ってる",
+      "あの映画、",
+      "もう",
+      "見に",
+      "行った？"
+    ],
+    "translation": "最近很流行的那部電影，你已經去看過了嗎？",
+    "english": "Have you already gone to see that movie that's popular lately?",
+    "difficulty": "easy",
+    "tags": [
+      "movies",
+      "N4"
+    ]
+  },
+  {
+    "id": "1274",
+    "japanese": "このゲーム、 グラフィックは 最高だけど 操作性が ちょっと 難しいんだよね。",
+    "chunks": [
+      "このゲーム、",
+      "グラフィックは",
+      "最高だけど",
+      "操作性が",
+      "ちょっと",
+      "難しいんだよね。"
+    ],
+    "translation": "這個遊戲雖然畫面頂尖，但操作性有點困難呢。",
+    "english": "The graphics of this game are amazing, but the controls are a bit difficult.",
+    "difficulty": "medium",
+    "tags": [
+      "games",
+      "N3"
+    ]
+  },
+  {
+    "id": "1275",
+    "japanese": "週末に 配信で 映画を 見ようと 思ったけど、 結局 寝落ちしちゃったよ。",
+    "chunks": [
+      "週末に",
+      "配信で",
+      "映画を",
+      "見ようと",
+      "思ったけど、",
+      "結局",
+      "寝落ちしちゃったよ。"
+    ],
+    "translation": "本來打算週末用串流看電影，結果不小心睡著了。",
+    "english": "I planned to watch a movie via streaming over the weekend, but I ended up falling asleep.",
+    "difficulty": "medium",
+    "tags": [
+      "movies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1276",
+    "japanese": "あのアニメの 展開、 まさか あんな風に なるなんて 予想外だったわ。",
+    "chunks": [
+      "あのアニメの",
+      "展開、",
+      "まさか",
+      "あんな風に",
+      "なるなんて",
+      "予想外だったわ。"
+    ],
+    "translation": "那部動畫的劇情發展，沒想到會變成那樣，真是出乎意料。",
+    "english": "I never expected the plot of that anime to turn out like that.",
+    "difficulty": "hard",
+    "tags": [
+      "anime",
+      "N2"
+    ]
+  },
+  {
+    "id": "1277",
+    "japanese": "RPGなら、 ストーリー重視の 作品が 一番 好きだな。",
+    "chunks": [
+      "RPGなら、",
+      "ストーリー重視の",
+      "作品が",
+      "一番",
+      "好きだな。"
+    ],
+    "translation": "如果是 RPG 的話，我最喜歡注重劇情的作品。",
+    "english": "When it comes to RPGs, I like story-driven titles the most.",
+    "difficulty": "easy",
+    "tags": [
+      "games",
+      "N4"
+    ]
+  },
+  {
+    "id": "1278",
+    "japanese": "たまには 映画館の 大きな スクリーンで 迫力を 感じたいよね。",
+    "chunks": [
+      "たまには",
+      "映画館の",
+      "大きな",
+      "スクリーンで",
+      "迫力を",
+      "感じたいよね。"
+    ],
+    "translation": "偶爾還是想在電影院的大螢幕感受那種震撼感呢。",
+    "english": "Every once in a while, I want to feel the impact on a big movie theater screen.",
+    "difficulty": "medium",
+    "tags": [
+      "movies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1279",
+    "japanese": "今のゲームは 自由度が 高すぎて、 何から 手をつければ いいか 分からないよ。",
+    "chunks": [
+      "今のゲームは",
+      "自由度が",
+      "高すぎて、",
+      "何から",
+      "手をつければ",
+      "いいか",
+      "分からないよ。"
+    ],
+    "translation": "現在的人遊戲自由度太高了，高到我不知道該從哪裡著手。",
+    "english": "Current games have too much freedom; I don't know where to start.",
+    "difficulty": "hard",
+    "tags": [
+      "games",
+      "N2"
+    ]
+  },
+  {
+    "id": "1280",
+    "japanese": "最近 英語の勉強を 始めたんだけど、 単語を 覚えるのが 結構 大変なんだよね。",
+    "chunks": [
+      "最近",
+      "英語の勉強を",
+      "始めたんだけど、",
+      "単語を",
+      "覚えるのが",
+      "結構",
+      "大変なんだよね。"
+    ],
+    "translation": "最近開始學英文了，但記單字還挺辛苦的呢。",
+    "english": "I started studying English recently, but memorizing vocabulary is quite tough.",
+    "difficulty": "easy",
+    "tags": [
+      "language learning",
+      "N4"
+    ]
+  },
+  {
+    "id": "1281",
+    "japanese": "独学で やるのも いいけど、 やっぱり 先生に 教わった 方が 効率的だと思うよ。",
+    "chunks": [
+      "独学で",
+      "やるのも",
+      "いいけど、",
+      "やっぱり",
+      "先生に",
+      "教わった",
+      "方が",
+      "効率的だと思うよ。"
+    ],
+    "translation": "雖然自學也不錯，但我覺得還是跟老師學比較有效率。",
+    "english": "Self-studying is fine, but I think it's more efficient to be taught by a teacher.",
+    "difficulty": "medium",
+    "tags": [
+      "study method",
+      "N3"
+    ]
+  },
+  {
+    "id": "1282",
+    "japanese": "大学の 講義が 多すぎて、 課題を 終わらせる 時間が 全然 足りないんだ。",
+    "chunks": [
+      "大学の",
+      "講義が",
+      "多すぎて、",
+      "課題を",
+      "終わらせる",
+      "時間が",
+      "全然",
+      "足りないんだ。"
+    ],
+    "translation": "大學的課程太多了，完全沒有足夠的時間完成作業。",
+    "english": "There are too many university lectures, so I don't have nearly enough time to finish my assignments.",
+    "difficulty": "medium",
+    "tags": [
+      "university",
+      "N3"
+    ]
+  },
+  {
+    "id": "1283",
+    "japanese": "大人になってから 新しいことを 学ぶのは、 子供の 時より 難しい気がする。",
+    "chunks": [
+      "大人になってから",
+      "新しいことを",
+      "学ぶのは、",
+      "子供の",
+      "時より",
+      "難しい",
+      "気がする。"
+    ],
+    "translation": "我覺得長大後學習新事物，比小時候要困難。",
+    "english": "I feel like learning new things as an adult is harder than when I was a child.",
+    "difficulty": "medium",
+    "tags": [
+      "lifelong learning",
+      "N3"
+    ]
+  },
+  {
+    "id": "1284",
+    "japanese": "ネットの 動画で勉強できるから、 今の時代は 本当に 便利になったよね。",
+    "chunks": [
+      "ネットの",
+      "動画で",
+      "勉強できるから、",
+      "今の時代は",
+      "本当に",
+      "便利に",
+      "なったよね。"
+    ],
+    "translation": "現在可以用網路影片學習，這個時代真的變得非常方便呢。",
+    "english": "Since we can study with online videos, the current era has truly become convenient.",
+    "difficulty": "easy",
+    "tags": [
+      "technology",
+      "N4"
+    ]
+  },
+  {
+    "id": "1285",
+    "japanese": "資格試験に 合格したくて、 毎日 仕事の あとに 図書館に 通ってるんだ。",
+    "chunks": [
+      "資格試験に",
+      "合格したくて、",
+      "毎日",
+      "仕事の",
+      "あとに",
+      "図書館に",
+      "通ってるんだ。"
+    ],
+    "translation": "因為想通過資格考試，所以我每天下班後都會去圖書館。",
+    "english": "I want to pass the certification exam, so I go to the library every day after work.",
+    "difficulty": "medium",
+    "tags": [
+      "certification",
+      "N3"
+    ]
+  },
+  {
+    "id": "1286",
+    "japanese": "AIが 進化したことで、 教育の あり方が 根本的に 変わるんじゃないかと 思うよ。",
+    "chunks": [
+      "AIが",
+      "進化したことで、",
+      "教育の",
+      "あり方が",
+      "根本的に",
+      "変わるん",
+      "じゃないかと",
+      "思うよ。"
+    ],
+    "translation": "我想隨著AI的進化，教育的形式可能會發生根本性的改變。",
+    "english": "I think that with the evolution of AI, the way education is approached might fundamentally change.",
+    "difficulty": "hard",
+    "tags": [
+      "AI",
+      "N2"
+    ]
+  },
+  {
+    "id": "1287",
+    "japanese": "最近の スマホって、 カメラの 性能が すごすぎて びっくりするよね。",
+    "chunks": [
+      "最近の",
+      "スマホって、",
+      "カメラの",
+      "性能が",
+      "すごすぎて",
+      "びっくりするよね。"
+    ],
+    "translation": "最近的手機相機性能強到令人驚訝吧。",
+    "english": "Recent smartphones have such amazing camera performance, it's surprising, isn't it?",
+    "difficulty": "easy",
+    "tags": [
+      "technology",
+      "N4"
+    ]
+  },
+  {
+    "id": "1288",
+    "japanese": "SNSを やりすぎると、 ついつい 時間を 忘れて 没頭しちゃうんだよね。",
+    "chunks": [
+      "SNSを",
+      "やりすぎると、",
+      "ついつい",
+      "時間を",
+      "忘れて",
+      "没頭しちゃうんだよね。"
+    ],
+    "translation": "社交媒體玩太多的話，不自覺地就會沉迷其中而忘記時間呢。",
+    "english": "When you spend too much time on social media, you unintentionally get absorbed and forget about time.",
+    "difficulty": "medium",
+    "tags": [
+      "social media",
+      "N3"
+    ]
+  },
+  {
+    "id": "1289",
+    "japanese": "昔の携帯に 比べたら、 今のアプリって 本当に 便利になったもんだね。",
+    "chunks": [
+      "昔の携帯に",
+      "比べたら、",
+      "今のアプリって",
+      "本当に",
+      "便利に",
+      "なったもんだね。"
+    ],
+    "translation": "跟以前的手機相比，現在的 App 真的變得非常方便了呢。",
+    "english": "Compared to old mobile phones, current apps have really become convenient, haven't they?",
+    "difficulty": "hard",
+    "tags": [
+      "technology",
+      "N2"
+    ]
+  },
+  {
+    "id": "1290",
+    "japanese": "最近 体力が 落ちた気が するから、 また 運動 始めようかな。",
+    "chunks": [
+      "最近",
+      "体力が",
+      "落ちた気が",
+      "するから、",
+      "また",
+      "運動",
+      "始めようかな。"
+    ],
+    "translation": "最近覺得體力下降了，在想是不是該重新開始運動了。",
+    "english": "I feel like my physical strength has dropped lately, so I'm thinking of starting exercise again.",
+    "difficulty": "easy",
+    "tags": [
+      "fitness",
+      "N4"
+    ]
+  },
+  {
+    "id": "1291",
+    "japanese": "ジムに 通い始めてから、 体が かるくなったし 睡眠の 質も 上がったよ。",
+    "chunks": [
+      "ジムに",
+      "通い始めてから、",
+      "体が",
+      "かるくなったし",
+      "睡眠の",
+      "質も",
+      "上がったよ。"
+    ],
+    "translation": "自從開始去健身房後，身體變得輕盈了，睡眠品質也提高了。",
+    "english": "Since I started going to the gym, my body feels lighter and the quality of my sleep has improved.",
+    "difficulty": "medium",
+    "tags": [
+      "fitness",
+      "N3"
+    ]
+  },
+  {
+    "id": "1292",
+    "japanese": "無理して 痩せようと するより、 まずは 生活習慣を 見直した ほうが いいよ。",
+    "chunks": [
+      "無理して",
+      "痩せようと",
+      "するより、",
+      "まずは",
+      "生活習慣を",
+      "見直した",
+      "ほうが",
+      "いいよ。"
+    ],
+    "translation": "比起強迫自己減肥，首先重新檢視生活習慣會比較好喔。",
+    "english": "Rather than forcing yourself to lose weight, it's better to first review your lifestyle habits.",
+    "difficulty": "hard",
+    "tags": [
+      "health",
+      "N2"
+    ]
+  },
+  {
+    "id": "1293",
+    "japanese": "プロの 試合を 見ると、 精神力の 強さが 凄すぎて 圧倒されるよね。",
+    "chunks": [
+      "プロの",
+      "試合を",
+      "見ると、",
+      "精神力の",
+      "強さが",
+      "凄すぎて",
+      "圧倒される",
+      "よね。"
+    ],
+    "translation": "看職業比賽時，那種強大的精神力真的讓人感到震撼吧。",
+    "english": "When you watch professional matches, the strength of their mental fortitude is so amazing that it's overwhelming, isn't it?",
+    "difficulty": "hard",
+    "tags": [
+      "sports",
+      "N2"
+    ]
+  },
+  {
+    "id": "1294",
+    "japanese": "この バッグ、 デザインは 可愛いけど、 ちょっと 高すぎるかな。",
+    "chunks": [
+      "この",
+      "バッグ、",
+      "デザインは",
+      "可愛いけど、",
+      "ちょっと",
+      "高すぎるかな。"
+    ],
+    "translation": "這個包包雖然設計很可愛，但是不是有點太貴了呢？",
+    "english": "This bag has a cute design, but maybe it's a bit too expensive.",
+    "difficulty": "easy",
+    "tags": [
+      "shopping",
+      "N4"
+    ]
+  },
+  {
+    "id": "1295",
+    "japanese": "あそこの スーパー、 明日まで 半額 セールを やってるらしいよ。",
+    "chunks": [
+      "あそこの",
+      "スーパー、",
+      "明日まで",
+      "半額",
+      "セールを",
+      "やってる",
+      "らしいよ。"
+    ],
+    "translation": "聽說那家超市到明天為止都有半價特賣喔。",
+    "english": "I heard that supermarket over there is having a half-price sale until tomorrow.",
+    "difficulty": "medium",
+    "tags": [
+      "grocery",
+      "N3"
+    ]
+  },
+  {
+    "id": "1296",
+    "japanese": "店員さんに おすすめを 聞いてみたけど、 結局 何を 買えばいいか 分からなかった。",
+    "chunks": [
+      "店員さんに",
+      "おすすめを",
+      "聞いてみたけど、",
+      "結局",
+      "何を",
+      "買えばいいか",
+      "分からなかった。"
+    ],
+    "translation": "雖然問了店員推薦什麼，但結果還是不知道該買什麼好。",
+    "english": "I tried asking the clerk for a recommendation, but in the end, I didn't know what to buy.",
+    "difficulty": "hard",
+    "tags": [
+      "customer service",
+      "N2"
+    ]
+  },
+  {
+    "id": "1297",
+    "japanese": "この 商品、 評判は いいけど、 実際に 使うと 使いにくくないかな？",
+    "chunks": [
+      "この",
+      "商品、",
+      "評判は",
+      "いいけど、",
+      "実際に",
+      "使うと",
+      "使いにくくないかな？"
+    ],
+    "translation": "這個產品雖然評價很高，但實際上用起來會不會很難用呢？",
+    "english": "This product has good reviews, but I wonder if it's actually difficult to use?",
+    "difficulty": "hard",
+    "tags": [
+      "product review",
+      "N2"
+    ]
+  },
+  {
+    "id": "1298",
+    "japanese": "SNSの 発信力は すごいけど、 嘘が 広まりやすいのが 怖いよね。",
+    "chunks": [
+      "SNSの",
+      "発信力は",
+      "すごいけど、",
+      "嘘が",
+      "広まりやすいのが",
+      "怖いよね。"
+    ],
+    "translation": "社群媒體的傳播力很強，但謊言很容易傳播這點挺可怕的吧。",
+    "english": "The power of social media is amazing, but it's scary how easily lies can spread, isn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "technology",
+      "N3"
+    ]
+  },
+  {
+    "id": "1299",
+    "japanese": "多様性を 認めるって 言っても、 実際に 受け入れるのは 簡単じゃないよね。",
+    "chunks": [
+      "多様性を",
+      "認めるって",
+      "言っても、",
+      "実際に",
+      "受け入れるのは",
+      "簡単じゃ",
+      "ないよね。"
+    ],
+    "translation": "雖說要認同多樣性，但實際上要接納並不容易吧。",
+    "english": "Even if we talk about recognizing diversity, actually accepting it isn't easy, is it?",
+    "difficulty": "hard",
+    "tags": [
+      "society",
+      "N2"
+    ]
+  },
+  {
+    "id": "1300",
+    "japanese": "都会の 生活は 便利だけど、 人間関係が 希薄な 感じが して 寂しいよ。",
+    "chunks": [
+      "都会の",
+      "生活は",
+      "便利だけど、",
+      "人間関係が",
+      "希薄な",
+      "感じがして",
+      "寂しいよ。"
+    ],
+    "translation": "都市生活雖然方便，但感覺人際關係很淡薄，覺得很寂寞。",
+    "english": "City life is convenient, but it's lonely because it feels like human relationships are superficial.",
+    "difficulty": "hard",
+    "tags": [
+      "urban life",
+      "N2"
+    ]
+  },
+  {
+    "id": "1301",
+    "japanese": "伝統を 残すのも 大事だけど、 時代に 合わせて 変えていく 必要が あると思う。",
+    "chunks": [
+      "伝統を",
+      "残すのも",
+      "大事だけど、",
+      "時代に",
+      "合わせて",
+      "変えていく",
+      "必要が",
+      "あると思う。"
+    ],
+    "translation": "保留傳統雖然重要，但我覺得有必要隨著時代而改變。",
+    "english": "Preserving tradition is important, but I think there's a need to change it to fit the times.",
+    "difficulty": "medium",
+    "tags": [
+      "tradition",
+      "N3"
+    ]
+  },
+  {
+    "id": "1302",
+    "japanese": "やっぱり 家族の 形って、 時代によって どんどん 変わっていくものなんだね。",
+    "chunks": [
+      "やっぱり",
+      "家族の",
+      "形って、",
+      "時代によって",
+      "どんどん",
+      "変わっていく",
+      "ものなんだね。"
+    ],
+    "translation": "果然家庭的形式會隨著時代不斷地改變呢。",
+    "english": "As expected, the form of a family is something that keeps changing depending on the era.",
+    "difficulty": "easy",
+    "tags": [
+      "family",
+      "N4"
+    ]
+  },
+  {
+    "id": "1303",
+    "japanese": "来年こそは 英語を 完璧に して 海外で 働いて みたいんだ。",
+    "chunks": [
+      "来年こそは",
+      "英語を",
+      "完璧に",
+      "して",
+      "海外で",
+      "働いて",
+      "みたいんだ。"
+    ],
+    "translation": "明年我一定要把英文練好，想試試在國外工作。",
+    "english": "I really want to master English next year and try working abroad.",
+    "difficulty": "medium",
+    "tags": [
+      "plans",
+      "N3"
+    ]
+  },
+  {
+    "id": "1304",
+    "japanese": "将来のこと 考えると、 正直 何を したいいのか 分からなく なるよ。",
+    "chunks": [
+      "将来のこと",
+      "考えると、",
+      "正直",
+      "何を",
+      "したいいのか",
+      "分からなく",
+      "なるよ。"
+    ],
+    "translation": "想到將來的事，老實說我會變得不知道想做什麼。",
+    "english": "To be honest, when I think about the future, I get confused about what I actually want to do.",
+    "difficulty": "medium",
+    "tags": [
+      "aspirations",
+      "N3"
+    ]
+  },
+  {
+    "id": "1305",
+    "japanese": "昔から ピアノが 弾けるように なりたいと 思って 練習してたんだ。",
+    "chunks": [
+      "昔から",
+      "ピアノが",
+      "弾けるように",
+      "なりたいと",
+      "思って",
+      "練習して",
+      "たんだ。"
+    ],
+    "translation": "我從很久以前就因為想能彈鋼琴而一直在練習。",
+    "english": "I've been practicing since a long time ago because I wanted to be able to play the piano.",
+    "difficulty": "medium",
+    "tags": [
+      "hobbies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1306",
+    "japanese": "理想を 追求 するのも いいけど、 現実的な プランも 立てなきゃね。",
+    "chunks": [
+      "理想を",
+      "追求するのも",
+      "いいけど、",
+      "現実的な",
+      "プランも",
+      "立てなきゃ",
+      "ね。"
+    ],
+    "translation": "追求理想雖然很好，但也得制定現實的計劃才行呢。",
+    "english": "Pursuing ideals is all well and good, but we have to make realistic plans too, right?",
+    "difficulty": "hard",
+    "tags": [
+      "opinions",
+      "N2"
+    ]
+  },
+  {
+    "id": "1307",
+    "japanese": "この 匂い 嗅ぐと、 なぜか 昔の 夏休み を 思い出すんだよね。",
+    "chunks": [
+      "この",
+      "匂い",
+      "嗅ぐと、",
+      "なぜか",
+      "昔の",
+      "夏休みを",
+      "思い出すん",
+      "だよね。"
+    ],
+    "translation": "聞到這個味道，不知為何就會想起以前的暑假呢。",
+    "english": "Whenever I smell this, for some reason, it reminds me of summer vacations from the past.",
+    "difficulty": "medium",
+    "tags": [
+      "senses",
+      "N3"
+    ]
+  },
+  {
+    "id": "1308",
+    "japanese": "久しぶりに 故郷に 帰ったら、 見慣れた 景色が 少し 変わってて びっくりした。",
+    "chunks": [
+      "久しぶりに",
+      "故郷に",
+      "帰ったら、",
+      "見慣れた",
+      "景色が",
+      "少し",
+      "変わってて",
+      "びっくりした。"
+    ],
+    "translation": "好久沒回故鄉，發現熟悉的景色稍微改變了，讓我很驚訝。",
+    "english": "When I returned to my hometown after a long time, I was surprised to see that the familiar scenery had changed a bit.",
+    "difficulty": "medium",
+    "tags": [
+      "hometown",
+      "N3"
+    ]
+  },
+  {
+    "id": "1309",
+    "japanese": "あの頃の 自分に アドバイス できるなら、 もっと 勉強しろ って 言いたいよ。",
+    "chunks": [
+      "あの頃の",
+      "自分に",
+      "アドバイス",
+      "できるなら、",
+      "もっと",
+      "勉強しろ",
+      "って",
+      "言いたいよ。"
+    ],
+    "translation": "如果能給那時的自己建議，我想對他說再多讀點書吧。",
+    "english": "If I could give my past self some advice, I'd want to tell them to study harder.",
+    "difficulty": "hard",
+    "tags": [
+      "regret",
+      "N2"
+    ]
+  },
+  {
+    "id": "1310",
+    "japanese": "昔 聴いてた 音楽を ふと 流すと、 急に 切ない 気持ちに なるよね。",
+    "chunks": [
+      "昔",
+      "聴いてた",
+      "音楽を",
+      "ふと",
+      "流すと、",
+      "急に",
+      "切ない",
+      "気持ちになるよね。"
+    ],
+    "translation": "偶然播放起以前聽的音樂，突然會感到很心酸吧。",
+    "english": "When you suddenly play music you used to listen to, you suddenly feel a sense of sadness, don't you?",
+    "difficulty": "medium",
+    "tags": [
+      "music",
+      "N3"
+    ]
+  },
+  {
+    "id": "1311",
+    "japanese": "アルバムを 見返してたら、 忘れてた 恥ずかしい 記憶が 蘇ってきたよ。",
+    "chunks": [
+      "アルバムを",
+      "見返してたら、",
+      "忘れてた",
+      "恥ずかしい",
+      "記憶が",
+      "蘇って",
+      "きたよ。"
+    ],
+    "translation": "翻看相簿的時候，被遺忘的尷尬記憶又湧上心頭了。",
+    "english": "While looking back through the photo album, some embarrassing memories I'd forgotten came rushing back.",
+    "difficulty": "hard",
+    "tags": [
+      "photos",
+      "N2"
+    ]
+  },
+  {
+    "id": "1312",
+    "japanese": "ここら辺で おすすめの カフェ、 どこか 知らない？",
+    "chunks": [
+      "ここら辺で",
+      "おすすめの",
+      "カフェ、",
+      "どこか",
+      "知らない？"
+    ],
+    "translation": "這附近有推薦的咖啡廳嗎？你知道哪裡有嗎？",
+    "english": "Do you know any recommended cafes around here?",
+    "difficulty": "easy",
+    "tags": [
+      "recommendation",
+      "N4"
+    ]
+  },
+  {
+    "id": "1313",
+    "japanese": "もし 時間が あるなら、 一回 あの 展覧会に 行ってみたら どうかな？",
+    "chunks": [
+      "もし",
+      "時間が",
+      "あるなら、",
+      "一回",
+      "あの",
+      "展覧会に",
+      "行ってみたら",
+      "どうかな？"
+    ],
+    "translation": "如果你有時間的話，要不要試著去看看那個展覽？",
+    "english": "If you have time, why don't you try going to that exhibition once?",
+    "difficulty": "medium",
+    "tags": [
+      "recommendation",
+      "N3"
+    ]
+  },
+  {
+    "id": "1314",
+    "japanese": "旅行に行くなら、 事前に 予約して おいた ほうが 安心だと思うよ。",
+    "chunks": [
+      "旅行に",
+      "行くなら、",
+      "事前に",
+      "予約して",
+      "おいた",
+      "ほうが",
+      "安心だと",
+      "思うよ。"
+    ],
+    "translation": "如果要去旅行的話，我覺得事先預約好會比較安心。",
+    "english": "If you're going on a trip, I think it's safer to make reservations in advance.",
+    "difficulty": "medium",
+    "tags": [
+      "travel",
+      "N3"
+    ]
+  },
+  {
+    "id": "1315",
+    "japanese": "最近 眠れないなら、 寝る前に 温かい 飲み物を 飲んでみたら？",
+    "chunks": [
+      "最近",
+      "眠れないなら、",
+      "寝る前に",
+      "温かい",
+      "飲み物を",
+      "飲んでみたら？"
+    ],
+    "translation": "如果最近睡不著的話，試試看在睡前喝點熱飲如何？",
+    "english": "If you haven't been able to sleep lately, why not try drinking something warm before bed?",
+    "difficulty": "easy",
+    "tags": [
+      "health",
+      "N4"
+    ]
+  },
+  {
+    "id": "1316",
+    "japanese": "休みの日は 大抵 家で ゴロゴロして過ごす ことが多いかな。",
+    "chunks": [
+      "休みの日は",
+      "大抵",
+      "家で",
+      "ゴロゴロして",
+      "過ごす",
+      "ことが",
+      "多いかな。"
+    ],
+    "translation": "休息日通常大多是在家懶散地度過吧。",
+    "english": "On my days off, I usually spend most of my time just lounging around at home.",
+    "difficulty": "medium",
+    "tags": [
+      "routine",
+      "N3"
+    ]
+  },
+  {
+    "id": "1317",
+    "japanese": "たまに キャンプに 行くけど、 準備が めんどくさくて 諦めそうになるよ。",
+    "chunks": [
+      "たまに",
+      "キャンプに",
+      "行くけど、",
+      "準備が",
+      "めんどくさくて",
+      "諦めそうに",
+      "なるよ。"
+    ],
+    "translation": "雖然偶爾會去露營，但準備工作太麻煩，讓人差點想放棄。",
+    "english": "I go camping once in a while, but the preparation is such a pain that I almost give up.",
+    "difficulty": "medium",
+    "tags": [
+      "hobbies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1318",
+    "japanese": "毎朝 コーヒーを 飲むまで、 どうしても 頭が シャキッと しないんだ。",
+    "chunks": [
+      "毎朝",
+      "コーヒーを",
+      "飲むまで、",
+      "どうしても",
+      "頭が",
+      "シャキッと",
+      "しないんだ。"
+    ],
+    "translation": "每天早上在喝咖啡之前，腦袋怎麼都沒辦法清醒。",
+    "english": "Until I drink coffee every morning, my head just won't wake up properly.",
+    "difficulty": "hard",
+    "tags": [
+      "routine",
+      "N2"
+    ]
+  },
+  {
+    "id": "1319",
+    "japanese": "週末 どこか 行く予定 あるの？ なければ 一緒に 映画 行かない？",
+    "chunks": [
+      "週末",
+      "どこか",
+      "行く予定",
+      "あるの？",
+      "なければ",
+      "一緒に",
+      "映画",
+      "行かない？"
+    ],
+    "translation": "週末有打算去哪裡嗎？如果沒有的話，要不要一起去看電影？",
+    "english": "Do you have any plans to go anywhere this weekend? If not, want to go see a movie together?",
+    "difficulty": "easy",
+    "tags": [
+      "social",
+      "N4"
+    ]
+  },
+  {
+    "id": "1320",
+    "japanese": "昔から 料理が 好きで、 今では 結構 自信のある 料理が 作れるよ。",
+    "chunks": [
+      "昔から",
+      "料理が",
+      "好きで、",
+      "今では",
+      "結構",
+      "自信のある",
+      "料理が",
+      "作れるよ。"
+    ],
+    "translation": "我從小就喜歡料理，現在已經能做出相當有自信的菜餚了。",
+    "english": "I've liked cooking since a long time ago, and now I can make a few dishes I'm quite confident in.",
+    "difficulty": "medium",
+    "tags": [
+      "hobbies",
+      "N3"
+    ]
+  },
+  {
+    "id": "1321",
+    "japanese": "この 料理、 味付け が ちょっと 濃い気が するね。",
+    "chunks": [
+      "この",
+      "料理、",
+      "味付けが",
+      "ちょっと",
+      "濃い気が",
+      "するね。"
+    ],
+    "translation": "這道菜的調味感覺稍微重了一點呢。",
+    "english": "I feel like the seasoning for this dish is a bit too strong.",
+    "difficulty": "medium",
+    "tags": [
+      "food",
+      "N3"
+    ]
+  },
+  {
+    "id": "1322",
+    "japanese": "ネットで 見た レシピ通りに やったのに、 なぜか 失敗しちゃった。",
+    "chunks": [
+      "ネットで",
+      "見た",
+      "レシピ通りに",
+      "やったのに、",
+      "なぜか",
+      "失敗しちゃった。"
+    ],
+    "translation": "明明按照在網路上看到的食譜做了，但不知為何失敗了。",
+    "english": "I followed the recipe I saw online, but for some reason, I messed it up.",
+    "difficulty": "medium",
+    "tags": [
+      "recipe",
+      "N3"
+    ]
+  },
+  {
+    "id": "1323",
+    "japanese": "最近は 体に いいものを 食べようと 意識して 生活してるんだ。",
+    "chunks": [
+      "最近は",
+      "体に",
+      "いいものを",
+      "食べようと",
+      "意識して",
+      "生活してるんだ。"
+    ],
+    "translation": "最近我有意識地在生活中嘗試吃對身體有益的食物。",
+    "english": "Lately, I've been mindful of eating things that are good for my health.",
+    "difficulty": "hard",
+    "tags": [
+      "health",
+      "N2"
+    ]
+  },
+  {
+    "id": "1324",
+    "japanese": "この ケーキ、 甘すぎないし 食感 も 最高だね！",
+    "chunks": [
+      "この",
+      "ケーキ、",
+      "甘すぎないし",
+      "食感も",
+      "最高だね！"
+    ],
+    "translation": "這個蛋糕不會太甜，口感也太棒了！",
+    "english": "This cake isn't too sweet and the texture is amazing!",
+    "difficulty": "easy",
+    "tags": [
+      "dessert",
+      "N4"
+    ]
+  },
+  {
+    "id": "1325",
+    "japanese": "自炊 を 始めてから、 意外と お金 が 浮くようになったよ。",
+    "chunks": [
+      "自炊を",
+      "始めてから、",
+      "意外と",
+      "お金が",
+      "浮くように",
+      "なったよ。"
+    ],
+    "translation": "開始自己下廚後，出乎意料地省了不少錢。",
+    "english": "Since I started cooking for myself, I've surprisingly been able to save some money.",
+    "difficulty": "hard",
+    "tags": [
+      "cooking",
+      "N2"
+    ]
+  },
+  {
+    "id": "1326",
+    "japanese": "一人旅だと 自由だけど、 美味しいものを 分け合えないのが 残念だよね。",
+    "chunks": [
+      "一人旅だと",
+      "自由だけど、",
+      "美味しいものを",
+      "分け合えないのが",
+      "残念だよね。"
+    ],
+    "translation": "一個人旅行雖然自由，但沒辦法分享美食很可惜吧。",
+    "english": "Traveling alone is freeing, but it's a shame you can't share delicious food with anyone, right?",
+    "difficulty": "medium",
+    "tags": [
+      "experience",
+      "N3"
+    ]
+  },
+  {
+    "id": "1327",
+    "japanese": "せっかく 海外に 行くなら、 地元の 人が 行く店に 入ってみたい。",
+    "chunks": [
+      "せっかく",
+      "海外に",
+      "行くなら、",
+      "地元の",
+      "人が",
+      "行く店に",
+      "入ってみたい。"
+    ],
+    "translation": "既然難得去了國外，我想試著進入當地人才會去的店。",
+    "english": "Since I'm going abroad, I want to try visiting shops where the locals go.",
+    "difficulty": "medium",
+    "tags": [
+      "tourism",
+      "N3"
+    ]
+  },
+  {
+    "id": "1328",
+    "japanese": "道に 迷っちゃったけど、 おかげで 素敵な 景色に 出会えたよ。",
+    "chunks": [
+      "道に",
+      "迷っちゃったけど、",
+      "おかげで",
+      "素敵な",
+      "景色に",
+      "出会えたよ。"
+    ],
+    "translation": "雖然迷路了，但多虧如此才遇到了這麼美的風景。",
+    "english": "I got lost, but thanks to that, I came across a wonderful view.",
+    "difficulty": "medium",
+    "tags": [
+      "adventure",
+      "N4"
+    ]
+  },
+  {
+    "id": "1329",
+    "japanese": "最近の 観光地は どこも 混みすぎてて、 ゆっくり 見学できないよね。",
+    "chunks": [
+      "最近の",
+      "観光地は",
+      "どこも",
+      "混みすぎてて、",
+      "ゆっくり",
+      "見学できないよね。"
+    ],
+    "translation": "最近的觀光景點到處都太擁擠了，沒辦法悠閒地參觀呢。",
+    "english": "Tourist spots these days are all too crowded, so you can't really take your time sightseeing, can you?",
+    "difficulty": "hard",
+    "tags": [
+      "tourism",
+      "N2"
+    ]
+  },
+  {
+    "id": "1330",
+    "japanese": "今の 会社に 満足 してるけど、 将来は 独立 してみたい と思ってるよ。",
+    "chunks": [
+      "今の",
+      "会社に",
+      "満足してるけど、",
+      "将来は",
+      "独立してみたい",
+      "と思って",
+      "るよ。"
+    ],
+    "translation": "雖然對現在的公司很滿意，但將來我想嘗試獨立創業。",
+    "english": "I'm satisfied with my current company, but I'm thinking I want to try going independent in the future.",
+    "difficulty": "medium",
+    "tags": [
+      "career",
+      "N3"
+    ]
+  },
+  {
+    "id": "1331",
+    "japanese": "上司の 指示が あいまいで、 何を すれば いいのか よく 分からないんだ。",
+    "chunks": [
+      "上司の",
+      "指示が",
+      "あいまいで、",
+      "何を",
+      "すれば",
+      "いいのか",
+      "よく",
+      "分からないんだ。"
+    ],
+    "translation": "上司的指示很模糊，我不太清楚該做什麼才好。",
+    "english": "My boss's instructions are vague, so I don't really know what I'm supposed to do.",
+    "difficulty": "medium",
+    "tags": [
+      "communication",
+      "N3"
+    ]
+  },
+  {
+    "id": "1332",
+    "japanese": "テレワークに なってから、 通勤の ストレスが なくなって かなり 楽になったよ。",
+    "chunks": [
+      "テレワークに",
+      "なってから、",
+      "通勤の",
+      "ストレスが",
+      "なくなって",
+      "かなり",
+      "楽になったよ。"
+    ],
+    "translation": "改成遠端辦公後，通勤的壓力消失了，輕鬆了很多。",
+    "english": "Since switching to telework, the stress of commuting has vanished and things have become much easier.",
+    "difficulty": "easy",
+    "tags": [
+      "remote-work",
+      "N4"
+    ]
+  },
+  {
+    "id": "1333",
+    "japanese": "年収だけじゃなくて、 ワークライフバランスを 最優先に して 会社を 選びたいんだ。",
+    "chunks": [
+      "年収だけじゃなくて、",
+      "ワークライフバランスを",
+      "最優先に",
+      "して",
+      "会社を",
+      "選びたいんだ。"
+    ],
+    "translation": "我不僅看年薪，還想把工作與生活的平衡放在最優先來選擇公司。",
+    "english": "I want to choose a company by prioritizing work-life balance, not just annual income.",
+    "difficulty": "hard",
+    "tags": [
+      "values",
+      "N2"
+    ]
+  },
+  {
+    "id": "1334",
+    "japanese": "この プロジェクト、 期限まで に 間に合わせるの かなり 厳しそうじゃない？",
+    "chunks": [
+      "この",
+      "プロジェクト、",
+      "期限までに",
+      "間に合わせるの",
+      "かなり",
+      "厳しそう",
+      "じゃない？"
+    ],
+    "translation": "這個專案要在期限前完成，感覺相當困難吧？",
+    "english": "Don't you think it looks pretty tough to get this project done by the deadline?",
+    "difficulty": "hard",
+    "tags": [
+      "deadline",
+      "N2"
+    ]
+  },
+  {
+    "id": "1335",
+    "japanese": "彼とは 性格が 合わない 部分もあるけど、 信頼 してるよ。",
+    "chunks": [
+      "彼とは",
+      "性格が",
+      "合わない",
+      "部分も",
+      "あるけど、",
+      "信頼",
+      "してるよ。"
+    ],
+    "translation": "雖然我和他有些性格不合的地方，但我很信任他。",
+    "english": "Although there are parts of our personalities that don't match, I trust him.",
+    "difficulty": "medium",
+    "tags": [
+      "relationships",
+      "N3"
+    ]
+  },
+  {
+    "id": "1336",
+    "japanese": "久しぶりに 地元の 友達に 会ったら、 全然 変わってなかったわ。",
+    "chunks": [
+      "久しぶりに",
+      "地元の",
+      "友達に",
+      "会ったら、",
+      "全然",
+      "変わって",
+      "なかったわ。"
+    ],
+    "translation": "久違地見到老家的朋友，發現他完全沒變啊。",
+    "english": "When I met my hometown friend after a long time, they hadn't changed at all.",
+    "difficulty": "medium",
+    "tags": [
+      "friends",
+      "N3"
+    ]
+  },
+  {
+    "id": "1337",
+    "japanese": "親の 言うこと 全部 聞いてたら、 自分の 人生 じゃない気が する。",
+    "chunks": [
+      "親の",
+      "言うこと",
+      "全部",
+      "聞いてたら、",
+      "自分の",
+      "人生",
+      "じゃない",
+      "気がする。"
+    ],
+    "translation": "如果全部都聽父母的，我覺得這不像是我自己的人生。",
+    "english": "I feel like if I do everything my parents tell me, it wouldn't be my own life.",
+    "difficulty": "hard",
+    "tags": [
+      "family",
+      "N2"
+    ]
+  },
+  {
+    "id": "1338",
+    "japanese": "今の パートナーと 出会えなかったら、 今頃 どうなってたんだろう。",
+    "chunks": [
+      "今の",
+      "パートナーと",
+      "出会えなかったら、",
+      "今頃",
+      "どうなってた",
+      "んだろう。"
+    ],
+    "translation": "如果沒能遇到現在的另一半，現在會變成什麼樣子呢。",
+    "english": "I wonder what would have happened by now if I hadn't met my current partner.",
+    "difficulty": "medium",
+    "tags": [
+      "relationships",
+      "N3"
+    ]
+  },
+  {
+    "id": "1339",
+    "japanese": "明日の朝は かなり 冷え込むみたいだから、 厚い 服を 着ていったほうが いいよ。",
+    "chunks": [
+      "明日の朝は",
+      "かなり",
+      "冷え込むみたいだから、",
+      "厚い",
+      "服を",
+      "着ていったほうが",
+      "いいよ。"
+    ],
+    "translation": "聽說明天早上會非常冷，建議穿厚一點的衣服去喔。",
+    "english": "It looks like it'll be quite chilly tomorrow morning, so you'd better wear thick clothes.",
+    "difficulty": "easy",
+    "tags": [
+      "weather",
+      "N4"
+    ]
+  },
+  {
+    "id": "1340",
+    "japanese": "日本の 秋の紅葉って 本当に 綺麗だけど、 見るタイミングが かなり 難しいよね。",
+    "chunks": [
+      "日本の",
+      "秋の紅葉って",
+      "本当に",
+      "綺麗だけど、",
+      "見るタイミングが",
+      "かなり",
+      "難しいよね。"
+    ],
+    "translation": "日本秋天的紅葉雖然真的很美，但要掌握觀賞的时機相當困難呢。",
+    "english": "The autumn leaves in Japan are truly beautiful, but timing your visit is quite difficult, isn't it?",
+    "difficulty": "medium",
+    "tags": [
+      "seasons",
+      "N3"
+    ]
+  },
+  {
+    "id": "1341",
+    "japanese": "あんなに 猛暑だったのに、 急に 冬が 来たみたいに 寒くなって びっくりしたよ。",
+    "chunks": [
+      "あんなに",
+      "猛暑だったのに、",
+      "急に",
+      "冬が",
+      "来たみたいに",
+      "寒くなって",
+      "びっくりしたよ。"
+    ],
+    "translation": "明明之前那麼酷暑，突然變得像冬天一樣冷，真是嚇我一跳。",
+    "english": "Even though it was such an extreme heatwave, it suddenly got cold as if winter had arrived; it surprised me.",
+    "difficulty": "hard",
+    "tags": [
+      "weather",
+      "N2"
+    ]
+  },
+  {
+    "id": "1342",
+    "japanese": "たまには 都会を 離れて、 自然が たくさん ある ところへ 行きたいよね。",
+    "chunks": [
+      "たまには",
+      "都会を",
+      "離れて、",
+      "自然が",
+      "たくさん",
+      "ある",
+      "ところへ",
+      "行きたいよね。"
+    ],
+    "translation": "偶爾想要離開都市，去個自然景觀豐富的地方呢。",
+    "english": "Once in a while, I want to leave the city and go somewhere with plenty of nature, don't you?",
+    "difficulty": "easy",
+    "tags": [
+      "nature",
+      "N4"
+    ]
+  },
+  {
+    "id": "1343",
+    "japanese": "昨日の 台風のせいで、 家の庭に 枝が たくさん 散らばってて 大変だったよ。",
+    "chunks": [
+      "昨日の",
+      "台風のせいで、",
+      "家の庭に",
+      "枝が",
+      "たくさん",
+      "散らばってて",
+      "大変だったよ。"
+    ],
+    "translation": "因為昨天的颱風，家裡的院子到處散落著樹枝，真是麻煩死了。",
+    "english": "Because of yesterday's typhoon, there were branches scattered all over my garden, and it was a real mess.",
+    "difficulty": "medium",
+    "tags": [
+      "weather",
+      "N3"
+    ]
+  },
+  {
+    "id": "1344",
+    "japanese": "今の季節にしか 見られない 花が あるから、 週末に 散歩に 行かない？",
+    "chunks": [
+      "今の季節にしか",
+      "見られない",
+      "花が",
+      "あるから、",
+      "週末に",
+      "散歩に",
+      "行かない？"
+    ],
+    "translation": "因為有只有這個季節才能看到的花，週末要不要一起去散步？",
+    "english": "Since there are flowers you can only see in this season, why don't we go for a walk this weekend?",
+    "difficulty": "medium",
+    "tags": [
+      "nature",
+      "N3"
+    ]
+  },
+  {
+    "id": "1345",
+    "japanese": "この ゲーム、 グラフィック は すごい けど、 ストーリー が ちょっと 物足りないね。",
+    "chunks": [
+      "このゲーム、",
+      "グラフィックは",
+      "すごいけど、",
+      "ストーリーが",
+      "ちょっと",
+      "物足りないね。"
+    ],
+    "translation": "這個遊戲畫面很厲害，但劇情稍微有點不足呢。",
+    "english": "This game has great graphics, but the story is a bit lacking.",
+    "difficulty": "medium",
+    "tags": [
+      "games",
+      "N3"
+    ]
+  },
+  {
+    "id": "1346",
+    "japanese": "あのアニメ の 展開 が 早すぎて、 何が 起きたのか 全然 理解 できなかったよ。",
+    "chunks": [
+      "あのアニメの",
+      "展開が",
+      "早すぎて、",
+      "何が",
+      "起きたのか",
+      "全然",
+      "理解",
+      "できなかったよ。"
+    ],
+    "translation": "那部動畫的劇情發展太快，我完全沒搞清楚發生了什麼事。",
+    "english": "The plot of that anime moved so fast that I couldn't understand what happened at all.",
+    "difficulty": "hard",
+    "tags": [
+      "anime",
+      "N2"
+    ]
+  },
+  {
+    "id": "1347",
+    "japanese": "次 の アップデート で 新しい キャラクター が 追加 されるらしいから、 楽しみだね。",
+    "chunks": [
+      "次の",
+      "アップデートで",
+      "新しい",
+      "キャラクターが",
+      "追加される",
+      "らしいから、",
+      "楽しみだね。"
+    ],
+    "translation": "聽說下次更新會增加新角色，好期待喔。",
+    "english": "I heard new characters will be added in the next update, so I'm looking forward to it.",
+    "difficulty": "medium",
+    "tags": [
+      "games",
+      "N3"
+    ]
+  },
+  {
+    "id": "1348",
+    "japanese": "たまに 昔の 映画を 見返すと、 今じゃ 考えられない 演出 が あって 面白いよね。",
+    "chunks": [
+      "たまに",
+      "昔の映画を",
+      "見返すと、",
+      "今じゃ",
+      "考えられない",
+      "演出が",
+      "あって",
+      "面白いよね。"
+    ],
+    "translation": "偶爾重新看舊電影，會發現有些現在根本無法想像的演出方式，很有趣吧。",
+    "english": "When I occasionally rewatch old movies, it's interesting to see directing styles that would be unthinkable today.",
+    "difficulty": "hard",
+    "tags": [
+      "movies",
+      "N2"
+    ]
+  },
+  {
+    "id": "1349",
+    "japanese": "最近は 配信 サービス が 便利だから、 わざわざ DVD を 買う ことはなくなったよ。",
+    "chunks": [
+      "最近は",
+      "配信サービスが",
+      "便利だから、",
+      "わざわざ",
+      "DVDを",
+      "買うことは",
+      "なくなったよ。"
+    ],
+    "translation": "最近串流服務很方便，所以不再特地去買DVD了。",
+    "english": "Streaming services are so convenient lately that I've stopped going out of my way to buy DVDs.",
+    "difficulty": "medium",
+    "tags": [
+      "entertainment",
+      "N3"
+    ]
+  },
+  {
+    "id": "1350",
+    "japanese": "最近、 英語の 勉強を 始めたんだけど、 単語を 覚えるのが 本当に 苦手なんだよね。",
+    "chunks": [
+      "最近、",
+      "英語の",
+      "勉強を",
+      "始めたんだけど、",
+      "単語を",
+      "覚えるのが",
+      "本当に",
+      "苦手なんだよね。"
+    ],
+    "translation": "最近開始學英語了，但我真的很不擅長記單字。",
+    "english": "I started studying English recently, but I'm really bad at memorizing vocabulary.",
+    "difficulty": "easy",
+    "tags": [
+      "language learning",
+      "N4"
+    ]
+  },
+  {
+    "id": "1351",
+    "japanese": "学生の 時は 全然 勉強しなかったから、 今になって 後悔してるんだ。",
+    "chunks": [
+      "学生の",
+      "時は",
+      "全然",
+      "勉強しなかったから、",
+      "今に",
+      "なって",
+      "後悔して",
+      "るんだ。"
+    ],
+    "translation": "學生時代完全沒讀書，現在才感到後悔。",
+    "english": "I didn't study at all when I was a student, so I regret it now.",
+    "difficulty": "easy",
+    "tags": [
+      "experience",
+      "N4"
+    ]
+  },
+  {
+    "id": "1352",
+    "japanese": "勉強が 手につかない 時は、 一旦 休憩して 気分転換 するのが 一番だよ。",
+    "chunks": [
+      "勉強が",
+      "手につかない",
+      "時は、",
+      "一旦",
+      "休憩して",
+      "気分転換",
+      "するのが",
+      "一番だよ。"
+    ],
+    "translation": "讀書讀不進去的時候，暫時休息一下換個心情是最有效的。",
+    "english": "When you can't concentrate on your studies, the best thing is to take a break and refresh yourself.",
+    "difficulty": "medium",
+    "tags": [
+      "concentration",
+      "N3"
+    ]
+  },
+  {
+    "id": "1353",
+    "japanese": "大人の 学び直しって、 興味がある ことだけ 集中して できるから 楽しいよね。",
+    "chunks": [
+      "大人の",
+      "学び直しって、",
+      "興味が",
+      "あることだけ",
+      "集中して",
+      "できるから",
+      "楽しい",
+      "よね。"
+    ],
+    "translation": "成年後的重新學習，因為能集中在自己感興趣的事情上，所以很有趣吧。",
+    "english": "Adult lifelong learning is fun because you can focus only on the things you're interested in.",
+    "difficulty": "hard",
+    "tags": [
+      "lifelong learning",
+      "N2"
+    ]
+  },
+  {
+    "id": "1354",
+    "japanese": "最近 インスタに 凝ってる 友達が 多いよね。",
+    "chunks": [
+      "最近",
+      "インスタに",
+      "凝ってる",
+      "友達が",
+      "多いよね。"
+    ],
+    "translation": "最近很迷 Instagram 的朋友很多呢。",
+    "english": "There are a lot of friends who are really into Instagram lately, aren't there?",
+    "difficulty": "easy",
+    "tags": [
+      "social media",
+      "N4"
+    ]
+  },
+  {
+    "id": "1355",
+    "japanese": "スマホの 画面を 見すぎて、 最近 目が 疲れやすくなった気が する。",
+    "chunks": [
+      "スマホの",
+      "画面を",
+      "見すぎて、",
+      "最近",
+      "目が",
+      "疲れやすく",
+      "なった気が",
+      "する。"
+    ],
+    "translation": "因為看手機螢幕太久，感覺最近眼睛很容易疲勞。",
+    "english": "I feel like my eyes have become easier to tire lately because I've been looking at my smartphone screen too much.",
+    "difficulty": "medium",
+    "tags": [
+      "health",
+      "N3"
+    ]
+  },
+  {
+    "id": "1356",
+    "japanese": "ネットの 情報 だけじゃなくて、 実際に 本を 読んで 確認 したほうが いいよ。",
+    "chunks": [
+      "ネットの",
+      "情報だけじゃなくて、",
+      "実際に",
+      "本を",
+      "読んで",
+      "確認したほうが",
+      "いいよ。"
+    ],
+    "translation": "不要只看網路上的資訊，實際讀書確認比較好喔。",
+    "english": "You should check by actually reading a book, not just relying on information from the internet.",
+    "difficulty": "medium",
+    "tags": [
+      "information",
+      "N3"
+    ]
+  },
+  {
+    "id": "1357",
+    "japanese": "SNSで 誰かと繋がって いると、 時々 疲れる ことが あるよね。",
+    "chunks": [
+      "SNSで",
+      "誰かと",
+      "繋がって",
+      "いると、",
+      "時々",
+      "疲れる",
+      "ことが",
+      "あるよね。"
+    ],
+    "translation": "在社群媒體上和別人保持聯繫，有時候真的會覺得累吧。",
+    "english": "When you're connected with someone on social media, there are times when you just get tired, right?",
+    "difficulty": "medium",
+    "tags": [
+      "social media",
+      "N3"
+    ]
+  },
+  {
+    "id": "1358",
+    "japanese": "キャッシュレス 決済が 広まって、 財布を 持ち歩かなくて済むように なったね。",
+    "chunks": [
+      "キャッシュレス決済が",
+      "広まって、",
+      "財布を",
+      "持ち歩かなくて",
+      "済むように",
+      "なったね。"
+    ],
+    "translation": "隨著無現金支付的普及，現在不用隨身攜帶錢包也可以了呢。",
+    "english": "Now that cashless payments have spread, we don't have to carry wallets around anymore, do we?",
+    "difficulty": "hard",
+    "tags": [
+      "fintech",
+      "N2"
+    ]
+  },
+  {
+    "id": "1359",
+    "japanese": "明日から ジム 通おうと 思ってるんだけど、 一緒に 行かない？",
+    "chunks": [
+      "明日から",
+      "ジム",
+      "通おうと",
+      "思ってるんだけど、",
+      "一緒に",
+      "行かない？"
+    ],
+    "translation": "我打算從明天開始去健身房，要一起去嗎？",
+    "english": "I'm thinking of starting to go to the gym from tomorrow, do you want to come along?",
+    "difficulty": "easy",
+    "tags": [
+      "fitness",
+      "N4"
+    ]
+  },
+  {
+    "id": "1360",
+    "japanese": "無理に 激しい 運動を するより、 軽い ストレッチ の方が 効果的だよ。",
+    "chunks": [
+      "無理に",
+      "激しい",
+      "運動を",
+      "するより、",
+      "軽い",
+      "ストレッチ",
+      "の方が",
+      "効果的だよ。"
+    ],
+    "translation": "與其強迫自己做劇烈運動，輕微的伸展運動反而更有效喔。",
+    "english": "Rather than forcing yourself to do intense exercise, light stretching is more effective.",
+    "difficulty": "medium",
+    "tags": [
+      "fitness",
+      "N3"
+    ]
+  },
+  {
+    "id": "1361",
+    "japanese": "昔は サッカーに 打ち込んでたけど、 今は 観戦 する だけになっちゃった。",
+    "chunks": [
+      "昔は",
+      "サッカーに",
+      "打ち込んでたけど、",
+      "今は",
+      "観戦",
+      "する",
+      "だけに",
+      "なっちゃった。"
+    ],
+    "translation": "以前我非常投入於足球，但現在變成只是在觀看比賽而已了。",
+    "english": "I used to be really into soccer, but now I've ended up just watching the games.",
+    "difficulty": "hard",
+    "tags": [
+      "sports",
+      "N2"
+    ]
+  },
+  {
+    "id": "1362",
+    "japanese": "睡眠不足が 続くと、 集中力が 切れて 仕事の 効率が 下がるよね。",
+    "chunks": [
+      "睡眠不足が",
+      "続くと、",
+      "集中力が",
+      "切れて",
+      "仕事の",
+      "効率が",
+      "下がるよね。"
+    ],
+    "translation": "睡眠不足持續下去的話，會導致注意力分散，工作效率也會下降吧。",
+    "english": "When lack of sleep continues, you lose focus and work efficiency drops, right?",
+    "difficulty": "medium",
+    "tags": [
+      "health",
+      "N3"
+    ]
+  },
+  {
+    "id": "1363",
+    "japanese": "ここ、 いつも 安いし 品揃えも いいから よく 来るんだよね。",
+    "chunks": [
+      "ここ、",
+      "いつも",
+      "安いし",
+      "品揃えも",
+      "いいから",
+      "よく",
+      "来るんだよね。"
+    ],
+    "translation": "這裡一直很便宜而且貨色充足，所以我經常來。",
+    "english": "This place is always cheap and has a good selection, so I come here often.",
+    "difficulty": "medium",
+    "tags": [
+      "shopping habits",
+      "N3"
+    ]
+  },
+  {
+    "id": "1364",
+    "japanese": "あのお店の 店員さん、 すごく 愛想が 悪くて がっかり したよ。",
+    "chunks": [
+      "あのお店の",
+      "店員さん、",
+      "すごく",
+      "愛想が",
+      "悪くて",
+      "がっかり",
+      "したよ。"
+    ],
+    "translation": "那家店的店員態度非常差，讓我很失望。",
+    "english": "The staff at that shop were so unfriendly that I was disappointed.",
+    "difficulty": "hard",
+    "tags": [
+      "customer experience",
+      "N2"
+    ]
+  },
+  {
+    "id": "1365",
+    "japanese": "予算が 限られてるから、 コスパの 良いのを 探してるんだ。",
+    "chunks": [
+      "予算が",
+      "限られてるから、",
+      "コスパの",
+      "良いのを",
+      "探してるんだ。"
+    ],
+    "translation": "因為預算有限，我正在找 CP 值高的產品。",
+    "english": "Since my budget is limited, I'm looking for something with good value for money.",
+    "difficulty": "medium",
+    "tags": [
+      "budget",
+      "N3"
+    ]
+  },
+  {
+    "id": "1366",
+    "japanese": "この デザインは 素敵だけど、 ちょっと 値段が 高すぎる かも。",
+    "chunks": [
+      "この",
+      "デザインは",
+      "素敵だけど、",
+      "ちょっと",
+      "値段が",
+      "高すぎる",
+      "かも。"
+    ],
+    "translation": "這個設計很漂亮，但價格可能稍微太高了。",
+    "english": "This design is lovely, but the price might be a bit too high.",
+    "difficulty": "easy",
+    "tags": [
+      "opinion",
+      "N4"
+    ]
+  },
+  {
+    "id": "1367",
+    "japanese": "最近は キャッシュレスが メインだから、 財布を 持たなくて済むね。",
+    "chunks": [
+      "最近は",
+      "キャッシュレスが",
+      "メインだから、",
+      "財布を",
+      "持たなくて",
+      "済むね。"
+    ],
+    "translation": "最近主打無現金支付，所以不用帶錢包也沒關係呢。",
+    "english": "Since cashless payment is the main method lately, we can get by without carrying a wallet.",
+    "difficulty": "hard",
+    "tags": [
+      "payment",
+      "N2"
+    ]
+  },
+  {
+    "id": "1368",
+    "japanese": "SNSの 発信が 自由に なりすぎて、 逆に 疲れちゃう ことない？",
+    "chunks": [
+      "SNSの",
+      "発信が",
+      "自由に",
+      "なりすぎて、",
+      "逆に",
+      "疲れちゃう",
+      "こと",
+      "ない？"
+    ],
+    "translation": "社群媒體的發言變得太自由了，反而會不會覺得累？",
+    "english": "Doesn't the fact that posting on SNS has become too free actually make you tired?",
+    "difficulty": "medium",
+    "tags": [
+      "society",
+      "N3"
+    ]
+  },
+  {
+    "id": "1369",
+    "japanese": "やっぱり 伝統を 大切に するのは いいけど、 時代に 合わせる 必要も あるよね。",
+    "chunks": [
+      "やっぱり",
+      "伝統を",
+      "大切に",
+      "するのは",
+      "いいけど、",
+      "時代に",
+      "合わせる",
+      "必要もあるよね。"
+    ],
+    "translation": "雖然重視傳統是好事，但也有必要與時俱進吧。",
+    "english": "It's definitely good to value tradition, but there's also a need to adapt to the times.",
+    "difficulty": "hard",
+    "tags": [
+      "culture",
+      "N2"
+    ]
+  },
+  {
+    "id": "1370",
+    "japanese": "最近は どこも キャッシュレスに なってるから、 現金が 要らなく なりそうだね。",
+    "chunks": [
+      "最近は",
+      "どこも",
+      "キャッシュレスに",
+      "なってるから、",
+      "現金が",
+      "要らなく",
+      "なりそう",
+      "だね。"
+    ],
+    "translation": "最近到處都變成電子支付了，感覺快不需要現金了吧。",
+    "english": "Since everywhere is becoming cashless lately, it seems like we won't need cash anymore.",
+    "difficulty": "medium",
+    "tags": [
+      "society",
+      "N3"
+    ]
+  },
+  {
+    "id": "1371",
+    "japanese": "多様な 考え方を 認める 社会に なれば、 もっと 楽しく なると思うよ。",
+    "chunks": [
+      "多様な",
+      "考え方を",
+      "認める",
+      "社会に",
+      "なれば、",
+      "もっと",
+      "楽しく",
+      "なると思うよ。"
+    ],
+    "translation": "如果能變成一個認同多元思考方式的社會，我想會變得更有趣。",
+    "english": "I think if we become a society that accepts diverse ways of thinking, it will be more enjoyable.",
+    "difficulty": "easy",
+    "tags": [
+      "society",
+      "N4"
+    ]
+  },
+  {
+    "id": "1372",
+    "japanese": "将来は 自分の 店を 持つのが 夢なんだよね。",
+    "chunks": [
+      "将来は",
+      "自分の",
+      "店を",
+      "持つのが",
+      "夢",
+      "なんだよね。"
+    ],
+    "translation": "我未來的夢想是開一家自己的店。",
+    "english": "My dream is to have my own shop in the future.",
+    "difficulty": "easy",
+    "tags": [
+      "dreams",
+      "N4"
+    ]
+  },
+  {
+    "id": "1373",
+    "japanese": "来年こそは 留学 して、 英語 を ペラペラに なりたいな。",
+    "chunks": [
+      "来年こそは",
+      "留学して、",
+      "英語を",
+      "ペラペラに",
+      "なりたいな。"
+    ],
+    "translation": "明年一定要去留學，想讓英文變得流利。",
+    "english": "I really want to study abroad next year and become fluent in English.",
+    "difficulty": "easy",
+    "tags": [
+      "plans",
+      "N4"
+    ]
+  },
+  {
+    "id": "1374",
+    "japanese": "結局 計画 だけは 完璧に 立てたけど、 全然 実践できてないよ。",
+    "chunks": [
+      "結局",
+      "計画だけは",
+      "完璧に",
+      "立てたけど、",
+      "全然",
+      "実践できてないよ。"
+    ],
+    "translation": "結果雖然計畫定得完美，但完全沒有付諸實行。",
+    "english": "In the end, I made a perfect plan, but I haven't been able to put it into practice at all.",
+    "difficulty": "medium",
+    "tags": [
+      "plans",
+      "N3"
+    ]
+  },
+  {
+    "id": "1375",
+    "japanese": "具体的に どんな ライフプランを 描いてるか、 ちょっと 教えてよ。",
+    "chunks": [
+      "具体的に",
+      "どんな",
+      "ライフプランを",
+      "描いてるか、",
+      "ちょっと",
+      "教えてよ。"
+    ],
+    "translation": "跟我說說看你具體地在描繪什麼樣的人生規劃吧。",
+    "english": "Tell me a bit about what kind of specific life plan you're envisioning.",
+    "difficulty": "medium",
+    "tags": [
+      "plans",
+      "N3"
+    ]
+  },
+  {
+    "id": "1376",
+    "japanese": "この曲 聞くと、 小さい頃 の 夏休み を 思い出すね。",
+    "chunks": [
+      "この曲",
+      "聞くと、",
+      "小さい頃の",
+      "夏休みを",
+      "思い出すね。"
+    ],
+    "translation": "聽到這首歌，就會想起小時候的暑假呢。",
+    "english": "Hearing this song reminds me of summer vacations from when I was little.",
+    "difficulty": "easy",
+    "tags": [
+      "music",
+      "N4"
+    ]
+  },
+  {
+    "id": "1377",
+    "japanese": "たまに 昔 の 友達 と 連絡 取りたいな って 思うんだよね。",
+    "chunks": [
+      "たまに",
+      "昔の",
+      "友達と",
+      "連絡",
+      "取りたいな",
+      "って",
+      "思うんだよね。"
+    ],
+    "translation": "偶爾會覺得想要跟以前的朋友聯絡看看呢。",
+    "english": "Every now and then, I feel like I want to get back in touch with old friends.",
+    "difficulty": "medium",
+    "tags": [
+      "friendship",
+      "N3"
+    ]
+  },
+  {
+    "id": "1378",
+    "japanese": "実家 の 匂い を かぐと、 なぜか 安心 するんだよ。",
+    "chunks": [
+      "実家の",
+      "匂いを",
+      "かぐと、",
+      "なぜか",
+      "安心",
+      "するんだよ。"
+    ],
+    "translation": "聞到老家（父母家）的味道，不知為何就會感到安心。",
+    "english": "Whenever I smell my parents' home, I feel oddly reassured.",
+    "difficulty": "medium",
+    "tags": [
+      "home",
+      "N3"
+    ]
+  },
+  {
+    "id": "1379",
+    "japanese": "学生 時代 は 毎日 楽しくて、 時間 が 過ぎるの が 早かったよね。",
+    "chunks": [
+      "学生時代は",
+      "毎日",
+      "楽しくて、",
+      "時間が",
+      "過ぎるのが",
+      "早かったよね。"
+    ],
+    "translation": "學生時代每天都很快樂，時間過得真快啊。",
+    "english": "Student days were so fun every day that time just flew by, didn't it?",
+    "difficulty": "easy",
+    "tags": [
+      "school",
+      "N4"
+    ]
+  },
+  {
+    "id": "1380",
+    "japanese": "あんな 失敗 した けど、 今となっては いい 思い出 だよ。",
+    "chunks": [
+      "あんな",
+      "失敗したけど、",
+      "今となっては",
+      "いい",
+      "思い出",
+      "だよ。"
+    ],
+    "translation": "雖然當時犯了那樣的錯，但對現在來說是美好的回憶。",
+    "english": "I made a mistake like that, but looking back now, it's a fond memory.",
+    "difficulty": "medium",
+    "tags": [
+      "regret",
+      "N3"
+    ]
+  },
+  {
+    "id": "1381",
+    "japanese": "昔 の 写真 見てたら、 恥ずかしくなって 顔 が 赤くなったよ。",
+    "chunks": [
+      "昔の",
+      "写真",
+      "見てたら、",
+      "恥ずかしくなって",
+      "顔が",
+      "赤くなったよ。"
+    ],
+    "translation": "看了以前的照片，覺得好尷尬，臉都紅了。",
+    "english": "I was looking at old photos and got so embarrassed my face turned red.",
+    "difficulty": "medium",
+    "tags": [
+      "photos",
+      "N3"
+    ]
+  },
+  {
+    "id": "1382",
+    "japanese": "大人に なっても、 あの頃 の 純粋な 気持ち を 忘れたくないよね。",
+    "chunks": [
+      "大人に",
+      "なっても、",
+      "あの頃の",
+      "純粋な",
+      "気持ちを",
+      "忘れたくないよね。"
+    ],
+    "translation": "即使長大了，也不想忘記那時候那種純粹的心情吧。",
+    "english": "Even as adults, we don't want to forget the purity of those feelings from back then, right?",
+    "difficulty": "hard",
+    "tags": [
+      "growth",
+      "N2"
+    ]
+  },
+  {
+    "id": "1383",
+    "japanese": "おすすめの レストラン、 どこか 教えて くれる？",
+    "chunks": [
+      "おすすめの",
+      "レストラン、",
+      "どこか",
+      "教えて",
+      "くれる？"
+    ],
+    "translation": "能告訴我推薦的餐廳在 where 嗎？",
+    "english": "Could you tell me some recommended restaurants?",
+    "difficulty": "easy",
+    "tags": [
+      "recommendation",
+      "N4"
+    ]
+  },
+  {
+    "id": "1384",
+    "japanese": "仕事で 悩みがあるなら、 一人で 抱え込まずに 誰かに 相談した ほうがいいよ。",
+    "chunks": [
+      "仕事で",
+      "悩みがあるなら、",
+      "一人で",
+      "抱え込まずに",
+      "誰かに",
+      "相談した",
+      "ほうがいいよ。"
+    ],
+    "translation": "如果工作上有煩惱，不要一個人扛著，最好找人商量。",
+    "english": "If you have worries about work, it's better to consult someone rather than keeping it to yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "advice",
+      "N2"
+    ]
+  },
+  {
+    "id": "1385",
+    "japanese": "最近の 若い人は、 SNSで 情報を 集める 傾向が 強いみたいだね。",
+    "chunks": [
+      "最近の",
+      "若い人は、",
+      "SNSで",
+      "情報を",
+      "集める",
+      "傾向が",
+      "強いみたいだね。"
+    ],
+    "translation": "最近的年輕人似乎很傾向於透過社群媒體來收集資訊呢。",
+    "english": "It seems that young people these days have a strong tendency to gather information via SNS.",
+    "difficulty": "hard",
+    "tags": [
+      "observation",
+      "N2"
+    ]
   }
 ]
