@@ -168,9 +168,9 @@ const SpeakingPracticePage: React.FC = () => {
   // Settings (persisted)
   const [showSettings, setShowSettings] = useState(false);
   const [showEnglish, setShowEnglish]   = useState(() => getPref('hw-sp-show-en', false));
-  const [readChinese, setReadChinese]   = useState(() => getPref('hw-sp-read-ch', true));
+  const [readChinese, setReadChinese]   = useState(() => getPref('hw-sp-read-ch', false));
   const [readEnglish, setReadEnglish]   = useState(() => getPref('hw-sp-read-en', true));
-  const [autoRecord, setAutoRecord]     = useState(() => getPref('hw-sp-auto-rec', false));
+  const [autoRecord, setAutoRecord]     = useState(() => getPref('hw-sp-auto-rec', true));
   const [autoAdvance, setAutoAdvance]   = useState(() => getPref('hw-sp-auto-adv', false));
 
   const togglePref = (key: string, setter: React.Dispatch<React.SetStateAction<boolean>>) => () =>
