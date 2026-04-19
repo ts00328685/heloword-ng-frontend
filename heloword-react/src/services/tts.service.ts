@@ -25,7 +25,7 @@ export function toLangCode(lang: string): string {
 }
 
 /** Find the best available voice for a BCP-47 code, with prefix fallback. */
-function findVoice(langCode: string): SpeechSynthesisVoice | null {
+export function findVoice(langCode: string): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
   const prefix = langCode.split('-')[0]; // e.g. 'ja' from 'ja-JP'
   return (
