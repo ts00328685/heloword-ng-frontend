@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
-import { cancelPronouncing } from '../../services/tts.service';
+import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
 import { latexToUnicode } from '../../utils/latexToUnicode';
@@ -215,37 +215,18 @@ const SpeakingPracticePage: React.FC = () => {
     }
     window.speechSynthesis.cancel();
 
-    const speak = (text: string, lang: string, rate: number, onDone: () => void) => {
-      const utt = new SpeechSynthesisUtterance(text);
-      utt.lang = lang;
-      utt.rate = rate;
-      utt.volume = 1.0;
-      utt.pitch = 1.1;
-      utt.onend = onDone;
-      utt.onerror = onDone;
-      window.speechSynthesis.speak(utt);
-    };
-
-    const go = () => {
-      if (readChinese && readEnglish) {
-        setGameState('tts-ch');
-        speak(sentence.translate_ch, 'zh-TW', 0.9, () => {
-          setGameState('tts-en');
-          setTimeout(() => speak(sentence.sentence, 'en-US', 0.85, () => setGameState('recording')), 500);
-        });
-      } else if (readChinese) {
-        setGameState('tts-ch');
-        speak(sentence.translate_ch, 'zh-TW', 0.9, () => setGameState('recording'));
-      } else {
+    if (readChinese && readEnglish) {
+      setGameState('tts-ch');
+      speakSentence(sentence.translate_ch, 'zh-TW', { speed: 0.9 }, () => {
         setGameState('tts-en');
-        speak(sentence.sentence, 'en-US', 0.85, () => setGameState('recording'));
-      }
-    };
-
-    if (window.speechSynthesis.getVoices().length > 0) {
-      go();
+        setTimeout(() => speakSentence(sentence.sentence, 'en-US', { speed: 0.85 }, () => setGameState('recording')), 500);
+      });
+    } else if (readChinese) {
+      setGameState('tts-ch');
+      speakSentence(sentence.translate_ch, 'zh-TW', { speed: 0.9 }, () => setGameState('recording'));
     } else {
-      window.speechSynthesis.addEventListener('voiceschanged', go, { once: true });
+      setGameState('tts-en');
+      speakSentence(sentence.sentence, 'en-US', { speed: 0.85 }, () => setGameState('recording'));
     }
   }, [readChinese, readEnglish]);
 

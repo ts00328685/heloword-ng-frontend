@@ -24,9 +24,18 @@ export function toLangCode(lang: string): string {
   return TTS_LANG_MAP[lang] ?? TTS_LANG_MAP[lang?.toLowerCase()] ?? 'en-US';
 }
 
-/** Find the best available voice for a BCP-47 code, with prefix fallback. */
+/** Find the best available voice for a BCP-47 code, with prefix fallback.
+ *  On iOS, prefers Samantha for en-US (clearest built-in English voice). */
 export function findVoice(langCode: string): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
+  if (langCode === 'en-US') {
+    const samantha = voices.find((v) => v.name === 'Samantha' && v.lang === 'en-US');
+    if (samantha) return samantha;
+  }
+  if (langCode === 'ja-JP') {
+    const kyoko = voices.find((v) => v.name === 'Kyoko' && v.lang === 'ja-JP');
+    if (kyoko) return kyoko;
+  }
   const prefix = langCode.split('-')[0]; // e.g. 'ja' from 'ja-JP'
   return (
     voices.find((v) => v.lang === langCode) ??
@@ -82,6 +91,38 @@ export function pronounceWord(word: string, lang: string, options: SpeakOptions 
     speak();
   } else {
     window.speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
+  }
+}
+
+/**
+ * Speak a sentence in the given BCP-47 lang code, then call onDone.
+ * Handles async voice loading on mobile Chrome automatically.
+ */
+export function speakSentence(
+  text: string,
+  langCode: string,
+  options: SpeakOptions = {},
+  onDone: () => void = () => {},
+): void {
+  if (!('speechSynthesis' in window)) { onDone(); return; }
+  const { speed = 1.0, volume = 1.0, pitch = 1.1 } = options;
+
+  const doSpeak = () => {
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = langCode;
+    utt.rate = speed;
+    utt.volume = volume;
+    utt.pitch = pitch;
+    utt.voice = findVoice(langCode);
+    utt.onend = onDone;
+    utt.onerror = onDone;
+    window.speechSynthesis.speak(utt);
+  };
+
+  if (window.speechSynthesis.getVoices().length > 0) {
+    doSpeak();
+  } else {
+    window.speechSynthesis.addEventListener('voiceschanged', doSpeak, { once: true });
   }
 }
 
