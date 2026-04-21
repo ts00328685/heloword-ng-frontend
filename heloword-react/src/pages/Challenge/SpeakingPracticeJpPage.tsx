@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
-import { cancelPronouncing, toLangCode } from '../../services/tts.service';
+import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
 import { latexToUnicode } from '../../utils/latexToUnicode';
@@ -64,16 +64,6 @@ function scoreInfo(score: number): { labelKey: string; color: string; barColor: 
 function getPref(key: string, fallback: boolean): boolean {
   try { return JSON.parse(localStorage.getItem(key) ?? 'null') ?? fallback; }
   catch { return fallback; }
-}
-
-function findVoice(langCode: string): SpeechSynthesisVoice | null {
-  const voices = window.speechSynthesis.getVoices();
-  const prefix = langCode.split('-')[0];
-  return (
-    voices.find((v) => v.lang === langCode) ??
-    voices.find((v) => v.lang.startsWith(prefix)) ??
-    null
-  );
 }
 
 // ── AI Markdown renderer ───────────────────────────────────────────────────
@@ -216,39 +206,18 @@ const SpeakingPracticeJpPage: React.FC = () => {
     }
     window.speechSynthesis.cancel();
 
-    const speak = (text: string, lang: string, rate: number, onDone: () => void) => {
-      const utt = new SpeechSynthesisUtterance(text);
-      const langCode = toLangCode(lang);
-      utt.lang = langCode;
-      utt.voice = findVoice(langCode);
-      utt.rate = rate;
-      utt.volume = 1.0;
-      utt.pitch = 1.1;
-      utt.onend = onDone;
-      utt.onerror = onDone;
-      window.speechSynthesis.speak(utt);
-    };
-
-    const go = () => {
-      if (readChinese && readJapanese) {
-        setGameState('tts-ch');
-        speak(sentence.translation, 'ch', 0.9, () => {
-          setGameState('tts-jp');
-          setTimeout(() => speak(sentence.japanese, 'ja', 0.85, () => setGameState('recording')), 500);
-        });
-      } else if (readChinese) {
-        setGameState('tts-ch');
-        speak(sentence.translation, 'ch', 0.9, () => setGameState('recording'));
-      } else {
+    if (readChinese && readJapanese) {
+      setGameState('tts-ch');
+      speakSentence(sentence.translation, 'zh-TW', { speed: 0.9 }, () => {
         setGameState('tts-jp');
-        speak(sentence.japanese, 'ja', 0.85, () => setGameState('recording'));
-      }
-    };
-
-    if (window.speechSynthesis.getVoices().length > 0) {
-      go();
+        setTimeout(() => speakSentence(sentence.japanese, 'ja-JP', { speed: 0.85 }, () => setGameState('recording')), 500);
+      });
+    } else if (readChinese) {
+      setGameState('tts-ch');
+      speakSentence(sentence.translation, 'zh-TW', { speed: 0.9 }, () => setGameState('recording'));
     } else {
-      window.speechSynthesis.addEventListener('voiceschanged', go, { once: true });
+      setGameState('tts-jp');
+      speakSentence(sentence.japanese, 'ja-JP', { speed: 0.85 }, () => setGameState('recording'));
     }
   }, [readChinese, readJapanese]);
 

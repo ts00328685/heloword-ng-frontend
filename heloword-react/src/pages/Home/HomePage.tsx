@@ -23,7 +23,7 @@ import { doPost } from '../../services/api.service';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
 
-import { pronounceWord, findVoice } from '../../services/tts.service';
+import { pronounceWord, speakSentence, cancelPronouncing } from '../../services/tts.service';
 import { getWordInsight, getWordComparison } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
@@ -412,21 +412,13 @@ const ArticleItem: React.FC<{ article: FunArticle; index: number }> = ({ article
   );
 
   const speakSection = (text: string, langCode: string, langKey: string) => {
-    window.speechSynthesis.cancel();
+    cancelPronouncing();
     if (activeLang === langKey) {
       setActiveLang(null);
       return;
     }
     setActiveLang(langKey);
-    const plain = stripMarkdownForTTS(text, langCode);
-    const utt = new SpeechSynthesisUtterance(plain);
-    utt.lang = langCode;
-    utt.voice = findVoice(langCode);
-    utt.rate = 0.9;
-    utt.volume = 1.0;
-    utt.onend = () => setActiveLang(null);
-    utt.onerror = () => setActiveLang(null);
-    window.speechSynthesis.speak(utt);
+    speakSentence(stripMarkdownForTTS(text, langCode), langCode, { speed: 0.9 }, () => setActiveLang(null));
   };
 
   const speakWord = (e: React.MouseEvent) => {
@@ -482,8 +474,7 @@ const ArticleItem: React.FC<{ article: FunArticle; index: number }> = ({ article
 const FunArticlesModal: React.FC<{ articles: FunArticle[]; onClose: () => void }> = ({ articles, onClose }) => {
   const { t } = useTranslation();
 
-  // Cancel TTS when modal closes
-  React.useEffect(() => () => { window.speechSynthesis?.cancel(); }, []);
+  React.useEffect(() => () => { cancelPronouncing(); }, []);
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
