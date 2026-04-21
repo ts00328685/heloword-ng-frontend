@@ -8,6 +8,10 @@ const en = {
     editNicknameHint: 'This name is visible to other users.',
     editNicknameHintGuest: "You'll appear as Guest-{name} to others.",
     nicknamePlaceholder: 'Your nickname…',
+    audioSettings: 'Audio',
+    ttsSpeed: 'Speed',
+    ttsVolume: 'Volume',
+    ttsPitch: 'Pitch',
   },
   nav: {
     quiz: 'Quiz',

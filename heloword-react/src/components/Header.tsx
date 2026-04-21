@@ -6,6 +6,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { useSocial } from '../contexts/SocialContext';
 import { LANGUAGES, changeLanguage, Language } from '../i18n';
 import { doPut } from '../services/api.service';
+import { getTTSSettings, setTTSSettings, TTSSettings } from '../services/ttsSettings.service';
 
 interface HeaderProps {
   title: string;
@@ -24,20 +25,28 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
 
   const currentLang = i18n.language as Language;
 
-  const [editing, setEditing] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [draft, setDraft] = useState('');
   const [saving, setSaving] = useState(false);
+  const [ttsSettings, setTtsSettings] = useState<TTSSettings>(getTTSSettings);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const openEdit = () => {
-    // Pre-fill: for guest strip "Guest-" prefix; for logged-in use nickname
+  const updateTTS = (patch: Partial<TTSSettings>) => {
+    const next = { ...ttsSettings, ...patch };
+    setTtsSettings(next);
+    setTTSSettings(next);
+  };
+
+  const openMenu = () => {
     const current = isLoggedIn
       ? (user.nickname || user.fullname || '')
       : myDisplayName.replace(/^Guest-/, '');
     setDraft(current);
-    setEditing(true);
-    setTimeout(() => inputRef.current?.focus(), 80);
+    setMenuOpen(true);
+    setTimeout(() => inputRef.current?.focus(), 120);
   };
+
+  const closeMenu = () => setMenuOpen(false);
 
   const handleSave = async () => {
     const trimmed = draft.trim();
@@ -52,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
       } else {
         setGuestName(`Guest-${trimmed}`);
       }
-      setEditing(false);
+      setMenuOpen(false);
     } finally {
       setSaving(false);
     }
@@ -60,10 +69,9 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') handleSave();
-    if (e.key === 'Escape') setEditing(false);
+    if (e.key === 'Escape') closeMenu();
   };
 
-  // What to show in the top-left chip
   const displayLabel = isLoggedIn
     ? (user.nickname || user.fullname || 'Hw')
     : myDisplayName || 'Hw';
@@ -72,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
     <>
       <header className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/60 dark:border-gray-700/60 shadow-[0_1px_16px_rgba(0,0,0,0.06)] dark:shadow-[0_1px_16px_rgba(0,0,0,0.3)]">
         <div className="flex items-center justify-between px-4 h-14 max-w-2xl mx-auto">
-          {/* Left: back button or display name chip */}
+          {/* Left: back button or hamburger + nickname */}
           <div className="flex items-center gap-2 min-w-[40px]">
             {showBack ? (
               <button
@@ -85,16 +93,20 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 </svg>
               </button>
             ) : (
-              <button
-                onClick={openEdit}
-                className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 transition-colors group max-w-[120px]"
-                title={t('common.editNickname', 'Change nickname')}
-              >
-                <span className="text-blue-500 font-bold text-sm truncate">{displayLabel}</span>
-                <svg className="w-3 h-3 text-gray-400 group-hover:text-blue-400 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 012.828 0l.172.172a2 2 0 010 2.828L12 16H9v-3z" />
-                </svg>
-              </button>
+              <div className="flex items-center gap-1.5">
+                {/* Hamburger button */}
+                <button
+                  onClick={openMenu}
+                  className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 transition-colors"
+                  aria-label="Open menu"
+                >
+                  <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+                {/* Nickname display (non-clickable) */}
+                <span className="text-blue-500 font-bold text-sm truncate max-w-[90px]">{displayLabel}</span>
+              </div>
             )}
           </div>
 
@@ -167,52 +179,116 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
         </div>
       </header>
 
-      {/* Nickname edit modal */}
-      {editing && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={() => setEditing(false)}>
+      {/* Left slide-in menu panel */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 z-50 flex"
+          onClick={closeMenu}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/40 transition-opacity" />
+
+          {/* Drawer */}
           <div
-            className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm p-6"
+            className="relative w-72 max-w-[85vw] h-full bg-white dark:bg-gray-900 shadow-2xl flex flex-col animate-slide-in-left"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-1">
-              {t('common.editNickname', 'Change nickname')}
-            </h2>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-              {isLoggedIn
-                ? t('common.editNicknameHint', 'This name is visible to other users.')
-                : t('common.editNicknameHintGuest', 'You\'ll appear as Guest-{name} to others.').replace('{name}', draft.trim() || '…')}
-            </p>
-
-            <div className="relative mb-4">
-              {!isLoggedIn && (
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-blue-500 select-none pointer-events-none">
-                  Guest-
-                </span>
-              )}
-              <input
-                ref={inputRef}
-                type="text"
-                value={draft}
-                onChange={(e) => setDraft(e.target.value.slice(0, MAX_NICK))}
-                onKeyDown={handleKeyDown}
-                placeholder={isLoggedIn ? t('common.nicknamePlaceholder', 'Your nickname…') : t('guestSetup.placeholder')}
-                className={`w-full ${!isLoggedIn ? 'pl-[4.5rem]' : 'pl-3'} pr-3 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500`}
-              />
+            {/* Drawer header */}
+            <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100 dark:border-gray-800">
+              <span className="font-bold text-gray-800 dark:text-gray-100 text-base">Menu</span>
+              <button
+                onClick={closeMenu}
+                className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close menu"
+              >
+                <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
 
-            <button
-              onClick={handleSave}
-              disabled={!draft.trim() || saving}
-              className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors duration-150 mb-2"
-            >
-              {saving ? '…' : t('social.save')}
-            </button>
-            <button
-              onClick={() => setEditing(false)}
-              className="w-full text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 py-2 transition-colors"
-            >
-              {t('social.cancel')}
-            </button>
+            {/* Row 1: Nickname edit */}
+            <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-800">
+              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-3">
+                {t('common.editNickname', 'Nickname')}
+              </p>
+              <div className="relative mb-3">
+                {!isLoggedIn && (
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-blue-500 select-none pointer-events-none">
+                    Guest-
+                  </span>
+                )}
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={draft}
+                  onChange={(e) => setDraft(e.target.value.slice(0, MAX_NICK))}
+                  onKeyDown={handleKeyDown}
+                  placeholder={isLoggedIn ? t('common.nicknamePlaceholder', 'Your nickname…') : t('guestSetup.placeholder')}
+                  className={`w-full ${!isLoggedIn ? 'pl-[4.5rem]' : 'pl-3'} pr-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                />
+              </div>
+              {!isLoggedIn && (
+                <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-3">
+                  {t('common.editNicknameHintGuest', 'You\'ll appear as Guest-{name} to others.').replace('{name}', draft.trim() || '…')}
+                </p>
+              )}
+              <button
+                onClick={handleSave}
+                disabled={!draft.trim() || saving}
+                className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-2 rounded-xl transition-colors text-sm"
+              >
+                {saving ? '…' : t('social.save')}
+              </button>
+            </div>
+
+            {/* Row 2: Audio / TTS settings */}
+            <div className="px-4 py-4">
+              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-3">
+                {t('common.audioSettings')}
+              </p>
+              <div className="space-y-3">
+                {/* Speed */}
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsSpeed')}</span>
+                    <span className="text-xs font-mono text-blue-500">{ttsSettings.speed.toFixed(1)}×</span>
+                  </div>
+                  <input
+                    type="range" min={0.5} max={2} step={0.1}
+                    value={ttsSettings.speed}
+                    onChange={(e) => updateTTS({ speed: parseFloat(e.target.value) })}
+                    className="w-full accent-blue-500"
+                  />
+                </div>
+                {/* Volume */}
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsVolume')}</span>
+                    <span className="text-xs font-mono text-blue-500">{Math.round(ttsSettings.volume * 100)}%</span>
+                  </div>
+                  <input
+                    type="range" min={0} max={1} step={0.05}
+                    value={ttsSettings.volume}
+                    onChange={(e) => updateTTS({ volume: parseFloat(e.target.value) })}
+                    className="w-full accent-blue-500"
+                  />
+                </div>
+                {/* Pitch */}
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsPitch')}</span>
+                    <span className="text-xs font-mono text-blue-500">{ttsSettings.pitch.toFixed(1)}</span>
+                  </div>
+                  <input
+                    type="range" min={0.5} max={2} step={0.1}
+                    value={ttsSettings.pitch}
+                    onChange={(e) => updateTTS({ pitch: parseFloat(e.target.value) })}
+                    className="w-full accent-blue-500"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}

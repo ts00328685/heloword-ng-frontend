@@ -62,7 +62,7 @@ function buildEnChunks(sentence: string, chunkSize: number): Chunk[] {
 }
 
 function speak(text: string, lang: Lang) {
-  pronounceWord(text, lang, { speed: lang === 'jp' ? 0.85 : 0.9 });
+  pronounceWord(text, lang);
 }
 
 // ── Sub-components ─────────────────────────────────────────────────────────

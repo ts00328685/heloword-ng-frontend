@@ -8,6 +8,10 @@ const zh = {
     editNicknameHint: '此名稱將顯示給其他用戶。',
     editNicknameHintGuest: '其他人將看到你的名稱為 Guest-{name}。',
     nicknamePlaceholder: '你的暱稱…',
+    audioSettings: '音訊',
+    ttsSpeed: '速度',
+    ttsVolume: '音量',
+    ttsPitch: '音調',
   },
   nav: {
     quiz: '測驗',

@@ -8,6 +8,10 @@ const ja = {
     editNicknameHint: 'この名前は他のユーザーに表示されます。',
     editNicknameHintGuest: '他のユーザーには Guest-{name} と表示されます。',
     nicknamePlaceholder: 'ニックネーム…',
+    audioSettings: 'オーディオ',
+    ttsSpeed: '速度',
+    ttsVolume: '音量',
+    ttsPitch: 'ピッチ',
   },
   nav: {
     quiz: 'クイズ',

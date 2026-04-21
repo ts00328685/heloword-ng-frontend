@@ -102,8 +102,6 @@ const VocabularyQuizPage: React.FC = () => {
   const [enableSentenceMask, setEnableSentenceMask] = useState(false);
   const [failWhenMaskOff, setFailWhenMaskOff] = useState(false);
   const [japaneseMode, setJapaneseMode] = useState(false);
-  const [speed, setSpeed] = useState(1.0);
-  const [volume, setVolume] = useState(0.2);
   const [showSettings, setShowSettings] = useState(false);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
 
@@ -476,19 +474,19 @@ const VocabularyQuizPage: React.FC = () => {
       if (!next) return;
 
       if (autoPronounce) {
-        pronounceWord(next.word || next.sentence || '', next.language, { speed, volume });
+        pronounceWord(next.word || next.sentence || '', next.language);
       }
       const delay = autoPronounce ? 1000 : 0;
-      if (autoPronounceEn) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.translateEn, 'en', { speed, volume }), delay));
-      if (autoPronounceCh) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.translateCh, 'ch', { speed, volume }), delay));
-      if (autoPronounceSentence) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.sentence || '', next.language, { speed, volume }), delay));
+      if (autoPronounceEn) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.translateEn, 'en'), delay));
+      if (autoPronounceCh) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.translateCh, 'ch'), delay));
+      if (autoPronounceSentence) pronounceTimeoutsRef.current.push(setTimeout(() => pronounceWord(next.sentence || '', next.language), delay));
 
       if (autoInputFocus) setTimeout(() => inputRef.current?.focus(), 50);
     },
     [
       currentIndex, totalLength, wordList, failWhenMaskOff, enableSentenceMask,
       autoPronounce, autoPronounceEn, autoPronounceCh, autoPronounceSentence,
-      autoInputFocus, speed, volume, saveSingleRecord, showToast, navigate,
+      autoInputFocus, saveSingleRecord, showToast, navigate,
       isLoggedIn, refreshGuest,
     ]
   );
@@ -560,7 +558,7 @@ const VocabularyQuizPage: React.FC = () => {
     const current = wordList[0];
     if (!current) return;
     pronounceCountRef.current++;
-    pronounceWord(current.word || current.sentence || '', current.language, { speed, volume });
+    pronounceWord(current.word || current.sentence || '', current.language);
     if (autoInputFocus) setTimeout(() => inputRef.current?.focus(), 50);
   };
 
@@ -697,24 +695,6 @@ const VocabularyQuizPage: React.FC = () => {
               ))}
             </div>
 
-            <div className="mt-3 space-y-2">
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-gray-500 dark:text-gray-400 w-16">{t('quiz.speed', { value: speed.toFixed(1) })}</span>
-                <input
-                  type="range" min={0.5} max={2} step={0.1} value={speed}
-                  onChange={(e) => setSpeed(parseFloat(e.target.value))}
-                  className="flex-1 accent-blue-500"
-                />
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-gray-500 dark:text-gray-400 w-16">{t('quiz.volume', { value: (volume * 100).toFixed(0) })}</span>
-                <input
-                  type="range" min={0} max={1} step={0.05} value={volume}
-                  onChange={(e) => setVolume(parseFloat(e.target.value))}
-                  className="flex-1 accent-blue-500"
-                />
-              </div>
-            </div>
           </div>
         )}
 

@@ -208,16 +208,16 @@ const SpeakingPracticeJpPage: React.FC = () => {
 
     if (readChinese && readJapanese) {
       setGameState('tts-ch');
-      speakSentence(sentence.translation, 'zh-TW', { speed: 0.9 }, () => {
+      speakSentence(sentence.translation, 'zh-TW', {}, () => {
         setGameState('tts-jp');
-        setTimeout(() => speakSentence(sentence.japanese, 'ja-JP', { speed: 0.85 }, () => setGameState('recording')), 500);
+        setTimeout(() => speakSentence(sentence.japanese, 'ja-JP', {}, () => setGameState('recording')), 500);
       });
     } else if (readChinese) {
       setGameState('tts-ch');
-      speakSentence(sentence.translation, 'zh-TW', { speed: 0.9 }, () => setGameState('recording'));
+      speakSentence(sentence.translation, 'zh-TW', {}, () => setGameState('recording'));
     } else {
       setGameState('tts-jp');
-      speakSentence(sentence.japanese, 'ja-JP', { speed: 0.85 }, () => setGameState('recording'));
+      speakSentence(sentence.japanese, 'ja-JP', {}, () => setGameState('recording'));
     }
   }, [readChinese, readJapanese]);
 
