@@ -217,16 +217,16 @@ const SpeakingPracticePage: React.FC = () => {
 
     if (readChinese && readEnglish) {
       setGameState('tts-ch');
-      speakSentence(sentence.translate_ch, 'zh-TW', { speed: 0.9 }, () => {
+      speakSentence(sentence.translate_ch, 'zh-TW', {}, () => {
         setGameState('tts-en');
-        setTimeout(() => speakSentence(sentence.sentence, 'en-US', { speed: 0.85 }, () => setGameState('recording')), 500);
+        setTimeout(() => speakSentence(sentence.sentence, 'en-US', {}, () => setGameState('recording')), 500);
       });
     } else if (readChinese) {
       setGameState('tts-ch');
-      speakSentence(sentence.translate_ch, 'zh-TW', { speed: 0.9 }, () => setGameState('recording'));
+      speakSentence(sentence.translate_ch, 'zh-TW', {}, () => setGameState('recording'));
     } else {
       setGameState('tts-en');
-      speakSentence(sentence.sentence, 'en-US', { speed: 0.85 }, () => setGameState('recording'));
+      speakSentence(sentence.sentence, 'en-US', {}, () => setGameState('recording'));
     }
   }, [readChinese, readEnglish]);
 

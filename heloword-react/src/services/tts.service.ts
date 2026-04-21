@@ -10,6 +10,8 @@
  *   before speaking so the right voice is actually available.
  */
 
+import { getTTSSettings } from './ttsSettings.service';
+
 export const TTS_LANG_MAP: Record<string, string> = {
   en: 'en-US',
   de: 'de-DE',
@@ -67,7 +69,8 @@ export interface SpeakOptions {
 export function pronounceWord(word: string, lang: string, options: SpeakOptions = {}): void {
   if (!word || !('speechSynthesis' in window)) return;
 
-  const { speed = 1.0, volume = 0.2, pitch = 1.2 } = options;
+  const s = getTTSSettings();
+  const { speed = s.speed, volume = s.volume, pitch = s.pitch } = options;
   const cleaned = cleanWordText(word);
   const langCode = toLangCode(lang);
 
@@ -105,7 +108,8 @@ export function speakSentence(
   onDone: () => void = () => {},
 ): void {
   if (!('speechSynthesis' in window)) { onDone(); return; }
-  const { speed = 1.0, volume = 1.0, pitch = 1.1 } = options;
+  const s = getTTSSettings();
+  const { speed = s.speed, volume = s.volume, pitch = s.pitch } = options;
 
   const doSpeak = () => {
     const utt = new SpeechSynthesisUtterance(text);

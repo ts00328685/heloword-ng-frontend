@@ -418,12 +418,12 @@ const ArticleItem: React.FC<{ article: FunArticle; index: number }> = ({ article
       return;
     }
     setActiveLang(langKey);
-    speakSentence(stripMarkdownForTTS(text, langCode), langCode, { speed: 0.9 }, () => setActiveLang(null));
+    speakSentence(stripMarkdownForTTS(text, langCode), langCode, {}, () => setActiveLang(null));
   };
 
   const speakWord = (e: React.MouseEvent) => {
     e.stopPropagation();
-    pronounceWord(article.word, 'en', { speed: 0.9, volume: 1.0, pitch: 1.0 });
+    pronounceWord(article.word, 'en');
   };
 
   const langBtn = (label: string, text: string, langCode: string, langKey: string) => (

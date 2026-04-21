@@ -7,6 +7,15 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        'slide-in-left': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        'slide-in-left': 'slide-in-left 0.25s ease-out',
+      },
       colors: {
         primary: {
           DEFAULT: '#3b82f6',
