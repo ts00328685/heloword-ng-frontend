@@ -183,7 +183,7 @@ const ChatBot: React.FC = () => {
   const [error, setError] = useState('');
   const [heartEntry, setHeartEntry] = useState<ChatEntry | null>(null);
 
-  const idleTimer = useRef<ReturnType<typeof setTimeout>>();
+  const idleTimer = useRef<number | undefined>(undefined);
   const lastCopied = useRef('');
   const historyEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -214,13 +214,13 @@ const ChatBot: React.FC = () => {
   // Idle shrink after 10s
   const resetIdle = useCallback(() => {
     setIsIdle(false);
-    clearTimeout(idleTimer.current);
-    idleTimer.current = setTimeout(() => setIsIdle(true), 10000);
+    window.clearTimeout(idleTimer.current);
+    idleTimer.current = window.setTimeout(() => setIsIdle(true), 10000);
   }, []);
 
   useEffect(() => {
     resetIdle();
-    return () => clearTimeout(idleTimer.current);
+    return () => window.clearTimeout(idleTimer.current);
   }, [resetIdle]);
 
   // Capture clipboard copy events — open modal and pre-fill input
