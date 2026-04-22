@@ -1,5 +1,19 @@
 import { doPost } from './api.service';
 
+export interface QuickTranslateResult {
+  word: string;
+  wordLang: string;
+  translateEn: string;
+  translateCh: string;
+}
+
+/** Auto-detect language and translate a word/phrase. Ultra-slim prompt, fast. */
+export async function quickTranslate(text: string): Promise<QuickTranslateResult> {
+  const res = await doPost<QuickTranslateResult>('/frontend-api/api/fe/ai/quick-translate', { text });
+  if (res.code === '0000' && res.data) return res.data;
+  throw new Error(res.message || 'Quick translate failed');
+}
+
 /**
  * AI feature service — all calls go through the backend, which proxies to the
  * self-hosted LLM tunnel. The tunnel URL is never exposed to the browser.
@@ -78,6 +92,22 @@ export async function getWordComparison(
   });
   if (res.code === '0000' && res.data) return res.data;
   throw new Error(res.message || 'AI word comparison failed');
+}
+
+export interface VerbConjugationResult {
+  word: string;
+  wordLang: string;
+  meaningEn: string;
+  meaningZh: string;
+  conjugations: string;
+}
+
+/** Verb conjugation table for English or Japanese verbs. Throws if not a verb. */
+export async function getVerbConjugation(word: string): Promise<VerbConjugationResult> {
+  const res = await doPost<VerbConjugationResult>('/frontend-api/api/fe/ai/verb-conjugation', { word });
+  if (res.code === '0000' && res.data) return res.data;
+  if (res.code === '4003') throw new Error('NOT_A_VERB');
+  throw new Error(res.message || 'Verb conjugation failed');
 }
 
 /** Personalised study tip based on recent performance. */

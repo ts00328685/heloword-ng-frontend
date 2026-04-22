@@ -18,7 +18,10 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
   const [error, setError] = useState('');
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newGroupName, setNewGroupName] = useState('');
+  const [newGroupLang, setNewGroupLang] = useState('EN');
   const [creating, setCreating] = useState(false);
+
+  const LANGUAGES = ['EN', 'JA', 'DE', 'Other'];
 
   useEffect(() => {
     fetchCustomGroups()
@@ -56,7 +59,7 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
     setCreating(true);
     setError('');
     try {
-      const created = await createCustomGroup(trimmed, '', 'EN');
+      const created = await createCustomGroup(trimmed, '', newGroupLang);
       setGroups((prev) => [created, ...prev]);
       setShowCreateForm(false);
       setNewGroupName('');
@@ -139,6 +142,25 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
                 placeholder={t('userVocab.groupName')}
                 className="w-full px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs text-gray-400 dark:text-gray-500 shrink-0">{t('userVocab.language')}</span>
+                <div className="flex gap-1">
+                  {LANGUAGES.map((lang) => (
+                    <button
+                      key={lang}
+                      type="button"
+                      onClick={() => setNewGroupLang(lang)}
+                      className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors ${
+                        newGroupLang === lang
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      }`}
+                    >
+                      {lang}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <div className="flex gap-2">
                 <button
                   onClick={handleCreateAndAdd}
@@ -148,7 +170,7 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
                   {creating ? '…' : t('userVocab.createAndAdd', 'Create & Add')}
                 </button>
                 <button
-                  onClick={() => { setShowCreateForm(false); setNewGroupName(''); }}
+                  onClick={() => { setShowCreateForm(false); setNewGroupName(''); setNewGroupLang('EN'); }}
                   className="text-sm text-gray-400 px-4 rounded-xl border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                 >
                   {t('social.cancel')}

@@ -813,6 +813,23 @@ const zh = {
     accept: '接受',
     reject: '拒絕',
   },
+  chatbot: {
+    title: '貓貓翻譯小助手',
+    placeholder: '輸入單字或片語…',
+    quickTranslate: '⚡ 快速翻譯',
+    exampleSentence: '✏️ 例句',
+    verbConjugation: '動詞變化',
+    loginRequired: '請先登入',
+    thinking: '思考中…',
+    emptyHint: '輸入單字後按翻譯或例句！',
+    clearHistory: '清除對話紀錄',
+    autoCopyTrigger: '複製時自動開啟',
+    idleShrink: '閒置時縮小圖示',
+    pronounce: '發音',
+    saveToGroup: '加入單字群組',
+    error: '發生錯誤，請再試一次',
+    notAVerb: '請確認輸入內容，此單字似乎不是動詞',
+  },
 } as const;
 
 export default zh;

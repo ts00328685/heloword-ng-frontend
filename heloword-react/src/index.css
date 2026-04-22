@@ -230,6 +230,26 @@ ruby rt {
   animation: bell-shine 3s ease-in-out infinite;
 }
 
+/* Chatbot panel slide up */
+@keyframes chatbot-slide-up {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-chatbot-slide-up {
+  animation: chatbot-slide-up 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Chatbot login hint fade in + out */
+@keyframes chatbot-hint {
+  0%   { opacity: 0; transform: translateY(4px); }
+  15%  { opacity: 1; transform: translateY(0); }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+.chatbot-login-hint {
+  animation: chatbot-hint 2s ease forwards;
+}
+
 /* Number input arrows hidden */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
