@@ -14,6 +14,7 @@ import { NotificationProvider } from './contexts/NotificationContext';
 import { SocialProvider } from './contexts/SocialContext';
 import { ChallengeProvider } from './contexts/ChallengeContext';
 import GuestSetupModal from './components/GuestSetupModal';
+import ChatBot from './components/ChatBot';
 import WalkthroughOverlay from './components/WalkthroughOverlay';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import InAppBrowserGate from './components/InAppBrowserGate';
@@ -100,6 +101,9 @@ const AppLayout: React.FC = () => {
       <GuestSetupModal />
       <WalkthroughOverlay />
       <CookieConsentBanner />
+
+      {/* Floating chatbot assistant */}
+      <ChatBot />
     </AppInitializer>
   );
 };

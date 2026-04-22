@@ -813,6 +813,22 @@ const en = {
     accept: 'Accept',
     reject: 'Decline',
   },
+  chatbot: {
+    title: 'Heloword Assistant',
+    placeholder: 'Enter a word or phrase…',
+    quickTranslate: '⚡ Quick Translate',
+    exampleSentence: '✏️ Example Sentence',
+    verbConjugation: '動詞變化',
+    loginRequired: 'Login required',
+    thinking: 'Thinking…',
+    emptyHint: 'Type a word and hit Translate or Example!',
+    clearHistory: 'Clear Chat History',
+    autoCopyTrigger: 'Open on copy',
+    pronounce: 'Pronounce',
+    saveToGroup: 'Save to group',
+    error: 'Something went wrong',
+    notAVerb: 'Please check your input — this word does not appear to be a verb',
+  },
 } as const;
 
 export default en;

@@ -26,15 +26,26 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
   const currentLang = i18n.language as Language;
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
   const [draft, setDraft] = useState('');
   const [saving, setSaving] = useState(false);
   const [ttsSettings, setTtsSettings] = useState<TTSSettings>(getTTSSettings);
+  const [autoCopyTrigger, setAutoCopyTrigger] = useState(() => {
+    const stored = localStorage.getItem('hw-chatbot-copy-trigger');
+    return stored !== null ? stored === 'true' : true;
+  });
   const inputRef = useRef<HTMLInputElement>(null);
 
   const updateTTS = (patch: Partial<TTSSettings>) => {
     const next = { ...ttsSettings, ...patch };
     setTtsSettings(next);
     setTTSSettings(next);
+  };
+
+  const toggleAutoCopyTrigger = () => {
+    const next = !autoCopyTrigger;
+    setAutoCopyTrigger(next);
+    localStorage.setItem('hw-chatbot-copy-trigger', String(next));
   };
 
   const openMenu = () => {
@@ -46,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
     setTimeout(() => inputRef.current?.focus(), 120);
   };
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => { setMenuOpen(false); setOpenSection(null); };
 
   const handleSave = async () => {
     const trimmed = draft.trim();
@@ -208,86 +219,127 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
             </div>
 
             {/* Row 1: Nickname edit */}
-            <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-800">
-              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-3">
-                {t('common.editNickname', 'Nickname')}
-              </p>
-              <div className="relative mb-3">
-                {!isLoggedIn && (
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-blue-500 select-none pointer-events-none">
-                    Guest-
-                  </span>
-                )}
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={draft}
-                  onChange={(e) => setDraft(e.target.value.slice(0, MAX_NICK))}
-                  onKeyDown={handleKeyDown}
-                  placeholder={isLoggedIn ? t('common.nicknamePlaceholder', 'Your nickname…') : t('guestSetup.placeholder')}
-                  className={`w-full ${!isLoggedIn ? 'pl-[4.5rem]' : 'pl-3'} pr-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500`}
-                />
-              </div>
-              {!isLoggedIn && (
-                <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-3">
-                  {t('common.editNicknameHintGuest', 'You\'ll appear as Guest-{name} to others.').replace('{name}', draft.trim() || '…')}
-                </p>
-              )}
+            <div className="border-b border-gray-100 dark:border-gray-800">
               <button
-                onClick={handleSave}
-                disabled={!draft.trim() || saving}
-                className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-2 rounded-xl transition-colors text-sm"
+                onClick={() => setOpenSection(s => s === 'nickname' ? null : 'nickname')}
+                className="flex items-center justify-between w-full px-4 py-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               >
-                {saving ? '…' : t('social.save')}
+                <span>{t('common.editNickname', 'Nickname')}</span>
+                <svg className={`w-4 h-4 transition-transform duration-200 ${openSection === 'nickname' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
+              {openSection === 'nickname' && (
+                <div className="px-4 pb-4">
+                  <div className="relative mb-3">
+                    {!isLoggedIn && (
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-blue-500 select-none pointer-events-none">
+                        Guest-
+                      </span>
+                    )}
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      value={draft}
+                      onChange={(e) => setDraft(e.target.value.slice(0, MAX_NICK))}
+                      onKeyDown={handleKeyDown}
+                      placeholder={isLoggedIn ? t('common.nicknamePlaceholder', 'Your nickname…') : t('guestSetup.placeholder')}
+                      className={`w-full ${!isLoggedIn ? 'pl-[4.5rem]' : 'pl-3'} pr-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    />
+                  </div>
+                  {!isLoggedIn && (
+                    <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-3">
+                      {t('common.editNicknameHintGuest', 'You\'ll appear as Guest-{name} to others.').replace('{name}', draft.trim() || '…')}
+                    </p>
+                  )}
+                  <button
+                    onClick={handleSave}
+                    disabled={!draft.trim() || saving}
+                    className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-2 rounded-xl transition-colors text-sm"
+                  >
+                    {saving ? '…' : t('social.save')}
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Row 2: Audio / TTS settings */}
-            <div className="px-4 py-4">
-              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-3">
-                {t('common.audioSettings')}
-              </p>
-              <div className="space-y-3">
-                {/* Speed */}
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsSpeed')}</span>
-                    <span className="text-xs font-mono text-blue-500">{ttsSettings.speed.toFixed(1)}×</span>
+            <div className="border-b border-gray-100 dark:border-gray-800">
+              <button
+                onClick={() => setOpenSection(s => s === 'audio' ? null : 'audio')}
+                className="flex items-center justify-between w-full px-4 py-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+              >
+                <span>{t('common.audioSettings')}</span>
+                <svg className={`w-4 h-4 transition-transform duration-200 ${openSection === 'audio' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {openSection === 'audio' && (
+                <div className="px-4 pb-4 space-y-3">
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsSpeed')}</span>
+                      <span className="text-xs font-mono text-blue-500">{ttsSettings.speed.toFixed(1)}×</span>
+                    </div>
+                    <input
+                      type="range" min={0.5} max={2} step={0.1}
+                      value={ttsSettings.speed}
+                      onChange={(e) => updateTTS({ speed: parseFloat(e.target.value) })}
+                      className="w-full accent-blue-500"
+                    />
                   </div>
-                  <input
-                    type="range" min={0.5} max={2} step={0.1}
-                    value={ttsSettings.speed}
-                    onChange={(e) => updateTTS({ speed: parseFloat(e.target.value) })}
-                    className="w-full accent-blue-500"
-                  />
-                </div>
-                {/* Volume */}
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsVolume')}</span>
-                    <span className="text-xs font-mono text-blue-500">{Math.round(ttsSettings.volume * 100)}%</span>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsVolume')}</span>
+                      <span className="text-xs font-mono text-blue-500">{Math.round(ttsSettings.volume * 100)}%</span>
+                    </div>
+                    <input
+                      type="range" min={0} max={1} step={0.05}
+                      value={ttsSettings.volume}
+                      onChange={(e) => updateTTS({ volume: parseFloat(e.target.value) })}
+                      className="w-full accent-blue-500"
+                    />
                   </div>
-                  <input
-                    type="range" min={0} max={1} step={0.05}
-                    value={ttsSettings.volume}
-                    onChange={(e) => updateTTS({ volume: parseFloat(e.target.value) })}
-                    className="w-full accent-blue-500"
-                  />
-                </div>
-                {/* Pitch */}
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsPitch')}</span>
-                    <span className="text-xs font-mono text-blue-500">{ttsSettings.pitch.toFixed(1)}</span>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsPitch')}</span>
+                      <span className="text-xs font-mono text-blue-500">{ttsSettings.pitch.toFixed(1)}</span>
+                    </div>
+                    <input
+                      type="range" min={0.5} max={2} step={0.1}
+                      value={ttsSettings.pitch}
+                      onChange={(e) => updateTTS({ pitch: parseFloat(e.target.value) })}
+                      className="w-full accent-blue-500"
+                    />
                   </div>
-                  <input
-                    type="range" min={0.5} max={2} step={0.1}
-                    value={ttsSettings.pitch}
-                    onChange={(e) => updateTTS({ pitch: parseFloat(e.target.value) })}
-                    className="w-full accent-blue-500"
-                  />
                 </div>
-              </div>
+              )}
+            </div>
+
+            {/* Row 3: Assistant settings */}
+            <div className="border-b border-gray-100 dark:border-gray-800">
+              <button
+                onClick={() => setOpenSection(s => s === 'assistant' ? null : 'assistant')}
+                className="flex items-center justify-between w-full px-4 py-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+              >
+                <span>{t('chatbot.title')}</span>
+                <svg className={`w-4 h-4 transition-transform duration-200 ${openSection === 'assistant' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {openSection === 'assistant' && (
+                <div className="px-4 pb-4">
+                  <button
+                    onClick={toggleAutoCopyTrigger}
+                    className="flex items-center justify-between w-full text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                  >
+                    <span>{t('chatbot.autoCopyTrigger')}</span>
+                    <span className={`relative inline-flex h-5 w-9 shrink-0 rounded-full transition-colors duration-200 ${autoCopyTrigger ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}>
+                      <span className={`inline-block h-4 w-4 mt-0.5 rounded-full bg-white shadow transition-transform duration-200 ${autoCopyTrigger ? 'translate-x-4' : 'translate-x-0.5'}`} />
+                    </span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

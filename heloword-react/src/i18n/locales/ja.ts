@@ -812,6 +812,22 @@ const ja = {
     accept: '受け取る',
     reject: '断る',
   },
+  chatbot: {
+    title: 'Heloword アシスタント',
+    placeholder: '単語やフレーズを入力…',
+    quickTranslate: '⚡ クイック翻訳',
+    exampleSentence: '✏️ 例文',
+    verbConjugation: '動詞変化',
+    loginRequired: 'ログインが必要です',
+    thinking: '考え中…',
+    emptyHint: '単語を入力して翻訳か例文を押してください！',
+    clearHistory: 'チャット履歴を削除',
+    autoCopyTrigger: 'コピー時に開く',
+    pronounce: '発音',
+    saveToGroup: 'グループに保存',
+    error: 'エラーが発生しました',
+    notAVerb: '入力内容をご確認ください。この単語は動詞ではないようです',
+  },
 } as const;
 
 export default ja;

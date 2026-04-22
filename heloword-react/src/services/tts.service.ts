@@ -49,9 +49,44 @@ export function findVoice(langCode: string): SpeechSynthesisVoice | null {
 /** Strip ruby/bracket annotations and HTML tags from a word string. */
 export function cleanWordText(text: string): string {
   return text
-    .replace(/(\[.*?\]|\(.*?\)) */g, '')
+    .replace(/(\[.*?\]|\(.*?\)|（.*?）|【.*?】) */g, '')
     .replace(/(<.*?>) */g, '')
     .trim();
+}
+
+/**
+ * Prepare sentence text for TTS.
+ * Strips bracket annotations and, for Japanese, discards any trailing
+ * Chinese/English translation lines that lack hiragana/katakana characters.
+ */
+export function cleanSentenceForTTS(text: string, lang: string): string {
+  let cleaned = text
+    .replace(/\[.*?\]/g, '')
+    .replace(/（.*?）/g, '')
+    .replace(/\(.*?\)/g, '')
+    .replace(/【.*?】/g, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/ {2,}/g, ' ')
+    .trim();
+
+  if (lang === 'jp' || lang === 'ja') {
+    const hasKana = /[ぁ-ゖ゠-ヿ]/;
+    // If multi-line, keep only lines containing hiragana/katakana
+    const lines = cleaned.split('\n');
+    if (lines.length > 1) {
+      const jpLines = lines.filter(l => hasKana.test(l));
+      if (jpLines.length > 0) cleaned = jpLines.join('\n').trim();
+    } else {
+      // Single line: strip segments after 。 that contain no kana
+      const parts = cleaned.split(/(?<=。)/);
+      const jpParts = parts.filter(p => !p.trim() || hasKana.test(p));
+      if (jpParts.length > 0 && jpParts.length < parts.length) {
+        cleaned = jpParts.join('').trim();
+      }
+    }
+  }
+
+  return cleaned;
 }
 
 export interface SpeakOptions {

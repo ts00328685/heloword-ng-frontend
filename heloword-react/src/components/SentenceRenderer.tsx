@@ -7,7 +7,7 @@ import React from 'react';
  */
 function toHtml(text: string): string {
   if (!text) return '';
-  return text.replace(/([^\s\[]+)\[([^\]]+)\]/g, '<ruby>$1<rt>$2</rt></ruby>');
+  return text.replace(/([㐀-鿿豈-﫿]+)\[([^\]]+)\]/g, '<ruby>$1<rt>$2</rt></ruby>');
 }
 
 interface SentenceRendererProps {

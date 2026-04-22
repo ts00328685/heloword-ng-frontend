@@ -42,7 +42,7 @@ const getJpAnswers = (answer: string) => {
 const extractKanaAnswer = (wordStr: string): string => {
   // Replace every "unit[reading]" block with just the reading.
   // [^\s\[]* matches the kanji/kana unit before the bracket (including okurigana).
-  const withReadings = wordStr.replace(/[^\s\[]*\[([^\]]+)\]/g, '$1');
+  const withReadings = wordStr.replace(/[㐀-鿿豈-﫿]+\[([^\]]+)\]/g, '$1');
   // Collect all hiragana/katakana runs; skip kanji, numbers, spaces, punctuation.
   return (withReadings.match(/[ぁ-ゔァ-ヴー]+/g) || []).join('');
 };
