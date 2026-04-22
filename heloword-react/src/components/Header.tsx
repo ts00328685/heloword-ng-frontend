@@ -34,6 +34,10 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
     const stored = localStorage.getItem('hw-chatbot-copy-trigger');
     return stored !== null ? stored === 'true' : true;
   });
+  const [idleShrink, setIdleShrink] = useState(() => {
+    const stored = localStorage.getItem('hw-chatbot-idle-shrink');
+    return stored !== null ? stored === 'true' : true;
+  });
   const inputRef = useRef<HTMLInputElement>(null);
 
   const updateTTS = (patch: Partial<TTSSettings>) => {
@@ -46,6 +50,12 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
     const next = !autoCopyTrigger;
     setAutoCopyTrigger(next);
     localStorage.setItem('hw-chatbot-copy-trigger', String(next));
+  };
+
+  const toggleIdleShrink = () => {
+    const next = !idleShrink;
+    setIdleShrink(next);
+    localStorage.setItem('hw-chatbot-idle-shrink', String(next));
   };
 
   const openMenu = () => {
@@ -328,7 +338,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 </svg>
               </button>
               {openSection === 'assistant' && (
-                <div className="px-4 pb-4">
+                <div className="px-4 pb-4 space-y-3">
                   <button
                     onClick={toggleAutoCopyTrigger}
                     className="flex items-center justify-between w-full text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
@@ -336,6 +346,15 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                     <span>{t('chatbot.autoCopyTrigger')}</span>
                     <span className={`relative inline-flex h-5 w-9 shrink-0 rounded-full transition-colors duration-200 ${autoCopyTrigger ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}>
                       <span className={`inline-block h-4 w-4 mt-0.5 rounded-full bg-white shadow transition-transform duration-200 ${autoCopyTrigger ? 'translate-x-4' : 'translate-x-0.5'}`} />
+                    </span>
+                  </button>
+                  <button
+                    onClick={toggleIdleShrink}
+                    className="flex items-center justify-between w-full text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                  >
+                    <span>{t('chatbot.idleShrink')}</span>
+                    <span className={`relative inline-flex h-5 w-9 shrink-0 rounded-full transition-colors duration-200 ${idleShrink ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}>
+                      <span className={`inline-block h-4 w-4 mt-0.5 rounded-full bg-white shadow transition-transform duration-200 ${idleShrink ? 'translate-x-4' : 'translate-x-0.5'}`} />
                     </span>
                   </button>
                 </div>

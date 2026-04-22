@@ -824,6 +824,7 @@ const zh = {
     emptyHint: '輸入單字後按翻譯或例句！',
     clearHistory: '清除對話紀錄',
     autoCopyTrigger: '複製時自動開啟',
+    idleShrink: '閒置時縮小圖示',
     pronounce: '發音',
     saveToGroup: '加入單字群組',
     error: '發生錯誤，請再試一次',

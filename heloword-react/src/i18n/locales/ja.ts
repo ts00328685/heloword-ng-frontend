@@ -823,6 +823,7 @@ const ja = {
     emptyHint: '単語を入力して翻訳か例文を押してください！',
     clearHistory: 'チャット履歴を削除',
     autoCopyTrigger: 'コピー時に開く',
+    idleShrink: 'アイドル時にアイコンを縮小',
     pronounce: '発音',
     saveToGroup: 'グループに保存',
     error: 'エラーが発生しました',

@@ -824,6 +824,7 @@ const en = {
     emptyHint: 'Type a word and hit Translate or Example!',
     clearHistory: 'Clear Chat History',
     autoCopyTrigger: 'Open on copy',
+    idleShrink: 'Shrink icon when idle',
     pronounce: 'Pronounce',
     saveToGroup: 'Save to group',
     error: 'Something went wrong',

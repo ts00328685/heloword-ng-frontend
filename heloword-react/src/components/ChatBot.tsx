@@ -249,6 +249,7 @@ const ChatBot: React.FC = () => {
     return () => window.removeEventListener('hw-clear-chat', onClear);
   }, []);
 
+
   const handleIconClick = () => {
     resetIdle();
     if (!isLoggedIn) {
@@ -491,8 +492,8 @@ const ChatBot: React.FC = () => {
             className="pointer-events-auto flex flex-col items-end gap-1.5 select-none"
             style={{
               transition: 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease',
-              transform: isIdle ? 'scale(0.55)' : 'scale(1)',
-              opacity: isIdle ? 0.6 : 1,
+              transform: (isIdle && localStorage.getItem('hw-chatbot-idle-shrink') !== 'false') ? 'scale(0.55)' : 'scale(1)',
+              opacity: (isIdle && localStorage.getItem('hw-chatbot-idle-shrink') !== 'false') ? 0.6 : 1,
               transformOrigin: 'bottom right',
             }}
           >
