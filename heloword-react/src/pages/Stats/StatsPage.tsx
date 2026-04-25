@@ -12,6 +12,7 @@ import {
 } from 'recharts';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
+import DailyGoalDashboard from './DailyGoalDashboard';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -116,36 +117,40 @@ const StatsPage: React.FC = () => {
     }
   };
 
-  if (!isLoggedIn) {
-    return (
-      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
-        <Header title="Statistics" />
-        <main className="flex-1 pb-20 px-4 pt-8 max-w-2xl mx-auto w-full flex flex-col items-center justify-center">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-3xl mx-auto mb-6 flex items-center justify-center">
-              <svg className="w-10 h-10 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">Statistics</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">{t('stats.loginPrompt')}</p>
-            <button
-              onClick={() => navigate('/login')}
-              className="bg-blue-500 text-white font-semibold text-sm px-6 py-2.5 rounded-xl hover:bg-blue-600 transition-colors"
-            >
-              Login
-            </button>
-          </div>
-        </main>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
       <Header title="Statistics" />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
+
+        {/* Daily Goal Dashboard — visible for all users */}
+        <DailyGoalDashboard />
+
+        {/* Not logged in — compact unlock card */}
+        {!isLoggedIn && (
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center gap-3 mb-4">
+            <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
+              <svg className="w-4.5 h-4.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 leading-tight">Statistics</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 leading-tight mt-0.5">{t('stats.loginPrompt')}</p>
+            </div>
+            <button
+              onClick={() => navigate('/login')}
+              className="flex-shrink-0 bg-blue-500 text-white font-semibold text-xs px-4 py-2 rounded-xl hover:bg-blue-600 transition-colors"
+            >
+              Login
+            </button>
+          </div>
+        )}
+
+        {isLoggedIn && (
+          <>
+        {/* Section label */}
+        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">{t('stats.history')}</p>
 
         {/* Range toggle */}
         <div className="flex bg-gray-100 dark:bg-gray-800 rounded-xl p-1 mb-5 gap-1">
@@ -244,6 +249,8 @@ const StatsPage: React.FC = () => {
                 </LineChart>
               </ResponsiveContainer>
             </div>
+          </>
+        )}
           </>
         )}
       </main>

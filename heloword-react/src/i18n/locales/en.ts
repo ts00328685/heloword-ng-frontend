@@ -13,6 +13,8 @@ const en = {
     ttsVolume: 'Volume',
     ttsPitch: 'Pitch',
     copied: 'Copied!',
+    cancel: 'Cancel',
+    save: 'Save',
   },
   nav: {
     quiz: 'Quiz',
@@ -342,6 +344,7 @@ const en = {
   },
   stats: {
     loginPrompt: 'Log in to view your quiz statistics and progress over time.',
+    history: 'History',
     range7d: '7d',
     range30d: '30d',
     rangeAll: 'All',
@@ -818,6 +821,21 @@ const en = {
     words: 'words',
     accept: 'Accept',
     reject: 'Decline',
+  },
+  dailyGoal: {
+    noGoalsTitle: 'No Daily Goals Set',
+    noGoalsHint: 'Set a daily target for each activity to track your progress.',
+    setGoals: 'Set Goals',
+    todayGoals: "Today's Goals",
+    allDone: 'All Goals Completed!',
+    editGoals: 'Edit Goals',
+    noGoalsForLang: 'No goals configured for this language.',
+    setupTitle: 'Set Daily Goals',
+    setupHint: 'Set to 0 to skip any activity.',
+    fieldQuizWords: 'Quiz Words',
+    fieldScramble: 'Sentence Scramble',
+    fieldSpoken: 'Spoken Sentences',
+    fieldWritten: 'Written Translation',
   },
   chatbot: {
     title: 'Heloword Assistant',

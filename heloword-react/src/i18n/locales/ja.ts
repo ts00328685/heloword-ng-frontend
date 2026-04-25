@@ -13,6 +13,8 @@ const ja = {
     ttsVolume: '音量',
     ttsPitch: 'ピッチ',
     copied: 'コピーしました！',
+    cancel: 'キャンセル',
+    save: '保存',
   },
   nav: {
     quiz: 'クイズ',
@@ -342,6 +344,7 @@ const ja = {
   },
   stats: {
     loginPrompt: 'ログインしてクイズの統計と進捗を確認しましょう。',
+    history: '履歴',
     range7d: '7日',
     range30d: '30日',
     rangeAll: '全期間',
@@ -817,6 +820,21 @@ const ja = {
     words: '単語',
     accept: '受け取る',
     reject: '断る',
+  },
+  dailyGoal: {
+    noGoalsTitle: '毎日目標未設定',
+    noGoalsHint: '各活動の毎日目標を設定して進捗を追跡しましょう。',
+    setGoals: '目標を設定',
+    todayGoals: '今日の目標',
+    allDone: '全目標達成！',
+    editGoals: '目標を編集',
+    noGoalsForLang: 'この言語の目標は設定されていません。',
+    setupTitle: '毎日目標を設定',
+    setupHint: '0に設定するとその項目はスキップされます。',
+    fieldQuizWords: '単語クイズ',
+    fieldScramble: '文章並べ替え',
+    fieldSpoken: 'スピーキング練習',
+    fieldWritten: '翻訳練習',
   },
   chatbot: {
     title: 'Heloword アシスタント',

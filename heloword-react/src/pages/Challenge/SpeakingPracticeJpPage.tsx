@@ -8,6 +8,7 @@ import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
 import { latexToUnicode } from '../../utils/latexToUnicode';
+import { useDailyGoal } from '../../contexts/DailyGoalContext';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -138,6 +139,7 @@ const SpeakingPracticeJpPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
+  const { incrementProgress } = useDailyGoal();
   const dataRef = useRef<JpSentence[] | null>(null);
 
   const [sentences, setSentences] = useState<JpSentence[]>([]);
@@ -241,9 +243,11 @@ const SpeakingPracticeJpPage: React.FC = () => {
     rec.onresult = (event: SpeechRecognitionEvent) => {
       const spoken = event.results[0][0].transcript;
       setSpokenText(spoken);
-      setScore(scoreJapanese(spoken, currentSentence.japanese));
+      const s = scoreJapanese(spoken, currentSentence.japanese);
+      setScore(s);
       setGameState('result');
       setIsListening(false);
+      incrementProgress('japanese', 'spokenSentences', s);
     };
     rec.onerror = () => {
       setRecError(t('speakingGame.noSpeechDetected'));
@@ -253,7 +257,7 @@ const SpeakingPracticeJpPage: React.FC = () => {
 
     rec.start();
     setIsListening(true);
-  }, [SR, currentSentence]);
+  }, [SR, currentSentence, incrementProgress]);
 
   const stopRecording = useCallback(() => {
     recognitionRef.current?.stop();

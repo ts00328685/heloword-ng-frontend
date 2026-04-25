@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
+import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -144,6 +145,7 @@ const SpeakingPracticePage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
+  const { incrementProgress } = useDailyGoal();
   const dataRef = useRef<EnSentence[] | null>(null);
 
   // Game state
@@ -250,9 +252,11 @@ const SpeakingPracticePage: React.FC = () => {
     rec.onresult = (event: SpeechRecognitionEvent) => {
       const spoken = event.results[0][0].transcript;
       setSpokenText(spoken);
-      setScore(scoreAnswer(spoken, currentSentence.sentence));
+      const s = scoreAnswer(spoken, currentSentence.sentence);
+      setScore(s);
       setGameState('result');
       setIsListening(false);
+      incrementProgress('english', 'spokenSentences', s);
     };
     rec.onerror = () => {
       setRecError(t('speakingGame.noSpeechDetected'));
@@ -262,7 +266,7 @@ const SpeakingPracticePage: React.FC = () => {
 
     rec.start();
     setIsListening(true);
-  }, [SR, currentSentence]);
+  }, [SR, currentSentence, incrementProgress]);
 
   const stopRecording = useCallback(() => {
     recognitionRef.current?.stop();

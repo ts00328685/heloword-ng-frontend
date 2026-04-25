@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiAnalyzeTranslation } from '../../services/scramble.service';
+import { useDailyGoal } from '../../contexts/DailyGoalContext';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -107,6 +108,8 @@ const WrittenTranslationPage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const { incrementProgress } = useDailyGoal();
+  const hasCountedRef = useRef(false);
 
   const initialLang: Lang = (location.state as { lang?: Lang } | null)?.lang ?? 'jp';
   const [lang, setLang] = useState<Lang>(initialLang);
@@ -133,6 +136,7 @@ const WrittenTranslationPage: React.FC = () => {
     setShowAnswer(false);
     setSubmitState('idle');
     setAiResult('');
+    hasCountedRef.current = false;
 
     if (lang === 'jp') {
       if (!jpDataRef.current) {
@@ -172,6 +176,10 @@ const WrittenTranslationPage: React.FC = () => {
     setScore(s);
     setShowAnswer(true);
     setSubmitState('compared');
+    if (!hasCountedRef.current) {
+      hasCountedRef.current = true;
+      incrementProgress(lang === 'jp' ? 'japanese' : 'english', 'writtenSentences');
+    }
   };
 
   const handleAiAnalyze = async () => {
@@ -179,6 +187,10 @@ const WrittenTranslationPage: React.FC = () => {
     const translation = lang === 'jp' ? currentJp?.translation : currentEn?.translate_ch;
     if (!answer || !userInput.trim()) return;
 
+    if (!hasCountedRef.current) {
+      hasCountedRef.current = true;
+      incrementProgress(lang === 'jp' ? 'japanese' : 'english', 'writtenSentences');
+    }
     setSubmitState('ai-loading');
     setAiResult('');
     setShowAnswer(true);
