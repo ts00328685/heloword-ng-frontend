@@ -457,8 +457,8 @@ const zh = {
     system: '系統',
     typingRooms: '拼字遊戲房間',
     multiChoiceRooms: '選擇題遊戲房間',
-    englishGames: '英文遊戲',
-    japaneseGames: '日文遊戲',
+    englishGames: '英文練習',
+    japaneseGames: '日文練習',
     chooseAnswer: '選擇正確答案：',
   },
   guestSetup: {
