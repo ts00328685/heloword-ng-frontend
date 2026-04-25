@@ -421,13 +421,13 @@ const WordPreviewPage: React.FC = () => {
         <MultiChoicePanel words={displayWords} onExit={() => setMultiMode(false)} />
       ) : flashMode ? (
         /* ── FLASHCARD MODE ── */
-        <main className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-28 select-none overflow-x-hidden overflow-y-auto">
+        <main className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-28 overflow-x-hidden overflow-y-auto">
           {displayWords.length === 0 ? (
             <p className="text-sm text-gray-400 dark:text-gray-500">{t('review.previewNoResults', 'No words match your search.')}</p>
           ) : (
             <>
               {/* Card stack */}
-              <div className="relative w-full max-w-sm" style={{ height: 340 }}>
+              <div className="relative w-full max-w-sm select-none" style={{ height: 340 }}>
 
                 {/* Stacked peek cards */}
                 {[2, 1].map((offset) => {

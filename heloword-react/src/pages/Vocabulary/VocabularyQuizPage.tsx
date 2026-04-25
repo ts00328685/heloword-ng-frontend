@@ -739,7 +739,7 @@ const VocabularyQuizPage: React.FC = () => {
           </div>
 
           {current.translateCh && (
-            <p className="text-sm text-gray-400 dark:text-gray-500 mb-2">{current.translateCh}</p>
+            <p className="text-sm text-gray-400 dark:text-gray-300 mb-2">{current.translateCh}</p>
           )}
 
           {displaySentence && current.word && (

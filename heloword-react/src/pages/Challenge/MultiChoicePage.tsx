@@ -5,8 +5,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useData } from '../../contexts/DataContext';
 import { useAuth } from '../../contexts/AuthContext';
+import { useUI } from '../../contexts/UIContext';
 import { Word, Sentence } from '../../models';
 import AddToGroupModal from '../../components/AddToGroupModal';
+import { pronounceWord } from '../../services/tts.service';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -120,7 +122,11 @@ const MultiChoicePage: React.FC = () => {
   const navigate = useNavigate();
   const { wordStore, isFullyLoaded, loadFullDashboard } = useData();
   const { isLoggedIn } = useAuth();
+  const { showToast } = useUI();
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
+  const [longPressMode, setLongPressMode] = useState<'speak' | 'copy'>('copy');
+  const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isLongPress = useRef(false);
 
   const gameType: GameType = (location.state as { gameType?: GameType } | null)?.gameType ?? 'en';
 
@@ -207,6 +213,32 @@ const MultiChoicePage: React.FC = () => {
       loadFullDashboard().catch(() => {});
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Long-press handlers for choice buttons ───────────────────────────────
+
+  const handleChoicePointerDown = (word: Word) => () => {
+    isLongPress.current = false;
+    pressTimer.current = setTimeout(() => {
+      isLongPress.current = true;
+      if (longPressMode === 'copy') {
+        navigator.clipboard.writeText(word.word).then(() => {
+          showToast(t('common.copied'), 1000);
+          window.dispatchEvent(new CustomEvent('hw-chatbot-word-copied', { detail: { text: word.word } }));
+        });
+      } else {
+        pronounceWord(word.word, gameType);
+      }
+    }, 600);
+  };
+
+  const handleChoicePointerUp = (word: Word) => () => {
+    if (pressTimer.current) clearTimeout(pressTimer.current);
+    if (!isLongPress.current) handlePick(word);
+  };
+
+  const handleChoicePointerLeave = () => {
+    if (pressTimer.current) clearTimeout(pressTimer.current);
+  };
 
   // ── Choice button styling ────────────────────────────────────────────────
 
@@ -304,15 +336,33 @@ const MultiChoicePage: React.FC = () => {
             {choices.map(word => (
               <button
                 key={word.id}
-                onClick={() => handlePick(word)}
+                onPointerDown={handleChoicePointerDown(word)}
+                onPointerUp={handleChoicePointerUp(word)}
+                onPointerLeave={handleChoicePointerLeave}
                 disabled={answerState !== 'idle'}
-                className={choiceBtnClass(word)}
+                className={`${choiceBtnClass(word)} touch-manipulation select-none`}
               >
                 {word.word}
               </button>
             ))}
           </div>
         )}
+
+        {/* Long-press mode toggle */}
+        <button
+          onClick={() => setLongPressMode(m => m === 'speak' ? 'copy' : 'speak')}
+          title={longPressMode === 'copy' ? t('scramble.longPressCopyTooltip') : t('scramble.longPressSpeakTooltip')}
+          className={`w-full py-2 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
+            longPressMode === 'copy'
+              ? 'bg-amber-500 hover:bg-amber-600 text-white'
+              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+          }`}
+        >
+          {longPressMode === 'copy' ? '📋' : '👆'} {t('scramble.longPress')}
+          <span className={`text-xs font-bold px-1.5 py-0.5 rounded-md ${longPressMode === 'copy' ? 'bg-white/20' : 'bg-gray-300 dark:bg-gray-600'}`}>
+            {longPressMode === 'copy' ? t('scramble.longPressCopy') : t('scramble.longPressSpeak')}
+          </span>
+        </button>
 
         {/* Feedback message */}
         {answerState !== 'idle' && correct && (

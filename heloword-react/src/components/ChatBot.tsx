@@ -188,17 +188,32 @@ const ChatBot: React.FC = () => {
   const historyEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
+  const focusInputEnd = (delay = 120) => {
+    setTimeout(() => {
+      const el = inputRef.current;
+      if (!el) return;
+      el.focus();
+      el.setSelectionRange(el.value.length, el.value.length);
+    }, delay);
+  };
+
+  const closeChat = () => {
+    setIsOpen(false);
+    setInput('');
+    lastCopied.current = '';
+  };
+
   // Persist history
   useEffect(() => {
     localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
   }, [history]);
 
-  // Scroll to bottom on new entry or open
+  // Scroll to bottom on new entry, loading state change, or open
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => historyEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 80);
     }
-  }, [history.length, isOpen]);
+  }, [history.length, loading, isOpen]);
 
   // Alternate wink every 2s
   useEffect(() => {
@@ -232,11 +247,27 @@ const ChatBot: React.FC = () => {
       if (!isOpen && isLoggedIn && localStorage.getItem('hw-chatbot-copy-trigger') !== 'false') {
         setInput(sel);
         setIsOpen(true);
-        setTimeout(() => inputRef.current?.focus(), 120);
+        focusInputEnd();
       }
     };
     document.addEventListener('copy', onCopy);
     return () => document.removeEventListener('copy', onCopy);
+  }, [isOpen, isLoggedIn]);
+
+  // Capture programmatic copy events (e.g. long-press copy in games)
+  useEffect(() => {
+    const onProgrammaticCopy = (e: Event) => {
+      const text = (e as CustomEvent<{ text: string }>).detail?.text?.trim();
+      if (!text) return;
+      lastCopied.current = text;
+      if (!isOpen && isLoggedIn && localStorage.getItem('hw-chatbot-copy-trigger') !== 'false') {
+        setInput(text);
+        setIsOpen(true);
+        focusInputEnd();
+      }
+    };
+    window.addEventListener('hw-chatbot-word-copied', onProgrammaticCopy);
+    return () => window.removeEventListener('hw-chatbot-word-copied', onProgrammaticCopy);
   }, [isOpen, isLoggedIn]);
 
   // Listen for clear-chat from Header
@@ -263,9 +294,9 @@ const ChatBot: React.FC = () => {
         setInput(lastCopied.current);
       }
       setIsOpen(true);
-      setTimeout(() => inputRef.current?.focus(), 120);
+      focusInputEnd();
     } else {
-      setIsOpen(false);
+      closeChat();
     }
   };
 
@@ -354,7 +385,7 @@ const ChatBot: React.FC = () => {
       {/* Backdrop */}
       <div
         className="absolute inset-0 pointer-events-auto"
-        onClick={() => setIsOpen(false)}
+        onClick={() => closeChat()}
       />
 
       {/* Container-aligned positioning */}
@@ -384,7 +415,7 @@ const ChatBot: React.FC = () => {
               </svg>
             </button>
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={() => closeChat()}
               className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
