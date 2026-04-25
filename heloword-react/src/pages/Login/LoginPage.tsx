@@ -57,8 +57,8 @@ const LoginPage: React.FC = () => {
         <main className="flex-1 flex items-center justify-center px-4 pb-20">
           <div className="w-full max-w-sm">
             <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl mx-auto mb-4 flex items-center justify-center shadow-lg">
-                <span className="text-white text-3xl font-black">Hw</span>
+              <div className="w-20 h-20 rounded-3xl mx-auto mb-4 flex items-center justify-center shadow-lg overflow-hidden">
+                <img src="/apple-touch-icon.png" alt="Heloword" className="w-full h-full object-contain" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{t('login.welcome')}</h1>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{t('login.subtitle')}</p>

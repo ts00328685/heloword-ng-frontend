@@ -498,7 +498,7 @@ const zh = {
     autoPronounce: '自動發音',
     pronounceOn: '開',
     pronounceOff: '關',
-    sideGames: '遊戲專區',
+    sideGames: '認真專區',
     scrambleDesc: '重組句子碎片 — 日文與英文',
     titleJp: '🔀 日文句子重組',
     titleEn: '🔀 英文句子重組',

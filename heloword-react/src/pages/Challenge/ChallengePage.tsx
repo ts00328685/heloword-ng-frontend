@@ -147,7 +147,6 @@ const GameSection: React.FC<{
         <span className="flex-1 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
           {title}
         </span>
-        <span className="text-[10px] text-gray-400 mr-1">{games.length} games</span>
         <Chevron open={open} />
       </button>
       {open && (
