@@ -175,6 +175,9 @@ const SentenceScramblePage: React.FC = () => {
   // Pronunciation toggle
   const [autoPronounce, setAutoPronounce] = useState(false);
 
+  // Long-press behavior toggle: 'speak' | 'copy'
+  const [longPressMode, setLongPressMode] = useState<'speak' | 'copy'>('copy');
+
   // Lazy-loaded data cache (populated on first access, never re-fetched)
   const jpDataRef = useRef<JpSentence[] | null>(null);
   const enDataRef = useRef<EnSentence[] | null>(null);
@@ -393,6 +396,17 @@ const SentenceScramblePage: React.FC = () => {
     dragSource.current = null;
   };
 
+  const handleBankLongPress = (text: string) => {
+    if (longPressMode === 'copy') {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(t('common.copied'), 1000);
+        window.dispatchEvent(new CustomEvent('hw-chatbot-word-copied', { detail: { text } }));
+      });
+    } else {
+      speak(text, lang);
+    }
+  };
+
   // ── Current sentence info ─────────────────────────────────────────────────
 
   const chineseTranslation = lang === 'jp' ? currentJp?.translation : currentEn?.translate_ch;
@@ -549,7 +563,7 @@ const SentenceScramblePage: React.FC = () => {
                 index={0}
                 invisible={usedBankUids.has(chunk.uid)}
                 onTap={() => moveFromBank(chunk.uid)}
-                onLongPress={() => speak(chunk.text, lang)}
+                onLongPress={() => handleBankLongPress(chunk.text)}
                 onDragStart={handleDragStart('bank', chunk.uid)}
                 onDragOver={handleDragOver}
                 onDrop={e => { e.preventDefault(); }}
@@ -588,7 +602,7 @@ const SentenceScramblePage: React.FC = () => {
           </button>
           <button
             onClick={() => setAutoPronounce(p => !p)}
-            className={`col-span-2 py-2 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
+            className={`py-2 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
               autoPronounce
                 ? 'bg-teal-500 hover:bg-teal-600 text-white'
                 : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
@@ -597,6 +611,20 @@ const SentenceScramblePage: React.FC = () => {
             🔊 {t('scramble.autoPronounce')}
             <span className={`text-xs font-bold px-1.5 py-0.5 rounded-md ${autoPronounce ? 'bg-white/20' : 'bg-gray-300 dark:bg-gray-600'}`}>
               {autoPronounce ? t('scramble.pronounceOn') : t('scramble.pronounceOff')}
+            </span>
+          </button>
+          <button
+            onClick={() => setLongPressMode(m => m === 'speak' ? 'copy' : 'speak')}
+            title={longPressMode === 'copy' ? t('scramble.longPressCopyTooltip') : t('scramble.longPressSpeakTooltip')}
+            className={`py-2 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
+              longPressMode === 'copy'
+                ? 'bg-amber-500 hover:bg-amber-600 text-white'
+                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+            }`}
+          >
+            {longPressMode === 'copy' ? '📋' : '👆'} {t('scramble.longPress')}
+            <span className={`text-xs font-bold px-1.5 py-0.5 rounded-md ${longPressMode === 'copy' ? 'bg-white/20' : 'bg-gray-300 dark:bg-gray-600'}`}>
+              {longPressMode === 'copy' ? t('scramble.longPressCopy') : t('scramble.longPressSpeak')}
             </span>
           </button>
         </div>

@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -57,6 +58,15 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
     setIdleShrink(next);
     localStorage.setItem('hw-chatbot-idle-shrink', String(next));
   };
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   const openMenu = () => {
     const current = isLoggedIn
@@ -201,7 +211,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
       </header>
 
       {/* Left slide-in menu panel */}
-      {menuOpen && (
+      {menuOpen && createPortal(
         <div
           className="fixed inset-0 z-50 flex"
           onClick={closeMenu}
@@ -211,7 +221,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
 
           {/* Drawer */}
           <div
-            className="relative w-72 max-w-[85vw] h-full bg-white dark:bg-gray-900 shadow-2xl flex flex-col animate-slide-in-left"
+            className="relative w-72 max-w-[85vw] h-full bg-white dark:bg-gray-900 shadow-2xl flex flex-col animate-slide-in-left overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Drawer header */}
@@ -362,7 +372,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
             </div>
           </div>
         </div>
-      )}
+      , document.body)}
     </>
   );
 };
