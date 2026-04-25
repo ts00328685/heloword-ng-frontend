@@ -250,7 +250,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 </svg>
               </button>
               {openSection === 'nickname' && (
-                <div className="px-4 pb-4">
+                <div className="pl-6 pr-4 pb-4 pt-1">
                   <div className="relative mb-3">
                     {!isLoggedIn && (
                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-semibold text-blue-500 select-none pointer-events-none">
@@ -295,7 +295,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 </svg>
               </button>
               {openSection === 'audio' && (
-                <div className="px-4 pb-4 space-y-3">
+                <div className="pl-6 pr-4 pb-4 pt-1 space-y-3">
                   <div>
                     <div className="flex justify-between mb-1">
                       <span className="text-xs text-gray-600 dark:text-gray-300">{t('common.ttsSpeed')}</span>
@@ -348,7 +348,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 </svg>
               </button>
               {openSection === 'assistant' && (
-                <div className="px-4 pb-4 space-y-3">
+                <div className="pl-6 pr-4 pb-4 pt-1 space-y-3">
                   <button
                     onClick={toggleAutoCopyTrigger}
                     className="flex items-center justify-between w-full text-xs text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
