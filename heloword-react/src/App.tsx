@@ -13,6 +13,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { SocialProvider } from './contexts/SocialContext';
 import { ChallengeProvider } from './contexts/ChallengeContext';
+import { DailyGoalProvider } from './contexts/DailyGoalContext';
 import GuestSetupModal from './components/GuestSetupModal';
 import ChatBot from './components/ChatBot';
 import WalkthroughOverlay from './components/WalkthroughOverlay';
@@ -131,6 +132,7 @@ const App: React.FC = () => {
           <AuthProvider>
             <DataProvider>
               <NotificationProvider>
+                <DailyGoalProvider>
                 <SocialProvider>
                   <ChallengeProvider>
                     <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
@@ -138,6 +140,7 @@ const App: React.FC = () => {
                     </Router>
                   </ChallengeProvider>
                 </SocialProvider>
+                </DailyGoalProvider>
               </NotificationProvider>
             </DataProvider>
           </AuthProvider>

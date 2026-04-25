@@ -18,6 +18,7 @@ import { getWordInsight, getSampleSentence, getWordComparison } from '../../serv
 import { useAiInsight } from '../../hooks/useAiInsight';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { pronounceWord, cancelPronouncing } from '../../services/tts.service';
+import { useDailyGoal } from '../../contexts/DailyGoalContext';
 
 const normalizeGerman = (s: string) =>
   s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'b');
@@ -72,6 +73,7 @@ const VocabularyQuizPage: React.FC = () => {
   const { showToast, showAlert } = useUI();
   const { refreshGuest } = useNotifications();
 
+  const { incrementProgress } = useDailyGoal();
   const inputRef = useRef<HTMLInputElement>(null);
   const startTimeRef = useRef<Date>(new Date());
 
@@ -439,6 +441,9 @@ const VocabularyQuizPage: React.FC = () => {
         // Answered correctly — save with total accumulated wrong count across all attempts
         saveSingleRecord(current, accumulated);
         wrongAccumRef.current.delete(wordKey);
+        if (current.language === 'jp' || current.language === 'en') {
+          incrementProgress(current.language === 'jp' ? 'japanese' : 'english', 'quizWords');
+        }
       } else {
         needRetest = true;
       }
@@ -487,7 +492,7 @@ const VocabularyQuizPage: React.FC = () => {
       currentIndex, totalLength, wordList, failWhenMaskOff, enableSentenceMask,
       autoPronounce, autoPronounceEn, autoPronounceCh, autoPronounceSentence,
       autoInputFocus, saveSingleRecord, showToast, navigate,
-      isLoggedIn, refreshGuest,
+      isLoggedIn, refreshGuest, incrementProgress,
     ]
   );
 

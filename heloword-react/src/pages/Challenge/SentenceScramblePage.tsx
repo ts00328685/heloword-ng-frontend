@@ -10,6 +10,7 @@ import { aiExplainScramble } from '../../services/scramble.service';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { Sentence } from '../../models';
 import { pronounceWord } from '../../services/tts.service';
+import { useDailyGoal } from '../../contexts/DailyGoalContext';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -150,6 +151,7 @@ const SentenceScramblePage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { showToast } = useUI();
   const location = useLocation();
+  const { incrementProgress } = useDailyGoal();
 
   const initialLang: Lang = (location.state as { lang?: Lang } | null)?.lang ?? 'jp';
   const [lang, setLang] = useState<Lang>(initialLang);
@@ -252,9 +254,10 @@ const SentenceScramblePage: React.FC = () => {
       setShowTranslation(true);
       showToast(t('scramble.correct'), 1000);
       if (autoPronounce) speak(correctText, lang);
+      incrementProgress(lang === 'jp' ? 'japanese' : 'english', 'scrambleSentences');
       autoAdvanceTimer.current = setTimeout(() => loadSentence(), 1000);
     }
-  }, [answerChunks, originalChunks, status, showToast, t, autoPronounce, lang, loadSentence]);
+  }, [answerChunks, originalChunks, status, showToast, t, autoPronounce, lang, loadSentence, incrementProgress]);
 
   // ── Interactions ─────────────────────────────────────────────────────────
 
