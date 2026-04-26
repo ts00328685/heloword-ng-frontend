@@ -9,6 +9,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
+import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -17,6 +18,8 @@ interface JpSentence {
   japanese: string;
   translation: string; // Chinese
   english: string;
+  difficulty: string;
+  tags: string[];
 }
 
 type GameState = 'loading' | 'ready' | 'tts-ch' | 'tts-jp' | 'recording' | 'result';
@@ -144,6 +147,11 @@ const SpeakingPracticeJpPage: React.FC = () => {
 
   const [sentences, setSentences] = useState<JpSentence[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // JP sentence filters
+  const [filterDifficulties, setFilterDifficulties] = useState<string[]>(['easy', 'medium', 'hard']);
+  const [selectedGroups, setSelectedGroups] = useState<string[] | null>(null);
+  const [selectedJlpt, setSelectedJlpt] = useState<string[] | null>(null);
   const [gameState, setGameState] = useState<GameState>('loading');
   const [isListening, setIsListening] = useState(false);
   const [spokenText, setSpokenText] = useState('');
@@ -189,7 +197,9 @@ const SpeakingPracticeJpPage: React.FC = () => {
         const mod = await import('../../data/scramble-jp.json');
         dataRef.current = (mod.default as JpSentence[]);
       }
-      setSentences(shuffle(dataRef.current));
+      const filtered = applyJpFilter(dataRef.current, filterDifficulties, selectedGroups, selectedJlpt);
+      setSentences(shuffle(filtered));
+      setCurrentIndex(0);
       setGameState('ready');
     };
     load();
@@ -197,7 +207,7 @@ const SpeakingPracticeJpPage: React.FC = () => {
       cancelPronouncing();
       recognitionRef.current?.abort();
     };
-  }, []);
+  }, [filterDifficulties, selectedGroups, selectedJlpt]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── TTS sequence ─────────────────────────────────────────────────────────
 
@@ -361,6 +371,16 @@ const SpeakingPracticeJpPage: React.FC = () => {
       <Header title={t('speakingGame.jpTitle')} showBack />
 
       <main className="flex-1 pb-24 px-4 pt-5 max-w-xl mx-auto w-full flex flex-col gap-4">
+
+        {/* JP sentence filters */}
+        <JpSentenceFilter
+          selectedDifficulties={filterDifficulties}
+          onDifficultiesChange={setFilterDifficulties}
+          selectedJlpt={selectedJlpt}
+          onJlptChange={setSelectedJlpt}
+          selectedGroups={selectedGroups}
+          onGroupsChange={setSelectedGroups}
+        />
 
         {/* Top bar */}
         <div className="flex items-center justify-between">

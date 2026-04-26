@@ -8,6 +8,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
 import { aiExplainScramble } from '../../services/scramble.service';
 import AddToGroupModal from '../../components/AddToGroupModal';
+import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
+import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
 import { Sentence } from '../../models';
 import { pronounceWord } from '../../services/tts.service';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
@@ -157,6 +159,13 @@ const SentenceScramblePage: React.FC = () => {
   const [lang, setLang] = useState<Lang>(initialLang);
   const [chunkSize, setChunkSize] = useState(2);
 
+  // JP sentence filters
+  const [filterDifficulties, setFilterDifficulties] = useState<string[]>(['easy', 'medium', 'hard']);
+  const [selectedGroups, setSelectedGroups] = useState<string[] | null>(null);
+  const [selectedJlpt, setSelectedJlpt] = useState<string[] | null>(null);
+  // EN sentence filter
+  const [enDifficulties, setEnDifficulties] = useState<EnDifficulty[]>([...EN_DIFFICULTIES]);
+
   // Game state
   const [currentJp, setCurrentJp] = useState<JpSentence | null>(null);
   const [currentEn, setCurrentEn] = useState<EnSentence | null>(null);
@@ -211,7 +220,7 @@ const SentenceScramblePage: React.FC = () => {
         jpDataRef.current = mod.default as JpSentence[];
         setDataLoading(false);
       }
-      const pool = jpDataRef.current;
+      const pool = applyJpFilter(jpDataRef.current, filterDifficulties, selectedGroups, selectedJlpt);
       const item = pool[Math.floor(Math.random() * pool.length)];
       setCurrentJp(item);
       setCurrentEn(null);
@@ -227,7 +236,7 @@ const SentenceScramblePage: React.FC = () => {
         enDataRef.current = mod.default as EnSentence[];
         setDataLoading(false);
       }
-      const pool = enDataRef.current;
+      const pool = applyEnDifficultyFilter(enDataRef.current, enDifficulties);
       const item = pool[Math.floor(Math.random() * pool.length)];
       setCurrentEn(item);
       setCurrentJp(null);
@@ -237,7 +246,7 @@ const SentenceScramblePage: React.FC = () => {
       setUsedBankUids(new Set());
       setAnswerChunks([]);
     }
-  }, [lang, chunkSize]);
+  }, [lang, chunkSize, filterDifficulties, selectedGroups, selectedJlpt, enDifficulties]);
 
   useEffect(() => { loadSentence(); }, [loadSentence]);
 
@@ -457,6 +466,23 @@ const SentenceScramblePage: React.FC = () => {
             </div>
           )}
         </div>
+
+        {/* EN difficulty filter */}
+        {lang === 'en' && (
+          <EnDifficultyFilter selected={enDifficulties} onChange={setEnDifficulties} />
+        )}
+
+        {/* JP filters */}
+        {lang === 'jp' && (
+          <JpSentenceFilter
+            selectedDifficulties={filterDifficulties}
+            onDifficultiesChange={setFilterDifficulties}
+            selectedJlpt={selectedJlpt}
+            onJlptChange={setSelectedJlpt}
+            selectedGroups={selectedGroups}
+            onGroupsChange={setSelectedGroups}
+          />
+        )}
 
         {/* Translation card */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">

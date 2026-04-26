@@ -514,6 +514,23 @@ const en = {
     descJp: 'Rearrange Japanese sentence chunks (N2 level)',
     descEn: 'Rearrange English sentence chunks',
   },
+  jpFilter: {
+    difficulty: 'Difficulty',
+    topics: 'Topics',
+    all: 'All',
+    easy: 'Easy',
+    medium: 'Medium',
+    hard: 'Hard',
+    groups: {
+      self_development: 'Personal Growth',
+      daily_life: 'Daily Life',
+      career_and_economy: 'Work & Finance',
+      language_and_communication: 'Language & Study',
+      culture_and_arts: 'Arts & Media',
+      systemic_and_abstract: 'Science & Society',
+    },
+    jlpt: 'JLPT',
+  },
   writtenTranslation: {
     title: 'Written Translation',
     titleEn: '✍️ English Translation Practice',
@@ -535,11 +552,7 @@ const en = {
     scoreExcellent: 'Excellent! Almost perfect.',
     scoreGood: 'Good attempt! Check the answer.',
     scoreTryAgain: 'Keep practicing!',
-    difficulty: {
-      easy: 'Easy',
-      medium: 'Medium',
-      hard: 'Hard',
-    },
+    tips: 'tips',
   },
   multiChoice: {
     titleEn: '🔤 English Word Quiz',

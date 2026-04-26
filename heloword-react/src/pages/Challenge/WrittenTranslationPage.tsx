@@ -7,6 +7,8 @@ import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiAnalyzeTranslation } from '../../services/scramble.service';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
+import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
+import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -115,6 +117,13 @@ const WrittenTranslationPage: React.FC = () => {
   const [lang, setLang] = useState<Lang>(initialLang);
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
 
+  // JP sentence filters
+  const [filterDifficulties, setFilterDifficulties] = useState<string[]>(['easy', 'medium', 'hard']);
+  const [selectedGroups, setSelectedGroups] = useState<string[] | null>(null);
+  const [selectedJlpt, setSelectedJlpt] = useState<string[] | null>(null);
+  // EN sentence filter
+  const [enDifficulties, setEnDifficulties] = useState<EnDifficulty[]>([...EN_DIFFICULTIES]);
+
   const [currentJp, setCurrentJp] = useState<JpSentence | null>(null);
   const [currentEn, setCurrentEn] = useState<EnSentence | null>(null);
   const [hints, setHints] = useState<string[]>([]);
@@ -145,7 +154,7 @@ const WrittenTranslationPage: React.FC = () => {
         jpDataRef.current = mod.default as JpSentence[];
         setDataLoading(false);
       }
-      const pool = jpDataRef.current;
+      const pool = applyJpFilter(jpDataRef.current, filterDifficulties, selectedGroups, selectedJlpt);
       const item = pool[Math.floor(Math.random() * pool.length)];
       setCurrentJp(item);
       setCurrentEn(null);
@@ -157,13 +166,13 @@ const WrittenTranslationPage: React.FC = () => {
         enDataRef.current = mod.default as EnSentence[];
         setDataLoading(false);
       }
-      const pool = enDataRef.current;
+      const pool = applyEnDifficultyFilter(enDataRef.current, enDifficulties);
       const item = pool[Math.floor(Math.random() * pool.length)];
       setCurrentEn(item);
       setCurrentJp(null);
       setHints(pickHints(item.sentence, 'en', undefined, HINT_COUNTS[difficulty]));
     }
-  }, [lang, difficulty]);
+  }, [lang, difficulty, filterDifficulties, selectedGroups, selectedJlpt, enDifficulties]);
 
   useEffect(() => { loadSentence(); }, [loadSentence]);
 
@@ -221,11 +230,7 @@ const WrittenTranslationPage: React.FC = () => {
   const englishMeaning = lang === 'jp' ? currentJp?.english : null;
   const correctAnswer = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
 
-  const difficultyStyles: Record<Difficulty, string> = {
-    easy: 'bg-green-500 text-white',
-    medium: 'bg-blue-500 text-white',
-    hard: 'bg-red-500 text-white',
-  };
+  const difficultyActive = 'bg-blue-500 text-white';
   const difficultyInactive = 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300';
 
   // ── Render ─────────────────────────────────────────────────────────────
@@ -251,21 +256,38 @@ const WrittenTranslationPage: React.FC = () => {
             </button>
           ))}
 
-          {/* Difficulty */}
+          {/* Hint count selector */}
           <div className="flex items-center gap-1.5 ml-auto">
             {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
               <button
                 key={d}
                 onClick={() => setDifficulty(d)}
                 className={`px-3 py-1 rounded-xl text-xs font-semibold transition-colors ${
-                  difficulty === d ? difficultyStyles[d] : difficultyInactive
+                  difficulty === d ? difficultyActive : difficultyInactive
                 }`}
               >
-                {t(`writtenTranslation.difficulty.${d}`)}
+                {HINT_COUNTS[d]} {t('writtenTranslation.tips')}
               </button>
             ))}
           </div>
         </div>
+
+        {/* EN difficulty filter */}
+        {lang === 'en' && (
+          <EnDifficultyFilter selected={enDifficulties} onChange={setEnDifficulties} />
+        )}
+
+        {/* JP sentence filters */}
+        {lang === 'jp' && (
+          <JpSentenceFilter
+            selectedDifficulties={filterDifficulties}
+            onDifficultiesChange={setFilterDifficulties}
+            selectedJlpt={selectedJlpt}
+            onJlptChange={setSelectedJlpt}
+            selectedGroups={selectedGroups}
+            onGroupsChange={setSelectedGroups}
+          />
+        )}
 
         {/* Question card */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">

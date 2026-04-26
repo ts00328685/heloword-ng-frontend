@@ -514,6 +514,23 @@ const ja = {
     descJp: '日本語の文を並べ替え（N2レベル）',
     descEn: '英語の文を並べ替え',
   },
+  jpFilter: {
+    difficulty: '難易度',
+    topics: 'トピック',
+    all: 'すべて',
+    easy: '簡単',
+    medium: '普通',
+    hard: '難しい',
+    groups: {
+      self_development: '自己成長',
+      daily_life: '日常生活',
+      career_and_economy: '仕事・経済',
+      language_and_communication: '言語・学習',
+      culture_and_arts: '芸術・メディア',
+      systemic_and_abstract: '科学・社会',
+    },
+    jlpt: 'JLPT',
+  },
   writtenTranslation: {
     title: '筆記翻訳',
     titleEn: '✍️ 英文翻訳練習',
@@ -535,11 +552,7 @@ const ja = {
     scoreExcellent: '素晴らしい！ほぼ完璧です。',
     scoreGood: 'いい試みです！答えを確認してください。',
     scoreTryAgain: '練習を続けましょう！',
-    difficulty: {
-      easy: '初級',
-      medium: '中級',
-      hard: '上級',
-    },
+    tips: 'ヒント',
   },
   multiChoice: {
     titleEn: '🔤 英単語クイズ',
