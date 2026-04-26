@@ -514,6 +514,23 @@ const zh = {
     descJp: '重組日文句子',
     descEn: '重組英文句子',
   },
+  jpFilter: {
+    difficulty: '難度',
+    topics: '主題',
+    all: '全部',
+    easy: '簡單',
+    medium: '中等',
+    hard: '困難',
+    groups: {
+      self_development: '個人成長',
+      daily_life: '日常生活',
+      career_and_economy: '職場與財經',
+      language_and_communication: '語言與學習',
+      culture_and_arts: '藝術與媒體',
+      systemic_and_abstract: '科學與社會',
+    },
+    jlpt: 'JLPT',
+  },
   writtenTranslation: {
     title: '書寫翻譯',
     titleEn: '✍️ 英文翻譯練習',
@@ -535,11 +552,7 @@ const zh = {
     scoreExcellent: '太棒了！幾乎完美。',
     scoreGood: '不錯！再核對一下答案。',
     scoreTryAgain: '繼續練習！',
-    difficulty: {
-      easy: '簡單',
-      medium: '中等',
-      hard: '困難',
-    },
+    tips: '提示',
   },
   multiChoice: {
     titleEn: '🔤 英文多選測驗',

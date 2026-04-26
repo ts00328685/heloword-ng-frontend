@@ -8,6 +8,7 @@ import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
+import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -147,6 +148,7 @@ const SpeakingPracticePage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { incrementProgress } = useDailyGoal();
   const dataRef = useRef<EnSentence[] | null>(null);
+  const [enDifficulties, setEnDifficulties] = useState<EnDifficulty[]>([...EN_DIFFICULTIES]);
 
   // Game state
   const [sentences, setSentences] = useState<EnSentence[]>([]);
@@ -198,7 +200,8 @@ const SpeakingPracticePage: React.FC = () => {
         const mod = await import('../../data/scramble-en.json');
         dataRef.current = mod.default as EnSentence[];
       }
-      setSentences(shuffle(dataRef.current));
+      setSentences(shuffle(applyEnDifficultyFilter(dataRef.current, enDifficulties)));
+      setCurrentIndex(0);
       setGameState('ready');
     };
     load();
@@ -206,7 +209,7 @@ const SpeakingPracticePage: React.FC = () => {
       cancelPronouncing();
       recognitionRef.current?.abort();
     };
-  }, []);
+  }, [enDifficulties]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── TTS sequence ─────────────────────────────────────────────────────────
 
@@ -375,6 +378,9 @@ const SpeakingPracticePage: React.FC = () => {
       <Header title={t('speakingGame.enTitle')} showBack />
 
       <main className="flex-1 pb-24 px-4 pt-5 max-w-xl mx-auto w-full flex flex-col gap-4">
+
+        {/* EN difficulty filter */}
+        <EnDifficultyFilter selected={enDifficulties} onChange={setEnDifficulties} />
 
         {/* Top bar */}
         <div className="flex items-center justify-between">
