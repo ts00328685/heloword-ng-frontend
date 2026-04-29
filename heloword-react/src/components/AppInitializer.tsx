@@ -20,12 +20,15 @@ const AppInitializer: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const ranRef = useRef(false);
 
   useEffect(() => {
+    const handleAuthError = () => logout();
+    window.addEventListener('hw:auth-error', handleAuthError);
+    return () => window.removeEventListener('hw:auth-error', handleAuthError);
+  }, [logout]);
+
+  useEffect(() => {
     if (hasCheckedLoginStatus || ranRef.current) {
       setReady(true);
-      // Register auth error listener only after init is already done
-      const handleAuthError = () => logout();
-      window.addEventListener('hw:auth-error', handleAuthError);
-      return () => window.removeEventListener('hw:auth-error', handleAuthError);
+      return;
     }
 
     ranRef.current = true;
