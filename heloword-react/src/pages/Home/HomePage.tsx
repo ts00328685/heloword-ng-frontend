@@ -28,6 +28,7 @@ import { getWordInsight, getWordComparison } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
 import { FunArticle, fetchAllFunArticles } from '../../services/funArticle.service';
+import NHKSection from '../../components/NHKSection';
 import ReactMarkdown from 'react-markdown';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 
@@ -792,6 +793,7 @@ const HomePage: React.FC = () => {
         )}
 
         <FunArticlesSection />
+        <NHKSection />
 
         {!hasData && (
           <div className="text-center py-12">

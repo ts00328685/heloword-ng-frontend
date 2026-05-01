@@ -42,6 +42,8 @@ const UserVocabGroupPage      = React.lazy(() => import('./pages/UserVocab/UserV
 const SharedVocabGroupPage    = React.lazy(() => import('./pages/SharedVocab/SharedVocabGroupPage'));
 const SharedVocabListPage     = React.lazy(() => import('./pages/SharedVocab/SharedVocabListPage'));
 const WordPreviewPage         = React.lazy(() => import('./pages/Review/WordPreviewPage'));
+const NHKArticleListPage      = React.lazy(() => import('./pages/NHK/NHKArticleListPage'));
+const NHKArticleDetailPage    = React.lazy(() => import('./pages/NHK/NHKArticleDetailPage'));
 
 // Pages where we don't show the bottom tabs
 const NO_TABS_PATHS = ['/vocabulary/quiz', '/login'];
@@ -87,6 +89,8 @@ const AppLayout: React.FC = () => {
           <Route path="/user-vocab/:groupId" element={<UserVocabGroupPage />} />
           <Route path="/shared-vocab" element={<SharedVocabListPage />} />
           <Route path="/shared-vocab/:shareId" element={<SharedVocabGroupPage />} />
+          <Route path="/nhk-articles" element={<NHKArticleListPage />} />
+          <Route path="/nhk-articles/:id" element={<NHKArticleDetailPage />} />
           {/* Catch-all */}
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
