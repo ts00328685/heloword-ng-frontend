@@ -35,7 +35,7 @@ const en = {
     viewAll: 'View all →',
     funArticleTitle: 'Fun Word Stories',
     tapToReadMore: 'Tap to read more →',
-    nhkTitle: 'NHK文章導讀',
+    nhkTitle: 'Daily NHK Article',
   },
   nhk: {
     title: 'NHK文章導讀',

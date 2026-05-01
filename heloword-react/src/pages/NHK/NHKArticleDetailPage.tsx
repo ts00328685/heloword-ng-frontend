@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
-import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph, NHKVocabItem } from '../../services/nhkArticle.service';
+import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
+import { speakSentence, cleanSentenceForTTS, cleanWordText, cancelPronouncing } from '../../services/tts.service';
 
 type LangKey = 'original' | 'zh' | 'en' | 'ja';
+
+const LANG_TO_TTS_CODE: Record<LangKey, string> = {
+  original: 'ja-JP',
+  en: 'en-US',
+  zh: 'zh-TW',
+  ja: 'ja-JP',
+};
 
 const LANG_TABS: { key: LangKey; label: string }[] = [
   { key: 'original', label: '原文' },
@@ -13,109 +21,173 @@ const LANG_TABS: { key: LangKey; label: string }[] = [
   { key: 'ja', label: '日文' },
 ];
 
-const ParagraphCard: React.FC<{ paragraph: NHKParagraph; activeLang: LangKey; index: number }> = ({
-  paragraph,
-  activeLang,
-  index,
-}) => {
+const SpeakerButton: React.FC<{
+  onClick: (e: React.MouseEvent) => void;
+  isPlaying?: boolean;
+  small?: boolean;
+}> = ({ onClick, isPlaying, small }) => (
+  <button
+    onClick={onClick}
+    className={`${small ? 'p-0.5' : 'p-1'} rounded-md transition-colors shrink-0 ${
+      isPlaying
+        ? 'text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300'
+        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+    }`}
+    aria-label={isPlaying ? 'Stop' : 'Speak'}
+  >
+    {isPlaying ? (
+      <svg className={small ? 'w-3.5 h-3.5' : 'w-4 h-4'} viewBox="0 0 24 24" fill="currentColor">
+        <rect x="6" y="6" width="12" height="12" rx="1" />
+      </svg>
+    ) : (
+      <svg className={small ? 'w-3.5 h-3.5' : 'w-4 h-4'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 5.05a9 9 0 010 12.728M9 9H5a2 2 0 00-2 2v2a2 2 0 002 2h4l5 5V4L9 9z" />
+      </svg>
+    )}
+  </button>
+);
+
+const ParagraphCard: React.FC<{
+  paragraph: NHKParagraph;
+  activeLang: LangKey;
+  index: number;
+  speakingKey: string | null;
+  onSpeak: (key: string, text: string, langCode: string) => void;
+}> = ({ paragraph, activeLang, index, speakingKey, onSpeak }) => {
+  const { t } = useTranslation();
+  const [translationOpen, setTranslationOpen] = useState(false);
+  const [grammarOpen, setGrammarOpen] = useState(false);
+  const [vocabOpen, setVocabOpen] = useState(false);
   const translation = activeLang === 'original' ? null : paragraph[activeLang];
 
+  useEffect(() => { setTranslationOpen(false); }, [activeLang]);
+
+  const originalKey = `${index}-original`;
+  const translationKey = `${index}-translation`;
+
   return (
-    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4">
-      <p className="text-xs text-gray-300 dark:text-gray-600 font-mono mb-2">#{index + 1}</p>
-      <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">{paragraph.original}</p>
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+      <div className="p-4">
+        <p className="text-xs text-gray-300 dark:text-gray-600 font-mono mb-2">#{index + 1}</p>
+        <div className="flex items-start gap-1">
+          <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed flex-1">{paragraph.original}</p>
+          <SpeakerButton
+            isPlaying={speakingKey === originalKey}
+            onClick={(e) => { e.stopPropagation(); onSpeak(originalKey, cleanSentenceForTTS(paragraph.original, 'ja'), 'ja-JP'); }}
+          />
+        </div>
+      </div>
+
       {translation && (
-        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mt-2 pt-2 border-t border-gray-100 dark:border-gray-700">
-          {translation || <span className="italic text-gray-300 dark:text-gray-600">—</span>}
-        </p>
+        <>
+          <button
+            onClick={() => setTranslationOpen((v) => !v)}
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+          >
+            <span>💬 {activeLang === 'en' ? 'EN' : activeLang === 'zh' ? '繁中' : '日文'}</span>
+            <svg
+              className={`w-3.5 h-3.5 text-gray-400 transition-transform ${translationOpen ? 'rotate-180' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {translationOpen && (
+            <div className="flex items-start gap-1 px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">{translation}</p>
+              <SpeakerButton
+                isPlaying={speakingKey === translationKey}
+                onClick={(e) => { e.stopPropagation(); onSpeak(translationKey, cleanSentenceForTTS(translation, activeLang), LANG_TO_TTS_CODE[activeLang]); }}
+              />
+            </div>
+          )}
+        </>
+      )}
+
+      {paragraph.grammar && (
+        <>
+          <button
+            onClick={() => setGrammarOpen((v) => !v)}
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+          >
+            <span>📝 {t('nhk.grammar')}</span>
+            <svg
+              className={`w-3.5 h-3.5 text-gray-400 transition-transform ${grammarOpen ? 'rotate-180' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {grammarOpen && (
+            <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
+              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line">{paragraph.grammar}</p>
+            </div>
+          )}
+        </>
+      )}
+
+      {paragraph.vocabulary?.length > 0 && (
+        <>
+          <button
+            onClick={() => setVocabOpen((v) => !v)}
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+          >
+            <span>📚 {t('nhk.vocabulary')} ({paragraph.vocabulary.length})</span>
+            <svg
+              className={`w-3.5 h-3.5 text-gray-400 transition-transform ${vocabOpen ? 'rotate-180' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {vocabOpen && (
+            <div className="overflow-x-auto border-t border-gray-100 dark:border-gray-700">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 dark:bg-gray-750">
+                    <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">{t('nhk.word')}</th>
+                    <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">{t('nhk.reading')}</th>
+                    <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">中文</th>
+                    <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">English</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {paragraph.vocabulary.map((v, i) => {
+                    const vocabKey = `${index}-vocab-${i}`;
+                    return (
+                      <tr key={i} className="border-t border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
+                        <td className="px-4 py-2.5">
+                          <div className="flex items-center gap-1">
+                            <span className="font-medium text-amber-600 dark:text-amber-400">{v.word}</span>
+                            <SpeakerButton
+                              small
+                              isPlaying={speakingKey === vocabKey}
+                              onClick={(e) => { e.stopPropagation(); onSpeak(vocabKey, cleanWordText(v.word), 'ja-JP'); }}
+                            />
+                          </div>
+                        </td>
+                        <td className="px-4 py-2.5 text-gray-400 dark:text-gray-500 font-mono text-xs">{v.reading}</td>
+                        <td className="px-4 py-2.5 text-gray-700 dark:text-gray-200">{v.meaning_zh}</td>
+                        <td className="px-4 py-2.5 text-gray-500 dark:text-gray-400 text-xs">{v.meaning_en}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
 };
 
-const VocabTable: React.FC<{ items: NHKVocabItem[] }> = ({ items }) => {
-  const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
-
-  if (!items || items.length === 0) return null;
-
-  return (
-    <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors text-sm font-medium text-gray-700 dark:text-gray-200"
-      >
-        <span>📚 {t('nhk.vocabulary')} ({items.length})</span>
-        <svg
-          className={`w-4 h-4 text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      {open && (
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-750">
-                <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">{t('nhk.word')}</th>
-                <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">{t('nhk.reading')}</th>
-                <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">中文</th>
-                <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">English</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((v, i) => (
-                <tr
-                  key={i}
-                  className="border-t border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
-                >
-                  <td className="px-4 py-2.5 font-medium text-amber-600 dark:text-amber-400">{v.word}</td>
-                  <td className="px-4 py-2.5 text-gray-400 dark:text-gray-500 font-mono text-xs">{v.reading}</td>
-                  <td className="px-4 py-2.5 text-gray-700 dark:text-gray-200">{v.meaning_zh}</td>
-                  <td className="px-4 py-2.5 text-gray-500 dark:text-gray-400 text-xs">{v.meaning_en}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const GrammarSection: React.FC<{ grammar: string }> = ({ grammar }) => {
-  const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
-
-  if (!grammar) return null;
-
-  return (
-    <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors text-sm font-medium text-gray-700 dark:text-gray-200"
-      >
-        <span>📝 {t('nhk.grammar')}</span>
-        <svg
-          className={`w-4 h-4 text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      {open && (
-        <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
-          <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line">{grammar}</p>
-        </div>
-      )}
-    </div>
-  );
-};
 
 const NHKArticleDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -125,6 +197,38 @@ const NHKArticleDetailPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [activeLang, setActiveLang] = useState<LangKey>('zh');
+  const [speakingKey, setSpeakingKey] = useState<string | null>(null);
+  const speakingKeyRef = useRef<string | null>(null);
+
+  // Stop speech on unmount
+  useEffect(() => () => { cancelPronouncing(); }, []);
+
+  // Stop speech when switching language tabs
+  useEffect(() => {
+    cancelPronouncing();
+    speakingKeyRef.current = null;
+    setSpeakingKey(null);
+  }, [activeLang]);
+
+  const triggerSpeak = useCallback((key: string, text: string, langCode: string) => {
+    if (speakingKeyRef.current === key) {
+      cancelPronouncing();
+      speakingKeyRef.current = null;
+      setSpeakingKey(null);
+      return;
+    }
+    // Update ref before cancelling so the outgoing speech's onerror callback
+    // sees the new key and does not clear the state we are about to set.
+    speakingKeyRef.current = key;
+    setSpeakingKey(key);
+    cancelPronouncing();
+    speakSentence(text, langCode, {}, () => {
+      if (speakingKeyRef.current === key) {
+        speakingKeyRef.current = null;
+        setSpeakingKey(null);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (!id) return;
@@ -137,8 +241,7 @@ const NHKArticleDetailPage: React.FC = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
-  const paragraphs = article?.paragraphs ?? [];
-  const vocabulary = Array.isArray(article?.contentVocabulary) ? article.contentVocabulary : [];
+  const paragraphs = (article?.paragraphs ?? []).filter(Boolean);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
@@ -226,19 +329,20 @@ const NHKArticleDetailPage: React.FC = () => {
             <div className="space-y-3 mb-5">
               {paragraphs.length > 0 ? (
                 paragraphs.map((p, i) => (
-                  <ParagraphCard key={i} paragraph={p} activeLang={activeLang} index={i} />
+                  <ParagraphCard
+                    key={i}
+                    paragraph={p}
+                    activeLang={activeLang}
+                    index={i}
+                    speakingKey={speakingKey}
+                    onSpeak={triggerSpeak}
+                  />
                 ))
               ) : (
                 <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-8">
                   {t('nhk.noParagraphs')}
                 </p>
               )}
-            </div>
-
-            {/* Grammar & Vocabulary */}
-            <div className="space-y-3">
-              <GrammarSection grammar={article.contentGrammar} />
-              <VocabTable items={vocabulary} />
             </div>
           </>
         )}

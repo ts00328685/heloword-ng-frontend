@@ -35,7 +35,7 @@ const zh = {
     viewAll: '查看全部 →',
     funArticleTitle: '趣文學單字',
     tapToReadMore: '點擊閱讀更多 →',
-    nhkTitle: 'NHK文章導讀',
+    nhkTitle: '每日NHK文章導讀',
   },
   nhk: {
     title: 'NHK文章導讀',
