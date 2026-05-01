@@ -79,7 +79,7 @@ const DailyGoalSetupModal: React.FC<Props> = ({ config, onSave, onClose }) => {
               </label>
               <div className="flex items-center gap-2 flex-shrink-0">
                 <button
-                  onClick={() => update(key, String(Math.max(0, draft[activeLang][key] - 1)))}
+                  onClick={() => update(key, String(Math.max(0, draft[activeLang][key] - 5)))}
                   className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold text-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center justify-center"
                 >
                   −
@@ -94,7 +94,7 @@ const DailyGoalSetupModal: React.FC<Props> = ({ config, onSave, onClose }) => {
                   className="w-14 text-center text-sm font-bold bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl py-1.5 text-gray-800 dark:text-gray-100 focus:outline-none focus:border-blue-400"
                 />
                 <button
-                  onClick={() => update(key, String(draft[activeLang][key] + 1))}
+                  onClick={() => update(key, String(draft[activeLang][key] + 5))}
                   className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold text-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center justify-center"
                 >
                   +
