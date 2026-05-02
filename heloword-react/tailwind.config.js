@@ -24,8 +24,21 @@ export default {
         },
         surface: {
           DEFAULT: '#ffffff',
-          dark: '#1e293b',
-        }
+          dark: '#141414',
+        },
+        gray: {
+          50:  '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#3d3d3d',
+          800: '#1e1e1e',
+          900: '#0a0a0a',
+          950: '#050505',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
