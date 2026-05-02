@@ -179,7 +179,7 @@ const WordSection: React.FC<{
                   onClick={() => handleCompare(word)}
                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                     isCompareSelected
-                      ? 'bg-indigo-600 dark:bg-indigo-400 text-white dark:text-gray-900 ring-1 ring-indigo-600 dark:ring-indigo-400'
+                      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
                       : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
                   }`}
                 >
@@ -241,7 +241,7 @@ const WordSection: React.FC<{
               )}
               {isCompareSelected && (
                 <div className="px-3 pb-3 animate-slide-down">
-                  <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-3 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+                  <div className="bg-gray-50 dark:bg-white/[0.04] dark:backdrop-blur-sm rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
                     {!isLoggedIn ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
                     ) : compare.loading ? (

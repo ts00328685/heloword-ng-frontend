@@ -778,7 +778,7 @@ const VocabularyQuizPage: React.FC = () => {
 <button
                 onClick={handleAiCompare}
                 disabled={aiCompare.loading}
-                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-indigo-200 dark:ring-indigo-700 text-indigo-500 dark:text-indigo-400 bg-white dark:bg-gray-900 hover:ring-indigo-400 dark:hover:ring-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-200 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
               >
                 <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 {aiCompare.loading ? t('llm.thinking') : t('llm.compare')}
@@ -812,7 +812,7 @@ const VocabularyQuizPage: React.FC = () => {
             )}
 
             {(aiCompare.text || aiCompare.error) && (
-              <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-2.5 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+              <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-2.5 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                 {aiCompare.error ? (
                   <div className="flex items-center gap-2">
                     <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>

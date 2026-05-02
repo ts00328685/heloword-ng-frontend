@@ -563,7 +563,7 @@ const WordPreviewPage: React.FC = () => {
               {/* AI compare panel for flashcard mode */}
               {flashCompareOpen && (
                 <div className="w-full max-w-sm mt-4 animate-slide-down">
-                  <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-3 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                     {!isLoggedIn ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
                     ) : compare.loading ? (
@@ -751,7 +751,7 @@ const WordPreviewPage: React.FC = () => {
                 {/* AI compare panel */}
                 {isCompareOpen && (
                   <div className="px-4 pb-3 pt-0 animate-slide-down">
-                    <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl p-3 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+                    <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
                       {!isLoggedIn ? (
                         <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
                       ) : compare.loading ? (
