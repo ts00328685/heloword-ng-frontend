@@ -68,7 +68,7 @@ const ParagraphCard: React.FC<{
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
       <div className="p-4">
-        <p className="text-xs text-gray-300 dark:text-gray-600 font-mono mb-2">#{index + 1}</p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-2">#{index + 1}</p>
         <div className="flex items-start gap-1">
           <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed flex-1">{paragraph.original}</p>
           <SpeakerButton
@@ -82,9 +82,9 @@ const ParagraphCard: React.FC<{
         <>
           <button
             onClick={() => setTranslationOpen((v) => !v)}
-            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 border-l-2 border-l-sky-400 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
           >
-            <span>💬 {activeLang === 'en' ? 'EN' : activeLang === 'zh' ? '繁中' : '日文'}</span>
+            <span className="text-sky-600 dark:text-sky-400">💬 {activeLang === 'en' ? 'EN' : activeLang === 'zh' ? '繁中' : '日文'}</span>
             <svg
               className={`w-3.5 h-3.5 text-gray-400 transition-transform ${translationOpen ? 'rotate-180' : ''}`}
               fill="none"
@@ -110,9 +110,9 @@ const ParagraphCard: React.FC<{
         <>
           <button
             onClick={() => setGrammarOpen((v) => !v)}
-            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 border-l-2 border-l-violet-400 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
           >
-            <span>📝 {t('nhk.grammar')}</span>
+            <span className="text-violet-600 dark:text-violet-400">📝 {t('nhk.grammar')}</span>
             <svg
               className={`w-3.5 h-3.5 text-gray-400 transition-transform ${grammarOpen ? 'rotate-180' : ''}`}
               fill="none"
@@ -134,9 +134,9 @@ const ParagraphCard: React.FC<{
         <>
           <button
             onClick={() => setVocabOpen((v) => !v)}
-            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 border-l-2 border-l-amber-400 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
           >
-            <span>📚 {t('nhk.vocabulary')} ({paragraph.vocabulary.length})</span>
+            <span className="text-amber-600 dark:text-amber-400">📚 {t('nhk.vocabulary')} ({paragraph.vocabulary.length})</span>
             <svg
               className={`w-3.5 h-3.5 text-gray-400 transition-transform ${vocabOpen ? 'rotate-180' : ''}`}
               fill="none"
@@ -161,7 +161,7 @@ const ParagraphCard: React.FC<{
                   {paragraph.vocabulary.map((v, i) => {
                     const vocabKey = `${index}-vocab-${i}`;
                     return (
-                      <tr key={i} className="border-t border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
+                      <tr key={i} className="border-t border-gray-100 dark:border-gray-700 border-l-2 border-l-transparent hover:border-l-amber-400/60 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
                         <td className="px-4 py-2.5">
                           <div className="flex items-center gap-1">
                             <span className="font-medium text-amber-600 dark:text-amber-400">{v.word}</span>
@@ -172,7 +172,7 @@ const ParagraphCard: React.FC<{
                             />
                           </div>
                         </td>
-                        <td className="px-4 py-2.5 text-gray-400 dark:text-gray-500 font-mono text-xs">{v.reading}</td>
+                        <td className="px-4 py-2.5 text-gray-400 dark:text-gray-400 font-mono text-xs">{v.reading}</td>
                         <td className="px-4 py-2.5 text-gray-700 dark:text-gray-200">{v.meaning_zh}</td>
                         <td className="px-4 py-2.5 text-gray-500 dark:text-gray-400 text-xs">{v.meaning_en}</td>
                       </tr>

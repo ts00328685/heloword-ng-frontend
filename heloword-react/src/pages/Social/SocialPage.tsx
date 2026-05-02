@@ -118,12 +118,12 @@ const ChatPanel: React.FC<{
                 <div
                   className={`max-w-[75%] rounded-2xl px-3 py-2 text-sm ${
                     isMine
-                      ? 'bg-blue-500 text-white rounded-br-sm'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-sm'
+                      ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-br-sm'
+                      : 'bg-gray-100 dark:bg-gray-700 dark:ring-1 dark:ring-white/5 text-gray-800 dark:text-gray-200 rounded-bl-sm'
                   }`}
                 >
                   {msg.content}
-                  <div className={`text-[10px] mt-0.5 ${isMine ? 'text-blue-200' : 'text-gray-400'}`}>
+                  <div className={`text-[9px] mt-0.5 opacity-60 ${isMine ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`}>
                     {new Date(msg.sentAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
@@ -879,9 +879,12 @@ const SocialPage: React.FC = () => {
                       <div className="relative flex-shrink-0">
                         <Avatar name={displayName} online={onlineUsers.some((u) => u.userId === otherUserId)} />
                         {unread > 0 && (
-                          <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
-                            {unread > 99 ? '99+' : unread}
-                          </span>
+                          <div className="absolute -top-1 -right-1">
+                            <span className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-75" />
+                            <span className="relative min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+                              {unread > 99 ? '99+' : unread}
+                            </span>
+                          </div>
                         )}
                       </div>
                       <div className="flex-1 min-w-0">

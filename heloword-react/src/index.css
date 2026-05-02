@@ -149,6 +149,12 @@
   background-color: transparent !important;
 }
 
+/* Dark mode card borders: subtle white shimmer instead of flat neutral gray */
+.dark .border-gray-700,
+.dark .dark\:border-gray-700 {
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
 /* ── Night sky animations ── */
 
 /* Moon: opacity and brightness on separate timelines → dreamy non-periodic glow */

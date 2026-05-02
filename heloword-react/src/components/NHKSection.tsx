@@ -44,7 +44,7 @@ const NHKSection: React.FC = () => {
             <button
               key={article.id}
               onClick={() => navigate(`/nhk-articles/${article.id}`)}
-              className="w-full text-left flex items-center gap-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:shadow-md hover:-translate-y-0.5 transition-all group"
+              className="w-full text-left flex items-center gap-3 bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm border border-gray-200 dark:border-white/[0.14] rounded-xl px-4 py-3 hover:shadow-md dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.04)] hover:-translate-y-0.5 transition-all group"
             >
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
