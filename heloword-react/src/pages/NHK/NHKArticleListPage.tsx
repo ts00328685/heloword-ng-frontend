@@ -43,7 +43,7 @@ const NHKArticleListPage: React.FC = () => {
                 <button
                   key={article.id}
                   onClick={() => navigate(`/nhk-articles/${article.id}`)}
-                  className="w-full text-left flex items-center gap-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3.5 hover:shadow-md hover:-translate-y-0.5 transition-all group"
+                  className="relative overflow-hidden w-full text-left flex items-center gap-3 bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm border border-gray-200 dark:border-white/[0.14] rounded-xl px-4 py-3.5 hover:shadow-md dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.04)] hover:-translate-y-0.5 transition-all group"
                 >
                   <span className="text-xs text-gray-300 dark:text-gray-600 font-mono w-6 text-right shrink-0">
                     {idx + 1}
@@ -56,6 +56,7 @@ const NHKArticleListPage: React.FC = () => {
                       {new Date(article.createDate).toLocaleDateString('zh-TW')}
                     </p>
                   </div>
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-400 translate-y-full group-hover:translate-y-0 transition-transform duration-200" />
                   <svg
                     className="w-4 h-4 text-gray-300 dark:text-gray-600 shrink-0 group-hover:text-blue-400 transition-colors"
                     fill="none"

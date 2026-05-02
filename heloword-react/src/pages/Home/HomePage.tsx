@@ -120,10 +120,10 @@ const WordSection: React.FC<{
           return (
             <div
               key={`${word.tableName}-${word.id}-${i}`}
-              className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all flex flex-col animate-fade-in-up ${
+              className={`bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm rounded-xl border shadow-sm dark:shadow-[0_2px_12px_rgba(0,0,0,0.55)] transition-all flex flex-col animate-fade-in-up ${
                 isSelected || isCompareSelected
                   ? 'rainbow-glow'
-                  : 'border-gray-200 dark:border-gray-700 hover:shadow-lg hover:-translate-y-0.5'
+                  : 'border-gray-200 dark:border-white/[0.14] hover:shadow-lg dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.04)] hover:-translate-y-0.5'
               }`}
               style={{ animationDelay: `${i * 60}ms` }}
             >
@@ -179,7 +179,7 @@ const WordSection: React.FC<{
                   onClick={() => handleCompare(word)}
                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                     isCompareSelected
-                      ? 'bg-indigo-600 dark:bg-indigo-400 text-white dark:text-gray-900 ring-1 ring-indigo-600 dark:ring-indigo-400'
+                      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
                       : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
                   }`}
                 >
@@ -218,7 +218,7 @@ const WordSection: React.FC<{
               </div>
               {isSelected && (
                 <div className="px-3 pb-3 animate-slide-down">
-                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                  <div className="bg-gray-50 dark:bg-white/[0.04] dark:backdrop-blur-sm rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
                     {!isLoggedIn ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
                     ) : insight.loading ? (
@@ -241,7 +241,7 @@ const WordSection: React.FC<{
               )}
               {isCompareSelected && (
                 <div className="px-3 pb-3 animate-slide-down">
-                  <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-3 ring-1 ring-inset ring-indigo-100 dark:ring-indigo-800">
+                  <div className="bg-gray-50 dark:bg-white/[0.04] dark:backdrop-blur-sm rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
                     {!isLoggedIn ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
                     ) : compare.loading ? (
@@ -575,7 +575,7 @@ const FunArticlesSection: React.FC = () => {
           </div>
         </div>
         {/* Article preview */}
-        <div className="bg-white dark:bg-gray-800 border border-t-0 border-sky-100 dark:border-sky-900/40 px-4 py-3 rounded-b-2xl">
+        <div className="bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm border border-t-0 border-sky-100 dark:border-sky-900/40 px-4 py-3 rounded-b-2xl">
           <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">
             <AiMarkdown text={truncated} />
           </div>
@@ -832,7 +832,7 @@ const HomePage: React.FC = () => {
                 <button
                   key={group.id}
                   onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
-                  className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-3 text-left hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                  className="bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm rounded-xl border border-gray-200 dark:border-white/[0.14] shadow-sm dark:shadow-[0_2px_12px_rgba(0,0,0,0.55)] p-3 text-left hover:shadow-lg dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.04)] hover:-translate-y-0.5 transition-all"
                 >
                   <div className="flex items-center gap-1.5 mb-1">
                     <span className="text-[10px] bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-1.5 py-0.5 rounded font-medium">
@@ -861,7 +861,7 @@ const HomePage: React.FC = () => {
           {isLoggedIn && customGroups.length === 0 && (
             <button
               onClick={() => navigate('/user-vocab')}
-              className="w-full flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-blue-300 dark:border-blue-700 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors"
+              className="w-full flex items-center gap-3 bg-white dark:bg-white/[0.04] dark:backdrop-blur-sm rounded-2xl border border-dashed border-blue-300 dark:border-blue-700 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors"
             >
               <div className="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center shrink-0">
                 <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -879,7 +879,7 @@ const HomePage: React.FC = () => {
           {!isLoggedIn && (
             <button
               onClick={() => navigate('/login')}
-              className="w-full flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-600 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors"
+              className="w-full flex items-center gap-3 bg-white dark:bg-white/[0.04] dark:backdrop-blur-sm rounded-2xl border border-dashed border-gray-300 dark:border-gray-600 p-4 hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors"
             >
               <div className="w-8 h-8 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center shrink-0">
                 <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -958,7 +958,7 @@ const HomePage: React.FC = () => {
               {sharedGroups.slice(0, 4).map((sg) => (
                 <div
                   key={sg.id}
-                  className="relative bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-3 text-left hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                  className="relative bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm rounded-xl border border-gray-200 dark:border-white/[0.14] shadow-sm dark:shadow-[0_2px_12px_rgba(0,0,0,0.55)] p-3 text-left hover:shadow-lg dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.04)] hover:-translate-y-0.5 transition-all cursor-pointer"
                   onClick={() => navigate(`/shared-vocab/${sg.id}`, { state: { group: sg } })}
                 >
                   {isAdmin && (
@@ -1002,7 +1002,7 @@ const HomePage: React.FC = () => {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-6 bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm rounded-xl border border-gray-200 dark:border-white/[0.14]">
               {t('sharedVocab.noSharedGroups')}
             </p>
           )}
