@@ -309,7 +309,7 @@ const VocabularyListPage: React.FC = () => {
                         <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>
                       )}
                       {word.translateCh && (
-                        <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-300">{word.translateCh}</p>
                       )}
                       {word.sentence && word.word && (
                         <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed">
