@@ -152,7 +152,6 @@ const ParagraphCard: React.FC<{
                 <thead>
                   <tr className="bg-gray-50 dark:bg-gray-750">
                     <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">{t('nhk.word')}</th>
-                    <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">{t('nhk.reading')}</th>
                     <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">中文</th>
                     <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">English</th>
                   </tr>
@@ -172,7 +171,6 @@ const ParagraphCard: React.FC<{
                             />
                           </div>
                         </td>
-                        <td className="px-4 py-2.5 text-gray-400 dark:text-gray-400 font-mono text-xs">{v.reading}</td>
                         <td className="px-4 py-2.5 text-gray-700 dark:text-gray-200">{v.meaning_zh}</td>
                         <td className="px-4 py-2.5 text-gray-500 dark:text-gray-400 text-xs">{v.meaning_en}</td>
                       </tr>
