@@ -1,9 +1,30 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
 import { speakSentence, cleanSentenceForTTS, cleanWordText, cancelPronouncing } from '../../services/tts.service';
+
+function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
+  const jaParas = article.contentJa?.split('\n\n').filter(Boolean) ?? [];
+  const enParas = article.contentEn?.split('\n\n').filter(Boolean) ?? [];
+  const zhParas = article.contentZh?.split('\n\n').filter(Boolean) ?? [];
+  const grammarBlocks = article.contentGrammar?.split('\n\n').filter(Boolean) ?? [];
+  if (jaParas.length === 0) return [];
+  const allVocab = article.contentVocabulary ?? [];
+  const n = jaParas.length;
+  return jaParas.map((ja, i) => ({
+    original: ja,
+    ja,
+    en: enParas[i] ?? '',
+    zh: zhParas[i] ?? '',
+    grammar: grammarBlocks[i] ?? '',
+    vocabulary: allVocab.slice(
+      Math.floor((i * allVocab.length) / n),
+      Math.floor(((i + 1) * allVocab.length) / n),
+    ),
+  }));
+}
 
 type LangKey = 'original' | 'zh' | 'en' | 'ja';
 
@@ -239,7 +260,12 @@ const NHKArticleDetailPage: React.FC = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
-  const paragraphs = (article?.paragraphs ?? []).filter(Boolean);
+  const paragraphs = useMemo(() => {
+    const stored = (article?.paragraphs ?? []).filter(Boolean);
+    if (stored.length > 0) return stored;
+    if (article) return buildParagraphsFromContent(article);
+    return [];
+  }, [article]);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
