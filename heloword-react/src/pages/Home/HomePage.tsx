@@ -35,6 +35,7 @@ import { latexToUnicode } from '../../utils/latexToUnicode';
 
 const VOCAB_ONBOARDING_KEY = 'onboarding:my_vocab';
 const SHARED_VOCAB_ONBOARDING_KEY = 'onboarding:shared_vocab';
+const HIDE_MEANINGS_KEY = 'home:hideMeanings';
 
 const WordSection: React.FC<{
   title: string;
@@ -44,13 +45,15 @@ const WordSection: React.FC<{
   lang: string;
   onLoginRequired: () => void;
   onHeartWord?: (word: Sentence) => void;
-}> = ({ title, list, onViewAll, isLoggedIn, lang, onLoginRequired, onHeartWord }) => {
+  sectionKey: string;
+}> = ({ title, list, onViewAll, isLoggedIn, lang, onLoginRequired, onHeartWord, sectionKey }) => {
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
   const insight = useAiInsight('home:insight');
   const compare = useAiInsight('home:compare');
-  const [hideMeanings, setHideMeanings] = useState(false);
+  const lsKey = `${HIDE_MEANINGS_KEY}:${sectionKey}`;
+  const [hideMeanings, setHideMeanings] = useState(() => localStorage.getItem(lsKey) !== '0');
   const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
   const toggleReveal = (id: number) => setRevealedIds((prev) => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
   const isMeaningVisible = (id: number) => !hideMeanings || revealedIds.has(id);
@@ -91,7 +94,7 @@ const WordSection: React.FC<{
         <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{title}</h2>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => { setHideMeanings((v) => !v); setRevealedIds(new Set()); }}
+            onClick={() => { setHideMeanings((v) => { const next = !v; localStorage.setItem(lsKey, next ? '1' : '0'); return next; }); setRevealedIds(new Set()); }}
             className={`p-1 rounded-lg transition-colors ${hideMeanings ? 'text-indigo-500 dark:text-indigo-400' : 'text-gray-300 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-400'}`}
             aria-label={hideMeanings ? 'Show meanings' : 'Hide meanings'}
           >
@@ -1013,6 +1016,7 @@ const HomePage: React.FC = () => {
         {allSections.map(({ key, list }) => (
           <WordSection
             key={key}
+            sectionKey={key}
             title={t(`wordLists.${key}`, key)}
             list={list}
             onViewAll={() => handleViewAll(key, list)}
