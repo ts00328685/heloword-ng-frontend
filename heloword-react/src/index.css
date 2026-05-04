@@ -460,19 +460,62 @@ ruby rt {
   animation: chatbot-hint 2s ease forwards;
 }
 
-/* Shimmer sweep — diagonal glare sliding left-to-right, then pausing */
-@keyframes shimmer-sweep {
-  0%       { transform: translateX(-100%) skewX(-15deg); opacity: 1; }
-  55%, 100% { transform: translateX(250%) skewX(-15deg); opacity: 0; }
-}
-
-/* Gentle float for icons */
-@keyframes float {
+/* Gentle vertical float — for icons */
+@keyframes float-y {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
+  50%       { transform: translateY(-7px); }
 }
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float-y 3.5s ease-in-out infinite;
+}
+
+/* Slow drifting orb — for background blobs */
+@keyframes float-orb {
+  0%, 100% { transform: translate(0px,   0px); }
+  33%       { transform: translate(7px, -11px); }
+  66%       { transform: translate(-5px, -5px); }
+}
+.animate-float-orb {
+  animation: float-orb 7s ease-in-out infinite;
+}
+
+/* Vocabulary — animated gradient button (blue → cyan → blue) */
+@keyframes btn-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+.btn-gradient {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 20%, #0ea5e9 50%, #06b6d4 65%, #0ea5e9 80%, #2563eb 100%);
+  background-size: 280% 280%;
+  animation: btn-gradient 4s ease infinite;
+}
+
+/* Vocabulary card — slow blue-tinted sheen + subtle edge glow */
+@keyframes card-sheen {
+  0%, 77%, 100% { transform: translateX(-130%) skewX(-18deg); opacity: 0; }
+  80%           { opacity: 1; }
+  94%           { transform: translateX(230%) skewX(-18deg); opacity: 0; }
+}
+@keyframes card-glow {
+  0%, 100% { box-shadow: 0 4px 12px rgba(59,130,246,0.08), 0 0 0 1px rgba(59,130,246,0.06); }
+  50%       { box-shadow: 0 8px 40px rgba(59,130,246,0.28), 0 0 24px rgba(6,182,212,0.18), 0 0 0 1px rgba(6,182,212,0.20); }
+}
+.vocab-card {
+  overflow: hidden;
+  animation: card-glow 4s ease-in-out infinite;
+}
+.vocab-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 20%, rgba(147,210,255,0.15) 42%, rgba(255,255,255,0.28) 50%, rgba(147,210,255,0.15) 58%, transparent 80%);
+  animation: card-sheen 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+.vocab-card-body {
+  position: relative;
+  z-index: 2;
 }
 
 /* Number input arrows hidden */
