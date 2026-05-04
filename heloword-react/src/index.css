@@ -460,6 +460,21 @@ ruby rt {
   animation: chatbot-hint 2s ease forwards;
 }
 
+/* Shimmer sweep — diagonal glare sliding left-to-right, then pausing */
+@keyframes shimmer-sweep {
+  0%       { transform: translateX(-100%) skewX(-15deg); opacity: 1; }
+  55%, 100% { transform: translateX(250%) skewX(-15deg); opacity: 0; }
+}
+
+/* Gentle float for icons */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
 /* Number input arrows hidden */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
