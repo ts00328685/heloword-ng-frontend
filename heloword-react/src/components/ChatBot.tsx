@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
-import { quickTranslate, QuickTranslateResult, getSampleSentence, getVerbConjugation } from '../services/llm.service';
+import { quickTranslate, QuickTranslateResult, getSampleSentence, getVerbConjugation, getWordInsight, getWordComparison } from '../services/llm.service';
+import { useAiInsight } from '../hooks/useAiInsight';
 import { pronounceWord, cleanSentenceForTTS, toLangCode } from '../services/tts.service';
 import AddToGroupModal from './AddToGroupModal';
 import { Sentence } from '../models';
@@ -108,58 +109,146 @@ const WordCard: React.FC<{
   entry: ChatEntry;
   onSpeak: (text: string, lang: string) => void;
   onHeart: (entry: ChatEntry) => void;
-}> = ({ entry, onSpeak, onHeart }) => {
+  isLoggedIn: boolean;
+  lang: string;
+}> = ({ entry, onSpeak, onHeart, isLoggedIn, lang }) => {
   const { t } = useTranslation();
+  const [insightOpen, setInsightOpen] = useState(false);
+  const [compareOpen, setCompareOpen] = useState(false);
+  const insight = useAiInsight('chatbot:insight');
+  const compare = useAiInsight('chatbot:compare');
+
+  const handleInsight = () => {
+    if (insightOpen) { setInsightOpen(false); insight.clear(); return; }
+    setInsightOpen(true);
+    setCompareOpen(false);
+    compare.clear();
+    if (!isLoggedIn) return;
+    insight.run(entry.id, () => getWordInsight(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang));
+  };
+
+  const handleCompare = () => {
+    if (compareOpen) { setCompareOpen(false); compare.clear(); return; }
+    setCompareOpen(true);
+    setInsightOpen(false);
+    insight.clear();
+    if (!isLoggedIn) return;
+    compare.run(entry.id, () => getWordComparison(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang));
+  };
+
   return (
-  <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-3 text-left animate-fade-in-up">
-    <div className="flex items-start justify-between gap-2 mb-1.5">
-      <div className="flex items-center gap-1 min-w-0">
-        <span className="font-bold text-gray-900 dark:text-gray-100 text-base leading-tight truncate">{entry.word}</span>
-        <SpeakerIcon onClick={() => onSpeak(entry.word, entry.wordLang)} label={t('chatbot.pronounce')} />
+  <div className={`bg-white dark:bg-gray-800 rounded-2xl shadow-sm border text-left animate-fade-in-up transition-all ${insightOpen || compareOpen ? 'rainbow-glow' : 'border-gray-100 dark:border-gray-700'}`}>
+    <div className="p-3">
+      <div className="flex items-start justify-between gap-2 mb-1.5">
+        <div className="flex items-center gap-1 min-w-0">
+          <span className="font-bold text-gray-900 dark:text-gray-100 text-base leading-tight truncate">{entry.word}</span>
+          <SpeakerIcon onClick={() => onSpeak(entry.word, entry.wordLang)} label={t('chatbot.pronounce')} />
+        </div>
+        <button
+          onClick={() => onHeart(entry)}
+          className="p-1.5 rounded-lg hover:bg-pink-50 dark:hover:bg-pink-900/30 text-pink-400 transition-colors shrink-0"
+          aria-label={t('chatbot.saveToGroup')}
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </button>
       </div>
+      {entry.translateEn && (
+        <p className="text-xs text-blue-600 dark:text-blue-400 mb-0.5">{entry.translateEn}</p>
+      )}
+      {entry.translateCh && (
+        <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">{entry.translateCh}</p>
+      )}
+      {entry.sentence && (
+        <div className="flex items-start gap-1 mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700">
+          <p className="text-xs text-gray-700 dark:text-gray-300 italic leading-relaxed flex-1 whitespace-pre-wrap">
+            {normalizeSentenceDisplay(entry.sentence)}
+          </p>
+          <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(entry.sentence!, entry.wordLang), entry.wordLang)} label={t('chatbot.pronounce')} small />
+        </div>
+      )}
+      {entry.conjugations && (
+        <div className="mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700">
+          {entry.conjugations.split('\n').map((line, i) => {
+            const colonIdx = line.indexOf(':');
+            if (colonIdx === -1) return null;
+            const label = line.substring(0, colonIdx).trim();
+            const value = line.substring(colonIdx + 1).trim();
+            return (
+              <div key={i} className="flex items-baseline gap-1.5 text-xs leading-5">
+                <span className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[56px]">{label}</span>
+                <span className="text-gray-800 dark:text-gray-200 font-medium">{value}</span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      <p className="text-[10px] text-gray-300 dark:text-gray-600 mt-1.5 text-right">
+        {new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+      </p>
+    </div>
+    {/* AI insight / compare buttons */}
+    <div className="px-3 pb-2.5 flex items-center gap-1.5">
       <button
-        onClick={() => onHeart(entry)}
-        className="p-1.5 rounded-lg hover:bg-pink-50 dark:hover:bg-pink-900/30 text-pink-400 transition-colors shrink-0"
-        aria-label={t('chatbot.saveToGroup')}
+        onClick={handleInsight}
+        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+          insightOpen
+            ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
+            : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+        }`}
       >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
+        <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+        {insightOpen ? `${t('llm.insight')} ▲` : t('llm.insight')}
+      </button>
+      <button
+        onClick={handleCompare}
+        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+          compareOpen
+            ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
+            : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+        }`}
+      >
+        <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+        {compareOpen ? `${t('llm.compare')} ▲` : t('llm.compare')}
       </button>
     </div>
-    {entry.translateEn && (
-      <p className="text-xs text-blue-600 dark:text-blue-400 mb-0.5">{entry.translateEn}</p>
-    )}
-    {entry.translateCh && (
-      <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">{entry.translateCh}</p>
-    )}
-    {entry.sentence && (
-      <div className="flex items-start gap-1 mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700">
-        <p className="text-xs text-gray-700 dark:text-gray-300 italic leading-relaxed flex-1 whitespace-pre-wrap">
-          {normalizeSentenceDisplay(entry.sentence)}
-        </p>
-        <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(entry.sentence!, entry.wordLang), entry.wordLang)} label={t('chatbot.pronounce')} small />
-      </div>
-    )}
-    {entry.conjugations && (
-      <div className="mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700">
-        {entry.conjugations.split('\n').map((line, i) => {
-          const colonIdx = line.indexOf(':');
-          if (colonIdx === -1) return null;
-          const label = line.substring(0, colonIdx).trim();
-          const value = line.substring(colonIdx + 1).trim();
-          return (
-            <div key={i} className="flex items-baseline gap-1.5 text-xs leading-5">
-              <span className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[56px]">{label}</span>
-              <span className="text-gray-800 dark:text-gray-200 font-medium">{value}</span>
+    {insightOpen && (
+      <div className="px-3 pb-3 animate-slide-down">
+        <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
+          {!isLoggedIn ? (
+            <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+          ) : insight.loading ? (
+            <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+          ) : insight.error ? (
+            <div className="flex items-center gap-2">
+              <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
+              <button onClick={() => insight.retry(entry.id, () => getWordInsight(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
             </div>
-          );
-        })}
+          ) : (
+            <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{insight.text}</p>
+          )}
+        </div>
       </div>
     )}
-    <p className="text-[10px] text-gray-300 dark:text-gray-600 mt-1.5 text-right">
-      {new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-    </p>
+    {compareOpen && (
+      <div className="px-3 pb-3 animate-slide-down">
+        <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
+          {!isLoggedIn ? (
+            <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+          ) : compare.loading ? (
+            <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+          ) : compare.error ? (
+            <div className="flex items-center gap-2">
+              <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
+              <button onClick={() => compare.retry(entry.id, () => getWordComparison(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
+            </div>
+          ) : (
+            <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
+          )}
+        </div>
+      </div>
+    )}
   </div>
   );
 };
@@ -168,7 +257,7 @@ const WordCard: React.FC<{
 
 const ChatBot: React.FC = () => {
   const { isLoggedIn } = useAuth();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isIdle, setIsIdle] = useState(false);
@@ -439,6 +528,8 @@ const ChatBot: React.FC = () => {
               entry={entry}
               onSpeak={handleSpeak}
               onHeart={handleHeart}
+              isLoggedIn={isLoggedIn}
+              lang={i18n.language}
             />
           ))}
           {loading && (
