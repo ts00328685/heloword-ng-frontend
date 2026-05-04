@@ -1,0 +1,83 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { fetchNHKArticles, NHKArticle } from '../services/nhkArticle.service';
+
+interface Props {
+  sourceLang: string;
+  title: string;
+  listRoute: string;
+  detailRoutePrefix: string;
+  viewAllLabel: string;
+}
+
+const ArticlePreviewSection: React.FC<Props> = ({
+  sourceLang,
+  title,
+  listRoute,
+  detailRoutePrefix,
+  viewAllLabel,
+}) => {
+  const navigate = useNavigate();
+  const [articles, setArticles] = React.useState<NHKArticle[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    fetchNHKArticles()
+      .then((data) => setArticles(data.filter((a) => a.sourceLang === sourceLang).slice(0, 3)))
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [sourceLang]);
+
+  if (!loading && articles.length === 0) return null;
+
+  return (
+    <section className="mb-6">
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{title}</h2>
+        <button
+          onClick={() => navigate(listRoute)}
+          className="text-xs text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-300"
+        >
+          {viewAllLabel}
+        </button>
+      </div>
+
+      {loading ? (
+        <div className="space-y-2">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="h-14 bg-gray-100 dark:bg-gray-800 rounded-xl animate-pulse" />
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-2">
+          {articles.map((article) => (
+            <button
+              key={article.id}
+              onClick={() => navigate(`${detailRoutePrefix}/${article.id}`)}
+              className="w-full text-left flex items-center gap-3 bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm border border-gray-200 dark:border-white/[0.14] rounded-xl px-4 py-3 hover:shadow-md dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.04)] hover:-translate-y-0.5 transition-all group"
+            >
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {article.title}
+                </p>
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                  {new Date(article.createDate).toLocaleDateString('zh-TW')}
+                </p>
+              </div>
+              <svg
+                className="w-4 h-4 text-gray-300 dark:text-gray-600 shrink-0 group-hover:text-blue-400 transition-colors"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default ArticlePreviewSection;

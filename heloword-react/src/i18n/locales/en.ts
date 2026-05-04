@@ -36,6 +36,11 @@ const en = {
     funArticleTitle: 'Fun Word Stories',
     tapToReadMore: 'Tap to read more →',
     nhkTitle: 'Daily NHK Article',
+    enArticleTitle: 'Daily English Article',
+  },
+  enArticle: {
+    title: 'English Articles',
+    metaLabel: 'English Original',
   },
   nhk: {
     title: 'NHK文章導讀',

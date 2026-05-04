@@ -36,6 +36,11 @@ const ja = {
     funArticleTitle: '楽しい単語ストーリー',
     tapToReadMore: 'タップして続きを読む →',
     nhkTitle: 'NHK文章導讀',
+    enArticleTitle: '毎日英語記事',
+  },
+  enArticle: {
+    title: '英語記事',
+    metaLabel: '英語原文',
   },
   nhk: {
     title: 'NHK文章導讀',

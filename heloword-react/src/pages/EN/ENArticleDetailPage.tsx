@@ -4,20 +4,19 @@ import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
 import { speakSentence, cancelPronouncing } from '../../services/tts.service';
-import { LangKey, ParagraphCard } from './ArticleShared';
+import { LangKey, ParagraphCard } from '../NHK/ArticleShared';
 
 function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
-  const jaParas = article.contentJa?.split('\n\n').filter(Boolean) ?? [];
   const enParas = article.contentEn?.split('\n\n').filter(Boolean) ?? [];
   const zhParas = article.contentZh?.split('\n\n').filter(Boolean) ?? [];
   const grammarBlocks = article.contentGrammar?.split('\n\n').filter(Boolean) ?? [];
-  if (jaParas.length === 0) return [];
+  if (enParas.length === 0) return [];
   const allVocab = article.contentVocabulary ?? [];
-  const n = jaParas.length;
-  return jaParas.map((ja, i) => ({
-    original: ja,
-    ja,
-    en: enParas[i] ?? '',
+  const n = enParas.length;
+  return enParas.map((en, i) => ({
+    original: en,
+    ja: '',
+    en,
     zh: zhParas[i] ?? '',
     grammar: grammarBlocks[i] ?? '',
     vocabulary: allVocab.slice(
@@ -30,11 +29,9 @@ function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
 const LANG_TABS: { key: LangKey; label: string }[] = [
   { key: 'original', label: '原文' },
   { key: 'zh', label: '繁中' },
-  { key: 'en', label: 'EN' },
-  { key: 'ja', label: '日文' },
 ];
 
-const NHKArticleDetailPage: React.FC = () => {
+const ENArticleDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -83,15 +80,18 @@ const NHKArticleDetailPage: React.FC = () => {
   }, [id]);
 
   const paragraphs = useMemo(() => {
-    const stored = (article?.paragraphs ?? []).filter(Boolean);
-    if (stored.length > 0) return stored;
-    if (article) return buildParagraphsFromContent(article);
-    return [];
+    if (!article) return [];
+    const stored = (article.paragraphs ?? []).filter(Boolean);
+    // For EN articles, prefer stored paragraphs where original is set; fall back to contentEn
+    if (stored.length > 0 && (stored[0].original || stored[0].en)) {
+      return stored.map((p) => ({ ...p, original: p.original || p.en }));
+    }
+    return buildParagraphsFromContent(article);
   }, [article]);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
-      <Header title={t('nhk.title')} showBack />
+      <Header title={t('enArticle.title')} showBack />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
         {loading && (
@@ -99,7 +99,7 @@ const NHKArticleDetailPage: React.FC = () => {
             <div className="h-7 bg-gray-100 dark:bg-gray-800 rounded animate-pulse w-3/4" />
             <div className="h-4 bg-gray-100 dark:bg-gray-800 rounded animate-pulse w-1/3" />
             <div className="flex gap-2 mt-4">
-              {[0, 1, 2, 3].map((i) => (
+              {[0, 1].map((i) => (
                 <div key={i} className="h-9 w-16 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse" />
               ))}
             </div>
@@ -116,7 +116,7 @@ const NHKArticleDetailPage: React.FC = () => {
             <p className="text-4xl mb-3">😞</p>
             <p className="text-gray-400 dark:text-gray-500 text-sm">{t('nhk.loadError')}</p>
             <button
-              onClick={() => navigate('/nhk-articles')}
+              onClick={() => navigate('/en-articles')}
               className="mt-4 text-sm text-blue-500 hover:text-blue-700 dark:hover:text-blue-300"
             >
               {t('nhk.backToList')}
@@ -131,7 +131,7 @@ const NHKArticleDetailPage: React.FC = () => {
                 {article.title}
               </h1>
               <div className="flex flex-wrap items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
-                <span>🇯🇵 日文原文</span>
+                <span>🇬🇧 {t('enArticle.metaLabel')}</span>
                 <span>·</span>
                 <span>{new Date(article.createDate).toLocaleDateString('zh-TW')}</span>
                 {article.sourceUrl && (
@@ -179,6 +179,9 @@ const NHKArticleDetailPage: React.FC = () => {
                     index={i}
                     speakingKey={speakingKey}
                     onSpeak={triggerSpeak}
+                    originalTtsCode="en-US"
+                    originalCleanLang="en"
+                    vocabTtsCode="en-US"
                   />
                 ))
               ) : (
@@ -194,4 +197,4 @@ const NHKArticleDetailPage: React.FC = () => {
   );
 };
 
-export default NHKArticleDetailPage;
+export default ENArticleDetailPage;

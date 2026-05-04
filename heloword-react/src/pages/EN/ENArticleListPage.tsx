@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { fetchNHKArticles, NHKArticle } from '../../services/nhkArticle.service';
 
-const NHKArticleListPage: React.FC = () => {
+const ENArticleListPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [articles, setArticles] = useState<NHKArticle[]>([]);
@@ -12,14 +12,14 @@ const NHKArticleListPage: React.FC = () => {
 
   useEffect(() => {
     fetchNHKArticles()
-      .then((data) => setArticles(data.filter((a) => a.sourceLang === 'ja')))
+      .then((data) => setArticles(data.filter((a) => a.sourceLang === 'en')))
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
-      <Header title={t('nhk.title')} showBack />
+      <Header title={t('enArticle.title')} showBack />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
         {loading ? (
@@ -42,7 +42,7 @@ const NHKArticleListPage: React.FC = () => {
               {articles.map((article, idx) => (
                 <button
                   key={article.id}
-                  onClick={() => navigate(`/nhk-articles/${article.id}`)}
+                  onClick={() => navigate(`/en-articles/${article.id}`)}
                   className="relative overflow-hidden w-full text-left flex items-center gap-3 bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm border border-gray-200 dark:border-white/[0.14] rounded-xl px-4 py-3.5 hover:shadow-md dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.04)] hover:-translate-y-0.5 transition-all group"
                 >
                   <span className="text-xs text-gray-300 dark:text-gray-600 font-mono w-6 text-right shrink-0">
@@ -75,4 +75,4 @@ const NHKArticleListPage: React.FC = () => {
   );
 };
 
-export default NHKArticleListPage;
+export default ENArticleListPage;
