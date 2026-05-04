@@ -36,6 +36,11 @@ const zh = {
     funArticleTitle: '趣文學單字',
     tapToReadMore: '點擊閱讀更多 →',
     nhkTitle: '每日NHK文章導讀',
+    enArticleTitle: '每日英文文章導讀',
+  },
+  enArticle: {
+    title: '英文文章導讀',
+    metaLabel: '英文原文',
   },
   nhk: {
     title: 'NHK文章導讀',

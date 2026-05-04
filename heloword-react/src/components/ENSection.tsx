@@ -2,17 +2,17 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ArticlePreviewSection from './ArticlePreviewSection';
 
-const NHKSection: React.FC = () => {
+const ENSection: React.FC = () => {
   const { t } = useTranslation();
   return (
     <ArticlePreviewSection
-      sourceLang="ja"
-      title={t('home.nhkTitle')}
-      listRoute="/nhk-articles"
-      detailRoutePrefix="/nhk-articles"
+      sourceLang="en"
+      title={t('home.enArticleTitle')}
+      listRoute="/en-articles"
+      detailRoutePrefix="/en-articles"
       viewAllLabel={t('home.viewAll')}
     />
   );
 };
 
-export default NHKSection;
+export default ENSection;
