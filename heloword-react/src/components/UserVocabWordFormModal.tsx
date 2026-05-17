@@ -279,7 +279,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                         className="w-full text-left px-3 py-2 rounded-xl bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
                       >
                         <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{sw.word || sw.sentence}</p>
-                        {sw.translateEn && <p className="text-xs text-blue-500 truncate">{sw.translateEn}</p>}
+                        {sw.translateEn && <p className="text-xs text-blue-500 break-words">{sw.translateEn}</p>}
                       </button>
                     ))}
                   </div>

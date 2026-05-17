@@ -168,7 +168,7 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
             <p className="text-sm text-gray-500 dark:text-gray-400 text-center">{current.translateCh}</p>
           )}
           {current.sentence && (
-            <p className="text-xs text-gray-400 dark:text-gray-500 italic text-center line-clamp-2 mt-1">
+            <p className="text-xs text-gray-400 dark:text-gray-500 italic text-center mt-1 max-h-16 overflow-y-auto break-words">
               {current.sentence}
             </p>
           )}
