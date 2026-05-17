@@ -167,13 +167,13 @@ const WordSection: React.FC<{
                 {isMeaningVisible(word.id) ? (
                   <>
                     {word.translateEn && (
-                      <p className="text-xs text-blue-500 truncate">{word.translateEn}</p>
+                      <p className="text-xs text-blue-500 break-words">{word.translateEn}</p>
                     )}
                     {word.translateCh && (
-                      <p className="text-xs text-gray-500 dark:text-gray-300 truncate">{word.translateCh}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-300 break-words">{word.translateCh}</p>
                     )}
                     {word.sentence && word.word && (
-                      <p className="text-xs text-gray-500 dark:text-gray-400 italic truncate mt-0.5">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-0.5 max-h-16 overflow-y-auto break-words">
                         <SentenceRenderer text={word.sentence} />
                       </p>
                     )}

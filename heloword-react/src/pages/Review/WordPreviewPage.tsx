@@ -464,12 +464,12 @@ const WordPreviewPage: React.FC = () => {
                       <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col px-8 py-6">
                         <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{originalIndex.get(currentWord.id) ?? cardIndex + 1}</span>
                         {/* Vertically centered word content */}
-                        <div className="flex-1 flex flex-col items-center justify-center gap-2">
+                        <div className="flex-1 flex flex-col items-center justify-center gap-2 overflow-y-auto">
                           <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">
                             {currentWord.word}
                           </p>
                           {currentWord.sentence && (
-                            <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic line-clamp-2 px-2">
+                            <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic break-words px-2">
                               {currentWord.sentence}
                             </p>
                           )}
@@ -520,24 +520,26 @@ const WordPreviewPage: React.FC = () => {
                       </div>
 
                       {/* Back face */}
-                      <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center justify-center px-8 py-6 gap-2">
-                        <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 text-center">
-                          {currentWord.word}
-                        </p>
-                        <div className="w-8 h-px bg-blue-200 dark:bg-gray-500 my-1" />
-                        <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug break-words">
-                          {currentWord.translateEn}
-                        </p>
-                        {currentWord.translateCh && (
-                          <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1">
-                            {currentWord.translateCh}
+                      <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center overflow-y-auto scrollbar-hide px-8 py-6">
+                        <div className="my-auto w-full flex flex-col items-center gap-2">
+                          <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 text-center">
+                            {currentWord.word}
                           </p>
-                        )}
-                        {currentWord.sentence && (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic mt-3 leading-relaxed line-clamp-3 px-2">
-                            {currentWord.sentence}
+                          <div className="w-8 h-px bg-blue-200 dark:bg-gray-500 my-1" />
+                          <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug break-words">
+                            {currentWord.translateEn}
                           </p>
-                        )}
+                          {currentWord.translateCh && (
+                            <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1 break-words">
+                              {currentWord.translateCh}
+                            </p>
+                          )}
+                          {currentWord.sentence && (
+                            <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic mt-3 leading-relaxed break-words px-2">
+                              {currentWord.sentence}
+                            </p>
+                          )}
+                        </div>
                       </div>
 
                     </div>
