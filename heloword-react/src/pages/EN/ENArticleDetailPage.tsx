@@ -29,6 +29,7 @@ function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
 const LANG_TABS: { key: LangKey; label: string }[] = [
   { key: 'original', label: '原文' },
   { key: 'zh', label: '繁中' },
+  { key: 'ja', label: '日文' },
 ];
 
 const ENArticleDetailPage: React.FC = () => {
