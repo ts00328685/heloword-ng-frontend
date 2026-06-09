@@ -35,7 +35,7 @@ const en = {
     viewAll: 'View all →',
     funArticleTitle: 'Fun Word Stories',
     tapToReadMore: 'Tap to read more →',
-    nhkTitle: 'Daily NHK Article',
+    nhkTitle: 'Daily Japanese Article',
     enArticleTitle: 'Daily English Article',
   },
   enArticle: {
@@ -43,7 +43,7 @@ const en = {
     metaLabel: 'English Original',
   },
   nhk: {
-    title: 'NHK文章導讀',
+    title: 'Japanese Articles',
     noArticles: 'No articles yet',
     articleCount: '{{count}} articles',
     loadError: 'Failed to load article',
