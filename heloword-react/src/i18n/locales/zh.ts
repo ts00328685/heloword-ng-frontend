@@ -35,7 +35,7 @@ const zh = {
     viewAll: '查看全部 →',
     funArticleTitle: '趣文學單字',
     tapToReadMore: '點擊閱讀更多 →',
-    nhkTitle: '每日NHK文章導讀',
+    nhkTitle: '每日日文文章導讀',
     enArticleTitle: '每日英文文章導讀',
   },
   enArticle: {
@@ -43,7 +43,7 @@ const zh = {
     metaLabel: '英文原文',
   },
   nhk: {
-    title: 'NHK文章導讀',
+    title: '日文文章導讀',
     noArticles: '尚無文章',
     articleCount: '共 {{count}} 篇文章',
     loadError: '無法載入文章',

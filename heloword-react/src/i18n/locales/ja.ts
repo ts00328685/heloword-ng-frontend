@@ -35,7 +35,7 @@ const ja = {
     viewAll: 'すべて見る →',
     funArticleTitle: '楽しい単語ストーリー',
     tapToReadMore: 'タップして続きを読む →',
-    nhkTitle: 'NHK文章導讀',
+    nhkTitle: '毎日日本語記事',
     enArticleTitle: '毎日英語記事',
   },
   enArticle: {
@@ -43,7 +43,7 @@ const ja = {
     metaLabel: '英語原文',
   },
   nhk: {
-    title: 'NHK文章導讀',
+    title: '日本語記事',
     noArticles: '記事がありません',
     articleCount: '{{count}} 件の記事',
     loadError: '記事を読み込めませんでした',
