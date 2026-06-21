@@ -30138,5 +30138,142 @@
       "n2",
       "job hunting"
     ]
+  },
+  {
+    "id": "1517",
+    "japanese": "もう一度説明してください。",
+    "chunks": [
+      "もう一度",
+      "説明して",
+      "ください。"
+    ],
+    "translation": "請再說明一次。",
+    "english": "Please explain it one more time.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "explanation"
+    ]
+  },
+  {
+    "id": "1518",
+    "japanese": "難しいことほど、簡単な言葉で説明する必要がある。",
+    "chunks": [
+      "難しいことほど、",
+      "簡単な言葉で",
+      "説明する",
+      "必要がある。"
+    ],
+    "translation": "越是困難的事情，越需要用簡單的話來說明。",
+    "english": "The harder something is, the more it needs to be explained in simple words.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "explanation"
+    ]
+  },
+  {
+    "id": "1519",
+    "japanese": "うまく説明できないのは、自分でもよく理解していない証拠だ。",
+    "chunks": [
+      "うまく",
+      "説明できないのは、",
+      "自分でも",
+      "よく",
+      "理解していない",
+      "証拠だ。"
+    ],
+    "translation": "無法好好說明，正是自己其實也不太理解的證據。",
+    "english": "Not being able to explain something well is proof that you don't really understand it yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "explanation"
+    ]
+  },
+  {
+    "id": "1520",
+    "japanese": "昨日テレビを見ました。",
+    "chunks": [
+      "昨日",
+      "テレビを",
+      "見ました。"
+    ],
+    "translation": "我昨天看了電視。",
+    "english": "I watched TV yesterday.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "entertainment"
+    ]
+  },
+  {
+    "id": "1521",
+    "japanese": "コンサートのチケットは、すぐに売り切れてしまった。",
+    "chunks": [
+      "コンサートの",
+      "チケットは、",
+      "すぐに",
+      "売り切れて",
+      "しまった。"
+    ],
+    "translation": "演唱會的票一下子就賣光了。",
+    "english": "The concert tickets sold out right away.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "entertainment"
+    ]
+  },
+  {
+    "id": "1522",
+    "japanese": "嘘をついてはいけません。",
+    "chunks": [
+      "嘘を",
+      "ついては",
+      "いけません。"
+    ],
+    "translation": "不可以說謊。",
+    "english": "You must not tell lies.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "ethics"
+    ]
+  },
+  {
+    "id": "1523",
+    "japanese": "誰も見ていなくても、正しいことをするべきだ。",
+    "chunks": [
+      "誰も",
+      "見ていなくても、",
+      "正しいことを",
+      "するべきだ。"
+    ],
+    "translation": "即使沒有人在看，也應該做正確的事。",
+    "english": "Even when no one is watching, you should do the right thing.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "ethics"
+    ]
+  },
+  {
+    "id": "1524",
+    "japanese": "技術の進歩に、人間の倫理が追いついていない。",
+    "chunks": [
+      "技術の",
+      "進歩に、",
+      "人間の",
+      "倫理が",
+      "追いついていない。"
+    ],
+    "translation": "人類的倫理，跟不上技術的進步。",
+    "english": "Human ethics have not caught up with the progress of technology.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "ethics"
+    ]
   }
 ]
