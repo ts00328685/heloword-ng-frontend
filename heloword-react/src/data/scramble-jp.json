@@ -29182,5 +29182,143 @@
       "n2",
       "international"
     ]
+  },
+  {
+    "id": "1461",
+    "japanese": "今日はとても疲れました。",
+    "chunks": [
+      "今日は",
+      "とても",
+      "疲れました。"
+    ],
+    "translation": "我今天非常累。",
+    "english": "I am very tired today.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "feelings"
+    ]
+  },
+  {
+    "id": "1462",
+    "japanese": "理由もなく、急に寂しくなることがある。",
+    "chunks": [
+      "理由もなく、",
+      "急に",
+      "寂しく",
+      "なることがある。"
+    ],
+    "translation": "有時會毫無理由地突然感到寂寞。",
+    "english": "Sometimes I suddenly feel lonely for no reason.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "feelings"
+    ]
+  },
+  {
+    "id": "1463",
+    "japanese": "つらい経験も、後から思えば自分を強くしてくれたと感じる。",
+    "chunks": [
+      "つらい経験も、",
+      "後から",
+      "思えば",
+      "自分を",
+      "強くしてくれたと",
+      "感じる。"
+    ],
+    "translation": "就連痛苦的經驗，事後回想起來，也覺得它讓自己變得更堅強。",
+    "english": "Even painful experiences, looking back, feel like they made me stronger.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "feelings"
+    ]
+  },
+  {
+    "id": "1464",
+    "japanese": "彼は私の親友です。",
+    "chunks": [
+      "彼は",
+      "私の",
+      "親友です。"
+    ],
+    "translation": "他是我的好朋友。",
+    "english": "He is my best friend.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "friendship"
+    ]
+  },
+  {
+    "id": "1465",
+    "japanese": "久しぶりに会っても、すぐに昔のように話せた。",
+    "chunks": [
+      "久しぶりに",
+      "会っても、",
+      "すぐに",
+      "昔のように",
+      "話せた。"
+    ],
+    "translation": "即使久別重逢，也馬上就能像以前一樣聊起來。",
+    "english": "Even meeting again after a long time, we could talk like old times right away.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "friendship"
+    ]
+  },
+  {
+    "id": "1466",
+    "japanese": "父は工場で働いています。",
+    "chunks": [
+      "父は",
+      "工場で",
+      "働いています。"
+    ],
+    "translation": "我爸爸在工廠工作。",
+    "english": "My father works at a factory.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "industry"
+    ]
+  },
+  {
+    "id": "1467",
+    "japanese": "技術が進んで、昔より少ない人数で物が作れるようになった。",
+    "chunks": [
+      "技術が",
+      "進んで、",
+      "昔より",
+      "少ない人数で",
+      "物が",
+      "作れるようになった。"
+    ],
+    "translation": "技術進步後，比起從前，用更少的人數就能生產東西了。",
+    "english": "As technology advanced, we became able to make things with fewer people than before.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "industry"
+    ]
+  },
+  {
+    "id": "1468",
+    "japanese": "新しい産業が生まれる一方で、消えていく仕事もある。",
+    "chunks": [
+      "新しい産業が",
+      "生まれる一方で、",
+      "消えていく",
+      "仕事もある。"
+    ],
+    "translation": "在新產業誕生的同時，也有一些工作正在消失。",
+    "english": "While new industries are born, some jobs are disappearing.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "industry"
+    ]
   }
 ]
