@@ -28487,5 +28487,145 @@
       "n2",
       "business"
     ]
+  },
+  {
+    "id": "1421",
+    "japanese": "毎日漢字を五つ覚えます。",
+    "chunks": [
+      "毎日",
+      "漢字を",
+      "五つ",
+      "覚えます。"
+    ],
+    "translation": "我每天記五個漢字。",
+    "english": "I memorize five kanji every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "language study"
+    ]
+  },
+  {
+    "id": "1422",
+    "japanese": "声に出して読むと、発音が自然に良くなる。",
+    "chunks": [
+      "声に出して",
+      "読むと、",
+      "発音が",
+      "自然に",
+      "良くなる。"
+    ],
+    "translation": "出聲朗讀的話，發音會自然而然地變好。",
+    "english": "When you read aloud, your pronunciation naturally improves.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "language study"
+    ]
+  },
+  {
+    "id": "1423",
+    "japanese": "間違いを恐れて話さないより、たくさん話して間違える方が伸びる。",
+    "chunks": [
+      "間違いを",
+      "恐れて",
+      "話さないより、",
+      "たくさん話して",
+      "間違える方が",
+      "伸びる。"
+    ],
+    "translation": "與其因為怕犯錯而不開口，不如多說多錯，這樣反而進步得更快。",
+    "english": "Rather than staying silent for fear of mistakes, you improve more by speaking a lot and making them.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "language study"
+    ]
+  },
+  {
+    "id": "1424",
+    "japanese": "この映画はとても有名です。",
+    "chunks": [
+      "この映画は",
+      "とても",
+      "有名です。"
+    ],
+    "translation": "這部電影非常有名。",
+    "english": "This film is very famous.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "film"
+    ]
+  },
+  {
+    "id": "1425",
+    "japanese": "字幕なしで映画が理解できたときは、本当に嬉しかった。",
+    "chunks": [
+      "字幕なしで",
+      "映画が",
+      "理解できたときは、",
+      "本当に",
+      "嬉しかった。"
+    ],
+    "translation": "當我能不靠字幕看懂電影時，真的很開心。",
+    "english": "I was really happy when I could understand a film without subtitles.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "film"
+    ]
+  },
+  {
+    "id": "1426",
+    "japanese": "水は百度で沸騰します。",
+    "chunks": [
+      "水は",
+      "百度で",
+      "沸騰します。"
+    ],
+    "translation": "水在一百度時沸騰。",
+    "english": "Water boils at one hundred degrees.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "science"
+    ]
+  },
+  {
+    "id": "1427",
+    "japanese": "実験の結果は、予想とは少し違っていた。",
+    "chunks": [
+      "実験の",
+      "結果は、",
+      "予想とは",
+      "少し",
+      "違っていた。"
+    ],
+    "translation": "實驗的結果，和預期有點不一樣。",
+    "english": "The result of the experiment was a little different from what we expected.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "science"
+    ]
+  },
+  {
+    "id": "1428",
+    "japanese": "新しい発見は、これまでの常識をくつがえすことがある。",
+    "chunks": [
+      "新しい発見は、",
+      "これまでの",
+      "常識を",
+      "くつがえす",
+      "ことがある。"
+    ],
+    "translation": "新的發現有時會顛覆至今為止的常識。",
+    "english": "New discoveries can sometimes overturn what we have always taken for granted.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "science"
+    ]
   }
 ]
