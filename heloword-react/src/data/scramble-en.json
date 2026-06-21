@@ -2001,8 +2001,8 @@
     },
     {
         "id": 401,
-        "translate_ch": "這位 34 歲的球員正處於他的榮譽年，他從哈雷奎恩隊加入巴斯隊，並出場 266 次。",
-        "sentence": "The 34-year-old, who is in his testimonial year, joined Bath from Harlequins and made 266 appearances."
+        "translate_ch": "這位34歲、正處於榮譽年的球員，從一支對手球隊轉投現在的球隊，並出場266次。",
+        "sentence": "The 34-year-old, who is in his testimonial year, joined his club from a rival side and made 266 appearances."
     },
     {
         "id": 402,
@@ -2021,13 +2021,13 @@
     },
     {
         "id": 405,
-        "translate_ch": "巴克門特灣度假村擁有既廣闊又親切的氛圍，讓您沉浸在夢寐以求的奢華之中。",
-        "sentence": "With it's sprawling-yet-intimate vibe, Buccament Bay Resort envelopes you in the luxury you've been dreaming about."
+        "translate_ch": "這家度假村擁有既廣闊又親切的氛圍，讓你沉浸在夢寐以求的奢華之中。",
+        "sentence": "With its sprawling-yet-intimate vibe, the resort envelopes you in the luxury you've been dreaming about."
     },
     {
         "id": 406,
-        "translate_ch": "金先生堅持要用砍自白頭山的樹木燃起木火來煮飯。",
-        "sentence": "Kim insists that his rice be cooked over a wood fire using trees cut from Mt."
+        "translate_ch": "他堅持要用砍自那座山的樹木生起木火來煮飯。",
+        "sentence": "He insists that his rice be cooked over a wood fire using trees cut from the mountain."
     },
     {
         "id": 407,
@@ -2041,23 +2041,23 @@
     },
     {
         "id": 409,
-        "translate_ch": "他像雷射掃描一樣，精準鎖定在少數幾個極其成功的項目上。",
-        "sentence": "He has targeted Apple like a laser beam on a few brilliantly successful projects."
+        "translate_ch": "他像雷射光束一樣，精準鎖定這家公司，專注於少數幾個極其成功的項目上。",
+        "sentence": "He has targeted the company like a laser beam on a few brilliantly successful projects."
     },
     {
         "id": 410,
-        "translate_ch": "控方稱，比爾德為了自身目的挪用了慈善機構的資產。",
-        "sentence": "The prosecution claims Beard was using the assets of the charity for her own ends."
+        "translate_ch": "控方稱，被告為了自身目的挪用了慈善機構的資產。",
+        "sentence": "The prosecution claims the defendant was using the assets of the charity for her own ends."
     },
     {
         "id": 411,
-        "translate_ch": "她在一家名為 New Castle 的避險基金工作，該基金由貝爾斯登公司擁有。",
-        "sentence": "She worked at a hedge fund called New Castle, which was owned by Bear Stearns."
+        "translate_ch": "她在一家避險基金工作，該基金由一家大型投資銀行所有。",
+        "sentence": "She worked at a hedge fund that was owned by a large investment bank."
     },
     {
         "id": 412,
-        "translate_ch": "毫無疑問，希雅（Sia）的嗓音與凱莉·克萊森完全不是同一個級別的。",
-        "sentence": "There's no doubt that Sia's voice is a different beast entirely from Kelly Clarkson's."
+        "translate_ch": "毫無疑問，一位歌手的嗓音與另一位歌手完全是不同的層次。",
+        "sentence": "There's no doubt that one singer's voice is a different beast entirely from another's."
     },
     {
         "id": 413,
@@ -2066,8 +2066,8 @@
     },
     {
         "id": 414,
-        "translate_ch": "歐內斯托愛上了諾麗娜，她既年輕又美麗，但很貧窮。",
-        "sentence": "Ernesto is in love with Norina, who is young and beautiful — but poor."
+        "translate_ch": "一個年輕男子愛上了一位年輕貌美卻貧窮的女子。",
+        "sentence": "A young man is in love with a woman who is young and beautiful — but poor."
     },
     {
         "id": 415,
@@ -2076,8 +2076,8 @@
     },
     {
         "id": 416,
-        "translate_ch": "由於擔心其安全性，黑斯廷斯碼頭於 2006 年停止向大眾開放。",
-        "sentence": "Hastings Pier was closed to the public in 2006 because of fears it had become unsafe."
+        "translate_ch": "由於擔心安全問題，這座老碼頭於2006年停止對外開放。",
+        "sentence": "The old pier was closed to the public in 2006 because of fears it had become unsafe."
     },
     {
         "id": 417,
@@ -2086,8 +2086,8 @@
     },
     {
         "id": 418,
-        "translate_ch": "蜂王乳和花粉也被認為能降低血壓並改善皮膚品質。",
-        "sentence": "Royal Jelly bee's pollen is also believed to lower blood pressure and improve skin quality."
+        "translate_ch": "蜂王乳和蜂花粉也被認為能降低血壓並改善膚質。",
+        "sentence": "Royal jelly and bee pollen are also believed to lower blood pressure and improve skin quality."
     },
     {
         "id": 419,
@@ -2101,18 +2101,18 @@
     },
     {
         "id": 421,
-        "translate_ch": "她說，有些客戶以前從未露營過，但卻想攀登珠穆朗瑪峰。",
-        "sentence": "Some clients, she says, will have never camped before but want to climb Mt."
+        "translate_ch": "她說，有些客戶以前從未露營過，卻想攀登世界最高峰。",
+        "sentence": "Some clients, she says, will have never camped before but want to climb the world's highest peak."
     },
     {
         "id": 422,
-        "translate_ch": "他說：「當他們揭開溫斯頓·邱吉爾的雕像時，之前沒有人見過它。」",
-        "sentence": "When they unveiled the statue of Winston Churchill, no one had seen it beforehand,  he said."
+        "translate_ch": "他說：「當他們揭開那位著名戰時領袖的雕像時，之前沒有人見過它。」",
+        "sentence": "When they unveiled the statue of a famous wartime leader, no one had seen it beforehand, he said."
     },
     {
         "id": 423,
-        "translate_ch": "葉爾辛說：「我想為你們那些從未實現的夢想請求你們的原諒。」",
-        "sentence": "I want to beg your forgiveness for your dreams that never came true,  Yeltsin said."
+        "translate_ch": "這位領導人說：「我想為你們那些從未實現的夢想請求你們的原諒。」",
+        "sentence": "I want to beg your forgiveness for your dreams that never came true, the leader said."
     },
     {
         "id": 424,
@@ -2137,7 +2137,7 @@
     {
         "id": 428,
         "translate_ch": "海軍否認退役程序是基於對同性戀行為的懷疑。",
-        "sentence": "The Navy has denied the separation proceedings are based on the suspicion of homosexual behavior."
+        "sentence": "The navy has denied the separation proceedings are based on the suspicion of homosexual behavior."
     },
     {
         "id": 429,
@@ -2156,8 +2156,8 @@
     },
     {
         "id": 432,
-        "translate_ch": "預計在週三收盤後公佈財報的綠山咖啡公司，在週二上漲了 1.8%。",
-        "sentence": "Green Mountain, due to report earnings after the closing bell Wednesday, was up 1.8% Tuesday."
+        "translate_ch": "一家預計在週三收盤後公佈財報的咖啡公司，週二上漲了 1.8%。",
+        "sentence": "One coffee company, due to report earnings after the closing bell Wednesday, was up 1.8% Tuesday."
     },
     {
         "id": 433,
@@ -2166,8 +2166,8 @@
     },
     {
         "id": 434,
-        "translate_ch": "按照這個模式，以下受人喜愛的迪士尼世界景點正處於（或可能處於）被整改的風口浪尖。",
-        "sentence": "Following that pattern, the following beloved Disney World attractions are, or might be, in the crosshairs."
+        "translate_ch": "按照這個模式，以下這些受人喜愛的主題樂園景點正處於（或可能處於）被整改的風口浪尖。",
+        "sentence": "Following that pattern, the following beloved theme park attractions are, or might be, in the crosshairs."
     },
     {
         "id": 435,
@@ -2176,8 +2176,8 @@
     },
     {
         "id": 436,
-        "translate_ch": "但隨後李·丹尼爾突發奇想——把網路建立在葉片線以下。",
-        "sentence": "But then Lee-Daniel had had a brainstorm -- build the network below the leaf line."
+        "translate_ch": "但隨後一位工程師突發奇想——把網路建在葉片線以下。",
+        "sentence": "But then one engineer had had a brainstorm -- build the network below the leaf line."
     },
     {
         "id": 437,
@@ -2186,13 +2186,13 @@
     },
     {
         "id": 438,
-        "translate_ch": "但本賽季經常坐在替補席上的波伊德，躍起頭槌攻入了制勝一球。",
-        "sentence": "But Boyd, so often left on the bench this season, rose to head the winner."
+        "translate_ch": "但本賽季經常坐在替補席上的一名球員，躍起以頭槌攻入了制勝一球。",
+        "sentence": "But one player, so often left on the bench this season, rose to head the winner."
     },
     {
         "id": 439,
-        "translate_ch": "後來這對夫婦分居後，他搬去和俄勒岡州本德市的朋友一起住。",
-        "sentence": "Later, when the couple separated, he went to live with friends in Bend, Ore."
+        "translate_ch": "後來這對夫婦分居後，他搬去和西部一個小鎮的朋友同住。",
+        "sentence": "Later, when the couple separated, he went to live with friends in a town out west."
     },
     {
         "id": 440,
@@ -16123,5 +16123,45 @@
         "id": 3225,
         "translate_ch": "利率的小幅上升，可能會波及從房貸到食品雜貨價格的一切。",
         "sentence": "A small rise in interest rates can ripple through everything from mortgages to the price of groceries."
+    },
+    {
+        "id": 3226,
+        "translate_ch": "問一句「你今天過得怎麼樣？」是開啟對話的簡單方法。",
+        "sentence": "Asking 'how was your day?' is a simple way to start a conversation."
+    },
+    {
+        "id": 3227,
+        "translate_ch": "他有一種天賦，能在認識陌生人幾分鐘內就讓對方感到自在。",
+        "sentence": "He has a talent for making strangers feel comfortable within minutes of meeting them."
+    },
+    {
+        "id": 3228,
+        "translate_ch": "好的對話就像打網球：一旦有一方停止回擊，對話就會立刻瓦解。",
+        "sentence": "Good conversation is a kind of tennis: it falls apart the moment one side stops returning the ball."
+    },
+    {
+        "id": 3229,
+        "translate_ch": "她買了一件溫暖的外套過冬。",
+        "sentence": "She bought a warm coat for the winter."
+    },
+    {
+        "id": 3230,
+        "translate_ch": "曾經看起來過時的款式，不知怎地每隔幾十年就會重新流行起來。",
+        "sentence": "Styles that once looked outdated somehow come back into fashion every few decades."
+    },
+    {
+        "id": 3231,
+        "translate_ch": "她有來自許多不同國家的朋友。",
+        "sentence": "She has friends from many different countries."
+    },
+    {
+        "id": 3232,
+        "translate_ch": "出國旅行讓她明白，禮貌在不同地方可能看起來大不相同。",
+        "sentence": "Travelling abroad taught her that politeness can look very different from place to place."
+    },
+    {
+        "id": 3233,
+        "translate_ch": "國與國之間的貿易協定很少只關乎商品，它們也關乎信任與影響力。",
+        "sentence": "Trade agreements between nations are rarely just about goods; they are also about trust and influence."
     }
 ]

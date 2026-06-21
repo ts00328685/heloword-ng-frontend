@@ -29041,5 +29041,146 @@
       "n2",
       "economy"
     ]
+  },
+  {
+    "id": "1453",
+    "japanese": "週末は何をしましたか。",
+    "chunks": [
+      "週末は",
+      "何を",
+      "しましたか。"
+    ],
+    "translation": "你週末做了什麼？",
+    "english": "What did you do on the weekend?",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "conversation"
+    ]
+  },
+  {
+    "id": "1454",
+    "japanese": "話が苦手な人でも、質問されると話しやすくなる。",
+    "chunks": [
+      "話が",
+      "苦手な人でも、",
+      "質問されると",
+      "話しやすくなる。"
+    ],
+    "translation": "就算是不擅長聊天的人，被問問題時也會比較容易開口。",
+    "english": "Even people who are bad at talking find it easier to speak when they are asked questions.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "conversation"
+    ]
+  },
+  {
+    "id": "1455",
+    "japanese": "相手の話を最後まで聞かずに、口を挟むのは失礼だ。",
+    "chunks": [
+      "相手の話を",
+      "最後まで",
+      "聞かずに、",
+      "口を挟むのは",
+      "失礼だ。"
+    ],
+    "translation": "不把對方的話聽完就插嘴，是很失禮的。",
+    "english": "It is rude to interrupt before hearing the other person out.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "conversation"
+    ]
+  },
+  {
+    "id": "1456",
+    "japanese": "新しい靴を買いました。",
+    "chunks": [
+      "新しい",
+      "靴を",
+      "買いました。"
+    ],
+    "translation": "我買了新鞋子。",
+    "english": "I bought new shoes.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "fashion"
+    ]
+  },
+  {
+    "id": "1457",
+    "japanese": "彼女はいつも季節に合った服を着ている。",
+    "chunks": [
+      "彼女は",
+      "いつも",
+      "季節に合った",
+      "服を",
+      "着ている。"
+    ],
+    "translation": "她總是穿著符合季節的衣服。",
+    "english": "She always wears clothes that suit the season.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "fashion"
+    ]
+  },
+  {
+    "id": "1458",
+    "japanese": "私はいろいろな国の料理が好きです。",
+    "chunks": [
+      "私は",
+      "いろいろな",
+      "国の",
+      "料理が",
+      "好きです。"
+    ],
+    "translation": "我喜歡各個國家的料理。",
+    "english": "I like food from many different countries.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "international"
+    ]
+  },
+  {
+    "id": "1459",
+    "japanese": "外国に住むと、自分の国のことがよく見えてくる。",
+    "chunks": [
+      "外国に",
+      "住むと、",
+      "自分の国の",
+      "ことが",
+      "よく",
+      "見えてくる。"
+    ],
+    "translation": "住在國外後，反而能更清楚地看見自己國家的樣子。",
+    "english": "When you live abroad, you start to see your own country more clearly.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "international"
+    ]
+  },
+  {
+    "id": "1460",
+    "japanese": "文化が違っても、人が大切にするものは案外似ている。",
+    "chunks": [
+      "文化が",
+      "違っても、",
+      "人が",
+      "大切にするものは",
+      "案外",
+      "似ている。"
+    ],
+    "translation": "即使文化不同，人們所珍視的東西其實出乎意料地相似。",
+    "english": "Even when cultures differ, what people value is surprisingly similar.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "international"
+    ]
   }
 ]
