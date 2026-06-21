@@ -28904,5 +28904,142 @@
       "n2",
       "global"
     ]
+  },
+  {
+    "id": "1445",
+    "japanese": "今日はとても嬉しいです。",
+    "chunks": [
+      "今日は",
+      "とても",
+      "嬉しいです。"
+    ],
+    "translation": "我今天非常開心。",
+    "english": "I am very happy today.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "emotions"
+    ]
+  },
+  {
+    "id": "1446",
+    "japanese": "緊張すると、いつも手が冷たくなる。",
+    "chunks": [
+      "緊張すると、",
+      "いつも",
+      "手が",
+      "冷たくなる。"
+    ],
+    "translation": "一緊張，我的手總是會變冷。",
+    "english": "Whenever I get nervous, my hands always go cold.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "emotions"
+    ]
+  },
+  {
+    "id": "1447",
+    "japanese": "怒りを感じたときほど、一度深呼吸をした方がいい。",
+    "chunks": [
+      "怒りを",
+      "感じたときほど、",
+      "一度",
+      "深呼吸を",
+      "した方がいい。"
+    ],
+    "translation": "越是感到憤怒的時候，越應該先深呼吸一次。",
+    "english": "The angrier you feel, the more you should take a deep breath first.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "emotions"
+    ]
+  },
+  {
+    "id": "1448",
+    "japanese": "友達と公園で遊びました。",
+    "chunks": [
+      "友達と",
+      "公園で",
+      "遊びました。"
+    ],
+    "translation": "我和朋友在公園玩了。",
+    "english": "I played with my friends in the park.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "friends"
+    ]
+  },
+  {
+    "id": "1449",
+    "japanese": "困ったときに助けてくれるのが本当の友達だ。",
+    "chunks": [
+      "困ったときに",
+      "助けてくれるのが",
+      "本当の",
+      "友達だ。"
+    ],
+    "translation": "在你有困難時伸出援手的，才是真正的朋友。",
+    "english": "A true friend is one who helps you when you're in trouble.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "friends"
+    ]
+  },
+  {
+    "id": "1450",
+    "japanese": "野菜の値段が高くなりました。",
+    "chunks": [
+      "野菜の",
+      "値段が",
+      "高く",
+      "なりました。"
+    ],
+    "translation": "蔬菜的價格變貴了。",
+    "english": "The price of vegetables has gone up.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "economy"
+    ]
+  },
+  {
+    "id": "1451",
+    "japanese": "景気が悪いと、仕事を見つけるのが難しくなる。",
+    "chunks": [
+      "景気が",
+      "悪いと、",
+      "仕事を",
+      "見つけるのが",
+      "難しくなる。"
+    ],
+    "translation": "景氣不好時，找工作就會變得困難。",
+    "english": "When the economy is bad, it becomes harder to find a job.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "economy"
+    ]
+  },
+  {
+    "id": "1452",
+    "japanese": "物価が上がり続ければ、生活はますます苦しくなるだろう。",
+    "chunks": [
+      "物価が",
+      "上がり続ければ、",
+      "生活は",
+      "ますます",
+      "苦しくなるだろう。"
+    ],
+    "translation": "如果物價持續上漲，生活恐怕會越來越艱難。",
+    "english": "If prices keep rising, life will probably become harder and harder.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "economy"
+    ]
   }
 ]
