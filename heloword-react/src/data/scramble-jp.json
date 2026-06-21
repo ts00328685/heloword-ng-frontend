@@ -30275,5 +30275,140 @@
       "n2",
       "ethics"
     ]
+  },
+  {
+    "id": "1525",
+    "japanese": "最後まで頑張ります。",
+    "chunks": [
+      "最後まで",
+      "頑張ります。"
+    ],
+    "translation": "我會堅持到最後。",
+    "english": "I will do my best to the end.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "determination"
+    ]
+  },
+  {
+    "id": "1526",
+    "japanese": "一度決めたことは、最後までやり通したい。",
+    "chunks": [
+      "一度",
+      "決めたことは、",
+      "最後まで",
+      "やり通したい。"
+    ],
+    "translation": "一旦決定的事，我就想堅持做到最後。",
+    "english": "Once I've decided on something, I want to see it through to the end.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "determination"
+    ]
+  },
+  {
+    "id": "1527",
+    "japanese": "何度失敗しても、立ち上がる限り負けではない。",
+    "chunks": [
+      "何度",
+      "失敗しても、",
+      "立ち上がる限り",
+      "負けではない。"
+    ],
+    "translation": "無論失敗多少次，只要還能站起來，就不算輸。",
+    "english": "No matter how many times you fail, as long as you get back up, it isn't a defeat.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "determination"
+    ]
+  },
+  {
+    "id": "1528",
+    "japanese": "町でお祭りがあります。",
+    "chunks": [
+      "町で",
+      "お祭りが",
+      "あります。"
+    ],
+    "translation": "鎮上有祭典。",
+    "english": "There is a festival in town.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "community"
+    ]
+  },
+  {
+    "id": "1529",
+    "japanese": "困っている人がいたら、みんなで助け合う。",
+    "chunks": [
+      "困っている人が",
+      "いたら、",
+      "みんなで",
+      "助け合う。"
+    ],
+    "translation": "如果有人有困難，大家就會互相幫助。",
+    "english": "If someone is in trouble, everyone helps each other out.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "community"
+    ]
+  },
+  {
+    "id": "1530",
+    "japanese": "九時から会議があります。",
+    "chunks": [
+      "九時から",
+      "会議が",
+      "あります。"
+    ],
+    "translation": "九點開始有會議。",
+    "english": "There is a meeting starting at nine.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "workplace"
+    ]
+  },
+  {
+    "id": "1531",
+    "japanese": "職場の雰囲気が良いと、仕事もはかどる。",
+    "chunks": [
+      "職場の",
+      "雰囲気が",
+      "良いと、",
+      "仕事も",
+      "はかどる。"
+    ],
+    "translation": "職場氣氛好的話，工作也會更有進展。",
+    "english": "When the workplace atmosphere is good, work goes more smoothly.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "workplace"
+    ]
+  },
+  {
+    "id": "1532",
+    "japanese": "上司に意見を言える職場ほど、長く働きたいと思える。",
+    "chunks": [
+      "上司に",
+      "意見を言える",
+      "職場ほど、",
+      "長く",
+      "働きたいと",
+      "思える。"
+    ],
+    "translation": "越是能向上司表達意見的職場，越會讓人想長久工作下去。",
+    "english": "The more a workplace lets you voice opinions to your boss, the more you want to keep working there.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "workplace"
+    ]
   }
 ]
