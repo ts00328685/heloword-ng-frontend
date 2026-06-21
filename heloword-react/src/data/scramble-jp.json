@@ -29456,5 +29456,142 @@
       "n2",
       "politics"
     ]
+  },
+  {
+    "id": "1477",
+    "japanese": "試験の前は少し緊張します。",
+    "chunks": [
+      "試験の前は",
+      "少し",
+      "緊張します。"
+    ],
+    "translation": "考試前我會有點緊張。",
+    "english": "I get a little nervous before exams.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "anxiety"
+    ]
+  },
+  {
+    "id": "1478",
+    "japanese": "心配しすぎると、かえって失敗してしまうことがある。",
+    "chunks": [
+      "心配しすぎると、",
+      "かえって",
+      "失敗してしまう",
+      "ことがある。"
+    ],
+    "translation": "過度擔心，有時反而會搞砸。",
+    "english": "If you worry too much, you can end up failing instead.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "anxiety"
+    ]
+  },
+  {
+    "id": "1479",
+    "japanese": "起きるかどうかも分からないことで悩むのは、時間の無駄だ。",
+    "chunks": [
+      "起きるかどうかも",
+      "分からないことで",
+      "悩むのは、",
+      "時間の",
+      "無駄だ。"
+    ],
+    "translation": "為了不知道會不會發生的事情而煩惱，是浪費時間。",
+    "english": "Worrying about things that may not even happen is a waste of time.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "anxiety"
+    ]
+  },
+  {
+    "id": "1480",
+    "japanese": "近所に新しいスーパーができました。",
+    "chunks": [
+      "近所に",
+      "新しい",
+      "スーパーが",
+      "できました。"
+    ],
+    "translation": "附近開了一家新的超市。",
+    "english": "A new supermarket has opened in the neighborhood.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "neighborhood"
+    ]
+  },
+  {
+    "id": "1481",
+    "japanese": "隣の人とは、会えばいつも挨拶をする。",
+    "chunks": [
+      "隣の人とは、",
+      "会えば",
+      "いつも",
+      "挨拶をする。"
+    ],
+    "translation": "和隔壁鄰居，每次見面都會打招呼。",
+    "english": "Whenever I meet my next-door neighbor, we always greet each other.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "neighborhood"
+    ]
+  },
+  {
+    "id": "1482",
+    "japanese": "彼はこの店の店長です。",
+    "chunks": [
+      "彼は",
+      "この店の",
+      "店長です。"
+    ],
+    "translation": "他是這家店的店長。",
+    "english": "He is the manager of this shop.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "management"
+    ]
+  },
+  {
+    "id": "1483",
+    "japanese": "良いリーダーは、部下の意見をよく聞く。",
+    "chunks": [
+      "良いリーダーは、",
+      "部下の",
+      "意見を",
+      "よく",
+      "聞く。"
+    ],
+    "translation": "好的領導者會仔細傾聽下屬的意見。",
+    "english": "A good leader listens carefully to the opinions of their subordinates.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "management"
+    ]
+  },
+  {
+    "id": "1484",
+    "japanese": "一人で抱え込まず、仕事を任せることも大切だ。",
+    "chunks": [
+      "一人で",
+      "抱え込まず、",
+      "仕事を",
+      "任せることも",
+      "大切だ。"
+    ],
+    "translation": "不要一個人攬下所有事，懂得把工作交付出去也很重要。",
+    "english": "It's important not to shoulder everything alone but to delegate work to others.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "management"
+    ]
   }
 ]
