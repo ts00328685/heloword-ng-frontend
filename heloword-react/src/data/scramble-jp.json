@@ -28627,5 +28627,145 @@
       "n2",
       "science"
     ]
+  },
+  {
+    "id": "1429",
+    "japanese": "失敗は成功のもとです。",
+    "chunks": [
+      "失敗は",
+      "成功の",
+      "もとです。"
+    ],
+    "translation": "失敗為成功之母。",
+    "english": "Failure is the foundation of success.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "mindset"
+    ]
+  },
+  {
+    "id": "1430",
+    "japanese": "考え方を変えるだけで、毎日がもっと楽になることもある。",
+    "chunks": [
+      "考え方を",
+      "変えるだけで、",
+      "毎日が",
+      "もっと",
+      "楽になる",
+      "こともある。"
+    ],
+    "translation": "有時光是改變想法，每天就會變得更輕鬆。",
+    "english": "Sometimes just changing the way you think can make daily life easier.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "mindset"
+    ]
+  },
+  {
+    "id": "1431",
+    "japanese": "うまくいかないときこそ、落ち着いて次の一手を考えるべきだ。",
+    "chunks": [
+      "うまくいかないときこそ、",
+      "落ち着いて",
+      "次の一手を",
+      "考えるべきだ。"
+    ],
+    "translation": "正是在不順利的時候，才更應該冷靜思考下一步。",
+    "english": "It is precisely when things go wrong that you should calmly think about your next move.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "mindset"
+    ]
+  },
+  {
+    "id": "1432",
+    "japanese": "家族と一緒に晩ご飯を食べます。",
+    "chunks": [
+      "家族と",
+      "一緒に",
+      "晩ご飯を",
+      "食べます。"
+    ],
+    "translation": "我和家人一起吃晚餐。",
+    "english": "I eat dinner together with my family.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "family"
+    ]
+  },
+  {
+    "id": "1433",
+    "japanese": "兄は私より三つ年上です。",
+    "chunks": [
+      "兄は",
+      "私より",
+      "三つ",
+      "年上です。"
+    ],
+    "translation": "哥哥比我大三歲。",
+    "english": "My older brother is three years older than me.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "family"
+    ]
+  },
+  {
+    "id": "1434",
+    "japanese": "毎月少しお金を貯めています。",
+    "chunks": [
+      "毎月",
+      "少し",
+      "お金を",
+      "貯めています。"
+    ],
+    "translation": "我每個月存一點錢。",
+    "english": "I save a little money every month.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "finance"
+    ]
+  },
+  {
+    "id": "1435",
+    "japanese": "買う前に、本当に必要かどうかよく考えた方がいい。",
+    "chunks": [
+      "買う前に、",
+      "本当に",
+      "必要かどうか",
+      "よく",
+      "考えた方がいい。"
+    ],
+    "translation": "買之前，最好好好想想是不是真的需要。",
+    "english": "Before buying, you should think carefully about whether you really need it.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "finance"
+    ]
+  },
+  {
+    "id": "1436",
+    "japanese": "収入が増えても、支出も増えれば貯金は増えない。",
+    "chunks": [
+      "収入が",
+      "増えても、",
+      "支出も",
+      "増えれば",
+      "貯金は",
+      "増えない。"
+    ],
+    "translation": "就算收入增加，如果支出也跟著增加，存款就不會變多。",
+    "english": "Even if your income rises, your savings won't grow if your spending rises too.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "finance"
+    ]
   }
 ]
