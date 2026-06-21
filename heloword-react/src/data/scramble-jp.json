@@ -28345,5 +28345,147 @@
       "n2",
       "tech"
     ]
+  },
+  {
+    "id": "1413",
+    "japanese": "毎日少し運動しようと思います。",
+    "chunks": [
+      "毎日",
+      "少し",
+      "運動しようと",
+      "思います。"
+    ],
+    "translation": "我打算每天稍微運動一下。",
+    "english": "I plan to exercise a little every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "self-improvement"
+    ]
+  },
+  {
+    "id": "1414",
+    "japanese": "早起きの習慣を身につけてから、一日が長く感じる。",
+    "chunks": [
+      "早起きの",
+      "習慣を",
+      "身につけてから、",
+      "一日が",
+      "長く感じる。"
+    ],
+    "translation": "養成早起的習慣後，我覺得一天變長了。",
+    "english": "Since I picked up the habit of waking early, the day feels longer.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "self-improvement"
+    ]
+  },
+  {
+    "id": "1415",
+    "japanese": "失敗を繰り返すうちに、自分の弱点が少しずつ見えてきた。",
+    "chunks": [
+      "失敗を",
+      "繰り返すうちに、",
+      "自分の",
+      "弱点が",
+      "少しずつ",
+      "見えてきた。"
+    ],
+    "translation": "在不斷重複失敗的過程中，我漸漸看清了自己的弱點。",
+    "english": "As I kept repeating the same failures, my weaknesses gradually became clear.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "self-improvement"
+    ]
+  },
+  {
+    "id": "1416",
+    "japanese": "朝ご飯を食べてから学校に行きます。",
+    "chunks": [
+      "朝ご飯を",
+      "食べてから",
+      "学校に",
+      "行きます。"
+    ],
+    "translation": "我吃完早餐後去上學。",
+    "english": "I go to school after eating breakfast.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "daily routine"
+    ]
+  },
+  {
+    "id": "1417",
+    "japanese": "寝る前にスマホを見ない方がよく眠れる。",
+    "chunks": [
+      "寝る前に",
+      "スマホを",
+      "見ない方が",
+      "よく",
+      "眠れる。"
+    ],
+    "translation": "睡前不看手機，反而能睡得比較好。",
+    "english": "I sleep better when I don't look at my phone before bed.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "daily routine"
+    ]
+  },
+  {
+    "id": "1418",
+    "japanese": "この店はとても人気があります。",
+    "chunks": [
+      "この店は",
+      "とても",
+      "人気が",
+      "あります。"
+    ],
+    "translation": "這家店非常受歡迎。",
+    "english": "This shop is very popular.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "business"
+    ]
+  },
+  {
+    "id": "1419",
+    "japanese": "新しい商品の値段をもう少し下げた方がいいと思う。",
+    "chunks": [
+      "新しい商品の",
+      "値段を",
+      "もう少し",
+      "下げた方が",
+      "いいと思う。"
+    ],
+    "translation": "我覺得新商品的價格再降一點比較好。",
+    "english": "I think we should lower the price of the new product a little more.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "business"
+    ]
+  },
+  {
+    "id": "1420",
+    "japanese": "信頼を築くには時間がかかるが、失うのは一瞬だ。",
+    "chunks": [
+      "信頼を",
+      "築くには",
+      "時間がかかるが、",
+      "失うのは",
+      "一瞬だ。"
+    ],
+    "translation": "建立信任需要時間，但失去它只在一瞬間。",
+    "english": "Building trust takes time, but losing it takes only a moment.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "business"
+    ]
   }
 ]
