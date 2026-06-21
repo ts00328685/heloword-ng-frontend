@@ -561,8 +561,8 @@
     },
     {
         "id": 113,
-        "translate_ch": "數位時代中從創作者到消費者：關於圖書未來的國際會議。",
-        "sentence": "From Creator to Consumer in A Digital Age: International Conference on The Future of the Book."
+        "translate_ch": "在數位時代從創作者到消費者：一場關於書籍未來的國際會議。",
+        "sentence": "From creator to consumer in a digital age: an international conference on the future of the book."
     },
     {
         "id": 114,
@@ -576,8 +576,8 @@
     },
     {
         "id": 116,
-        "translate_ch": "但辯護律師科林·威爾遜表示，他在出獄前已通知了社會工作者。",
-        "sentence": "But defence agent Colin Wilson said he had informed social workers before being released from prison."
+        "translate_ch": "但辯護律師表示，他在出獄前已通知了社工。",
+        "sentence": "But the defence agent said he had informed social workers before being released from prison."
     },
     {
         "id": 117,
@@ -606,8 +606,8 @@
     },
     {
         "id": 122,
-        "translate_ch": "然而，觀眾中有些人不同意這種解釋，並稱布拉肯的方法是虛偽的。",
-        "sentence": "Some in the audience did not agree with this explanation, however, and called Bracken's approach hypocritical."
+        "translate_ch": "然而，觀眾中有些人並不認同這種解釋，並稱這位講者的做法很虛偽。",
+        "sentence": "Some in the audience did not agree with this explanation, however, and called the speaker's approach hypocritical."
     },
     {
         "id": 123,
@@ -621,13 +621,13 @@
     },
     {
         "id": 125,
-        "translate_ch": "米歇爾·奧尼爾自近期被任命為農業部長以來，首次出現在質詢時間。",
-        "sentence": "Michelle O'Neill appeared for the first question time since her recent appointment as agriculture minister."
+        "translate_ch": "這位新部長自近期被任命為農業部長以來，首次出席質詢時間。",
+        "sentence": "The new minister appeared for the first question time since her recent appointment as agriculture minister."
     },
     {
         "id": 126,
-        "translate_ch": "儘管如此，馬哈地仍處於不穩定的境地，他最艱難的戰鬥可能還在後頭。",
-        "sentence": "Still, Mahathir remains on precarious ground and his toughest battles may well lie ahead."
+        "translate_ch": "儘管如此，這位領導人仍處於不穩的境地，他最艱難的戰役很可能還在後頭。",
+        "sentence": "Still, the leader remains on precarious ground and his toughest battles may well lie ahead."
     },
     {
         "id": 127,
@@ -661,13 +661,13 @@
     },
     {
         "id": 133,
-        "translate_ch": "聖地亞哥和亞松森的機場負責人表示，來自智利和巴拉圭的類似航班也已停飛。",
-        "sentence": "Airport chiefs in Santiago and Asuncion said similar flights from Chile and Paraguay also were grounded."
+        "translate_ch": "該地區的機場負責人表示，來自智利和巴拉圭的類似航班也已停飛。",
+        "sentence": "Airport chiefs in the region said similar flights from Chile and Paraguay also were grounded."
     },
     {
         "id": 134,
-        "translate_ch": "在納舒厄，克里斯蒂讚揚了羅姆尼在擔任州長期間跨黨派與民主黨合作的能力。",
-        "sentence": "In Nashua, Christie praised Romney's ability to work across the aisle with Democrats while governor."
+        "translate_ch": "在一場競選活動上，一位發言者讚揚了這位州長跨黨派與反對黨合作的能力。",
+        "sentence": "At one campaign stop, a speaker praised the governor's ability to work across the aisle with the opposition."
     },
     {
         "id": 135,
@@ -676,13 +676,13 @@
     },
     {
         "id": 136,
-        "translate_ch": "福斯特的新專輯《The Phenomenal Ruthie Foster》是自她 1997 年首張專輯《Full Circle》以來的第五張。",
-        "sentence": "Foster's new album, The Phenomenal Ruthie Foster, is the fifth since her 1997 debut, Full Circle."
+        "translate_ch": "這位歌手的新專輯是自她1997年首張專輯以來的第五張。",
+        "sentence": "The singer's new album is the fifth since her 1997 debut."
     },
     {
         "id": 137,
-        "translate_ch": "應瑞典的要求，國際刑警組織於週三對阿桑奇發布了高度警戒令。",
-        "sentence": "Interpol issued a high alert for Assange on Wednesday at the request of Sweden."
+        "translate_ch": "應瑞典的要求，國際刑警機構於週三對一名通緝犯發布了高度警戒。",
+        "sentence": "The international police agency issued a high alert for a wanted man on Wednesday at the request of Sweden."
     },
     {
         "id": 138,
@@ -716,13 +716,13 @@
     },
     {
         "id": 144,
-        "translate_ch": "2001 年 11 月 13 日，受西方支持的北方聯盟在幾乎沒有遇到抵抗的情況下橫掃進入阿富汗首都。",
-        "sentence": "On 13 November 2001 that the western-backed Northern Alliance swept into the Afghan capital virtually unopposed."
+        "translate_ch": "2001年11月13日，受西方支持的聯盟幾乎未遇抵抗便橫掃進入阿富汗首都。",
+        "sentence": "On 13 November 2001 the western-backed alliance swept into the Afghan capital virtually unopposed."
     },
     {
         "id": 145,
-        "translate_ch": "一旦決定下來，東京將制定國家計劃並撥款。",
-        "sentence": "Once that is decided, Tokyo will draw up a national plan and allocate funds."
+        "translate_ch": "一旦決定下來，政府將制定全國性計劃並撥款。",
+        "sentence": "Once that is decided, the government will draw up a national plan and allocate funds."
     },
     {
         "id": 146,
@@ -732,17 +732,17 @@
     {
         "id": 147,
         "translate_ch": "法國與西班牙達成配額交換協議，使其獲得 1,000 噸的配額。",
-        "sentence": "France concluded a quota swap deal with Spain to allow it a 1, 000 tonne allowance."
+        "sentence": "France concluded a quota swap deal with Spain to allow it a 1,000 tonne allowance."
     },
     {
         "id": 148,
-        "translate_ch": "它們只是不像擁有全鎂合金外殼的 Toughbook 商務系列那樣堅固。",
-        "sentence": "They just aren't as solid as the Toughbook executive series, with their all mag alloy shell."
+        "translate_ch": "它們就是不像那些採用全鎂合金外殼的堅固商務筆電那麼結實。",
+        "sentence": "They just aren't as solid as the rugged business laptops, with their all-mag-alloy shell."
     },
     {
         "id": 149,
-        "translate_ch": "由總統埃沃·莫拉萊斯領導的玻利維亞左翼政府是古巴的盟友。",
-        "sentence": "Bolivia's left wing government, led by President Evo Morales, is a close ally of Cuba."
+        "translate_ch": "由總統領導的玻利維亞左翼政府是古巴的親密盟友。",
+        "sentence": "Bolivia's left wing government, led by its president, is a close ally of Cuba."
     },
     {
         "id": 150,
@@ -756,13 +756,13 @@
     },
     {
         "id": 152,
-        "translate_ch": "戴維斯選擇不灰心喪氣，他和凱南相處得併不融洽。",
-        "sentence": "Davies chose not to be disillusioned, and he and Kennan did not get along."
+        "translate_ch": "有個人選擇不灰心喪氣，而他和同事相處得並不融洽。",
+        "sentence": "One man chose not to be disillusioned, and he and his colleague did not get along."
     },
     {
         "id": 153,
-        "translate_ch": "從那裡，我們花了一天時間沿著基奈峽灣國家公園的出口冰河徒步。",
-        "sentence": "From there, we spent a day hiking alongside Exit Glacier in Kenai Fjords National Park."
+        "translate_ch": "從那裡，我們花了一天時間沿著一座國家公園裡的冰河健行。",
+        "sentence": "From there, we spent a day hiking alongside a glacier in a national park."
     },
     {
         "id": 154,
@@ -786,8 +786,8 @@
     },
     {
         "id": 158,
-        "translate_ch": "委員會還指責鄧弗姆林的經理們隱瞞成員關於風險貸款的情況。",
-        "sentence": "The committee also accused Dunfermline managers of keeping its members in the dark about risky lending."
+        "translate_ch": "委員會還指責這家放貸機構的經理隱瞞成員有關高風險放貸的情況。",
+        "sentence": "The committee also accused the lender's managers of keeping its members in the dark about risky lending."
     },
     {
         "id": 159,
@@ -796,23 +796,23 @@
     },
     {
         "id": 160,
-        "translate_ch": "當局決定使用「備用起落架延伸」程序返回埃克塞特。",
-        "sentence": "The decision was taken to return to Exeter using the \"alternate landing gear extension\" procedure."
+        "translate_ch": "當局決定使用「備用起落架放下」程序返回機場。",
+        "sentence": "The decision was taken to return to the airport using the \"alternate landing gear extension\" procedure."
     },
     {
         "id": 161,
-        "translate_ch": "特威克納姆大道（Twickenham Drive）的利索威社區中心正提供替代的加熱和烹飪設施。",
-        "sentence": "Alternative heating and cooking facilities are being provided at Leasowe Community Centre in Twickenham Drive."
+        "translate_ch": "附近的一處社區中心正提供替代的暖氣與烹飪設施。",
+        "sentence": "Alternative heating and cooking facilities are being provided at a community centre nearby."
     },
     {
         "id": 162,
-        "translate_ch": "雖然他和他的母親在紅色高棉的統治下倖存下來，但他們的幾位親戚卻未能倖免。",
-        "sentence": "Although he and his mother survived the Khmer Rhouge's reign, several of their relatives did not."
+        "translate_ch": "雖然他和母親在那個殘暴政權的統治下倖存了下來，但他們有幾位親戚卻沒能倖免。",
+        "sentence": "Although he and his mother survived the brutal regime's reign, several of their relatives did not."
     },
     {
         "id": 163,
-        "translate_ch": "巴西球隊討厭在高海拔地區比賽，而桑托斯隊今年運氣不佳，抽到了下下籤。",
-        "sentence": "Brazilian teams hate playing at altitude and Santos have drawn the short straw this year."
+        "translate_ch": "巴西球隊討厭在高海拔比賽，而其中一支球隊今年運氣不佳，抽到了下下籤。",
+        "sentence": "Brazilian teams hate playing at altitude and one club have drawn the short straw this year."
     },
     {
         "id": 164,
@@ -15883,5 +15883,45 @@
         "id": 3177,
         "translate_ch": "穩定的薪水固然重要，但覺得自己的工作有意義也同樣重要。",
         "sentence": "A steady paycheck matters, but feeling that your work means something matters just as much."
+    },
+    {
+        "id": 3178,
+        "translate_ch": "看有字幕的節目幫助我很快學會了新的片語。",
+        "sentence": "Watching shows with subtitles helped me pick up new phrases quickly."
+    },
+    {
+        "id": 3179,
+        "translate_ch": "隨身帶一本小筆記本記下不熟悉的單字，結果成了我最有用的習慣。",
+        "sentence": "Keeping a small notebook of unfamiliar words turned out to be my most useful habit."
+    },
+    {
+        "id": 3180,
+        "translate_ch": "我越是孤立地學習文法，就越發現真實的對話很少照著課本走。",
+        "sentence": "The more I studied grammar in isolation, the more I realized that real conversations rarely follow the textbook."
+    },
+    {
+        "id": 3181,
+        "translate_ch": "這部電影比我預期的長，但我每一分鐘都看得很享受。",
+        "sentence": "The movie was longer than I expected, but I enjoyed every minute."
+    },
+    {
+        "id": 3182,
+        "translate_ch": "接近結尾的劇情轉折，徹底改變了我對主角的看法。",
+        "sentence": "The plot twist near the end completely changed how I saw the main character."
+    },
+    {
+        "id": 3183,
+        "translate_ch": "昨晚我把所有照片都備份到雲端了。",
+        "sentence": "I backed up all my photos to the cloud last night."
+    },
+    {
+        "id": 3184,
+        "translate_ch": "每當我想一次上傳超過一個檔案時，這個應用程式就會一直當掉。",
+        "sentence": "The app keeps crashing whenever I try to upload more than one file at a time."
+    },
+    {
+        "id": 3185,
+        "translate_ch": "智慧裝置讓生活變得方便，但很少有人停下來思考它們悄悄蒐集了多少資料。",
+        "sentence": "Smart devices make life convenient, but few people stop to ask how much data they quietly collect."
     }
 ]

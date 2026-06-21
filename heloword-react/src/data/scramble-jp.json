@@ -28206,5 +28206,144 @@
       "n2",
       "employment"
     ]
+  },
+  {
+    "id": "1405",
+    "japanese": "辞書を使って意味を調べます。",
+    "chunks": [
+      "辞書を",
+      "使って",
+      "意味を",
+      "調べます。"
+    ],
+    "translation": "我用字典查意思。",
+    "english": "I use a dictionary to look up the meaning.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "language learning"
+    ]
+  },
+  {
+    "id": "1406",
+    "japanese": "聞き取りの練習をすればするほど、上手になります。",
+    "chunks": [
+      "聞き取りの",
+      "練習を",
+      "すればするほど、",
+      "上手に",
+      "なります。"
+    ],
+    "translation": "聽力練習做得越多，就會變得越厲害。",
+    "english": "The more you practice listening, the better you get.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "language learning"
+    ]
+  },
+  {
+    "id": "1407",
+    "japanese": "週末に映画を見に行きます。",
+    "chunks": [
+      "週末に",
+      "映画を",
+      "見に行きます。"
+    ],
+    "translation": "我週末要去看電影。",
+    "english": "I am going to see a movie this weekend.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "movies"
+    ]
+  },
+  {
+    "id": "1408",
+    "japanese": "この映画は実話をもとに作られたそうだ。",
+    "chunks": [
+      "この映画は",
+      "実話を",
+      "もとに",
+      "作られた",
+      "そうだ。"
+    ],
+    "translation": "聽說這部電影是根據真實故事改編的。",
+    "english": "I hear this movie was based on a true story.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "movies"
+    ]
+  },
+  {
+    "id": "1409",
+    "japanese": "結末があまりに意外で、しばらく席を立てなかった。",
+    "chunks": [
+      "結末が",
+      "あまりに",
+      "意外で、",
+      "しばらく",
+      "席を",
+      "立てなかった。"
+    ],
+    "translation": "結局太出乎意料，我有好一陣子都站不起來離席。",
+    "english": "The ending was so unexpected that I couldn't leave my seat for a while.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "movies"
+    ]
+  },
+  {
+    "id": "1410",
+    "japanese": "スマホで写真を撮ります。",
+    "chunks": [
+      "スマホで",
+      "写真を",
+      "撮ります。"
+    ],
+    "translation": "我用手機拍照。",
+    "english": "I take photos with my smartphone.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "tech"
+    ]
+  },
+  {
+    "id": "1411",
+    "japanese": "データをクラウドに保存しておくと安心だ。",
+    "chunks": [
+      "データを",
+      "クラウドに",
+      "保存しておくと",
+      "安心だ。"
+    ],
+    "translation": "把資料存到雲端就會比較安心。",
+    "english": "It is reassuring to keep your data saved in the cloud.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "tech"
+    ]
+  },
+  {
+    "id": "1412",
+    "japanese": "新しい技術に頼りすぎると、かえって不便になることもある。",
+    "chunks": [
+      "新しい技術に",
+      "頼りすぎると、",
+      "かえって",
+      "不便に",
+      "なることもある。"
+    ],
+    "translation": "過度依賴新技術，有時反而會變得不方便。",
+    "english": "Relying too much on new technology can sometimes make things less convenient.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "tech"
+    ]
   }
 ]
