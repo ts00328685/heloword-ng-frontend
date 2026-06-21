@@ -28767,5 +28767,142 @@
       "n2",
       "finance"
     ]
+  },
+  {
+    "id": "1437",
+    "japanese": "ゆっくり話してください。",
+    "chunks": [
+      "ゆっくり",
+      "話して",
+      "ください。"
+    ],
+    "translation": "請說慢一點。",
+    "english": "Please speak slowly.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "communication"
+    ]
+  },
+  {
+    "id": "1438",
+    "japanese": "相手の目を見て話すと、気持ちが伝わりやすい。",
+    "chunks": [
+      "相手の",
+      "目を見て",
+      "話すと、",
+      "気持ちが",
+      "伝わりやすい。"
+    ],
+    "translation": "看著對方的眼睛說話，心意比較容易傳達。",
+    "english": "When you look the other person in the eye while speaking, your feelings come across more easily.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "communication"
+    ]
+  },
+  {
+    "id": "1439",
+    "japanese": "言葉にしなければ、どんなに思っていても相手には伝わらない。",
+    "chunks": [
+      "言葉に",
+      "しなければ、",
+      "どんなに",
+      "思っていても",
+      "相手には",
+      "伝わらない。"
+    ],
+    "translation": "如果不說出口，無論心裡再怎麼想，對方都不會明白。",
+    "english": "If you don't put it into words, no matter how much you feel it, the other person won't understand.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "communication"
+    ]
+  },
+  {
+    "id": "1440",
+    "japanese": "私は音楽が好きです。",
+    "chunks": [
+      "私は",
+      "音楽が",
+      "好きです。"
+    ],
+    "translation": "我喜歡音樂。",
+    "english": "I like music.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "music"
+    ]
+  },
+  {
+    "id": "1441",
+    "japanese": "この曲を聞くと、子供のころを思い出す。",
+    "chunks": [
+      "この曲を",
+      "聞くと、",
+      "子供のころを",
+      "思い出す。"
+    ],
+    "translation": "一聽到這首歌，我就會想起小時候。",
+    "english": "Whenever I hear this song, I remember my childhood.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "music"
+    ]
+  },
+  {
+    "id": "1442",
+    "japanese": "世界にはたくさんの国があります。",
+    "chunks": [
+      "世界には",
+      "たくさんの",
+      "国が",
+      "あります。"
+    ],
+    "translation": "世界上有很多國家。",
+    "english": "There are many countries in the world.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "global"
+    ]
+  },
+  {
+    "id": "1443",
+    "japanese": "インターネットのおかげで、世界中の人とつながれる。",
+    "chunks": [
+      "インターネットの",
+      "おかげで、",
+      "世界中の",
+      "人と",
+      "つながれる。"
+    ],
+    "translation": "多虧有網路，我們可以和世界各地的人連結。",
+    "english": "Thanks to the internet, we can connect with people all over the world.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "global"
+    ]
+  },
+  {
+    "id": "1444",
+    "japanese": "環境問題は一国だけでは解決できない。",
+    "chunks": [
+      "環境問題は",
+      "一国だけでは",
+      "解決できない。"
+    ],
+    "translation": "環境問題無法單靠一個國家解決。",
+    "english": "Environmental problems cannot be solved by one country alone.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "global"
+    ]
   }
 ]
