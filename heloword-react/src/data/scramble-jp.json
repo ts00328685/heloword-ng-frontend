@@ -28069,5 +28069,142 @@
       "n2",
       "technology"
     ]
+  },
+  {
+    "id": "1397",
+    "japanese": "私はできると思います。",
+    "chunks": [
+      "私は",
+      "できると",
+      "思います。"
+    ],
+    "translation": "我覺得我做得到。",
+    "english": "I think I can do it.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "1398",
+    "japanese": "失敗しても、自分を信じ続けることが大切だ。",
+    "chunks": [
+      "失敗しても、",
+      "自分を",
+      "信じ続けることが",
+      "大切だ。"
+    ],
+    "translation": "即使失敗，也要持續相信自己，這很重要。",
+    "english": "Even if you fail, it is important to keep believing in yourself.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "1399",
+    "japanese": "毎朝七時に起きます。",
+    "chunks": [
+      "毎朝",
+      "七時に",
+      "起きます。"
+    ],
+    "translation": "我每天早上七點起床。",
+    "english": "I get up at seven every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "daily life"
+    ]
+  },
+  {
+    "id": "1400",
+    "japanese": "仕事の後で、よく近くの店で買い物をします。",
+    "chunks": [
+      "仕事の後で、",
+      "よく",
+      "近くの店で",
+      "買い物を",
+      "します。"
+    ],
+    "translation": "下班後，我常常在附近的店買東西。",
+    "english": "After work, I often shop at a nearby store.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "daily life"
+    ]
+  },
+  {
+    "id": "1401",
+    "japanese": "忙しい日が続くと、ゆっくり休む時間さえ取れなくなる。",
+    "chunks": [
+      "忙しい日が",
+      "続くと、",
+      "ゆっくり",
+      "休む時間さえ",
+      "取れなくなる。"
+    ],
+    "translation": "忙碌的日子一旦持續下去，連好好休息的時間都騰不出來。",
+    "english": "When busy days keep coming, you can't even find time to rest properly.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "daily life"
+    ]
+  },
+  {
+    "id": "1402",
+    "japanese": "来週から新しい仕事を始めます。",
+    "chunks": [
+      "来週から",
+      "新しい仕事を",
+      "始めます。"
+    ],
+    "translation": "我下週開始新工作。",
+    "english": "I will start a new job next week.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "employment"
+    ]
+  },
+  {
+    "id": "1403",
+    "japanese": "給料は悪くないが、残業がとても多い。",
+    "chunks": [
+      "給料は",
+      "悪くないが、",
+      "残業が",
+      "とても",
+      "多い。"
+    ],
+    "translation": "薪水不錯，但加班非常多。",
+    "english": "The pay isn't bad, but there is a lot of overtime.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "employment"
+    ]
+  },
+  {
+    "id": "1404",
+    "japanese": "やりがいのある仕事を見つけるのは、思ったより難しいものだ。",
+    "chunks": [
+      "やりがいのある",
+      "仕事を",
+      "見つけるのは、",
+      "思ったより",
+      "難しいものだ。"
+    ],
+    "translation": "要找到有成就感的工作，比想像中還要困難。",
+    "english": "Finding fulfilling work is harder than you might think.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "employment"
+    ]
   }
 ]
