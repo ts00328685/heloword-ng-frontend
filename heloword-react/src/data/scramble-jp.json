@@ -27927,5 +27927,147 @@
       "career",
       "workplace"
     ]
+  },
+  {
+    "id": "1389",
+    "japanese": "毎日少しずつ新しい言葉を覚えています。",
+    "chunks": [
+      "毎日",
+      "少しずつ",
+      "新しい",
+      "言葉を",
+      "覚えています。"
+    ],
+    "translation": "我每天一點一點地記新的詞語。",
+    "english": "I learn new words little by little every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "language"
+    ]
+  },
+  {
+    "id": "1390",
+    "japanese": "外国語を話すときは、間違いを恐れないことが大切です。",
+    "chunks": [
+      "外国語を",
+      "話すときは、",
+      "間違いを",
+      "恐れないことが",
+      "大切です。"
+    ],
+    "translation": "說外語的時候，不害怕犯錯是很重要的。",
+    "english": "When you speak a foreign language, it is important not to be afraid of mistakes.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "language"
+    ]
+  },
+  {
+    "id": "1391",
+    "japanese": "母語のように自然に話せるようになるには、何年もの積み重ねが必要だ。",
+    "chunks": [
+      "母語のように",
+      "自然に",
+      "話せるようになるには、",
+      "何年もの",
+      "積み重ねが",
+      "必要だ。"
+    ],
+    "translation": "要能像母語一樣自然地說話，需要好幾年的累積。",
+    "english": "To be able to speak as naturally as a native speaker, years of steady effort are required.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "language"
+    ]
+  },
+  {
+    "id": "1392",
+    "japanese": "このアニメはとても面白いです。",
+    "chunks": [
+      "このアニメは",
+      "とても",
+      "面白いです。"
+    ],
+    "translation": "這部動畫非常有趣。",
+    "english": "This anime is very interesting.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "anime"
+    ]
+  },
+  {
+    "id": "1393",
+    "japanese": "そのアニメの主題歌が好きで、何度も聞いてしまう。",
+    "chunks": [
+      "そのアニメの",
+      "主題歌が",
+      "好きで、",
+      "何度も",
+      "聞いてしまう。"
+    ],
+    "translation": "我喜歡那部動畫的主題曲，忍不住一聽再聽。",
+    "english": "I like that anime's theme song so much that I keep listening to it over and over.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "anime"
+    ]
+  },
+  {
+    "id": "1394",
+    "japanese": "新しいパソコンを買いました。",
+    "chunks": [
+      "新しい",
+      "パソコンを",
+      "買いました。"
+    ],
+    "translation": "我買了一台新電腦。",
+    "english": "I bought a new computer.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "technology"
+    ]
+  },
+  {
+    "id": "1395",
+    "japanese": "スマホの使いすぎで、目が疲れやすくなった。",
+    "chunks": [
+      "スマホの",
+      "使いすぎで、",
+      "目が",
+      "疲れやすく",
+      "なった。"
+    ],
+    "translation": "因為手機用太多，眼睛變得容易疲勞了。",
+    "english": "From using my smartphone too much, my eyes have started to tire easily.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "technology"
+    ]
+  },
+  {
+    "id": "1396",
+    "japanese": "技術が進歩するにつれて、私たちの生活はますます便利になっている。",
+    "chunks": [
+      "技術が",
+      "進歩するにつれて、",
+      "私たちの",
+      "生活は",
+      "ますます",
+      "便利になっている。"
+    ],
+    "translation": "隨著技術的進步，我們的生活變得越來越方便。",
+    "english": "As technology advances, our lives are becoming more and more convenient.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "technology"
+    ]
   }
 ]
