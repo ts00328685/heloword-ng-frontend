@@ -16,3 +16,4 @@
 - **2026-06-22** (run #14): iter#14: repaired 0 jp, de-named 25 en, +8 en +8 jp (slang/gadgets/law)
 - **2026-06-22** (run #15): iter#15: repaired 0 jp, de-named 25 en, +8 en +8 jp (ambition/home/entrepreneurship)
 - **2026-06-22** (run #16): iter#16: repaired 0 jp, de-named 25 en, +8 en +8 jp (expression/games/governance)
+- **2026-06-22** (run #17): iter#17: repaired 0 jp, de-named 25 en, +8 en +8 jp (desires/hometown/job hunting)

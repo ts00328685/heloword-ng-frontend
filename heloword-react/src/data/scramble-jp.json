@@ -30000,5 +30000,143 @@
       "n2",
       "governance"
     ]
+  },
+  {
+    "id": "1509",
+    "japanese": "冷たい水が飲みたいです。",
+    "chunks": [
+      "冷たい水が",
+      "飲みたいです。"
+    ],
+    "translation": "我想喝冰水。",
+    "english": "I want to drink some cold water.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "desires"
+    ]
+  },
+  {
+    "id": "1510",
+    "japanese": "欲しい物が多すぎて、どれを選べばいいか分からない。",
+    "chunks": [
+      "欲しい物が",
+      "多すぎて、",
+      "どれを",
+      "選べばいいか",
+      "分からない。"
+    ],
+    "translation": "想要的東西太多，不知道該選哪一個。",
+    "english": "There are too many things I want, so I don't know which to choose.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "desires"
+    ]
+  },
+  {
+    "id": "1511",
+    "japanese": "本当に欲しいものは、手に入れてみて初めて分かることもある。",
+    "chunks": [
+      "本当に",
+      "欲しいものは、",
+      "手に入れてみて",
+      "初めて",
+      "分かることもある。"
+    ],
+    "translation": "真正想要的東西，有時要等到得到之後才會明白。",
+    "english": "Sometimes you only realize what you truly want after you've gotten it.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "desires"
+    ]
+  },
+  {
+    "id": "1512",
+    "japanese": "私の故郷は海の近くです。",
+    "chunks": [
+      "私の",
+      "故郷は",
+      "海の",
+      "近くです。"
+    ],
+    "translation": "我的故鄉在海邊附近。",
+    "english": "My hometown is near the sea.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "hometown"
+    ]
+  },
+  {
+    "id": "1513",
+    "japanese": "久しぶりに故郷に帰ると、町がすっかり変わっていた。",
+    "chunks": [
+      "久しぶりに",
+      "故郷に帰ると、",
+      "町が",
+      "すっかり",
+      "変わっていた。"
+    ],
+    "translation": "久違地回到故鄉，發現小鎮已經完全變了樣。",
+    "english": "When I returned to my hometown after a long time, the town had changed completely.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "hometown"
+    ]
+  },
+  {
+    "id": "1514",
+    "japanese": "今、仕事を探しています。",
+    "chunks": [
+      "今、",
+      "仕事を",
+      "探しています。"
+    ],
+    "translation": "我現在正在找工作。",
+    "english": "I am looking for a job right now.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "job hunting"
+    ]
+  },
+  {
+    "id": "1515",
+    "japanese": "面接では、緊張しすぎないことが大切だ。",
+    "chunks": [
+      "面接では、",
+      "緊張しすぎない",
+      "ことが",
+      "大切だ。"
+    ],
+    "translation": "在面試時，不要太緊張是很重要的。",
+    "english": "In an interview, it's important not to get too nervous.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "job hunting"
+    ]
+  },
+  {
+    "id": "1516",
+    "japanese": "何社も落ちたが、諦めずに続けたら内定をもらえた。",
+    "chunks": [
+      "何社も",
+      "落ちたが、",
+      "諦めずに",
+      "続けたら",
+      "内定を",
+      "もらえた。"
+    ],
+    "translation": "雖然被好幾家公司刷掉了，但我沒有放棄、繼續努力，最後拿到了錄取通知。",
+    "english": "I was rejected by many companies, but by not giving up and continuing, I finally got a job offer.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "job hunting"
+    ]
   }
 ]
