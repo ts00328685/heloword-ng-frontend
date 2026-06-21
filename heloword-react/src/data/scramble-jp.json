@@ -29729,5 +29729,140 @@
       "n2",
       "law"
     ]
+  },
+  {
+    "id": "1493",
+    "japanese": "私は医者になりたいです。",
+    "chunks": [
+      "私は",
+      "医者に",
+      "なりたいです。"
+    ],
+    "translation": "我想成為一名醫生。",
+    "english": "I want to become a doctor.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "ambition"
+    ]
+  },
+  {
+    "id": "1494",
+    "japanese": "目標を高く持つことは、悪いことではない。",
+    "chunks": [
+      "目標を",
+      "高く",
+      "持つことは、",
+      "悪いことでは",
+      "ない。"
+    ],
+    "translation": "把目標訂得高，並不是一件壞事。",
+    "english": "Setting your goals high is not a bad thing.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "ambition"
+    ]
+  },
+  {
+    "id": "1495",
+    "japanese": "夢を実現するには、才能よりも諦めない心が必要だ。",
+    "chunks": [
+      "夢を",
+      "実現するには、",
+      "才能よりも",
+      "諦めない心が",
+      "必要だ。"
+    ],
+    "translation": "要實現夢想，比起才能，更需要一顆不放棄的心。",
+    "english": "To realize a dream, you need a heart that never gives up more than talent.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "ambition"
+    ]
+  },
+  {
+    "id": "1496",
+    "japanese": "やっぱり家が一番です。",
+    "chunks": [
+      "やっぱり",
+      "家が",
+      "一番です。"
+    ],
+    "translation": "果然還是家裡最好。",
+    "english": "After all, there's no place like home.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "home"
+    ]
+  },
+  {
+    "id": "1497",
+    "japanese": "家に帰ると、いつもほっとする。",
+    "chunks": [
+      "家に帰ると、",
+      "いつも",
+      "ほっとする。"
+    ],
+    "translation": "一回到家，我總是會鬆一口氣。",
+    "english": "Whenever I get home, I always feel relieved.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "home"
+    ]
+  },
+  {
+    "id": "1498",
+    "japanese": "彼は自分の会社を作りました。",
+    "chunks": [
+      "彼は",
+      "自分の",
+      "会社を",
+      "作りました。"
+    ],
+    "translation": "他創立了自己的公司。",
+    "english": "He started his own company.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "entrepreneurship"
+    ]
+  },
+  {
+    "id": "1499",
+    "japanese": "起業するには、お金だけでなく勇気も必要だ。",
+    "chunks": [
+      "起業するには、",
+      "お金だけでなく",
+      "勇気も",
+      "必要だ。"
+    ],
+    "translation": "創業不只需要錢，也需要勇氣。",
+    "english": "To start a business, you need not only money but also courage.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "entrepreneurship"
+    ]
+  },
+  {
+    "id": "1500",
+    "japanese": "失敗を恐れていては、新しいことは始められない。",
+    "chunks": [
+      "失敗を",
+      "恐れていては、",
+      "新しいことは",
+      "始められない。"
+    ],
+    "translation": "如果害怕失敗，就無法開始任何新的事物。",
+    "english": "If you're afraid of failure, you can never start anything new.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "entrepreneurship"
+    ]
   }
 ]
