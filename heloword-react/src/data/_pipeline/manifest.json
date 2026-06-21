@@ -1,0 +1,15 @@
+{
+  "en_next_id": 3162,
+  "jp_next_id": 1389,
+  "worklist_pointer": 5,
+  "cleaned_ids": [
+    1,
+    2,
+    5,
+    6,
+    7
+  ],
+  "generated_en": 3,
+  "generated_jp": 3,
+  "runs": 1
+}

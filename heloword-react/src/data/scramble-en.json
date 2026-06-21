@@ -1,13 +1,13 @@
 [
     {
         "id": 1,
-        "translate_ch": "工黨領袖艾德·米利班德（Ed Miliband）敦促紐卡斯爾聯隊（Newcastle United）放棄更改主場名稱的計劃。",
-        "sentence": "Labour leader Ed Miliband urged Newcastle United to abandon plans to rename its ground."
+        "translate_ch": "該黨領袖敦促這家足球俱樂部放棄為主場球場改名的計劃。",
+        "sentence": "The party leader urged the football club to abandon plans to rename its stadium."
     },
     {
         "id": 2,
-        "translate_ch": "芝加哥大學研究團隊將卵巢癌細胞注射進健康小鼠的腹腔中。",
-        "sentence": "The University of Chicago team injected ovarian cancer cells into the abdomen of healthy mice."
+        "translate_ch": "研究團隊將卵巢癌細胞注射進健康小鼠的腹腔中。",
+        "sentence": "The research team injected ovarian cancer cells into the abdomen of healthy mice."
     },
     {
         "id": 3,
@@ -21,18 +21,18 @@
     },
     {
         "id": 5,
-        "translate_ch": "聯盟希望能有能力反對任何損害我們利益的手段。",
-        "sentence": "The League wants to be able to oppose any maneuver that goes against our interests."
+        "translate_ch": "該聯盟希望有能力反對任何違背我們利益的手段。",
+        "sentence": "The alliance wants to be able to oppose any maneuver that goes against our interests."
     },
     {
         "id": 6,
-        "translate_ch": "動靜脈瘻（AV fistula）是動脈和靜脈之間的異常連接。",
-        "sentence": "An arteriovenous (AV) fistula is an abnormal connection between an artery and a vein."
+        "translate_ch": "動靜脈瘻是動脈和靜脈之間的異常連接。",
+        "sentence": "An arteriovenous fistula is an abnormal connection between an artery and a vein."
     },
     {
         "id": 7,
-        "translate_ch": "當時他在「艾諾拉·蓋」號（Enola Gay）後方的觀察機上，而非在「艾諾拉·蓋」號本機上。",
-        "sentence": "He was aboard an observation plane behind the Enola Gay, not on board the Enola Gay."
+        "translate_ch": "他當時在一架觀測機上，位於領航轟炸機後方，而不在轟炸機本身上。",
+        "sentence": "He was aboard an observation plane behind the lead bomber, not on board the bomber itself."
     },
     {
         "id": 8,
@@ -15788,5 +15788,20 @@
         "id": 3158,
         "translate_ch": "在那方面，她的成就記錄，你知道，就像我說的，根本不存在。",
         "sentence": "And in that regard, her record of accomplishment is, you know, like I said, nonexistent."
+    },
+    {
+        "id": 3159,
+        "translate_ch": "每天晚上花幾分鐘反思自己的反應，讓我更加了解自己的習慣。",
+        "sentence": "Taking a few minutes each evening to reflect on my own reactions has made me far more aware of my habits."
+    },
+    {
+        "id": 3160,
+        "translate_ch": "平日早晨，我通常會在泡咖啡和查看當天行程之前先給植物澆水。",
+        "sentence": "On weekday mornings I usually water the plants before making coffee and checking the day's schedule."
+    },
+    {
+        "id": 3161,
+        "translate_ch": "在申請更高的職位之前，她決定向經理徵求誠實的回饋。",
+        "sentence": "She decided to ask her manager for honest feedback before applying for the more senior position."
     }
 ]
