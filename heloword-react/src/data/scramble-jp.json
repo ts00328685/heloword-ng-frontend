@@ -29593,5 +29593,141 @@
       "n2",
       "management"
     ]
+  },
+  {
+    "id": "1485",
+    "japanese": "それ、めっちゃいいね。",
+    "chunks": [
+      "それ、",
+      "めっちゃ",
+      "いいね。"
+    ],
+    "translation": "那個超棒的耶。",
+    "english": "That's really awesome.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "slang"
+    ]
+  },
+  {
+    "id": "1486",
+    "japanese": "やばい、財布を家に忘れてきた。",
+    "chunks": [
+      "やばい、",
+      "財布を",
+      "家に",
+      "忘れてきた。"
+    ],
+    "translation": "糟了，我把錢包忘在家裡了。",
+    "english": "Oh no, I left my wallet at home.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "slang"
+    ]
+  },
+  {
+    "id": "1487",
+    "japanese": "彼の話はいつも大げさだから、半分くらいに聞いておけばいい。",
+    "chunks": [
+      "彼の話は",
+      "いつも",
+      "大げさだから、",
+      "半分くらいに",
+      "聞いておけばいい。"
+    ],
+    "translation": "他講話總是很誇張，所以聽個一半就好。",
+    "english": "He always exaggerates, so you only need to take about half of what he says seriously.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "slang"
+    ]
+  },
+  {
+    "id": "1488",
+    "japanese": "新しいイヤホンを買いました。",
+    "chunks": [
+      "新しい",
+      "イヤホンを",
+      "買いました。"
+    ],
+    "translation": "我買了新的耳機。",
+    "english": "I bought new earphones.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "gadgets"
+    ]
+  },
+  {
+    "id": "1489",
+    "japanese": "この機能の使い方が、まだよく分からない。",
+    "chunks": [
+      "この機能の",
+      "使い方が、",
+      "まだ",
+      "よく",
+      "分からない。"
+    ],
+    "translation": "我還不太清楚這個功能怎麼用。",
+    "english": "I still don't really understand how to use this feature.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "gadgets"
+    ]
+  },
+  {
+    "id": "1490",
+    "japanese": "ここでタバコを吸ってはいけません。",
+    "chunks": [
+      "ここで",
+      "タバコを",
+      "吸っては",
+      "いけません。"
+    ],
+    "translation": "這裡禁止吸菸。",
+    "english": "You must not smoke here.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "law"
+    ]
+  },
+  {
+    "id": "1491",
+    "japanese": "法律は、知らなかったでは済まされない。",
+    "chunks": [
+      "法律は、",
+      "知らなかったでは",
+      "済まされない。"
+    ],
+    "translation": "法律可不會因為「我不知道」就放過你。",
+    "english": "Ignorance of the law is no excuse.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "law"
+    ]
+  },
+  {
+    "id": "1492",
+    "japanese": "証拠が不十分な場合、被告は無罪とされる。",
+    "chunks": [
+      "証拠が",
+      "不十分な場合、",
+      "被告は",
+      "無罪と",
+      "される。"
+    ],
+    "translation": "在證據不足的情況下，被告會被判無罪。",
+    "english": "When there is insufficient evidence, the defendant is found not guilty.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "law"
+    ]
   }
 ]
