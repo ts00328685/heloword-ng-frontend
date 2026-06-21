@@ -29864,5 +29864,141 @@
       "n2",
       "entrepreneurship"
     ]
+  },
+  {
+    "id": "1501",
+    "japanese": "ありがとうと言いました。",
+    "chunks": [
+      "ありがとうと",
+      "言いました。"
+    ],
+    "translation": "我說了謝謝。",
+    "english": "I said thank you.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "expression"
+    ]
+  },
+  {
+    "id": "1502",
+    "japanese": "気持ちを言葉で表すのは、意外と難しい。",
+    "chunks": [
+      "気持ちを",
+      "言葉で",
+      "表すのは、",
+      "意外と",
+      "難しい。"
+    ],
+    "translation": "用言語表達情感，出乎意料地困難。",
+    "english": "Expressing your feelings in words is surprisingly difficult.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "expression"
+    ]
+  },
+  {
+    "id": "1503",
+    "japanese": "同じ言葉でも、言い方しだいで印象が大きく変わる。",
+    "chunks": [
+      "同じ言葉でも、",
+      "言い方しだいで",
+      "印象が",
+      "大きく",
+      "変わる。"
+    ],
+    "translation": "即使是同樣的話，根據說法不同，給人的印象也會大不相同。",
+    "english": "Even the same words can leave a very different impression depending on how you say them.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "expression"
+    ]
+  },
+  {
+    "id": "1504",
+    "japanese": "週末に友達とゲームをします。",
+    "chunks": [
+      "週末に",
+      "友達と",
+      "ゲームを",
+      "します。"
+    ],
+    "translation": "我週末會和朋友玩遊戲。",
+    "english": "I play games with my friends on the weekend.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "games"
+    ]
+  },
+  {
+    "id": "1505",
+    "japanese": "ルールを守らない人とは、ゲームをしても楽しくない。",
+    "chunks": [
+      "ルールを",
+      "守らない人とは、",
+      "ゲームをしても",
+      "楽しくない。"
+    ],
+    "translation": "和不守規則的人玩遊戲，一點也不好玩。",
+    "english": "Playing games with people who don't follow the rules isn't any fun.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "games"
+    ]
+  },
+  {
+    "id": "1506",
+    "japanese": "国にはルールがあります。",
+    "chunks": [
+      "国には",
+      "ルールが",
+      "あります。"
+    ],
+    "translation": "國家有規則。",
+    "english": "A country has rules.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "governance"
+    ]
+  },
+  {
+    "id": "1507",
+    "japanese": "良い政府は、国民に情報を隠さない。",
+    "chunks": [
+      "良い政府は、",
+      "国民に",
+      "情報を",
+      "隠さない。"
+    ],
+    "translation": "好的政府不會對人民隱瞞資訊。",
+    "english": "A good government doesn't hide information from its people.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "governance"
+    ]
+  },
+  {
+    "id": "1508",
+    "japanese": "権力は、監視されなければ必ず腐敗すると言われている。",
+    "chunks": [
+      "権力は、",
+      "監視されなければ",
+      "必ず",
+      "腐敗すると",
+      "言われている。"
+    ],
+    "translation": "據說，權力如果不受監督，必定會腐敗。",
+    "english": "It is said that power will inevitably become corrupt if it is not watched.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "governance"
+    ]
   }
 ]
