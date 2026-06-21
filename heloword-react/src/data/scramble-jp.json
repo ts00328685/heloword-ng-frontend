@@ -29320,5 +29320,141 @@
       "n2",
       "industry"
     ]
+  },
+  {
+    "id": "1469",
+    "japanese": "朝飯前です。",
+    "chunks": [
+      "朝飯前",
+      "です。"
+    ],
+    "translation": "這是輕而易舉的事。",
+    "english": "It's a piece of cake.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "idiom"
+    ]
+  },
+  {
+    "id": "1470",
+    "japanese": "猫の手も借りたいほど忙しい。",
+    "chunks": [
+      "猫の手も",
+      "借りたいほど",
+      "忙しい。"
+    ],
+    "translation": "忙到恨不得連貓的手都借來幫忙。",
+    "english": "I'm so busy I could use even a cat's paw.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "idiom"
+    ]
+  },
+  {
+    "id": "1471",
+    "japanese": "石の上にも三年というように、続ければいつか実を結ぶ。",
+    "chunks": [
+      "石の上にも三年",
+      "というように、",
+      "続ければ",
+      "いつか",
+      "実を結ぶ。"
+    ],
+    "translation": "正如「功夫不負有心人」所說，只要堅持下去，總有一天會有成果。",
+    "english": "As the saying goes, perseverance pays off; if you keep at it, it will bear fruit someday.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "idiom"
+    ]
+  },
+  {
+    "id": "1472",
+    "japanese": "私は絵を描くのが好きです。",
+    "chunks": [
+      "私は",
+      "絵を",
+      "描くのが",
+      "好きです。"
+    ],
+    "translation": "我喜歡畫畫。",
+    "english": "I like drawing pictures.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "art"
+    ]
+  },
+  {
+    "id": "1473",
+    "japanese": "この絵は見る人によって感じ方が変わる。",
+    "chunks": [
+      "この絵は",
+      "見る人によって",
+      "感じ方が",
+      "変わる。"
+    ],
+    "translation": "這幅畫會因觀看的人不同，而給人不同的感受。",
+    "english": "This painting feels different depending on who is looking at it.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "art"
+    ]
+  },
+  {
+    "id": "1474",
+    "japanese": "明日は選挙の日です。",
+    "chunks": [
+      "明日は",
+      "選挙の",
+      "日です。"
+    ],
+    "translation": "明天是選舉日。",
+    "english": "Tomorrow is election day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "politics"
+    ]
+  },
+  {
+    "id": "1475",
+    "japanese": "政治家は国民の声に耳を傾けるべきだ。",
+    "chunks": [
+      "政治家は",
+      "国民の声に",
+      "耳を傾ける",
+      "べきだ。"
+    ],
+    "translation": "政治家應該傾聽人民的聲音。",
+    "english": "Politicians should listen to the voice of the people.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "politics"
+    ]
+  },
+  {
+    "id": "1476",
+    "japanese": "目先の人気を求める政策は、長い目で見ると国の負担になりかねない。",
+    "chunks": [
+      "目先の",
+      "人気を",
+      "求める政策は、",
+      "長い目で見ると",
+      "国の",
+      "負担に",
+      "なりかねない。"
+    ],
+    "translation": "追求眼前人氣的政策，從長遠來看，恐怕會成為國家的負擔。",
+    "english": "Policies that chase short-term popularity can become a burden on the country in the long run.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "politics"
+    ]
   }
 ]

@@ -11,3 +11,4 @@
 - **2026-06-21** (run #9): iter#9: repaired 0 jp, de-named 25 en, +8 en +8 jp (emotions/friends/economy)
 - **2026-06-21** (run #10): iter#10: repaired 0 jp, de-named 25 en, +8 en +8 jp (conversation/fashion/international)
 - **2026-06-21** (run #11): iter#11: repaired 0 jp, de-named 25 en, +8 en +8 jp (feelings/friendship/industry)
+- **2026-06-21** (run #12): iter#12: repaired 0 jp, de-named 25 en, +8 en +8 jp (idiom/art/politics)
