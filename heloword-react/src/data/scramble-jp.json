@@ -32041,5 +32041,141 @@
       "n2",
       "money"
     ]
+  },
+  {
+    "id": "1629",
+    "japanese": "寝る前に本を読みます。",
+    "chunks": [
+      "寝る前に",
+      "本を",
+      "読みます。"
+    ],
+    "translation": "我睡前看書。",
+    "english": "I read a book before going to sleep.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "reading"
+    ]
+  },
+  {
+    "id": "1630",
+    "japanese": "本を読むと、知らない世界が広がる。",
+    "chunks": [
+      "本を読むと、",
+      "知らない",
+      "世界が",
+      "広がる。"
+    ],
+    "translation": "讀書能讓未知的世界在眼前展開。",
+    "english": "Reading opens up worlds you didn't know.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "reading"
+    ]
+  },
+  {
+    "id": "1631",
+    "japanese": "同じ本でも、読む年齢によって受け取り方が変わる。",
+    "chunks": [
+      "同じ本でも、",
+      "読む年齢によって",
+      "受け取り方が",
+      "変わる。"
+    ],
+    "translation": "即使是同一本書，依閱讀時的年齡不同，領會的方式也會改變。",
+    "english": "Even the same book is received differently depending on the age at which you read it.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "reading"
+    ]
+  },
+  {
+    "id": "1632",
+    "japanese": "今、料理をしています。",
+    "chunks": [
+      "今、",
+      "料理を",
+      "しています。"
+    ],
+    "translation": "我現在正在做菜。",
+    "english": "I'm cooking right now.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "cooking"
+    ]
+  },
+  {
+    "id": "1633",
+    "japanese": "火が強すぎると、すぐに焦げてしまう。",
+    "chunks": [
+      "火が",
+      "強すぎると、",
+      "すぐに",
+      "焦げてしまう。"
+    ],
+    "translation": "火太大的話，馬上就會燒焦。",
+    "english": "If the heat is too high, it burns right away.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "cooking"
+    ]
+  },
+  {
+    "id": "1634",
+    "japanese": "車の運転に気をつけてください。",
+    "chunks": [
+      "車の",
+      "運転に",
+      "気をつけて",
+      "ください。"
+    ],
+    "translation": "開車請小心。",
+    "english": "Please be careful when driving.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "driving"
+    ]
+  },
+  {
+    "id": "1635",
+    "japanese": "雨の日は、いつもよりスピードを落とした方がいい。",
+    "chunks": [
+      "雨の日は、",
+      "いつもより",
+      "スピードを",
+      "落とした方がいい。"
+    ],
+    "translation": "下雨天，最好把車速放得比平常慢。",
+    "english": "On rainy days, you should slow down more than usual.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "driving"
+    ]
+  },
+  {
+    "id": "1636",
+    "japanese": "ほんの一瞬の油断が、大きな事故につながる。",
+    "chunks": [
+      "ほんの",
+      "一瞬の",
+      "油断が、",
+      "大きな",
+      "事故に",
+      "つながる。"
+    ],
+    "translation": "僅僅一瞬間的疏忽，就會釀成大事故。",
+    "english": "Just a single moment of carelessness can lead to a serious accident.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "driving"
+    ]
   }
 ]
