@@ -32448,5 +32448,138 @@
       "n2",
       "city life"
     ]
+  },
+  {
+    "id": "1653",
+    "japanese": "彼はとても親切です。",
+    "chunks": [
+      "彼は",
+      "とても",
+      "親切です。"
+    ],
+    "translation": "他非常親切。",
+    "english": "He is very kind.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "personality"
+    ]
+  },
+  {
+    "id": "1654",
+    "japanese": "明るい性格の人は、まわりも明るくする。",
+    "chunks": [
+      "明るい",
+      "性格の人は、",
+      "まわりも",
+      "明るくする。"
+    ],
+    "translation": "個性開朗的人，也會讓周圍的人變得開朗。",
+    "english": "People with a cheerful personality brighten up those around them too.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "personality"
+    ]
+  },
+  {
+    "id": "1655",
+    "japanese": "人の本当の性格は、困ったときにこそ表れる。",
+    "chunks": [
+      "人の",
+      "本当の性格は、",
+      "困ったときにこそ",
+      "表れる。"
+    ],
+    "translation": "一個人真正的性格，正是在遇到困難時才會顯露出來。",
+    "english": "A person's true character shows precisely when they are in trouble.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "personality"
+    ]
+  },
+  {
+    "id": "1656",
+    "japanese": "どうぞ、ゆっくりしてください。",
+    "chunks": [
+      "どうぞ、",
+      "ゆっくり",
+      "してください。"
+    ],
+    "translation": "請放輕鬆，慢慢來。",
+    "english": "Please make yourself comfortable.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "hospitality"
+    ]
+  },
+  {
+    "id": "1657",
+    "japanese": "お客様には、心を込めておもてなしをする。",
+    "chunks": [
+      "お客様には、",
+      "心を込めて",
+      "おもてなしを",
+      "する。"
+    ],
+    "translation": "對待客人，要用心款待。",
+    "english": "We treat our guests with heartfelt hospitality.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "hospitality"
+    ]
+  },
+  {
+    "id": "1658",
+    "japanese": "カードで払えますか。",
+    "chunks": [
+      "カードで",
+      "払えますか。"
+    ],
+    "translation": "可以用卡片付款嗎？",
+    "english": "Can I pay by card?",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "payment"
+    ]
+  },
+  {
+    "id": "1659",
+    "japanese": "支払いは現金でもカードでも大丈夫です。",
+    "chunks": [
+      "支払いは",
+      "現金でも",
+      "カードでも",
+      "大丈夫です。"
+    ],
+    "translation": "付款用現金或卡片都可以。",
+    "english": "Payment by either cash or card is fine.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "payment"
+    ]
+  },
+  {
+    "id": "1660",
+    "japanese": "便利な支払い方法ほど、使いすぎに注意が必要だ。",
+    "chunks": [
+      "便利な",
+      "支払い方法ほど、",
+      "使いすぎに",
+      "注意が",
+      "必要だ。"
+    ],
+    "translation": "越方便的付款方式，越需要注意別花過頭。",
+    "english": "The more convenient a payment method is, the more you need to watch out for overspending.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "payment"
+    ]
   }
 ]
