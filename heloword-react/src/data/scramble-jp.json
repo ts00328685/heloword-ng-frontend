@@ -31091,5 +31091,141 @@
       "n2",
       "environment"
     ]
+  },
+  {
+    "id": "1573",
+    "japanese": "今日も一日頑張ろう。",
+    "chunks": [
+      "今日も",
+      "一日",
+      "頑張ろう。"
+    ],
+    "translation": "今天也要加油過一整天。",
+    "english": "Let's do our best again today.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "motivation"
+    ]
+  },
+  {
+    "id": "1574",
+    "japanese": "やる気が出ないときは、まず少しだけ始めてみる。",
+    "chunks": [
+      "やる気が",
+      "出ないときは、",
+      "まず",
+      "少しだけ",
+      "始めてみる。"
+    ],
+    "translation": "提不起勁的時候，就先試著做一點點。",
+    "english": "When you don't feel motivated, just try starting with a little bit first.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "motivation"
+    ]
+  },
+  {
+    "id": "1575",
+    "japanese": "やる気は待つものではなく、動き出してから生まれるものだ。",
+    "chunks": [
+      "やる気は",
+      "待つものではなく、",
+      "動き出してから",
+      "生まれるものだ。"
+    ],
+    "translation": "幹勁不是等來的，而是行動之後才會產生的。",
+    "english": "Motivation isn't something you wait for; it's born after you start moving.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "motivation"
+    ]
+  },
+  {
+    "id": "1576",
+    "japanese": "毎日部屋を片付けます。",
+    "chunks": [
+      "毎日",
+      "部屋を",
+      "片付けます。"
+    ],
+    "translation": "我每天整理房間。",
+    "english": "I tidy up my room every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "cleaning"
+    ]
+  },
+  {
+    "id": "1577",
+    "japanese": "使ったらすぐ片付ける習慣をつけるといい。",
+    "chunks": [
+      "使ったら",
+      "すぐ",
+      "片付ける",
+      "習慣を",
+      "つけるといい。"
+    ],
+    "translation": "最好養成用完馬上收拾的習慣。",
+    "english": "It's good to get into the habit of tidying up right after you use something.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "cleaning"
+    ]
+  },
+  {
+    "id": "1578",
+    "japanese": "家で仕事をしています。",
+    "chunks": [
+      "家で",
+      "仕事を",
+      "しています。"
+    ],
+    "translation": "我在家工作。",
+    "english": "I work from home.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "remote work"
+    ]
+  },
+  {
+    "id": "1579",
+    "japanese": "在宅勤務だと、つい働きすぎてしまう。",
+    "chunks": [
+      "在宅勤務だと、",
+      "つい",
+      "働きすぎて",
+      "しまう。"
+    ],
+    "translation": "在家工作的話，往往會不小心工作過度。",
+    "english": "When you work from home, you tend to overwork without realizing it.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "remote work"
+    ]
+  },
+  {
+    "id": "1580",
+    "japanese": "離れて働くほど、こまめな連絡が大切になる。",
+    "chunks": [
+      "離れて",
+      "働くほど、",
+      "こまめな",
+      "連絡が",
+      "大切になる。"
+    ],
+    "translation": "越是遠距工作，勤於聯繫就越重要。",
+    "english": "The more remotely you work, the more important frequent communication becomes.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "remote work"
+    ]
   }
 ]
