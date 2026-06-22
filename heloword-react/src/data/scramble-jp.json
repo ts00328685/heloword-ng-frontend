@@ -30954,5 +30954,142 @@
       "n2",
       "workload"
     ]
+  },
+  {
+    "id": "1565",
+    "japanese": "毎晩日本語を勉強します。",
+    "chunks": [
+      "毎晩",
+      "日本語を",
+      "勉強します。"
+    ],
+    "translation": "我每天晚上學日語。",
+    "english": "I study Japanese every night.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "study"
+    ]
+  },
+  {
+    "id": "1566",
+    "japanese": "その日のうちに復習すると、忘れにくくなる。",
+    "chunks": [
+      "その日のうちに",
+      "復習すると、",
+      "忘れにくく",
+      "なる。"
+    ],
+    "translation": "當天就複習的話，比較不容易忘記。",
+    "english": "If you review the same day, it becomes harder to forget.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "study"
+    ]
+  },
+  {
+    "id": "1567",
+    "japanese": "長時間机に向かうより、集中して短く勉強する方が効果的だ。",
+    "chunks": [
+      "長時間",
+      "机に向かうより、",
+      "集中して",
+      "短く",
+      "勉強する方が",
+      "効果的だ。"
+    ],
+    "translation": "比起長時間坐在書桌前，集中精神短時間學習更有效。",
+    "english": "Studying for a short time with focus is more effective than sitting at the desk for hours.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "study"
+    ]
+  },
+  {
+    "id": "1568",
+    "japanese": "このデザインが好きです。",
+    "chunks": [
+      "この",
+      "デザインが",
+      "好きです。"
+    ],
+    "translation": "我喜歡這個設計。",
+    "english": "I like this design.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "design"
+    ]
+  },
+  {
+    "id": "1569",
+    "japanese": "使いやすいデザインほど、考え抜かれている。",
+    "chunks": [
+      "使いやすい",
+      "デザインほど、",
+      "考え抜かれている。"
+    ],
+    "translation": "越是好用的設計，越是經過深思熟慮。",
+    "english": "The easier a design is to use, the more thought has gone into it.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "design"
+    ]
+  },
+  {
+    "id": "1570",
+    "japanese": "ゴミは決められた場所に捨てましょう。",
+    "chunks": [
+      "ゴミは",
+      "決められた",
+      "場所に",
+      "捨てましょう。"
+    ],
+    "translation": "請把垃圾丟在指定的地方。",
+    "english": "Let's throw away trash in the designated place.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "environment"
+    ]
+  },
+  {
+    "id": "1571",
+    "japanese": "一人ひとりが節電すれば、大きな効果になる。",
+    "chunks": [
+      "一人ひとりが",
+      "節電すれば、",
+      "大きな",
+      "効果に",
+      "なる。"
+    ],
+    "translation": "如果每個人都節約用電，就會產生很大的效果。",
+    "english": "If each person saves electricity, it adds up to a big effect.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "environment"
+    ]
+  },
+  {
+    "id": "1572",
+    "japanese": "便利さを求めるあまり、自然を犠牲にしてはいけない。",
+    "chunks": [
+      "便利さを",
+      "求めるあまり、",
+      "自然を",
+      "犠牲にしては",
+      "いけない。"
+    ],
+    "translation": "不能因為過度追求便利，而犧牲了大自然。",
+    "english": "We must not sacrifice nature in our excessive pursuit of convenience.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "environment"
+    ]
   }
 ]
