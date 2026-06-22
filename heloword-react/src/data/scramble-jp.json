@@ -30550,5 +30550,138 @@
       "n2",
       "philosophy"
     ]
+  },
+  {
+    "id": "1541",
+    "japanese": "きっと大丈夫です。",
+    "chunks": [
+      "きっと",
+      "大丈夫です。"
+    ],
+    "translation": "一定沒問題的。",
+    "english": "I'm sure it'll be fine.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "hope"
+    ]
+  },
+  {
+    "id": "1542",
+    "japanese": "つらいときでも、明日に希望を持ちたい。",
+    "chunks": [
+      "つらいときでも、",
+      "明日に",
+      "希望を",
+      "持ちたい。"
+    ],
+    "translation": "即使在難熬的時候，也想對明天懷抱希望。",
+    "english": "Even in hard times, I want to hold on to hope for tomorrow.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "hope"
+    ]
+  },
+  {
+    "id": "1543",
+    "japanese": "どんなに暗くても、夜が明けない朝はない。",
+    "chunks": [
+      "どんなに",
+      "暗くても、",
+      "夜が明けない",
+      "朝はない。"
+    ],
+    "translation": "無論多麼黑暗，沒有迎不來黎明的早晨。",
+    "english": "No matter how dark it gets, there is no morning that the dawn fails to reach.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "hope"
+    ]
+  },
+  {
+    "id": "1544",
+    "japanese": "毎朝散歩をしています。",
+    "chunks": [
+      "毎朝",
+      "散歩を",
+      "しています。"
+    ],
+    "translation": "我每天早上散步。",
+    "english": "I take a walk every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "1545",
+    "japanese": "早寝早起きを心がけると、体の調子がよくなる。",
+    "chunks": [
+      "早寝早起きを",
+      "心がけると、",
+      "体の調子が",
+      "よくなる。"
+    ],
+    "translation": "只要留意早睡早起，身體狀況就會變好。",
+    "english": "When you make an effort to sleep and wake early, your physical condition improves.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "1546",
+    "japanese": "昼休みは一時間です。",
+    "chunks": [
+      "昼休みは",
+      "一時間です。"
+    ],
+    "translation": "午休是一個小時。",
+    "english": "The lunch break is one hour.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "work culture"
+    ]
+  },
+  {
+    "id": "1547",
+    "japanese": "残業が当たり前の会社では、なかなか帰りにくい。",
+    "chunks": [
+      "残業が",
+      "当たり前の",
+      "会社では、",
+      "なかなか",
+      "帰りにくい。"
+    ],
+    "translation": "在加班是常態的公司，很難準時下班。",
+    "english": "At a company where overtime is the norm, it's hard to leave on time.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "work culture"
+    ]
+  },
+  {
+    "id": "1548",
+    "japanese": "社員を大切にする会社こそ、長く成長していく。",
+    "chunks": [
+      "社員を",
+      "大切にする",
+      "会社こそ、",
+      "長く",
+      "成長していく。"
+    ],
+    "translation": "正是珍惜員工的公司，才能長久地成長下去。",
+    "english": "It is precisely the companies that value their employees that keep growing over the long term.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "work culture"
+    ]
   }
 ]

@@ -20,3 +20,4 @@
 - **2026-06-22** (run #18): iter#18: repaired 0 jp, de-named 25 en, +8 en +8 jp (explanation/entertainment/ethics)
 - **2026-06-22** (run #19): iter#19: repaired 0 jp, de-named 25 en, +8 en +8 jp (determination/community/workplace)
 - **2026-06-22** (run #20): iter#20: repaired 0 jp, de-named 25 en, +8 en +8 jp (instruction/hobbies/philosophy)
+- **2026-06-22** (run #21): iter#21: repaired 0 jp, de-named 25 en, +8 en +8 jp (hope/lifestyle/work culture)
