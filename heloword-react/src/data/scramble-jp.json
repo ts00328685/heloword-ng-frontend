@@ -30820,5 +30820,139 @@
       "n2",
       "climate"
     ]
+  },
+  {
+    "id": "1557",
+    "japanese": "私は今とても幸せです。",
+    "chunks": [
+      "私は",
+      "今",
+      "とても",
+      "幸せです。"
+    ],
+    "translation": "我現在非常幸福。",
+    "english": "I am very happy right now.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "happiness"
+    ]
+  },
+  {
+    "id": "1558",
+    "japanese": "幸せは、お金では買えないものだと思う。",
+    "chunks": [
+      "幸せは、",
+      "お金では",
+      "買えないものだと",
+      "思う。"
+    ],
+    "translation": "我認為幸福是金錢買不到的東西。",
+    "english": "I think happiness is something money can't buy.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "happiness"
+    ]
+  },
+  {
+    "id": "1559",
+    "japanese": "幸せは追いかけるものではなく、気づくものかもしれない。",
+    "chunks": [
+      "幸せは",
+      "追いかけるものではなく、",
+      "気づくものかもしれない。"
+    ],
+    "translation": "幸福也許不是用來追逐的，而是用來察覺的。",
+    "english": "Happiness may not be something to chase, but something to notice.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "happiness"
+    ]
+  },
+  {
+    "id": "1560",
+    "japanese": "毎日部屋を掃除します。",
+    "chunks": [
+      "毎日",
+      "部屋を",
+      "掃除します。"
+    ],
+    "translation": "我每天打掃房間。",
+    "english": "I clean my room every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "household"
+    ]
+  },
+  {
+    "id": "1561",
+    "japanese": "家事は家族で分担した方がいい。",
+    "chunks": [
+      "家事は",
+      "家族で",
+      "分担した方がいい。"
+    ],
+    "translation": "家事最好由家人分擔。",
+    "english": "Household chores are best shared among the family.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "household"
+    ]
+  },
+  {
+    "id": "1562",
+    "japanese": "今日は仕事が多いです。",
+    "chunks": [
+      "今日は",
+      "仕事が",
+      "多いです。"
+    ],
+    "translation": "今天工作很多。",
+    "english": "There is a lot of work today.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "workload"
+    ]
+  },
+  {
+    "id": "1563",
+    "japanese": "仕事が多すぎて、休む暇もない。",
+    "chunks": [
+      "仕事が",
+      "多すぎて、",
+      "休む暇も",
+      "ない。"
+    ],
+    "translation": "工作太多，連休息的時間都沒有。",
+    "english": "There's so much work that I don't even have time to rest.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "workload"
+    ]
+  },
+  {
+    "id": "1564",
+    "japanese": "無理な量の仕事を引き受けると、結局どれも中途半端になる。",
+    "chunks": [
+      "無理な量の",
+      "仕事を",
+      "引き受けると、",
+      "結局",
+      "どれも",
+      "中途半端になる。"
+    ],
+    "translation": "如果接下超出負荷的工作量，最後每件事都會做得不上不下。",
+    "english": "If you take on an unreasonable amount of work, everything ends up half-finished.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "workload"
+    ]
   }
 ]

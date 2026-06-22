@@ -22,3 +22,4 @@
 - **2026-06-22** (run #20): iter#20: repaired 0 jp, de-named 25 en, +8 en +8 jp (instruction/hobbies/philosophy)
 - **2026-06-22** (run #21): iter#21: repaired 0 jp, de-named 25 en, +8 en +8 jp (hope/lifestyle/work culture)
 - **2026-06-22** (run #22): iter#22: repaired 0 jp, de-named 50 en, +8 en +8 jp (teaching/hobby/climate); CLEAN_BATCH raised to 50
+- **2026-06-22** (run #23): iter#23: repaired 0 jp, de-named 50 en, +8 en +8 jp (happiness/household/workload)
