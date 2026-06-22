@@ -32581,5 +32581,141 @@
       "n2",
       "payment"
     ]
+  },
+  {
+    "id": "1661",
+    "japanese": "私もそう思います。",
+    "chunks": [
+      "私も",
+      "そう",
+      "思います。"
+    ],
+    "translation": "我也這麼認為。",
+    "english": "I think so too.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "opinion"
+    ]
+  },
+  {
+    "id": "1662",
+    "japanese": "自分の意見をはっきり言うのは大切だ。",
+    "chunks": [
+      "自分の",
+      "意見を",
+      "はっきり",
+      "言うのは",
+      "大切だ。"
+    ],
+    "translation": "清楚地表達自己的意見很重要。",
+    "english": "It's important to state your opinion clearly.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "opinion"
+    ]
+  },
+  {
+    "id": "1663",
+    "japanese": "意見が違うからといって、相手を否定する必要はない。",
+    "chunks": [
+      "意見が",
+      "違うからといって、",
+      "相手を",
+      "否定する",
+      "必要はない。"
+    ],
+    "translation": "並不會因為意見不同，就有必要否定對方。",
+    "english": "Just because you disagree doesn't mean you have to dismiss the other person.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "opinion"
+    ]
+  },
+  {
+    "id": "1664",
+    "japanese": "来年、旅行に行きたいです。",
+    "chunks": [
+      "来年、",
+      "旅行に",
+      "行きたいです。"
+    ],
+    "translation": "我明年想去旅行。",
+    "english": "I want to go on a trip next year.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "travel"
+    ]
+  },
+  {
+    "id": "1665",
+    "japanese": "知らない町を歩くのが、旅のいちばんの楽しみだ。",
+    "chunks": [
+      "知らない町を",
+      "歩くのが、",
+      "旅の",
+      "いちばんの",
+      "楽しみだ。"
+    ],
+    "translation": "在陌生的城鎮裡漫步，是旅行最大的樂趣。",
+    "english": "Walking through an unfamiliar town is the greatest joy of travel.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "travel"
+    ]
+  },
+  {
+    "id": "1666",
+    "japanese": "駅の近くに新しいビルができました。",
+    "chunks": [
+      "駅の近くに",
+      "新しいビルが",
+      "できました。"
+    ],
+    "translation": "車站附近蓋了一棟新大樓。",
+    "english": "A new building has gone up near the station.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "urban planning"
+    ]
+  },
+  {
+    "id": "1667",
+    "japanese": "緑が多い街は、住んでいて気持ちがいい。",
+    "chunks": [
+      "緑が多い街は、",
+      "住んでいて",
+      "気持ちがいい。"
+    ],
+    "translation": "綠意盎然的城市，住起來令人心情舒暢。",
+    "english": "A city with lots of greenery is pleasant to live in.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "urban planning"
+    ]
+  },
+  {
+    "id": "1668",
+    "japanese": "便利さだけでなく、人が集まりやすい街づくりが求められている。",
+    "chunks": [
+      "便利さだけでなく、",
+      "人が",
+      "集まりやすい",
+      "街づくりが",
+      "求められている。"
+    ],
+    "translation": "人們所追求的不只是便利，更是讓人容易聚集的城市規劃。",
+    "english": "What's needed is city-building that fosters not just convenience but places where people naturally gather.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "urban planning"
+    ]
   }
 ]

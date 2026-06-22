@@ -35,3 +35,4 @@
 - **2026-06-23** (run #33): iter#33: repaired 0 jp, de-named 50 en, +8 en +8 jp (memories/grocery/budget)
 - **2026-06-23** (run #34): iter#34: repaired 0 jp, de-named 50 en, +8 en +8 jp (writing/tourism/city life)
 - **2026-06-23** (run #35): iter#35: repaired 0 jp, de-named 50 en, +8 en +8 jp (personality/hospitality/payment)
+- **2026-06-23** (run #36): iter#36: repaired 0 jp, de-named 50 en, +8 en +8 jp (opinion/travel/urban planning)

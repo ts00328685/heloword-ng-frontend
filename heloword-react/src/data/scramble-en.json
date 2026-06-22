@@ -12007,7 +12007,7 @@
     {
         "id": 2402,
         "translate_ch": "除非獲得保安部門的特別許可，否則不得將行李帶入建築內。",
-        "sentence": "Luggage may not be brought into the buildings unless the Security Service gives special clearance ."
+        "sentence": "Luggage may not be brought into the buildings unless the security service gives special clearance."
     },
     {
         "id": 2403,
@@ -12031,8 +12031,8 @@
     },
     {
         "id": 2407,
-        "translate_ch": "阿波羅 15 號登月小艇飛行員吉姆·艾爾文離開了 NASA，成為一名浸信會牧師。",
-        "sentence": "Apollo 15 Lunar Module Pilot Jim Irwin left NASA and became a Baptist minister."
+        "translate_ch": "阿波羅 15 號的登月小艇飛行員離開了 NASA，成為一名浸信會牧師。",
+        "sentence": "The Apollo 15 lunar module pilot left NASA and became a Baptist minister."
     },
     {
         "id": 2408,
@@ -12047,22 +12047,22 @@
     {
         "id": 2410,
         "translate_ch": "上午 9:45 在公共行政委員會，將對政府運作機制進行更多審視。",
-        "sentence": "More peering into the machinery of government at the Public Administration Committee at 9.45am."
+        "sentence": "More peering into the machinery of government at a public administration committee at 9.45am."
     },
     {
         "id": 2411,
-        "translate_ch": "宋美齡更廣為人知的名字是蔣介石夫人，她師從黃君璧和鄭曼青兩位大師。",
-        "sentence": "Soong, better known as Madame Chiang Kai-shek, studied under masters Huang Chun-pi and Cheng Mang-ch'ing."
+        "translate_ch": "她以一位著名的第一夫人之名為人所知，曾師從兩位著名大師。",
+        "sentence": "She, better known as a famous first lady, studied under two renowned masters."
     },
     {
         "id": 2412,
         "translate_ch": "他說：「有時這讓我抓狂，因為我跟她說話而她卻聽不懂。」",
-        "sentence": "It makes me mad sometimes because I'm telling her things and she can't understand,  he said."
+        "sentence": "It makes me mad sometimes because I'm telling her things and she can't understand, he said."
     },
     {
         "id": 2413,
-        "translate_ch": "賈菲在紐約說道：「他們沒想到這本蹩腳的小雜誌能撐這麼久。」",
-        "sentence": "They didn't think this crappy little magazine would last this long,  Jaffee said from New York."
+        "translate_ch": "一位漫畫家在紐約說道：「他們沒想到這本蹩腳的小雜誌能撐這麼久。」",
+        "sentence": "They didn't think this crappy little magazine would last this long, one cartoonist said from New York."
     },
     {
         "id": 2414,
@@ -12076,8 +12076,8 @@
     },
     {
         "id": 2416,
-        "translate_ch": "在洛杉磯這家吸引眾多明星的比佛利山莊飯店，獲勝的機率很高。",
-        "sentence": "At the star-magnet Beverly Hills Hotel in Los Angeles, the odds are favorable."
+        "translate_ch": "在洛杉磯一家吸引眾多明星的飯店，獲勝的機率很高。",
+        "sentence": "At a star-magnet hotel in Los Angeles, the odds are favorable."
     },
     {
         "id": 2417,
@@ -12096,8 +12096,8 @@
     },
     {
         "id": 2420,
-        "translate_ch": "在薩那，數以萬計的反薩利赫抗議者在一條主幹道上參加了祈禱。",
-        "sentence": "In Sanaa, tens of thousands of anti-Saleh protesters attended prayers on a main road."
+        "translate_ch": "在薩那，數以萬計的反政府抗議者在一條主幹道上參加了祈禱。",
+        "sentence": "In Sanaa, tens of thousands of anti-government protesters attended prayers on a main road."
     },
     {
         "id": 2421,
@@ -12121,23 +12121,23 @@
     },
     {
         "id": 2425,
-        "translate_ch": "週五，這頭哺乳動物被困在亨伯河的北岸。",
-        "sentence": "The mammal was trapped on the north bank of the River Humber on Friday."
+        "translate_ch": "週五，這頭哺乳動物被困在一條河的北岸。",
+        "sentence": "The mammal was trapped on the north bank of a river on Friday."
     },
     {
         "id": 2426,
-        "translate_ch": "請記住，Wii 具備家長監護功能，可讓家長管理孩子能存取的內容。",
-        "sentence": "Remember that Wii features parental controls that let adults manage the content their children can access."
+        "translate_ch": "請記住，這款主機具備家長監護功能，可讓家長管理孩子能存取的內容。",
+        "sentence": "Remember that the console features parental controls that let adults manage the content their children can access."
     },
     {
         "id": 2427,
-        "translate_ch": "他最近引用了紐約聖羅倫斯大學著名的廢棄物管理研究員保羅·康奈特博士的話。",
-        "sentence": "He recently quoted renowned waste management researcher Dr Paul Connett of St Lawrence University, New York."
+        "translate_ch": "他最近引用了紐約一所大學一位著名的廢棄物管理研究員的話。",
+        "sentence": "He recently quoted a renowned waste management researcher at a university in New York."
     },
     {
         "id": 2428,
-        "translate_ch": "總經理馬克·多米尼克表示，該設備播放 NFL 影片，用於研究即將到來的對手。",
-        "sentence": "It plays NFL films used to study upcoming opponents, says general manager Mark Dominik."
+        "translate_ch": "一位總經理表示，該設備播放聯盟的影片，用於研究即將到來的對手。",
+        "sentence": "It plays league films used to study upcoming opponents, says one general manager."
     },
     {
         "id": 2429,
@@ -12151,18 +12151,18 @@
     },
     {
         "id": 2431,
-        "translate_ch": "Celera 為使用者提供的是一種更複雜的工具，可用於操作和搜尋。",
-        "sentence": "What Celera offers users is a more sophisticated tool by which to manipulate and search."
+        "translate_ch": "一家公司為使用者提供的是一種更複雜的工具，可用於操作和搜尋。",
+        "sentence": "One company offers users a more sophisticated tool by which to manipulate and search."
     },
     {
         "id": 2432,
-        "translate_ch": "隨後，A123 公司聘請了他們兩位，協助製造未來的電池。",
-        "sentence": "And then 123 -- A123 hired them both to help manufacture the batteries of tomorrow."
+        "translate_ch": "一家電池公司聘請了他們兩位，協助製造未來的電池。",
+        "sentence": "One battery company hired them both to help manufacture the batteries of tomorrow."
     },
     {
         "id": 2433,
-        "translate_ch": "這份手稿是用奧斯汀微小而精確的字跡寫成的，且經過了大量的修改。",
-        "sentence": "The manuscript is written in Austen's tiny, precise hand and is heavily worked through with revisions."
+        "translate_ch": "這份手稿是用這位作家微小而精確的字跡寫成的，且經過了大量的修改。",
+        "sentence": "The manuscript is written in the author's tiny, precise hand and is heavily worked through with revisions."
     },
     {
         "id": 2434,
@@ -12181,23 +12181,23 @@
     },
     {
         "id": 2437,
-        "translate_ch": "但在派發五張公共牌時，斯塔什科選擇跟注並保持了微弱的領先優勢。",
-        "sentence": "But Staszko called and kept his marginal advantage as the five community cards were dealt."
+        "translate_ch": "但在派發五張公共牌時，一名牌手選擇跟注並保持了微弱的領先優勢。",
+        "sentence": "But one player called and kept his marginal advantage as the five community cards were dealt."
     },
     {
         "id": 2438,
-        "translate_ch": "如果《時代》雜誌選擇了賈伯斯，那將是該項榮譽首次被追授給逝者。",
-        "sentence": "If Time selects Jobs, it will mark the first time the honor is awarded posthumously."
+        "translate_ch": "如果該雜誌選擇了他，那將是該項榮譽首次被追授給逝者。",
+        "sentence": "If the magazine selects him, it will mark the first time the honor is awarded posthumously."
     },
     {
         "id": 2439,
-        "translate_ch": "儘管僅吸引了 17 萬用戶，馬普爾索普先生仍於 11 月 11 日同意與這位四個孩子的母親結婚。",
-        "sentence": "Despite attracting just 170, 000 users, Mr Mapplethorpe agreed to marry the mother-of-four on 11 November."
+        "translate_ch": "儘管僅吸引了 17 萬用戶，一名男子仍於 11 月 11 日同意與這位四個孩子的母親結婚。",
+        "sentence": "Despite attracting just 170,000 users, one man agreed to marry the mother-of-four on 11 November."
     },
     {
         "id": 2440,
-        "translate_ch": "波多黎各總督路易斯·福圖諾將歐巴馬的訪問形容為該島「奇妙的一天」。",
-        "sentence": "Puerto Rican Gov. Luis Fortuno described Obama's visit as a \"marvelous day\" for the island."
+        "translate_ch": "波多黎各總督將總統的訪問形容為該島「奇妙的一天」。",
+        "sentence": "The Puerto Rican governor described the president's visit as a \"marvelous day\" for the island."
     },
     {
         "id": 2441,
@@ -12211,8 +12211,8 @@
     },
     {
         "id": 2443,
-        "translate_ch": "法庭外，奇克先生戴上了蜘蛛人面具，並隨性地換了好幾件上衣。",
-        "sentence": "Outside court, Mr Chick pulled on a Spiderman mask and indulged in several changes of top."
+        "translate_ch": "法庭外，一名男子戴上了超級英雄面具，並隨性地換了好幾件上衣。",
+        "sentence": "Outside court, one man pulled on a superhero mask and indulged in several changes of top."
     },
     {
         "id": 2444,
@@ -12221,8 +12221,8 @@
     },
     {
         "id": 2445,
-        "translate_ch": "其中包括他的代表作《七件仁慈的事》（Le Sette Opere di Misericordia）。",
-        "sentence": "Among them was his masterpiece Le Sette Opere di Misericordia (The Seven Acts of Mercy)."
+        "translate_ch": "其中包括他的代表作《七件仁慈的事》。",
+        "sentence": "Among them was his masterpiece The Seven Acts of Mercy."
     },
     {
         "id": 2446,
@@ -12231,8 +12231,8 @@
     },
     {
         "id": 2447,
-        "translate_ch": "其他球員也在適當的時機表現出色，尤其是我的達勒姆隊隊友連恩·普朗基特。",
-        "sentence": "Other players are coming good at the right time too, notably my Durham team-mate Liam Plunkett."
+        "translate_ch": "其他球員也在適當的時機表現出色，尤其是我的隊友。",
+        "sentence": "Other players are coming good at the right time too, notably my team-mate."
     },
     {
         "id": 2448,
@@ -12251,13 +12251,13 @@
     },
     {
         "id": 2451,
-        "translate_ch": "楊認為，儘管他們的歌曲風格直接，但 The Vaccines 樂團在音樂上比 Jay Jay Pistolet「更成熟」。",
-        "sentence": "Despite their songs' directness, The Vaccines are musically \"more mature\" than Jay Jay Pistolet, Young believes."
+        "translate_ch": "他認為，儘管他們的歌曲風格直接，但這支樂團在音樂上比這位歌手早期的計劃「更成熟」。",
+        "sentence": "Despite their songs' directness, one band are musically \"more mature\" than the singer's earlier project, he believes."
     },
     {
         "id": 2452,
-        "translate_ch": "然而，戴維森教授表示，20 歲也是最高限度的普遍觀念仍然存在。",
-        "sentence": "However, Prof Davidson said that the popular notion that 20 was also the maximum remained."
+        "translate_ch": "然而，一位教授表示，20 歲也是最高限度的普遍觀念仍然存在。",
+        "sentence": "However, one professor said that the popular notion that 20 was also the maximum remained."
     },
     {
         "id": 2453,
@@ -12271,8 +12271,8 @@
     },
     {
         "id": 2455,
-        "translate_ch": "而且別想會有成千上萬的觀眾——美度公園（Meadow Park）的主場比賽幾乎不會引發熱潮。",
-        "sentence": "And forget crowds in their thousands - home games at Meadow Park hardly create stampedes."
+        "translate_ch": "而且別想會有成千上萬的觀眾——這座球場的主場比賽幾乎不會引發熱潮。",
+        "sentence": "And forget crowds in their thousands - home games at the stadium hardly create stampedes."
     },
     {
         "id": 2456,
@@ -12291,8 +12291,8 @@
     },
     {
         "id": 2459,
-        "translate_ch": "身為汽車修理工的技工法恩德，在被他的中隊戰友們暱稱為「法恩迪」。",
-        "sentence": "Craftsman Found, a vehicle mechanic, was known to those in his squadron as \"Foundy\"."
+        "translate_ch": "一名汽車修理工在他的中隊戰友中以一個綽號為人所知。",
+        "sentence": "One vehicle mechanic was known to those in his squadron by a nickname."
     },
     {
         "id": 2460,
@@ -12301,13 +12301,13 @@
     },
     {
         "id": 2461,
-        "translate_ch": "改裝完成後，這輛悍馬車在從德州到華盛頓特區的各個軍事基地和醫療中心進行了巡展。",
-        "sentence": "After the renovation, the Hummer toured military bases and medical centers from Texas to Washington, D."
+        "translate_ch": "改裝完成後，這輛車在從德州到華盛頓特區的各個軍事基地和醫療中心進行了巡展。",
+        "sentence": "After the renovation, the vehicle toured military bases and medical centers from Texas to Washington, D.C."
     },
     {
         "id": 2462,
-        "translate_ch": "醫學研究所將展開全面調查，並確定防止進一步虐待的措施。",
-        "sentence": "Institute of Medicine to launch a full investigation and identify steps to prevent further abuses."
+        "translate_ch": "一家醫學研究所將展開全面調查，並確定防止進一步虐待的措施。",
+        "sentence": "A medical research institute will launch a full investigation and identify steps to prevent further abuses."
     },
     {
         "id": 2463,
@@ -12321,13 +12321,13 @@
     },
     {
         "id": 2465,
-        "translate_ch": "負責協調該縣威爾斯語教學計畫的韋恩·威廉斯，將概述波伊斯議會面臨的挑戰。",
-        "sentence": "Wayne Williams, who co-ordinates the county's Welsh-medium education plan, will utline the challenge facing Powys Council."
+        "translate_ch": "負責協調該縣威爾斯語教學計畫的人，將概述該議會面臨的挑戰。",
+        "sentence": "The person who co-ordinates the county's Welsh-medium education plan will outline the challenge facing the council."
     },
     {
         "id": 2466,
-        "translate_ch": "梅洛迪·巴恩斯，我們的國內政策委員會主席，或者說是負責人、主任。（笑聲）主任。",
-        "sentence": "Melody Barnes, our Domestic Policy Council chair or head, director. (Laughter.) Director."
+        "translate_ch": "我們的國內政策委員會主席，或者說是負責人、主任。（笑聲）主任。",
+        "sentence": "Our domestic policy council chair or head, director. (Laughter.) Director."
     },
     {
         "id": 2467,
@@ -12336,8 +12336,8 @@
     },
     {
         "id": 2468,
-        "translate_ch": "所以他設法透過遊說，獲得了與強森總統會面的機會。",
-        "sentence": "So he somehow managed to talk his way into a meeting with President Johnson."
+        "translate_ch": "所以他設法透過遊說，獲得了與總統會面的機會。",
+        "sentence": "So he somehow managed to talk his way into a meeting with the president."
     },
     {
         "id": 2469,
@@ -12346,8 +12346,8 @@
     },
     {
         "id": 2470,
-        "translate_ch": "基本上，《星際大戰首部曲：威脅潛伏》充滿了喧囂與狂熱，卻空洞無物。",
-        "sentence": "Basically, \"Star Wars, Episode I: The Phantom Menace\" is full of sound and fury signifying nothing."
+        "translate_ch": "基本上，那部著名的科幻前傳充滿了喧囂與狂熱，卻空洞無物。",
+        "sentence": "Basically, the famous sci-fi prequel is full of sound and fury signifying nothing."
     },
     {
         "id": 2471,
@@ -12362,7 +12362,7 @@
     {
         "id": 2473,
         "translate_ch": "但完全沒有提到我告訴以色列外長的那些話。",
-        "sentence": "But there was no mention of what I have told to the Israeli Foreign Minister."
+        "sentence": "But there was no mention of what I have told to the Israeli foreign minister."
     },
     {
         "id": 2474,
@@ -12371,8 +12371,8 @@
     },
     {
         "id": 2475,
-        "translate_ch": "賈維斯和默昌特在《人生苦短》（Life's Too Short）中飾演自已，並扮演戴維斯的經紀人。",
-        "sentence": "Gervais and Merchant appear as versions of themselves in Life's Too Short, playing Davis' agents."
+        "translate_ch": "兩位喜劇演員在劇中飾演自己，並扮演主角的經紀人。",
+        "sentence": "Two comedians appear as versions of themselves in the show, playing the lead's agents."
     },
     {
         "id": 2476,
@@ -12386,13 +12386,13 @@
     },
     {
         "id": 2478,
-        "translate_ch": "Compretta 表示，這則廣告沒有點名被告，而僅僅陳述了媒體報導的事實。",
-        "sentence": "This ad did not name the defendant and merely stated facts from media reports,  Compretta said."
+        "translate_ch": "一位律師表示，這則廣告沒有點名被告，而僅僅陳述了媒體報導的事實。",
+        "sentence": "This ad did not name the defendant and merely stated facts from media reports, one lawyer said."
     },
     {
         "id": 2479,
-        "translate_ch": "印度已經獲得獨立，但海德拉巴土邦首領（Nizam）拒絕立即與這個新國家合併。",
-        "sentence": "India had gained Independence but the Nizam refused to immediately merge with the new country."
+        "translate_ch": "印度已經獲得獨立，但這位土邦首領拒絕立即與這個新國家合併。",
+        "sentence": "India had gained independence but the ruler refused to immediately merge with the new country."
     },
     {
         "id": 2480,
@@ -12416,13 +12416,13 @@
     },
     {
         "id": 2484,
-        "translate_ch": "Gertrude Kitongo 把她的手機當作收音機、圖書館、微型電影院、即時通訊工具和銀行櫃員機。",
-        "sentence": "Gertrude Kitongo uses hers as a radio, library, mini cinema, instant messenger and bank teller."
+        "translate_ch": "一名女子把她的手機當作收音機、圖書館、微型電影院、即時通訊工具和銀行櫃員機。",
+        "sentence": "One woman uses hers as a radio, library, mini cinema, instant messenger and bank teller."
     },
     {
         "id": 2485,
         "translate_ch": "特別報導：但這段影片本身也是對這次罷工的一個令人擔憂的比喻。",
-        "sentence": "Special Report But the video was also a worrisome metaphor for the strike itself."
+        "sentence": "Special report: but the video was also a worrisome metaphor for the strike itself."
     },
     {
         "id": 2486,
@@ -12431,13 +12431,13 @@
     },
     {
         "id": 2487,
-        "translate_ch": "週末，東部沿海的江原道降雪量超過一公尺。",
-        "sentence": "More than a metre fell at the weekend over Gangwon province on the eastern coast."
+        "translate_ch": "週末，東部沿海的一個省份降雪量超過一公尺。",
+        "sentence": "More than a metre fell at the weekend over a province on the eastern coast."
     },
     {
         "id": 2488,
-        "translate_ch": "遺憾的是，David 必須離開我們去打理他那家位於曼谷的新餐廳 nahm (metropolitan.bangkok.como.bz)。",
-        "sentence": "Sadly, David has to leave us to attend to his lovely new Bangkok restaurant, nahm (metropolitan.bangkok.como.bz)."
+        "translate_ch": "遺憾的是，他必須離開我們去打理他那家位於曼谷的可愛新餐廳。",
+        "sentence": "Sadly, he has to leave us to attend to his lovely new Bangkok restaurant."
     },
     {
         "id": 2489,
@@ -17163,5 +17163,45 @@
         "id": 3433,
         "translate_ch": "一項服務讓付款變得越容易，你也就越容易在不知不覺中花掉錢。",
         "sentence": "The easier a service makes it to pay, the easier it also becomes to spend without noticing."
+    },
+    {
+        "id": 3434,
+        "translate_ch": "在我看來，這是更好的選擇。",
+        "sentence": "In my opinion, this is the better choice."
+    },
+    {
+        "id": 3435,
+        "translate_ch": "意見不同是沒關係的，只要你能說明原因。",
+        "sentence": "It's fine to disagree, as long as you can explain why."
+    },
+    {
+        "id": 3436,
+        "translate_ch": "鬆散地持有強烈的看法，勝過堅守那些你從未願意去檢驗的信念。",
+        "sentence": "Strong opinions held loosely beat firm convictions you've never bothered to test."
+    },
+    {
+        "id": 3437,
+        "translate_ch": "我想有一天環遊世界。",
+        "sentence": "I want to travel around the world someday."
+    },
+    {
+        "id": 3438,
+        "translate_ch": "旅行的意義不在於逃離你的生活，而在於從遠處重新審視它。",
+        "sentence": "The point of travel isn't to escape your life, but to see it from a distance."
+    },
+    {
+        "id": 3439,
+        "translate_ch": "這座城市在市中心建了一座新公園。",
+        "sentence": "The city built a new park downtown."
+    },
+    {
+        "id": 3440,
+        "translate_ch": "當社區是為汽車而設計時，步行就會悄悄地變成一件苦差事。",
+        "sentence": "When neighborhoods are designed for cars, walking quietly becomes a chore."
+    },
+    {
+        "id": 3441,
+        "translate_ch": "規劃良好的城市會將住宅、商店和辦公室混合在一起，使日常生活不必依賴長途通勤。",
+        "sentence": "A well-planned city mixes homes, shops and offices so that daily life doesn't depend on a long commute."
     }
 ]
