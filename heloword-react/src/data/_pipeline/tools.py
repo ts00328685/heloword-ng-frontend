@@ -174,7 +174,7 @@ def cmd_status(_args):
 
 
 def cmd_worklist(args):
-    n = int(args[0]) if args else 25
+    n = int(args[0]) if args else 60
     m = load(MANIFEST); wl = load(WORKLIST); en = load(EN_PATH)
     by_id = {r["id"]: r for r in en}
     batch, p = [], m["worklist_pointer"]

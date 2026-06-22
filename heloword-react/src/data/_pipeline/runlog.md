@@ -19,3 +19,4 @@
 - **2026-06-22** (run #17): iter#17: repaired 0 jp, de-named 25 en, +8 en +8 jp (desires/hometown/job hunting)
 - **2026-06-22** (run #18): iter#18: repaired 0 jp, de-named 25 en, +8 en +8 jp (explanation/entertainment/ethics)
 - **2026-06-22** (run #19): iter#19: repaired 0 jp, de-named 25 en, +8 en +8 jp (determination/community/workplace)
+- **2026-06-22** (run #20): iter#20: repaired 0 jp, de-named 25 en, +8 en +8 jp (instruction/hobbies/philosophy)

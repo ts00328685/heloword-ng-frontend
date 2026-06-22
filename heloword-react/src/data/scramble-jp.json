@@ -30410,5 +30410,145 @@
       "n2",
       "workplace"
     ]
+  },
+  {
+    "id": "1533",
+    "japanese": "ここに名前を書いてください。",
+    "chunks": [
+      "ここに",
+      "名前を",
+      "書いて",
+      "ください。"
+    ],
+    "translation": "請在這裡寫上名字。",
+    "english": "Please write your name here.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "instruction"
+    ]
+  },
+  {
+    "id": "1534",
+    "japanese": "使う前に、説明書をよく読んでください。",
+    "chunks": [
+      "使う前に、",
+      "説明書を",
+      "よく",
+      "読んで",
+      "ください。"
+    ],
+    "translation": "使用前，請仔細閱讀說明書。",
+    "english": "Before using it, please read the manual carefully.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "instruction"
+    ]
+  },
+  {
+    "id": "1535",
+    "japanese": "手順をひとつ飛ばすだけで、結果が大きく変わることもある。",
+    "chunks": [
+      "手順を",
+      "ひとつ",
+      "飛ばすだけで、",
+      "結果が",
+      "大きく",
+      "変わることもある。"
+    ],
+    "translation": "光是跳過一個步驟，結果有時就會大不相同。",
+    "english": "Skipping even one step can sometimes change the result dramatically.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "instruction"
+    ]
+  },
+  {
+    "id": "1536",
+    "japanese": "趣味は写真を撮ることです。",
+    "chunks": [
+      "趣味は",
+      "写真を",
+      "撮ることです。"
+    ],
+    "translation": "我的興趣是拍照。",
+    "english": "My hobby is taking photos.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "1537",
+    "japanese": "時間を忘れるほど好きなことが、一つはあった方がいい。",
+    "chunks": [
+      "時間を",
+      "忘れるほど",
+      "好きなことが、",
+      "一つは",
+      "あった方がいい。"
+    ],
+    "translation": "最好能有一件喜歡到忘記時間的事。",
+    "english": "It's good to have at least one thing you love so much you lose track of time.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "1538",
+    "japanese": "人はなぜ生きるのでしょうか。",
+    "chunks": [
+      "人は",
+      "なぜ",
+      "生きるのでしょうか。"
+    ],
+    "translation": "人為什麼而活呢？",
+    "english": "Why do people live?",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "1539",
+    "japanese": "答えのない問いについて考えるのも、悪くない。",
+    "chunks": [
+      "答えのない",
+      "問いについて",
+      "考えるのも、",
+      "悪くない。"
+    ],
+    "translation": "去思考那些沒有答案的問題，也不壞。",
+    "english": "Thinking about questions that have no answer isn't a bad thing either.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "1540",
+    "japanese": "幸せとは何かという問いに、誰もが同じ答えを持つわけではない。",
+    "chunks": [
+      "幸せとは",
+      "何かという",
+      "問いに、",
+      "誰もが",
+      "同じ答えを",
+      "持つわけではない。"
+    ],
+    "translation": "對於「幸福是什麼」這個問題，並非每個人都有相同的答案。",
+    "english": "Not everyone has the same answer to the question of what happiness is.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "philosophy"
+    ]
   }
 ]
