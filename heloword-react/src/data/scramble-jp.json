@@ -32311,5 +32311,142 @@
       "n2",
       "budget"
     ]
+  },
+  {
+    "id": "1645",
+    "japanese": "毎日日記を書きます。",
+    "chunks": [
+      "毎日",
+      "日記を",
+      "書きます。"
+    ],
+    "translation": "我每天寫日記。",
+    "english": "I write in my diary every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "writing"
+    ]
+  },
+  {
+    "id": "1646",
+    "japanese": "文章は、短く書くほど伝わりやすい。",
+    "chunks": [
+      "文章は、",
+      "短く",
+      "書くほど",
+      "伝わりやすい。"
+    ],
+    "translation": "文章寫得越短，越容易讓人理解。",
+    "english": "The shorter you write, the easier it is to get your point across.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "writing"
+    ]
+  },
+  {
+    "id": "1647",
+    "japanese": "書きたいことより、読み手が知りたいことを書くべきだ。",
+    "chunks": [
+      "書きたいことより、",
+      "読み手が",
+      "知りたいことを",
+      "書くべきだ。"
+    ],
+    "translation": "比起自己想寫的，更應該寫讀者想知道的。",
+    "english": "You should write what the reader wants to know, rather than what you want to write.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "writing"
+    ]
+  },
+  {
+    "id": "1648",
+    "japanese": "旅行で有名なお寺に行きました。",
+    "chunks": [
+      "旅行で",
+      "有名な",
+      "お寺に",
+      "行きました。"
+    ],
+    "translation": "我在旅行時去了一座有名的寺廟。",
+    "english": "On my trip, I went to a famous temple.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "tourism"
+    ]
+  },
+  {
+    "id": "1649",
+    "japanese": "観光地は、朝早く行くと人が少なくて快適だ。",
+    "chunks": [
+      "観光地は、",
+      "朝早く",
+      "行くと",
+      "人が少なくて",
+      "快適だ。"
+    ],
+    "translation": "觀光景點，一大早去的話人少又舒適。",
+    "english": "Tourist spots are comfortable and less crowded if you go early in the morning.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "tourism"
+    ]
+  },
+  {
+    "id": "1650",
+    "japanese": "都会はとてもにぎやかです。",
+    "chunks": [
+      "都会は",
+      "とても",
+      "にぎやかです。"
+    ],
+    "translation": "都市非常熱鬧。",
+    "english": "The city is very lively.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "city life"
+    ]
+  },
+  {
+    "id": "1651",
+    "japanese": "都会の生活は便利だが、家賃が高い。",
+    "chunks": [
+      "都会の",
+      "生活は",
+      "便利だが、",
+      "家賃が",
+      "高い。"
+    ],
+    "translation": "都市生活很方便，但房租很高。",
+    "english": "City life is convenient, but the rent is high.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "city life"
+    ]
+  },
+  {
+    "id": "1652",
+    "japanese": "便利さと引き換えに、都会では人とのつながりが薄れがちだ。",
+    "chunks": [
+      "便利さと",
+      "引き換えに、",
+      "都会では",
+      "人とのつながりが",
+      "薄れがちだ。"
+    ],
+    "translation": "作為便利的代價，在都市裡人與人之間的連結往往會變淡。",
+    "english": "In exchange for convenience, human connections tend to grow thin in the city.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "city life"
+    ]
   }
 ]
