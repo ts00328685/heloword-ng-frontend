@@ -31638,5 +31638,140 @@
       "n2",
       "sustainability"
     ]
+  },
+  {
+    "id": "1605",
+    "japanese": "いつもありがとうございます。",
+    "chunks": [
+      "いつも",
+      "ありがとうございます。"
+    ],
+    "translation": "一直以來謝謝你。",
+    "english": "Thank you as always.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "gratitude"
+    ]
+  },
+  {
+    "id": "1606",
+    "japanese": "当たり前のことに感謝できる人は、幸せになりやすい。",
+    "chunks": [
+      "当たり前のことに",
+      "感謝できる人は、",
+      "幸せに",
+      "なりやすい。"
+    ],
+    "translation": "懂得對理所當然之事心懷感激的人，比較容易感到幸福。",
+    "english": "People who can feel grateful for everyday things tend to be happier.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "gratitude"
+    ]
+  },
+  {
+    "id": "1607",
+    "japanese": "失って初めて、その大切さに気づくことが多い。",
+    "chunks": [
+      "失って",
+      "初めて、",
+      "その",
+      "大切さに",
+      "気づくことが",
+      "多い。"
+    ],
+    "translation": "往往要等到失去之後，才會察覺到它的珍貴。",
+    "english": "Often it's only after losing something that we realize how precious it was.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "gratitude"
+    ]
+  },
+  {
+    "id": "1608",
+    "japanese": "今晩、外で食べましょう。",
+    "chunks": [
+      "今晩、",
+      "外で",
+      "食べましょう。"
+    ],
+    "translation": "今晚我們出去吃吧。",
+    "english": "Let's eat out tonight.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "dining"
+    ]
+  },
+  {
+    "id": "1609",
+    "japanese": "このレストランは予約しないと入れない。",
+    "chunks": [
+      "このレストランは",
+      "予約しないと",
+      "入れない。"
+    ],
+    "translation": "這家餐廳不預約就進不去。",
+    "english": "You can't get into this restaurant without a reservation.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "dining"
+    ]
+  },
+  {
+    "id": "1610",
+    "japanese": "毎月少し投資しています。",
+    "chunks": [
+      "毎月",
+      "少し",
+      "投資しています。"
+    ],
+    "translation": "我每個月投資一點。",
+    "english": "I invest a little every month.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "investment"
+    ]
+  },
+  {
+    "id": "1611",
+    "japanese": "投資にはリスクがあることを忘れてはいけない。",
+    "chunks": [
+      "投資には",
+      "リスクがあることを",
+      "忘れては",
+      "いけない。"
+    ],
+    "translation": "不能忘記投資是有風險的。",
+    "english": "You must not forget that investing carries risk.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "investment"
+    ]
+  },
+  {
+    "id": "1612",
+    "japanese": "短期の値動きに一喜一憂せず、長く持つことが大切だ。",
+    "chunks": [
+      "短期の",
+      "値動きに",
+      "一喜一憂せず、",
+      "長く",
+      "持つことが",
+      "大切だ。"
+    ],
+    "translation": "不為短期的價格波動而患得患失，長期持有才是重要的。",
+    "english": "It's important to hold for the long term rather than fretting over short-term price swings.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "investment"
+    ]
   }
 ]
