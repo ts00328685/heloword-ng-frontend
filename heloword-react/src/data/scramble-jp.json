@@ -31363,5 +31363,142 @@
       "n2",
       "disaster"
     ]
+  },
+  {
+    "id": "1589",
+    "japanese": "気分が悪いと、何もしたくない。",
+    "chunks": [
+      "気分が",
+      "悪いと、",
+      "何も",
+      "したくない。"
+    ],
+    "translation": "心情不好時，什麼都不想做。",
+    "english": "When I'm in a bad mood, I don't feel like doing anything.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "psychology"
+    ]
+  },
+  {
+    "id": "1590",
+    "japanese": "人は見たいものだけを見る傾向がある。",
+    "chunks": [
+      "人は",
+      "見たいものだけを",
+      "見る",
+      "傾向がある。"
+    ],
+    "translation": "人往往只看自己想看的東西。",
+    "english": "People tend to see only what they want to see.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "psychology"
+    ]
+  },
+  {
+    "id": "1591",
+    "japanese": "自分の感情を理解することが、心の安定につながる。",
+    "chunks": [
+      "自分の",
+      "感情を",
+      "理解することが、",
+      "心の",
+      "安定に",
+      "つながる。"
+    ],
+    "translation": "理解自己的情緒，能帶來內心的安定。",
+    "english": "Understanding your own emotions leads to peace of mind.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "psychology"
+    ]
+  },
+  {
+    "id": "1592",
+    "japanese": "野菜をたくさん食べます。",
+    "chunks": [
+      "野菜を",
+      "たくさん",
+      "食べます。"
+    ],
+    "translation": "我吃很多蔬菜。",
+    "english": "I eat a lot of vegetables.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "diet"
+    ]
+  },
+  {
+    "id": "1593",
+    "japanese": "甘い物を控えるだけで、体調がよくなった。",
+    "chunks": [
+      "甘い物を",
+      "控えるだけで、",
+      "体調が",
+      "よくなった。"
+    ],
+    "translation": "光是少吃甜食，身體狀況就變好了。",
+    "english": "Just cutting back on sweets improved my health.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "diet"
+    ]
+  },
+  {
+    "id": "1594",
+    "japanese": "スマホでお金を払います。",
+    "chunks": [
+      "スマホで",
+      "お金を",
+      "払います。"
+    ],
+    "translation": "我用手機付錢。",
+    "english": "I pay with my smartphone.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "fintech"
+    ]
+  },
+  {
+    "id": "1595",
+    "japanese": "最近は現金を使うことが少なくなった。",
+    "chunks": [
+      "最近は",
+      "現金を",
+      "使うことが",
+      "少なくなった。"
+    ],
+    "translation": "最近用現金的機會變少了。",
+    "english": "Lately I use cash less often.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "fintech"
+    ]
+  },
+  {
+    "id": "1596",
+    "japanese": "便利になる一方で、お金の管理はより慎重さが求められる。",
+    "chunks": [
+      "便利になる一方で、",
+      "お金の管理は",
+      "より",
+      "慎重さが",
+      "求められる。"
+    ],
+    "translation": "在變得方便的同時，金錢的管理也要求更加謹慎。",
+    "english": "While things have become more convenient, managing money now demands more caution.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "fintech"
+    ]
   }
 ]
