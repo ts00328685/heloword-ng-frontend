@@ -31773,5 +31773,141 @@
       "n2",
       "investment"
     ]
+  },
+  {
+    "id": "1613",
+    "japanese": "勉強の前に、机を片付けます。",
+    "chunks": [
+      "勉強の前に、",
+      "机を",
+      "片付けます。"
+    ],
+    "translation": "讀書前，我會整理書桌。",
+    "english": "Before studying, I tidy up my desk.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "study tips"
+    ]
+  },
+  {
+    "id": "1614",
+    "japanese": "わからない言葉は、すぐに調べる習慣をつけよう。",
+    "chunks": [
+      "わからない言葉は、",
+      "すぐに",
+      "調べる",
+      "習慣を",
+      "つけよう。"
+    ],
+    "translation": "養成遇到不懂的字就馬上查的習慣吧。",
+    "english": "Let's build the habit of looking up unfamiliar words right away.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "study tips"
+    ]
+  },
+  {
+    "id": "1615",
+    "japanese": "覚えるだけでなく、人に説明できて初めて理解したと言える。",
+    "chunks": [
+      "覚えるだけでなく、",
+      "人に",
+      "説明できて",
+      "初めて",
+      "理解したと",
+      "言える。"
+    ],
+    "translation": "不只是記住，要能向別人說明，才算是真正理解了。",
+    "english": "It's only when you can explain it to others, not just memorize it, that you can say you understand.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "study tips"
+    ]
+  },
+  {
+    "id": "1616",
+    "japanese": "デザートにアイスを食べました。",
+    "chunks": [
+      "デザートに",
+      "アイスを",
+      "食べました。"
+    ],
+    "translation": "我吃了冰淇淋當甜點。",
+    "english": "I had ice cream for dessert.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "dessert"
+    ]
+  },
+  {
+    "id": "1617",
+    "japanese": "甘い物は別腹だとよく言われる。",
+    "chunks": [
+      "甘い物は",
+      "別腹だと",
+      "よく",
+      "言われる。"
+    ],
+    "translation": "人們常說甜點是裝在另一個胃裡的（再飽也吃得下）。",
+    "english": "People often say there's always room for dessert.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "dessert"
+    ]
+  },
+  {
+    "id": "1618",
+    "japanese": "バスで学校に行きます。",
+    "chunks": [
+      "バスで",
+      "学校に",
+      "行きます。"
+    ],
+    "translation": "我搭公車去學校。",
+    "english": "I go to school by bus.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "transportation"
+    ]
+  },
+  {
+    "id": "1619",
+    "japanese": "電車が遅れて、約束に間に合わなかった。",
+    "chunks": [
+      "電車が",
+      "遅れて、",
+      "約束に",
+      "間に合わなかった。"
+    ],
+    "translation": "電車誤點，所以沒能趕上約會。",
+    "english": "The train was late, so I couldn't make it to my appointment on time.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "transportation"
+    ]
+  },
+  {
+    "id": "1620",
+    "japanese": "都会では、車がなくても生活に困らない。",
+    "chunks": [
+      "都会では、",
+      "車がなくても",
+      "生活に",
+      "困らない。"
+    ],
+    "translation": "在都市裡，就算沒有車，生活也不會有困難。",
+    "english": "In the city, you can get by just fine without a car.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "transportation"
+    ]
   }
 ]
