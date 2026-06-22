@@ -32177,5 +32177,139 @@
       "n2",
       "driving"
     ]
+  },
+  {
+    "id": "1637",
+    "japanese": "子供のころを思い出します。",
+    "chunks": [
+      "子供のころを",
+      "思い出します。"
+    ],
+    "translation": "我想起了小時候。",
+    "english": "I remember my childhood.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "memories"
+    ]
+  },
+  {
+    "id": "1638",
+    "japanese": "古い写真を見ると、昔のことを思い出す。",
+    "chunks": [
+      "古い写真を",
+      "見ると、",
+      "昔のことを",
+      "思い出す。"
+    ],
+    "translation": "看到老照片，就會想起過去的事。",
+    "english": "When I look at old photos, I remember the past.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "memories"
+    ]
+  },
+  {
+    "id": "1639",
+    "japanese": "楽しい思い出は、つらいときに心を支えてくれる。",
+    "chunks": [
+      "楽しい思い出は、",
+      "つらいときに",
+      "心を",
+      "支えてくれる。"
+    ],
+    "translation": "快樂的回憶，會在難熬的時候支撐著我們的心。",
+    "english": "Happy memories support your heart during hard times.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "memories"
+    ]
+  },
+  {
+    "id": "1640",
+    "japanese": "スーパーで卵を買います。",
+    "chunks": [
+      "スーパーで",
+      "卵を",
+      "買います。"
+    ],
+    "translation": "我在超市買雞蛋。",
+    "english": "I buy eggs at the supermarket.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "grocery"
+    ]
+  },
+  {
+    "id": "1641",
+    "japanese": "特売の日に買うと、けっこう節約できる。",
+    "chunks": [
+      "特売の日に",
+      "買うと、",
+      "けっこう",
+      "節約できる。"
+    ],
+    "translation": "在特賣日購買的話，能省不少錢。",
+    "english": "Shopping on sale days saves quite a bit of money.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "grocery"
+    ]
+  },
+  {
+    "id": "1642",
+    "japanese": "毎月の予算を決めています。",
+    "chunks": [
+      "毎月の",
+      "予算を",
+      "決めています。"
+    ],
+    "translation": "我會制定每月的預算。",
+    "english": "I set a monthly budget.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "budget"
+    ]
+  },
+  {
+    "id": "1643",
+    "japanese": "家計簿をつけると、無駄遣いに気づきやすい。",
+    "chunks": [
+      "家計簿を",
+      "つけると、",
+      "無駄遣いに",
+      "気づきやすい。"
+    ],
+    "translation": "記帳的話，比較容易發現自己亂花錢的地方。",
+    "english": "Keeping a household budget makes it easier to notice wasteful spending.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "budget"
+    ]
+  },
+  {
+    "id": "1644",
+    "japanese": "収入の範囲内で暮らすことが、家計を安定させる第一歩だ。",
+    "chunks": [
+      "収入の",
+      "範囲内で",
+      "暮らすことが、",
+      "家計を",
+      "安定させる",
+      "第一歩だ。"
+    ],
+    "translation": "量入為出，是讓家庭財務穩定的第一步。",
+    "english": "Living within your income is the first step to stabilizing your household finances.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "budget"
+    ]
   }
 ]
