@@ -31227,5 +31227,141 @@
       "n2",
       "remote work"
     ]
+  },
+  {
+    "id": "1581",
+    "japanese": "毎日少しずつ勉強します。",
+    "chunks": [
+      "毎日",
+      "少しずつ",
+      "勉強します。"
+    ],
+    "translation": "我每天一點一點地讀書。",
+    "english": "I study a little bit every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "study habits"
+    ]
+  },
+  {
+    "id": "1582",
+    "japanese": "計画を立てて勉強すると、効率が上がる。",
+    "chunks": [
+      "計画を立てて",
+      "勉強すると、",
+      "効率が",
+      "上がる。"
+    ],
+    "translation": "訂好計畫再讀書，效率就會提高。",
+    "english": "Studying with a plan improves your efficiency.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "study habits"
+    ]
+  },
+  {
+    "id": "1583",
+    "japanese": "詰め込むより、毎日続ける方が結局は身につく。",
+    "chunks": [
+      "詰め込むより、",
+      "毎日",
+      "続ける方が",
+      "結局は",
+      "身につく。"
+    ],
+    "translation": "比起臨時硬塞，每天持續下去最終才真正學得會。",
+    "english": "Rather than cramming, keeping at it every day is what ultimately sticks.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "study habits"
+    ]
+  },
+  {
+    "id": "1584",
+    "japanese": "今日は青いシャツを着ています。",
+    "chunks": [
+      "今日は",
+      "青いシャツを",
+      "着ています。"
+    ],
+    "translation": "我今天穿著藍色襯衫。",
+    "english": "I am wearing a blue shirt today.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "clothing"
+    ]
+  },
+  {
+    "id": "1585",
+    "japanese": "季節が変わると、着る服も変わる。",
+    "chunks": [
+      "季節が",
+      "変わると、",
+      "着る服も",
+      "変わる。"
+    ],
+    "translation": "季節一變，穿的衣服也跟著變。",
+    "english": "When the seasons change, the clothes you wear change too.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "clothing"
+    ]
+  },
+  {
+    "id": "1586",
+    "japanese": "昨夜大きな地震がありました。",
+    "chunks": [
+      "昨夜",
+      "大きな",
+      "地震が",
+      "ありました。"
+    ],
+    "translation": "昨晚發生了一場大地震。",
+    "english": "There was a big earthquake last night.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "disaster"
+    ]
+  },
+  {
+    "id": "1587",
+    "japanese": "災害に備えて、水や食料を用意しておこう。",
+    "chunks": [
+      "災害に備えて、",
+      "水や",
+      "食料を",
+      "用意しておこう。"
+    ],
+    "translation": "為了防備災害，先準備好水和食物吧。",
+    "english": "Let's prepare water and food in case of a disaster.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "disaster"
+    ]
+  },
+  {
+    "id": "1588",
+    "japanese": "災害のときこそ、人々の助け合いの力が試される。",
+    "chunks": [
+      "災害のときこそ、",
+      "人々の",
+      "助け合いの",
+      "力が",
+      "試される。"
+    ],
+    "translation": "正是在災難來臨時，人們互助的力量才會受到考驗。",
+    "english": "It is in times of disaster that people's power to help one another is tested.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "disaster"
+    ]
   }
 ]
