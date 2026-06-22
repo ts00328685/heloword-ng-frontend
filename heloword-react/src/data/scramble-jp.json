@@ -31500,5 +31500,143 @@
       "n2",
       "fintech"
     ]
+  },
+  {
+    "id": "1597",
+    "japanese": "問題を解いて、覚えたか確認します。",
+    "chunks": [
+      "問題を",
+      "解いて、",
+      "覚えたか",
+      "確認します。"
+    ],
+    "translation": "做題目來確認自己是否記住了。",
+    "english": "I solve problems to check whether I've memorized it.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "study method"
+    ]
+  },
+  {
+    "id": "1598",
+    "japanese": "ただ読むより、自分で問題を解く方が身につく。",
+    "chunks": [
+      "ただ",
+      "読むより、",
+      "自分で",
+      "問題を",
+      "解く方が",
+      "身につく。"
+    ],
+    "translation": "比起單純地閱讀，自己動手解題更能學會。",
+    "english": "Rather than just reading, solving problems yourself helps it sink in.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "study method"
+    ]
+  },
+  {
+    "id": "1599",
+    "japanese": "一夜漬けより、毎日の積み重ねの方が確実に力がつく。",
+    "chunks": [
+      "一夜漬けより、",
+      "毎日の",
+      "積み重ねの方が",
+      "確実に",
+      "力がつく。"
+    ],
+    "translation": "比起臨時抱佛腳，每天的累積更能確實地培養實力。",
+    "english": "Daily accumulation builds ability far more reliably than last-minute cramming.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "study method"
+    ]
+  },
+  {
+    "id": "1600",
+    "japanese": "この服は少し大きいです。",
+    "chunks": [
+      "この服は",
+      "少し",
+      "大きいです。"
+    ],
+    "translation": "這件衣服有點大。",
+    "english": "These clothes are a little big.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "clothes"
+    ]
+  },
+  {
+    "id": "1601",
+    "japanese": "高い服より、自分に似合う服を選びたい。",
+    "chunks": [
+      "高い服より、",
+      "自分に",
+      "似合う服を",
+      "選びたい。"
+    ],
+    "translation": "比起昂貴的衣服，我更想選適合自己的衣服。",
+    "english": "Rather than expensive clothes, I want to choose clothes that suit me.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "clothes"
+    ]
+  },
+  {
+    "id": "1602",
+    "japanese": "買い物袋を持っていきます。",
+    "chunks": [
+      "買い物袋を",
+      "持っていきます。"
+    ],
+    "translation": "我會自己帶購物袋。",
+    "english": "I bring a shopping bag with me.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "sustainability"
+    ]
+  },
+  {
+    "id": "1603",
+    "japanese": "使い捨てを減らすことが、環境保護につながる。",
+    "chunks": [
+      "使い捨てを",
+      "減らすことが、",
+      "環境保護に",
+      "つながる。"
+    ],
+    "translation": "減少一次性用品，有助於保護環境。",
+    "english": "Reducing disposable items contributes to protecting the environment.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "sustainability"
+    ]
+  },
+  {
+    "id": "1604",
+    "japanese": "本当に必要な物だけを買うことが、最も持続可能な選択だ。",
+    "chunks": [
+      "本当に",
+      "必要な物だけを",
+      "買うことが、",
+      "最も",
+      "持続可能な",
+      "選択だ。"
+    ],
+    "translation": "只購買真正需要的東西，才是最永續的選擇。",
+    "english": "Buying only what you truly need is the most sustainable choice.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "sustainability"
+    ]
   }
 ]
