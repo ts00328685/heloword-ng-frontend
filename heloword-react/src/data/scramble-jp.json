@@ -30683,5 +30683,142 @@
       "n2",
       "work culture"
     ]
+  },
+  {
+    "id": "1549",
+    "japanese": "先生は学校で教えています。",
+    "chunks": [
+      "先生は",
+      "学校で",
+      "教えています。"
+    ],
+    "translation": "老師在學校教書。",
+    "english": "The teacher teaches at a school.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "teaching"
+    ]
+  },
+  {
+    "id": "1550",
+    "japanese": "教えることで、自分の理解も深まる。",
+    "chunks": [
+      "教えることで、",
+      "自分の",
+      "理解も",
+      "深まる。"
+    ],
+    "translation": "透過教導他人，自己的理解也會加深。",
+    "english": "By teaching, your own understanding deepens too.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "teaching"
+    ]
+  },
+  {
+    "id": "1551",
+    "japanese": "答えを教えるより、考え方を教える方が大切だ。",
+    "chunks": [
+      "答えを",
+      "教えるより、",
+      "考え方を",
+      "教える方が",
+      "大切だ。"
+    ],
+    "translation": "比起教答案，教思考方式更為重要。",
+    "english": "Teaching how to think is more important than teaching the answer.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "teaching"
+    ]
+  },
+  {
+    "id": "1552",
+    "japanese": "私の趣味は読書です。",
+    "chunks": [
+      "私の",
+      "趣味は",
+      "読書です。"
+    ],
+    "translation": "我的興趣是閱讀。",
+    "english": "My hobby is reading.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "hobby"
+    ]
+  },
+  {
+    "id": "1553",
+    "japanese": "始めてみると、思ったより楽しい趣味になった。",
+    "chunks": [
+      "始めてみると、",
+      "思ったより",
+      "楽しい",
+      "趣味に",
+      "なった。"
+    ],
+    "translation": "一旦試著開始，它就成了比想像中更有趣的興趣。",
+    "english": "Once I tried it, it became a more enjoyable hobby than I expected.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "hobby"
+    ]
+  },
+  {
+    "id": "1554",
+    "japanese": "今年の夏はとても暑いです。",
+    "chunks": [
+      "今年の夏は",
+      "とても",
+      "暑いです。"
+    ],
+    "translation": "今年夏天非常熱。",
+    "english": "This summer is very hot.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "climate"
+    ]
+  },
+  {
+    "id": "1555",
+    "japanese": "地球の温暖化は、年々深刻になっている。",
+    "chunks": [
+      "地球の",
+      "温暖化は、",
+      "年々",
+      "深刻に",
+      "なっている。"
+    ],
+    "translation": "地球暖化逐年變得越來越嚴重。",
+    "english": "Global warming is getting more serious year by year.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "climate"
+    ]
+  },
+  {
+    "id": "1556",
+    "japanese": "一人ひとりの小さな行動が、環境を守ることにつながる。",
+    "chunks": [
+      "一人ひとりの",
+      "小さな行動が、",
+      "環境を",
+      "守ることに",
+      "つながる。"
+    ],
+    "translation": "每個人的小小行動，都會連結到保護環境這件事上。",
+    "english": "Each person's small actions add up to protecting the environment.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "climate"
+    ]
   }
 ]
