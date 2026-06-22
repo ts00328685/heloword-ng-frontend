@@ -31909,5 +31909,137 @@
       "n2",
       "transportation"
     ]
+  },
+  {
+    "id": "1621",
+    "japanese": "名前を思い出せません。",
+    "chunks": [
+      "名前を",
+      "思い出せません。"
+    ],
+    "translation": "我想不起名字。",
+    "english": "I can't remember the name.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "memory"
+    ]
+  },
+  {
+    "id": "1622",
+    "japanese": "年を取ると、人の名前を覚えるのが難しくなる。",
+    "chunks": [
+      "年を取ると、",
+      "人の名前を",
+      "覚えるのが",
+      "難しくなる。"
+    ],
+    "translation": "上了年紀後，記人名就變得困難了。",
+    "english": "As you get older, it becomes harder to remember people's names.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "memory"
+    ]
+  },
+  {
+    "id": "1623",
+    "japanese": "記憶はあてにならず、思い込みで作られることもある。",
+    "chunks": [
+      "記憶は",
+      "あてにならず、",
+      "思い込みで",
+      "作られることもある。"
+    ],
+    "translation": "記憶並不可靠，有時是由先入為主的觀念塑造出來的。",
+    "english": "Memory is unreliable, and is sometimes shaped by our own assumptions.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "memory"
+    ]
+  },
+  {
+    "id": "1624",
+    "japanese": "晩ご飯ができましたよ。",
+    "chunks": [
+      "晩ご飯が",
+      "できましたよ。"
+    ],
+    "translation": "晚飯做好了喔。",
+    "english": "Dinner's ready.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "dinner"
+    ]
+  },
+  {
+    "id": "1625",
+    "japanese": "家族そろって夕飯を食べるのが、一日の楽しみだ。",
+    "chunks": [
+      "家族そろって",
+      "夕飯を",
+      "食べるのが、",
+      "一日の",
+      "楽しみだ。"
+    ],
+    "translation": "全家人一起吃晚飯，是一天中的樂趣。",
+    "english": "Eating dinner together as a family is the highlight of my day.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "dinner"
+    ]
+  },
+  {
+    "id": "1626",
+    "japanese": "お金が足りません。",
+    "chunks": [
+      "お金が",
+      "足りません。"
+    ],
+    "translation": "錢不夠。",
+    "english": "I don't have enough money.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "money"
+    ]
+  },
+  {
+    "id": "1627",
+    "japanese": "お金は使い方次第で、生きも死にもする。",
+    "chunks": [
+      "お金は",
+      "使い方次第で、",
+      "生きも",
+      "死にもする。"
+    ],
+    "translation": "錢這東西，端看你怎麼用，可以發揮價值，也可能白白浪費。",
+    "english": "Money can be put to good use or wasted, depending entirely on how you spend it.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "money"
+    ]
+  },
+  {
+    "id": "1628",
+    "japanese": "お金に振り回されるのではなく、上手に付き合うことが大切だ。",
+    "chunks": [
+      "お金に",
+      "振り回されるのではなく、",
+      "上手に",
+      "付き合うことが",
+      "大切だ。"
+    ],
+    "translation": "重要的是別被金錢牽著走，而要好好地與它相處。",
+    "english": "What matters is not being controlled by money, but learning to handle it well.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "money"
+    ]
   }
 ]
