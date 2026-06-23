@@ -8,8 +8,8 @@ only on the **linguistic** work. Run one iteration per turn, then stop.
 Working dir for all commands: `src/data/_pipeline/`.
 
 ## Knobs (tune to control how much you consume per iteration)
-- `CLEAN_BATCH = 100`   English sentences to de-name
-- `GEN_EN = 8`, `GEN_JP = 8`   new sentences to generate
+- `CLEAN_BATCH = 100`   English sentences to de-name (NOTE: backlog exhausted at iter#40 — clean_pending 0; loop is now generation-only)
+- `GEN_EN = 15`, `GEN_JP = 15`   new sentences to generate (raised from 8 once de-naming finished)
 - `TOPICS = 3`   topics to pull from the rotation wheel
 
 ## Each iteration

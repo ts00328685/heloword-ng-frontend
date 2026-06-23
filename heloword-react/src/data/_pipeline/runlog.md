@@ -39,3 +39,4 @@
 - **2026-06-23** (run #37): iter#37: repaired 0 jp, de-named 50 en, +8 en +8 jp (goal setting/hygiene/sale)
 - **2026-06-23** (run #38): iter#38: repaired 0 jp, de-named 100 en, +8 en +8 jp (opinions/scenery/modern society); CLEAN_BATCH raised to 100
 - **2026-06-23** (run #39): iter#39: repaired 0 jp, de-named 100 en, +8 en +8 jp (personal/sleep/consumer)
+- **2026-06-23** (run #40): iter#40: de-naming backlog EXHAUSTED (cleaned final 89, clean_pending 0); generation-only from here, +15 en +15 jp (speech/photos/globalization)

@@ -33119,5 +33119,259 @@
       "n2",
       "consumer"
     ]
+  },
+  {
+    "id": "1693",
+    "japanese": "もう少し大きな声で話してください。",
+    "chunks": [
+      "もう少し",
+      "大きな声で",
+      "話してください。"
+    ],
+    "translation": "請說大聲一點。",
+    "english": "Please speak a little louder.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "speech"
+    ]
+  },
+  {
+    "id": "1694",
+    "japanese": "結婚式でスピーチをしました。",
+    "chunks": [
+      "結婚式で",
+      "スピーチを",
+      "しました。"
+    ],
+    "translation": "我在婚禮上致了詞。",
+    "english": "I gave a speech at the wedding.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "speech"
+    ]
+  },
+  {
+    "id": "1695",
+    "japanese": "話す前に、何を伝えたいか整理しておくといい。",
+    "chunks": [
+      "話す前に、",
+      "何を",
+      "伝えたいか",
+      "整理しておくといい。"
+    ],
+    "translation": "說話前，最好先理清自己想傳達什麼。",
+    "english": "Before speaking, it's good to organize what you want to convey.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "speech"
+    ]
+  },
+  {
+    "id": "1696",
+    "japanese": "うまく話そうとするより、心を込めて話す方が伝わる。",
+    "chunks": [
+      "うまく話そうとするより、",
+      "心を込めて",
+      "話す方が",
+      "伝わる。"
+    ],
+    "translation": "比起想把話說得漂亮，用心去說更能打動人。",
+    "english": "Speaking from the heart gets through better than trying to speak well.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "speech"
+    ]
+  },
+  {
+    "id": "1697",
+    "japanese": "人前で話すのが苦手でも、練習すれば必ず上達する。",
+    "chunks": [
+      "人前で",
+      "話すのが",
+      "苦手でも、",
+      "練習すれば",
+      "必ず",
+      "上達する。"
+    ],
+    "translation": "即使不擅長在人前說話，只要練習就一定會進步。",
+    "english": "Even if you're bad at speaking in public, you'll surely improve with practice.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "speech"
+    ]
+  },
+  {
+    "id": "1698",
+    "japanese": "旅行でたくさん写真を撮りました。",
+    "chunks": [
+      "旅行で",
+      "たくさん",
+      "写真を",
+      "撮りました。"
+    ],
+    "translation": "我在旅行時拍了很多照片。",
+    "english": "I took a lot of photos on my trip.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "photos"
+    ]
+  },
+  {
+    "id": "1699",
+    "japanese": "写真を撮ってもらえますか。",
+    "chunks": [
+      "写真を",
+      "撮ってもらえますか。"
+    ],
+    "translation": "可以幫我拍張照嗎？",
+    "english": "Could you take a photo for me?",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "photos"
+    ]
+  },
+  {
+    "id": "1700",
+    "japanese": "いい写真は、シャッターを切るタイミングで決まる。",
+    "chunks": [
+      "いい写真は、",
+      "シャッターを",
+      "切る",
+      "タイミングで",
+      "決まる。"
+    ],
+    "translation": "好照片取決於按下快門的時機。",
+    "english": "A good photo is decided by the timing of when you press the shutter.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "photos"
+    ]
+  },
+  {
+    "id": "1701",
+    "japanese": "古い写真を見ると、その時の気持ちがよみがえる。",
+    "chunks": [
+      "古い写真を",
+      "見ると、",
+      "その時の",
+      "気持ちが",
+      "よみがえる。"
+    ],
+    "translation": "看到舊照片，當時的心情就會湧上心頭。",
+    "english": "When I look at old photos, the feelings from that time come flooding back.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "photos"
+    ]
+  },
+  {
+    "id": "1702",
+    "japanese": "一枚の写真が、言葉以上に多くを語ることがある。",
+    "chunks": [
+      "一枚の写真が、",
+      "言葉以上に",
+      "多くを",
+      "語ることがある。"
+    ],
+    "translation": "一張照片有時能比言語訴說更多。",
+    "english": "A single photograph can sometimes say more than words.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "photos"
+    ]
+  },
+  {
+    "id": "1703",
+    "japanese": "世界中の物が買えます。",
+    "chunks": [
+      "世界中の",
+      "物が",
+      "買えます。"
+    ],
+    "translation": "可以買到世界各地的東西。",
+    "english": "You can buy things from all over the world.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "globalization"
+    ]
+  },
+  {
+    "id": "1704",
+    "japanese": "外国の会社で働いています。",
+    "chunks": [
+      "外国の",
+      "会社で",
+      "働いています。"
+    ],
+    "translation": "我在一家外國公司工作。",
+    "english": "I work at a foreign company.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "globalization"
+    ]
+  },
+  {
+    "id": "1705",
+    "japanese": "インターネットで、世界中と取引ができる。",
+    "chunks": [
+      "インターネットで、",
+      "世界中と",
+      "取引が",
+      "できる。"
+    ],
+    "translation": "透過網路，可以和全世界做生意。",
+    "english": "With the internet, you can do business with the whole world.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "globalization"
+    ]
+  },
+  {
+    "id": "1706",
+    "japanese": "一つの国の問題が、世界全体に影響することもある。",
+    "chunks": [
+      "一つの国の",
+      "問題が、",
+      "世界全体に",
+      "影響することもある。"
+    ],
+    "translation": "一個國家的問題，有時會影響到全世界。",
+    "english": "One country's problem can sometimes affect the whole world.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "globalization"
+    ]
+  },
+  {
+    "id": "1707",
+    "japanese": "グローバル化が進むほど、国どうしの結びつきは強くなる。",
+    "chunks": [
+      "グローバル化が",
+      "進むほど、",
+      "国どうしの",
+      "結びつきは",
+      "強くなる。"
+    ],
+    "translation": "全球化越是推進，國與國之間的連結就越緊密。",
+    "english": "The more globalization advances, the stronger the ties between countries become.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "globalization"
+    ]
   }
 ]
