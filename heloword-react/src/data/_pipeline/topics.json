@@ -1,0 +1,1513 @@
+{
+  "pointer": 120,
+  "wheel": [
+    {
+      "topic": "self-awareness",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "daily",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "career",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "language",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "anime",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "technology",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "self-belief",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "daily life",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "employment",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "language learning",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "movies",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "tech",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "self-improvement",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "daily routine",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "business",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "language study",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "film",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "science",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "mindset",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "family",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "finance",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "communication",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "music",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "global",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "emotions",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "friends",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "economy",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "conversation",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "fashion",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "international",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "feelings",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "friendship",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "industry",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "idiom",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "art",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "politics",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "anxiety",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "neighborhood",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "management",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "slang",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "gadgets",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "law",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "ambition",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "home",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "entrepreneurship",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "expression",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "games",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "governance",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "desires",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "hometown",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "job hunting",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "explanation",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "entertainment",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "ethics",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "determination",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "community",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "workplace",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "instruction",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "hobbies",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "philosophy",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "hope",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "lifestyle",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "work culture",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "teaching",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "hobby",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "climate",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "happiness",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "household",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "workload",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "study",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "design",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "environment",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "motivation",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "cleaning",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "remote work",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "study habits",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "clothing",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "disaster",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "psychology",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "diet",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "fintech",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "study method",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "clothes",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "sustainability",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "gratitude",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "dining",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "investment",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "study tips",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "dessert",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "transportation",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "memory",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "dinner",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "money",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "reading",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "cooking",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "driving",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "memories",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "grocery",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "budget",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "writing",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "tourism",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "city life",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "personality",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "hospitality",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "payment",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "opinion",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "travel",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "urban planning",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "goal setting",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "hygiene",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "sale",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "opinions",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "scenery",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "modern society",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "personal",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "sleep",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "consumer",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "speech",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "photos",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "globalization",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "personal habits",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "routine",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "consumerism",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "public speaking",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "photography",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "generation gap",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "reflection",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "social",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "customer service",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "knowledge",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "tradition",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "complexity",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "self-reflection",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "children",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "customer experience",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "learning",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "culture",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "strategy",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "perseverance",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "childhood",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "marketing",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "education",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "creative",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "decision making",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "resilience",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "aging",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "innovation",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "literary",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "creativity",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "problem-solving",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "dedication",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "aging society",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "manufacturing",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "literature",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "leisure",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "analysis",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "patience",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "elderly care",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "agriculture",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "narrative",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "aesthetics",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "information",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "courage",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "casual",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "side hustle",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "metaphor",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "books",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "news",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "faith",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "habits",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "occupation",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "proverbial",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "cultural impact",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "weather",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "intuition",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "taste",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "administrative",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "onomatopoeia",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "exhibition",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "season",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "attitude",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "action",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "career values",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "keigo",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "humor",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "social issues",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "values",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "adventure",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "certification",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "online education",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "media",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "social change",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "achievement",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "age",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "deadline",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "presentation",
+      "group": "Language Skills & Knowledge Acquisition"
+    },
+    {
+      "topic": "nostalgia",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "global cooperation",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "adaptation",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "animals",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "inventory",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "popularity",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "medical",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "advice",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "apology",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "negotiation",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "product review",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "math",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "aspiration",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "care",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "online shopping",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "proverb",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "logic",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "aspirations",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "collaboration",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "promotion",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "review",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "argument",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "balance",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "complaint",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "remote-work",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "social media",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "theory",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "behavior",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "cooperation",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "service",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "style",
+      "group": "Arts, Media & Leisure Pursuits"
+    },
+    {
+      "topic": "AI",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "benefits",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "description",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "work",
+      "group": "Work, Finance & Global Commerce"
+    },
+    {
+      "topic": "academia",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "challenge",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "directions",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "consequence",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "character",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "diy",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "demographics",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "concentration",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "etiquette",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "diversity",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "decision",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "experience",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "exam",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "decision-making",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "food",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "future",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "development",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "formal",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "government",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "difficulty",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "health",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "guess",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "dream",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "healthcare",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "humanity",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "dreams",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "hospital",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "impact",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "effort",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "housing",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "influence",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "empathy",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "human relations",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "internet",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "encouragement",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "incident",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "policy",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "energy",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "invitation",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "quality",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "feeling",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "life",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "reform",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "fitness",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "location",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "repatriation",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "goal",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "manners",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "research",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "growth",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "moving",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "risk",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "habit",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "nature",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "rules",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "improvement",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "night",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "social contribution",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "inspiration",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "objects",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "social welfare",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "kindness",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "outdoor",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "social work",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "leadership",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "parenting",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "society",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "life goal",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "people",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "state",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "lifelong learning",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "permission",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "timeless",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "mental health",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "places",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "trends",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "mentoring",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "planning",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "truth",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "mentorship",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "plans",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "university",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "nutrition",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "polite",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "warning",
+      "group": "Science, Ethics & Global Systems"
+    },
+    {
+      "topic": "observation",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "preparation",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "performance",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "recipe",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "perspective",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "recommendation",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "praise",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "relationship",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "preferences",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "relationships",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "prevention",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "reminders",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "problem solving",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "request",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "productivity",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "requests",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "progress",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "restaurant",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "reactions",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "safety",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "reassurance",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "scent",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "recognition",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "school",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "recovery",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "seasons",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "regret",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "secret",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "relaxation",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "senses",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "resolution",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "sensory",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "respect",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "shopping",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "responsibility",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "shopping habits",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "skill",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "sports",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "skills",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "start",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "social skills",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "stationery",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "success",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "status",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "time management",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "suggestion",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "work-life balance",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "suggestions",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "charity",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "summer",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "criticism",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "surprise",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "social criticism",
+      "group": "Personal Growth & Inner World"
+    },
+    {
+      "topic": "teamwork",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "time",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "traffic",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "trouble",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "urban life",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "volunteer",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "waiting",
+      "group": "Daily Routine & Social Life"
+    },
+    {
+      "topic": "winter",
+      "group": "Daily Routine & Social Life"
+    }
+  ]
+}
