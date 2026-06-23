@@ -32717,5 +32717,138 @@
       "n2",
       "urban planning"
     ]
+  },
+  {
+    "id": "1669",
+    "japanese": "今年の目標を決めました。",
+    "chunks": [
+      "今年の",
+      "目標を",
+      "決めました。"
+    ],
+    "translation": "我決定好了今年的目標。",
+    "english": "I've decided on my goal for this year.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "goal setting"
+    ]
+  },
+  {
+    "id": "1670",
+    "japanese": "大きな目標も、小さな一歩から始まる。",
+    "chunks": [
+      "大きな目標も、",
+      "小さな一歩から",
+      "始まる。"
+    ],
+    "translation": "再大的目標，也是從小小的一步開始。",
+    "english": "Even big goals begin with a small first step.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "goal setting"
+    ]
+  },
+  {
+    "id": "1671",
+    "japanese": "目標は、紙に書くと達成しやすくなると言われている。",
+    "chunks": [
+      "目標は、",
+      "紙に書くと",
+      "達成しやすくなると",
+      "言われている。"
+    ],
+    "translation": "據說，把目標寫在紙上，會比較容易達成。",
+    "english": "It is said that writing your goals on paper makes them easier to achieve.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "goal setting"
+    ]
+  },
+  {
+    "id": "1672",
+    "japanese": "食事の前に手を洗います。",
+    "chunks": [
+      "食事の前に",
+      "手を",
+      "洗います。"
+    ],
+    "translation": "吃飯前我會洗手。",
+    "english": "I wash my hands before meals.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "hygiene"
+    ]
+  },
+  {
+    "id": "1673",
+    "japanese": "風邪を防ぐには、手洗いとうがいが効果的だ。",
+    "chunks": [
+      "風邪を防ぐには、",
+      "手洗いと",
+      "うがいが",
+      "効果的だ。"
+    ],
+    "translation": "要預防感冒，洗手和漱口很有效。",
+    "english": "To prevent colds, washing your hands and gargling are effective.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "hygiene"
+    ]
+  },
+  {
+    "id": "1674",
+    "japanese": "今日はセールの日です。",
+    "chunks": [
+      "今日は",
+      "セールの",
+      "日です。"
+    ],
+    "translation": "今天是特賣日。",
+    "english": "Today is a sale day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "sale"
+    ]
+  },
+  {
+    "id": "1675",
+    "japanese": "安いからといって、必要ない物を買ってはいけない。",
+    "chunks": [
+      "安いからといって、",
+      "必要ない物を",
+      "買ってはいけない。"
+    ],
+    "translation": "不能因為便宜，就買不需要的東西。",
+    "english": "Just because it's cheap doesn't mean you should buy things you don't need.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "sale"
+    ]
+  },
+  {
+    "id": "1676",
+    "japanese": "セールでは、本当に得かどうか冷静に考えることが大切だ。",
+    "chunks": [
+      "セールでは、",
+      "本当に",
+      "得かどうか",
+      "冷静に",
+      "考えることが",
+      "大切だ。"
+    ],
+    "translation": "在特賣時，冷靜地思考是否真的划算很重要。",
+    "english": "At a sale, it's important to think calmly about whether it's really a good deal.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "sale"
+    ]
   }
 ]
