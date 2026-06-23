@@ -37,3 +37,4 @@
 - **2026-06-23** (run #35): iter#35: repaired 0 jp, de-named 50 en, +8 en +8 jp (personality/hospitality/payment)
 - **2026-06-23** (run #36): iter#36: repaired 0 jp, de-named 50 en, +8 en +8 jp (opinion/travel/urban planning)
 - **2026-06-23** (run #37): iter#37: repaired 0 jp, de-named 50 en, +8 en +8 jp (goal setting/hygiene/sale)
+- **2026-06-23** (run #38): iter#38: repaired 0 jp, de-named 100 en, +8 en +8 jp (opinions/scenery/modern society); CLEAN_BATCH raised to 100

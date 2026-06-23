@@ -32850,5 +32850,140 @@
       "n2",
       "sale"
     ]
+  },
+  {
+    "id": "1677",
+    "japanese": "人それぞれ考えが違います。",
+    "chunks": [
+      "人それぞれ",
+      "考えが",
+      "違います。"
+    ],
+    "translation": "每個人的想法都不一樣。",
+    "english": "Everyone thinks differently.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "opinions"
+    ]
+  },
+  {
+    "id": "1678",
+    "japanese": "反対意見にも、聞くべき点はある。",
+    "chunks": [
+      "反対意見にも、",
+      "聞くべき点は",
+      "ある。"
+    ],
+    "translation": "即使是反對意見，也有值得一聽之處。",
+    "english": "Even opposing opinions have points worth hearing.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "opinions"
+    ]
+  },
+  {
+    "id": "1679",
+    "japanese": "声の大きい人の意見が、いつも正しいとは限らない。",
+    "chunks": [
+      "声の大きい人の",
+      "意見が、",
+      "いつも",
+      "正しいとは",
+      "限らない。"
+    ],
+    "translation": "嗓門大的人的意見，未必總是正確的。",
+    "english": "The opinion of the loudest person isn't always the right one.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "opinions"
+    ]
+  },
+  {
+    "id": "1680",
+    "japanese": "山の景色がきれいです。",
+    "chunks": [
+      "山の",
+      "景色が",
+      "きれいです。"
+    ],
+    "translation": "山的景色很美。",
+    "english": "The mountain scenery is beautiful.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "scenery"
+    ]
+  },
+  {
+    "id": "1681",
+    "japanese": "窓から見える夕日がとてもきれいだった。",
+    "chunks": [
+      "窓から",
+      "見える",
+      "夕日が",
+      "とても",
+      "きれいだった。"
+    ],
+    "translation": "從窗戶看到的夕陽非常美。",
+    "english": "The sunset visible from the window was very beautiful.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "scenery"
+    ]
+  },
+  {
+    "id": "1682",
+    "japanese": "今はスマホがないと不便です。",
+    "chunks": [
+      "今は",
+      "スマホがないと",
+      "不便です。"
+    ],
+    "translation": "現在沒有手機很不方便。",
+    "english": "These days it's inconvenient without a smartphone.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "modern society"
+    ]
+  },
+  {
+    "id": "1683",
+    "japanese": "便利になった分、心の余裕がなくなった気がする。",
+    "chunks": [
+      "便利になった分、",
+      "心の余裕が",
+      "なくなった",
+      "気がする。"
+    ],
+    "translation": "感覺生活變方便了，但內心的從容卻消失了。",
+    "english": "It feels like, as life got more convenient, we lost our peace of mind.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "modern society"
+    ]
+  },
+  {
+    "id": "1684",
+    "japanese": "情報があふれる時代だからこそ、何を信じるかが問われる。",
+    "chunks": [
+      "情報が",
+      "あふれる",
+      "時代だからこそ、",
+      "何を信じるかが",
+      "問われる。"
+    ],
+    "translation": "正因為身處資訊氾濫的時代，該相信什麼才成了一個問題。",
+    "english": "Precisely because we live in an age flooded with information, what to believe is called into question.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "modern society"
+    ]
   }
 ]
