@@ -40,3 +40,4 @@
 - **2026-06-23** (run #38): iter#38: repaired 0 jp, de-named 100 en, +8 en +8 jp (opinions/scenery/modern society); CLEAN_BATCH raised to 100
 - **2026-06-23** (run #39): iter#39: repaired 0 jp, de-named 100 en, +8 en +8 jp (personal/sleep/consumer)
 - **2026-06-23** (run #40): iter#40: de-naming backlog EXHAUSTED (cleaned final 89, clean_pending 0); generation-only from here, +15 en +15 jp (speech/photos/globalization)
+- **2026-06-23** (run #41): iter#41: generation-only, +20 en +20 jp (personal habits/routine/consumerism/public speaking/photography); particle-level chunks, 70/30 N1-N3/N4-N5

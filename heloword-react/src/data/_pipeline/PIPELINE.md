@@ -9,8 +9,8 @@ Working dir for all commands: `src/data/_pipeline/`.
 
 ## Knobs (tune to control how much you consume per iteration)
 - `CLEAN_BATCH = 100`   English sentences to de-name (NOTE: backlog exhausted at iter#40 — clean_pending 0; loop is now generation-only)
-- `GEN_EN = 15`, `GEN_JP = 15`   new sentences to generate (raised from 8 once de-naming finished)
-- `TOPICS = 3`   topics to pull from the rotation wheel
+- `GEN_EN = 20`, `GEN_JP = 20`   new sentences to generate (generation-only mode, iter#41+)
+- `TOPICS = 5`   topics to pull from the rotation wheel (vary widely, no dup)
 
 ## Each iteration
 
@@ -49,15 +49,19 @@ Write `_tmp_clean.json` as `[{id, sentence, translate_ch}]` and apply:
 python3 tools.py apply-clean _tmp_clean.json
 ```
 
-### 3. Generate new sentences (topic-rotated, deduped)
+### 3. Generate new sentences (topic-rotated, deduped) — THE WHOLE JOB NOW
+De-naming backlog is exhausted (iter#40), so steps 1–2 are normally no-ops;
+this generation step is the entire iteration. Pull enough topics to vary widely:
 ```
-python3 tools.py next-topics 3
+python3 tools.py next-topics 5
 ```
 Spread `GEN_EN` English + `GEN_JP` Japanese sentences across the returned topics.
 Rules:
 - **No names/brands/institutions** — these are clean by construction.
-- Vary structure, length, and register across the batch; mix difficulties
-  (aim roughly easy/medium/hard ≈ 1/2/1).
+- Vary structure, length, register, and **topic** across the batch — no two
+  sentences should feel like restatements of each other.
+- **Difficulty mix: 70% N1–N3, 30% N4–N5** (include genuine N1 — advanced
+  grammar/vocab, longer clauses). For EN, mirror this by leaning medium/hard.
 - Make them genuinely useful for translation & speaking practice (everyday,
   concrete, natural).
 - Do **not** restate the topic literally every time; let it inspire variety.
@@ -66,10 +70,16 @@ English → `_tmp_en.json` as `[{sentence, translate_ch, tags}]`
 (`tags` = the topic(s) used, lowercase; brings EN toward JP parity).
 Japanese → `_tmp_jp.json` as
 `[{japanese, chunks, translation, english, difficulty, tags}]` where:
-- `chunks` concatenated == `japanese` **exactly** (segment at natural phrase
-  boundaries — particle/clause units, like the existing data);
+- `chunks` concatenated == `japanese` **exactly**;
+- **Chunk fine-grained: ≥5 chunks per sentence, and split particles
+  (は を が に で へ と も から まで の、 etc.) into their OWN chunks** so the
+  learner practices where each particle goes. e.g.
+  `買う前に値段を見ます。` → `["買う前","に","値段","を","見ます。"]` (not
+  `["買う前に","値段を","見ます。"]`). Keep verb+okurigana and the final
+  punctuation attached to the verb chunk.
 - `translation` = Traditional Chinese, `english` = natural English;
-- `difficulty` ∈ {easy, medium, hard}; `tags` include a JLPT level (N5–N1) + topics.
+- `difficulty` ∈ {easy, medium, hard}; `tags` include a JLPT level (N5–N1) +
+  topics. Hit the 70% N1–N3 / 30% N4–N5 split across the batch.
 ```
 python3 tools.py append-en _tmp_en.json
 python3 tools.py append-jp _tmp_jp.json

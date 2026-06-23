@@ -33373,5 +33373,423 @@
       "n2",
       "globalization"
     ]
+  },
+  {
+    "id": "1708",
+    "japanese": "私は毎朝早く起きます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "早く",
+      "起きます。"
+    ],
+    "translation": "我每天早上很早起床。",
+    "english": "I wake up early every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "personal habits"
+    ]
+  },
+  {
+    "id": "1709",
+    "japanese": "悪い習慣を変えるのは、なかなか難しい。",
+    "chunks": [
+      "悪い",
+      "習慣",
+      "を",
+      "変えるのは、",
+      "なかなか",
+      "難しい。"
+    ],
+    "translation": "要改掉壞習慣，相當困難。",
+    "english": "Changing a bad habit is quite difficult.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "personal habits"
+    ]
+  },
+  {
+    "id": "1710",
+    "japanese": "一度身についた癖は、意識しないとなかなか直らない。",
+    "chunks": [
+      "一度",
+      "身についた",
+      "癖",
+      "は、",
+      "意識しないと",
+      "なかなか",
+      "直らない。"
+    ],
+    "translation": "一旦養成的習慣，不刻意留意就很難改正。",
+    "english": "A habit once formed is hard to fix unless you're conscious of it.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "personal habits"
+    ]
+  },
+  {
+    "id": "1711",
+    "japanese": "良い習慣を継続できるか否かが、長期的な成果を大きく左右する。",
+    "chunks": [
+      "良い",
+      "習慣",
+      "を",
+      "継続できるか否かが、",
+      "長期的な",
+      "成果",
+      "を",
+      "大きく",
+      "左右する。"
+    ],
+    "translation": "能否持續好習慣，將大大左右長期的成果。",
+    "english": "Whether you can sustain good habits greatly determines your long-term results.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "personal habits"
+    ]
+  },
+  {
+    "id": "1712",
+    "japanese": "私は毎日七時に家を出ます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎日",
+      "七時",
+      "に",
+      "家",
+      "を",
+      "出ます。"
+    ],
+    "translation": "我每天七點出門。",
+    "english": "I leave home at seven every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "routine"
+    ]
+  },
+  {
+    "id": "1713",
+    "japanese": "朝ごはんを食べてから、学校へ行きます。",
+    "chunks": [
+      "朝ごはん",
+      "を",
+      "食べてから、",
+      "学校",
+      "へ",
+      "行きます。"
+    ],
+    "translation": "我吃完早餐後再去學校。",
+    "english": "I go to school after eating breakfast.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "routine"
+    ]
+  },
+  {
+    "id": "1714",
+    "japanese": "同じ時間に寝ると、体の調子が良くなる。",
+    "chunks": [
+      "同じ",
+      "時間",
+      "に",
+      "寝ると、",
+      "体",
+      "の",
+      "調子",
+      "が",
+      "良くなる。"
+    ],
+    "translation": "在同樣的時間睡覺，身體狀況就會變好。",
+    "english": "If you sleep at the same time, your physical condition improves.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "routine"
+    ]
+  },
+  {
+    "id": "1715",
+    "japanese": "毎日の習慣こそが、その人の生活の質を決めると言える。",
+    "chunks": [
+      "毎日",
+      "の",
+      "習慣こそが、",
+      "その人",
+      "の",
+      "生活",
+      "の",
+      "質",
+      "を",
+      "決めると言える。"
+    ],
+    "translation": "可以說，正是每天的習慣決定了一個人的生活品質。",
+    "english": "It can be said that daily habits are precisely what determine a person's quality of life.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "routine"
+    ]
+  },
+  {
+    "id": "1716",
+    "japanese": "安い物を買っても、すぐに壊れることがあります。",
+    "chunks": [
+      "安い",
+      "物",
+      "を",
+      "買っても、",
+      "すぐに",
+      "壊れることが",
+      "あります。"
+    ],
+    "translation": "就算買了便宜的東西，有時很快就會壞。",
+    "english": "Even if you buy cheap things, they sometimes break right away.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "consumerism"
+    ]
+  },
+  {
+    "id": "1717",
+    "japanese": "広告を見ると、つい欲しくなってしまう。",
+    "chunks": [
+      "広告",
+      "を",
+      "見ると、",
+      "つい",
+      "欲しく",
+      "なってしまう。"
+    ],
+    "translation": "一看到廣告，就會不由自主地想要。",
+    "english": "When I see an ad, I can't help wanting it.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "consumerism"
+    ]
+  },
+  {
+    "id": "1718",
+    "japanese": "本当に必要な物だけを買う習慣をつけたい。",
+    "chunks": [
+      "本当に",
+      "必要な",
+      "物",
+      "だけ",
+      "を",
+      "買う",
+      "習慣",
+      "を",
+      "つけたい。"
+    ],
+    "translation": "我想養成只買真正需要的東西的習慣。",
+    "english": "I want to develop the habit of buying only what I truly need.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "consumerism"
+    ]
+  },
+  {
+    "id": "1719",
+    "japanese": "消費を煽る社会では、何を持たないかという選択こそが問われる。",
+    "chunks": [
+      "消費",
+      "を",
+      "煽る",
+      "社会",
+      "では、",
+      "何を持たないか",
+      "という",
+      "選択こそが",
+      "問われる。"
+    ],
+    "translation": "在一個刺激消費的社會裡，選擇不擁有什麼，才正是受到考驗之處。",
+    "english": "In a society that fuels consumption, it's the choice of what not to own that is truly tested.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "consumerism"
+    ]
+  },
+  {
+    "id": "1720",
+    "japanese": "大勢の前で話すのは緊張します。",
+    "chunks": [
+      "大勢",
+      "の",
+      "前",
+      "で",
+      "話すのは",
+      "緊張します。"
+    ],
+    "translation": "在很多人面前說話會緊張。",
+    "english": "Speaking in front of a crowd makes me nervous.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "public speaking"
+    ]
+  },
+  {
+    "id": "1721",
+    "japanese": "聞き手の目を見て話すと、説得力が増す。",
+    "chunks": [
+      "聞き手",
+      "の",
+      "目",
+      "を",
+      "見て",
+      "話すと、",
+      "説得力",
+      "が",
+      "増す。"
+    ],
+    "translation": "看著聽眾的眼睛說話，說服力就會增強。",
+    "english": "When you speak while looking the listener in the eye, you become more persuasive.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "public speaking"
+    ]
+  },
+  {
+    "id": "1722",
+    "japanese": "緊張をうまく力に変えられる人が、良い話し手になる。",
+    "chunks": [
+      "緊張",
+      "を",
+      "うまく",
+      "力",
+      "に",
+      "変えられる人が、",
+      "良い",
+      "話し手",
+      "に",
+      "なる。"
+    ],
+    "translation": "能巧妙地將緊張轉化為力量的人，會成為優秀的演講者。",
+    "english": "Those who can skillfully turn nerves into strength become good speakers.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "public speaking"
+    ]
+  },
+  {
+    "id": "1723",
+    "japanese": "聴衆を惹きつけるには、内容もさることながら、間の取り方が肝心だ。",
+    "chunks": [
+      "聴衆",
+      "を",
+      "惹きつけるには、",
+      "内容も",
+      "さることながら、",
+      "間の取り方",
+      "が",
+      "肝心だ。"
+    ],
+    "translation": "要吸引聽眾，內容固然重要，但停頓的拿捏才是關鍵。",
+    "english": "To captivate an audience, the content matters, but how you handle the pauses is crucial.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "public speaking"
+    ]
+  },
+  {
+    "id": "1724",
+    "japanese": "公園で家族の写真を撮りました。",
+    "chunks": [
+      "公園",
+      "で",
+      "家族",
+      "の",
+      "写真",
+      "を",
+      "撮りました。"
+    ],
+    "translation": "我在公園拍了家人的照片。",
+    "english": "I took a photo of my family in the park.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "photography"
+    ]
+  },
+  {
+    "id": "1725",
+    "japanese": "光の使い方で、写真の印象が変わる。",
+    "chunks": [
+      "光",
+      "の",
+      "使い方",
+      "で、",
+      "写真",
+      "の",
+      "印象",
+      "が",
+      "変わる。"
+    ],
+    "translation": "運用光線的方式，會改變照片給人的印象。",
+    "english": "The way you use light changes the impression a photo gives.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "photography"
+    ]
+  },
+  {
+    "id": "1726",
+    "japanese": "何気ない日常を切り取った写真ほど、心に残る。",
+    "chunks": [
+      "何気ない",
+      "日常",
+      "を",
+      "切り取った",
+      "写真ほど、",
+      "心",
+      "に",
+      "残る。"
+    ],
+    "translation": "越是捕捉平凡日常的照片，越能留在心中。",
+    "english": "The more a photo captures an unremarkable everyday moment, the more it stays with you.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "photography"
+    ]
+  },
+  {
+    "id": "1727",
+    "japanese": "一瞬の表情を捉えるためには、被写体との信頼関係が欠かせない。",
+    "chunks": [
+      "一瞬",
+      "の",
+      "表情",
+      "を",
+      "捉えるためには、",
+      "被写体",
+      "との",
+      "信頼関係",
+      "が",
+      "欠かせない。"
+    ],
+    "translation": "為了捕捉稍縱即逝的表情，與拍攝對象之間的信任關係不可或缺。",
+    "english": "To capture a fleeting expression, a relationship of trust with the subject is essential.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "photography"
+    ]
   }
 ]
