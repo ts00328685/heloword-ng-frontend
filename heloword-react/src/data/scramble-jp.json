@@ -33791,5 +33791,418 @@
       "n1",
       "photography"
     ]
+  },
+  {
+    "id": "1728",
+    "japanese": "母は私の音楽が好きではありません。",
+    "chunks": [
+      "母",
+      "は",
+      "私",
+      "の",
+      "音楽",
+      "が",
+      "好きではありません。"
+    ],
+    "translation": "我媽不喜歡我的音樂。",
+    "english": "My mom doesn't like my music.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "generation gap"
+    ]
+  },
+  {
+    "id": "1729",
+    "japanese": "若い世代と年配の世代では、考え方が違う。",
+    "chunks": [
+      "若い",
+      "世代",
+      "と",
+      "年配の",
+      "世代",
+      "では、",
+      "考え方",
+      "が",
+      "違う。"
+    ],
+    "translation": "年輕世代和年長世代的想法不一樣。",
+    "english": "Younger and older generations think differently.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "generation gap"
+    ]
+  },
+  {
+    "id": "1730",
+    "japanese": "親の価値観を、そのまま子に押しつけるべきではない。",
+    "chunks": [
+      "親",
+      "の",
+      "価値観",
+      "を、",
+      "そのまま",
+      "子",
+      "に",
+      "押しつけるべきではない。"
+    ],
+    "translation": "不應該把父母的價值觀原封不動地強加給孩子。",
+    "english": "You shouldn't impose your values on your children as they are.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "generation gap"
+    ]
+  },
+  {
+    "id": "1731",
+    "japanese": "世代間の溝は、互いの背景を理解しようとする努力によってのみ埋められる。",
+    "chunks": [
+      "世代間",
+      "の",
+      "溝",
+      "は、",
+      "互いの",
+      "背景",
+      "を",
+      "理解しようとする",
+      "努力",
+      "によってのみ",
+      "埋められる。"
+    ],
+    "translation": "世代之間的隔閡，唯有透過試圖理解彼此背景的努力才能填補。",
+    "english": "The generational gap can be bridged only by an effort to understand each other's backgrounds.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "generation gap"
+    ]
+  },
+  {
+    "id": "1732",
+    "japanese": "今日のことを日記に書きます。",
+    "chunks": [
+      "今日",
+      "の",
+      "こと",
+      "を",
+      "日記",
+      "に",
+      "書きます。"
+    ],
+    "translation": "我把今天的事寫進日記。",
+    "english": "I write about today's events in my diary.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "reflection"
+    ]
+  },
+  {
+    "id": "1733",
+    "japanese": "一日の終わりに、自分の行動を振り返る。",
+    "chunks": [
+      "一日",
+      "の",
+      "終わり",
+      "に、",
+      "自分",
+      "の",
+      "行動",
+      "を",
+      "振り返る。"
+    ],
+    "translation": "在一天結束時，回顧自己的行為。",
+    "english": "At the end of the day, I look back on my own actions.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "reflection"
+    ]
+  },
+  {
+    "id": "1734",
+    "japanese": "失敗を振り返ることで、次に活かすことができる。",
+    "chunks": [
+      "失敗",
+      "を",
+      "振り返ることで、",
+      "次",
+      "に",
+      "活かすことが",
+      "できる。"
+    ],
+    "translation": "透過回顧失敗，就能在下一次加以運用。",
+    "english": "By looking back on failures, you can make use of them next time.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "reflection"
+    ]
+  },
+  {
+    "id": "1735",
+    "japanese": "立ち止まって自らを省みる時間こそが、真の成長をもたらす。",
+    "chunks": [
+      "立ち止まって",
+      "自ら",
+      "を",
+      "省みる",
+      "時間こそが、",
+      "真の",
+      "成長",
+      "を",
+      "もたらす。"
+    ],
+    "translation": "正是停下腳步自我反省的時間，才帶來真正的成長。",
+    "english": "It is the time spent pausing to reflect on oneself that brings true growth.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "reflection"
+    ]
+  },
+  {
+    "id": "1736",
+    "japanese": "週末に友達と会います。",
+    "chunks": [
+      "週末",
+      "に",
+      "友達",
+      "と",
+      "会います。"
+    ],
+    "translation": "我週末和朋友見面。",
+    "english": "I meet my friends on the weekend.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "social"
+    ]
+  },
+  {
+    "id": "1737",
+    "japanese": "パーティーで新しい人と知り合いました。",
+    "chunks": [
+      "パーティー",
+      "で",
+      "新しい",
+      "人",
+      "と",
+      "知り合いました。"
+    ],
+    "translation": "我在派對上認識了新朋友。",
+    "english": "I got acquainted with new people at the party.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "social"
+    ]
+  },
+  {
+    "id": "1738",
+    "japanese": "人付き合いが苦手でも、少しずつ慣れていける。",
+    "chunks": [
+      "人付き合い",
+      "が",
+      "苦手でも、",
+      "少しずつ",
+      "慣れていける。"
+    ],
+    "translation": "即使不擅長社交，也能一點一點地習慣。",
+    "english": "Even if you're bad at socializing, you can gradually get used to it.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "social"
+    ]
+  },
+  {
+    "id": "1739",
+    "japanese": "信頼は、小さな約束を守り続けることで築かれる。",
+    "chunks": [
+      "信頼",
+      "は、",
+      "小さな",
+      "約束",
+      "を",
+      "守り続けることで",
+      "築かれる。"
+    ],
+    "translation": "信任是靠不斷遵守小小的承諾而建立起來的。",
+    "english": "Trust is built by continually keeping small promises.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "social"
+    ]
+  },
+  {
+    "id": "1740",
+    "japanese": "店員さんがとても親切でした。",
+    "chunks": [
+      "店員さん",
+      "が",
+      "とても",
+      "親切",
+      "でした。"
+    ],
+    "translation": "店員非常親切。",
+    "english": "The shop staff were very kind.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "customer service"
+    ]
+  },
+  {
+    "id": "1741",
+    "japanese": "お客様の話を、最後まで丁寧に聞く。",
+    "chunks": [
+      "お客様",
+      "の",
+      "話",
+      "を、",
+      "最後まで",
+      "丁寧に",
+      "聞く。"
+    ],
+    "translation": "有禮貌地把客人的話聽到最後。",
+    "english": "Listen politely to the customer all the way to the end.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "customer service"
+    ]
+  },
+  {
+    "id": "1742",
+    "japanese": "クレームへの対応こそ、その店の質が表れる。",
+    "chunks": [
+      "クレーム",
+      "へ",
+      "の",
+      "対応こそ、",
+      "その",
+      "店",
+      "の",
+      "質",
+      "が",
+      "表れる。"
+    ],
+    "translation": "正是對客訴的應對，最能顯現出一家店的品質。",
+    "english": "It is precisely in handling complaints that a shop's quality shows.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "customer service"
+    ]
+  },
+  {
+    "id": "1743",
+    "japanese": "顧客の期待を上回る対応が、揺るぎない信頼を生む。",
+    "chunks": [
+      "顧客",
+      "の",
+      "期待",
+      "を",
+      "上回る",
+      "対応",
+      "が、",
+      "揺るぎない",
+      "信頼",
+      "を",
+      "生む。"
+    ],
+    "translation": "超越顧客期待的應對，能孕育出不可動搖的信任。",
+    "english": "Service that surpasses customer expectations breeds unshakable trust.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "customer service"
+    ]
+  },
+  {
+    "id": "1744",
+    "japanese": "本を読んで、たくさんのことを学びました。",
+    "chunks": [
+      "本",
+      "を",
+      "読んで、",
+      "たくさん",
+      "の",
+      "こと",
+      "を",
+      "学びました。"
+    ],
+    "translation": "我透過讀書學到了很多東西。",
+    "english": "I learned a lot of things by reading books.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "knowledge"
+    ]
+  },
+  {
+    "id": "1745",
+    "japanese": "知らないことを知るのは、楽しいことだ。",
+    "chunks": [
+      "知らない",
+      "こと",
+      "を",
+      "知るのは、",
+      "楽しい",
+      "ことだ。"
+    ],
+    "translation": "去了解自己不知道的事，是件快樂的事。",
+    "english": "Coming to know what you didn't know is a joy.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "knowledge"
+    ]
+  },
+  {
+    "id": "1746",
+    "japanese": "知識は使ってこそ、本当に身についたと言える。",
+    "chunks": [
+      "知識",
+      "は",
+      "使ってこそ、",
+      "本当に",
+      "身についたと",
+      "言える。"
+    ],
+    "translation": "知識唯有實際運用，才能說是真正學會了。",
+    "english": "Only by using knowledge can you say it has truly become your own.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "knowledge"
+    ]
+  },
+  {
+    "id": "1747",
+    "japanese": "断片的な知識をつなぎ合わせる力が、深い理解へとつながる。",
+    "chunks": [
+      "断片的な",
+      "知識",
+      "を",
+      "つなぎ合わせる",
+      "力",
+      "が、",
+      "深い",
+      "理解",
+      "へと",
+      "つながる。"
+    ],
+    "translation": "把零碎知識串連起來的能力，能通往更深的理解。",
+    "english": "The ability to piece together fragments of knowledge leads to deep understanding.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "knowledge"
+    ]
   }
 ]
