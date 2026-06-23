@@ -32985,5 +32985,139 @@
       "n2",
       "modern society"
     ]
+  },
+  {
+    "id": "1685",
+    "japanese": "一人の時間が好きです。",
+    "chunks": [
+      "一人の時間が",
+      "好きです。"
+    ],
+    "translation": "我喜歡獨處的時間。",
+    "english": "I like time alone.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "personal"
+    ]
+  },
+  {
+    "id": "1686",
+    "japanese": "自分を変えるのは、いつだって自分しかいない。",
+    "chunks": [
+      "自分を",
+      "変えるのは、",
+      "いつだって",
+      "自分しか",
+      "いない。"
+    ],
+    "translation": "能改變自己的，永遠只有自己。",
+    "english": "The only one who can change you is always yourself.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "personal"
+    ]
+  },
+  {
+    "id": "1687",
+    "japanese": "他人と比べるのをやめると、心がずっと楽になる。",
+    "chunks": [
+      "他人と",
+      "比べるのを",
+      "やめると、",
+      "心が",
+      "ずっと",
+      "楽になる。"
+    ],
+    "translation": "一旦停止和別人比較，內心就會輕鬆許多。",
+    "english": "Once you stop comparing yourself to others, your mind becomes much lighter.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "personal"
+    ]
+  },
+  {
+    "id": "1688",
+    "japanese": "毎晩十一時に寝ます。",
+    "chunks": [
+      "毎晩",
+      "十一時に",
+      "寝ます。"
+    ],
+    "translation": "我每天晚上十一點睡覺。",
+    "english": "I go to sleep at eleven every night.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "sleep"
+    ]
+  },
+  {
+    "id": "1689",
+    "japanese": "よく眠れた日は、頭がすっきりしている。",
+    "chunks": [
+      "よく眠れた日は、",
+      "頭が",
+      "すっきりしている。"
+    ],
+    "translation": "睡得好的日子，頭腦會很清醒。",
+    "english": "On days I've slept well, my head feels clear.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "sleep"
+    ]
+  },
+  {
+    "id": "1690",
+    "japanese": "買う前に値段を見ます。",
+    "chunks": [
+      "買う前に",
+      "値段を",
+      "見ます。"
+    ],
+    "translation": "買之前我會看價格。",
+    "english": "I check the price before buying.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "consumer"
+    ]
+  },
+  {
+    "id": "1691",
+    "japanese": "広告を鵜呑みにせず、自分で調べた方がいい。",
+    "chunks": [
+      "広告を",
+      "鵜呑みにせず、",
+      "自分で",
+      "調べた方がいい。"
+    ],
+    "translation": "別全盤相信廣告，自己查證比較好。",
+    "english": "Rather than swallowing ads whole, it's better to look into things yourself.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "consumer"
+    ]
+  },
+  {
+    "id": "1692",
+    "japanese": "安さだけで選ぶと、結局高くつくことがある。",
+    "chunks": [
+      "安さだけで",
+      "選ぶと、",
+      "結局",
+      "高くつくことがある。"
+    ],
+    "translation": "只看便宜來選擇，最後有時反而更花錢。",
+    "english": "If you choose based on price alone, it can end up costing you more in the long run.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "consumer"
+    ]
   }
 ]
