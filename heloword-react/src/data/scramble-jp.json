@@ -34204,5 +34204,419 @@
       "n1",
       "knowledge"
     ]
+  },
+  {
+    "id": "1748",
+    "japanese": "お正月に家族で集まります。",
+    "chunks": [
+      "お正月",
+      "に",
+      "家族",
+      "で",
+      "集まります。"
+    ],
+    "translation": "新年時全家會團聚。",
+    "english": "We gather as a family for the New Year.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "tradition"
+    ]
+  },
+  {
+    "id": "1749",
+    "japanese": "古い伝統を次の世代に伝えたい。",
+    "chunks": [
+      "古い",
+      "伝統",
+      "を",
+      "次",
+      "の",
+      "世代",
+      "に",
+      "伝えたい。"
+    ],
+    "translation": "我想把古老的傳統傳給下一代。",
+    "english": "I want to pass old traditions on to the next generation.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "tradition"
+    ]
+  },
+  {
+    "id": "1750",
+    "japanese": "伝統は守るだけでなく、時代に合わせて変えていくものだ。",
+    "chunks": [
+      "伝統",
+      "は",
+      "守るだけでなく、",
+      "時代",
+      "に",
+      "合わせて",
+      "変えていくものだ。"
+    ],
+    "translation": "傳統不只是要守護，更是要隨著時代去改變的東西。",
+    "english": "Tradition is something to change with the times, not just to preserve.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "tradition"
+    ]
+  },
+  {
+    "id": "1751",
+    "japanese": "形だけの伝統に固執すれば、その本来の意味は失われてしまう。",
+    "chunks": [
+      "形だけの",
+      "伝統",
+      "に",
+      "固執すれば、",
+      "その",
+      "本来の",
+      "意味",
+      "は",
+      "失われてしまう。"
+    ],
+    "translation": "若執著於徒具形式的傳統，它原本的意義便會喪失。",
+    "english": "If you cling to tradition as mere form, its original meaning is lost.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "tradition"
+    ]
+  },
+  {
+    "id": "1752",
+    "japanese": "この問題は思ったより複雑でした。",
+    "chunks": [
+      "この",
+      "問題",
+      "は",
+      "思ったより",
+      "複雑",
+      "でした。"
+    ],
+    "translation": "這個問題比我想的還複雜。",
+    "english": "This problem was more complex than I expected.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "complexity"
+    ]
+  },
+  {
+    "id": "1753",
+    "japanese": "複雑な説明より、簡単な例の方が分かりやすい。",
+    "chunks": [
+      "複雑な",
+      "説明より、",
+      "簡単な",
+      "例",
+      "の",
+      "方が",
+      "分かりやすい。"
+    ],
+    "translation": "比起複雜的解釋，簡單的例子更容易懂。",
+    "english": "A simple example is easier to understand than a complex explanation.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "complexity"
+    ]
+  },
+  {
+    "id": "1754",
+    "japanese": "物事を単純にしすぎると、大事な部分を見落とすことがある。",
+    "chunks": [
+      "物事",
+      "を",
+      "単純にしすぎると、",
+      "大事な",
+      "部分",
+      "を",
+      "見落とすことがある。"
+    ],
+    "translation": "把事情過度簡化，有時會忽略掉重要的部分。",
+    "english": "If you oversimplify things, you can overlook the important parts.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "complexity"
+    ]
+  },
+  {
+    "id": "1755",
+    "japanese": "複雑に絡み合った要因を解きほぐすには、忍耐と冷静な分析が要る。",
+    "chunks": [
+      "複雑に",
+      "絡み合った",
+      "要因",
+      "を",
+      "解きほぐすには、",
+      "忍耐",
+      "と",
+      "冷静な",
+      "分析",
+      "が",
+      "要る。"
+    ],
+    "translation": "要理清錯綜複雜糾纏在一起的因素，需要耐心和冷靜的分析。",
+    "english": "Untangling complexly intertwined factors requires patience and calm analysis.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "complexity"
+    ]
+  },
+  {
+    "id": "1756",
+    "japanese": "私は自分の失敗を考えます。",
+    "chunks": [
+      "私",
+      "は",
+      "自分",
+      "の",
+      "失敗",
+      "を",
+      "考えます。"
+    ],
+    "translation": "我會思考自己的失敗。",
+    "english": "I think about my own failures.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "self-reflection"
+    ]
+  },
+  {
+    "id": "1757",
+    "japanese": "自分の弱さを認めるのは、勇気がいる。",
+    "chunks": [
+      "自分",
+      "の",
+      "弱さ",
+      "を",
+      "認めるのは、",
+      "勇気",
+      "が",
+      "いる。"
+    ],
+    "translation": "承認自己的軟弱，是需要勇氣的。",
+    "english": "It takes courage to admit your own weakness.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "self-reflection"
+    ]
+  },
+  {
+    "id": "1758",
+    "japanese": "他人を責める前に、まず自分を見つめ直すべきだ。",
+    "chunks": [
+      "他人",
+      "を",
+      "責める前に、",
+      "まず",
+      "自分",
+      "を",
+      "見つめ直すべきだ。"
+    ],
+    "translation": "在責怪他人之前，應該先重新審視自己。",
+    "english": "Before blaming others, you should first re-examine yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "self-reflection"
+    ]
+  },
+  {
+    "id": "1759",
+    "japanese": "自らの過ちを直視できる人ほど、同じ失敗を繰り返さない。",
+    "chunks": [
+      "自ら",
+      "の",
+      "過ち",
+      "を",
+      "直視できる人ほど、",
+      "同じ",
+      "失敗",
+      "を",
+      "繰り返さない。"
+    ],
+    "translation": "越是能正視自己過錯的人，越不會重複同樣的失敗。",
+    "english": "The more squarely a person can face their own faults, the less they repeat the same mistakes.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "self-reflection"
+    ]
+  },
+  {
+    "id": "1760",
+    "japanese": "子供が公園で遊んでいます。",
+    "chunks": [
+      "子供",
+      "が",
+      "公園",
+      "で",
+      "遊んでいます。"
+    ],
+    "translation": "孩子們正在公園裡玩。",
+    "english": "The children are playing in the park.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "children"
+    ]
+  },
+  {
+    "id": "1761",
+    "japanese": "うちの子はもうすぐ五歳になります。",
+    "chunks": [
+      "うち",
+      "の",
+      "子",
+      "は",
+      "もうすぐ",
+      "五歳",
+      "に",
+      "なります。"
+    ],
+    "translation": "我家孩子快五歲了。",
+    "english": "Our child will soon turn five.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "children"
+    ]
+  },
+  {
+    "id": "1762",
+    "japanese": "子供は親の言うことより、する事をまねる。",
+    "chunks": [
+      "子供",
+      "は",
+      "親",
+      "の",
+      "言うことより、",
+      "する事",
+      "を",
+      "まねる。"
+    ],
+    "translation": "孩子模仿的是父母的行為，而非父母說的話。",
+    "english": "Children imitate what their parents do, rather than what they say.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "children"
+    ]
+  },
+  {
+    "id": "1763",
+    "japanese": "幼いころに身についた習慣は、一生残ることが多い。",
+    "chunks": [
+      "幼いころ",
+      "に",
+      "身についた",
+      "習慣",
+      "は、",
+      "一生",
+      "残ることが",
+      "多い。"
+    ],
+    "translation": "幼年時養成的習慣，往往會跟著人一輩子。",
+    "english": "Habits acquired in early childhood often last a lifetime.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "children"
+    ]
+  },
+  {
+    "id": "1764",
+    "japanese": "そのお店のサービスはとても良かったです。",
+    "chunks": [
+      "その",
+      "お店",
+      "の",
+      "サービス",
+      "は",
+      "とても",
+      "良かったです。"
+    ],
+    "translation": "那家店的服務非常好。",
+    "english": "The service at that shop was very good.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "customer experience"
+    ]
+  },
+  {
+    "id": "1765",
+    "japanese": "待たされると、客はすぐに不満を感じる。",
+    "chunks": [
+      "待たされると、",
+      "客",
+      "は",
+      "すぐに",
+      "不満",
+      "を",
+      "感じる。"
+    ],
+    "translation": "一被晾著等，顧客很快就會感到不滿。",
+    "english": "When made to wait, customers quickly feel dissatisfied.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "customer experience"
+    ]
+  },
+  {
+    "id": "1766",
+    "japanese": "良い体験をした客は、自然と店の宣伝をしてくれる。",
+    "chunks": [
+      "良い",
+      "体験",
+      "を",
+      "した",
+      "客",
+      "は、",
+      "自然と",
+      "店",
+      "の",
+      "宣伝",
+      "を",
+      "してくれる。"
+    ],
+    "translation": "有過良好體驗的顧客，會自然而然地為店家宣傳。",
+    "english": "Customers who have a good experience will naturally advertise the shop for you.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "customer experience"
+    ]
+  },
+  {
+    "id": "1767",
+    "japanese": "顧客満足は、商品そのものよりも体験全体によって左右される。",
+    "chunks": [
+      "顧客満足",
+      "は、",
+      "商品",
+      "そのもの",
+      "よりも",
+      "体験全体",
+      "によって",
+      "左右される。"
+    ],
+    "translation": "顧客的滿意度，與其說取決於商品本身，不如說取決於整體體驗。",
+    "english": "Customer satisfaction is determined by the whole experience more than by the product itself.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "customer experience"
+    ]
   }
 ]
