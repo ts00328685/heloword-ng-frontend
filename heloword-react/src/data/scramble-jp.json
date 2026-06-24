@@ -36281,5 +36281,432 @@
       "n1",
       "leisure"
     ]
+  },
+  {
+    "id": "1848",
+    "japanese": "まず数字を見ましょう。",
+    "chunks": [
+      "まず",
+      "数字",
+      "を",
+      "見",
+      "ましょう。"
+    ],
+    "translation": "我們先來看數字吧。",
+    "english": "Let's look at the numbers first.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "analysis"
+    ]
+  },
+  {
+    "id": "1849",
+    "japanese": "この報告書は売上を地域ごとに分けている。",
+    "chunks": [
+      "この",
+      "報告書",
+      "は",
+      "売上",
+      "を",
+      "地域ごと",
+      "に",
+      "分けている。"
+    ],
+    "translation": "這份報告把銷售額按地區分開了。",
+    "english": "This report divides sales by region.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "analysis"
+    ]
+  },
+  {
+    "id": "1850",
+    "japanese": "データは何が起きたかは示すが、なぜかは教えてくれない。",
+    "chunks": [
+      "データ",
+      "は",
+      "何が起きたか",
+      "は",
+      "示すが、",
+      "なぜか",
+      "は",
+      "教えてくれない。"
+    ],
+    "translation": "數據能顯示發生了什麼，卻不告訴你為什麼。",
+    "english": "Data shows what happened but doesn't tell you why.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "analysis"
+    ]
+  },
+  {
+    "id": "1851",
+    "japanese": "分析を長く続けることは、求められる決断を避ける口実になりかねない。",
+    "chunks": [
+      "分析",
+      "を",
+      "長く",
+      "続けること",
+      "は、",
+      "求められる",
+      "決断",
+      "を",
+      "避ける",
+      "口実",
+      "に",
+      "なりかねない。"
+    ],
+    "translation": "持續分析過久，可能會淪為逃避所需決斷的藉口。",
+    "english": "Prolonging analysis can become an excuse to avoid the decision it requires.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "analysis"
+    ]
+  },
+  {
+    "id": "1852",
+    "japanese": "ここで少し待ってください。",
+    "chunks": [
+      "ここ",
+      "で",
+      "少し",
+      "待って",
+      "ください。"
+    ],
+    "translation": "請在這裡稍等一下。",
+    "english": "Please wait here a moment.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "patience"
+    ]
+  },
+  {
+    "id": "1853",
+    "japanese": "良いものは、思ったより時間がかかることが多い。",
+    "chunks": [
+      "良いもの",
+      "は、",
+      "思ったより",
+      "時間",
+      "が",
+      "かかることが",
+      "多い。"
+    ],
+    "translation": "好的東西，往往比想像中花更多時間。",
+    "english": "Good things often take longer than expected.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "patience"
+    ]
+  },
+  {
+    "id": "1854",
+    "japanese": "忍耐とは、ただ待つことではなく、物事が進むまで動じないことだ。",
+    "chunks": [
+      "忍耐",
+      "とは、",
+      "ただ",
+      "待つこと",
+      "ではなく、",
+      "物事",
+      "が",
+      "進むまで",
+      "動じないことだ。"
+    ],
+    "translation": "忍耐並非只是等待，而是在事情進展之前都不動搖。",
+    "english": "Patience is not merely waiting, but staying unshaken until things move along.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "patience"
+    ]
+  },
+  {
+    "id": "1855",
+    "japanese": "退屈な過程に耐えられる者だけが、物事を成し遂げる。",
+    "chunks": [
+      "退屈な",
+      "過程",
+      "に",
+      "耐えられる者",
+      "だけ",
+      "が、",
+      "物事",
+      "を",
+      "成し遂げる。"
+    ],
+    "translation": "唯有能忍受枯燥過程的人，才能成事。",
+    "english": "Only those who can endure the tedious process see things through.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "patience"
+    ]
+  },
+  {
+    "id": "1856",
+    "japanese": "祖母は歩くのに手助けがいります。",
+    "chunks": [
+      "祖母",
+      "は",
+      "歩くの",
+      "に",
+      "手助け",
+      "が",
+      "いります。"
+    ],
+    "translation": "我奶奶走路需要幫忙。",
+    "english": "My grandmother needs help to walk.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "elderly care"
+    ]
+  },
+  {
+    "id": "1857",
+    "japanese": "年老いた親の世話は、多くの人が思うより大変だ。",
+    "chunks": [
+      "年老いた",
+      "親",
+      "の",
+      "世話",
+      "は、",
+      "多く",
+      "の",
+      "人",
+      "が",
+      "思うより",
+      "大変だ。"
+    ],
+    "translation": "照顧年邁的父母，比許多人想的還辛苦。",
+    "english": "Caring for an aging parent is harder than most people think.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "elderly care"
+    ]
+  },
+  {
+    "id": "1858",
+    "japanese": "おじいさんに優しくしてあげてください。",
+    "chunks": [
+      "おじいさん",
+      "に",
+      "優しく",
+      "して",
+      "あげて",
+      "ください。"
+    ],
+    "translation": "請溫柔地對待爺爺。",
+    "english": "Please be kind to your grandfather.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "elderly care"
+    ]
+  },
+  {
+    "id": "1859",
+    "japanese": "介護の最もつらい点は、愛する人が少しずつ変わるのを見ることだ。",
+    "chunks": [
+      "介護",
+      "の",
+      "最も",
+      "つらい点",
+      "は、",
+      "愛する人",
+      "が",
+      "少しずつ",
+      "変わるの",
+      "を",
+      "見ることだ。"
+    ],
+    "translation": "照護中最痛苦的一點，是看著所愛的人一點一點地改變。",
+    "english": "The hardest part of caregiving is watching a loved one slowly change.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "elderly care"
+    ]
+  },
+  {
+    "id": "1860",
+    "japanese": "農家の人は米と野菜を作ります。",
+    "chunks": [
+      "農家の人",
+      "は",
+      "米",
+      "と",
+      "野菜",
+      "を",
+      "作ります。"
+    ],
+    "translation": "農夫種稻米和蔬菜。",
+    "english": "The farmer grows rice and vegetables.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "agriculture"
+    ]
+  },
+  {
+    "id": "1861",
+    "japanese": "一度の不作が、一年分の苦労を台無しにする。",
+    "chunks": [
+      "一度",
+      "の",
+      "不作",
+      "が、",
+      "一年分",
+      "の",
+      "苦労",
+      "を",
+      "台無しにする。"
+    ],
+    "translation": "一次的歉收，就能毀掉一整年的辛勞。",
+    "english": "A single bad harvest ruins a whole year of work.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "agriculture"
+    ]
+  },
+  {
+    "id": "1862",
+    "japanese": "農業は、忍耐と天候、そしてやり直す覚悟に支えられている。",
+    "chunks": [
+      "農業",
+      "は、",
+      "忍耐",
+      "と",
+      "天候、",
+      "そして",
+      "やり直す",
+      "覚悟",
+      "に",
+      "支えられている。"
+    ],
+    "translation": "農業仰賴的是耐心、天候，以及重頭再來的決心。",
+    "english": "Farming is sustained by patience, weather, and the resolve to start over.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "agriculture"
+    ]
+  },
+  {
+    "id": "1863",
+    "japanese": "農業を継ぐ若者が減るにつれ、受け継がれてきた知恵が失われつつある。",
+    "chunks": [
+      "農業",
+      "を",
+      "継ぐ",
+      "若者",
+      "が",
+      "減るにつれ、",
+      "受け継がれてきた",
+      "知恵",
+      "が",
+      "失われつつある。"
+    ],
+    "translation": "隨著繼承農業的年輕人減少，世代相傳的智慧正逐漸流失。",
+    "english": "As fewer young people take over farming, inherited wisdom is being lost.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "agriculture"
+    ]
+  },
+  {
+    "id": "1864",
+    "japanese": "最初から話を聞かせてください。",
+    "chunks": [
+      "最初",
+      "から",
+      "話",
+      "を",
+      "聞かせて",
+      "ください。"
+    ],
+    "translation": "請從頭把事情說給我聽。",
+    "english": "Please tell me the story from the beginning.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "narrative"
+    ]
+  },
+  {
+    "id": "1865",
+    "japanese": "良い物語には、必ず転機が必要だ。",
+    "chunks": [
+      "良い",
+      "物語",
+      "には、",
+      "必ず",
+      "転機",
+      "が",
+      "必要だ。"
+    ],
+    "translation": "好的故事，一定需要一個轉機。",
+    "english": "A good story always needs a turning point.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "narrative"
+    ]
+  },
+  {
+    "id": "1866",
+    "japanese": "人は自分の人生を物語として語ることで、それを理解する。",
+    "chunks": [
+      "人",
+      "は",
+      "自分",
+      "の",
+      "人生",
+      "を",
+      "物語として",
+      "語ることで、",
+      "それ",
+      "を",
+      "理解する。"
+    ],
+    "translation": "人透過把自己的人生當作故事來講述，從而理解它。",
+    "english": "People make sense of their lives by telling them as a story.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "narrative"
+    ]
+  },
+  {
+    "id": "1867",
+    "japanese": "物語は、語り方そのものが、描かれる出来事以上に重要になることがある。",
+    "chunks": [
+      "物語",
+      "は、",
+      "語り方",
+      "そのもの",
+      "が、",
+      "描かれる",
+      "出来事",
+      "以上に",
+      "重要になることがある。"
+    ],
+    "translation": "一個故事，其敘述方式本身，有時會比所描繪的事件更為重要。",
+    "english": "In a story, how it's told can matter more than the events it depicts.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "narrative"
+    ]
   }
 ]

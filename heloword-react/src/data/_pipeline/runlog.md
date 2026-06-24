@@ -47,3 +47,4 @@
 - **2026-06-24** (run #45): iter#45: generation-only, +20 en +20 jp (marketing/education/creative/decision making/resilience); particle chunks >=5, 70/30
 - **2026-06-24** (run #46): iter#46: generation-only, +20 en +20 jp (aging/innovation/literary/creativity/problem-solving); particle chunks >=5, 70/30
 - **2026-06-24** (run #47): iter#47: generation-only, +20 en +20 jp (dedication/aging society/manufacturing/literature/leisure); particle chunks >=5, 70/30
+- **2026-06-24** (run #48): iter#48: generation-only, +20 en +20 jp (analysis/patience/elderly care/agriculture/narrative); particle chunks >=5, 70/30
