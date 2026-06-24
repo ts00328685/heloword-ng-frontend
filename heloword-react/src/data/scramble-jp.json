@@ -37533,5 +37533,416 @@
       "n2",
       "habits"
     ]
+  },
+  {
+    "id": "1908",
+    "japanese": "お仕事は何ですか。",
+    "chunks": [
+      "お仕事",
+      "は",
+      "何",
+      "です",
+      "か。"
+    ],
+    "translation": "你的工作是什麼？",
+    "english": "What is your job?",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "occupation"
+    ]
+  },
+  {
+    "id": "1909",
+    "japanese": "彼女は病院で看護師をしています。",
+    "chunks": [
+      "彼女",
+      "は",
+      "病院",
+      "で",
+      "看護師",
+      "を",
+      "しています。"
+    ],
+    "translation": "她在醫院當護士。",
+    "english": "She works as a nurse at a hospital.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "occupation"
+    ]
+  },
+  {
+    "id": "1910",
+    "japanese": "肩書きは、その人が何をするかを示すが、何者かは示さない。",
+    "chunks": [
+      "肩書き",
+      "は、",
+      "その人",
+      "が",
+      "何をするか",
+      "を",
+      "示すが、",
+      "何者か",
+      "は",
+      "示さない。"
+    ],
+    "translation": "頭銜顯示一個人做什麼，卻不顯示他是誰。",
+    "english": "A title shows what a person does, but not who they are.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "occupation"
+    ]
+  },
+  {
+    "id": "1911",
+    "japanese": "多くの人は、満たされなくなった職にも長くとどまり続ける。",
+    "chunks": [
+      "多く",
+      "の",
+      "人",
+      "は、",
+      "満たされなくなった職",
+      "にも",
+      "長く",
+      "とどまり続ける。"
+    ],
+    "translation": "許多人即使對一份職業不再感到滿足，仍長久地留在其中。",
+    "english": "Many people stay long in a job even after it no longer fulfills them.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "occupation"
+    ]
+  },
+  {
+    "id": "1912",
+    "japanese": "やらないより、遅くてもやった方がいい。",
+    "chunks": [
+      "やらないより、",
+      "遅くても",
+      "やった",
+      "方が",
+      "いい。"
+    ],
+    "translation": "與其不做，晚做也比不做好。",
+    "english": "Better to do it late than not at all.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "proverbial"
+    ]
+  },
+  {
+    "id": "1913",
+    "japanese": "早起きは三文の徳と言います。",
+    "chunks": [
+      "早起き",
+      "は",
+      "三文の徳",
+      "と",
+      "言います。"
+    ],
+    "translation": "俗話說，早起三分利。",
+    "english": "They say the early riser gains an advantage.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "proverbial"
+    ]
+  },
+  {
+    "id": "1914",
+    "japanese": "ことわざは、得がたい知恵を短い言葉に込めるから生き残る。",
+    "chunks": [
+      "ことわざ",
+      "は、",
+      "得がたい知恵",
+      "を",
+      "短い言葉",
+      "に",
+      "込めるから",
+      "生き残る。"
+    ],
+    "translation": "諺語之所以流傳，是因為把難得的智慧濃縮進簡短的話語中。",
+    "english": "Proverbs survive because they pack hard-won wisdom into few words.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "proverbial"
+    ]
+  },
+  {
+    "id": "1915",
+    "japanese": "古い格言は心を慰めても、何をすべきかは教えてくれない。",
+    "chunks": [
+      "古い",
+      "格言",
+      "は",
+      "心",
+      "を",
+      "慰めても、",
+      "何をすべきか",
+      "は",
+      "教えてくれない。"
+    ],
+    "translation": "古老的格言能慰藉人心，卻不告訴你該做什麼。",
+    "english": "An old saying may comfort you but doesn't tell you what to do.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "proverbial"
+    ]
+  },
+  {
+    "id": "1916",
+    "japanese": "あの歌は世界中で人気になりました。",
+    "chunks": [
+      "あの",
+      "歌",
+      "は",
+      "世界中",
+      "で",
+      "人気",
+      "に",
+      "なりました。"
+    ],
+    "translation": "那首歌在全世界都受歡迎。",
+    "english": "That song became popular all over the world.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "cultural impact"
+    ]
+  },
+  {
+    "id": "1917",
+    "japanese": "一本の映画が、ある世代の自己認識を変えることがある。",
+    "chunks": [
+      "一本",
+      "の",
+      "映画",
+      "が、",
+      "ある世代",
+      "の",
+      "自己認識",
+      "を",
+      "変えることがある。"
+    ],
+    "translation": "一部電影，有時能改變一個世代的自我認知。",
+    "english": "A single film can change how a generation sees itself.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "cultural impact"
+    ]
+  },
+  {
+    "id": "1918",
+    "japanese": "かつて反抗的だったものが、翌年には主流になっていることが多い。",
+    "chunks": [
+      "かつて",
+      "反抗的だったもの",
+      "が、",
+      "翌年",
+      "には",
+      "主流",
+      "に",
+      "なっていることが",
+      "多い。"
+    ],
+    "translation": "曾經叛逆的東西，往往隔年就成了主流。",
+    "english": "What was once rebellious often becomes mainstream the next year.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "cultural impact"
+    ]
+  },
+  {
+    "id": "1919",
+    "japanese": "文化を最も形づくる作品は、当時称賛されたものとは限らない。",
+    "chunks": [
+      "文化",
+      "を",
+      "最も",
+      "形づくる作品",
+      "は、",
+      "当時",
+      "称賛されたもの",
+      "とは",
+      "限らない。"
+    ],
+    "translation": "最能形塑文化的作品，未必是當時受到稱讚的那些。",
+    "english": "The works that shape a culture most are not necessarily those praised at the time.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "cultural impact"
+    ]
+  },
+  {
+    "id": "1920",
+    "japanese": "雨が降りそうです。",
+    "chunks": [
+      "雨",
+      "が",
+      "降り",
+      "そう",
+      "です。"
+    ],
+    "translation": "看起來要下雨了。",
+    "english": "It looks like it's going to rain.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "weather"
+    ]
+  },
+  {
+    "id": "1921",
+    "japanese": "最近、朝がずいぶん寒くなってきた。",
+    "chunks": [
+      "最近、",
+      "朝",
+      "が",
+      "ずいぶん",
+      "寒く",
+      "なってきた。"
+    ],
+    "translation": "最近早上變得相當冷了。",
+    "english": "Lately the mornings have gotten quite cold.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "weather"
+    ]
+  },
+  {
+    "id": "1922",
+    "japanese": "突然の嵐が、一日の入念な計画を台無しにすることもある。",
+    "chunks": [
+      "突然",
+      "の",
+      "嵐",
+      "が、",
+      "一日",
+      "の",
+      "入念な計画",
+      "を",
+      "台無しにすることもある。"
+    ],
+    "translation": "突如其來的暴風雨，有時會毀掉一整天周詳的計畫。",
+    "english": "A sudden storm can ruin a whole day's careful planning.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "weather"
+    ]
+  },
+  {
+    "id": "1923",
+    "japanese": "予報がいくら進歩しても、天気は時に人を謙虚にさせる。",
+    "chunks": [
+      "予報",
+      "が",
+      "いくら",
+      "進歩しても、",
+      "天気",
+      "は",
+      "時に",
+      "人",
+      "を",
+      "謙虚にさせる。"
+    ],
+    "translation": "無論預報多麼進步，天氣有時仍會讓人變得謙卑。",
+    "english": "However much forecasts advance, the weather still humbles us at times.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "weather"
+    ]
+  },
+  {
+    "id": "1924",
+    "japanese": "なんとなく行くなと感じました。",
+    "chunks": [
+      "なんとなく",
+      "行くな",
+      "と",
+      "感じ",
+      "ました。"
+    ],
+    "translation": "我莫名地感覺別去。",
+    "english": "I somehow felt I shouldn't go.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "intuition"
+    ]
+  },
+  {
+    "id": "1925",
+    "japanese": "頭で考えるより先に、直感が気づくことがある。",
+    "chunks": [
+      "頭",
+      "で",
+      "考えるより",
+      "先に、",
+      "直感",
+      "が",
+      "気づくことがある。"
+    ],
+    "translation": "有時候，直覺比頭腦思考更早察覺到。",
+    "english": "Sometimes intuition notices before the mind reasons it out.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "intuition"
+    ]
+  },
+  {
+    "id": "1926",
+    "japanese": "直感とは、意識の下に沈んだ経験にすぎない。",
+    "chunks": [
+      "直感",
+      "とは、",
+      "意識",
+      "の",
+      "下",
+      "に",
+      "沈んだ経験",
+      "にすぎない。"
+    ],
+    "translation": "直覺其實只是沉入意識之下的經驗罷了。",
+    "english": "Intuition is merely experience that has sunk beneath consciousness.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "intuition"
+    ]
+  },
+  {
+    "id": "1927",
+    "japanese": "直感を信じるのは、十分に考え抜いたときに最も役立つ。",
+    "chunks": [
+      "直感",
+      "を",
+      "信じるの",
+      "は、",
+      "十分に",
+      "考え抜いたとき",
+      "に",
+      "最も",
+      "役立つ。"
+    ],
+    "translation": "相信直覺，在你充分深思之後最為有用。",
+    "english": "Trusting intuition helps most when you've also thought things through.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "intuition"
+    ]
   }
 ]

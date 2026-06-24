@@ -50,3 +50,4 @@
 - **2026-06-24** (run #48): iter#48: generation-only, +20 en +20 jp (analysis/patience/elderly care/agriculture/narrative); particle chunks >=5, 70/30
 - **2026-06-24** (run #49): iter#49: generation-only, +20 en +20 jp (aesthetics/information/courage/casual/side hustle); particle chunks >=5, 70/30
 - **2026-06-24** (run #50): iter#50: generation-only, +20 en +20 jp (metaphor/books/news/faith/habits); particle chunks >=5, 70/30
+- **2026-06-24** (run #51): iter#51: generation-only, +20 en +20 jp (occupation/proverbial/cultural impact/weather/intuition); particle chunks >=5, 70/30
