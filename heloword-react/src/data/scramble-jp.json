@@ -35436,5 +35436,420 @@
       "n1",
       "resilience"
     ]
+  },
+  {
+    "id": "1808",
+    "japanese": "祖父は九十歳です。",
+    "chunks": [
+      "祖父",
+      "は",
+      "九十",
+      "歳",
+      "です。"
+    ],
+    "translation": "我祖父九十歲。",
+    "english": "My grandfather is ninety years old.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "aging"
+    ]
+  },
+  {
+    "id": "1809",
+    "japanese": "年を取ると、時間を大切にするようになる。",
+    "chunks": [
+      "年",
+      "を",
+      "取ると、",
+      "時間",
+      "を",
+      "大切にする",
+      "ように",
+      "なる。"
+    ],
+    "translation": "上了年紀後，會變得珍惜時間。",
+    "english": "As you age, you come to value your time.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "aging"
+    ]
+  },
+  {
+    "id": "1810",
+    "japanese": "老いることは失うばかりではなく、静かな自由ももたらす。",
+    "chunks": [
+      "老いること",
+      "は",
+      "失うばかり",
+      "ではなく、",
+      "静かな",
+      "自由",
+      "も",
+      "もたらす。"
+    ],
+    "translation": "變老不只是失去，也帶來一種平靜的自由。",
+    "english": "Aging is not only loss; it also brings a quiet freedom.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "aging"
+    ]
+  },
+  {
+    "id": "1811",
+    "japanese": "高齢者への接し方に、その社会が本当に大切にするものが表れる。",
+    "chunks": [
+      "高齢者",
+      "への",
+      "接し方",
+      "に、",
+      "その",
+      "社会",
+      "が",
+      "本当に",
+      "大切にするもの",
+      "が",
+      "表れる。"
+    ],
+    "translation": "對待長者的方式，會顯露出那個社會真正重視的東西。",
+    "english": "How a society treats its elderly reveals what it truly values.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "aging"
+    ]
+  },
+  {
+    "id": "1812",
+    "japanese": "この携帯には便利な新しい機能があります。",
+    "chunks": [
+      "この",
+      "携帯",
+      "には",
+      "便利な",
+      "新しい",
+      "機能",
+      "が",
+      "あります。"
+    ],
+    "translation": "這支手機有實用的新功能。",
+    "english": "This phone has a useful new feature.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "innovation"
+    ]
+  },
+  {
+    "id": "1813",
+    "japanese": "新しい考えは、当たり前になる前は変に見える。",
+    "chunks": [
+      "新しい",
+      "考え",
+      "は、",
+      "当たり前",
+      "に",
+      "なる前",
+      "は",
+      "変に",
+      "見える。"
+    ],
+    "translation": "新的想法在變得理所當然之前，看起來很奇怪。",
+    "english": "New ideas look strange before they become obvious.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "innovation"
+    ]
+  },
+  {
+    "id": "1814",
+    "japanese": "本当の革新は、誰もが当然と思うことを疑うところから生まれる。",
+    "chunks": [
+      "本当の",
+      "革新",
+      "は、",
+      "誰もが",
+      "当然と思うこと",
+      "を",
+      "疑うところ",
+      "から",
+      "生まれる。"
+    ],
+    "translation": "真正的創新，源於質疑人人都視為理所當然的事。",
+    "english": "Real innovation is born from questioning what everyone takes for granted.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "innovation"
+    ]
+  },
+  {
+    "id": "1815",
+    "japanese": "画期的な技術も、誰が必要とするか分からなければ価値がない。",
+    "chunks": [
+      "画期的な",
+      "技術",
+      "も、",
+      "誰",
+      "が",
+      "必要とするか",
+      "分からなければ",
+      "価値がない。"
+    ],
+    "translation": "再具劃時代意義的技術，若不知道誰需要它，也毫無價值。",
+    "english": "Even groundbreaking technology has no value if you don't know who needs it.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "innovation"
+    ]
+  },
+  {
+    "id": "1816",
+    "japanese": "今日、授業で詩を読みました。",
+    "chunks": [
+      "今日、",
+      "授業",
+      "で",
+      "詩",
+      "を",
+      "読みました。"
+    ],
+    "translation": "今天我在課堂上讀了詩。",
+    "english": "Today I read a poem in class.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "literary"
+    ]
+  },
+  {
+    "id": "1817",
+    "japanese": "良い物語は、読んでいることを忘れさせる。",
+    "chunks": [
+      "良い",
+      "物語",
+      "は、",
+      "読んでいること",
+      "を",
+      "忘れさせる。"
+    ],
+    "translation": "好的故事會讓人忘記自己正在閱讀。",
+    "english": "A good story makes you forget you're reading.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "literary"
+    ]
+  },
+  {
+    "id": "1818",
+    "japanese": "小説が語らない部分こそ、語られた部分より長く心に残る。",
+    "chunks": [
+      "小説",
+      "が",
+      "語らない部分こそ、",
+      "語られた部分より",
+      "長く",
+      "心",
+      "に",
+      "残る。"
+    ],
+    "translation": "小說沒說出口的部分，反而比說出來的部分更長久地留在心中。",
+    "english": "What a novel leaves unsaid lingers longer than what it tells.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "literary"
+    ]
+  },
+  {
+    "id": "1819",
+    "japanese": "優れた文学は、答えよりも、より良い問いを与えてくれる。",
+    "chunks": [
+      "優れた",
+      "文学",
+      "は、",
+      "答えよりも、",
+      "より良い",
+      "問い",
+      "を",
+      "与えてくれる。"
+    ],
+    "translation": "優秀的文學，給予我們的與其說是答案，不如說是更好的問題。",
+    "english": "Great literature gives us better questions rather than answers.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "literary"
+    ]
+  },
+  {
+    "id": "1820",
+    "japanese": "彼女は壁を青く塗りました。",
+    "chunks": [
+      "彼女",
+      "は",
+      "壁",
+      "を",
+      "青く",
+      "塗りました。"
+    ],
+    "translation": "她把牆漆成藍色。",
+    "english": "She painted the wall blue.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "creativity"
+    ]
+  },
+  {
+    "id": "1821",
+    "japanese": "最初は下手でも、気にしないでください。",
+    "chunks": [
+      "最初",
+      "は",
+      "下手でも、",
+      "気にしないで",
+      "ください。"
+    ],
+    "translation": "一開始做得不好也沒關係，請別在意。",
+    "english": "Don't worry even if you're bad at first.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "creativity"
+    ]
+  },
+  {
+    "id": "1822",
+    "japanese": "制約は創造性を殺すどころか、むしろそれを生み出すことが多い。",
+    "chunks": [
+      "制約",
+      "は",
+      "創造性",
+      "を",
+      "殺すどころか、",
+      "むしろ",
+      "それ",
+      "を",
+      "生み出すことが",
+      "多い。"
+    ],
+    "translation": "限制非但不會扼殺創造力，反而常常會催生創造力。",
+    "english": "Constraints, far from killing creativity, often give rise to it.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "creativity"
+    ]
+  },
+  {
+    "id": "1823",
+    "japanese": "愚かに見える恐れこそが、多くの人の創作を妨げている。",
+    "chunks": [
+      "愚かに",
+      "見える",
+      "恐れこそが、",
+      "多く",
+      "の",
+      "人",
+      "の",
+      "創作",
+      "を",
+      "妨げている。"
+    ],
+    "translation": "正是怕顯得愚蠢的恐懼，阻礙了許多人去創作。",
+    "english": "It is the fear of looking foolish that holds many people back from creating.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "creativity"
+    ]
+  },
+  {
+    "id": "1824",
+    "japanese": "この問題をどう直すか考えましょう。",
+    "chunks": [
+      "この",
+      "問題",
+      "を",
+      "どう",
+      "直すか",
+      "考えましょう。"
+    ],
+    "translation": "我們來想想怎麼解決這個問題吧。",
+    "english": "Let's think about how to fix this problem.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "problem-solving"
+    ]
+  },
+  {
+    "id": "1825",
+    "japanese": "問題をはっきりさせることが、解決の半分だ。",
+    "chunks": [
+      "問題",
+      "を",
+      "はっきりさせること",
+      "が、",
+      "解決",
+      "の",
+      "半分だ。"
+    ],
+    "translation": "把問題弄清楚，就解決了一半。",
+    "english": "Clarifying the problem is half the solution.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "problem-solving"
+    ]
+  },
+  {
+    "id": "1826",
+    "japanese": "行き詰まったときは、気づかなかった前提を疑うとよい。",
+    "chunks": [
+      "行き詰まったとき",
+      "は、",
+      "気づかなかった",
+      "前提",
+      "を",
+      "疑うと",
+      "よい。"
+    ],
+    "translation": "陷入僵局時，去質疑那個沒察覺的前提會有幫助。",
+    "english": "When stuck, it helps to question the assumption you hadn't noticed.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "problem-solving"
+    ]
+  },
+  {
+    "id": "1827",
+    "japanese": "最も難しい問題は、努力よりも問いの捉え直しによって解かれる。",
+    "chunks": [
+      "最も",
+      "難しい",
+      "問題",
+      "は、",
+      "努力よりも",
+      "問い",
+      "の",
+      "捉え直し",
+      "によって",
+      "解かれる。"
+    ],
+    "translation": "最困難的問題，是靠重新理解問題本身，而非靠努力來解決的。",
+    "english": "The hardest problems are solved by reframing the question, not by more effort.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "problem-solving"
+    ]
   }
 ]
