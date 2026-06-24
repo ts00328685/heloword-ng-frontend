@@ -39973,5 +39973,401 @@
       "n2",
       "animals"
     ]
+  },
+  {
+    "id": "2028",
+    "japanese": "今、品物が切れています。",
+    "chunks": [
+      "今、",
+      "品物",
+      "が",
+      "切れて",
+      "います。"
+    ],
+    "translation": "現在缺貨。",
+    "english": "We're out of stock now.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "inventory"
+    ]
+  },
+  {
+    "id": "2029",
+    "japanese": "奥にいくつ残っているか確認してください。",
+    "chunks": [
+      "奥",
+      "に",
+      "いくつ",
+      "残っているか",
+      "確認して",
+      "ください。"
+    ],
+    "translation": "請確認後面還剩幾個。",
+    "english": "Please check how many are left in the back.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "inventory"
+    ]
+  },
+  {
+    "id": "2030",
+    "japanese": "在庫を抱えすぎると、他に使えるお金が動かせなくなる。",
+    "chunks": [
+      "在庫",
+      "を",
+      "抱えすぎると、",
+      "他",
+      "に",
+      "使えるお金",
+      "が",
+      "動かせなくなる。"
+    ],
+    "translation": "庫存囤太多，本可用在別處的錢就動彈不得。",
+    "english": "Holding too much stock locks up money you could use elsewhere.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "inventory"
+    ]
+  },
+  {
+    "id": "2031",
+    "japanese": "肝心なときの品切れは、過剰在庫よりも高くつくことがある。",
+    "chunks": [
+      "肝心なとき",
+      "の",
+      "品切れ",
+      "は、",
+      "過剰在庫",
+      "よりも",
+      "高くつくことがある。"
+    ],
+    "translation": "在關鍵時刻缺貨，付出的代價有時比庫存過剩還高。",
+    "english": "Running out at a crucial moment can cost more than overstocking.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "inventory"
+    ]
+  },
+  {
+    "id": "2032",
+    "japanese": "あの番組は若い人に人気があります。",
+    "chunks": [
+      "あの番組",
+      "は",
+      "若い人",
+      "に",
+      "人気が",
+      "あります。"
+    ],
+    "translation": "那個節目很受年輕人歡迎。",
+    "english": "That show is popular with young people.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "popularity"
+    ]
+  },
+  {
+    "id": "2033",
+    "japanese": "全員に好かれることは、何の主張もないことを意味しがちだ。",
+    "chunks": [
+      "全員",
+      "に",
+      "好かれること",
+      "は、",
+      "何の主張もないこと",
+      "を",
+      "意味しがちだ。"
+    ],
+    "translation": "受所有人喜歡，往往意味著毫無主見。",
+    "english": "Being liked by everyone tends to mean standing for nothing.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "popularity"
+    ]
+  },
+  {
+    "id": "2034",
+    "japanese": "人気があることと良いことは、偶然しか重ならない。",
+    "chunks": [
+      "人気があること",
+      "と",
+      "良いこと",
+      "は、",
+      "偶然",
+      "しか",
+      "重ならない。"
+    ],
+    "translation": "受歡迎和好，只有偶然才會重疊。",
+    "english": "Being popular and being good only overlap by chance.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "popularity"
+    ]
+  },
+  {
+    "id": "2035",
+    "japanese": "承認を求めることは、ゴールのない競争だ。",
+    "chunks": [
+      "承認",
+      "を",
+      "求めること",
+      "は、",
+      "ゴールのない競争",
+      "だ。"
+    ],
+    "translation": "追求認同，是一場沒有終點的競賽。",
+    "english": "Seeking approval is a race with no finish line.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "popularity"
+    ]
+  },
+  {
+    "id": "2036",
+    "japanese": "この薬は食後に飲んでください。",
+    "chunks": [
+      "この薬",
+      "は",
+      "食後",
+      "に",
+      "飲んで",
+      "ください。"
+    ],
+    "translation": "這個藥請飯後服用。",
+    "english": "Please take this medicine after meals.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "medical"
+    ]
+  },
+  {
+    "id": "2037",
+    "japanese": "医者は一週間休むようにと言いました。",
+    "chunks": [
+      "医者",
+      "は",
+      "一週間",
+      "休むように",
+      "と",
+      "言いました。"
+    ],
+    "translation": "醫生說要我休息一週。",
+    "english": "The doctor told me to rest for a week.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "medical"
+    ]
+  },
+  {
+    "id": "2038",
+    "japanese": "病気を早く見つけることが、大きな違いを生むことが多い。",
+    "chunks": [
+      "病気",
+      "を",
+      "早く",
+      "見つけること",
+      "が、",
+      "大きな違い",
+      "を",
+      "生むことが",
+      "多い。"
+    ],
+    "translation": "及早發現疾病，往往會帶來很大的差別。",
+    "english": "Catching an illness early often makes a big difference.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "medical"
+    ]
+  },
+  {
+    "id": "2039",
+    "japanese": "現代医学は寿命を延ばせても、死への恐れはなお和らげにくい。",
+    "chunks": [
+      "現代医学",
+      "は",
+      "寿命",
+      "を",
+      "延ばせても、",
+      "死への恐れ",
+      "は",
+      "なお",
+      "和らげにくい。"
+    ],
+    "translation": "現代醫學能延長壽命，卻仍難以減輕對死亡的恐懼。",
+    "english": "Modern medicine can extend life yet still struggles to ease the fear of death.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "medical"
+    ]
+  },
+  {
+    "id": "2040",
+    "japanese": "もう少しアドバイスをもらえますか。",
+    "chunks": [
+      "もう少し",
+      "アドバイス",
+      "を",
+      "もらえます",
+      "か。"
+    ],
+    "translation": "可以再給我一些建議嗎？",
+    "english": "Could I get a little more advice?",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "advice"
+    ]
+  },
+  {
+    "id": "2041",
+    "japanese": "良い助言は、与えるのは簡単で、受け入れるのは難しい。",
+    "chunks": [
+      "良い助言",
+      "は、",
+      "与えるの",
+      "は",
+      "簡単で、",
+      "受け入れるの",
+      "は",
+      "難しい。"
+    ],
+    "translation": "好的忠告，給予容易，接受困難。",
+    "english": "Good advice is easy to give and hard to accept.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "advice"
+    ]
+  },
+  {
+    "id": "2042",
+    "japanese": "人は助言より、理解されることを求めていることが多い。",
+    "chunks": [
+      "人",
+      "は",
+      "助言",
+      "より、",
+      "理解されること",
+      "を",
+      "求めていることが",
+      "多い。"
+    ],
+    "translation": "比起忠告，人們往往更想被理解。",
+    "english": "People often want to be understood more than they want advice.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "advice"
+    ]
+  },
+  {
+    "id": "2043",
+    "japanese": "最良の助言は、助言者の過去ではなく、あなたの状況に合っている。",
+    "chunks": [
+      "最良の助言",
+      "は、",
+      "助言者の過去",
+      "ではなく、",
+      "あなたの状況",
+      "に",
+      "合っている。"
+    ],
+    "translation": "最好的忠告，切合的是你的處境，而非給忠告者的過去。",
+    "english": "The best advice fits your situation, not the adviser's past.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "advice"
+    ]
+  },
+  {
+    "id": "2044",
+    "japanese": "今日は遅れて本当にすみません。",
+    "chunks": [
+      "今日",
+      "は",
+      "遅れて",
+      "本当に",
+      "すみません。"
+    ],
+    "translation": "今天遲到了，真的很對不起。",
+    "english": "I'm really sorry for being late today.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "apology"
+    ]
+  },
+  {
+    "id": "2045",
+    "japanese": "本当の謝罪には、「でも」という言葉がつかない。",
+    "chunks": [
+      "本当の謝罪",
+      "には、",
+      "「でも」",
+      "という言葉",
+      "が",
+      "つかない。"
+    ],
+    "translation": "真正的道歉，不會帶上「但是」這個詞。",
+    "english": "A real apology doesn't come with the word 'but'.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "apology"
+    ]
+  },
+  {
+    "id": "2046",
+    "japanese": "すぐ謝ること以上に、実際に変わったと示すことが大切だ。",
+    "chunks": [
+      "すぐ",
+      "謝ること",
+      "以上に、",
+      "実際に",
+      "変わったと",
+      "示すこと",
+      "が",
+      "大切だ。"
+    ],
+    "translation": "比起馬上道歉，展現出你真的改變了更重要。",
+    "english": "Showing you've changed matters more than apologizing quickly.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "apology"
+    ]
+  },
+  {
+    "id": "2047",
+    "japanese": "長々と説明が必要な謝罪は、たいてい謝罪ではない。",
+    "chunks": [
+      "長々と",
+      "説明が必要な謝罪",
+      "は、",
+      "たいてい",
+      "謝罪",
+      "では",
+      "ない。"
+    ],
+    "translation": "需要長篇解釋的道歉，通常算不上道歉。",
+    "english": "An apology that needs lengthy explaining usually isn't one.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "apology"
+    ]
   }
 ]
