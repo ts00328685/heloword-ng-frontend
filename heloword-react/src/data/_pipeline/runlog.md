@@ -43,3 +43,4 @@
 - **2026-06-23** (run #41): iter#41: generation-only, +20 en +20 jp (personal habits/routine/consumerism/public speaking/photography); particle-level chunks, 70/30 N1-N3/N4-N5
 - **2026-06-23** (run #42): iter#42: generation-only, +20 en +20 jp (generation gap/reflection/social/customer service/knowledge); particle chunks, 70/30
 - **2026-06-23** (run #43): iter#43: generation-only, +20 en +20 jp (tradition/complexity/self-reflection/children/customer experience); particle chunks, 70/30
+- **2026-06-24** (run #44): iter#44: generation-only, +20 en +20 jp (learning/culture/strategy/perseverance/childhood); particle chunks, 70/30

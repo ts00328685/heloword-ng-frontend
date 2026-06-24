@@ -34618,5 +34618,410 @@
       "n1",
       "customer experience"
     ]
+  },
+  {
+    "id": "1768",
+    "japanese": "新しい言葉を覚えたいです。",
+    "chunks": [
+      "新しい",
+      "言葉",
+      "を",
+      "覚えたい",
+      "です。"
+    ],
+    "translation": "我想學新的詞語。",
+    "english": "I want to learn new words.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "learning"
+    ]
+  },
+  {
+    "id": "1769",
+    "japanese": "間違えることも、勉強のうちです。",
+    "chunks": [
+      "間違えること",
+      "も、",
+      "勉強",
+      "の",
+      "うち",
+      "です。"
+    ],
+    "translation": "犯錯也算是學習的一部分。",
+    "english": "Making mistakes is also part of studying.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "learning"
+    ]
+  },
+  {
+    "id": "1770",
+    "japanese": "人に教えるほど、自分の理解が深まる。",
+    "chunks": [
+      "人",
+      "に",
+      "教えるほど、",
+      "自分",
+      "の",
+      "理解",
+      "が",
+      "深まる。"
+    ],
+    "translation": "越是教別人，自己的理解就越深。",
+    "english": "The more you teach others, the deeper your own understanding becomes.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "learning"
+    ]
+  },
+  {
+    "id": "1771",
+    "japanese": "好奇心から学んだことは、なかなか忘れない。",
+    "chunks": [
+      "好奇心",
+      "から",
+      "学んだこと",
+      "は、",
+      "なかなか",
+      "忘れない。"
+    ],
+    "translation": "出於好奇心而學的東西，很難忘記。",
+    "english": "What you learn out of curiosity is hard to forget.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "learning"
+    ]
+  },
+  {
+    "id": "1772",
+    "japanese": "どの国にも、独自の食文化がある。",
+    "chunks": [
+      "どの",
+      "国",
+      "にも、",
+      "独自の",
+      "食文化",
+      "が",
+      "ある。"
+    ],
+    "translation": "每個國家都有自己獨特的飲食文化。",
+    "english": "Every country has its own food culture.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "culture"
+    ]
+  },
+  {
+    "id": "1773",
+    "japanese": "外国に住むと、自国の文化がよく見えてくる。",
+    "chunks": [
+      "外国",
+      "に",
+      "住むと、",
+      "自国",
+      "の",
+      "文化",
+      "が",
+      "よく",
+      "見えてくる。"
+    ],
+    "translation": "住在國外，反而能清楚看見自己國家的文化。",
+    "english": "When you live abroad, you come to see your own culture clearly.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "culture"
+    ]
+  },
+  {
+    "id": "1774",
+    "japanese": "ある文化では礼儀正しいことが、別の文化では失礼にあたる。",
+    "chunks": [
+      "ある",
+      "文化",
+      "では",
+      "礼儀正しいこと",
+      "が、",
+      "別の",
+      "文化",
+      "では",
+      "失礼にあたる。"
+    ],
+    "translation": "在某種文化裡有禮貌的事，在另一種文化裡卻算失禮。",
+    "english": "What is polite in one culture is rude in another.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "culture"
+    ]
+  },
+  {
+    "id": "1775",
+    "japanese": "文化を理解するとは、習慣だけでなく、その背景にある価値観をつかむことだ。",
+    "chunks": [
+      "文化",
+      "を",
+      "理解するとは、",
+      "習慣だけでなく、",
+      "その",
+      "背景",
+      "に",
+      "ある",
+      "価値観",
+      "を",
+      "つかむことだ。"
+    ],
+    "translation": "理解一種文化，意味著不只掌握習俗，更要掌握其背後的價值觀。",
+    "english": "To understand a culture is to grasp not only its customs but the values behind them.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "culture"
+    ]
+  },
+  {
+    "id": "1776",
+    "japanese": "始める前に計画が必要です。",
+    "chunks": [
+      "始める",
+      "前に",
+      "計画",
+      "が",
+      "必要です。"
+    ],
+    "translation": "開始之前需要計畫。",
+    "english": "We need a plan before starting.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "strategy"
+    ]
+  },
+  {
+    "id": "1777",
+    "japanese": "時には退くことも、賢い戦略だ。",
+    "chunks": [
+      "時には",
+      "退くこと",
+      "も、",
+      "賢い",
+      "戦略だ。"
+    ],
+    "translation": "有時候，退一步也是聰明的策略。",
+    "english": "Sometimes retreating is also a wise strategy.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "strategy"
+    ]
+  },
+  {
+    "id": "1778",
+    "japanese": "良い戦略とは、何をするかと同じくらい、何をしないかを決めることだ。",
+    "chunks": [
+      "良い",
+      "戦略",
+      "とは、",
+      "何をするか",
+      "と",
+      "同じくらい、",
+      "何をしないか",
+      "を",
+      "決めることだ。"
+    ],
+    "translation": "所謂好的策略，就是決定做什麼，也同樣要決定不做什麼。",
+    "english": "A good strategy is about deciding what not to do as much as what to do.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "strategy"
+    ]
+  },
+  {
+    "id": "1779",
+    "japanese": "どんなに優れた戦略も、実行できなければ意味がない。",
+    "chunks": [
+      "どんなに",
+      "優れた",
+      "戦略",
+      "も、",
+      "実行できなければ",
+      "意味",
+      "が",
+      "ない。"
+    ],
+    "translation": "再優秀的策略，若無法執行就毫無意義。",
+    "english": "However excellent a strategy is, it's meaningless if it can't be executed.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "strategy"
+    ]
+  },
+  {
+    "id": "1780",
+    "japanese": "何があっても諦めないでください。",
+    "chunks": [
+      "何",
+      "が",
+      "あっても",
+      "諦めないで",
+      "ください。"
+    ],
+    "translation": "無論發生什麼都請別放棄。",
+    "english": "Please don't give up, no matter what happens.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "1781",
+    "japanese": "彼女は成功するまで挑戦し続けた。",
+    "chunks": [
+      "彼女",
+      "は",
+      "成功する",
+      "まで",
+      "挑戦し続けた。"
+    ],
+    "translation": "她不斷挑戰，直到成功為止。",
+    "english": "She kept challenging herself until she succeeded.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "1782",
+    "japanese": "失敗しても進み続ける人こそ、最後に最も遠くまで行く。",
+    "chunks": [
+      "失敗しても",
+      "進み続ける人こそ、",
+      "最後",
+      "に",
+      "最も",
+      "遠くまで",
+      "行く。"
+    ],
+    "translation": "正是失敗後仍持續前進的人，最終才能走得最遠。",
+    "english": "It is those who keep going despite failure who go the furthest in the end.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "1783",
+    "japanese": "本当の強さとは、倒れないことではなく、倒れた数より一度多く立ち上がることだ。",
+    "chunks": [
+      "本当の",
+      "強さ",
+      "とは、",
+      "倒れないこと",
+      "ではなく、",
+      "倒れた数より",
+      "一度",
+      "多く",
+      "立ち上がることだ。"
+    ],
+    "translation": "真正的堅強，不在於不跌倒，而在於比跌倒次數多站起來一次。",
+    "english": "True strength is not never falling, but getting up one more time than you fall.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "1784",
+    "japanese": "子供のころの思い出が好きです。",
+    "chunks": [
+      "子供のころ",
+      "の",
+      "思い出",
+      "が",
+      "好きです。"
+    ],
+    "translation": "我喜歡童年時的回憶。",
+    "english": "I love my childhood memories.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "childhood"
+    ]
+  },
+  {
+    "id": "1785",
+    "japanese": "子供のころ、よく野原で虫を捕まえた。",
+    "chunks": [
+      "子供のころ、",
+      "よく",
+      "野原",
+      "で",
+      "虫",
+      "を",
+      "捕まえた。"
+    ],
+    "translation": "小時候，我常在原野裡抓蟲。",
+    "english": "As a child, I often caught insects in the fields.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "childhood"
+    ]
+  },
+  {
+    "id": "1786",
+    "japanese": "子供のころに見た景色は、帰るたびに小さく感じる。",
+    "chunks": [
+      "子供のころ",
+      "に",
+      "見た",
+      "景色",
+      "は、",
+      "帰るたびに",
+      "小さく",
+      "感じる。"
+    ],
+    "translation": "童年時看過的景色，每次回去都覺得變小了。",
+    "english": "The scenery I saw as a child feels smaller each time I return.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "childhood"
+    ]
+  },
+  {
+    "id": "1787",
+    "japanese": "大人が何気なく言った言葉が、子供の一生を左右することもある。",
+    "chunks": [
+      "大人",
+      "が",
+      "何気なく",
+      "言った",
+      "言葉",
+      "が、",
+      "子供",
+      "の",
+      "一生",
+      "を",
+      "左右することもある。"
+    ],
+    "translation": "大人不經意說出的話，有時會左右一個孩子的一生。",
+    "english": "Words an adult says offhandedly can sometimes shape a child's whole life.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "childhood"
+    ]
   }
 ]
