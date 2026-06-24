@@ -38753,5 +38753,422 @@
       "n1",
       "humor"
     ]
+  },
+  {
+    "id": "1968",
+    "japanese": "多くの人が物価の上昇を心配しています。",
+    "chunks": [
+      "多く",
+      "の",
+      "人",
+      "が",
+      "物価",
+      "の",
+      "上昇",
+      "を",
+      "心配しています。"
+    ],
+    "translation": "許多人擔心物價上漲。",
+    "english": "Many people are worried about rising prices.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "social issues"
+    ]
+  },
+  {
+    "id": "1969",
+    "japanese": "貧富の差がますます広がっている。",
+    "chunks": [
+      "貧富",
+      "の",
+      "差",
+      "が",
+      "ますます",
+      "広がっている。"
+    ],
+    "translation": "貧富差距越來越大。",
+    "english": "The gap between rich and poor keeps widening.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "social issues"
+    ]
+  },
+  {
+    "id": "1970",
+    "japanese": "誰の目にも明らかな問題ほど、実際に解決するのは難しい。",
+    "chunks": [
+      "誰の目にも",
+      "明らかな問題ほど、",
+      "実際に",
+      "解決するの",
+      "は",
+      "難しい。"
+    ],
+    "translation": "越是人人都看得見的問題，實際解決起來越難。",
+    "english": "The more obvious a problem is to everyone, the harder it is to actually solve.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "social issues"
+    ]
+  },
+  {
+    "id": "1971",
+    "japanese": "人は社会問題が自分の身に及んで初めて気づきがちだ。",
+    "chunks": [
+      "人",
+      "は",
+      "社会問題",
+      "が",
+      "自分の身",
+      "に",
+      "及んで",
+      "初めて",
+      "気づきがちだ。"
+    ],
+    "translation": "人往往要等到社會問題波及自身，才會察覺。",
+    "english": "People tend to notice a social problem only when it reaches them.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "social issues"
+    ]
+  },
+  {
+    "id": "1972",
+    "japanese": "私にとって、勝つことより正直さが大切です。",
+    "chunks": [
+      "私",
+      "にとって、",
+      "勝つこと",
+      "より",
+      "正直さ",
+      "が",
+      "大切です。"
+    ],
+    "translation": "對我來說，誠實比贏更重要。",
+    "english": "To me, honesty matters more than winning.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "values"
+    ]
+  },
+  {
+    "id": "1973",
+    "japanese": "誰も見ていないときの行動が、本当のあなただ。",
+    "chunks": [
+      "誰も",
+      "見ていないとき",
+      "の",
+      "行動",
+      "が、",
+      "本当の",
+      "あなた",
+      "だ。"
+    ],
+    "translation": "沒人看著時的行為，才是真正的你。",
+    "english": "What you do when no one is watching is the real you.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "values"
+    ]
+  },
+  {
+    "id": "1974",
+    "japanese": "本当の価値観は、時間とお金の使い方に表れる。",
+    "chunks": [
+      "本当の",
+      "価値観",
+      "は、",
+      "時間",
+      "と",
+      "お金",
+      "の",
+      "使い方",
+      "に",
+      "表れる。"
+    ],
+    "translation": "真正的價值觀，體現在時間和金錢的使用方式上。",
+    "english": "True values show up in how you use your time and money.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "values"
+    ]
+  },
+  {
+    "id": "1975",
+    "japanese": "価値観を口にするのは簡単だが、犠牲を伴っても守れるかが問われる。",
+    "chunks": [
+      "価値観",
+      "を",
+      "口にするの",
+      "は",
+      "簡単だが、",
+      "犠牲を伴っても",
+      "守れるか",
+      "が",
+      "問われる。"
+    ],
+    "translation": "把價值觀說出口很容易，但考驗在於即使要付出犧牲你是否仍能堅守。",
+    "english": "Stating your values is easy; the test is whether you keep them at a cost.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "values"
+    ]
+  },
+  {
+    "id": "1976",
+    "japanese": "週末に山に登りました。",
+    "chunks": [
+      "週末",
+      "に",
+      "山",
+      "に",
+      "登りました。"
+    ],
+    "translation": "我週末爬了山。",
+    "english": "I climbed a mountain over the weekend.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "adventure"
+    ]
+  },
+  {
+    "id": "1977",
+    "japanese": "少し道に迷うのも、旅の楽しみの一つだ。",
+    "chunks": [
+      "少し",
+      "道",
+      "に",
+      "迷うの",
+      "も、",
+      "旅",
+      "の",
+      "楽しみ",
+      "の",
+      "一つだ。"
+    ],
+    "translation": "稍微迷路，也是旅行的樂趣之一。",
+    "english": "Getting a little lost is one of the joys of travel.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "adventure"
+    ]
+  },
+  {
+    "id": "1978",
+    "japanese": "冒険の高揚感は、たいてい快適な領域のすぐ外にある。",
+    "chunks": [
+      "冒険",
+      "の",
+      "高揚感",
+      "は、",
+      "たいてい",
+      "快適な領域",
+      "の",
+      "すぐ外",
+      "に",
+      "ある。"
+    ],
+    "translation": "冒險的興奮感，通常就在舒適區之外不遠處。",
+    "english": "The thrill of adventure usually lies just outside your comfort zone.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "adventure"
+    ]
+  },
+  {
+    "id": "1979",
+    "japanese": "振り返れば、失敗した旅ほど懐かしく思い出される。",
+    "chunks": [
+      "振り返れば、",
+      "失敗した旅",
+      "ほど",
+      "懐かしく",
+      "思い出される。"
+    ],
+    "translation": "回想起來，越是失敗的旅程，越令人懷念。",
+    "english": "Looking back, the trips that went wrong are the ones I remember most fondly.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "adventure"
+    ]
+  },
+  {
+    "id": "1980",
+    "japanese": "彼女は試験に合格して、免許を取りました。",
+    "chunks": [
+      "彼女",
+      "は",
+      "試験",
+      "に",
+      "合格して、",
+      "免許",
+      "を",
+      "取りました。"
+    ],
+    "translation": "她通過考試，拿到了證照。",
+    "english": "She passed the exam and got her license.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "certification"
+    ]
+  },
+  {
+    "id": "1981",
+    "japanese": "資格は勉強した証であって、仕事ができる証ではない。",
+    "chunks": [
+      "資格",
+      "は",
+      "勉強した証",
+      "であって、",
+      "仕事ができる証",
+      "ではない。"
+    ],
+    "translation": "證照是學習過的證明，而非能勝任工作的證明。",
+    "english": "A qualification proves you studied, not that you can do the job.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "certification"
+    ]
+  },
+  {
+    "id": "1982",
+    "japanese": "多くの分野が、十年前には存在しなかった資格を今や求めている。",
+    "chunks": [
+      "多く",
+      "の",
+      "分野",
+      "が、",
+      "十年前",
+      "には",
+      "存在しなかった資格",
+      "を",
+      "今や",
+      "求めている。"
+    ],
+    "translation": "如今許多領域要求的資格，在十年前根本不存在。",
+    "english": "Many fields now require credentials that didn't exist ten years ago.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "certification"
+    ]
+  },
+  {
+    "id": "1983",
+    "japanese": "資格集めが、仕事を学ぶことの代わりになってしまうことがある。",
+    "chunks": [
+      "資格集め",
+      "が、",
+      "仕事を学ぶこと",
+      "の",
+      "代わり",
+      "に",
+      "なってしまうことがある。"
+    ],
+    "translation": "蒐集證照，有時會變成真正學會工作的替代品。",
+    "english": "Collecting qualifications can become a substitute for learning the work.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "certification"
+    ]
+  },
+  {
+    "id": "1984",
+    "japanese": "私はオンラインで英語を習っています。",
+    "chunks": [
+      "私",
+      "は",
+      "オンライン",
+      "で",
+      "英語",
+      "を",
+      "習っています。"
+    ],
+    "translation": "我在線上學英文。",
+    "english": "I'm learning English online.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "online education"
+    ]
+  },
+  {
+    "id": "1985",
+    "japanese": "自分のペースで、どこでも勉強できます。",
+    "chunks": [
+      "自分",
+      "の",
+      "ペース",
+      "で、",
+      "どこでも",
+      "勉強できます。"
+    ],
+    "translation": "可以在任何地方按自己的步調學習。",
+    "english": "You can study anywhere at your own pace.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "online education"
+    ]
+  },
+  {
+    "id": "1986",
+    "japanese": "オンライン講座は自由を与えるが、教室が補っていた規律を要求する。",
+    "chunks": [
+      "オンライン講座",
+      "は",
+      "自由",
+      "を",
+      "与えるが、",
+      "教室",
+      "が",
+      "補っていた規律",
+      "を",
+      "要求する。"
+    ],
+    "translation": "線上課程給予自由，卻要求一種過去由教室所彌補的自律。",
+    "english": "Online courses grant freedom but demand the discipline a classroom once provided.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "online education"
+    ]
+  },
+  {
+    "id": "1987",
+    "japanese": "オンライン学習の難所は、教材ではなく、誰にも促されずに取り組むことだ。",
+    "chunks": [
+      "オンライン学習",
+      "の",
+      "難所",
+      "は、",
+      "教材",
+      "ではなく、",
+      "誰にも",
+      "促されずに",
+      "取り組むことだ。"
+    ],
+    "translation": "線上學習的難關不在教材，而在於沒人催促時仍能投入。",
+    "english": "The hard part of online learning isn't the material but showing up unprompted.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "online education"
+    ]
   }
 ]
