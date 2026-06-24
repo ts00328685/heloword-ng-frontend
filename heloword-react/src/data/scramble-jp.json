@@ -37944,5 +37944,411 @@
       "n2",
       "intuition"
     ]
+  },
+  {
+    "id": "1928",
+    "japanese": "このスープは少ししょっぱいです。",
+    "chunks": [
+      "この",
+      "スープ",
+      "は",
+      "少し",
+      "しょっぱいです。"
+    ],
+    "translation": "這湯有點鹹。",
+    "english": "This soup is a little salty.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "taste"
+    ]
+  },
+  {
+    "id": "1929",
+    "japanese": "甘い飲み物より、苦いコーヒーが好きです。",
+    "chunks": [
+      "甘い",
+      "飲み物",
+      "より、",
+      "苦い",
+      "コーヒー",
+      "が",
+      "好きです。"
+    ],
+    "translation": "比起甜飲料，我更喜歡苦咖啡。",
+    "english": "I like bitter coffee more than sweet drinks.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "taste"
+    ]
+  },
+  {
+    "id": "1930",
+    "japanese": "子供のころ嫌いだった味も、年を取ると好きになることが多い。",
+    "chunks": [
+      "子供のころ",
+      "嫌いだった味",
+      "も、",
+      "年",
+      "を",
+      "取ると",
+      "好きになることが",
+      "多い。"
+    ],
+    "translation": "小時候討厭的味道，上了年紀後往往會喜歡上。",
+    "english": "Tastes you disliked as a child often become likable with age.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "taste"
+    ]
+  },
+  {
+    "id": "1931",
+    "japanese": "良い味覚と呼ばれるものは、たまたま育った環境の味にすぎない。",
+    "chunks": [
+      "良い味覚",
+      "と",
+      "呼ばれるもの",
+      "は、",
+      "たまたま",
+      "育った環境",
+      "の",
+      "味",
+      "にすぎない。"
+    ],
+    "translation": "所謂好品味，不過是碰巧在成長環境中吃慣的味道罷了。",
+    "english": "What's called good taste is merely the flavors you happened to grow up with.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "taste"
+    ]
+  },
+  {
+    "id": "1932",
+    "japanese": "この用紙に記入してください。",
+    "chunks": [
+      "この",
+      "用紙",
+      "に",
+      "記入して",
+      "ください。"
+    ],
+    "translation": "請填寫這張表格。",
+    "english": "Please fill out this form.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "administrative"
+    ]
+  },
+  {
+    "id": "1933",
+    "japanese": "申請には二種類の身分証明が必要です。",
+    "chunks": [
+      "申請",
+      "には",
+      "二種類",
+      "の",
+      "身分証明",
+      "が",
+      "必要です。"
+    ],
+    "translation": "申請需要兩種身分證明。",
+    "english": "The application requires two forms of identification.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "administrative"
+    ]
+  },
+  {
+    "id": "1934",
+    "japanese": "署名が一つ抜けただけで、手続き全体が数週間遅れることがある。",
+    "chunks": [
+      "署名",
+      "が",
+      "一つ",
+      "抜けただけで、",
+      "手続き全体",
+      "が",
+      "数週間",
+      "遅れることがある。"
+    ],
+    "translation": "只要少了一個簽名，整個手續就可能延誤好幾週。",
+    "english": "Just one missing signature can delay the whole procedure by weeks.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "administrative"
+    ]
+  },
+  {
+    "id": "1935",
+    "japanese": "官僚機構は、規則を守ることが人々への奉仕に取って代わるまで膨張しがちだ。",
+    "chunks": [
+      "官僚機構",
+      "は、",
+      "規則を守ること",
+      "が",
+      "人々への奉仕",
+      "に",
+      "取って代わるまで",
+      "膨張しがちだ。"
+    ],
+    "translation": "官僚機構往往會膨脹，直到遵守規則取代了為人民服務。",
+    "english": "Bureaucracy tends to expand until following rules replaces serving people.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "administrative"
+    ]
+  },
+  {
+    "id": "1936",
+    "japanese": "雨が屋根にぱらぱらと降りました。",
+    "chunks": [
+      "雨",
+      "が",
+      "屋根",
+      "に",
+      "ぱらぱらと",
+      "降りました。"
+    ],
+    "translation": "雨淅瀝淅瀝地打在屋頂上。",
+    "english": "The rain fell pitter-patter on the roof.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "onomatopoeia"
+    ]
+  },
+  {
+    "id": "1937",
+    "japanese": "会議の間ずっと、お腹がぐうぐう鳴っていた。",
+    "chunks": [
+      "会議",
+      "の",
+      "間",
+      "ずっと、",
+      "お腹",
+      "が",
+      "ぐうぐう",
+      "鳴っていた。"
+    ],
+    "translation": "整場會議我的肚子都咕嚕咕嚕地叫。",
+    "english": "My stomach growled the whole time during the meeting.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "onomatopoeia"
+    ]
+  },
+  {
+    "id": "1938",
+    "japanese": "日本語は、静けさや動きのなさまで音の言葉で表す。",
+    "chunks": [
+      "日本語",
+      "は、",
+      "静けさ",
+      "や",
+      "動きのなさ",
+      "まで",
+      "音の言葉",
+      "で",
+      "表す。"
+    ],
+    "translation": "日語甚至連寂靜和靜止都用擬聲詞來表達。",
+    "english": "Japanese expresses even silence and stillness with sound words.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "onomatopoeia"
+    ]
+  },
+  {
+    "id": "1939",
+    "japanese": "これらの擬態語は、普通の説明では伝わらない微妙さを持つ。",
+    "chunks": [
+      "これら",
+      "の",
+      "擬態語",
+      "は、",
+      "普通の説明",
+      "では",
+      "伝わらない微妙さ",
+      "を",
+      "持つ。"
+    ],
+    "translation": "這些擬態詞帶有普通說明無法傳達的微妙之處。",
+    "english": "These mimetic words carry nuances plain description can't convey.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "onomatopoeia"
+    ]
+  },
+  {
+    "id": "1940",
+    "japanese": "昨日、美術展に行きました。",
+    "chunks": [
+      "昨日、",
+      "美術展",
+      "に",
+      "行き",
+      "ました。"
+    ],
+    "translation": "昨天我去了美術展。",
+    "english": "I went to an art exhibition yesterday.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "exhibition"
+    ]
+  },
+  {
+    "id": "1941",
+    "japanese": "美術館では今、前世紀の写真を展示しています。",
+    "chunks": [
+      "美術館",
+      "では",
+      "今、",
+      "前世紀",
+      "の",
+      "写真",
+      "を",
+      "展示しています。"
+    ],
+    "translation": "美術館現在正在展出上個世紀的照片。",
+    "english": "The museum is now exhibiting photographs from the last century.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "exhibition"
+    ]
+  },
+  {
+    "id": "1942",
+    "japanese": "作品の見せ方によって、受け取る印象は変わる。",
+    "chunks": [
+      "作品",
+      "の",
+      "見せ方",
+      "によって、",
+      "受け取る印象",
+      "は",
+      "変わる。"
+    ],
+    "translation": "作品的展示方式不同，給人的印象也會改變。",
+    "english": "How a work is presented changes the impression you take from it.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "exhibition"
+    ]
+  },
+  {
+    "id": "1943",
+    "japanese": "うまく企画された展覧会は、個々の作品だけでは語れない物語を語る。",
+    "chunks": [
+      "うまく",
+      "企画された展覧会",
+      "は、",
+      "個々の作品",
+      "だけでは",
+      "語れない物語",
+      "を",
+      "語る。"
+    ],
+    "translation": "策劃精良的展覽，能訴說個別作品無法單獨訴說的故事。",
+    "english": "A well-planned exhibition tells a story the individual works alone cannot.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "exhibition"
+    ]
+  },
+  {
+    "id": "1944",
+    "japanese": "春が一番好きな季節です。",
+    "chunks": [
+      "春",
+      "が",
+      "一番",
+      "好きな",
+      "季節です。"
+    ],
+    "translation": "春天是我最喜歡的季節。",
+    "english": "Spring is my favorite season.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "season"
+    ]
+  },
+  {
+    "id": "1945",
+    "japanese": "秋になると、葉が赤や金色になる。",
+    "chunks": [
+      "秋",
+      "に",
+      "なると、",
+      "葉",
+      "が",
+      "赤",
+      "や",
+      "金色",
+      "に",
+      "なる。"
+    ],
+    "translation": "一到秋天，樹葉就變成紅色和金色。",
+    "english": "When autumn comes, the leaves turn red and gold.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "season"
+    ]
+  },
+  {
+    "id": "1946",
+    "japanese": "季節は、前のものより速く過ぎていくように感じる。",
+    "chunks": [
+      "季節",
+      "は、",
+      "前のもの",
+      "より",
+      "速く",
+      "過ぎていくように",
+      "感じる。"
+    ],
+    "translation": "感覺每個季節都比前一個過得更快。",
+    "english": "Each season seems to pass faster than the last.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "season"
+    ]
+  },
+  {
+    "id": "1947",
+    "japanese": "移りゆく季節は、良いことも悪いことも永遠には続かないと教えてくれる。",
+    "chunks": [
+      "移りゆく季節",
+      "は、",
+      "良いことも",
+      "悪いことも",
+      "永遠には",
+      "続かないと",
+      "教えてくれる。"
+    ],
+    "translation": "更迭的季節提醒我們，無論好事壞事都不會永遠持續。",
+    "english": "The changing seasons teach us that nothing, good or bad, lasts forever.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "season"
+    ]
   }
 ]
