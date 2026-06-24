@@ -17398,5 +17398,1505 @@
         "id": 3480,
         "translate_ch": "全球化讓世界各國的經濟緊密相連，以至於一國的危機很快就會成為所有人的危機。",
         "sentence": "Globalization made the world's economies so interlinked that one country's crisis quickly becomes everyone's."
+    },
+    {
+        "id": 3481,
+        "translate_ch": "我每天早上很早起床。",
+        "sentence": "I wake up early every morning."
+    },
+    {
+        "id": 3482,
+        "translate_ch": "壞習慣容易養成，卻難以戒除。",
+        "sentence": "Bad habits are easy to start and hard to break."
+    },
+    {
+        "id": 3483,
+        "translate_ch": "習慣一旦養成，不先察覺就很難改掉。",
+        "sentence": "Once a habit sets in, it's hard to undo without noticing it first."
+    },
+    {
+        "id": 3484,
+        "translate_ch": "能否持續好習慣，比天賦更能形塑你的長期成果。",
+        "sentence": "Whether you can sustain good habits, more than raw talent, shapes your long-term results."
+    },
+    {
+        "id": 3485,
+        "translate_ch": "我每天七點出門。",
+        "sentence": "I leave home at seven every day."
+    },
+    {
+        "id": 3486,
+        "translate_ch": "我會先吃早餐再去上班。",
+        "sentence": "I have breakfast before heading to work."
+    },
+    {
+        "id": 3487,
+        "translate_ch": "在固定的時間睡覺，能改善你的精神狀態。",
+        "sentence": "Going to bed at the same time improves how you feel."
+    },
+    {
+        "id": 3488,
+        "translate_ch": "形塑一個人生命的，是微小的日常習慣，而非重大的決定。",
+        "sentence": "It's the small daily routines, not the grand decisions, that quietly shape a life."
+    },
+    {
+        "id": 3489,
+        "translate_ch": "便宜的東西往往買了沒多久就壞。",
+        "sentence": "Cheap things often break soon after you buy them."
+    },
+    {
+        "id": 3490,
+        "translate_ch": "廣告總有辦法讓你想要那些你本不需要的東西。",
+        "sentence": "Ads have a way of making you want things you didn't need."
+    },
+    {
+        "id": 3491,
+        "translate_ch": "只買真正需要的東西，是一個值得養成的習慣。",
+        "sentence": "Buying only what you truly need is a habit worth building."
+    },
+    {
+        "id": 3492,
+        "translate_ch": "在一個為刺激消費而建構的社會裡，你選擇不擁有什麼，最能說明你是誰。",
+        "sentence": "In a society built to fuel consumption, what you choose not to own says the most about you."
+    },
+    {
+        "id": 3493,
+        "translate_ch": "在一群人面前說話我會緊張。",
+        "sentence": "I get nervous speaking in front of a crowd."
+    },
+    {
+        "id": 3494,
+        "translate_ch": "看著聽眾的眼睛說話，會讓你更有說服力。",
+        "sentence": "Looking your listeners in the eye makes you more persuasive."
+    },
+    {
+        "id": 3495,
+        "translate_ch": "能把緊張轉化為能量的人，是最好的演講者。",
+        "sentence": "People who can turn nerves into energy make the best speakers."
+    },
+    {
+        "id": 3496,
+        "translate_ch": "能否抓住觀眾，與其說取決於內容，不如說取決於你如何掌握停頓。",
+        "sentence": "Holding an audience depends less on your content than on how you handle the pauses."
+    },
+    {
+        "id": 3497,
+        "translate_ch": "我在公園拍了一張全家福。",
+        "sentence": "I took a family photo in the park."
+    },
+    {
+        "id": 3498,
+        "translate_ch": "你如何運用光線，會改變一張照片的整體氛圍。",
+        "sentence": "How you use light changes the whole feel of a photo."
+    },
+    {
+        "id": 3499,
+        "translate_ch": "那些長留我們心中的照片，捕捉的是平凡的日子，而非刻意擺拍的。",
+        "sentence": "The photos that stay with us capture ordinary days, not staged ones."
+    },
+    {
+        "id": 3500,
+        "translate_ch": "若沒有拍攝對象的信任，就不可能捕捉到稍縱即逝的表情。",
+        "sentence": "Capturing a fleeting expression is impossible without the subject's trust."
+    },
+    {
+        "id": 3501,
+        "translate_ch": "我媽不喜歡我的音樂。",
+        "sentence": "My mom doesn't like my music."
+    },
+    {
+        "id": 3502,
+        "translate_ch": "年輕世代和年長世代往往看世界的方式不同。",
+        "sentence": "Younger and older generations often see the world differently."
+    },
+    {
+        "id": 3503,
+        "translate_ch": "父母不應該只是把自己的價值觀強加在孩子身上。",
+        "sentence": "Parents shouldn't simply impose their own values onto their children."
+    },
+    {
+        "id": 3504,
+        "translate_ch": "世代之間的隔閡，唯有透過努力理解彼此的處境才能彌合。",
+        "sentence": "The gap between generations can only be bridged by an effort to understand each other's circumstances."
+    },
+    {
+        "id": 3505,
+        "translate_ch": "我會在日記裡寫下我的一天。",
+        "sentence": "I write about my day in a journal."
+    },
+    {
+        "id": 3506,
+        "translate_ch": "在一天結束時，我會回顧自己做了什麼。",
+        "sentence": "At the end of the day, I look back on what I did."
+    },
+    {
+        "id": 3507,
+        "translate_ch": "透過反思失敗，我們下次就能加以運用。",
+        "sentence": "By reflecting on our failures, we can put them to use next time."
+    },
+    {
+        "id": 3508,
+        "translate_ch": "正是停下來自我審視的時間，帶來真正的成長。",
+        "sentence": "It's the time spent pausing to examine yourself that brings real growth."
+    },
+    {
+        "id": 3509,
+        "translate_ch": "我週末和朋友見面。",
+        "sentence": "I meet my friends on weekends."
+    },
+    {
+        "id": 3510,
+        "translate_ch": "我在派對上認識了一個新朋友。",
+        "sentence": "I got to know someone new at the party."
+    },
+    {
+        "id": 3511,
+        "translate_ch": "即使你不擅長與人相處，也能一點一點地習慣。",
+        "sentence": "Even if you're bad with people, you can get used to it little by little."
+    },
+    {
+        "id": 3512,
+        "translate_ch": "信任是靠一次又一次地遵守小承諾建立起來的。",
+        "sentence": "Trust is built by keeping small promises, over and over."
+    },
+    {
+        "id": 3513,
+        "translate_ch": "店員非常親切。",
+        "sentence": "The staff were very kind."
+    },
+    {
+        "id": 3514,
+        "translate_ch": "要有禮貌地把顧客的話聽完。",
+        "sentence": "Listen to the customer all the way through, politely."
+    },
+    {
+        "id": 3515,
+        "translate_ch": "正是在處理客訴時，才看得出一家店真正的品質。",
+        "sentence": "It's in handling complaints that a shop's true quality shows."
+    },
+    {
+        "id": 3516,
+        "translate_ch": "超越顧客期待的服務，能創造出不可動搖的信任。",
+        "sentence": "Service that exceeds a customer's expectations creates unshakable trust."
+    },
+    {
+        "id": 3517,
+        "translate_ch": "我透過閱讀學到了很多。",
+        "sentence": "I learned a lot by reading books."
+    },
+    {
+        "id": 3518,
+        "translate_ch": "去認識自己原本不懂的事物是一件愉快的事。",
+        "sentence": "Getting to know what you didn't know is enjoyable."
+    },
+    {
+        "id": 3519,
+        "translate_ch": "知識唯有實際運用，才能說是真正學會了。",
+        "sentence": "Knowledge can only be said to truly stick once you put it to use."
+    },
+    {
+        "id": 3520,
+        "translate_ch": "把零碎知識串連起來的能力，能帶來更深刻的理解。",
+        "sentence": "The ability to connect fragments of knowledge leads to deeper understanding."
+    },
+    {
+        "id": 3521,
+        "translate_ch": "我家會在新年團聚。",
+        "sentence": "My family gathers for the New Year."
+    },
+    {
+        "id": 3522,
+        "translate_ch": "我想把古老的傳統傳給下一代。",
+        "sentence": "I want to pass old traditions on to the next generation."
+    },
+    {
+        "id": 3523,
+        "translate_ch": "傳統不只是用來保存的，它應該隨著時代而改變。",
+        "sentence": "Traditions aren't just to be preserved; they should change with the times."
+    },
+    {
+        "id": 3524,
+        "translate_ch": "如果只執著於形式上的傳統，它原本的意義就會喪失。",
+        "sentence": "If you cling to tradition as mere form, its original meaning is lost."
+    },
+    {
+        "id": 3525,
+        "translate_ch": "這個問題比我想的還要複雜。",
+        "sentence": "This problem was more complex than I thought."
+    },
+    {
+        "id": 3526,
+        "translate_ch": "一個簡單的例子，比複雜的解釋更容易理解。",
+        "sentence": "A simple example is easier to grasp than a complicated explanation."
+    },
+    {
+        "id": 3527,
+        "translate_ch": "把事情過度簡化，可能會讓你忽略真正重要的部分。",
+        "sentence": "Oversimplifying things can make you overlook what really matters."
+    },
+    {
+        "id": 3528,
+        "translate_ch": "要理清錯綜複雜的各種因素，需要耐心和冷靜的分析。",
+        "sentence": "Untangling a complex web of factors takes patience and calm analysis."
+    },
+    {
+        "id": 3529,
+        "translate_ch": "我會思考自己的錯誤。",
+        "sentence": "I think about my own mistakes."
+    },
+    {
+        "id": 3530,
+        "translate_ch": "承認自己的弱點需要勇氣。",
+        "sentence": "Admitting your own weakness takes courage."
+    },
+    {
+        "id": 3531,
+        "translate_ch": "在責怪別人之前，你應該先好好審視自己。",
+        "sentence": "Before blaming others, you should first take a hard look at yourself."
+    },
+    {
+        "id": 3532,
+        "translate_ch": "越是能正視自己錯誤的人，越不會重蹈覆轍。",
+        "sentence": "Those who can face their own mistakes are the least likely to repeat them."
+    },
+    {
+        "id": 3533,
+        "translate_ch": "孩子們正在公園裡玩。",
+        "sentence": "The children are playing in the park."
+    },
+    {
+        "id": 3534,
+        "translate_ch": "我們的孩子快五歲了。",
+        "sentence": "Our child will turn five soon."
+    },
+    {
+        "id": 3535,
+        "translate_ch": "孩子模仿的是父母的行為，而不是父母說的話。",
+        "sentence": "Children imitate what their parents do, not what they say."
+    },
+    {
+        "id": 3536,
+        "translate_ch": "幼年養成的習慣，往往會持續一輩子。",
+        "sentence": "Habits formed in early childhood often last a lifetime."
+    },
+    {
+        "id": 3537,
+        "translate_ch": "那家店的服務非常好。",
+        "sentence": "The service at that shop was very good."
+    },
+    {
+        "id": 3538,
+        "translate_ch": "一被晾在那裡等，顧客很快就會感到不滿。",
+        "sentence": "When kept waiting, customers quickly feel dissatisfied."
+    },
+    {
+        "id": 3539,
+        "translate_ch": "有過良好體驗的顧客，會自然而然地幫你宣傳店家。",
+        "sentence": "Customers who have a good experience naturally promote the shop for you."
+    },
+    {
+        "id": 3540,
+        "translate_ch": "顧客的滿意度，取決於整體體驗，更甚於產品本身。",
+        "sentence": "Customer satisfaction depends less on the product itself than on the whole experience."
+    },
+    {
+        "id": 3541,
+        "translate_ch": "我想學一門新的語言。",
+        "sentence": "I want to learn a new language."
+    },
+    {
+        "id": 3542,
+        "translate_ch": "犯錯是學習的一部分。",
+        "sentence": "Making mistakes is part of learning."
+    },
+    {
+        "id": 3543,
+        "translate_ch": "你越是教別人，自己就理解得越清楚。",
+        "sentence": "The more you teach others, the more clearly you understand it yourself."
+    },
+    {
+        "id": 3544,
+        "translate_ch": "出於真正好奇心而學到的東西，要忘記它困難得多。",
+        "sentence": "What you learn out of genuine curiosity is far harder to forget."
+    },
+    {
+        "id": 3545,
+        "translate_ch": "每個國家都有自己的飲食文化。",
+        "sentence": "Every country has its own food culture."
+    },
+    {
+        "id": 3546,
+        "translate_ch": "住在國外，會讓你對自己的文化有很多認識。",
+        "sentence": "Living abroad teaches you a lot about your own culture."
+    },
+    {
+        "id": 3547,
+        "translate_ch": "在一種文化裡算是禮貌的事，在另一種文化裡可能很失禮。",
+        "sentence": "What counts as polite in one culture can be rude in another."
+    },
+    {
+        "id": 3548,
+        "translate_ch": "理解一種文化，不只是掌握它的習俗，更要掌握其背後的價值觀。",
+        "sentence": "Understanding a culture means grasping not just its customs but the values behind them."
+    },
+    {
+        "id": 3549,
+        "translate_ch": "我們動手之前需要一個計畫。",
+        "sentence": "We need a plan before we start."
+    },
+    {
+        "id": 3550,
+        "translate_ch": "有時候，後退才是更明智的策略。",
+        "sentence": "Sometimes retreating is the wiser strategy."
+    },
+    {
+        "id": 3551,
+        "translate_ch": "一個好的策略，既要決定做什麼，也同樣要決定不做什麼。",
+        "sentence": "A good strategy means deciding what not to do, as much as what to do."
+    },
+    {
+        "id": 3552,
+        "translate_ch": "無論一個策略在紙上看起來多麼完善，若無法執行就毫無價值。",
+        "sentence": "However sound a strategy looks on paper, it's worthless if it can't be carried out."
+    },
+    {
+        "id": 3553,
+        "translate_ch": "無論如何都不要放棄。",
+        "sentence": "Don't give up, no matter what."
+    },
+    {
+        "id": 3554,
+        "translate_ch": "她不斷嘗試，直到最後成功。",
+        "sentence": "She kept trying until she finally succeeded."
+    },
+    {
+        "id": 3555,
+        "translate_ch": "正是那些失敗後仍繼續前進的人，最終走得最遠。",
+        "sentence": "It's the people who keep going after failing who get the furthest in the end."
+    },
+    {
+        "id": 3556,
+        "translate_ch": "真正的力量不在於永不跌倒，而在於比跌倒次數多站起一次。",
+        "sentence": "Real strength lies not in never falling, but in standing up one more time than you fall."
+    },
+    {
+        "id": 3557,
+        "translate_ch": "我有美好的童年回憶。",
+        "sentence": "I have fond memories of my childhood."
+    },
+    {
+        "id": 3558,
+        "translate_ch": "我小時候常在田野裡抓蟲。",
+        "sentence": "I used to catch insects in the fields as a kid."
+    },
+    {
+        "id": 3559,
+        "translate_ch": "童年的景色，似乎每次回去都變得更小。",
+        "sentence": "The scenery from childhood seems to shrink each time you go back."
+    },
+    {
+        "id": 3560,
+        "translate_ch": "大人隨口說出的話，可能會伴隨一個孩子的一生。",
+        "sentence": "The words an adult casually says can stay with a child for the rest of their life."
+    },
+    {
+        "id": 3561,
+        "translate_ch": "最近這則新廣告到處都是。",
+        "sentence": "The new ad is everywhere these days."
+    },
+    {
+        "id": 3562,
+        "translate_ch": "好的產品仍然需要觸及對的人。",
+        "sentence": "A good product still needs to reach the right people."
+    },
+    {
+        "id": 3563,
+        "translate_ch": "最好的行銷，完全不讓人覺得是在行銷。",
+        "sentence": "The best marketing doesn't feel like marketing at all."
+    },
+    {
+        "id": 3564,
+        "translate_ch": "與其追逐每一位顧客，不如深入地對少數人說話來得明智。",
+        "sentence": "Rather than chasing every customer, it's wiser to speak deeply to a few."
+    },
+    {
+        "id": 3565,
+        "translate_ch": "教育不該在學校結束時就停止。",
+        "sentence": "Education shouldn't end when school does."
+    },
+    {
+        "id": 3566,
+        "translate_ch": "老師的工作是激發好奇心，而不只是傳遞知識。",
+        "sentence": "A teacher's job is to spark curiosity, not just deliver facts."
+    },
+    {
+        "id": 3567,
+        "translate_ch": "為考試而背誦，和真正學會，是兩回事。",
+        "sentence": "Memorizing for a test and truly learning are not the same thing."
+    },
+    {
+        "id": 3568,
+        "translate_ch": "教育的目的，是培養出能夠自主持續學習的人。",
+        "sentence": "The aim of education is to raise people who can keep learning on their own."
+    },
+    {
+        "id": 3569,
+        "translate_ch": "我畫了一幅我的貓的畫。",
+        "sentence": "I drew a picture of my cat."
+    },
+    {
+        "id": 3570,
+        "translate_ch": "好點子往往在你停止硬逼自己時才浮現。",
+        "sentence": "Good ideas often come when you stop forcing them."
+    },
+    {
+        "id": 3571,
+        "translate_ch": "創造力與其說是無中生有，不如說是以新的方式組合既有事物。",
+        "sentence": "Creativity is less about inventing from nothing than combining things in new ways."
+    },
+    {
+        "id": 3572,
+        "translate_ch": "那些看似靈光乍現的東西，通常是建立在多年默默練習之上。",
+        "sentence": "What looks like a flash of inspiration is usually built on years of quiet practice."
+    },
+    {
+        "id": 3573,
+        "translate_ch": "我決定不了要吃什麼。",
+        "sentence": "I can't decide what to eat."
+    },
+    {
+        "id": 3574,
+        "translate_ch": "重大的決定，睡一覺再想往往會更清楚。",
+        "sentence": "Sleeping on a big decision often makes it clearer."
+    },
+    {
+        "id": 3575,
+        "translate_ch": "選擇太多，有時比選擇太少更令人為難。",
+        "sentence": "Having too many choices can be harder than having too few."
+    },
+    {
+        "id": 3576,
+        "translate_ch": "一個太晚做出的好決定，往往不如一個及時做出的普通決定有價值。",
+        "sentence": "A good decision made late is often worth less than a fair one made on time."
+    },
+    {
+        "id": 3577,
+        "translate_ch": "即使在壓力下她也保持冷靜。",
+        "sentence": "She stayed calm even under pressure."
+    },
+    {
+        "id": 3578,
+        "translate_ch": "艱難的時光不會長久，但有韌性的人會挺過去。",
+        "sentence": "Hard times don't last, but resilient people do."
+    },
+    {
+        "id": 3579,
+        "translate_ch": "從挫折中振作起來，是一種可以練習的能力。",
+        "sentence": "Bouncing back from setbacks is a skill that can be practiced."
+    },
+    {
+        "id": 3580,
+        "translate_ch": "韌性不在於永不崩潰，而在於你如何重新把自己拼湊起來。",
+        "sentence": "Resilience isn't about never breaking, but about how you put yourself back together."
+    },
+    {
+        "id": 3581,
+        "translate_ch": "我爺爺九十歲了。",
+        "sentence": "My grandfather is ninety years old."
+    },
+    {
+        "id": 3582,
+        "translate_ch": "人隨著年紀漸長，往往會更珍惜自己的時間。",
+        "sentence": "As people get older, they tend to value their time more."
+    },
+    {
+        "id": 3583,
+        "translate_ch": "變老並不只關乎失去，它也能帶來一種平靜的自由。",
+        "sentence": "Growing old isn't only about loss; it can also bring a quiet kind of freedom."
+    },
+    {
+        "id": 3584,
+        "translate_ch": "一個社會如何對待長者，揭示了它真正重視的是什麼。",
+        "sentence": "How a society treats its elderly reveals what it truly values."
+    },
+    {
+        "id": 3585,
+        "translate_ch": "這支手機有個實用的新功能。",
+        "sentence": "This phone has a useful new feature."
+    },
+    {
+        "id": 3586,
+        "translate_ch": "新的點子在變得顯而易見之前，往往看起來很奇怪。",
+        "sentence": "New ideas often seem strange before they seem obvious."
+    },
+    {
+        "id": 3587,
+        "translate_ch": "真正的創新，往往來自質疑那些人人視為理所當然的事。",
+        "sentence": "Real innovation often comes from questioning what everyone takes for granted."
+    },
+    {
+        "id": 3588,
+        "translate_ch": "一項突破性技術，在有人弄清楚誰真正需要它之前，是毫無價值的。",
+        "sentence": "A breakthrough technology is worthless until someone figures out who actually needs it."
+    },
+    {
+        "id": 3589,
+        "translate_ch": "我今天在課堂上讀了一首詩。",
+        "sentence": "I read a poem in class today."
+    },
+    {
+        "id": 3590,
+        "translate_ch": "一個好故事會讓你完全忘記自己正在閱讀。",
+        "sentence": "A good story makes you forget you're reading at all."
+    },
+    {
+        "id": 3591,
+        "translate_ch": "一部小說沒說出口的部分，往往比明說的更令人縈繞。",
+        "sentence": "What a novel leaves unsaid often lingers longer than what it spells out."
+    },
+    {
+        "id": 3592,
+        "translate_ch": "偉大的文學與其說給我們答案，不如說給我們更好的問題。",
+        "sentence": "Great literature doesn't give us answers so much as better questions."
+    },
+    {
+        "id": 3593,
+        "translate_ch": "她把牆漆成了亮藍色。",
+        "sentence": "She painted the wall a bright blue."
+    },
+    {
+        "id": 3594,
+        "translate_ch": "別害怕一開始把東西做得很糟。",
+        "sentence": "Don't be afraid to make something badly at first."
+    },
+    {
+        "id": 3595,
+        "translate_ch": "限制非但不會扼殺創造力，往往正是激發它的火花。",
+        "sentence": "Constraints, far from killing creativity, are often what spark it."
+    },
+    {
+        "id": 3596,
+        "translate_ch": "害怕出醜，正是讓大多數人完全不去創作的原因。",
+        "sentence": "The fear of looking foolish is what stops most people from creating anything at all."
+    },
+    {
+        "id": 3597,
+        "translate_ch": "我們來想想怎麼解決這個問題。",
+        "sentence": "Let's think about how to fix this."
+    },
+    {
+        "id": 3598,
+        "translate_ch": "把問題定義清楚，往往就解決了一半。",
+        "sentence": "Defining the problem clearly is often half the solution."
+    },
+    {
+        "id": 3599,
+        "translate_ch": "當你卡住時，質疑那個你從未察覺的前提，往往會有幫助。",
+        "sentence": "When you're stuck, it often helps to question the assumption you never noticed."
+    },
+    {
+        "id": 3600,
+        "translate_ch": "最難的問題很少靠更努力來解決，而是靠重新建構問題本身。",
+        "sentence": "The hardest problems are rarely solved by working harder, but by reframing the question."
+    },
+    {
+        "id": 3601,
+        "translate_ch": "他每天練鋼琴。",
+        "sentence": "He practices the piano every day."
+    },
+    {
+        "id": 3602,
+        "translate_ch": "她犧牲了週末來完成這個專案。",
+        "sentence": "She gave up her weekends to finish the project."
+    },
+    {
+        "id": 3603,
+        "translate_ch": "真正的投入，顯現在你不想努力的那些日子裡。",
+        "sentence": "True dedication shows on the days you don't feel like trying."
+    },
+    {
+        "id": 3604,
+        "translate_ch": "從外界看來像是天賦的東西，往往只是多年無人看見的付出。",
+        "sentence": "What looks like talent from the outside is often just years of unseen devotion."
+    },
+    {
+        "id": 3605,
+        "translate_ch": "老年人比以前更多了。",
+        "sentence": "There are more elderly people than before."
+    },
+    {
+        "id": 3606,
+        "translate_ch": "每年出生的嬰兒越來越少。",
+        "sentence": "Fewer babies are being born each year."
+    },
+    {
+        "id": 3607,
+        "translate_ch": "隨著人口老化，勞動力承受的壓力也持續增加。",
+        "sentence": "As the population ages, the strain on the workforce grows steadily."
+    },
+    {
+        "id": 3608,
+        "translate_ch": "高齡化社會迫使我們重新思考，富有成效的人生究竟意味著什麼。",
+        "sentence": "An aging society forces us to rethink what a productive life really means."
+    },
+    {
+        "id": 3609,
+        "translate_ch": "這家工廠生產汽車零件。",
+        "sentence": "This factory makes car parts."
+    },
+    {
+        "id": 3610,
+        "translate_ch": "機器現在做著過去由人手完成的工作。",
+        "sentence": "Machines now do work that people used to do by hand."
+    },
+    {
+        "id": 3611,
+        "translate_ch": "生產線上一個瑕疵，就能一次毀掉成千上萬件產品。",
+        "sentence": "A single flaw on the line can ruin thousands of products at once."
+    },
+    {
+        "id": 3612,
+        "translate_ch": "現代製造業仰賴縝密的物流，其程度不亞於機器本身。",
+        "sentence": "Modern manufacturing depends as much on careful logistics as on the machines themselves."
+    },
+    {
+        "id": 3613,
+        "translate_ch": "我從圖書館借了一本小說。",
+        "sentence": "I borrowed a novel from the library."
+    },
+    {
+        "id": 3614,
+        "translate_ch": "有些書值得讀不只一遍。",
+        "sentence": "Some books are worth reading more than once."
+    },
+    {
+        "id": 3615,
+        "translate_ch": "一個角色給我們的真實感，有時勝過我們實際認識的人。",
+        "sentence": "A character can feel more real to us than people we actually know."
+    },
+    {
+        "id": 3616,
+        "translate_ch": "文學讓我們得以暫時活在一個與自己截然不同的心靈之中。",
+        "sentence": "Literature lets us live, for a while, inside a mind entirely unlike our own."
+    },
+    {
+        "id": 3617,
+        "translate_ch": "我們星期天去健行了。",
+        "sentence": "We went hiking on Sunday."
+    },
+    {
+        "id": 3618,
+        "translate_ch": "在休假日什麼都不做，本身就是一種奢侈。",
+        "sentence": "Doing nothing on a day off is its own kind of luxury."
+    },
+    {
+        "id": 3619,
+        "translate_ch": "休息不是完成工作的獎賞，它本身就是把工作做好的一部分。",
+        "sentence": "Rest isn't a reward for finishing your work; it's part of how the work gets done."
+    },
+    {
+        "id": 3620,
+        "translate_ch": "一個人如何度過閒暇時光，往往揭示了他真正的樣子。",
+        "sentence": "The way a person spends their free time often reveals who they really are."
+    },
+    {
+        "id": 3621,
+        "translate_ch": "我們先來看數字。",
+        "sentence": "Let's look at the numbers first."
+    },
+    {
+        "id": 3622,
+        "translate_ch": "這份報告按地區分解了銷售額。",
+        "sentence": "The report breaks the sales down by region."
+    },
+    {
+        "id": 3623,
+        "translate_ch": "數據能告訴你發生了什麼，卻很少告訴你為什麼。",
+        "sentence": "Data can show you what happened, but rarely tells you why."
+    },
+    {
+        "id": 3624,
+        "translate_ch": "對一個問題分析過久，可能淪為一種逃避它所要求之決定的方式。",
+        "sentence": "Analyzing a problem too long can become a way of avoiding the decision it demands."
+    },
+    {
+        "id": 3625,
+        "translate_ch": "請稍等一下。",
+        "sentence": "Please wait a moment."
+    },
+    {
+        "id": 3626,
+        "translate_ch": "美好的事物，往往比我們希望的來得更慢。",
+        "sentence": "Good things often take longer than we'd like."
+    },
+    {
+        "id": 3627,
+        "translate_ch": "耐心並非被動地等待，而是在事情慢慢成形時保持穩定。",
+        "sentence": "Patience isn't passive waiting; it's staying steady while things take their time."
+    },
+    {
+        "id": 3628,
+        "translate_ch": "能熬過一件事枯燥中段的人，才是那些能完成它的人。",
+        "sentence": "Those who can endure the dull middle of a task are the ones who finish it."
+    },
+    {
+        "id": 3629,
+        "translate_ch": "我奶奶現在走路需要人幫忙。",
+        "sentence": "My grandmother needs help walking now."
+    },
+    {
+        "id": 3630,
+        "translate_ch": "照顧年邁的父母，比大多數人想像的要困難。",
+        "sentence": "Caring for an aging parent is harder than most people expect."
+    },
+    {
+        "id": 3631,
+        "translate_ch": "以尊嚴對待長者，比任何單一的照護行為都更重要。",
+        "sentence": "Treating the elderly with dignity matters more than any single act of care."
+    },
+    {
+        "id": 3632,
+        "translate_ch": "照護中最難的部分，往往是看著你所愛的人慢慢改變。",
+        "sentence": "The hardest part of caregiving is often watching someone you love slowly change."
+    },
+    {
+        "id": 3633,
+        "translate_ch": "這位農夫種稻米和蔬菜。",
+        "sentence": "The farmer grows rice and vegetables."
+    },
+    {
+        "id": 3634,
+        "translate_ch": "一個歉收的季節，就能毀掉一整年的辛勞。",
+        "sentence": "A single bad season can wipe out a whole year of work."
+    },
+    {
+        "id": 3635,
+        "translate_ch": "務農仰賴的是耐心、天氣，以及重頭再來的意願。",
+        "sentence": "Farming depends on patience, weather, and a willingness to start over."
+    },
+    {
+        "id": 3636,
+        "translate_ch": "隨著從事農業的年輕人越來越少，世代相傳的知識有失傳之虞。",
+        "sentence": "As fewer young people take up farming, age-old knowledge risks being lost."
+    },
+    {
+        "id": 3637,
+        "translate_ch": "從頭把故事說給我聽。",
+        "sentence": "Tell me the story from the beginning."
+    },
+    {
+        "id": 3638,
+        "translate_ch": "每個好故事都需要一個轉折點。",
+        "sentence": "Every good story needs a turning point."
+    },
+    {
+        "id": 3639,
+        "translate_ch": "我們透過把自己的人生說成一個故事，來理解它。",
+        "sentence": "We make sense of our own lives by telling them as a story."
+    },
+    {
+        "id": 3640,
+        "translate_ch": "一個故事怎麼被講述，有時比它實際描述的事件更重要。",
+        "sentence": "How a story is told can matter more than the events it actually describes."
+    },
+    {
+        "id": 3641,
+        "translate_ch": "這個房間看起來簡潔乾淨。",
+        "sentence": "This room has a simple, clean look."
+    },
+    {
+        "id": 3642,
+        "translate_ch": "美往往存在於被省略的部分。",
+        "sentence": "Beauty often lies in what has been left out."
+    },
+    {
+        "id": 3643,
+        "translate_ch": "美感與其說是教出來的，不如說是慢慢吸收來的。",
+        "sentence": "A sense of beauty isn't taught so much as slowly absorbed."
+    },
+    {
+        "id": 3644,
+        "translate_ch": "一個時代視為美的東西，下一個時代往往斥之為過時。",
+        "sentence": "What one era considers beautiful, the next often dismisses as dated."
+    },
+    {
+        "id": 3645,
+        "translate_ch": "你從哪裡得到這個資訊的？",
+        "sentence": "Where did you get this information?"
+    },
+    {
+        "id": 3646,
+        "translate_ch": "資訊太多，可能和太少一樣讓人無所適從。",
+        "sentence": "Too much information can be as paralyzing as too little."
+    },
+    {
+        "id": 3647,
+        "translate_ch": "在資訊無窮的時代，懂得忽略什麼是一種能力。",
+        "sentence": "In an age of endless information, knowing what to ignore is a skill."
+    },
+    {
+        "id": 3648,
+        "translate_ch": "一則資訊的價值，完全取決於你如何運用它。",
+        "sentence": "The value of a piece of information depends entirely on what you do with it."
+    },
+    {
+        "id": 3649,
+        "translate_ch": "承認自己錯了是需要勇氣的。",
+        "sentence": "It takes courage to admit you were wrong."
+    },
+    {
+        "id": 3650,
+        "translate_ch": "儘管聲音在發抖，他還是開口了。",
+        "sentence": "He spoke up even though his voice was shaking."
+    },
+    {
+        "id": 3651,
+        "translate_ch": "勇氣不是沒有恐懼，而是儘管恐懼仍採取行動。",
+        "sentence": "Courage isn't the absence of fear, but acting in spite of it."
+    },
+    {
+        "id": 3652,
+        "translate_ch": "最艱難的勇氣，往往是那種無人看見的、安靜的勇氣。",
+        "sentence": "The hardest courage is often the quiet kind that no one ever sees."
+    },
+    {
+        "id": 3653,
+        "translate_ch": "我們找個時間去喝杯咖啡吧。",
+        "sentence": "Let's grab a coffee sometime."
+    },
+    {
+        "id": 3654,
+        "translate_ch": "別擔心，慢慢來。",
+        "sentence": "No worries, take your time."
+    },
+    {
+        "id": 3655,
+        "translate_ch": "老實說，我有點忘了我們今天還要見面。",
+        "sentence": "Honestly, I kind of forgot we were even meeting today."
+    },
+    {
+        "id": 3656,
+        "translate_ch": "這沒什麼大不了的，但它一直有點困擾著我。",
+        "sentence": "It's not a big deal, but it's been bugging me a little."
+    },
+    {
+        "id": 3657,
+        "translate_ch": "她在網路上賣手工首飾。",
+        "sentence": "She sells handmade jewelry online."
+    },
+    {
+        "id": 3658,
+        "translate_ch": "他週末幫一個外送平台開車送貨。",
+        "sentence": "He drives for a delivery app on weekends."
+    },
+    {
+        "id": 3659,
+        "translate_ch": "副業能給你自由，卻也可能悄悄吞掉你所有的休息時間。",
+        "sentence": "A side hustle can give you freedom, but it can also quietly eat all your rest."
+    },
+    {
+        "id": 3660,
+        "translate_ch": "許多人開始做副業，是希望能逃離自己已經開始厭惡的工作。",
+        "sentence": "Many people start a side business hoping to escape work they've come to resent."
+    },
+    {
+        "id": 3661,
+        "translate_ch": "俗話說，時間就是金錢。",
+        "sentence": "Time is money, as they say."
+    },
+    {
+        "id": 3662,
+        "translate_ch": "她的話語像一陣冷風吹過房間。",
+        "sentence": "Her words were a cold wind through the room."
+    },
+    {
+        "id": 3663,
+        "translate_ch": "一個好的比喻，能讓你彷彿初次見到熟悉的事物。",
+        "sentence": "A good metaphor lets you see a familiar thing as if for the first time."
+    },
+    {
+        "id": 3664,
+        "translate_ch": "正是在平實的語言力有未逮時，我們才會去尋求比喻。",
+        "sentence": "We reach for metaphors precisely when plain words fall short."
+    },
+    {
+        "id": 3665,
+        "translate_ch": "我上個月讀了兩本書。",
+        "sentence": "I read two books last month."
+    },
+    {
+        "id": 3666,
+        "translate_ch": "一本在不同年紀重讀的書，每一次都會變成一本不同的書。",
+        "sentence": "A book you reread at different ages becomes a different book each time."
+    },
+    {
+        "id": 3667,
+        "translate_ch": "有些書你一晚就讀完，有些則靜靜地陪伴你多年。",
+        "sentence": "Some books you finish in a night; others quietly stay with you for years."
+    },
+    {
+        "id": 3668,
+        "translate_ch": "擁有很多書，和讀過它們是兩回事。",
+        "sentence": "Owning a lot of books is not the same as having read them."
+    },
+    {
+        "id": 3669,
+        "translate_ch": "我每天早上看新聞。",
+        "sentence": "I read the news every morning."
+    },
+    {
+        "id": 3670,
+        "translate_ch": "壞消息往往比好消息傳得更快。",
+        "sentence": "Bad news tends to travel faster than good news."
+    },
+    {
+        "id": 3671,
+        "translate_ch": "不斷地看新聞，可能讓你消息靈通，卻又莫名焦慮。",
+        "sentence": "Reading the news constantly can leave you informed yet strangely anxious."
+    },
+    {
+        "id": 3672,
+        "translate_ch": "被當作新聞報導的東西，所透露的關於我們自己的，往往多於關於這個世界的。",
+        "sentence": "What gets reported as news often says more about us than about the world."
+    },
+    {
+        "id": 3673,
+        "translate_ch": "我相信一切都會順利的。",
+        "sentence": "I believe everything will work out."
+    },
+    {
+        "id": 3674,
+        "translate_ch": "信念是即使看不見終點，仍然信任這條路。",
+        "sentence": "Faith is trusting the path even when you can't see the end of it."
+    },
+    {
+        "id": 3675,
+        "translate_ch": "相信一個人，有時能給他相信自己的力量。",
+        "sentence": "Believing in someone can sometimes give them the strength to believe in themselves."
+    },
+    {
+        "id": 3676,
+        "translate_ch": "我們選擇去相信什麼，悄悄地形塑了我們成為什麼樣的人。",
+        "sentence": "What we choose to have faith in quietly shapes the people we become."
+    },
+    {
+        "id": 3677,
+        "translate_ch": "我一起床就喝水。",
+        "sentence": "I drink water as soon as I wake up."
+    },
+    {
+        "id": 3678,
+        "translate_ch": "小習慣日積月累，會造成巨大的差異。",
+        "sentence": "Small habits add up to big differences over time."
+    },
+    {
+        "id": 3679,
+        "translate_ch": "我們決定的不是未來，而是習慣，而習慣決定了我們的未來。",
+        "sentence": "We don't decide our futures; we decide our habits, and our habits decide our futures."
+    },
+    {
+        "id": 3680,
+        "translate_ch": "養成新習慣最難的部分，是熬過頭兩個星期。",
+        "sentence": "The hardest part of a new habit is surviving the first two weeks."
+    },
+    {
+        "id": 3681,
+        "translate_ch": "你以什麼為生？",
+        "sentence": "What do you do for a living?"
+    },
+    {
+        "id": 3682,
+        "translate_ch": "她在醫院當護士。",
+        "sentence": "She works as a nurse at a hospital."
+    },
+    {
+        "id": 3683,
+        "translate_ch": "職稱告訴你一個人做什麼，而非他是誰。",
+        "sentence": "A job title tells you what someone does, not who they are."
+    },
+    {
+        "id": 3684,
+        "translate_ch": "許多人在一份職業早已無法帶來成就感後，仍長久地待在其中。",
+        "sentence": "Many people stay in a profession long after it has stopped fulfilling them."
+    },
+    {
+        "id": 3685,
+        "translate_ch": "亡羊補牢，為時未晚。",
+        "sentence": "Better late than never."
+    },
+    {
+        "id": 3686,
+        "translate_ch": "俗話說，早起的鳥兒有蟲吃。",
+        "sentence": "They say the early bird catches the worm."
+    },
+    {
+        "id": 3687,
+        "translate_ch": "諺語之所以流傳，是因為它們把得來不易的智慧濃縮進寥寥數語。",
+        "sentence": "Proverbs survive because they pack hard-won wisdom into a few words."
+    },
+    {
+        "id": 3688,
+        "translate_ch": "一句古老的諺語能安慰你，卻很少告訴你實際該怎麼做。",
+        "sentence": "An old saying can comfort you, yet it rarely tells you what to actually do."
+    },
+    {
+        "id": 3689,
+        "translate_ch": "那首歌在全世界都紅了起來。",
+        "sentence": "That song became popular all over the world."
+    },
+    {
+        "id": 3690,
+        "translate_ch": "一部電影就能改變一個世代看待自己的方式。",
+        "sentence": "A single film can change how a generation sees itself."
+    },
+    {
+        "id": 3691,
+        "translate_ch": "曾經感覺叛逆的東西，往往最終成了隔年的主流。",
+        "sentence": "What once felt rebellious often ends up as next year's mainstream."
+    },
+    {
+        "id": 3692,
+        "translate_ch": "最能形塑一種文化的作品，很少是當時備受讚譽的那些。",
+        "sentence": "The works that shape a culture most are rarely the ones praised at the time."
+    },
+    {
+        "id": 3693,
+        "translate_ch": "看起來快要下雨了。",
+        "sentence": "It looks like it's going to rain."
+    },
+    {
+        "id": 3694,
+        "translate_ch": "最近早晨明顯變冷了。",
+        "sentence": "The mornings have grown noticeably colder lately."
+    },
+    {
+        "id": 3695,
+        "translate_ch": "一場突如其來的暴風雨，能毀掉一整天細心的安排。",
+        "sentence": "A sudden storm can undo a whole day's careful planning."
+    },
+    {
+        "id": 3696,
+        "translate_ch": "無論我們的預報多麼先進，天氣偶爾仍會讓我們學會謙卑。",
+        "sentence": "However advanced our forecasts get, the weather still humbles us now and then."
+    },
+    {
+        "id": 3697,
+        "translate_ch": "有種感覺就是告訴我別去。",
+        "sentence": "Something just told me not to go."
+    },
+    {
+        "id": 3698,
+        "translate_ch": "有時候，你的直覺比你的頭腦更早知道。",
+        "sentence": "Sometimes your gut knows before your mind does."
+    },
+    {
+        "id": 3699,
+        "translate_ch": "直覺其實只是沉澱到意識思考之下的經驗。",
+        "sentence": "Intuition is really just experience that has sunk below conscious thought."
+    },
+    {
+        "id": 3700,
+        "translate_ch": "相信直覺，在你也下過苦功思考時，效果最好。",
+        "sentence": "Trusting your instincts works best when you've also done the hard thinking."
+    },
+    {
+        "id": 3701,
+        "translate_ch": "這湯嚐起來有點鹹。",
+        "sentence": "This soup tastes a little salty."
+    },
+    {
+        "id": 3702,
+        "translate_ch": "比起甜飲料，我更喜歡苦的咖啡。",
+        "sentence": "I prefer bitter coffee to sweet drinks."
+    },
+    {
+        "id": 3703,
+        "translate_ch": "小時候討厭的味道，往往會隨著年紀漸漸喜歡上。",
+        "sentence": "Tastes you disliked as a child often grow on you with age."
+    },
+    {
+        "id": 3704,
+        "translate_ch": "我們所謂的好品味，多半只是我們碰巧從小吃慣的味道。",
+        "sentence": "What we call good taste is largely the flavors we happened to grow up with."
+    },
+    {
+        "id": 3705,
+        "translate_ch": "請填寫這份表格。",
+        "sentence": "Please fill out this form."
+    },
+    {
+        "id": 3706,
+        "translate_ch": "這份申請需要兩種身分證明。",
+        "sentence": "The application requires two forms of identification."
+    },
+    {
+        "id": 3707,
+        "translate_ch": "少了一個簽名，就能讓整個流程延誤好幾週。",
+        "sentence": "A single missing signature can delay the whole process by weeks."
+    },
+    {
+        "id": 3708,
+        "translate_ch": "官僚體系往往會膨脹，直到遵守規則取代了為民服務。",
+        "sentence": "Bureaucracy tends to grow until following the rules replaces serving the people."
+    },
+    {
+        "id": 3709,
+        "translate_ch": "雨淅瀝淅瀝地打在屋頂上。",
+        "sentence": "The rain fell pitter-patter on the roof."
+    },
+    {
+        "id": 3710,
+        "translate_ch": "整場會議我的肚子都在咕嚕咕嚕叫。",
+        "sentence": "My stomach was growling all through the meeting."
+    },
+    {
+        "id": 3711,
+        "translate_ch": "日語甚至用擬聲擬態詞來描述寂靜與靜止。",
+        "sentence": "Japanese uses sound words to describe even silence and stillness."
+    },
+    {
+        "id": 3712,
+        "translate_ch": "這些擬態詞承載著平鋪直敘根本無法表達的細微差別。",
+        "sentence": "These mimetic words carry nuances that plain description simply can't."
+    },
+    {
+        "id": 3713,
+        "translate_ch": "我們昨天去看了一個藝術展。",
+        "sentence": "We went to an art exhibition yesterday."
+    },
+    {
+        "id": 3714,
+        "translate_ch": "這間博物館正在展出上個世紀的照片。",
+        "sentence": "The museum is showing photographs from the last century."
+    },
+    {
+        "id": 3715,
+        "translate_ch": "一件作品如何被展示，能改變你對它的感受。",
+        "sentence": "How a work is displayed can change how you feel about it."
+    },
+    {
+        "id": 3716,
+        "translate_ch": "一場策劃精良的展覽，能訴說個別作品單獨無法訴說的故事。",
+        "sentence": "A well-curated exhibition tells a story the individual pieces never could alone."
+    },
+    {
+        "id": 3717,
+        "translate_ch": "春天是我最喜歡的季節。",
+        "sentence": "Spring is my favorite season."
+    },
+    {
+        "id": 3718,
+        "translate_ch": "秋天時樹葉變成紅色和金色。",
+        "sentence": "The leaves turn red and gold in autumn."
+    },
+    {
+        "id": 3719,
+        "translate_ch": "每一個季節似乎都比前一個過得更快。",
+        "sentence": "Each season seems to pass more quickly than the one before."
+    },
+    {
+        "id": 3720,
+        "translate_ch": "季節的更迭提醒我們，無論好壞，沒有什麼是永恆的。",
+        "sentence": "The changing seasons remind us that nothing, good or bad, lasts forever."
+    },
+    {
+        "id": 3721,
+        "translate_ch": "盡量保持正面的心態。",
+        "sentence": "Try to stay positive."
+    },
+    {
+        "id": 3722,
+        "translate_ch": "她開朗的態度讓周圍的人都放鬆下來。",
+        "sentence": "Her cheerful attitude makes everyone around her relax."
+    },
+    {
+        "id": 3723,
+        "translate_ch": "你無法控制發生什麼，但你可以選擇如何回應。",
+        "sentence": "You can't control what happens, but you can choose how you respond to it."
+    },
+    {
+        "id": 3724,
+        "translate_ch": "同樣的處境，端看你如何看待，可以是負擔，也可以是挑戰。",
+        "sentence": "The same situation can feel like a burden or a challenge, depending on how you frame it."
+    },
+    {
+        "id": 3725,
+        "translate_ch": "我們馬上開始吧。",
+        "sentence": "Let's get started right away."
+    },
+    {
+        "id": 3726,
+        "translate_ch": "想太久，只是另一種什麼都不做的方式。",
+        "sentence": "Thinking about it for too long is just another way of doing nothing."
+    },
+    {
+        "id": 3727,
+        "translate_ch": "今天踏出的一小步，勝過一個你永遠不會開始的完美計畫。",
+        "sentence": "A small step taken today beats a perfect plan you never begin."
+    },
+    {
+        "id": 3728,
+        "translate_ch": "點子很廉價，真正能改變什麼的，是把它們付諸實行。",
+        "sentence": "Ideas are cheap; it's carrying them out that actually changes anything."
+    },
+    {
+        "id": 3729,
+        "translate_ch": "我想要一份能幫助別人的工作。",
+        "sentence": "I want a job that helps people."
+    },
+    {
+        "id": 3730,
+        "translate_ch": "她放棄了高薪，去做一份感覺有意義的工作。",
+        "sentence": "She left a high salary for work that felt meaningful."
+    },
+    {
+        "id": 3731,
+        "translate_ch": "只建立在金錢上的職涯，一旦錢夠了，往往就會感到空虛。",
+        "sentence": "A career built only on money tends to feel empty once the money is enough."
+    },
+    {
+        "id": 3732,
+        "translate_ch": "你願意在工作中忍受什麼，揭示了你真正重視的是什麼。",
+        "sentence": "What you're willing to tolerate at work reveals what you truly value."
+    },
+    {
+        "id": 3733,
+        "translate_ch": "日語有對長輩說話的禮貌方式。",
+        "sentence": "Japanese has polite ways of speaking to elders."
+    },
+    {
+        "id": 3734,
+        "translate_ch": "使用恰當的禮貌程度，可能比文法本身更棘手。",
+        "sentence": "Using the right level of politeness can be trickier than the grammar itself."
+    },
+    {
+        "id": 3735,
+        "translate_ch": "敬語不只是禮節，它悄悄地標示著每一段關係。",
+        "sentence": "Honorific language isn't just etiquette; it quietly marks every relationship."
+    },
+    {
+        "id": 3736,
+        "translate_ch": "即使是母語者，有時也會猶豫該用哪一種敬語形式。",
+        "sentence": "Even native speakers sometimes hesitate over which honorific form to use."
+    },
+    {
+        "id": 3737,
+        "translate_ch": "他的笑話讓大家都笑了。",
+        "sentence": "His joke made everyone laugh."
+    },
+    {
+        "id": 3738,
+        "translate_ch": "良好的幽默感，幾乎能化解任何緊張的時刻。",
+        "sentence": "A good sense of humor can defuse almost any tense moment."
+    },
+    {
+        "id": 3739,
+        "translate_ch": "最難寫的笑話，是那些看起來毫不費力的。",
+        "sentence": "The hardest jokes to write are the ones that look effortless."
+    },
+    {
+        "id": 3740,
+        "translate_ch": "幽默往往奏效，是因為它說出了人人心想卻無人敢說的話。",
+        "sentence": "Humor often works by saying the thing everyone was thinking but no one dared to."
+    },
+    {
+        "id": 3741,
+        "translate_ch": "許多人擔心物價上漲。",
+        "sentence": "Many people are worried about rising prices."
+    },
+    {
+        "id": 3742,
+        "translate_ch": "貧富之間的差距持續擴大。",
+        "sentence": "The gap between rich and poor keeps getting wider."
+    },
+    {
+        "id": 3743,
+        "translate_ch": "人人都看得見的問題，往往是最難真正解決的。",
+        "sentence": "A problem everyone can see is often the hardest one to actually fix."
+    },
+    {
+        "id": 3744,
+        "translate_ch": "我們往往要等到一個社會問題波及自身，才會去注意它。",
+        "sentence": "We tend to notice a social problem only once it reaches our own doorstep."
+    },
+    {
+        "id": 3745,
+        "translate_ch": "誠實對我來說比贏更重要。",
+        "sentence": "Honesty matters more to me than winning."
+    },
+    {
+        "id": 3746,
+        "translate_ch": "沒人看著時你做的事，才是真正的你。",
+        "sentence": "What you do when no one is watching is who you really are."
+    },
+    {
+        "id": 3747,
+        "translate_ch": "我們真正的價值觀，體現在我們如何花費時間和金錢上。",
+        "sentence": "Our real values show up in how we spend our time and money."
+    },
+    {
+        "id": 3748,
+        "translate_ch": "說出你的價值觀很容易，考驗在於當它讓你付出代價時，你是否仍堅守。",
+        "sentence": "It's easy to state your values; the test is whether you keep them when they cost you something."
+    },
+    {
+        "id": 3749,
+        "translate_ch": "我們週末爬了一座山。",
+        "sentence": "We climbed a mountain over the weekend."
+    },
+    {
+        "id": 3750,
+        "translate_ch": "稍微迷路，有時是一趟旅程中最棒的部分。",
+        "sentence": "Getting a little lost is sometimes the best part of a trip."
+    },
+    {
+        "id": 3751,
+        "translate_ch": "冒險的刺激感，通常就存在於你舒適圈的邊緣之外。",
+        "sentence": "The thrill of adventure usually lives just outside your comfort zone."
+    },
+    {
+        "id": 3752,
+        "translate_ch": "回頭看，那些出了差錯的旅程，反而是我記得最深刻、最懷念的。",
+        "sentence": "Looking back, the trips that went wrong are the ones I remember most fondly."
+    },
+    {
+        "id": 3753,
+        "translate_ch": "她通過考試，拿到了證照。",
+        "sentence": "She passed the exam and got her license."
+    },
+    {
+        "id": 3754,
+        "translate_ch": "證照證明你學過，而非證明你能勝任工作。",
+        "sentence": "A certificate proves you studied, not that you can do the job."
+    },
+    {
+        "id": 3755,
+        "translate_ch": "如今許多領域要求的證照，在十年前根本還不存在。",
+        "sentence": "Many fields now require credentials that didn't even exist a decade ago."
+    },
+    {
+        "id": 3756,
+        "translate_ch": "追逐證照，可能會悄悄地變成真正學會工作的替代品。",
+        "sentence": "Chasing qualifications can quietly become a substitute for actually learning the work."
+    },
+    {
+        "id": 3757,
+        "translate_ch": "我在線上上英文課。",
+        "sentence": "I take an English class online."
+    },
+    {
+        "id": 3758,
+        "translate_ch": "你可以在任何地方按自己的步調學習。",
+        "sentence": "You can study at your own pace from anywhere."
+    },
+    {
+        "id": 3759,
+        "translate_ch": "線上課程給你自由，卻要求一種過去由教室提供的自律。",
+        "sentence": "Online courses give you freedom, but they demand discipline that a classroom used to supply."
+    },
+    {
+        "id": 3760,
+        "translate_ch": "線上學習最難的部分不是教材，而是在沒人逼你時仍然出席。",
+        "sentence": "The hardest part of learning online isn't the material; it's showing up when no one makes you."
+    },
+    {
+        "id": 3761,
+        "translate_ch": "我用手機看新聞。",
+        "sentence": "I read the news on my phone."
+    },
+    {
+        "id": 3762,
+        "translate_ch": "社群媒體讓我們既保持聯繫，又同時分心。",
+        "sentence": "Social media keeps us connected and distracted at the same time."
+    },
+    {
+        "id": 3763,
+        "translate_ch": "我們很少選擇自己在網路上看到什麼，是演算法替我們選的。",
+        "sentence": "We rarely choose what we see online; an algorithm chooses it for us."
+    },
+    {
+        "id": 3764,
+        "translate_ch": "標題是為了讓你點擊而寫的，而非為了告訴你全部的真相。",
+        "sentence": "A headline is written to make you click, not to tell you the whole truth."
+    },
+    {
+        "id": 3765,
+        "translate_ch": "世界變化得比以前更快了。",
+        "sentence": "The world is changing faster than before."
+    },
+    {
+        "id": 3766,
+        "translate_ch": "曾經看似永恆的習俗，可能在一個世代之內就消失。",
+        "sentence": "Customs that once seemed permanent can vanish within a single generation."
+    },
+    {
+        "id": 3767,
+        "translate_ch": "真正的改變，往往在看起來無可避免之前，都顯得不可能。",
+        "sentence": "Real change usually looks impossible right up until it looks inevitable."
+    },
+    {
+        "id": 3768,
+        "translate_ch": "每個世代都以為，質疑上一代這個想法是自己發明的。",
+        "sentence": "Every generation thinks it invented the idea of questioning the one before it."
+    },
+    {
+        "id": 3769,
+        "translate_ch": "她在比賽中得了第一名。",
+        "sentence": "She won first prize in the contest."
+    },
+    {
+        "id": 3770,
+        "translate_ch": "把開始的事做完，本身就是一種成功。",
+        "sentence": "Finishing what you start is its own kind of success."
+    },
+    {
+        "id": 3771,
+        "translate_ch": "你最引以為傲的成就，很少是那個輕易得來的。",
+        "sentence": "The achievement you're proudest of is rarely the one that came easily."
+    },
+    {
+        "id": 3772,
+        "translate_ch": "達成一個長久以來的目標，在奮鬥結束後，可能會感到奇異的空虛。",
+        "sentence": "Reaching a long-held goal can feel strangely empty once the striving is over."
+    },
+    {
+        "id": 3773,
+        "translate_ch": "我爺爺今年要八十歲了。",
+        "sentence": "My grandfather is turning eighty this year."
+    },
+    {
+        "id": 3774,
+        "translate_ch": "開始做新的事，永遠不嫌老。",
+        "sentence": "You're never too old to start something new."
+    },
+    {
+        "id": 3775,
+        "translate_ch": "隨著年齡增長，伴隨而來的不只是皺紋，還有對何謂重要更敏銳的感受。",
+        "sentence": "With age comes not just wrinkles, but a sharper sense of what matters."
+    },
+    {
+        "id": 3776,
+        "translate_ch": "我們把年齡當成一個數字，但它其實是一個我們不斷增添的故事。",
+        "sentence": "We treat age as a number, but it's really a story we keep adding to."
+    },
+    {
+        "id": 3777,
+        "translate_ch": "這份報告星期五要交。",
+        "sentence": "The report is due on Friday."
+    },
+    {
+        "id": 3778,
+        "translate_ch": "工作不知怎地，總會膨脹到填滿你給它的所有時間。",
+        "sentence": "Work somehow expands to fill whatever time you give it."
+    },
+    {
+        "id": 3779,
+        "translate_ch": "緊迫的截止期限能讓人專注，但持續不斷的期限會慢慢把人耗盡。",
+        "sentence": "A tight deadline can focus the mind, but a constant one slowly burns it out."
+    },
+    {
+        "id": 3780,
+        "translate_ch": "截止日的前一晚，那些你忽視了好幾週的問題，突然都跳出來要你處理。",
+        "sentence": "The night before a deadline, problems you ignored for weeks suddenly demand attention."
     }
 ]

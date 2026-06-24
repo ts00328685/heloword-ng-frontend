@@ -40,3 +40,18 @@
 - **2026-06-23** (run #38): iter#38: repaired 0 jp, de-named 100 en, +8 en +8 jp (opinions/scenery/modern society); CLEAN_BATCH raised to 100
 - **2026-06-23** (run #39): iter#39: repaired 0 jp, de-named 100 en, +8 en +8 jp (personal/sleep/consumer)
 - **2026-06-23** (run #40): iter#40: de-naming backlog EXHAUSTED (cleaned final 89, clean_pending 0); generation-only from here, +15 en +15 jp (speech/photos/globalization)
+- **2026-06-23** (run #41): iter#41: generation-only, +20 en +20 jp (personal habits/routine/consumerism/public speaking/photography); particle-level chunks, 70/30 N1-N3/N4-N5
+- **2026-06-23** (run #42): iter#42: generation-only, +20 en +20 jp (generation gap/reflection/social/customer service/knowledge); particle chunks, 70/30
+- **2026-06-23** (run #43): iter#43: generation-only, +20 en +20 jp (tradition/complexity/self-reflection/children/customer experience); particle chunks, 70/30
+- **2026-06-24** (run #44): iter#44: generation-only, +20 en +20 jp (learning/culture/strategy/perseverance/childhood); particle chunks, 70/30
+- **2026-06-24** (run #45): iter#45: generation-only, +20 en +20 jp (marketing/education/creative/decision making/resilience); particle chunks >=5, 70/30
+- **2026-06-24** (run #46): iter#46: generation-only, +20 en +20 jp (aging/innovation/literary/creativity/problem-solving); particle chunks >=5, 70/30
+- **2026-06-24** (run #47): iter#47: generation-only, +20 en +20 jp (dedication/aging society/manufacturing/literature/leisure); particle chunks >=5, 70/30
+- **2026-06-24** (run #48): iter#48: generation-only, +20 en +20 jp (analysis/patience/elderly care/agriculture/narrative); particle chunks >=5, 70/30
+- **2026-06-24** (run #49): iter#49: generation-only, +20 en +20 jp (aesthetics/information/courage/casual/side hustle); particle chunks >=5, 70/30
+- **2026-06-24** (run #50): iter#50: generation-only, +20 en +20 jp (metaphor/books/news/faith/habits); particle chunks >=5, 70/30
+- **2026-06-24** (run #51): iter#51: generation-only, +20 en +20 jp (occupation/proverbial/cultural impact/weather/intuition); particle chunks >=5, 70/30
+- **2026-06-24** (run #52): iter#52: generation-only, +20 en +20 jp (taste/administrative/onomatopoeia/exhibition/season); particle chunks >=5, 70/30
+- **2026-06-24** (run #53): iter#53: generation-only, +20 en +20 jp (attitude/action/career values/keigo/humor); particle chunks >=5, 70/30
+- **2026-06-24** (run #54): iter#54: generation-only, +20 en +20 jp (social issues/values/adventure/certification/online education); particle chunks >=5, 70/30
+- **2026-06-24** (run #55): iter#55: generation-only, +20 en +20 jp (media/social change/achievement/age/deadline); particle chunks >=5, 70/30
