@@ -35023,5 +35023,418 @@
       "n1",
       "childhood"
     ]
+  },
+  {
+    "id": "1788",
+    "japanese": "最近、その広告をよく見ます。",
+    "chunks": [
+      "最近、",
+      "その",
+      "広告",
+      "を",
+      "よく",
+      "見ます。"
+    ],
+    "translation": "最近我常看到那則廣告。",
+    "english": "I see that ad a lot lately.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "marketing"
+    ]
+  },
+  {
+    "id": "1789",
+    "japanese": "良い商品でも、知ってもらわなければ売れない。",
+    "chunks": [
+      "良い",
+      "商品",
+      "でも、",
+      "知ってもらわなければ",
+      "売れない。"
+    ],
+    "translation": "再好的商品，若不讓人知道也賣不出去。",
+    "english": "Even a good product won't sell if no one knows about it.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "marketing"
+    ]
+  },
+  {
+    "id": "1790",
+    "japanese": "本当に上手な宣伝は、宣伝だと気づかせない。",
+    "chunks": [
+      "本当に",
+      "上手な",
+      "宣伝",
+      "は、",
+      "宣伝だと",
+      "気づかせない。"
+    ],
+    "translation": "真正高明的宣傳，不會讓人察覺那是宣傳。",
+    "english": "Truly skillful advertising doesn't let you notice it's advertising.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "marketing"
+    ]
+  },
+  {
+    "id": "1791",
+    "japanese": "万人に売り込むより、少数の心に深く響かせる方が賢明だ。",
+    "chunks": [
+      "万人",
+      "に",
+      "売り込むより、",
+      "少数",
+      "の",
+      "心",
+      "に",
+      "深く",
+      "響かせる方が",
+      "賢明だ。"
+    ],
+    "translation": "與其向所有人推銷，不如深深打動少數人的心來得明智。",
+    "english": "Rather than pitching to everyone, it's wiser to resonate deeply with a few.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "marketing"
+    ]
+  },
+  {
+    "id": "1792",
+    "japanese": "勉強は学校を出ても終わらない。",
+    "chunks": [
+      "勉強",
+      "は",
+      "学校",
+      "を",
+      "出ても",
+      "終わらない。"
+    ],
+    "translation": "學習不會在離開學校後就結束。",
+    "english": "Learning doesn't end when you leave school.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "education"
+    ]
+  },
+  {
+    "id": "1793",
+    "japanese": "先生の役目は、知識を与えるだけでなく、興味を引き出すことだ。",
+    "chunks": [
+      "先生",
+      "の",
+      "役目",
+      "は、",
+      "知識",
+      "を",
+      "与えるだけでなく、",
+      "興味",
+      "を",
+      "引き出すことだ。"
+    ],
+    "translation": "老師的職責，不只是給予知識，更要引出興趣。",
+    "english": "A teacher's role is not just to give knowledge but to draw out interest.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "education"
+    ]
+  },
+  {
+    "id": "1794",
+    "japanese": "テストのために覚えるのと、本当に学ぶのは違う。",
+    "chunks": [
+      "テスト",
+      "の",
+      "ために",
+      "覚えるのと、",
+      "本当に",
+      "学ぶのは",
+      "違う。"
+    ],
+    "translation": "為了考試而背，和真正學習是不一樣的。",
+    "english": "Memorizing for a test and truly learning are different.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "education"
+    ]
+  },
+  {
+    "id": "1795",
+    "japanese": "教育の目的は、自ら学び続けられる人を育てることにある。",
+    "chunks": [
+      "教育",
+      "の",
+      "目的",
+      "は、",
+      "自ら",
+      "学び続けられる",
+      "人",
+      "を",
+      "育てることにある。"
+    ],
+    "translation": "教育的目的，在於培養能夠自主持續學習的人。",
+    "english": "The purpose of education lies in nurturing people who can keep learning on their own.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "education"
+    ]
+  },
+  {
+    "id": "1796",
+    "japanese": "私は猫の絵を描きました。",
+    "chunks": [
+      "私",
+      "は",
+      "猫",
+      "の",
+      "絵",
+      "を",
+      "描きました。"
+    ],
+    "translation": "我畫了一幅貓的畫。",
+    "english": "I drew a picture of a cat.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "creative"
+    ]
+  },
+  {
+    "id": "1797",
+    "japanese": "良いアイデアは、力を抜いたときに浮かぶことが多い。",
+    "chunks": [
+      "良い",
+      "アイデア",
+      "は、",
+      "力",
+      "を",
+      "抜いたとき",
+      "に",
+      "浮かぶことが",
+      "多い。"
+    ],
+    "translation": "好點子，往往在放鬆的時候浮現。",
+    "english": "Good ideas often come to you when you relax.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "creative"
+    ]
+  },
+  {
+    "id": "1798",
+    "japanese": "創造とは、無から生み出すより、既存のものを新しく組み合わせることだ。",
+    "chunks": [
+      "創造",
+      "とは、",
+      "無",
+      "から",
+      "生み出すより、",
+      "既存のもの",
+      "を",
+      "新しく",
+      "組み合わせることだ。"
+    ],
+    "translation": "所謂創造，與其說是無中生有，不如說是把既有事物重新組合。",
+    "english": "Creation is less about producing from nothing than recombining what already exists.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "creative"
+    ]
+  },
+  {
+    "id": "1799",
+    "japanese": "ひらめきに見えるものも、長年の地道な努力の上に成り立っている。",
+    "chunks": [
+      "ひらめき",
+      "に",
+      "見えるもの",
+      "も、",
+      "長年",
+      "の",
+      "地道な",
+      "努力",
+      "の",
+      "上に",
+      "成り立っている。"
+    ],
+    "translation": "看似靈感的東西，其實也是建立在多年腳踏實地的努力之上。",
+    "english": "What seems like inspiration is built on years of steady effort.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "creative"
+    ]
+  },
+  {
+    "id": "1800",
+    "japanese": "何を食べるか決められません。",
+    "chunks": [
+      "何",
+      "を",
+      "食べるか",
+      "決められ",
+      "ません。"
+    ],
+    "translation": "我決定不了要吃什麼。",
+    "english": "I can't decide what to eat.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "decision making"
+    ]
+  },
+  {
+    "id": "1801",
+    "japanese": "大事な決断は、一晩おくと考えがまとまる。",
+    "chunks": [
+      "大事な",
+      "決断",
+      "は、",
+      "一晩",
+      "おくと",
+      "考え",
+      "が",
+      "まとまる。"
+    ],
+    "translation": "重要的決定，放一晚再想，思緒就會理清。",
+    "english": "For an important decision, sleeping on it helps your thoughts come together.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "decision making"
+    ]
+  },
+  {
+    "id": "1802",
+    "japanese": "選択肢が多すぎることは、少なすぎるより悩ましい場合がある。",
+    "chunks": [
+      "選択肢",
+      "が",
+      "多すぎること",
+      "は、",
+      "少なすぎるより",
+      "悩ましい",
+      "場合がある。"
+    ],
+    "translation": "選項太多，有時比太少更令人苦惱。",
+    "english": "Having too many options can be more troubling than having too few.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "decision making"
+    ]
+  },
+  {
+    "id": "1803",
+    "japanese": "遅すぎる名案より、間に合う凡案の方が価値があることも多い。",
+    "chunks": [
+      "遅すぎる",
+      "名案より、",
+      "間に合う",
+      "凡案",
+      "の",
+      "方が",
+      "価値がある",
+      "ことも",
+      "多い。"
+    ],
+    "translation": "比起太晚的妙計，及時的平庸之策往往更有價值。",
+    "english": "An ordinary plan made in time is often worth more than a brilliant one made too late.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "decision making"
+    ]
+  },
+  {
+    "id": "1804",
+    "japanese": "彼女は緊張しても冷静でした。",
+    "chunks": [
+      "彼女",
+      "は",
+      "緊張しても",
+      "冷静",
+      "でした。"
+    ],
+    "translation": "她即使緊張也很冷靜。",
+    "english": "She stayed calm even when nervous.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "resilience"
+    ]
+  },
+  {
+    "id": "1805",
+    "japanese": "つらい時期は続かないが、強い人は続いていく。",
+    "chunks": [
+      "つらい",
+      "時期",
+      "は",
+      "続かないが、",
+      "強い",
+      "人",
+      "は",
+      "続いていく。"
+    ],
+    "translation": "艱難的時期不會持續，但堅強的人會走下去。",
+    "english": "Hard times don't last, but strong people endure.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "resilience"
+    ]
+  },
+  {
+    "id": "1806",
+    "japanese": "失敗から立ち直る力は、練習によって鍛えられる。",
+    "chunks": [
+      "失敗",
+      "から",
+      "立ち直る力",
+      "は、",
+      "練習",
+      "によって",
+      "鍛えられる。"
+    ],
+    "translation": "從失敗中振作的能力，可以透過練習來鍛鍊。",
+    "english": "The ability to recover from failure can be trained through practice.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "resilience"
+    ]
+  },
+  {
+    "id": "1807",
+    "japanese": "回復力とは、決して折れないことではなく、いかに自分を立て直すかだ。",
+    "chunks": [
+      "回復力",
+      "とは、",
+      "決して",
+      "折れないこと",
+      "ではなく、",
+      "いかに",
+      "自分",
+      "を",
+      "立て直すかだ。"
+    ],
+    "translation": "所謂韌性，不在於永不折斷，而在於你如何重整自己。",
+    "english": "Resilience is not about never breaking, but about how you rebuild yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "resilience"
+    ]
   }
 ]
