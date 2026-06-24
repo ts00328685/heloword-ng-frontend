@@ -38350,5 +38350,408 @@
       "n1",
       "season"
     ]
+  },
+  {
+    "id": "1948",
+    "japanese": "いつも前向きでいたいです。",
+    "chunks": [
+      "いつも",
+      "前向き",
+      "で",
+      "いたい",
+      "です。"
+    ],
+    "translation": "我想一直保持積極樂觀。",
+    "english": "I want to always stay positive.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "attitude"
+    ]
+  },
+  {
+    "id": "1949",
+    "japanese": "彼女の明るい態度は、周りの人を和ませる。",
+    "chunks": [
+      "彼女",
+      "の",
+      "明るい態度",
+      "は、",
+      "周り",
+      "の",
+      "人",
+      "を",
+      "和ませる。"
+    ],
+    "translation": "她開朗的態度，能讓周圍的人放鬆。",
+    "english": "Her cheerful attitude puts those around her at ease.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "attitude"
+    ]
+  },
+  {
+    "id": "1950",
+    "japanese": "起きることは選べないが、どう応じるかは選べる。",
+    "chunks": [
+      "起きること",
+      "は",
+      "選べないが、",
+      "どう",
+      "応じるか",
+      "は",
+      "選べる。"
+    ],
+    "translation": "發生什麼無法選擇，但如何回應可以選擇。",
+    "english": "You can't choose what happens, but you can choose how you respond.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "attitude"
+    ]
+  },
+  {
+    "id": "1951",
+    "japanese": "同じ状況も、捉え方しだいで重荷にも挑戦にもなる。",
+    "chunks": [
+      "同じ状況",
+      "も、",
+      "捉え方",
+      "しだいで",
+      "重荷",
+      "にも",
+      "挑戦",
+      "にも",
+      "なる。"
+    ],
+    "translation": "同樣的處境，端看如何看待，可以是負擔，也可以是挑戰。",
+    "english": "The same situation can be a burden or a challenge depending on how you see it.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "attitude"
+    ]
+  },
+  {
+    "id": "1952",
+    "japanese": "今すぐ仕事を始めましょう。",
+    "chunks": [
+      "今",
+      "すぐ",
+      "仕事",
+      "を",
+      "始めましょう。"
+    ],
+    "translation": "我們現在馬上開始工作吧。",
+    "english": "Let's start the work right now.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "action"
+    ]
+  },
+  {
+    "id": "1953",
+    "japanese": "長く考えすぎるのは、何もしないのと同じだ。",
+    "chunks": [
+      "長く",
+      "考えすぎるの",
+      "は、",
+      "何もしないの",
+      "と",
+      "同じだ。"
+    ],
+    "translation": "想太久，和什麼都不做是一樣的。",
+    "english": "Thinking too long is the same as doing nothing.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "action"
+    ]
+  },
+  {
+    "id": "1954",
+    "japanese": "今日の小さな一歩は、始めない完璧な計画に勝る。",
+    "chunks": [
+      "今日",
+      "の",
+      "小さな一歩",
+      "は、",
+      "始めない完璧な計画",
+      "に",
+      "勝る。"
+    ],
+    "translation": "今天的一小步，勝過一個永不開始的完美計畫。",
+    "english": "A small step today beats a perfect plan you never start.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "action"
+    ]
+  },
+  {
+    "id": "1955",
+    "japanese": "アイデアは安い。それを実行することだけが、何かを変える。",
+    "chunks": [
+      "アイデア",
+      "は",
+      "安い。",
+      "それ",
+      "を",
+      "実行することだけ",
+      "が、",
+      "何か",
+      "を",
+      "変える。"
+    ],
+    "translation": "點子很廉價，唯有實行它，才能改變些什麼。",
+    "english": "Ideas are cheap; only carrying them out changes anything.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "action"
+    ]
+  },
+  {
+    "id": "1956",
+    "japanese": "人の役に立つ仕事がしたいです。",
+    "chunks": [
+      "人",
+      "の",
+      "役に立つ仕事",
+      "が",
+      "したいです。"
+    ],
+    "translation": "我想做能幫助別人的工作。",
+    "english": "I want a job that helps people.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "career values"
+    ]
+  },
+  {
+    "id": "1957",
+    "japanese": "彼女は高い給料を捨てて、意味のある仕事を選んだ。",
+    "chunks": [
+      "彼女",
+      "は",
+      "高い給料",
+      "を",
+      "捨てて、",
+      "意味のある仕事",
+      "を",
+      "選んだ。"
+    ],
+    "translation": "她捨棄了高薪，選擇了有意義的工作。",
+    "english": "She gave up a high salary and chose meaningful work.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "career values"
+    ]
+  },
+  {
+    "id": "1958",
+    "japanese": "お金だけで築いた仕事は、お金が足りると空しくなりがちだ。",
+    "chunks": [
+      "お金だけ",
+      "で",
+      "築いた仕事",
+      "は、",
+      "お金",
+      "が",
+      "足りると",
+      "空しくなりがちだ。"
+    ],
+    "translation": "只靠金錢建立的工作，一旦錢夠了就容易感到空虛。",
+    "english": "A career built only on money tends to feel empty once the money is enough.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "career values"
+    ]
+  },
+  {
+    "id": "1959",
+    "japanese": "仕事で何に耐えられるかが、本当に大切にするものを表す。",
+    "chunks": [
+      "仕事",
+      "で",
+      "何に耐えられるか",
+      "が、",
+      "本当に",
+      "大切にするもの",
+      "を",
+      "表す。"
+    ],
+    "translation": "你在工作中能忍受什麼，顯示出你真正重視的東西。",
+    "english": "What you can tolerate at work reveals what you truly value.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "career values"
+    ]
+  },
+  {
+    "id": "1960",
+    "japanese": "日本語には、目上の人への丁寧な言い方があります。",
+    "chunks": [
+      "日本語",
+      "には、",
+      "目上の人",
+      "への",
+      "丁寧な言い方",
+      "が",
+      "あります。"
+    ],
+    "translation": "日語有對長輩說話的禮貌方式。",
+    "english": "Japanese has polite ways of speaking to one's superiors.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "keigo"
+    ]
+  },
+  {
+    "id": "1961",
+    "japanese": "適切な丁寧さの加減は、文法そのものより難しいことがある。",
+    "chunks": [
+      "適切な丁寧さ",
+      "の",
+      "加減",
+      "は、",
+      "文法そのもの",
+      "より",
+      "難しいことがある。"
+    ],
+    "translation": "拿捏恰當的禮貌程度，有時比文法本身還難。",
+    "english": "Gauging the right level of politeness can be harder than the grammar itself.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "keigo"
+    ]
+  },
+  {
+    "id": "1962",
+    "japanese": "敬語は礼儀だけでなく、あらゆる関係を静かに示す。",
+    "chunks": [
+      "敬語",
+      "は",
+      "礼儀だけでなく、",
+      "あらゆる関係",
+      "を",
+      "静かに",
+      "示す。"
+    ],
+    "translation": "敬語不只是禮儀，它還悄悄地標示著每一段關係。",
+    "english": "Honorifics aren't just etiquette; they quietly mark every relationship.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "keigo"
+    ]
+  },
+  {
+    "id": "1963",
+    "japanese": "母語話者でさえ、どの敬語を使うか迷うことがある。",
+    "chunks": [
+      "母語話者",
+      "でさえ、",
+      "どの敬語",
+      "を",
+      "使うか",
+      "迷うことがある。"
+    ],
+    "translation": "即使是母語者，有時也會猶豫該用哪種敬語。",
+    "english": "Even native speakers sometimes hesitate over which honorific to use.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "keigo"
+    ]
+  },
+  {
+    "id": "1964",
+    "japanese": "彼の冗談でみんな笑いました。",
+    "chunks": [
+      "彼",
+      "の",
+      "冗談",
+      "で",
+      "みんな",
+      "笑いました。"
+    ],
+    "translation": "他的笑話讓大家都笑了。",
+    "english": "Everyone laughed at his joke.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "humor"
+    ]
+  },
+  {
+    "id": "1965",
+    "japanese": "ユーモアのセンスは、たいていの緊張をほぐしてくれる。",
+    "chunks": [
+      "ユーモア",
+      "の",
+      "センス",
+      "は、",
+      "たいていの緊張",
+      "を",
+      "ほぐしてくれる。"
+    ],
+    "translation": "幽默感，能化解大多數的緊張。",
+    "english": "A sense of humor can ease most tense moments.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "humor"
+    ]
+  },
+  {
+    "id": "1966",
+    "japanese": "一番書くのが難しい冗談は、簡単そうに見えるものだ。",
+    "chunks": [
+      "一番",
+      "書くの",
+      "が",
+      "難しい冗談",
+      "は、",
+      "簡単そうに見えるもの",
+      "だ。"
+    ],
+    "translation": "最難寫的笑話，是那些看起來很簡單的。",
+    "english": "The hardest jokes to write are the ones that look easy.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "humor"
+    ]
+  },
+  {
+    "id": "1967",
+    "japanese": "笑いは、誰もが思っても言えなかったことを言うことで生まれる。",
+    "chunks": [
+      "笑い",
+      "は、",
+      "誰もが",
+      "思っても",
+      "言えなかったこと",
+      "を",
+      "言うこと",
+      "で",
+      "生まれる。"
+    ],
+    "translation": "笑點往往源於說出人人心想卻不敢說的話。",
+    "english": "Humor arises from saying what everyone thought but couldn't say.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "humor"
+    ]
   }
 ]
