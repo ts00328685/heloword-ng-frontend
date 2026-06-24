@@ -35851,5 +35851,435 @@
       "n1",
       "problem-solving"
     ]
+  },
+  {
+    "id": "1828",
+    "japanese": "彼は毎日ピアノを練習します。",
+    "chunks": [
+      "彼",
+      "は",
+      "毎日",
+      "ピアノ",
+      "を",
+      "練習します。"
+    ],
+    "translation": "他每天練鋼琴。",
+    "english": "He practices the piano every day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "dedication"
+    ]
+  },
+  {
+    "id": "1829",
+    "japanese": "週末を返上して、仕事を終わらせました。",
+    "chunks": [
+      "週末",
+      "を",
+      "返上して、",
+      "仕事",
+      "を",
+      "終わらせました。"
+    ],
+    "translation": "我犧牲了週末，把工作完成了。",
+    "english": "I gave up my weekend to finish the work.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "dedication"
+    ]
+  },
+  {
+    "id": "1830",
+    "japanese": "本当の努力は、やる気が出ない日にこそ表れる。",
+    "chunks": [
+      "本当の",
+      "努力",
+      "は、",
+      "やる気",
+      "が",
+      "出ない日",
+      "にこそ",
+      "表れる。"
+    ],
+    "translation": "真正的努力，正是在沒幹勁的日子裡才會顯現。",
+    "english": "True effort shows precisely on the days you don't feel motivated.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "dedication"
+    ]
+  },
+  {
+    "id": "1831",
+    "japanese": "才能に見えるものの多くは、人知れず積み重ねた献身にすぎない。",
+    "chunks": [
+      "才能",
+      "に",
+      "見えるもの",
+      "の",
+      "多く",
+      "は、",
+      "人知れず",
+      "積み重ねた",
+      "献身",
+      "にすぎない。"
+    ],
+    "translation": "看似天賦的東西，大多只是無人知曉、日積月累的付出。",
+    "english": "Much of what looks like talent is merely devotion built up unseen.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "dedication"
+    ]
+  },
+  {
+    "id": "1832",
+    "japanese": "お年寄りが前より増えました。",
+    "chunks": [
+      "お年寄り",
+      "が",
+      "前",
+      "より",
+      "増えました。"
+    ],
+    "translation": "老人家比以前增加了。",
+    "english": "There are more elderly people than before.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "aging society"
+    ]
+  },
+  {
+    "id": "1833",
+    "japanese": "毎年、生まれる子供の数が減っている。",
+    "chunks": [
+      "毎年、",
+      "生まれる",
+      "子供",
+      "の",
+      "数",
+      "が",
+      "減っている。"
+    ],
+    "translation": "每年出生的孩子數量正在減少。",
+    "english": "The number of babies born is decreasing each year.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "aging society"
+    ]
+  },
+  {
+    "id": "1834",
+    "japanese": "人口が高齢化するにつれ、働き手の負担は増す一方だ。",
+    "chunks": [
+      "人口",
+      "が",
+      "高齢化するにつれ、",
+      "働き手",
+      "の",
+      "負担",
+      "は",
+      "増す一方だ。"
+    ],
+    "translation": "隨著人口高齡化，勞動者的負擔只增不減。",
+    "english": "As the population ages, the burden on workers only increases.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "aging society"
+    ]
+  },
+  {
+    "id": "1835",
+    "japanese": "高齢化社会は、生産的な人生とは何かを問い直させる。",
+    "chunks": [
+      "高齢化社会",
+      "は、",
+      "生産的な",
+      "人生",
+      "とは",
+      "何か",
+      "を",
+      "問い直させる。"
+    ],
+    "translation": "高齡化社會迫使我們重新思考，所謂富有成效的人生是什麼。",
+    "english": "An aging society forces us to reconsider what a productive life is.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "aging society"
+    ]
+  },
+  {
+    "id": "1836",
+    "japanese": "この工場は車の部品を作ります。",
+    "chunks": [
+      "この",
+      "工場",
+      "は",
+      "車",
+      "の",
+      "部品",
+      "を",
+      "作ります。"
+    ],
+    "translation": "這家工廠生產汽車零件。",
+    "english": "This factory makes car parts.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "manufacturing"
+    ]
+  },
+  {
+    "id": "1837",
+    "japanese": "昔は手でやっていた作業を、今は機械がやる。",
+    "chunks": [
+      "昔",
+      "は",
+      "手",
+      "で",
+      "やっていた",
+      "作業",
+      "を、",
+      "今",
+      "は",
+      "機械",
+      "が",
+      "やる。"
+    ],
+    "translation": "過去用手做的工作，現在由機器來做。",
+    "english": "Machines now do work that used to be done by hand.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "manufacturing"
+    ]
+  },
+  {
+    "id": "1838",
+    "japanese": "ラインの一つの欠陥が、何千もの製品を一度に台無しにする。",
+    "chunks": [
+      "ライン",
+      "の",
+      "一つ",
+      "の",
+      "欠陥",
+      "が、",
+      "何千もの",
+      "製品",
+      "を",
+      "一度に",
+      "台無しにする。"
+    ],
+    "translation": "生產線上的一個缺陷，會一次毀掉數千件產品。",
+    "english": "A single flaw on the line ruins thousands of products at once.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "manufacturing"
+    ]
+  },
+  {
+    "id": "1839",
+    "japanese": "現代の製造業は、機械そのものと同じくらい綿密な物流に支えられている。",
+    "chunks": [
+      "現代",
+      "の",
+      "製造業",
+      "は、",
+      "機械そのもの",
+      "と",
+      "同じくらい",
+      "綿密な",
+      "物流",
+      "に",
+      "支えられている。"
+    ],
+    "translation": "現代製造業，仰賴縝密物流的程度，與仰賴機器本身相當。",
+    "english": "Modern manufacturing is supported by meticulous logistics as much as by the machines themselves.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "manufacturing"
+    ]
+  },
+  {
+    "id": "1840",
+    "japanese": "図書館で小説を借りました。",
+    "chunks": [
+      "図書館",
+      "で",
+      "小説",
+      "を",
+      "借りました。"
+    ],
+    "translation": "我在圖書館借了一本小說。",
+    "english": "I borrowed a novel from the library.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "literature"
+    ]
+  },
+  {
+    "id": "1841",
+    "japanese": "何度も読む価値のある本もある。",
+    "chunks": [
+      "何度も",
+      "読む",
+      "価値",
+      "の",
+      "ある",
+      "本",
+      "も",
+      "ある。"
+    ],
+    "translation": "有些書值得一讀再讀。",
+    "english": "Some books are worth reading many times.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "literature"
+    ]
+  },
+  {
+    "id": "1842",
+    "japanese": "登場人物が、実際に知る人より現実味を帯びることがある。",
+    "chunks": [
+      "登場人物",
+      "が、",
+      "実際に",
+      "知る人",
+      "より",
+      "現実味",
+      "を",
+      "帯びることがある。"
+    ],
+    "translation": "書中人物，有時比我們實際認識的人更具真實感。",
+    "english": "A character can feel more real than people you actually know.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "literature"
+    ]
+  },
+  {
+    "id": "1843",
+    "japanese": "文学は、自分とはまるで異なる心の中に、しばし生きることを許してくれる。",
+    "chunks": [
+      "文学",
+      "は、",
+      "自分",
+      "とは",
+      "まるで",
+      "異なる",
+      "心",
+      "の",
+      "中",
+      "に、",
+      "しばし",
+      "生きることを",
+      "許してくれる。"
+    ],
+    "translation": "文學讓我們得以暫時活在一個與自己截然不同的心靈之中。",
+    "english": "Literature lets us live, for a while, inside a mind utterly unlike our own.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "literature"
+    ]
+  },
+  {
+    "id": "1844",
+    "japanese": "日曜日にハイキングに行きました。",
+    "chunks": [
+      "日曜日",
+      "に",
+      "ハイキング",
+      "に",
+      "行きました。"
+    ],
+    "translation": "我星期天去健行了。",
+    "english": "I went hiking on Sunday.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "leisure"
+    ]
+  },
+  {
+    "id": "1845",
+    "japanese": "休みの日に何もしないのも、一つの贅沢だ。",
+    "chunks": [
+      "休み",
+      "の",
+      "日",
+      "に",
+      "何もしないの",
+      "も、",
+      "一つ",
+      "の",
+      "贅沢だ。"
+    ],
+    "translation": "在休假日什麼都不做，也是一種奢侈。",
+    "english": "Doing nothing on a day off is a luxury in itself.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "leisure"
+    ]
+  },
+  {
+    "id": "1846",
+    "japanese": "休息は仕事の報酬ではなく、仕事を成し遂げる過程の一部だ。",
+    "chunks": [
+      "休息",
+      "は",
+      "仕事",
+      "の",
+      "報酬",
+      "ではなく、",
+      "仕事",
+      "を",
+      "成し遂げる",
+      "過程",
+      "の",
+      "一部だ。"
+    ],
+    "translation": "休息不是工作的報酬，而是完成工作這個過程的一部分。",
+    "english": "Rest is not a reward for work but part of the process of getting it done.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "leisure"
+    ]
+  },
+  {
+    "id": "1847",
+    "japanese": "暇な時間の過ごし方にこそ、その人の本性が表れる。",
+    "chunks": [
+      "暇な",
+      "時間",
+      "の",
+      "過ごし方",
+      "にこそ、",
+      "その人",
+      "の",
+      "本性",
+      "が",
+      "表れる。"
+    ],
+    "translation": "正是在如何度過閒暇時光上，最能顯露一個人的本性。",
+    "english": "It is in how one spends free time that a person's true nature shows.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "leisure"
+    ]
   }
 ]
