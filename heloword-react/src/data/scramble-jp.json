@@ -39170,5 +39170,409 @@
       "n2",
       "online education"
     ]
+  },
+  {
+    "id": "1988",
+    "japanese": "スマホでニュースを見ます。",
+    "chunks": [
+      "スマホ",
+      "で",
+      "ニュース",
+      "を",
+      "見ます。"
+    ],
+    "translation": "我用手機看新聞。",
+    "english": "I read the news on my phone.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "media"
+    ]
+  },
+  {
+    "id": "1989",
+    "japanese": "SNSは私たちをつなげると同時に、気を散らす。",
+    "chunks": [
+      "SNS",
+      "は",
+      "私たち",
+      "を",
+      "つなげると同時に、",
+      "気",
+      "を",
+      "散らす。"
+    ],
+    "translation": "社群媒體在連結我們的同時，也讓我們分心。",
+    "english": "Social media connects us and distracts us at the same time.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "media"
+    ]
+  },
+  {
+    "id": "1990",
+    "japanese": "私たちが見るものは、自分ではなくアルゴリズムが選んでいる。",
+    "chunks": [
+      "私たち",
+      "が",
+      "見るもの",
+      "は、",
+      "自分",
+      "ではなく",
+      "アルゴリズム",
+      "が",
+      "選んでいる。"
+    ],
+    "translation": "我們看到的東西，不是自己選的，而是演算法選的。",
+    "english": "What we see is chosen by an algorithm, not by us.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "media"
+    ]
+  },
+  {
+    "id": "1991",
+    "japanese": "見出しは真実を伝えるためでなく、クリックさせるために書かれる。",
+    "chunks": [
+      "見出し",
+      "は",
+      "真実を伝えるため",
+      "でなく、",
+      "クリックさせるため",
+      "に",
+      "書かれる。"
+    ],
+    "translation": "標題不是為了傳達真相，而是為了讓人點擊而寫的。",
+    "english": "Headlines are written to get clicks, not to convey the truth.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "media"
+    ]
+  },
+  {
+    "id": "1992",
+    "japanese": "世界は前より速く変わっています。",
+    "chunks": [
+      "世界",
+      "は",
+      "前",
+      "より",
+      "速く",
+      "変わっています。"
+    ],
+    "translation": "世界變化得比以前快。",
+    "english": "The world is changing faster than before.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "social change"
+    ]
+  },
+  {
+    "id": "1993",
+    "japanese": "永遠に思えた習慣も、一世代で消えることがある。",
+    "chunks": [
+      "永遠に",
+      "思えた習慣",
+      "も、",
+      "一世代",
+      "で",
+      "消えることがある。"
+    ],
+    "translation": "曾以為永恆的習俗，也可能在一個世代內消失。",
+    "english": "Customs that seemed eternal can vanish within a single generation.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "social change"
+    ]
+  },
+  {
+    "id": "1994",
+    "japanese": "本当の変化は、避けられないと見えるまで不可能に見える。",
+    "chunks": [
+      "本当の変化",
+      "は、",
+      "避けられないと見えるまで",
+      "不可能",
+      "に",
+      "見える。"
+    ],
+    "translation": "真正的變化，在看似無可避免之前，都顯得不可能。",
+    "english": "Real change looks impossible until it looks inevitable.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "social change"
+    ]
+  },
+  {
+    "id": "1995",
+    "japanese": "どの世代も、前の世代を疑う発想を自分が生んだと思っている。",
+    "chunks": [
+      "どの世代",
+      "も、",
+      "前の世代",
+      "を",
+      "疑う発想",
+      "を",
+      "自分",
+      "が",
+      "生んだと思っている。"
+    ],
+    "translation": "每個世代都以為，質疑上個世代的想法是自己想出來的。",
+    "english": "Every generation thinks it invented the idea of questioning the last.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "social change"
+    ]
+  },
+  {
+    "id": "1996",
+    "japanese": "彼女は試合で一位になりました。",
+    "chunks": [
+      "彼女",
+      "は",
+      "試合",
+      "で",
+      "一位",
+      "に",
+      "なりました。"
+    ],
+    "translation": "她在比賽中得了第一名。",
+    "english": "She came in first in the competition.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "achievement"
+    ]
+  },
+  {
+    "id": "1997",
+    "japanese": "始めたことをやり遂げるのも、一つの成功だ。",
+    "chunks": [
+      "始めたこと",
+      "を",
+      "やり遂げるの",
+      "も、",
+      "一つ",
+      "の",
+      "成功だ。"
+    ],
+    "translation": "把開始的事完成，也是一種成功。",
+    "english": "Seeing through what you started is a kind of success.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "achievement"
+    ]
+  },
+  {
+    "id": "1998",
+    "japanese": "最も誇れる成果は、たやすく得られたものではないことが多い。",
+    "chunks": [
+      "最も",
+      "誇れる成果",
+      "は、",
+      "たやすく",
+      "得られたもの",
+      "ではないことが",
+      "多い。"
+    ],
+    "translation": "最值得驕傲的成果，往往不是輕易得來的。",
+    "english": "The achievement you're proudest of is rarely one that came easily.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "achievement"
+    ]
+  },
+  {
+    "id": "1999",
+    "japanese": "長年の目標を達成すると、努力が終わって妙に虚しくなることがある。",
+    "chunks": [
+      "長年の目標",
+      "を",
+      "達成すると、",
+      "努力",
+      "が",
+      "終わって",
+      "妙に",
+      "虚しくなることがある。"
+    ],
+    "translation": "達成多年的目標後，努力結束了，反而會莫名地感到空虛。",
+    "english": "Reaching a long-held goal can feel strangely empty once the effort is over.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "achievement"
+    ]
+  },
+  {
+    "id": "2000",
+    "japanese": "祖父は今年八十歳になります。",
+    "chunks": [
+      "祖父",
+      "は",
+      "今年",
+      "八十歳",
+      "に",
+      "なります。"
+    ],
+    "translation": "我祖父今年八十歲。",
+    "english": "My grandfather turns eighty this year.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "age"
+    ]
+  },
+  {
+    "id": "2001",
+    "japanese": "新しいことを始めるのに、遅すぎることはない。",
+    "chunks": [
+      "新しいこと",
+      "を",
+      "始めるの",
+      "に、",
+      "遅すぎることはない。"
+    ],
+    "translation": "開始做新的事，永遠不嫌晚。",
+    "english": "It's never too late to start something new.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "age"
+    ]
+  },
+  {
+    "id": "2002",
+    "japanese": "年を重ねると、しわだけでなく、何が大切かの感覚も鋭くなる。",
+    "chunks": [
+      "年",
+      "を",
+      "重ねると、",
+      "しわ",
+      "だけでなく、",
+      "何が大切か",
+      "の",
+      "感覚",
+      "も",
+      "鋭くなる。"
+    ],
+    "translation": "隨著年齡增長，不只是皺紋，對何謂重要的感覺也變得更敏銳。",
+    "english": "With age comes not only wrinkles but a sharper sense of what matters.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "age"
+    ]
+  },
+  {
+    "id": "2003",
+    "japanese": "私たちは年齢を数字として扱うが、実は書き足し続ける物語だ。",
+    "chunks": [
+      "私たち",
+      "は",
+      "年齢",
+      "を",
+      "数字として",
+      "扱うが、",
+      "実は",
+      "書き足し続ける物語だ。"
+    ],
+    "translation": "我們把年齡當作數字，但它其實是一個不斷增添的故事。",
+    "english": "We treat age as a number, but it's really a story we keep adding to.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "age"
+    ]
+  },
+  {
+    "id": "2004",
+    "japanese": "報告書は金曜日までに出します。",
+    "chunks": [
+      "報告書",
+      "は",
+      "金曜日",
+      "までに",
+      "出します。"
+    ],
+    "translation": "報告星期五前要交。",
+    "english": "I'll submit the report by Friday.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "deadline"
+    ]
+  },
+  {
+    "id": "2005",
+    "japanese": "仕事は、与えた時間をすべて埋めるように膨らむ。",
+    "chunks": [
+      "仕事",
+      "は、",
+      "与えた時間",
+      "を",
+      "すべて",
+      "埋めるように",
+      "膨らむ。"
+    ],
+    "translation": "工作會膨脹到填滿你給它的所有時間。",
+    "english": "Work expands to fill all the time you give it.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "deadline"
+    ]
+  },
+  {
+    "id": "2006",
+    "japanese": "厳しい締め切りは集中を生むが、絶え間ない締め切りは人をすり減らす。",
+    "chunks": [
+      "厳しい締め切り",
+      "は",
+      "集中",
+      "を",
+      "生むが、",
+      "絶え間ない締め切り",
+      "は",
+      "人",
+      "を",
+      "すり減らす。"
+    ],
+    "translation": "嚴格的截止期限能讓人專注，但無止盡的期限會把人磨耗殆盡。",
+    "english": "A tight deadline creates focus, but a constant one wears people down.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "deadline"
+    ]
+  },
+  {
+    "id": "2007",
+    "japanese": "締め切りの前夜、何週間も無視した問題が急に押し寄せる。",
+    "chunks": [
+      "締め切り",
+      "の",
+      "前夜、",
+      "何週間も",
+      "無視した問題",
+      "が",
+      "急に",
+      "押し寄せる。"
+    ],
+    "translation": "截止日的前一晚，忽視了好幾週的問題突然全湧上來。",
+    "english": "The night before a deadline, problems ignored for weeks suddenly pile up.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "deadline"
+    ]
   }
 ]

@@ -18798,5 +18798,105 @@
         "id": 3760,
         "translate_ch": "線上學習最難的部分不是教材，而是在沒人逼你時仍然出席。",
         "sentence": "The hardest part of learning online isn't the material; it's showing up when no one makes you."
+    },
+    {
+        "id": 3761,
+        "translate_ch": "我用手機看新聞。",
+        "sentence": "I read the news on my phone."
+    },
+    {
+        "id": 3762,
+        "translate_ch": "社群媒體讓我們既保持聯繫，又同時分心。",
+        "sentence": "Social media keeps us connected and distracted at the same time."
+    },
+    {
+        "id": 3763,
+        "translate_ch": "我們很少選擇自己在網路上看到什麼，是演算法替我們選的。",
+        "sentence": "We rarely choose what we see online; an algorithm chooses it for us."
+    },
+    {
+        "id": 3764,
+        "translate_ch": "標題是為了讓你點擊而寫的，而非為了告訴你全部的真相。",
+        "sentence": "A headline is written to make you click, not to tell you the whole truth."
+    },
+    {
+        "id": 3765,
+        "translate_ch": "世界變化得比以前更快了。",
+        "sentence": "The world is changing faster than before."
+    },
+    {
+        "id": 3766,
+        "translate_ch": "曾經看似永恆的習俗，可能在一個世代之內就消失。",
+        "sentence": "Customs that once seemed permanent can vanish within a single generation."
+    },
+    {
+        "id": 3767,
+        "translate_ch": "真正的改變，往往在看起來無可避免之前，都顯得不可能。",
+        "sentence": "Real change usually looks impossible right up until it looks inevitable."
+    },
+    {
+        "id": 3768,
+        "translate_ch": "每個世代都以為，質疑上一代這個想法是自己發明的。",
+        "sentence": "Every generation thinks it invented the idea of questioning the one before it."
+    },
+    {
+        "id": 3769,
+        "translate_ch": "她在比賽中得了第一名。",
+        "sentence": "She won first prize in the contest."
+    },
+    {
+        "id": 3770,
+        "translate_ch": "把開始的事做完，本身就是一種成功。",
+        "sentence": "Finishing what you start is its own kind of success."
+    },
+    {
+        "id": 3771,
+        "translate_ch": "你最引以為傲的成就，很少是那個輕易得來的。",
+        "sentence": "The achievement you're proudest of is rarely the one that came easily."
+    },
+    {
+        "id": 3772,
+        "translate_ch": "達成一個長久以來的目標，在奮鬥結束後，可能會感到奇異的空虛。",
+        "sentence": "Reaching a long-held goal can feel strangely empty once the striving is over."
+    },
+    {
+        "id": 3773,
+        "translate_ch": "我爺爺今年要八十歲了。",
+        "sentence": "My grandfather is turning eighty this year."
+    },
+    {
+        "id": 3774,
+        "translate_ch": "開始做新的事，永遠不嫌老。",
+        "sentence": "You're never too old to start something new."
+    },
+    {
+        "id": 3775,
+        "translate_ch": "隨著年齡增長，伴隨而來的不只是皺紋，還有對何謂重要更敏銳的感受。",
+        "sentence": "With age comes not just wrinkles, but a sharper sense of what matters."
+    },
+    {
+        "id": 3776,
+        "translate_ch": "我們把年齡當成一個數字，但它其實是一個我們不斷增添的故事。",
+        "sentence": "We treat age as a number, but it's really a story we keep adding to."
+    },
+    {
+        "id": 3777,
+        "translate_ch": "這份報告星期五要交。",
+        "sentence": "The report is due on Friday."
+    },
+    {
+        "id": 3778,
+        "translate_ch": "工作不知怎地，總會膨脹到填滿你給它的所有時間。",
+        "sentence": "Work somehow expands to fill whatever time you give it."
+    },
+    {
+        "id": 3779,
+        "translate_ch": "緊迫的截止期限能讓人專注，但持續不斷的期限會慢慢把人耗盡。",
+        "sentence": "A tight deadline can focus the mind, but a constant one slowly burns it out."
+    },
+    {
+        "id": 3780,
+        "translate_ch": "截止日的前一晚，那些你忽視了好幾週的問題，突然都跳出來要你處理。",
+        "sentence": "The night before a deadline, problems you ignored for weeks suddenly demand attention."
     }
 ]
