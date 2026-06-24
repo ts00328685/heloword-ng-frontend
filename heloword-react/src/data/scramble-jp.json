@@ -36708,5 +36708,408 @@
       "n1",
       "narrative"
     ]
+  },
+  {
+    "id": "1868",
+    "japanese": "この部屋はとてもきれいです。",
+    "chunks": [
+      "この",
+      "部屋",
+      "は",
+      "とても",
+      "きれいです。"
+    ],
+    "translation": "這個房間非常乾淨。",
+    "english": "This room is very clean.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "aesthetics"
+    ]
+  },
+  {
+    "id": "1869",
+    "japanese": "美しさは、省かれたものの中にある。",
+    "chunks": [
+      "美しさ",
+      "は、",
+      "省かれたもの",
+      "の",
+      "中",
+      "に",
+      "ある。"
+    ],
+    "translation": "美存在於被省略的事物之中。",
+    "english": "Beauty lies in what has been left out.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "aesthetics"
+    ]
+  },
+  {
+    "id": "1870",
+    "japanese": "美的感覚は、教わるより少しずつ身につくものだ。",
+    "chunks": [
+      "美的感覚",
+      "は、",
+      "教わるより",
+      "少しずつ",
+      "身につくものだ。"
+    ],
+    "translation": "美感是慢慢培養出來的，而非教出來的。",
+    "english": "An aesthetic sense is acquired gradually rather than taught.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "aesthetics"
+    ]
+  },
+  {
+    "id": "1871",
+    "japanese": "ある時代に美しいとされたものが、次の時代には古臭く見える。",
+    "chunks": [
+      "ある",
+      "時代",
+      "に",
+      "美しいとされたもの",
+      "が、",
+      "次",
+      "の",
+      "時代",
+      "には",
+      "古臭く",
+      "見える。"
+    ],
+    "translation": "在某個時代被認為美的東西，到了下個時代卻顯得老土。",
+    "english": "What one era deems beautiful looks dated in the next.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "aesthetics"
+    ]
+  },
+  {
+    "id": "1872",
+    "japanese": "この情報はどこで手に入れましたか。",
+    "chunks": [
+      "この",
+      "情報",
+      "は",
+      "どこ",
+      "で",
+      "手に入れましたか。"
+    ],
+    "translation": "這個資訊你是從哪裡得到的？",
+    "english": "Where did you get this information?",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "information"
+    ]
+  },
+  {
+    "id": "1873",
+    "japanese": "情報が多すぎると、かえって決められなくなる。",
+    "chunks": [
+      "情報",
+      "が",
+      "多すぎると、",
+      "かえって",
+      "決められなくなる。"
+    ],
+    "translation": "資訊太多，反而會變得無法決定。",
+    "english": "Too much information can make you unable to decide.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "information"
+    ]
+  },
+  {
+    "id": "1874",
+    "japanese": "情報があふれる時代には、何を無視するかが鍵となる。",
+    "chunks": [
+      "情報",
+      "が",
+      "あふれる",
+      "時代",
+      "には、",
+      "何を無視するか",
+      "が",
+      "鍵となる。"
+    ],
+    "translation": "在資訊氾濫的時代，懂得忽略什麼是關鍵。",
+    "english": "In an age of overflowing information, knowing what to ignore is key.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "information"
+    ]
+  },
+  {
+    "id": "1875",
+    "japanese": "情報の価値は、それをどう使うかで決まる。",
+    "chunks": [
+      "情報",
+      "の",
+      "価値",
+      "は、",
+      "それ",
+      "を",
+      "どう使うか",
+      "で",
+      "決まる。"
+    ],
+    "translation": "資訊的價值，取決於你如何運用它。",
+    "english": "The value of information is determined by how you use it.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "information"
+    ]
+  },
+  {
+    "id": "1876",
+    "japanese": "自分の間違いを認めるには勇気がいる。",
+    "chunks": [
+      "自分",
+      "の",
+      "間違い",
+      "を",
+      "認めるには",
+      "勇気",
+      "が",
+      "いる。"
+    ],
+    "translation": "承認自己的錯誤需要勇氣。",
+    "english": "It takes courage to admit your mistakes.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "courage"
+    ]
+  },
+  {
+    "id": "1877",
+    "japanese": "彼は声が震えながらも、はっきりと意見を言った。",
+    "chunks": [
+      "彼",
+      "は",
+      "声",
+      "が",
+      "震えながらも、",
+      "はっきりと",
+      "意見",
+      "を",
+      "言った。"
+    ],
+    "translation": "儘管聲音顫抖，他還是清楚地表達了意見。",
+    "english": "Though his voice trembled, he stated his opinion clearly.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "courage"
+    ]
+  },
+  {
+    "id": "1878",
+    "japanese": "勇気とは恐れがないことではなく、恐れても進むことだ。",
+    "chunks": [
+      "勇気",
+      "とは",
+      "恐れがないこと",
+      "ではなく、",
+      "恐れても",
+      "進むことだ。"
+    ],
+    "translation": "勇氣不是沒有恐懼，而是即使恐懼也仍前進。",
+    "english": "Courage is not the absence of fear, but moving forward despite it.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "courage"
+    ]
+  },
+  {
+    "id": "1879",
+    "japanese": "勇気を出して、前に進みます。",
+    "chunks": [
+      "勇気",
+      "を",
+      "出して、",
+      "前",
+      "に",
+      "進みます。"
+    ],
+    "translation": "鼓起勇氣，向前邁進。",
+    "english": "I gather my courage and move forward.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "courage"
+    ]
+  },
+  {
+    "id": "1880",
+    "japanese": "今度コーヒーでも飲みに行きましょう。",
+    "chunks": [
+      "今度",
+      "コーヒー",
+      "でも",
+      "飲み",
+      "に",
+      "行きましょう。"
+    ],
+    "translation": "下次去喝杯咖啡什麼的吧。",
+    "english": "Let's go grab a coffee sometime.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "casual"
+    ]
+  },
+  {
+    "id": "1881",
+    "japanese": "気にしないで、ゆっくりでいいよ。",
+    "chunks": [
+      "気にしないで、",
+      "ゆっくり",
+      "で",
+      "いい",
+      "よ。"
+    ],
+    "translation": "別在意，慢慢來就好。",
+    "english": "Don't worry, take your time.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "casual"
+    ]
+  },
+  {
+    "id": "1882",
+    "japanese": "正直、今日会う約束をしてたのを忘れてた。",
+    "chunks": [
+      "正直、",
+      "今日",
+      "会う約束",
+      "を",
+      "してたの",
+      "を",
+      "忘れてた。"
+    ],
+    "translation": "老實說，我忘了今天有約。",
+    "english": "Honestly, I forgot we'd arranged to meet today.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "casual"
+    ]
+  },
+  {
+    "id": "1883",
+    "japanese": "大したことじゃないけど、ちょっと気になってたんだ。",
+    "chunks": [
+      "大したことじゃない",
+      "けど、",
+      "ちょっと",
+      "気になってた",
+      "んだ。"
+    ],
+    "translation": "雖然不是什麼大事，但我有點在意。",
+    "english": "It's not a big deal, but it's been on my mind a bit.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "casual"
+    ]
+  },
+  {
+    "id": "1884",
+    "japanese": "彼女はネットで手作りのアクセサリーを売っています。",
+    "chunks": [
+      "彼女",
+      "は",
+      "ネット",
+      "で",
+      "手作り",
+      "の",
+      "アクセサリー",
+      "を",
+      "売っています。"
+    ],
+    "translation": "她在網路上賣手工飾品。",
+    "english": "She sells handmade accessories online.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "side hustle"
+    ]
+  },
+  {
+    "id": "1885",
+    "japanese": "週末だけ、配達の仕事をしています。",
+    "chunks": [
+      "週末",
+      "だけ、",
+      "配達",
+      "の",
+      "仕事",
+      "を",
+      "しています。"
+    ],
+    "translation": "我只在週末做外送的工作。",
+    "english": "I do delivery work only on weekends.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "side hustle"
+    ]
+  },
+  {
+    "id": "1886",
+    "japanese": "副業は自由をもたらす一方で、休む時間を静かに奪っていく。",
+    "chunks": [
+      "副業",
+      "は",
+      "自由",
+      "を",
+      "もたらす一方で、",
+      "休む時間",
+      "を",
+      "静かに",
+      "奪っていく。"
+    ],
+    "translation": "副業帶來自由的同時，也悄悄奪走了休息的時間。",
+    "english": "A side job brings freedom while quietly stealing your rest.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "side hustle"
+    ]
+  },
+  {
+    "id": "1887",
+    "japanese": "多くの人は、嫌になった仕事から逃れたくて副業を始める。",
+    "chunks": [
+      "多く",
+      "の",
+      "人",
+      "は、",
+      "嫌になった仕事",
+      "から",
+      "逃れたくて",
+      "副業",
+      "を",
+      "始める。"
+    ],
+    "translation": "許多人開始做副業，是想逃離自己已經厭惡的工作。",
+    "english": "Many people start a side business hoping to escape work they've come to hate.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "side hustle"
+    ]
   }
 ]
