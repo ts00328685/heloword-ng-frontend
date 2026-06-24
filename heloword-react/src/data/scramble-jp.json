@@ -39574,5 +39574,404 @@
       "n2",
       "deadline"
     ]
+  },
+  {
+    "id": "2008",
+    "japanese": "明日、発表があります。",
+    "chunks": [
+      "明日、",
+      "発表",
+      "が",
+      "あり",
+      "ます。"
+    ],
+    "translation": "我明天有一場發表。",
+    "english": "I have a presentation tomorrow.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "presentation"
+    ]
+  },
+  {
+    "id": "2009",
+    "japanese": "発表は、一度声に出して練習しましょう。",
+    "chunks": [
+      "発表",
+      "は、",
+      "一度",
+      "声",
+      "に",
+      "出して",
+      "練習しましょう。"
+    ],
+    "translation": "簡報請大聲練習一次。",
+    "english": "Let's practice the presentation aloud once.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "presentation"
+    ]
+  },
+  {
+    "id": "2010",
+    "japanese": "分かりやすいスライドは、十のことではなく一つを伝える。",
+    "chunks": [
+      "分かりやすいスライド",
+      "は、",
+      "十のこと",
+      "ではなく",
+      "一つ",
+      "を",
+      "伝える。"
+    ],
+    "translation": "清楚的投影片，傳達的是一件事，而非十件。",
+    "english": "A clear slide conveys one thing, not ten.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "presentation"
+    ]
+  },
+  {
+    "id": "2011",
+    "japanese": "聴衆は緊張した話し手は許すが、退屈な話し手は決して許さない。",
+    "chunks": [
+      "聴衆",
+      "は",
+      "緊張した話し手",
+      "は",
+      "許すが、",
+      "退屈な話し手",
+      "は",
+      "決して",
+      "許さない。"
+    ],
+    "translation": "觀眾會原諒緊張的講者，卻絕不原諒無聊的講者。",
+    "english": "An audience forgives a nervous speaker but never a boring one.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "presentation"
+    ]
+  },
+  {
+    "id": "2012",
+    "japanese": "この歌は高校時代を思い出させます。",
+    "chunks": [
+      "この歌",
+      "は",
+      "高校時代",
+      "を",
+      "思い出させます。"
+    ],
+    "translation": "這首歌讓我想起高中時代。",
+    "english": "This song reminds me of my high school days.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "nostalgia"
+    ]
+  },
+  {
+    "id": "2013",
+    "japanese": "雨の匂いが、子供のころの家を思い出させる。",
+    "chunks": [
+      "雨",
+      "の",
+      "匂い",
+      "が、",
+      "子供のころ",
+      "の",
+      "家",
+      "を",
+      "思い出させる。"
+    ],
+    "translation": "雨的氣味，讓我想起兒時的家。",
+    "english": "The smell of rain reminds me of my childhood home.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "nostalgia"
+    ]
+  },
+  {
+    "id": "2014",
+    "japanese": "人は過去を、実際より温かく覚えているものだ。",
+    "chunks": [
+      "人",
+      "は",
+      "過去",
+      "を、",
+      "実際より",
+      "温かく",
+      "覚えているものだ。"
+    ],
+    "translation": "人總是把過去記得比實際更溫暖。",
+    "english": "People tend to remember the past as warmer than it was.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "nostalgia"
+    ]
+  },
+  {
+    "id": "2015",
+    "japanese": "懐かしさは、過去そのものより、当時の自分を恋しがる気持ちだ。",
+    "chunks": [
+      "懐かしさ",
+      "は、",
+      "過去そのもの",
+      "より、",
+      "当時の自分",
+      "を",
+      "恋しがる気持ちだ。"
+    ],
+    "translation": "懷舊，與其說是想念過去本身，不如說是想念當時的自己。",
+    "english": "Nostalgia is less missing the past than missing who we were then.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "nostalgia"
+    ]
+  },
+  {
+    "id": "2016",
+    "japanese": "この問題では、国が協力する必要があります。",
+    "chunks": [
+      "この問題",
+      "では、",
+      "国",
+      "が",
+      "協力する",
+      "必要が",
+      "あります。"
+    ],
+    "translation": "在這個問題上，各國需要合作。",
+    "english": "On this issue, countries need to cooperate.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "global cooperation"
+    ]
+  },
+  {
+    "id": "2017",
+    "japanese": "一国だけでは、気候変動は解決できない。",
+    "chunks": [
+      "一国",
+      "だけ",
+      "では、",
+      "気候変動",
+      "は",
+      "解決できない。"
+    ],
+    "translation": "單靠一個國家，無法解決氣候變遷。",
+    "english": "Climate change can't be solved by one country alone.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "global cooperation"
+    ]
+  },
+  {
+    "id": "2018",
+    "japanese": "国家間の協力は、称えるのは簡単だが、続けるのは難しい。",
+    "chunks": [
+      "国家間",
+      "の",
+      "協力",
+      "は、",
+      "称えるの",
+      "は",
+      "簡単だが、",
+      "続けるの",
+      "は",
+      "難しい。"
+    ],
+    "translation": "國家間的合作，讚揚容易，持續困難。",
+    "english": "Cooperation between nations is easy to praise but hard to sustain.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "global cooperation"
+    ]
+  },
+  {
+    "id": "2019",
+    "japanese": "共通の課題は、誰のせいかで合意するのを待ってはくれない。",
+    "chunks": [
+      "共通の課題",
+      "は、",
+      "誰のせいか",
+      "で",
+      "合意するの",
+      "を",
+      "待ってはくれない。"
+    ],
+    "translation": "共同的課題，不會等我們先就該怪誰達成共識。",
+    "english": "Shared problems don't wait for us to agree on who's to blame.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "global cooperation"
+    ]
+  },
+  {
+    "id": "2020",
+    "japanese": "新しい町に少しずつ慣れています。",
+    "chunks": [
+      "新しい町",
+      "に",
+      "少しずつ",
+      "慣れて",
+      "います。"
+    ],
+    "translation": "我正慢慢習慣這座新城鎮。",
+    "english": "I'm gradually getting used to the new town.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "adaptation"
+    ]
+  },
+  {
+    "id": "2021",
+    "japanese": "計画が崩れたとき、柔軟な人ほどうまく対応する。",
+    "chunks": [
+      "計画",
+      "が",
+      "崩れたとき、",
+      "柔軟な人ほど",
+      "うまく",
+      "対応する。"
+    ],
+    "translation": "計畫瓦解時，越靈活的人應對得越好。",
+    "english": "When plans collapse, the more flexible people cope better.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "adaptation"
+    ]
+  },
+  {
+    "id": "2022",
+    "japanese": "生き残るのは最も強い者ではなく、最も変化を厭わない者だ。",
+    "chunks": [
+      "生き残るの",
+      "は",
+      "最も強い者",
+      "ではなく、",
+      "最も",
+      "変化を厭わない者",
+      "だ。"
+    ],
+    "translation": "存活下來的，不是最強的，而是最不排斥改變的。",
+    "english": "It's not the strongest who survive, but those most willing to change.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "adaptation"
+    ]
+  },
+  {
+    "id": "2023",
+    "japanese": "最初は居心地が悪くても、数か月で当たり前になることが多い。",
+    "chunks": [
+      "最初",
+      "は",
+      "居心地が悪くても、",
+      "数か月",
+      "で",
+      "当たり前になることが",
+      "多い。"
+    ],
+    "translation": "一開始覺得不自在，往往幾個月後就習以為常了。",
+    "english": "What feels uncomfortable at first often becomes normal within months.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "adaptation"
+    ]
+  },
+  {
+    "id": "2024",
+    "japanese": "うちの猫は一日中寝ています。",
+    "chunks": [
+      "うち",
+      "の",
+      "猫",
+      "は",
+      "一日中",
+      "寝ています。"
+    ],
+    "translation": "我家的貓整天都在睡。",
+    "english": "My cat sleeps all day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "animals"
+    ]
+  },
+  {
+    "id": "2025",
+    "japanese": "犬は、こちらの気持ちを感じ取るようだ。",
+    "chunks": [
+      "犬",
+      "は、",
+      "こちら",
+      "の",
+      "気持ち",
+      "を",
+      "感じ取るようだ。"
+    ],
+    "translation": "狗似乎能感受到我們的心情。",
+    "english": "Dogs seem to sense how we feel.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "animals"
+    ]
+  },
+  {
+    "id": "2026",
+    "japanese": "多くの種が、名前をつける間もなく姿を消していく。",
+    "chunks": [
+      "多くの種",
+      "が、",
+      "名前をつける間もなく",
+      "姿",
+      "を",
+      "消していく。"
+    ],
+    "translation": "許多物種，在我們來不及命名前就消失了。",
+    "english": "Many species vanish faster than we can name them.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "animals"
+    ]
+  },
+  {
+    "id": "2027",
+    "japanese": "動物への接し方に、その社会の優しさの度合いが表れる。",
+    "chunks": [
+      "動物",
+      "への",
+      "接し方",
+      "に、",
+      "その社会",
+      "の",
+      "優しさの度合い",
+      "が",
+      "表れる。"
+    ],
+    "translation": "對待動物的方式，顯露出一個社會行善的程度。",
+    "english": "How a society treats animals reveals its capacity for kindness.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "animals"
+    ]
   }
 ]
