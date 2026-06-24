@@ -37111,5 +37111,427 @@
       "n1",
       "side hustle"
     ]
+  },
+  {
+    "id": "1888",
+    "japanese": "時は金なりと言います。",
+    "chunks": [
+      "時",
+      "は",
+      "金なり",
+      "と",
+      "言います。"
+    ],
+    "translation": "俗話說，一寸光陰一寸金。",
+    "english": "Time is money, as they say.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "metaphor"
+    ]
+  },
+  {
+    "id": "1889",
+    "japanese": "彼女の言葉は、部屋を吹き抜ける冷たい風だった。",
+    "chunks": [
+      "彼女",
+      "の",
+      "言葉",
+      "は、",
+      "部屋",
+      "を",
+      "吹き抜ける",
+      "冷たい",
+      "風",
+      "だった。"
+    ],
+    "translation": "她的話語，是吹過房間的一陣冷風。",
+    "english": "Her words were a cold wind blowing through the room.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "metaphor"
+    ]
+  },
+  {
+    "id": "1890",
+    "japanese": "良い比喩は、見慣れたものを初めて見るように感じさせる。",
+    "chunks": [
+      "良い",
+      "比喩",
+      "は、",
+      "見慣れたもの",
+      "を",
+      "初めて",
+      "見るように",
+      "感じさせる。"
+    ],
+    "translation": "好的比喻，會讓人彷彿第一次看見熟悉的事物。",
+    "english": "A good metaphor makes the familiar feel as if seen for the first time.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "metaphor"
+    ]
+  },
+  {
+    "id": "1891",
+    "japanese": "言葉では足りないときこそ、人は比喩に頼る。",
+    "chunks": [
+      "言葉",
+      "では",
+      "足りないとき",
+      "こそ、",
+      "人",
+      "は",
+      "比喩",
+      "に",
+      "頼る。"
+    ],
+    "translation": "正是在言語不足時，人才會依賴比喻。",
+    "english": "It is precisely when words fall short that people rely on metaphor.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "metaphor"
+    ]
+  },
+  {
+    "id": "1892",
+    "japanese": "先月、本を二冊読みました。",
+    "chunks": [
+      "先月、",
+      "本",
+      "を",
+      "二冊",
+      "読みました。"
+    ],
+    "translation": "上個月，我讀了兩本書。",
+    "english": "I read two books last month.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "books"
+    ]
+  },
+  {
+    "id": "1893",
+    "japanese": "違う年齢で読み返す本は、毎回違う本になる。",
+    "chunks": [
+      "違う",
+      "年齢",
+      "で",
+      "読み返す",
+      "本",
+      "は、",
+      "毎回",
+      "違う",
+      "本",
+      "になる。"
+    ],
+    "translation": "在不同年紀重讀的書，每次都變成不同的書。",
+    "english": "A book reread at different ages becomes a different book each time.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "books"
+    ]
+  },
+  {
+    "id": "1894",
+    "japanese": "一晩で読み終わる本もあれば、何年も心に残る本もある。",
+    "chunks": [
+      "一晩",
+      "で",
+      "読み終わる本",
+      "も",
+      "あれば、",
+      "何年も",
+      "心",
+      "に",
+      "残る本",
+      "も",
+      "ある。"
+    ],
+    "translation": "有的書一晚就讀完，有的書則在心中留存多年。",
+    "english": "Some books you finish in a night; others stay with you for years.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "books"
+    ]
+  },
+  {
+    "id": "1895",
+    "japanese": "本をたくさん持っていることと、読んだことは違う。",
+    "chunks": [
+      "本",
+      "を",
+      "たくさん",
+      "持っていること",
+      "と、",
+      "読んだこと",
+      "は",
+      "違う。"
+    ],
+    "translation": "擁有很多書，和讀過它們是不同的。",
+    "english": "Owning a lot of books is different from having read them.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "books"
+    ]
+  },
+  {
+    "id": "1896",
+    "japanese": "毎朝ニュースを読みます。",
+    "chunks": [
+      "毎朝",
+      "ニュース",
+      "を",
+      "読み",
+      "ます。"
+    ],
+    "translation": "我每天早上看新聞。",
+    "english": "I read the news every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "news"
+    ]
+  },
+  {
+    "id": "1897",
+    "japanese": "悪い知らせは、良い知らせより速く広がる。",
+    "chunks": [
+      "悪い",
+      "知らせ",
+      "は、",
+      "良い",
+      "知らせ",
+      "より",
+      "速く",
+      "広がる。"
+    ],
+    "translation": "壞消息比好消息傳得更快。",
+    "english": "Bad news spreads faster than good news.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "news"
+    ]
+  },
+  {
+    "id": "1898",
+    "japanese": "絶えずニュースを見ていると、詳しくなる一方で妙に不安になる。",
+    "chunks": [
+      "絶えず",
+      "ニュース",
+      "を",
+      "見ていると、",
+      "詳しくなる一方で",
+      "妙に",
+      "不安になる。"
+    ],
+    "translation": "不停地看新聞，雖然懂得多了，卻又莫名地感到不安。",
+    "english": "Constantly watching the news leaves you informed yet oddly anxious.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "news"
+    ]
+  },
+  {
+    "id": "1899",
+    "japanese": "ニュースとして報じられることは、世界よりも私たち自身を物語る。",
+    "chunks": [
+      "ニュースとして",
+      "報じられること",
+      "は、",
+      "世界",
+      "よりも",
+      "私たち自身",
+      "を",
+      "物語る。"
+    ],
+    "translation": "被當作新聞報導的事，訴說的我們自身，多於這個世界。",
+    "english": "What gets reported as news tells of us more than of the world.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "news"
+    ]
+  },
+  {
+    "id": "1900",
+    "japanese": "きっとうまくいくと信じています。",
+    "chunks": [
+      "きっと",
+      "うまくいく",
+      "と",
+      "信じて",
+      "います。"
+    ],
+    "translation": "我相信一定會順利的。",
+    "english": "I believe it will surely work out.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "faith"
+    ]
+  },
+  {
+    "id": "1901",
+    "japanese": "信念とは、終わりが見えなくても道を信じることだ。",
+    "chunks": [
+      "信念",
+      "とは、",
+      "終わり",
+      "が",
+      "見えなくても",
+      "道",
+      "を",
+      "信じることだ。"
+    ],
+    "translation": "信念，是即使看不見終點，仍然相信這條路。",
+    "english": "Faith is trusting the path even when you can't see its end.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "faith"
+    ]
+  },
+  {
+    "id": "1902",
+    "japanese": "誰かを信じることが、その人に自分を信じる力を与えることもある。",
+    "chunks": [
+      "誰か",
+      "を",
+      "信じること",
+      "が、",
+      "その人",
+      "に",
+      "自分",
+      "を",
+      "信じる力",
+      "を",
+      "与えることもある。"
+    ],
+    "translation": "相信某個人，有時能賦予他相信自己的力量。",
+    "english": "Believing in someone can give them the strength to believe in themselves.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "faith"
+    ]
+  },
+  {
+    "id": "1903",
+    "japanese": "何を信じるかが、私たちのなる人柄を静かに形づくる。",
+    "chunks": [
+      "何を信じるか",
+      "が、",
+      "私たち",
+      "の",
+      "なる人柄",
+      "を",
+      "静かに",
+      "形づくる。"
+    ],
+    "translation": "我們相信什麼，悄悄地形塑了我們的人格。",
+    "english": "What we believe in quietly shapes who we become.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "faith"
+    ]
+  },
+  {
+    "id": "1904",
+    "japanese": "起きたらすぐに水を飲みます。",
+    "chunks": [
+      "起きたら",
+      "すぐに",
+      "水",
+      "を",
+      "飲みます。"
+    ],
+    "translation": "我一起床就喝水。",
+    "english": "I drink water as soon as I wake up.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "habits"
+    ]
+  },
+  {
+    "id": "1905",
+    "japanese": "小さな習慣が、時とともに大きな差を生む。",
+    "chunks": [
+      "小さな",
+      "習慣",
+      "が、",
+      "時とともに",
+      "大きな",
+      "差",
+      "を",
+      "生む。"
+    ],
+    "translation": "小習慣會隨著時間造成巨大的差異。",
+    "english": "Small habits create big differences over time.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "habits"
+    ]
+  },
+  {
+    "id": "1906",
+    "japanese": "私たちは未来ではなく習慣を選び、その習慣が未来を決める。",
+    "chunks": [
+      "私たち",
+      "は",
+      "未来",
+      "ではなく",
+      "習慣",
+      "を",
+      "選び、",
+      "その",
+      "習慣",
+      "が",
+      "未来",
+      "を",
+      "決める。"
+    ],
+    "translation": "我們選擇的不是未來，而是習慣，而習慣決定了未來。",
+    "english": "We choose our habits, not our futures, and our habits decide our futures.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "habits"
+    ]
+  },
+  {
+    "id": "1907",
+    "japanese": "新しい習慣の最難関は、最初の二週間を乗り切ることだ。",
+    "chunks": [
+      "新しい",
+      "習慣",
+      "の",
+      "最難関",
+      "は、",
+      "最初",
+      "の",
+      "二週間",
+      "を",
+      "乗り切ることだ。"
+    ],
+    "translation": "新習慣最大的難關，是熬過最初的兩週。",
+    "english": "The biggest hurdle of a new habit is getting through the first two weeks.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "habits"
+    ]
   }
 ]
