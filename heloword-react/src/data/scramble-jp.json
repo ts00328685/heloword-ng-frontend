@@ -39574,5 +39574,1797 @@
       "n2",
       "deadline"
     ]
+  },
+  {
+    "id": "2008",
+    "japanese": "明日、発表があります。",
+    "chunks": [
+      "明日、",
+      "発表",
+      "が",
+      "あり",
+      "ます。"
+    ],
+    "translation": "我明天有一場發表。",
+    "english": "I have a presentation tomorrow.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "presentation"
+    ]
+  },
+  {
+    "id": "2009",
+    "japanese": "発表は、一度声に出して練習しましょう。",
+    "chunks": [
+      "発表",
+      "は、",
+      "一度",
+      "声",
+      "に",
+      "出して",
+      "練習しましょう。"
+    ],
+    "translation": "簡報請大聲練習一次。",
+    "english": "Let's practice the presentation aloud once.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "presentation"
+    ]
+  },
+  {
+    "id": "2010",
+    "japanese": "分かりやすいスライドは、十のことではなく一つを伝える。",
+    "chunks": [
+      "分かりやすいスライド",
+      "は、",
+      "十のこと",
+      "ではなく",
+      "一つ",
+      "を",
+      "伝える。"
+    ],
+    "translation": "清楚的投影片，傳達的是一件事，而非十件。",
+    "english": "A clear slide conveys one thing, not ten.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "presentation"
+    ]
+  },
+  {
+    "id": "2011",
+    "japanese": "聴衆は緊張した話し手は許すが、退屈な話し手は決して許さない。",
+    "chunks": [
+      "聴衆",
+      "は",
+      "緊張した話し手",
+      "は",
+      "許すが、",
+      "退屈な話し手",
+      "は",
+      "決して",
+      "許さない。"
+    ],
+    "translation": "觀眾會原諒緊張的講者，卻絕不原諒無聊的講者。",
+    "english": "An audience forgives a nervous speaker but never a boring one.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "presentation"
+    ]
+  },
+  {
+    "id": "2012",
+    "japanese": "この歌は高校時代を思い出させます。",
+    "chunks": [
+      "この歌",
+      "は",
+      "高校時代",
+      "を",
+      "思い出させます。"
+    ],
+    "translation": "這首歌讓我想起高中時代。",
+    "english": "This song reminds me of my high school days.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "nostalgia"
+    ]
+  },
+  {
+    "id": "2013",
+    "japanese": "雨の匂いが、子供のころの家を思い出させる。",
+    "chunks": [
+      "雨",
+      "の",
+      "匂い",
+      "が、",
+      "子供のころ",
+      "の",
+      "家",
+      "を",
+      "思い出させる。"
+    ],
+    "translation": "雨的氣味，讓我想起兒時的家。",
+    "english": "The smell of rain reminds me of my childhood home.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "nostalgia"
+    ]
+  },
+  {
+    "id": "2014",
+    "japanese": "人は過去を、実際より温かく覚えているものだ。",
+    "chunks": [
+      "人",
+      "は",
+      "過去",
+      "を、",
+      "実際より",
+      "温かく",
+      "覚えているものだ。"
+    ],
+    "translation": "人總是把過去記得比實際更溫暖。",
+    "english": "People tend to remember the past as warmer than it was.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "nostalgia"
+    ]
+  },
+  {
+    "id": "2015",
+    "japanese": "懐かしさは、過去そのものより、当時の自分を恋しがる気持ちだ。",
+    "chunks": [
+      "懐かしさ",
+      "は、",
+      "過去そのもの",
+      "より、",
+      "当時の自分",
+      "を",
+      "恋しがる気持ちだ。"
+    ],
+    "translation": "懷舊，與其說是想念過去本身，不如說是想念當時的自己。",
+    "english": "Nostalgia is less missing the past than missing who we were then.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "nostalgia"
+    ]
+  },
+  {
+    "id": "2016",
+    "japanese": "この問題では、国が協力する必要があります。",
+    "chunks": [
+      "この問題",
+      "では、",
+      "国",
+      "が",
+      "協力する",
+      "必要が",
+      "あります。"
+    ],
+    "translation": "在這個問題上，各國需要合作。",
+    "english": "On this issue, countries need to cooperate.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "global cooperation"
+    ]
+  },
+  {
+    "id": "2017",
+    "japanese": "一国だけでは、気候変動は解決できない。",
+    "chunks": [
+      "一国",
+      "だけ",
+      "では、",
+      "気候変動",
+      "は",
+      "解決できない。"
+    ],
+    "translation": "單靠一個國家，無法解決氣候變遷。",
+    "english": "Climate change can't be solved by one country alone.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "global cooperation"
+    ]
+  },
+  {
+    "id": "2018",
+    "japanese": "国家間の協力は、称えるのは簡単だが、続けるのは難しい。",
+    "chunks": [
+      "国家間",
+      "の",
+      "協力",
+      "は、",
+      "称えるの",
+      "は",
+      "簡単だが、",
+      "続けるの",
+      "は",
+      "難しい。"
+    ],
+    "translation": "國家間的合作，讚揚容易，持續困難。",
+    "english": "Cooperation between nations is easy to praise but hard to sustain.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "global cooperation"
+    ]
+  },
+  {
+    "id": "2019",
+    "japanese": "共通の課題は、誰のせいかで合意するのを待ってはくれない。",
+    "chunks": [
+      "共通の課題",
+      "は、",
+      "誰のせいか",
+      "で",
+      "合意するの",
+      "を",
+      "待ってはくれない。"
+    ],
+    "translation": "共同的課題，不會等我們先就該怪誰達成共識。",
+    "english": "Shared problems don't wait for us to agree on who's to blame.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "global cooperation"
+    ]
+  },
+  {
+    "id": "2020",
+    "japanese": "新しい町に少しずつ慣れています。",
+    "chunks": [
+      "新しい町",
+      "に",
+      "少しずつ",
+      "慣れて",
+      "います。"
+    ],
+    "translation": "我正慢慢習慣這座新城鎮。",
+    "english": "I'm gradually getting used to the new town.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "adaptation"
+    ]
+  },
+  {
+    "id": "2021",
+    "japanese": "計画が崩れたとき、柔軟な人ほどうまく対応する。",
+    "chunks": [
+      "計画",
+      "が",
+      "崩れたとき、",
+      "柔軟な人ほど",
+      "うまく",
+      "対応する。"
+    ],
+    "translation": "計畫瓦解時，越靈活的人應對得越好。",
+    "english": "When plans collapse, the more flexible people cope better.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "adaptation"
+    ]
+  },
+  {
+    "id": "2022",
+    "japanese": "生き残るのは最も強い者ではなく、最も変化を厭わない者だ。",
+    "chunks": [
+      "生き残るの",
+      "は",
+      "最も強い者",
+      "ではなく、",
+      "最も",
+      "変化を厭わない者",
+      "だ。"
+    ],
+    "translation": "存活下來的，不是最強的，而是最不排斥改變的。",
+    "english": "It's not the strongest who survive, but those most willing to change.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "adaptation"
+    ]
+  },
+  {
+    "id": "2023",
+    "japanese": "最初は居心地が悪くても、数か月で当たり前になることが多い。",
+    "chunks": [
+      "最初",
+      "は",
+      "居心地が悪くても、",
+      "数か月",
+      "で",
+      "当たり前になることが",
+      "多い。"
+    ],
+    "translation": "一開始覺得不自在，往往幾個月後就習以為常了。",
+    "english": "What feels uncomfortable at first often becomes normal within months.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "adaptation"
+    ]
+  },
+  {
+    "id": "2024",
+    "japanese": "うちの猫は一日中寝ています。",
+    "chunks": [
+      "うち",
+      "の",
+      "猫",
+      "は",
+      "一日中",
+      "寝ています。"
+    ],
+    "translation": "我家的貓整天都在睡。",
+    "english": "My cat sleeps all day.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "animals"
+    ]
+  },
+  {
+    "id": "2025",
+    "japanese": "犬は、こちらの気持ちを感じ取るようだ。",
+    "chunks": [
+      "犬",
+      "は、",
+      "こちら",
+      "の",
+      "気持ち",
+      "を",
+      "感じ取るようだ。"
+    ],
+    "translation": "狗似乎能感受到我們的心情。",
+    "english": "Dogs seem to sense how we feel.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "animals"
+    ]
+  },
+  {
+    "id": "2026",
+    "japanese": "多くの種が、名前をつける間もなく姿を消していく。",
+    "chunks": [
+      "多くの種",
+      "が、",
+      "名前をつける間もなく",
+      "姿",
+      "を",
+      "消していく。"
+    ],
+    "translation": "許多物種，在我們來不及命名前就消失了。",
+    "english": "Many species vanish faster than we can name them.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "animals"
+    ]
+  },
+  {
+    "id": "2027",
+    "japanese": "動物への接し方に、その社会の優しさの度合いが表れる。",
+    "chunks": [
+      "動物",
+      "への",
+      "接し方",
+      "に、",
+      "その社会",
+      "の",
+      "優しさの度合い",
+      "が",
+      "表れる。"
+    ],
+    "translation": "對待動物的方式，顯露出一個社會行善的程度。",
+    "english": "How a society treats animals reveals its capacity for kindness.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "animals"
+    ]
+  },
+  {
+    "id": "2028",
+    "japanese": "今、品物が切れています。",
+    "chunks": [
+      "今、",
+      "品物",
+      "が",
+      "切れて",
+      "います。"
+    ],
+    "translation": "現在缺貨。",
+    "english": "We're out of stock now.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "inventory"
+    ]
+  },
+  {
+    "id": "2029",
+    "japanese": "奥にいくつ残っているか確認してください。",
+    "chunks": [
+      "奥",
+      "に",
+      "いくつ",
+      "残っているか",
+      "確認して",
+      "ください。"
+    ],
+    "translation": "請確認後面還剩幾個。",
+    "english": "Please check how many are left in the back.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "inventory"
+    ]
+  },
+  {
+    "id": "2030",
+    "japanese": "在庫を抱えすぎると、他に使えるお金が動かせなくなる。",
+    "chunks": [
+      "在庫",
+      "を",
+      "抱えすぎると、",
+      "他",
+      "に",
+      "使えるお金",
+      "が",
+      "動かせなくなる。"
+    ],
+    "translation": "庫存囤太多，本可用在別處的錢就動彈不得。",
+    "english": "Holding too much stock locks up money you could use elsewhere.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "inventory"
+    ]
+  },
+  {
+    "id": "2031",
+    "japanese": "肝心なときの品切れは、過剰在庫よりも高くつくことがある。",
+    "chunks": [
+      "肝心なとき",
+      "の",
+      "品切れ",
+      "は、",
+      "過剰在庫",
+      "よりも",
+      "高くつくことがある。"
+    ],
+    "translation": "在關鍵時刻缺貨，付出的代價有時比庫存過剩還高。",
+    "english": "Running out at a crucial moment can cost more than overstocking.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "inventory"
+    ]
+  },
+  {
+    "id": "2032",
+    "japanese": "あの番組は若い人に人気があります。",
+    "chunks": [
+      "あの番組",
+      "は",
+      "若い人",
+      "に",
+      "人気が",
+      "あります。"
+    ],
+    "translation": "那個節目很受年輕人歡迎。",
+    "english": "That show is popular with young people.",
+    "difficulty": "medium",
+    "tags": [
+      "n4",
+      "popularity"
+    ]
+  },
+  {
+    "id": "2033",
+    "japanese": "全員に好かれることは、何の主張もないことを意味しがちだ。",
+    "chunks": [
+      "全員",
+      "に",
+      "好かれること",
+      "は、",
+      "何の主張もないこと",
+      "を",
+      "意味しがちだ。"
+    ],
+    "translation": "受所有人喜歡，往往意味著毫無主見。",
+    "english": "Being liked by everyone tends to mean standing for nothing.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "popularity"
+    ]
+  },
+  {
+    "id": "2034",
+    "japanese": "人気があることと良いことは、偶然しか重ならない。",
+    "chunks": [
+      "人気があること",
+      "と",
+      "良いこと",
+      "は、",
+      "偶然",
+      "しか",
+      "重ならない。"
+    ],
+    "translation": "受歡迎和好，只有偶然才會重疊。",
+    "english": "Being popular and being good only overlap by chance.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "popularity"
+    ]
+  },
+  {
+    "id": "2035",
+    "japanese": "承認を求めることは、ゴールのない競争だ。",
+    "chunks": [
+      "承認",
+      "を",
+      "求めること",
+      "は、",
+      "ゴールのない競争",
+      "だ。"
+    ],
+    "translation": "追求認同，是一場沒有終點的競賽。",
+    "english": "Seeking approval is a race with no finish line.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "popularity"
+    ]
+  },
+  {
+    "id": "2036",
+    "japanese": "この薬は食後に飲んでください。",
+    "chunks": [
+      "この薬",
+      "は",
+      "食後",
+      "に",
+      "飲んで",
+      "ください。"
+    ],
+    "translation": "這個藥請飯後服用。",
+    "english": "Please take this medicine after meals.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "medical"
+    ]
+  },
+  {
+    "id": "2037",
+    "japanese": "医者は一週間休むようにと言いました。",
+    "chunks": [
+      "医者",
+      "は",
+      "一週間",
+      "休むように",
+      "と",
+      "言いました。"
+    ],
+    "translation": "醫生說要我休息一週。",
+    "english": "The doctor told me to rest for a week.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "medical"
+    ]
+  },
+  {
+    "id": "2038",
+    "japanese": "病気を早く見つけることが、大きな違いを生むことが多い。",
+    "chunks": [
+      "病気",
+      "を",
+      "早く",
+      "見つけること",
+      "が、",
+      "大きな違い",
+      "を",
+      "生むことが",
+      "多い。"
+    ],
+    "translation": "及早發現疾病，往往會帶來很大的差別。",
+    "english": "Catching an illness early often makes a big difference.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "medical"
+    ]
+  },
+  {
+    "id": "2039",
+    "japanese": "現代医学は寿命を延ばせても、死への恐れはなお和らげにくい。",
+    "chunks": [
+      "現代医学",
+      "は",
+      "寿命",
+      "を",
+      "延ばせても、",
+      "死への恐れ",
+      "は",
+      "なお",
+      "和らげにくい。"
+    ],
+    "translation": "現代醫學能延長壽命，卻仍難以減輕對死亡的恐懼。",
+    "english": "Modern medicine can extend life yet still struggles to ease the fear of death.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "medical"
+    ]
+  },
+  {
+    "id": "2040",
+    "japanese": "もう少しアドバイスをもらえますか。",
+    "chunks": [
+      "もう少し",
+      "アドバイス",
+      "を",
+      "もらえます",
+      "か。"
+    ],
+    "translation": "可以再給我一些建議嗎？",
+    "english": "Could I get a little more advice?",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "advice"
+    ]
+  },
+  {
+    "id": "2041",
+    "japanese": "良い助言は、与えるのは簡単で、受け入れるのは難しい。",
+    "chunks": [
+      "良い助言",
+      "は、",
+      "与えるの",
+      "は",
+      "簡単で、",
+      "受け入れるの",
+      "は",
+      "難しい。"
+    ],
+    "translation": "好的忠告，給予容易，接受困難。",
+    "english": "Good advice is easy to give and hard to accept.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "advice"
+    ]
+  },
+  {
+    "id": "2042",
+    "japanese": "人は助言より、理解されることを求めていることが多い。",
+    "chunks": [
+      "人",
+      "は",
+      "助言",
+      "より、",
+      "理解されること",
+      "を",
+      "求めていることが",
+      "多い。"
+    ],
+    "translation": "比起忠告，人們往往更想被理解。",
+    "english": "People often want to be understood more than they want advice.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "advice"
+    ]
+  },
+  {
+    "id": "2043",
+    "japanese": "最良の助言は、助言者の過去ではなく、あなたの状況に合っている。",
+    "chunks": [
+      "最良の助言",
+      "は、",
+      "助言者の過去",
+      "ではなく、",
+      "あなたの状況",
+      "に",
+      "合っている。"
+    ],
+    "translation": "最好的忠告，切合的是你的處境，而非給忠告者的過去。",
+    "english": "The best advice fits your situation, not the adviser's past.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "advice"
+    ]
+  },
+  {
+    "id": "2044",
+    "japanese": "今日は遅れて本当にすみません。",
+    "chunks": [
+      "今日",
+      "は",
+      "遅れて",
+      "本当に",
+      "すみません。"
+    ],
+    "translation": "今天遲到了，真的很對不起。",
+    "english": "I'm really sorry for being late today.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "apology"
+    ]
+  },
+  {
+    "id": "2045",
+    "japanese": "本当の謝罪には、「でも」という言葉がつかない。",
+    "chunks": [
+      "本当の謝罪",
+      "には、",
+      "「でも」",
+      "という言葉",
+      "が",
+      "つかない。"
+    ],
+    "translation": "真正的道歉，不會帶上「但是」這個詞。",
+    "english": "A real apology doesn't come with the word 'but'.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "apology"
+    ]
+  },
+  {
+    "id": "2046",
+    "japanese": "すぐ謝ること以上に、実際に変わったと示すことが大切だ。",
+    "chunks": [
+      "すぐ",
+      "謝ること",
+      "以上に、",
+      "実際に",
+      "変わったと",
+      "示すこと",
+      "が",
+      "大切だ。"
+    ],
+    "translation": "比起馬上道歉，展現出你真的改變了更重要。",
+    "english": "Showing you've changed matters more than apologizing quickly.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "apology"
+    ]
+  },
+  {
+    "id": "2047",
+    "japanese": "長々と説明が必要な謝罪は、たいてい謝罪ではない。",
+    "chunks": [
+      "長々と",
+      "説明が必要な謝罪",
+      "は、",
+      "たいてい",
+      "謝罪",
+      "では",
+      "ない。"
+    ],
+    "translation": "需要長篇解釋的道歉，通常算不上道歉。",
+    "english": "An apology that needs lengthy explaining usually isn't one.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "apology"
+    ]
+  },
+  {
+    "id": "2048",
+    "japanese": "値段をもう少し下げてください。",
+    "chunks": [
+      "値段",
+      "を",
+      "もう少し",
+      "下げて",
+      "ください。"
+    ],
+    "translation": "請再降一點價格。",
+    "english": "Please lower the price a little more.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2049",
+    "japanese": "条件についてもう一度話し合いましょう。",
+    "chunks": [
+      "条件",
+      "について",
+      "もう一度",
+      "話し合い",
+      "ましょう。"
+    ],
+    "translation": "我們再談一次條件吧。",
+    "english": "Let's discuss the terms once more.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2050",
+    "japanese": "お互いが少しずつ譲れば、話はまとまる。",
+    "chunks": [
+      "お互い",
+      "が",
+      "少しずつ",
+      "譲れば、",
+      "話",
+      "は",
+      "まとまる。"
+    ],
+    "translation": "只要彼此各退一步，事情就能談成。",
+    "english": "If both sides give a little, an agreement comes together.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2051",
+    "japanese": "交渉では、最初に高めの条件を出すのが普通だ。",
+    "chunks": [
+      "交渉",
+      "では、",
+      "最初",
+      "に",
+      "高めの条件",
+      "を",
+      "出すの",
+      "が",
+      "普通だ。"
+    ],
+    "translation": "在談判中，一開始開出較高的條件是常態。",
+    "english": "In negotiation, it's normal to open with higher terms.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2052",
+    "japanese": "良い交渉とは、相手にも勝ったと感じさせることだ。",
+    "chunks": [
+      "良い交渉",
+      "とは、",
+      "相手",
+      "にも",
+      "勝ったと",
+      "感じさせること",
+      "だ。"
+    ],
+    "translation": "好的談判，是讓對方也覺得自己贏了。",
+    "english": "Good negotiation makes the other side feel they won too.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2053",
+    "japanese": "急いで合意するより、沈黙に耐える方が有利なこともある。",
+    "chunks": [
+      "急いで",
+      "合意するより、",
+      "沈黙",
+      "に",
+      "耐える方",
+      "が",
+      "有利な",
+      "こともある。"
+    ],
+    "translation": "比起急著達成共識，忍受沉默有時反而更有利。",
+    "english": "Enduring silence can be more advantageous than rushing to agree.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2054",
+    "japanese": "条件を整理してから、最後に金額の話をする。",
+    "chunks": [
+      "条件",
+      "を",
+      "整理してから、",
+      "最後",
+      "に",
+      "金額の話",
+      "を",
+      "する。"
+    ],
+    "translation": "先理清條件，最後再談金額。",
+    "english": "Sort out the terms first, then talk money last.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2055",
+    "japanese": "相手の本当の狙いを見抜くことが、交渉の鍵となる。",
+    "chunks": [
+      "相手",
+      "の",
+      "本当の狙い",
+      "を",
+      "見抜くこと",
+      "が、",
+      "交渉の鍵",
+      "と",
+      "なる。"
+    ],
+    "translation": "看穿對方真正的目的，是談判的關鍵。",
+    "english": "Seeing through the other side's real aim is the key to negotiation.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2056",
+    "japanese": "感情的になった方が、たいてい不利になる。",
+    "chunks": [
+      "感情的",
+      "に",
+      "なった方",
+      "が、",
+      "たいてい",
+      "不利",
+      "に",
+      "なる。"
+    ],
+    "translation": "情緒化的一方，通常會處於不利。",
+    "english": "The side that gets emotional usually ends up at a disadvantage.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2057",
+    "japanese": "妥協できる点と、絶対に譲れない点を分けておく。",
+    "chunks": [
+      "妥協できる点",
+      "と、",
+      "絶対に",
+      "譲れない点",
+      "を",
+      "分けておく。"
+    ],
+    "translation": "事先把可以妥協的點和絕不退讓的點分開。",
+    "english": "Separate in advance what you can compromise on from what you can't.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "negotiation"
+    ]
+  },
+  {
+    "id": "2058",
+    "japanese": "この商品はとても使いやすいです。",
+    "chunks": [
+      "この商品",
+      "は",
+      "とても",
+      "使いやすい",
+      "です。"
+    ],
+    "translation": "這個產品非常好用。",
+    "english": "This product is very easy to use.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "product review"
+    ]
+  },
+  {
+    "id": "2059",
+    "japanese": "値段の割に、品質が良いと思います。",
+    "chunks": [
+      "値段",
+      "の",
+      "割に、",
+      "品質",
+      "が",
+      "良いと",
+      "思います。"
+    ],
+    "translation": "以這個價格來說，我覺得品質不錯。",
+    "english": "I think the quality is good for the price.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "product review"
+    ]
+  },
+  {
+    "id": "2060",
+    "japanese": "写真で見たより、実物の方が小さかった。",
+    "chunks": [
+      "写真",
+      "で",
+      "見たより、",
+      "実物の方",
+      "が",
+      "小さかった。"
+    ],
+    "translation": "比起照片上看到的，實物還要小。",
+    "english": "It was smaller in person than it looked in the photos.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "product review"
+    ]
+  },
+  {
+    "id": "2061",
+    "japanese": "星の数だけでは、その商品の良し悪しは分からない。",
+    "chunks": [
+      "星の数",
+      "だけ",
+      "では、",
+      "その商品",
+      "の",
+      "良し悪し",
+      "は",
+      "分からない。"
+    ],
+    "translation": "光看星星數量，並不能判斷一個商品的好壞。",
+    "english": "The number of stars alone doesn't tell you if a product is good.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "product review"
+    ]
+  },
+  {
+    "id": "2062",
+    "japanese": "低い評価のレビューほど、参考になることがある。",
+    "chunks": [
+      "低い評価",
+      "の",
+      "レビューほど、",
+      "参考",
+      "に",
+      "なることがある。"
+    ],
+    "translation": "越是低分的評論，有時越有參考價值。",
+    "english": "Lower-rated reviews can sometimes be the most useful.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "product review"
+    ]
+  },
+  {
+    "id": "2063",
+    "japanese": "使ってみて初めて、説明書の不親切さに気づいた。",
+    "chunks": [
+      "使ってみて",
+      "初めて、",
+      "説明書",
+      "の",
+      "不親切さ",
+      "に",
+      "気づいた。"
+    ],
+    "translation": "實際用了之後，才發現說明書多麼不友善。",
+    "english": "Only after using it did I notice how unhelpful the manual was.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "product review"
+    ]
+  },
+  {
+    "id": "2064",
+    "japanese": "壊れやすいという口コミは、本当でした。",
+    "chunks": [
+      "壊れやすい",
+      "という",
+      "口コミ",
+      "は、",
+      "本当",
+      "でした。"
+    ],
+    "translation": "說它容易壞的評價，是真的。",
+    "english": "The reviews saying it breaks easily were true.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "product review"
+    ]
+  },
+  {
+    "id": "2065",
+    "japanese": "良いレビューは、長所と短所の両方に触れている。",
+    "chunks": [
+      "良いレビュー",
+      "は、",
+      "長所",
+      "と",
+      "短所",
+      "の",
+      "両方",
+      "に",
+      "触れている。"
+    ],
+    "translation": "好的評論，會同時提到優點和缺點。",
+    "english": "A good review touches on both strengths and weaknesses.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "product review"
+    ]
+  },
+  {
+    "id": "2066",
+    "japanese": "宣伝の言葉より、実際の使用者の声を信じたい。",
+    "chunks": [
+      "宣伝の言葉",
+      "より、",
+      "実際の使用者",
+      "の",
+      "声",
+      "を",
+      "信じたい。"
+    ],
+    "translation": "比起宣傳話術，我更想相信實際使用者的聲音。",
+    "english": "I'd rather trust real users' voices than advertising copy.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "product review"
+    ]
+  },
+  {
+    "id": "2067",
+    "japanese": "買う前に、いくつかのレビューを読んでおくといい。",
+    "chunks": [
+      "買う前に、",
+      "いくつか",
+      "の",
+      "レビュー",
+      "を",
+      "読んでおくと",
+      "いい。"
+    ],
+    "translation": "購買前，最好先讀幾篇評論。",
+    "english": "It's good to read a few reviews before buying.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "product review"
+    ]
+  },
+  {
+    "id": "2068",
+    "japanese": "二に三を足すと五になります。",
+    "chunks": [
+      "二",
+      "に",
+      "三",
+      "を",
+      "足すと",
+      "五",
+      "に",
+      "なります。"
+    ],
+    "translation": "二加三等於五。",
+    "english": "Two plus three is five.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "math"
+    ]
+  },
+  {
+    "id": "2069",
+    "japanese": "この問題の答えが分かりません。",
+    "chunks": [
+      "この問題",
+      "の",
+      "答え",
+      "が",
+      "分かり",
+      "ません。"
+    ],
+    "translation": "我不知道這題的答案。",
+    "english": "I don't understand the answer to this problem.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "math"
+    ]
+  },
+  {
+    "id": "2070",
+    "japanese": "計算は苦手だが、図にすると理解しやすい。",
+    "chunks": [
+      "計算",
+      "は",
+      "苦手だが、",
+      "図",
+      "に",
+      "すると",
+      "理解しやすい。"
+    ],
+    "translation": "我不擅長計算，但畫成圖就比較好懂。",
+    "english": "I'm bad at calculation, but diagrams make it easier to understand.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "math"
+    ]
+  },
+  {
+    "id": "2071",
+    "japanese": "数学は、答えよりも考え方の道筋が大切だ。",
+    "chunks": [
+      "数学",
+      "は、",
+      "答え",
+      "よりも",
+      "考え方の道筋",
+      "が",
+      "大切だ。"
+    ],
+    "translation": "數學的重點，與其說是答案，不如說是思考的脈絡。",
+    "english": "In math, the path of reasoning matters more than the answer.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "math"
+    ]
+  },
+  {
+    "id": "2072",
+    "japanese": "公式を覚えるだけでは、応用問題は解けない。",
+    "chunks": [
+      "公式",
+      "を",
+      "覚えるだけ",
+      "では、",
+      "応用問題",
+      "は",
+      "解けない。"
+    ],
+    "translation": "光是背公式，是解不了應用題的。",
+    "english": "Just memorizing formulas won't let you solve applied problems.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "math"
+    ]
+  },
+  {
+    "id": "2073",
+    "japanese": "一見複雑な式も、分解すれば単純な形になる。",
+    "chunks": [
+      "一見",
+      "複雑な式",
+      "も、",
+      "分解すれば",
+      "単純な形",
+      "に",
+      "なる。"
+    ],
+    "translation": "乍看複雜的算式，分解之後就會變成簡單的形式。",
+    "english": "Even a seemingly complex expression becomes simple once broken down.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "math"
+    ]
+  },
+  {
+    "id": "2074",
+    "japanese": "確率を正しく理解すると、賭けの不利さが見えてくる。",
+    "chunks": [
+      "確率",
+      "を",
+      "正しく",
+      "理解すると、",
+      "賭け",
+      "の",
+      "不利さ",
+      "が",
+      "見えてくる。"
+    ],
+    "translation": "正確理解機率後，就能看出賭博的不利之處。",
+    "english": "Once you grasp probability correctly, the disadvantage of gambling becomes clear.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "math"
+    ]
+  },
+  {
+    "id": "2075",
+    "japanese": "毎日少しずつ問題を解くと、力がつく。",
+    "chunks": [
+      "毎日",
+      "少しずつ",
+      "問題",
+      "を",
+      "解くと、",
+      "力",
+      "が",
+      "つく。"
+    ],
+    "translation": "每天解一點題目，就會增進實力。",
+    "english": "Solving a few problems every day builds your ability.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "math"
+    ]
+  },
+  {
+    "id": "2076",
+    "japanese": "なぜそうなるのかを問うことが、数学の面白さだ。",
+    "chunks": [
+      "なぜ",
+      "そう",
+      "なるの",
+      "か",
+      "を",
+      "問うこと",
+      "が、",
+      "数学の面白さ",
+      "だ。"
+    ],
+    "translation": "追問為什麼會這樣，正是數學的趣味所在。",
+    "english": "Asking why it works is what makes math interesting.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "math"
+    ]
+  },
+  {
+    "id": "2077",
+    "japanese": "数字に強い人ほど、だまされにくいと言われる。",
+    "chunks": [
+      "数字",
+      "に",
+      "強い人ほど、",
+      "だまされにくいと",
+      "言われる。"
+    ],
+    "translation": "據說越擅長數字的人，越不容易被騙。",
+    "english": "It's said that people good with numbers are harder to deceive.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "math"
+    ]
+  },
+  {
+    "id": "2078",
+    "japanese": "将来、医者になりたいです。",
+    "chunks": [
+      "将来、",
+      "医者",
+      "に",
+      "なりたい",
+      "です。"
+    ],
+    "translation": "我將來想當醫生。",
+    "english": "I want to become a doctor in the future.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2079",
+    "japanese": "いつか自分の店を持つのが夢です。",
+    "chunks": [
+      "いつか",
+      "自分の店",
+      "を",
+      "持つの",
+      "が",
+      "夢",
+      "です。"
+    ],
+    "translation": "我的夢想是有一天能擁有自己的店。",
+    "english": "My dream is to one day have my own shop.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2080",
+    "japanese": "目標が高いほど、毎日の努力が必要になる。",
+    "chunks": [
+      "目標",
+      "が",
+      "高いほど、",
+      "毎日の努力",
+      "が",
+      "必要に",
+      "なる。"
+    ],
+    "translation": "目標越高，就越需要每天的努力。",
+    "english": "The higher the goal, the more daily effort it requires.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2081",
+    "japanese": "大きな夢も、小さな一歩から始まる。",
+    "chunks": [
+      "大きな夢",
+      "も、",
+      "小さな一歩",
+      "から",
+      "始まる。"
+    ],
+    "translation": "再大的夢想，也是從一小步開始。",
+    "english": "Even big dreams begin with a small step.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2082",
+    "japanese": "夢を語るのは簡単だが、続けることは難しい。",
+    "chunks": [
+      "夢",
+      "を",
+      "語るの",
+      "は",
+      "簡単だが、",
+      "続けること",
+      "は",
+      "難しい。"
+    ],
+    "translation": "談論夢想很容易，堅持下去卻很難。",
+    "english": "Talking about dreams is easy, but sticking with them is hard.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2083",
+    "japanese": "他人の期待ではなく、自分の望みを追いたい。",
+    "chunks": [
+      "他人の期待",
+      "ではなく、",
+      "自分の望み",
+      "を",
+      "追いたい。"
+    ],
+    "translation": "我想追求的是自己的願望，而非他人的期待。",
+    "english": "I want to pursue my own desires, not others' expectations.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2084",
+    "japanese": "志が高くても、足元の努力を忘れてはいけない。",
+    "chunks": [
+      "志",
+      "が",
+      "高くても、",
+      "足元の努力",
+      "を",
+      "忘れては",
+      "いけない。"
+    ],
+    "translation": "即使志向遠大，也不能忘記腳下的努力。",
+    "english": "Even with lofty ambitions, you mustn't forget the effort at your feet.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2085",
+    "japanese": "なりたい自分を思い描くことが、第一歩になる。",
+    "chunks": [
+      "なりたい自分",
+      "を",
+      "思い描くこと",
+      "が、",
+      "第一歩",
+      "に",
+      "なる。"
+    ],
+    "translation": "描繪出自己想成為的樣子，會成為第一步。",
+    "english": "Picturing who you want to become is the first step.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2086",
+    "japanese": "夢をかなえた人の多くは、何度も諦めかけている。",
+    "chunks": [
+      "夢",
+      "を",
+      "かなえた人",
+      "の",
+      "多く",
+      "は、",
+      "何度も",
+      "諦めかけている。"
+    ],
+    "translation": "許多實現夢想的人，都曾好幾次差點放棄。",
+    "english": "Many who achieved their dreams nearly gave up many times.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2087",
+    "japanese": "焦らず、自分のペースで前へ進めばいい。",
+    "chunks": [
+      "焦らず、",
+      "自分のペース",
+      "で",
+      "前",
+      "へ",
+      "進めば",
+      "いい。"
+    ],
+    "translation": "不必著急，按自己的步調往前走就好。",
+    "english": "Without rushing, just move forward at your own pace.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "aspiration"
+    ]
+  },
+  {
+    "id": "2088",
+    "japanese": "体に気をつけてください。",
+    "chunks": [
+      "体",
+      "に",
+      "気",
+      "を",
+      "つけて",
+      "ください。"
+    ],
+    "translation": "請保重身體。",
+    "english": "Please take care of yourself.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "care"
+    ]
+  },
+  {
+    "id": "2089",
+    "japanese": "風邪のときは、ゆっくり休んでください。",
+    "chunks": [
+      "風邪",
+      "の",
+      "とき",
+      "は、",
+      "ゆっくり",
+      "休んで",
+      "ください。"
+    ],
+    "translation": "感冒的時候，請好好休息。",
+    "english": "When you have a cold, please rest well.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "care"
+    ]
+  },
+  {
+    "id": "2090",
+    "japanese": "困っている人がいたら、声をかけてあげよう。",
+    "chunks": [
+      "困っている人",
+      "が",
+      "いたら、",
+      "声",
+      "を",
+      "かけて",
+      "あげよう。"
+    ],
+    "translation": "如果有人遇到困難，就主動上前關心吧。",
+    "english": "If someone is in trouble, let's reach out to them.",
+    "difficulty": "medium",
+    "tags": [
+      "n3",
+      "care"
+    ]
+  },
+  {
+    "id": "2091",
+    "japanese": "相手の立場に立って考えることが、思いやりだ。",
+    "chunks": [
+      "相手の立場",
+      "に",
+      "立って",
+      "考えること",
+      "が、",
+      "思いやり",
+      "だ。"
+    ],
+    "translation": "站在對方的立場思考，就是體貼。",
+    "english": "Thinking from the other person's position is what consideration means.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "care"
+    ]
+  },
+  {
+    "id": "2092",
+    "japanese": "看病してくれる人がいるだけで、心が軽くなる。",
+    "chunks": [
+      "看病してくれる人",
+      "が",
+      "いるだけ",
+      "で、",
+      "心",
+      "が",
+      "軽く",
+      "なる。"
+    ],
+    "translation": "光是有人照顧，心情就會輕鬆許多。",
+    "english": "Just having someone to nurse you lightens the heart.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "care"
+    ]
+  },
+  {
+    "id": "2093",
+    "japanese": "本当の優しさは、見返りを求めないものだ。",
+    "chunks": [
+      "本当の優しさ",
+      "は、",
+      "見返り",
+      "を",
+      "求めない",
+      "もの",
+      "だ。"
+    ],
+    "translation": "真正的善良，是不求回報的。",
+    "english": "True kindness is that which seeks no reward.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "care"
+    ]
+  },
+  {
+    "id": "2094",
+    "japanese": "無理をせず、自分の体も大切にしてください。",
+    "chunks": [
+      "無理をせず、",
+      "自分の体",
+      "も",
+      "大切に",
+      "して",
+      "ください。"
+    ],
+    "translation": "別太勉強，也請珍惜自己的身體。",
+    "english": "Don't overdo it, and please take care of your own body too.",
+    "difficulty": "easy",
+    "tags": [
+      "n4",
+      "care"
+    ]
+  },
+  {
+    "id": "2095",
+    "japanese": "誰かを気にかける心が、社会を温かくする。",
+    "chunks": [
+      "誰か",
+      "を",
+      "気にかける心",
+      "が、",
+      "社会",
+      "を",
+      "温かく",
+      "する。"
+    ],
+    "translation": "關懷他人的心，能讓社會變得溫暖。",
+    "english": "A heart that cares for others warms society.",
+    "difficulty": "hard",
+    "tags": [
+      "n1",
+      "care"
+    ]
+  },
+  {
+    "id": "2096",
+    "japanese": "言葉をかけるだけでも、相手の支えになる。",
+    "chunks": [
+      "言葉",
+      "を",
+      "かけるだけ",
+      "でも、",
+      "相手の支え",
+      "に",
+      "なる。"
+    ],
+    "translation": "光是說句話關心，也能成為對方的支柱。",
+    "english": "Even just saying a few words can be a support to someone.",
+    "difficulty": "hard",
+    "tags": [
+      "n2",
+      "care"
+    ]
+  },
+  {
+    "id": "2097",
+    "japanese": "お大事にしてくださいね。",
+    "chunks": [
+      "お",
+      "大事に",
+      "して",
+      "ください",
+      "ね。"
+    ],
+    "translation": "請多保重身體喔。",
+    "english": "Please take good care of yourself.",
+    "difficulty": "easy",
+    "tags": [
+      "n5",
+      "care"
+    ]
   }
 ]

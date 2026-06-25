@@ -9,8 +9,8 @@ Working dir for all commands: `src/data/_pipeline/`.
 
 ## Knobs (tune to control how much you consume per iteration)
 - `CLEAN_BATCH = 100`   English sentences to de-name (NOTE: backlog exhausted at iter#40 — clean_pending 0; loop is now generation-only)
-- `GEN_EN = 20`, `GEN_JP = 20`   new sentences to generate (generation-only mode, iter#41+)
-- `TOPICS = 5`   topics to pull from the rotation wheel (vary widely, no dup)
+- `GEN_EN = 0`, `GEN_JP = 50`   JP-only generation (user, iter#58): 50 JP, 0 EN per batch
+- `TOPICS = 5`   topics to pull from the rotation wheel (vary widely, no dup; ~10 JP/topic)
 
 ## Each iteration
 

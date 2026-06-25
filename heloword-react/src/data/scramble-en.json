@@ -18898,5 +18898,205 @@
         "id": 3780,
         "translate_ch": "截止日的前一晚，那些你忽視了好幾週的問題，突然都跳出來要你處理。",
         "sentence": "The night before a deadline, problems you ignored for weeks suddenly demand attention."
+    },
+    {
+        "id": 3781,
+        "translate_ch": "我明天有一場簡報。",
+        "sentence": "I have a presentation tomorrow."
+    },
+    {
+        "id": 3782,
+        "translate_ch": "把你的演講至少大聲練習一次。",
+        "sentence": "Practice your talk out loud at least once."
+    },
+    {
+        "id": 3783,
+        "translate_ch": "清楚的投影片只說一件事，而不是十件。",
+        "sentence": "A clear slide says one thing, not ten."
+    },
+    {
+        "id": 3784,
+        "translate_ch": "觀眾會原諒緊張的講者，卻永遠不會原諒無聊的講者。",
+        "sentence": "The audience forgives a nervous speaker, but never a boring one."
+    },
+    {
+        "id": 3785,
+        "translate_ch": "這首歌讓我想起高中時代。",
+        "sentence": "This song reminds me of high school."
+    },
+    {
+        "id": 3786,
+        "translate_ch": "雨的氣味把我帶回兒時的家。",
+        "sentence": "The smell of rain takes me back to my childhood home."
+    },
+    {
+        "id": 3787,
+        "translate_ch": "我們往往把過去記得比實際上更溫暖。",
+        "sentence": "We tend to remember the past as warmer than it actually was."
+    },
+    {
+        "id": 3788,
+        "translate_ch": "懷舊與其說是想念過去，不如說是想念當時的自己。",
+        "sentence": "Nostalgia is less about missing the past than missing who we were back then."
+    },
+    {
+        "id": 3789,
+        "translate_ch": "各國需要在這件事上合作。",
+        "sentence": "Countries need to work together on this."
+    },
+    {
+        "id": 3790,
+        "translate_ch": "沒有任何一個國家能獨力解決氣候變遷。",
+        "sentence": "No single nation can solve climate change alone."
+    },
+    {
+        "id": 3791,
+        "translate_ch": "國與國之間的合作，讚揚起來容易，維持下去卻很難。",
+        "sentence": "Cooperation between nations is easy to praise and hard to sustain."
+    },
+    {
+        "id": 3792,
+        "translate_ch": "共同的問題，很少會等我們先就該怪誰達成共識。",
+        "sentence": "Shared problems rarely wait for us to agree on who is to blame."
+    },
+    {
+        "id": 3793,
+        "translate_ch": "我正慢慢習慣這座新城市。",
+        "sentence": "I'm slowly getting used to the new city."
+    },
+    {
+        "id": 3794,
+        "translate_ch": "當計畫瓦解時，靈活的人應對得最好。",
+        "sentence": "When plans fall apart, the flexible ones cope best."
+    },
+    {
+        "id": 3795,
+        "translate_ch": "存活下來的，不是最強的，而是最願意改變的。",
+        "sentence": "Survival favors not the strongest, but those most willing to change."
+    },
+    {
+        "id": 3796,
+        "translate_ch": "一開始覺得不自在的事，往往在幾個月內就成了第二天性。",
+        "sentence": "What feels uncomfortable at first often becomes second nature within months."
+    },
+    {
+        "id": 3797,
+        "translate_ch": "我的貓整天都在睡覺。",
+        "sentence": "My cat sleeps all day."
+    },
+    {
+        "id": 3798,
+        "translate_ch": "狗似乎能感覺到我們的情緒。",
+        "sentence": "Dogs seem to sense how we're feeling."
+    },
+    {
+        "id": 3799,
+        "translate_ch": "許多物種消失的速度，比我們替牠們命名的速度還快。",
+        "sentence": "Many species are vanishing faster than we can even name them."
+    },
+    {
+        "id": 3800,
+        "translate_ch": "一個社會如何對待動物，悄悄地揭示了它行善的能力。",
+        "sentence": "How a society treats its animals quietly reveals its capacity for kindness."
+    },
+    {
+        "id": 3801,
+        "translate_ch": "我們現在缺貨。",
+        "sentence": "We are out of stock right now."
+    },
+    {
+        "id": 3802,
+        "translate_ch": "請查一下後面還剩幾個。",
+        "sentence": "Please check how many are left in the back."
+    },
+    {
+        "id": 3803,
+        "translate_ch": "囤積太多庫存，會綁住你本可用在別處的現金。",
+        "sentence": "Holding too much stock ties up cash you could use elsewhere."
+    },
+    {
+        "id": 3804,
+        "translate_ch": "在錯誤的時刻缺貨，付出的代價可能比囤貨還高。",
+        "sentence": "Running out at the wrong moment can cost more than overstocking ever does."
+    },
+    {
+        "id": 3805,
+        "translate_ch": "那個節目很受年輕人歡迎。",
+        "sentence": "That show is popular with young people."
+    },
+    {
+        "id": 3806,
+        "translate_ch": "受所有人喜歡，通常意味著沒有立場。",
+        "sentence": "Being liked by everyone usually means standing for nothing."
+    },
+    {
+        "id": 3807,
+        "translate_ch": "受歡迎的和好的，只是偶然才會重疊。",
+        "sentence": "What's popular and what's good only overlap by accident."
+    },
+    {
+        "id": 3808,
+        "translate_ch": "追逐認同，是一場沒有終點的賽跑。",
+        "sentence": "Chasing approval is a race with no finish line."
+    },
+    {
+        "id": 3809,
+        "translate_ch": "這個藥要飯後吃。",
+        "sentence": "Take this medicine after meals."
+    },
+    {
+        "id": 3810,
+        "translate_ch": "醫生說我應該休息一週。",
+        "sentence": "The doctor said I should rest for a week."
+    },
+    {
+        "id": 3811,
+        "translate_ch": "及早發現疾病，往往就決定了一切。",
+        "sentence": "Catching an illness early often makes all the difference."
+    },
+    {
+        "id": 3812,
+        "translate_ch": "現代醫學能延長壽命，卻仍難以減輕對死亡的恐懼。",
+        "sentence": "Modern medicine can extend life, but it still struggles to ease the fear of dying."
+    },
+    {
+        "id": 3813,
+        "translate_ch": "我可以向你請教一些建議嗎？",
+        "sentence": "Can I ask you for some advice?"
+    },
+    {
+        "id": 3814,
+        "translate_ch": "好的建議，給起來容易，接受起來難。",
+        "sentence": "Good advice is easy to give and hard to take."
+    },
+    {
+        "id": 3815,
+        "translate_ch": "人們很少真的想要建議，更多時候是想被理解。",
+        "sentence": "People rarely want advice; more often they want to be understood."
+    },
+    {
+        "id": 3816,
+        "translate_ch": "最好的建議切合你的處境，而非那位給建議者曾面對的處境。",
+        "sentence": "The best advice fits your situation, not the one the adviser once faced."
+    },
+    {
+        "id": 3817,
+        "translate_ch": "對不起，我遲到了。",
+        "sentence": "I'm sorry I'm late."
+    },
+    {
+        "id": 3818,
+        "translate_ch": "真正的道歉，不會帶著「但是」這個詞。",
+        "sentence": "A real apology comes without the word 'but' attached."
+    },
+    {
+        "id": 3819,
+        "translate_ch": "快速說對不起，遠不如展現出你真的改變了重要。",
+        "sentence": "Saying sorry quickly matters less than showing you've actually changed."
+    },
+    {
+        "id": 3820,
+        "translate_ch": "一個需要你長篇解釋的道歉，通常算不上真正的道歉。",
+        "sentence": "An apology you have to explain at length usually isn't really one."
     }
 ]
