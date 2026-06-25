@@ -59,3 +59,4 @@
 - **2026-06-25** (run #57): iter#57: generation-only, +20 en +20 jp (inventory/popularity/medical/advice/apology); particle chunks >=5, 70/30
 - **2026-06-25** (run #58): iter#58: JP-ONLY generation, +0 en +50 jp (negotiation/product review/math/aspiration/care); particle chunks >=5, 70/30
 - **2026-06-25** (run #59): iter#59: JP-only, +50 jp (online shopping/proverb/logic/aspirations/collaboration); particle chunks >=5, 70/30
+- **2026-06-25** (run #60): iter#60: JP-only, +50 jp (promotion/review/argument/balance/complaint); particle chunks >=5, 70/30
