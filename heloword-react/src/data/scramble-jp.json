@@ -47481,5 +47481,1140 @@
       "N2",
       "decision-making"
     ]
+  },
+  {
+    "id": "2397",
+    "japanese": "私は毎朝パンを食べます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "パン",
+      "を",
+      "食べます。"
+    ],
+    "translation": "我每天早上吃麵包。",
+    "english": "I eat bread every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "food"
+    ]
+  },
+  {
+    "id": "2398",
+    "japanese": "このスープは少し辛すぎます。",
+    "chunks": [
+      "この",
+      "スープ",
+      "は",
+      "少し",
+      "辛",
+      "すぎます。"
+    ],
+    "translation": "這碗湯有點太辣了。",
+    "english": "This soup is a little too spicy.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "food"
+    ]
+  },
+  {
+    "id": "2399",
+    "japanese": "旬の野菜は栄養が豊富で味も濃い。",
+    "chunks": [
+      "旬",
+      "の",
+      "野菜",
+      "は",
+      "栄養",
+      "が",
+      "豊富",
+      "で",
+      "味",
+      "も",
+      "濃い。"
+    ],
+    "translation": "當季的蔬菜營養豐富，味道也濃郁。",
+    "english": "Seasonal vegetables are rich in nutrients and full of flavor.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "food"
+    ]
+  },
+  {
+    "id": "2400",
+    "japanese": "食材を無駄にしないよう、計画的に買い物をしている。",
+    "chunks": [
+      "食材",
+      "を",
+      "無駄",
+      "に",
+      "しない",
+      "よう、",
+      "計画的",
+      "に",
+      "買い物",
+      "を",
+      "して",
+      "いる。"
+    ],
+    "translation": "為了不浪費食材，我都有計畫地購物。",
+    "english": "To avoid wasting ingredients, I shop in a planned way.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "food"
+    ]
+  },
+  {
+    "id": "2401",
+    "japanese": "地元で採れた食材にこだわるレストランが、近年人気を集めている。",
+    "chunks": [
+      "地元",
+      "で",
+      "採れた",
+      "食材",
+      "に",
+      "こだわる",
+      "レストラン",
+      "が、",
+      "近年",
+      "人気",
+      "を",
+      "集めて",
+      "いる。"
+    ],
+    "translation": "講究使用當地食材的餐廳，近年來人氣很高。",
+    "english": "Restaurants that insist on locally sourced ingredients have grown popular in recent years.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "food"
+    ]
+  },
+  {
+    "id": "2402",
+    "japanese": "食べ過ぎは健康に悪いとわかっていてもやめられない。",
+    "chunks": [
+      "食べ過ぎ",
+      "は",
+      "健康",
+      "に",
+      "悪い",
+      "と",
+      "わかって",
+      "いて",
+      "も",
+      "やめられない。"
+    ],
+    "translation": "明知吃太多有害健康，卻還是戒不掉。",
+    "english": "Even though I know overeating is bad for my health, I can't stop.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "food"
+    ]
+  },
+  {
+    "id": "2403",
+    "japanese": "冷蔵庫に何も残っていません。",
+    "chunks": [
+      "冷蔵庫",
+      "に",
+      "何",
+      "も",
+      "残って",
+      "いません。"
+    ],
+    "translation": "冰箱裡什麼都沒剩。",
+    "english": "There's nothing left in the fridge.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "food"
+    ]
+  },
+  {
+    "id": "2404",
+    "japanese": "食文化は、その土地の気候や歴史と切っても切れない関係にある。",
+    "chunks": [
+      "食文化",
+      "は、",
+      "その",
+      "土地",
+      "の",
+      "気候",
+      "や",
+      "歴史",
+      "と",
+      "切っても",
+      "切れない",
+      "関係",
+      "に",
+      "ある。"
+    ],
+    "translation": "飲食文化與當地的氣候和歷史有著密不可分的關係。",
+    "english": "Food culture is inseparably tied to a region's climate and history.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "food"
+    ]
+  },
+  {
+    "id": "2405",
+    "japanese": "体にいい食事を心がけるようにしている。",
+    "chunks": [
+      "体",
+      "に",
+      "いい",
+      "食事",
+      "を",
+      "心がける",
+      "ように",
+      "して",
+      "いる。"
+    ],
+    "translation": "我盡量留意要吃對身體好的飲食。",
+    "english": "I try to be mindful of eating food that's good for my body.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "food"
+    ]
+  },
+  {
+    "id": "2406",
+    "japanese": "この店の料理は見た目も美しく、味も申し分ない。",
+    "chunks": [
+      "この",
+      "店",
+      "の",
+      "料理",
+      "は",
+      "見た目",
+      "も",
+      "美しく、",
+      "味",
+      "も",
+      "申し分ない。"
+    ],
+    "translation": "這家店的料理外觀美麗，味道也無可挑剔。",
+    "english": "This restaurant's dishes look beautiful and taste impeccable.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "food"
+    ]
+  },
+  {
+    "id": "2407",
+    "japanese": "未来のことは誰にも分かりません。",
+    "chunks": [
+      "未来",
+      "の",
+      "こと",
+      "は",
+      "誰",
+      "に",
+      "も",
+      "分かりません。"
+    ],
+    "translation": "未來的事誰也說不準。",
+    "english": "No one knows what the future holds.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "future"
+    ]
+  },
+  {
+    "id": "2408",
+    "japanese": "技術の進歩が私たちの未来を変えていく。",
+    "chunks": [
+      "技術",
+      "の",
+      "進歩",
+      "が",
+      "私たち",
+      "の",
+      "未来",
+      "を",
+      "変えて",
+      "いく。"
+    ],
+    "translation": "技術的進步將不斷改變我們的未來。",
+    "english": "Technological progress will keep changing our future.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "future"
+    ]
+  },
+  {
+    "id": "2409",
+    "japanese": "将来に備えて、今のうちに貯金を始めた方がいい。",
+    "chunks": [
+      "将来",
+      "に",
+      "備えて、",
+      "今",
+      "の",
+      "うち",
+      "に",
+      "貯金",
+      "を",
+      "始めた",
+      "方",
+      "が",
+      "いい。"
+    ],
+    "translation": "為了將來著想，最好趁現在開始存錢。",
+    "english": "It's better to start saving now to prepare for the future.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "future"
+    ]
+  },
+  {
+    "id": "2410",
+    "japanese": "環境問題を放置すれば、将来の世代に大きな負担を強いることになる。",
+    "chunks": [
+      "環境問題",
+      "を",
+      "放置すれば、",
+      "将来",
+      "の",
+      "世代",
+      "に",
+      "大きな",
+      "負担",
+      "を",
+      "強いる",
+      "こと",
+      "に",
+      "なる。"
+    ],
+    "translation": "若放任環境問題不管，將會給後代帶來沉重的負擔。",
+    "english": "If we leave environmental problems unaddressed, we'll impose a heavy burden on future generations.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "future"
+    ]
+  },
+  {
+    "id": "2411",
+    "japanese": "子供たちには明るい未来を残したい。",
+    "chunks": [
+      "子供たち",
+      "に",
+      "は",
+      "明るい",
+      "未来",
+      "を",
+      "残したい。"
+    ],
+    "translation": "我想為孩子們留下光明的未來。",
+    "english": "I want to leave a bright future for the children.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "future"
+    ]
+  },
+  {
+    "id": "2412",
+    "japanese": "人工知能は私たちの働き方を大きく変えるだろう。",
+    "chunks": [
+      "人工知能",
+      "は",
+      "私たち",
+      "の",
+      "働き方",
+      "を",
+      "大きく",
+      "変える",
+      "だろう。"
+    ],
+    "translation": "人工智慧大概會大幅改變我們的工作方式。",
+    "english": "Artificial intelligence will likely greatly change the way we work.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "future"
+    ]
+  },
+  {
+    "id": "2413",
+    "japanese": "どんなに計画を立てても、未来が予測どおりに進むとは限らない。",
+    "chunks": [
+      "どんなに",
+      "計画",
+      "を",
+      "立てて",
+      "も、",
+      "未来",
+      "が",
+      "予測どおり",
+      "に",
+      "進む",
+      "と",
+      "は",
+      "限らない。"
+    ],
+    "translation": "不管再怎麼擬定計畫，未來也未必會照預測發展。",
+    "english": "No matter how much you plan, the future won't necessarily unfold as predicted.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "future"
+    ]
+  },
+  {
+    "id": "2414",
+    "japanese": "十年後の自分を想像してみてください。",
+    "chunks": [
+      "十年後",
+      "の",
+      "自分",
+      "を",
+      "想像して",
+      "みて",
+      "ください。"
+    ],
+    "translation": "請想像一下十年後的自己。",
+    "english": "Try to imagine yourself ten years from now.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "future"
+    ]
+  },
+  {
+    "id": "2415",
+    "japanese": "未来は、今の選択の積み重ねによって形づくられる。",
+    "chunks": [
+      "未来",
+      "は、",
+      "今",
+      "の",
+      "選択",
+      "の",
+      "積み重ね",
+      "に",
+      "よって",
+      "形づくられる。"
+    ],
+    "translation": "未來是由當下一個個選擇累積塑造而成的。",
+    "english": "The future is shaped by the accumulation of today's choices.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "future"
+    ]
+  },
+  {
+    "id": "2416",
+    "japanese": "この地域は急速に発展している。",
+    "chunks": [
+      "この",
+      "地域",
+      "は",
+      "急速",
+      "に",
+      "発展",
+      "して",
+      "いる。"
+    ],
+    "translation": "這個地區正在迅速發展。",
+    "english": "This region is developing rapidly.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "development"
+    ]
+  },
+  {
+    "id": "2417",
+    "japanese": "経済の発展に伴い、人々の生活水準も向上した。",
+    "chunks": [
+      "経済",
+      "の",
+      "発展",
+      "に",
+      "伴い、",
+      "人々",
+      "の",
+      "生活水準",
+      "も",
+      "向上した。"
+    ],
+    "translation": "隨著經濟的發展，人們的生活水準也提高了。",
+    "english": "As the economy developed, people's standard of living also rose.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "development"
+    ]
+  },
+  {
+    "id": "2418",
+    "japanese": "持続可能な発展を実現するには、環境との調和が不可欠だ。",
+    "chunks": [
+      "持続可能",
+      "な",
+      "発展",
+      "を",
+      "実現する",
+      "に",
+      "は、",
+      "環境",
+      "と",
+      "の",
+      "調和",
+      "が",
+      "不可欠",
+      "だ。"
+    ],
+    "translation": "要實現永續發展，與環境的調和不可或缺。",
+    "english": "To achieve sustainable development, harmony with the environment is essential.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "development"
+    ]
+  },
+  {
+    "id": "2419",
+    "japanese": "新しいアプリを開発しています。",
+    "chunks": [
+      "新しい",
+      "アプリ",
+      "を",
+      "開発",
+      "して",
+      "います。"
+    ],
+    "translation": "我正在開發一款新的應用程式。",
+    "english": "I'm developing a new app.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "development"
+    ]
+  },
+  {
+    "id": "2420",
+    "japanese": "子供の成長と発達には十分な睡眠が必要だ。",
+    "chunks": [
+      "子供",
+      "の",
+      "成長",
+      "と",
+      "発達",
+      "に",
+      "は",
+      "十分",
+      "な",
+      "睡眠",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "孩子的成長與發育需要充足的睡眠。",
+    "english": "Children's growth and development require adequate sleep.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "development"
+    ]
+  },
+  {
+    "id": "2421",
+    "japanese": "新薬の開発には長い年月と莫大な費用がかかる。",
+    "chunks": [
+      "新薬",
+      "の",
+      "開発",
+      "に",
+      "は",
+      "長い",
+      "年月",
+      "と",
+      "莫大",
+      "な",
+      "費用",
+      "が",
+      "かかる。"
+    ],
+    "translation": "新藥的開發需要漫長的時間與龐大的費用。",
+    "english": "Developing a new drug takes long years and enormous costs.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "development"
+    ]
+  },
+  {
+    "id": "2422",
+    "japanese": "技術の発展がもたらす恩恵の陰には、見過ごせない弊害も潜んでいる。",
+    "chunks": [
+      "技術",
+      "の",
+      "発展",
+      "が",
+      "もたらす",
+      "恩恵",
+      "の",
+      "陰",
+      "に",
+      "は、",
+      "見過ごせない",
+      "弊害",
+      "も",
+      "潜んで",
+      "いる。"
+    ],
+    "translation": "在技術發展帶來的恩惠背後，也潛藏著不容忽視的弊端。",
+    "english": "Behind the benefits brought by technological development lurk harms that can't be overlooked.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "development"
+    ]
+  },
+  {
+    "id": "2423",
+    "japanese": "この町はどんどん発展しています。",
+    "chunks": [
+      "この",
+      "町",
+      "は",
+      "どんどん",
+      "発展",
+      "して",
+      "います。"
+    ],
+    "translation": "這個城鎮正不斷地發展。",
+    "english": "This town is developing more and more.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "development"
+    ]
+  },
+  {
+    "id": "2424",
+    "japanese": "政府は地方の発展を支援する政策を進めている。",
+    "chunks": [
+      "政府",
+      "は",
+      "地方",
+      "の",
+      "発展",
+      "を",
+      "支援する",
+      "政策",
+      "を",
+      "進めて",
+      "いる。"
+    ],
+    "translation": "政府正在推動支援地方發展的政策。",
+    "english": "The government is advancing policies to support regional development.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "development"
+    ]
+  },
+  {
+    "id": "2425",
+    "japanese": "都市の発展とともに、自然が失われていった。",
+    "chunks": [
+      "都市",
+      "の",
+      "発展",
+      "と",
+      "ともに、",
+      "自然",
+      "が",
+      "失われて",
+      "いった。"
+    ],
+    "translation": "隨著都市的發展，自然逐漸消失了。",
+    "english": "As the city developed, nature was gradually lost.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "development"
+    ]
+  },
+  {
+    "id": "2426",
+    "japanese": "正式な場ではスーツを着ます。",
+    "chunks": [
+      "正式",
+      "な",
+      "場",
+      "で",
+      "は",
+      "スーツ",
+      "を",
+      "着ます。"
+    ],
+    "translation": "正式場合會穿西裝。",
+    "english": "I wear a suit on formal occasions.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "formal"
+    ]
+  },
+  {
+    "id": "2427",
+    "japanese": "面接では丁寧な言葉づかいが求められる。",
+    "chunks": [
+      "面接",
+      "で",
+      "は",
+      "丁寧",
+      "な",
+      "言葉づかい",
+      "が",
+      "求められる。"
+    ],
+    "translation": "面試時被要求要用禮貌的措辭。",
+    "english": "Polite language is expected in an interview.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "formal"
+    ]
+  },
+  {
+    "id": "2428",
+    "japanese": "正式な手続きを踏まないと、申請は受理されない。",
+    "chunks": [
+      "正式",
+      "な",
+      "手続き",
+      "を",
+      "踏まない",
+      "と、",
+      "申請",
+      "は",
+      "受理されない。"
+    ],
+    "translation": "不走正式的程序，申請就不會被受理。",
+    "english": "Unless you go through the formal procedures, your application won't be accepted.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "formal"
+    ]
+  },
+  {
+    "id": "2429",
+    "japanese": "この種の式典では、形式を重んじた立ち居振る舞いが求められる。",
+    "chunks": [
+      "この",
+      "種",
+      "の",
+      "式典",
+      "で",
+      "は、",
+      "形式",
+      "を",
+      "重んじた",
+      "立ち居振る舞い",
+      "が",
+      "求められる。"
+    ],
+    "translation": "在這類典禮上，被要求要有重視禮節的舉止。",
+    "english": "At this kind of ceremony, conduct that respects formality is expected.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "formal"
+    ]
+  },
+  {
+    "id": "2430",
+    "japanese": "明日は正式なパーティーがあります。",
+    "chunks": [
+      "明日",
+      "は",
+      "正式",
+      "な",
+      "パーティー",
+      "が",
+      "あります。"
+    ],
+    "translation": "明天有一場正式的派對。",
+    "english": "There's a formal party tomorrow.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "formal"
+    ]
+  },
+  {
+    "id": "2431",
+    "japanese": "正式な発表は来週の会見で行われる予定だ。",
+    "chunks": [
+      "正式",
+      "な",
+      "発表",
+      "は",
+      "来週",
+      "の",
+      "会見",
+      "で",
+      "行われる",
+      "予定",
+      "だ。"
+    ],
+    "translation": "正式的發表預定在下週的記者會上進行。",
+    "english": "The official announcement is scheduled to take place at next week's press conference.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "formal"
+    ]
+  },
+  {
+    "id": "2432",
+    "japanese": "招待状には正式な服装でお越しくださいと書いてあった。",
+    "chunks": [
+      "招待状",
+      "に",
+      "は",
+      "正式",
+      "な",
+      "服装",
+      "で",
+      "お越し",
+      "ください",
+      "と",
+      "書いて",
+      "あった。"
+    ],
+    "translation": "邀請函上寫著請以正式服裝出席。",
+    "english": "The invitation said to please come in formal attire.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "formal"
+    ]
+  },
+  {
+    "id": "2433",
+    "japanese": "正式な契約が交わされるまでは、いかなる約束も口頭にすぎない。",
+    "chunks": [
+      "正式",
+      "な",
+      "契約",
+      "が",
+      "交わされる",
+      "まで",
+      "は、",
+      "いかなる",
+      "約束",
+      "も",
+      "口頭",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "在正式簽訂合約之前，任何承諾都只是口頭上的。",
+    "english": "Until a formal contract is signed, any promise is merely verbal.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "formal"
+    ]
+  },
+  {
+    "id": "2434",
+    "japanese": "メールは正式な書き方で送りました。",
+    "chunks": [
+      "メール",
+      "は",
+      "正式",
+      "な",
+      "書き方",
+      "で",
+      "送りました。"
+    ],
+    "translation": "我用正式的格式寄了電子郵件。",
+    "english": "I sent the email in a formal style.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "formal"
+    ]
+  },
+  {
+    "id": "2435",
+    "japanese": "フォーマルな席では、敬語を正しく使い分ける必要がある。",
+    "chunks": [
+      "フォーマル",
+      "な",
+      "席",
+      "で",
+      "は、",
+      "敬語",
+      "を",
+      "正しく",
+      "使い分ける",
+      "必要",
+      "が",
+      "ある。"
+    ],
+    "translation": "在正式的場合，必須正確地區分使用敬語。",
+    "english": "At formal occasions, you need to use honorific language correctly.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "formal"
+    ]
+  },
+  {
+    "id": "2436",
+    "japanese": "政府は新しい法律を作りました。",
+    "chunks": [
+      "政府",
+      "は",
+      "新しい",
+      "法律",
+      "を",
+      "作りました。"
+    ],
+    "translation": "政府制定了新的法律。",
+    "english": "The government made a new law.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "government"
+    ]
+  },
+  {
+    "id": "2437",
+    "japanese": "政府は物価の上昇を抑えるための対策を発表した。",
+    "chunks": [
+      "政府",
+      "は",
+      "物価",
+      "の",
+      "上昇",
+      "を",
+      "抑える",
+      "ため",
+      "の",
+      "対策",
+      "を",
+      "発表した。"
+    ],
+    "translation": "政府公布了抑制物價上漲的對策。",
+    "english": "The government announced measures to curb rising prices.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "government"
+    ]
+  },
+  {
+    "id": "2438",
+    "japanese": "政府の対応の遅れが、被害をいっそう深刻なものにした。",
+    "chunks": [
+      "政府",
+      "の",
+      "対応",
+      "の",
+      "遅れ",
+      "が、",
+      "被害",
+      "を",
+      "いっそう",
+      "深刻",
+      "な",
+      "もの",
+      "に",
+      "した。"
+    ],
+    "translation": "政府應對的延遲，使災情更加嚴重。",
+    "english": "The government's delayed response made the damage even more serious.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "government"
+    ]
+  },
+  {
+    "id": "2439",
+    "japanese": "国民は政府に説明を求めている。",
+    "chunks": [
+      "国民",
+      "は",
+      "政府",
+      "に",
+      "説明",
+      "を",
+      "求めて",
+      "いる。"
+    ],
+    "translation": "國民正要求政府做出說明。",
+    "english": "The public is demanding an explanation from the government.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "government"
+    ]
+  },
+  {
+    "id": "2440",
+    "japanese": "政府は教育への予算を増やすと約束した。",
+    "chunks": [
+      "政府",
+      "は",
+      "教育",
+      "へ",
+      "の",
+      "予算",
+      "を",
+      "増やす",
+      "と",
+      "約束した。"
+    ],
+    "translation": "政府承諾要增加教育的預算。",
+    "english": "The government promised to increase the budget for education.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "government"
+    ]
+  },
+  {
+    "id": "2441",
+    "japanese": "透明性を欠いた政府の決定は、国民の不信を招きかねない。",
+    "chunks": [
+      "透明性",
+      "を",
+      "欠いた",
+      "政府",
+      "の",
+      "決定",
+      "は、",
+      "国民",
+      "の",
+      "不信",
+      "を",
+      "招き",
+      "かねない。"
+    ],
+    "translation": "缺乏透明度的政府決策，恐將招致國民的不信任。",
+    "english": "Government decisions that lack transparency may invite public distrust.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "government"
+    ]
+  },
+  {
+    "id": "2442",
+    "japanese": "政府はその計画に反対しています。",
+    "chunks": [
+      "政府",
+      "は",
+      "その",
+      "計画",
+      "に",
+      "反対",
+      "して",
+      "います。"
+    ],
+    "translation": "政府反對那項計畫。",
+    "english": "The government opposes that plan.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "government"
+    ]
+  },
+  {
+    "id": "2443",
+    "japanese": "災害時には政府の迅速な対応が欠かせない。",
+    "chunks": [
+      "災害時",
+      "に",
+      "は",
+      "政府",
+      "の",
+      "迅速",
+      "な",
+      "対応",
+      "が",
+      "欠かせない。"
+    ],
+    "translation": "災害發生時，政府迅速的應對不可或缺。",
+    "english": "In times of disaster, a swift government response is indispensable.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "government"
+    ]
+  },
+  {
+    "id": "2444",
+    "japanese": "多くの市民が政府の政策に賛成している。",
+    "chunks": [
+      "多く",
+      "の",
+      "市民",
+      "が",
+      "政府",
+      "の",
+      "政策",
+      "に",
+      "賛成",
+      "して",
+      "いる。"
+    ],
+    "translation": "許多市民贊成政府的政策。",
+    "english": "Many citizens support the government's policy.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "government"
+    ]
+  },
+  {
+    "id": "2445",
+    "japanese": "民主主義において、政府は常に国民に対して責任を負っている。",
+    "chunks": [
+      "民主主義",
+      "に",
+      "おいて、",
+      "政府",
+      "は",
+      "常に",
+      "国民",
+      "に対して",
+      "責任",
+      "を",
+      "負って",
+      "いる。"
+    ],
+    "translation": "在民主制度中，政府始終對國民負有責任。",
+    "english": "In a democracy, the government always bears responsibility to its people.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "government"
+    ]
   }
 ]

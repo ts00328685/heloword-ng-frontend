@@ -64,3 +64,4 @@
 - **2026-06-26** (run #62): iter#62: JP-only, +50 jp (service/style/AI/benefits/description); chunks>=5, 70/30
 - **2026-06-26** (run #63): iter#63: +50 jp (topics: character/diy/demographics/concentration/etiquette), 74% N1-N3 / 26% N4-N5
 - **2026-06-26** (run #64): iter#64: +50 jp (topics: diversity/decision/experience/exam/decision-making), 74% N1-N3 / 26% N4-N5
+- **2026-06-26** (run #65): iter#65: +50 jp (topics: food/future/development/formal/government), 74% N1-N3 / 26% N4-N5
