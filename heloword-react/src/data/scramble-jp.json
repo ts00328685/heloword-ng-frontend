@@ -46360,5 +46360,1126 @@
       "N3",
       "etiquette"
     ]
+  },
+  {
+    "id": "2347",
+    "japanese": "私たちのチームには色々な国の人がいます。",
+    "chunks": [
+      "私たち",
+      "の",
+      "チーム",
+      "に",
+      "は",
+      "色々",
+      "な",
+      "国",
+      "の",
+      "人",
+      "が",
+      "います。"
+    ],
+    "translation": "我們的團隊裡有來自各國的人。",
+    "english": "Our team has people from various countries.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2348",
+    "japanese": "多様な意見を尊重することが大切だ。",
+    "chunks": [
+      "多様",
+      "な",
+      "意見",
+      "を",
+      "尊重する",
+      "こと",
+      "が",
+      "大切",
+      "だ。"
+    ],
+    "translation": "尊重多元的意見很重要。",
+    "english": "It's important to respect diverse opinions.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2349",
+    "japanese": "この会社は社員の多様性を積極的に受け入れている。",
+    "chunks": [
+      "この",
+      "会社",
+      "は",
+      "社員",
+      "の",
+      "多様性",
+      "を",
+      "積極的",
+      "に",
+      "受け入れて",
+      "いる。"
+    ],
+    "translation": "這家公司積極接納員工的多元性。",
+    "english": "This company actively embraces the diversity of its employees.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2350",
+    "japanese": "文化の多様性は社会を豊かにする。",
+    "chunks": [
+      "文化",
+      "の",
+      "多様性",
+      "は",
+      "社会",
+      "を",
+      "豊か",
+      "に",
+      "する。"
+    ],
+    "translation": "文化的多樣性使社會更加豐富。",
+    "english": "Cultural diversity enriches society.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2351",
+    "japanese": "価値観の多様化が進むにつれ、画一的な解決策は通用しなくなってきた。",
+    "chunks": [
+      "価値観",
+      "の",
+      "多様化",
+      "が",
+      "進む",
+      "に",
+      "つれ、",
+      "画一的",
+      "な",
+      "解決策",
+      "は",
+      "通用",
+      "しなく",
+      "なって",
+      "きた。"
+    ],
+    "translation": "隨著價值觀日趨多元，劃一的解決方案已不再行得通。",
+    "english": "As values grow more diverse, one-size-fits-all solutions no longer work.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2352",
+    "japanese": "生物の多様性を守るために、森林の保護が欠かせない。",
+    "chunks": [
+      "生物",
+      "の",
+      "多様性",
+      "を",
+      "守る",
+      "ために、",
+      "森林",
+      "の",
+      "保護",
+      "が",
+      "欠かせない。"
+    ],
+    "translation": "為了保護生物多樣性，森林的保育不可或缺。",
+    "english": "To protect biodiversity, forest conservation is indispensable.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2353",
+    "japanese": "みんな考え方が違うのは当たり前です。",
+    "chunks": [
+      "みんな",
+      "考え方",
+      "が",
+      "違う",
+      "の",
+      "は",
+      "当たり前",
+      "です。"
+    ],
+    "translation": "每個人想法不同是理所當然的。",
+    "english": "It's only natural that everyone thinks differently.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2354",
+    "japanese": "多様な人材を活かせる組織こそ、これからの時代に生き残るだろう。",
+    "chunks": [
+      "多様",
+      "な",
+      "人材",
+      "を",
+      "活かせる",
+      "組織",
+      "こそ、",
+      "これから",
+      "の",
+      "時代",
+      "に",
+      "生き残る",
+      "だろう。"
+    ],
+    "translation": "唯有能善用多元人才的組織，才能在未來的時代存活下來吧。",
+    "english": "Only organizations that can make the most of diverse talent will survive in the era to come.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2355",
+    "japanese": "異なる背景を持つ人々が一緒に働いている。",
+    "chunks": [
+      "異なる",
+      "背景",
+      "を",
+      "持つ",
+      "人々",
+      "が",
+      "一緒",
+      "に",
+      "働いて",
+      "いる。"
+    ],
+    "translation": "擁有不同背景的人們一起工作。",
+    "english": "People with different backgrounds are working together.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2356",
+    "japanese": "多様性を認め合う社会を目指したい。",
+    "chunks": [
+      "多様性",
+      "を",
+      "認め合う",
+      "社会",
+      "を",
+      "目指したい。"
+    ],
+    "translation": "我想追求一個彼此認同多元性的社會。",
+    "english": "I want to aim for a society where people accept one another's diversity.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "diversity"
+    ]
+  },
+  {
+    "id": "2357",
+    "japanese": "私は留学を決めました。",
+    "chunks": [
+      "私",
+      "は",
+      "留学",
+      "を",
+      "決めました。"
+    ],
+    "translation": "我決定要去留學。",
+    "english": "I've decided to study abroad.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "decision"
+    ]
+  },
+  {
+    "id": "2358",
+    "japanese": "大事な決定は慎重にすべきだ。",
+    "chunks": [
+      "大事",
+      "な",
+      "決定",
+      "は",
+      "慎重",
+      "に",
+      "すべき",
+      "だ。"
+    ],
+    "translation": "重要的決定應該慎重做出。",
+    "english": "Important decisions should be made carefully.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "decision"
+    ]
+  },
+  {
+    "id": "2359",
+    "japanese": "その決断が会社の将来を左右した。",
+    "chunks": [
+      "その",
+      "決断",
+      "が",
+      "会社",
+      "の",
+      "将来",
+      "を",
+      "左右した。"
+    ],
+    "translation": "那個決斷左右了公司的未來。",
+    "english": "That decision shaped the company's future.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision"
+    ]
+  },
+  {
+    "id": "2360",
+    "japanese": "よく考えてから決めた方がいいですよ。",
+    "chunks": [
+      "よく",
+      "考えて",
+      "から",
+      "決めた",
+      "方",
+      "が",
+      "いい",
+      "です",
+      "よ。"
+    ],
+    "translation": "還是好好考慮過再決定比較好喔。",
+    "english": "It's better to think it over carefully before you decide.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "decision"
+    ]
+  },
+  {
+    "id": "2361",
+    "japanese": "困難な状況の中で、彼は冷静に決断を下した。",
+    "chunks": [
+      "困難",
+      "な",
+      "状況",
+      "の",
+      "中",
+      "で、",
+      "彼",
+      "は",
+      "冷静",
+      "に",
+      "決断",
+      "を",
+      "下した。"
+    ],
+    "translation": "在艱難的處境中，他冷靜地做出了決斷。",
+    "english": "Amid a difficult situation, he calmly made a decision.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision"
+    ]
+  },
+  {
+    "id": "2362",
+    "japanese": "一度下した決定を覆すのは容易ではない。",
+    "chunks": [
+      "一度",
+      "下した",
+      "決定",
+      "を",
+      "覆す",
+      "の",
+      "は",
+      "容易",
+      "では",
+      "ない。"
+    ],
+    "translation": "要推翻一旦做出的決定並不容易。",
+    "english": "It's not easy to overturn a decision once it's been made.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "decision"
+    ]
+  },
+  {
+    "id": "2363",
+    "japanese": "みんなで相談して決めましょう。",
+    "chunks": [
+      "みんな",
+      "で",
+      "相談",
+      "して",
+      "決めましょう。"
+    ],
+    "translation": "大家一起商量後再決定吧。",
+    "english": "Let's discuss it together and then decide.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "decision"
+    ]
+  },
+  {
+    "id": "2364",
+    "japanese": "最終的な決定は社長に委ねられている。",
+    "chunks": [
+      "最終的",
+      "な",
+      "決定",
+      "は",
+      "社長",
+      "に",
+      "委ねられて",
+      "いる。"
+    ],
+    "translation": "最終的決定交由社長定奪。",
+    "english": "The final decision is entrusted to the company president.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision"
+    ]
+  },
+  {
+    "id": "2365",
+    "japanese": "その場の感情で重要な決断を下すべきではない。",
+    "chunks": [
+      "その場",
+      "の",
+      "感情",
+      "で",
+      "重要",
+      "な",
+      "決断",
+      "を",
+      "下す",
+      "べき",
+      "では",
+      "ない。"
+    ],
+    "translation": "不應該憑當下的情緒做出重要的決斷。",
+    "english": "You shouldn't make important decisions based on the emotion of the moment.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "decision"
+    ]
+  },
+  {
+    "id": "2366",
+    "japanese": "引っ越すかどうか、まだ決めていない。",
+    "chunks": [
+      "引っ越す",
+      "か",
+      "どうか、",
+      "まだ",
+      "決めて",
+      "いない。"
+    ],
+    "translation": "我還沒決定要不要搬家。",
+    "english": "I haven't decided whether to move yet.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "decision"
+    ]
+  },
+  {
+    "id": "2367",
+    "japanese": "海外で働いた経験があります。",
+    "chunks": [
+      "海外",
+      "で",
+      "働いた",
+      "経験",
+      "が",
+      "あります。"
+    ],
+    "translation": "我有在國外工作的經驗。",
+    "english": "I have experience working abroad.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "experience"
+    ]
+  },
+  {
+    "id": "2368",
+    "japanese": "その経験から多くのことを学んだ。",
+    "chunks": [
+      "その",
+      "経験",
+      "から",
+      "多く",
+      "の",
+      "こと",
+      "を",
+      "学んだ。"
+    ],
+    "translation": "我從那次經驗中學到了很多。",
+    "english": "I learned a lot from that experience.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "experience"
+    ]
+  },
+  {
+    "id": "2369",
+    "japanese": "失敗の経験こそが人を成長させる。",
+    "chunks": [
+      "失敗",
+      "の",
+      "経験",
+      "こそ",
+      "が",
+      "人",
+      "を",
+      "成長させる。"
+    ],
+    "translation": "正是失敗的經驗使人成長。",
+    "english": "It's precisely the experience of failure that makes people grow.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "experience"
+    ]
+  },
+  {
+    "id": "2370",
+    "japanese": "若いうちに様々な経験を積んでおくべきだ。",
+    "chunks": [
+      "若い",
+      "うち",
+      "に",
+      "様々",
+      "な",
+      "経験",
+      "を",
+      "積んで",
+      "おく",
+      "べき",
+      "だ。"
+    ],
+    "translation": "應該趁年輕多累積各種經驗。",
+    "english": "You should accumulate various experiences while you're young.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "experience"
+    ]
+  },
+  {
+    "id": "2371",
+    "japanese": "経験を重ねるにつれて、仕事への自信も深まっていった。",
+    "chunks": [
+      "経験",
+      "を",
+      "重ねる",
+      "に",
+      "つれて、",
+      "仕事",
+      "へ",
+      "の",
+      "自信",
+      "も",
+      "深まって",
+      "いった。"
+    ],
+    "translation": "隨著經驗的累積，我對工作的自信也逐漸加深。",
+    "english": "As I accumulated experience, my confidence in my work deepened as well.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "experience"
+    ]
+  },
+  {
+    "id": "2372",
+    "japanese": "初めての一人旅は忘れられない経験になった。",
+    "chunks": [
+      "初めて",
+      "の",
+      "一人旅",
+      "は",
+      "忘れられない",
+      "経験",
+      "に",
+      "なった。"
+    ],
+    "translation": "第一次的獨自旅行成了難忘的經驗。",
+    "english": "My first solo trip became an unforgettable experience.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "experience"
+    ]
+  },
+  {
+    "id": "2373",
+    "japanese": "子供の頃の経験は今でも役に立っています。",
+    "chunks": [
+      "子供",
+      "の",
+      "頃",
+      "の",
+      "経験",
+      "は",
+      "今",
+      "でも",
+      "役",
+      "に",
+      "立って",
+      "います。"
+    ],
+    "translation": "小時候的經驗到現在仍然派得上用場。",
+    "english": "The experiences from my childhood are still useful even now.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "experience"
+    ]
+  },
+  {
+    "id": "2374",
+    "japanese": "理論よりも実際の経験の方が大切だと思う。",
+    "chunks": [
+      "理論",
+      "よりも",
+      "実際",
+      "の",
+      "経験",
+      "の",
+      "方",
+      "が",
+      "大切",
+      "だ",
+      "と",
+      "思う。"
+    ],
+    "translation": "我認為比起理論，實際的經驗更重要。",
+    "english": "I think actual experience matters more than theory.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "experience"
+    ]
+  },
+  {
+    "id": "2375",
+    "japanese": "どんな経験も無駄にはならない。",
+    "chunks": [
+      "どんな",
+      "経験",
+      "も",
+      "無駄",
+      "に",
+      "は",
+      "ならない。"
+    ],
+    "translation": "任何經驗都不會白費。",
+    "english": "No experience ever goes to waste.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "experience"
+    ]
+  },
+  {
+    "id": "2376",
+    "japanese": "長年の経験に裏打ちされた彼の判断は、信頼に値する。",
+    "chunks": [
+      "長年",
+      "の",
+      "経験",
+      "に",
+      "裏打ち",
+      "された",
+      "彼",
+      "の",
+      "判断",
+      "は、",
+      "信頼",
+      "に",
+      "値する。"
+    ],
+    "translation": "他以多年經驗為後盾的判斷，值得信賴。",
+    "english": "His judgment, backed by years of experience, is worthy of trust.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "experience"
+    ]
+  },
+  {
+    "id": "2377",
+    "japanese": "来週、数学の試験があります。",
+    "chunks": [
+      "来週、",
+      "数学",
+      "の",
+      "試験",
+      "が",
+      "あります。"
+    ],
+    "translation": "下週有數學考試。",
+    "english": "There's a math exam next week.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "exam"
+    ]
+  },
+  {
+    "id": "2378",
+    "japanese": "試験に合格できて本当にうれしい。",
+    "chunks": [
+      "試験",
+      "に",
+      "合格",
+      "できて",
+      "本当に",
+      "うれしい。"
+    ],
+    "translation": "能通過考試真的很開心。",
+    "english": "I'm really happy I was able to pass the exam.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "exam"
+    ]
+  },
+  {
+    "id": "2379",
+    "japanese": "試験の前夜は緊張してよく眠れなかった。",
+    "chunks": [
+      "試験",
+      "の",
+      "前夜",
+      "は",
+      "緊張",
+      "して",
+      "よく",
+      "眠れなかった。"
+    ],
+    "translation": "考試前一晚我緊張得睡不好。",
+    "english": "The night before the exam, I was so nervous I couldn't sleep well.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "exam"
+    ]
+  },
+  {
+    "id": "2380",
+    "japanese": "一夜漬けの勉強では、試験を乗り切れないだろう。",
+    "chunks": [
+      "一夜漬け",
+      "の",
+      "勉強",
+      "で",
+      "は、",
+      "試験",
+      "を",
+      "乗り切れない",
+      "だろう。"
+    ],
+    "translation": "光靠臨時抱佛腳的讀書，是過不了考試的吧。",
+    "english": "You probably can't get through the exam by cramming the night before.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "exam"
+    ]
+  },
+  {
+    "id": "2381",
+    "japanese": "試験範囲が広すぎて、どこから手をつければいいか分からない。",
+    "chunks": [
+      "試験範囲",
+      "が",
+      "広すぎて、",
+      "どこ",
+      "から",
+      "手",
+      "を",
+      "つければ",
+      "いい",
+      "か",
+      "分からない。"
+    ],
+    "translation": "考試範圍太廣，我不知道該從哪裡著手。",
+    "english": "The exam scope is so broad I don't know where to start.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "exam"
+    ]
+  },
+  {
+    "id": "2382",
+    "japanese": "試験の結果次第で、進路が大きく変わってくる。",
+    "chunks": [
+      "試験",
+      "の",
+      "結果",
+      "次第",
+      "で、",
+      "進路",
+      "が",
+      "大きく",
+      "変わって",
+      "くる。"
+    ],
+    "translation": "考試的結果會大大改變未來的出路。",
+    "english": "Depending on the exam results, your future path can change greatly.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "exam"
+    ]
+  },
+  {
+    "id": "2383",
+    "japanese": "試験のために毎晩遅くまで勉強しています。",
+    "chunks": [
+      "試験",
+      "の",
+      "ために",
+      "毎晩",
+      "遅く",
+      "まで",
+      "勉強",
+      "して",
+      "います。"
+    ],
+    "translation": "為了考試，我每晚都讀書到很晚。",
+    "english": "I study until late every night for the exam.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "exam"
+    ]
+  },
+  {
+    "id": "2384",
+    "japanese": "厳しい入学試験を突破するには、相当な努力が必要だ。",
+    "chunks": [
+      "厳しい",
+      "入学試験",
+      "を",
+      "突破する",
+      "に",
+      "は、",
+      "相当",
+      "な",
+      "努力",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "要突破嚴格的入學考試，需要相當的努力。",
+    "english": "To get through the rigorous entrance exam requires considerable effort.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "exam"
+    ]
+  },
+  {
+    "id": "2385",
+    "japanese": "試験中はカンニングをしてはいけません。",
+    "chunks": [
+      "試験中",
+      "は",
+      "カンニング",
+      "を",
+      "して",
+      "は",
+      "いけません。"
+    ],
+    "translation": "考試中不可以作弊。",
+    "english": "You must not cheat during the exam.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "exam"
+    ]
+  },
+  {
+    "id": "2386",
+    "japanese": "模擬試験で自分の弱点を把握しておくとよい。",
+    "chunks": [
+      "模擬試験",
+      "で",
+      "自分",
+      "の",
+      "弱点",
+      "を",
+      "把握",
+      "して",
+      "おく",
+      "と",
+      "よい。"
+    ],
+    "translation": "透過模擬考事先掌握自己的弱點會比較好。",
+    "english": "It's good to grasp your weak points in advance through mock exams.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "exam"
+    ]
+  },
+  {
+    "id": "2387",
+    "japanese": "良い意思決定には正確な情報が欠かせない。",
+    "chunks": [
+      "良い",
+      "意思決定",
+      "に",
+      "は",
+      "正確",
+      "な",
+      "情報",
+      "が",
+      "欠かせない。"
+    ],
+    "translation": "好的決策少不了準確的資訊。",
+    "english": "Good decision-making can't do without accurate information.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2388",
+    "japanese": "リーダーには素早い意思決定が求められる。",
+    "chunks": [
+      "リーダー",
+      "に",
+      "は",
+      "素早い",
+      "意思決定",
+      "が",
+      "求められる。"
+    ],
+    "translation": "領導者被要求要能迅速做決策。",
+    "english": "Leaders are required to make quick decisions.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2389",
+    "japanese": "感情に流されず、論理的に判断することが大切だ。",
+    "chunks": [
+      "感情",
+      "に",
+      "流されず、",
+      "論理的",
+      "に",
+      "判断する",
+      "こと",
+      "が",
+      "大切",
+      "だ。"
+    ],
+    "translation": "不被情緒左右、合乎邏輯地判斷很重要。",
+    "english": "It's important to judge logically without being swayed by emotion.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2390",
+    "japanese": "データに基づいて意思決定を行う企業が増えている。",
+    "chunks": [
+      "データ",
+      "に",
+      "基づいて",
+      "意思決定",
+      "を",
+      "行う",
+      "企業",
+      "が",
+      "増えて",
+      "いる。"
+    ],
+    "translation": "依據數據做決策的企業正在增加。",
+    "english": "More and more companies make decisions based on data.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2391",
+    "japanese": "何を優先するかをまず決めましょう。",
+    "chunks": [
+      "何",
+      "を",
+      "優先する",
+      "か",
+      "を",
+      "まず",
+      "決めましょう。"
+    ],
+    "translation": "我們先決定要以什麼為優先吧。",
+    "english": "Let's first decide what to prioritize.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2392",
+    "japanese": "迅速な意思決定が、時には組織の命運を分けることもある。",
+    "chunks": [
+      "迅速",
+      "な",
+      "意思決定",
+      "が、",
+      "時に",
+      "は",
+      "組織",
+      "の",
+      "命運",
+      "を",
+      "分ける",
+      "こと",
+      "も",
+      "ある。"
+    ],
+    "translation": "迅速的決策，有時甚至會左右組織的命運。",
+    "english": "Swift decision-making can sometimes even determine an organization's fate.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2393",
+    "japanese": "選択肢を整理すると、判断しやすくなる。",
+    "chunks": [
+      "選択肢",
+      "を",
+      "整理する",
+      "と、",
+      "判断",
+      "しやすく",
+      "なる。"
+    ],
+    "translation": "把選項整理一下，就會比較容易判斷。",
+    "english": "When you organize the options, it becomes easier to judge.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2394",
+    "japanese": "全員の合意を得てから物事を決めるのは時間がかかる。",
+    "chunks": [
+      "全員",
+      "の",
+      "合意",
+      "を",
+      "得て",
+      "から",
+      "物事",
+      "を",
+      "決める",
+      "の",
+      "は",
+      "時間",
+      "が",
+      "かかる。"
+    ],
+    "translation": "取得全員的共識後再做決定很花時間。",
+    "english": "Deciding things only after getting everyone's agreement takes time.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2395",
+    "japanese": "どちらを選ぶか迷っています。",
+    "chunks": [
+      "どちら",
+      "を",
+      "選ぶ",
+      "か",
+      "迷って",
+      "います。"
+    ],
+    "translation": "我正煩惱該選哪一個。",
+    "english": "I'm torn over which one to choose.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "2396",
+    "japanese": "限られた時間の中で最善の選択をするのは難しい。",
+    "chunks": [
+      "限られた",
+      "時間",
+      "の",
+      "中",
+      "で",
+      "最善",
+      "の",
+      "選択",
+      "を",
+      "する",
+      "の",
+      "は",
+      "難しい。"
+    ],
+    "translation": "在有限的時間內做出最佳的選擇是很難的。",
+    "english": "It's hard to make the best choice within a limited amount of time.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision-making"
+    ]
   }
 ]
