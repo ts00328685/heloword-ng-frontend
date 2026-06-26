@@ -61,3 +61,12 @@
 - **2026-06-25** (run #59): iter#59: JP-only, +50 jp (online shopping/proverb/logic/aspirations/collaboration); particle chunks >=5, 70/30
 - **2026-06-25** (run #60): iter#60: JP-only, +50 jp (promotion/review/argument/balance/complaint); particle chunks >=5, 70/30
 - **2026-06-26** (run #61): iter#61: JP-only, +50 jp (remote-work/social media/theory/behavior/cooperation); chunks >=5, 70/30
+- **2026-06-26** (run #62): iter#62: JP-only, +50 jp (service/style/AI/benefits/description); chunks>=5, 70/30
+- **2026-06-26** (run #63): iter#63: +50 jp (topics: character/diy/demographics/concentration/etiquette), 74% N1-N3 / 26% N4-N5
+- **2026-06-26** (run #64): iter#64: +50 jp (topics: diversity/decision/experience/exam/decision-making), 74% N1-N3 / 26% N4-N5
+- **2026-06-26** (run #65): iter#65: +50 jp (topics: food/future/development/formal/government), 74% N1-N3 / 26% N4-N5
+- **2026-06-26** (run #66): iter#66: +50 jp (topics: difficulty/health/guess/dream/healthcare), 70% N1-N3 / 30% N4-N5
+- **2026-06-26** (run #67): iter#67: +50 jp (topics: humanity/dreams/hospital/impact/effort), 72% N1-N3 / 28% N4-N5
+- **2026-06-26** (run #68): iter#68: +50 jp (topics: housing/influence/empathy/human relations/internet), 70% N1-N3 / 30% N4-N5
+- **2026-06-26** (run #69): iter#69: +50 jp (topics: encouragement/incident/policy/energy/invitation), 70% N1-N3 / 30% N4-N5
+- **2026-06-26** (run #70): iter#70: +50 jp (topics: quality/feeling/life/reform/fitness), 70% N1-N3 / 30% N4-N5
