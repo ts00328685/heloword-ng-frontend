@@ -65,3 +65,4 @@
 - **2026-06-26** (run #63): iter#63: +50 jp (topics: character/diy/demographics/concentration/etiquette), 74% N1-N3 / 26% N4-N5
 - **2026-06-26** (run #64): iter#64: +50 jp (topics: diversity/decision/experience/exam/decision-making), 74% N1-N3 / 26% N4-N5
 - **2026-06-26** (run #65): iter#65: +50 jp (topics: food/future/development/formal/government), 74% N1-N3 / 26% N4-N5
+- **2026-06-26** (run #66): iter#66: +50 jp (topics: difficulty/health/guess/dream/healthcare), 70% N1-N3 / 30% N4-N5
