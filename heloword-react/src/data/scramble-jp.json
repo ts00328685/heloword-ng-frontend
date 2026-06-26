@@ -50864,5 +50864,1139 @@
       "N2",
       "effort"
     ]
+  },
+  {
+    "id": "2546",
+    "japanese": "新しい家を買いたいです。",
+    "chunks": [
+      "新しい",
+      "家",
+      "を",
+      "買いたい",
+      "です。"
+    ],
+    "translation": "我想買新房子。",
+    "english": "I want to buy a new house.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "housing"
+    ]
+  },
+  {
+    "id": "2547",
+    "japanese": "駅に近い部屋を探しています。",
+    "chunks": [
+      "駅",
+      "に",
+      "近い",
+      "部屋",
+      "を",
+      "探して",
+      "います。"
+    ],
+    "translation": "我正在找離車站近的房間。",
+    "english": "I'm looking for a place near the station.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "housing"
+    ]
+  },
+  {
+    "id": "2548",
+    "japanese": "都会では家賃がとても高い。",
+    "chunks": [
+      "都会",
+      "で",
+      "は",
+      "家賃",
+      "が",
+      "とても",
+      "高い。"
+    ],
+    "translation": "在都市，房租非常貴。",
+    "english": "Rent is very high in the city.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "housing"
+    ]
+  },
+  {
+    "id": "2549",
+    "japanese": "住宅ローンの返済に、毎月追われている。",
+    "chunks": [
+      "住宅ローン",
+      "の",
+      "返済",
+      "に、",
+      "毎月",
+      "追われて",
+      "いる。"
+    ],
+    "translation": "我每個月都被房貸的還款追著跑。",
+    "english": "I'm chased by mortgage payments every month.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "housing"
+    ]
+  },
+  {
+    "id": "2550",
+    "japanese": "都市部の住宅価格の高騰は、若者の生活設計に重くのしかかっている。",
+    "chunks": [
+      "都市部",
+      "の",
+      "住宅価格",
+      "の",
+      "高騰",
+      "は、",
+      "若者",
+      "の",
+      "生活設計",
+      "に",
+      "重く",
+      "のしかかって",
+      "いる。"
+    ],
+    "translation": "都市地區房價的飆漲，沉重地壓在年輕人的生涯規劃上。",
+    "english": "Soaring housing prices in urban areas weigh heavily on young people's life plans.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "housing"
+    ]
+  },
+  {
+    "id": "2551",
+    "japanese": "引っ越し先がなかなか決まらない。",
+    "chunks": [
+      "引っ越し",
+      "先",
+      "が",
+      "なかなか",
+      "決まらない。"
+    ],
+    "translation": "搬家的去處遲遲定不下來。",
+    "english": "I just can't decide where to move.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "housing"
+    ]
+  },
+  {
+    "id": "2552",
+    "japanese": "一人暮らしを始めるなら、家具をそろえる必要がある。",
+    "chunks": [
+      "一人暮らし",
+      "を",
+      "始める",
+      "なら、",
+      "家具",
+      "を",
+      "そろえる",
+      "必要",
+      "が",
+      "ある。"
+    ],
+    "translation": "如果要開始一個人住，就需要備齊家具。",
+    "english": "If you're going to start living alone, you need to get furniture.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "housing"
+    ]
+  },
+  {
+    "id": "2553",
+    "japanese": "持ち家か賃貸かは、人生観や経済状況によって判断が分かれる。",
+    "chunks": [
+      "持ち家",
+      "か",
+      "賃貸",
+      "か",
+      "は、",
+      "人生観",
+      "や",
+      "経済状況",
+      "に",
+      "よって",
+      "判断",
+      "が",
+      "分かれる。"
+    ],
+    "translation": "要買房還是租房，依各人的人生觀和經濟狀況而有不同的判斷。",
+    "english": "Whether to own or rent depends on one's life outlook and financial situation.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "housing"
+    ]
+  },
+  {
+    "id": "2554",
+    "japanese": "この部屋は広くて明るいです。",
+    "chunks": [
+      "この",
+      "部屋",
+      "は",
+      "広くて",
+      "明るい",
+      "です。"
+    ],
+    "translation": "這個房間又寬敞又明亮。",
+    "english": "This room is spacious and bright.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "housing"
+    ]
+  },
+  {
+    "id": "2555",
+    "japanese": "古い住宅を改装して、カフェとして利用している。",
+    "chunks": [
+      "古い",
+      "住宅",
+      "を",
+      "改装して、",
+      "カフェ",
+      "として",
+      "利用",
+      "して",
+      "いる。"
+    ],
+    "translation": "把老房子改裝後當作咖啡廳使用。",
+    "english": "They renovated an old house and use it as a café.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "housing"
+    ]
+  },
+  {
+    "id": "2556",
+    "japanese": "友達の影響で本が好きになりました。",
+    "chunks": [
+      "友達",
+      "の",
+      "影響",
+      "で",
+      "本",
+      "が",
+      "好き",
+      "に",
+      "なりました。"
+    ],
+    "translation": "受朋友影響，我變得喜歡看書。",
+    "english": "I came to like books under my friend's influence.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "influence"
+    ]
+  },
+  {
+    "id": "2557",
+    "japanese": "彼は若者に大きな影響力を持っている。",
+    "chunks": [
+      "彼",
+      "は",
+      "若者",
+      "に",
+      "大きな",
+      "影響力",
+      "を",
+      "持って",
+      "いる。"
+    ],
+    "translation": "他對年輕人有很大的影響力。",
+    "english": "He has great influence over young people.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "influence"
+    ]
+  },
+  {
+    "id": "2558",
+    "japanese": "有名人の発言は世論に強い影響を及ぼす。",
+    "chunks": [
+      "有名人",
+      "の",
+      "発言",
+      "は",
+      "世論",
+      "に",
+      "強い",
+      "影響",
+      "を",
+      "及ぼす。"
+    ],
+    "translation": "名人的發言會對輿論造成強烈的影響。",
+    "english": "Celebrities' remarks exert a strong influence on public opinion.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "influence"
+    ]
+  },
+  {
+    "id": "2559",
+    "japanese": "一人のカリスマ的指導者が、時代の流れを大きく左右することもある。",
+    "chunks": [
+      "一人",
+      "の",
+      "カリスマ的",
+      "指導者",
+      "が、",
+      "時代",
+      "の",
+      "流れ",
+      "を",
+      "大きく",
+      "左右する",
+      "こと",
+      "も",
+      "ある。"
+    ],
+    "translation": "一位充滿魅力的領導者，有時能大大左右時代的走向。",
+    "english": "A single charismatic leader can sometimes greatly sway the course of an era.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "influence"
+    ]
+  },
+  {
+    "id": "2560",
+    "japanese": "母の影響で料理を始めました。",
+    "chunks": [
+      "母",
+      "の",
+      "影響",
+      "で",
+      "料理",
+      "を",
+      "始めました。"
+    ],
+    "translation": "受母親影響，我開始下廚。",
+    "english": "I started cooking under my mother's influence.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "influence"
+    ]
+  },
+  {
+    "id": "2561",
+    "japanese": "子供は周囲の大人から大きな影響を受ける。",
+    "chunks": [
+      "子供",
+      "は",
+      "周囲",
+      "の",
+      "大人",
+      "から",
+      "大きな",
+      "影響",
+      "を",
+      "受ける。"
+    ],
+    "translation": "孩子會受到周遭大人很大的影響。",
+    "english": "Children are greatly influenced by the adults around them.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "influence"
+    ]
+  },
+  {
+    "id": "2562",
+    "japanese": "先生の言葉が私の人生を変えた。",
+    "chunks": [
+      "先生",
+      "の",
+      "言葉",
+      "が",
+      "私",
+      "の",
+      "人生",
+      "を",
+      "変えた。"
+    ],
+    "translation": "老師的話改變了我的人生。",
+    "english": "My teacher's words changed my life.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "influence"
+    ]
+  },
+  {
+    "id": "2563",
+    "japanese": "影響力のある立場にある者ほど、自らの言動に責任を負うべきだ。",
+    "chunks": [
+      "影響力",
+      "の",
+      "ある",
+      "立場",
+      "に",
+      "ある",
+      "者",
+      "ほど、",
+      "自ら",
+      "の",
+      "言動",
+      "に",
+      "責任",
+      "を",
+      "負う",
+      "べき",
+      "だ。"
+    ],
+    "translation": "越是身處有影響力地位的人，越該為自己的言行負責。",
+    "english": "The more influential one's position, the more one should take responsibility for one's words and actions.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "influence"
+    ]
+  },
+  {
+    "id": "2564",
+    "japanese": "天気が私の気分に影響します。",
+    "chunks": [
+      "天気",
+      "が",
+      "私",
+      "の",
+      "気分",
+      "に",
+      "影響",
+      "します。"
+    ],
+    "translation": "天氣會影響我的心情。",
+    "english": "The weather affects my mood.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "influence"
+    ]
+  },
+  {
+    "id": "2565",
+    "japanese": "流行は、知らないうちに私たちの好みに影響を与えている。",
+    "chunks": [
+      "流行",
+      "は、",
+      "知らない",
+      "うち",
+      "に",
+      "私たち",
+      "の",
+      "好み",
+      "に",
+      "影響",
+      "を",
+      "与えて",
+      "いる。"
+    ],
+    "translation": "流行在不知不覺間影響著我們的喜好。",
+    "english": "Trends influence our tastes without our realizing it.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "influence"
+    ]
+  },
+  {
+    "id": "2566",
+    "japanese": "友達の話に共感しました。",
+    "chunks": [
+      "友達",
+      "の",
+      "話",
+      "に",
+      "共感",
+      "しました。"
+    ],
+    "translation": "我對朋友說的話產生了共鳴。",
+    "english": "I empathized with what my friend said.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2567",
+    "japanese": "相手の気持ちを思いやることが大切だ。",
+    "chunks": [
+      "相手",
+      "の",
+      "気持ち",
+      "を",
+      "思いやる",
+      "こと",
+      "が",
+      "大切",
+      "だ。"
+    ],
+    "translation": "體諒對方的心情很重要。",
+    "english": "It's important to be considerate of others' feelings.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2568",
+    "japanese": "彼女はいつも他人の痛みに寄り添おうとする。",
+    "chunks": [
+      "彼女",
+      "は",
+      "いつも",
+      "他人",
+      "の",
+      "痛み",
+      "に",
+      "寄り添おう",
+      "と",
+      "する。"
+    ],
+    "translation": "她總是試著去貼近他人的痛苦。",
+    "english": "She always tries to stand close to others' pain.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2569",
+    "japanese": "真の共感とは、相手の立場に立って物事を感じ取る力にほかならない。",
+    "chunks": [
+      "真",
+      "の",
+      "共感",
+      "と",
+      "は、",
+      "相手",
+      "の",
+      "立場",
+      "に",
+      "立って",
+      "物事",
+      "を",
+      "感じ取る",
+      "力",
+      "に",
+      "ほかならない。"
+    ],
+    "translation": "真正的同理心，無非就是站在對方立場去感受事物的能力。",
+    "english": "True empathy is nothing other than the ability to feel things from another's standpoint.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2570",
+    "japanese": "友達が悲しいと私も悲しいです。",
+    "chunks": [
+      "友達",
+      "が",
+      "悲しい",
+      "と",
+      "私",
+      "も",
+      "悲しい",
+      "です。"
+    ],
+    "translation": "朋友難過時，我也會難過。",
+    "english": "When my friend is sad, I feel sad too.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2571",
+    "japanese": "共感する力は、人間関係を円滑にする。",
+    "chunks": [
+      "共感する",
+      "力",
+      "は、",
+      "人間関係",
+      "を",
+      "円滑",
+      "に",
+      "する。"
+    ],
+    "translation": "同理的能力能讓人際關係更順暢。",
+    "english": "The capacity for empathy smooths human relationships.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2572",
+    "japanese": "悩みを聞いてもらえるだけで心が軽くなる。",
+    "chunks": [
+      "悩み",
+      "を",
+      "聞いて",
+      "もらえる",
+      "だけ",
+      "で",
+      "心",
+      "が",
+      "軽く",
+      "なる。"
+    ],
+    "translation": "光是有人願意聽我訴說煩惱，心情就輕鬆了許多。",
+    "english": "Just having someone listen to my worries makes my heart feel lighter.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2573",
+    "japanese": "他者への共感を欠いた社会は、いつしか冷たく分断されていく。",
+    "chunks": [
+      "他者",
+      "へ",
+      "の",
+      "共感",
+      "を",
+      "欠いた",
+      "社会",
+      "は、",
+      "いつしか",
+      "冷たく",
+      "分断されて",
+      "いく。"
+    ],
+    "translation": "缺乏對他人同理心的社會，終將變得冷漠而分裂。",
+    "english": "A society that lacks empathy for others will eventually grow cold and divided.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2574",
+    "japanese": "困っている人の気持ちが分かります。",
+    "chunks": [
+      "困って",
+      "いる",
+      "人",
+      "の",
+      "気持ち",
+      "が",
+      "分かります。"
+    ],
+    "translation": "我能理解有困難的人的心情。",
+    "english": "I understand how people in trouble feel.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2575",
+    "japanese": "言葉にしなくても、その思いやりは伝わってきた。",
+    "chunks": [
+      "言葉",
+      "に",
+      "しなくて",
+      "も、",
+      "その",
+      "思いやり",
+      "は",
+      "伝わって",
+      "きた。"
+    ],
+    "translation": "即使沒有說出口，那份體貼也傳達了過來。",
+    "english": "Even without words, that kindness came through.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "empathy"
+    ]
+  },
+  {
+    "id": "2576",
+    "japanese": "職場の人間関係は良好です。",
+    "chunks": [
+      "職場",
+      "の",
+      "人間関係",
+      "は",
+      "良好",
+      "です。"
+    ],
+    "translation": "職場的人際關係很融洽。",
+    "english": "Relations at my workplace are good.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2577",
+    "japanese": "人間関係で悩むことは誰にでもある。",
+    "chunks": [
+      "人間関係",
+      "で",
+      "悩む",
+      "こと",
+      "は",
+      "誰",
+      "に",
+      "でも",
+      "ある。"
+    ],
+    "translation": "為人際關係而煩惱是每個人都會有的。",
+    "english": "Everyone struggles with relationships at some point.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2578",
+    "japanese": "良い人間関係を築くには、まず相手の話をよく聞くことだ。",
+    "chunks": [
+      "良い",
+      "人間関係",
+      "を",
+      "築く",
+      "に",
+      "は、",
+      "まず",
+      "相手",
+      "の",
+      "話",
+      "を",
+      "よく",
+      "聞く",
+      "こと",
+      "だ。"
+    ],
+    "translation": "要建立良好的人際關係，首先就是好好傾聽對方說話。",
+    "english": "To build good relationships, you should first listen carefully to others.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2579",
+    "japanese": "人間関係のもつれは、しばしば些細な誤解から生じるものだ。",
+    "chunks": [
+      "人間関係",
+      "の",
+      "もつれ",
+      "は、",
+      "しばしば",
+      "些細",
+      "な",
+      "誤解",
+      "から",
+      "生じる",
+      "もの",
+      "だ。"
+    ],
+    "translation": "人際關係的糾葛，往往源自微不足道的誤會。",
+    "english": "Tangles in relationships often arise from trivial misunderstandings.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2580",
+    "japanese": "私は友達がたくさんいます。",
+    "chunks": [
+      "私",
+      "は",
+      "友達",
+      "が",
+      "たくさん",
+      "います。"
+    ],
+    "translation": "我有很多朋友。",
+    "english": "I have a lot of friends.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2581",
+    "japanese": "距離を保つことも、円満な関係を続ける秘訣だ。",
+    "chunks": [
+      "距離",
+      "を",
+      "保つ",
+      "こと",
+      "も、",
+      "円満",
+      "な",
+      "関係",
+      "を",
+      "続ける",
+      "秘訣",
+      "だ。"
+    ],
+    "translation": "保持適當的距離，也是維持圓滿關係的秘訣。",
+    "english": "Keeping some distance is also a secret to maintaining harmonious relationships.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2582",
+    "japanese": "信頼関係を築くには時間がかかる。",
+    "chunks": [
+      "信頼関係",
+      "を",
+      "築く",
+      "に",
+      "は",
+      "時間",
+      "が",
+      "かかる。"
+    ],
+    "translation": "建立信任關係需要時間。",
+    "english": "Building a relationship of trust takes time.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2583",
+    "japanese": "人とのつながりが希薄になりがちな現代では、対話の重要性が増している。",
+    "chunks": [
+      "人",
+      "と",
+      "の",
+      "つながり",
+      "が",
+      "希薄",
+      "に",
+      "なり",
+      "がち",
+      "な",
+      "現代",
+      "で",
+      "は、",
+      "対話",
+      "の",
+      "重要性",
+      "が",
+      "増して",
+      "いる。"
+    ],
+    "translation": "在人與人之間的連結容易變淡的現代，對話的重要性正日益增加。",
+    "english": "In modern times, where human connections tend to grow thin, the importance of dialogue is increasing.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2584",
+    "japanese": "新しい友達ができてうれしいです。",
+    "chunks": [
+      "新しい",
+      "友達",
+      "が",
+      "できて",
+      "うれしい",
+      "です。"
+    ],
+    "translation": "交到新朋友我很開心。",
+    "english": "I'm happy I made a new friend.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2585",
+    "japanese": "同僚との関係がぎくしゃくして、出社が憂鬱だ。",
+    "chunks": [
+      "同僚",
+      "と",
+      "の",
+      "関係",
+      "が",
+      "ぎくしゃく",
+      "して、",
+      "出社",
+      "が",
+      "憂鬱",
+      "だ。"
+    ],
+    "translation": "和同事的關係變得彆扭，連上班都覺得憂鬱。",
+    "english": "My relationship with a colleague has gotten awkward, and going to work feels depressing.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "human relations"
+    ]
+  },
+  {
+    "id": "2586",
+    "japanese": "私は毎日インターネットを使います。",
+    "chunks": [
+      "私",
+      "は",
+      "毎日",
+      "インターネット",
+      "を",
+      "使います。"
+    ],
+    "translation": "我每天都使用網路。",
+    "english": "I use the internet every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "internet"
+    ]
+  },
+  {
+    "id": "2587",
+    "japanese": "インターネットで買い物をします。",
+    "chunks": [
+      "インターネット",
+      "で",
+      "買い物",
+      "を",
+      "します。"
+    ],
+    "translation": "我在網路上購物。",
+    "english": "I shop on the internet.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "internet"
+    ]
+  },
+  {
+    "id": "2588",
+    "japanese": "インターネットのおかげで世界中の情報が手に入る。",
+    "chunks": [
+      "インターネット",
+      "の",
+      "おかげ",
+      "で",
+      "世界中",
+      "の",
+      "情報",
+      "が",
+      "手",
+      "に",
+      "入る。"
+    ],
+    "translation": "多虧了網路，全世界的資訊都能取得。",
+    "english": "Thanks to the internet, you can get information from all over the world.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "internet"
+    ]
+  },
+  {
+    "id": "2589",
+    "japanese": "インターネット上の情報を鵜呑みにするのは危険だ。",
+    "chunks": [
+      "インターネット上",
+      "の",
+      "情報",
+      "を",
+      "鵜呑み",
+      "に",
+      "する",
+      "の",
+      "は",
+      "危険",
+      "だ。"
+    ],
+    "translation": "全盤接受網路上的資訊是很危險的。",
+    "english": "It's dangerous to swallow information on the internet uncritically.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "internet"
+    ]
+  },
+  {
+    "id": "2590",
+    "japanese": "インターネットの普及は、情報格差という新たな問題をも生み出した。",
+    "chunks": [
+      "インターネット",
+      "の",
+      "普及",
+      "は、",
+      "情報格差",
+      "と",
+      "いう",
+      "新た",
+      "な",
+      "問題",
+      "を",
+      "も",
+      "生み出した。"
+    ],
+    "translation": "網路的普及，也衍生出資訊落差這項新的問題。",
+    "english": "The spread of the internet has also created a new problem: the information gap.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "internet"
+    ]
+  },
+  {
+    "id": "2591",
+    "japanese": "子供のネット利用には注意が必要だ。",
+    "chunks": [
+      "子供",
+      "の",
+      "ネット利用",
+      "に",
+      "は",
+      "注意",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "孩子使用網路需要多加留意。",
+    "english": "Care is needed regarding children's internet use.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "internet"
+    ]
+  },
+  {
+    "id": "2592",
+    "japanese": "ネット上の誹謗中傷が、深刻な社会問題になっている。",
+    "chunks": [
+      "ネット上",
+      "の",
+      "誹謗中傷",
+      "が、",
+      "深刻",
+      "な",
+      "社会問題",
+      "に",
+      "なって",
+      "いる。"
+    ],
+    "translation": "網路上的誹謗中傷已成為嚴重的社會問題。",
+    "english": "Slander online has become a serious social problem.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "internet"
+    ]
+  },
+  {
+    "id": "2593",
+    "japanese": "匿名性の高いネット空間では、人は時に無責任な言動に走りがちだ。",
+    "chunks": [
+      "匿名性",
+      "の",
+      "高い",
+      "ネット空間",
+      "で",
+      "は、",
+      "人",
+      "は",
+      "時に",
+      "無責任",
+      "な",
+      "言動",
+      "に",
+      "走り",
+      "がち",
+      "だ。"
+    ],
+    "translation": "在匿名性高的網路空間，人有時容易做出不負責任的言行。",
+    "english": "In the highly anonymous space of the internet, people sometimes tend toward irresponsible behavior.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "internet"
+    ]
+  },
+  {
+    "id": "2594",
+    "japanese": "わからないことはネットで調べます。",
+    "chunks": [
+      "わからない",
+      "こと",
+      "は",
+      "ネット",
+      "で",
+      "調べます。"
+    ],
+    "translation": "不懂的事我會上網查。",
+    "english": "I look up things I don't know on the internet.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "internet"
+    ]
+  },
+  {
+    "id": "2595",
+    "japanese": "インターネットは、私たちの生活に欠かせないものとなった。",
+    "chunks": [
+      "インターネット",
+      "は、",
+      "私たち",
+      "の",
+      "生活",
+      "に",
+      "欠かせない",
+      "もの",
+      "と",
+      "なった。"
+    ],
+    "translation": "網路已成為我們生活中不可或缺的東西。",
+    "english": "The internet has become something indispensable to our lives.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "internet"
+    ]
   }
 ]
