@@ -49745,5 +49745,1124 @@
       "N2",
       "healthcare"
     ]
+  },
+  {
+    "id": "2496",
+    "japanese": "人間はだれでも失敗します。",
+    "chunks": [
+      "人間",
+      "は",
+      "だれ",
+      "でも",
+      "失敗",
+      "します。"
+    ],
+    "translation": "人都會犯錯。",
+    "english": "Everyone makes mistakes.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2497",
+    "japanese": "困っている人を助けるのは人として当然だ。",
+    "chunks": [
+      "困って",
+      "いる",
+      "人",
+      "を",
+      "助ける",
+      "の",
+      "は",
+      "人",
+      "として",
+      "当然",
+      "だ。"
+    ],
+    "translation": "幫助有困難的人，是身為人理所當然的事。",
+    "english": "Helping people in trouble is only natural as a human being.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2498",
+    "japanese": "戦争は人類にとって最大の悲劇の一つだ。",
+    "chunks": [
+      "戦争",
+      "は",
+      "人類",
+      "に",
+      "とって",
+      "最大",
+      "の",
+      "悲劇",
+      "の",
+      "一つ",
+      "だ。"
+    ],
+    "translation": "戰爭是人類最大的悲劇之一。",
+    "english": "War is one of the greatest tragedies for humanity.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2499",
+    "japanese": "科学技術の進歩が、必ずしも人類を幸福にするとは限らない。",
+    "chunks": [
+      "科学技術",
+      "の",
+      "進歩",
+      "が、",
+      "必ずしも",
+      "人類",
+      "を",
+      "幸福",
+      "に",
+      "する",
+      "と",
+      "は",
+      "限らない。"
+    ],
+    "translation": "科技的進步未必能讓人類幸福。",
+    "english": "Advances in science and technology don't necessarily make humanity happy.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2500",
+    "japanese": "災害のときこそ、人々の優しさが試される。",
+    "chunks": [
+      "災害",
+      "の",
+      "とき",
+      "こそ、",
+      "人々",
+      "の",
+      "優しさ",
+      "が",
+      "試される。"
+    ],
+    "translation": "正是在災難之際，人們的善良才會受到考驗。",
+    "english": "It's precisely in times of disaster that people's kindness is tested.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2501",
+    "japanese": "人間性の本質は、極限状況においてこそ露わになるものだ。",
+    "chunks": [
+      "人間性",
+      "の",
+      "本質",
+      "は、",
+      "極限状況",
+      "に",
+      "おいて",
+      "こそ",
+      "露わ",
+      "に",
+      "なる",
+      "もの",
+      "だ。"
+    ],
+    "translation": "人性的本質，往往在極限的處境中才會顯露。",
+    "english": "The essence of human nature is revealed precisely in extreme situations.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2502",
+    "japanese": "世界には色々な人がいます。",
+    "chunks": [
+      "世界",
+      "に",
+      "は",
+      "色々",
+      "な",
+      "人",
+      "が",
+      "います。"
+    ],
+    "translation": "世界上有各式各樣的人。",
+    "english": "There are all kinds of people in the world.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2503",
+    "japanese": "互いを思いやる心が、よりよい社会を築く。",
+    "chunks": [
+      "互い",
+      "を",
+      "思いやる",
+      "心",
+      "が、",
+      "より",
+      "よい",
+      "社会",
+      "を",
+      "築く。"
+    ],
+    "translation": "彼此體諒的心，能建立更美好的社會。",
+    "english": "A spirit of caring for one another builds a better society.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2504",
+    "japanese": "どんな人にも生きる権利がある。",
+    "chunks": [
+      "どんな",
+      "人",
+      "に",
+      "も",
+      "生きる",
+      "権利",
+      "が",
+      "ある。"
+    ],
+    "translation": "任何人都有生存的權利。",
+    "english": "Every person has the right to live.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2505",
+    "japanese": "人類が築いてきた文明も、自然の前ではあまりにも脆い。",
+    "chunks": [
+      "人類",
+      "が",
+      "築いて",
+      "きた",
+      "文明",
+      "も、",
+      "自然",
+      "の",
+      "前",
+      "で",
+      "は",
+      "あまりに",
+      "も",
+      "脆い。"
+    ],
+    "translation": "人類所建立的文明，在大自然面前也太過脆弱。",
+    "english": "Even the civilization humanity has built is far too fragile before nature.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "humanity"
+    ]
+  },
+  {
+    "id": "2506",
+    "japanese": "大きな夢を持つことは大切です。",
+    "chunks": [
+      "大きな",
+      "夢",
+      "を",
+      "持つ",
+      "こと",
+      "は",
+      "大切",
+      "です。"
+    ],
+    "translation": "擁有遠大的夢想很重要。",
+    "english": "It's important to have big dreams.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2507",
+    "japanese": "若い頃の夢を今も忘れていない。",
+    "chunks": [
+      "若い",
+      "頃",
+      "の",
+      "夢",
+      "を",
+      "今",
+      "も",
+      "忘れて",
+      "いない。"
+    ],
+    "translation": "我至今仍未忘記年輕時的夢想。",
+    "english": "I still haven't forgotten the dreams of my youth.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2508",
+    "japanese": "夢を叶えるためなら、どんな努力も惜しまない。",
+    "chunks": [
+      "夢",
+      "を",
+      "叶える",
+      "ため",
+      "なら、",
+      "どんな",
+      "努力",
+      "も",
+      "惜しまない。"
+    ],
+    "translation": "只要是為了實現夢想，再多的努力我都不吝惜。",
+    "english": "If it's to make my dream come true, I'll spare no effort.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2509",
+    "japanese": "幼い頃に抱いた夢の数々は、いつしか記憶の彼方へと消えていった。",
+    "chunks": [
+      "幼い",
+      "頃",
+      "に",
+      "抱いた",
+      "夢",
+      "の",
+      "数々",
+      "は、",
+      "いつしか",
+      "記憶",
+      "の",
+      "彼方",
+      "へ",
+      "と",
+      "消えて",
+      "いった。"
+    ],
+    "translation": "兒時懷抱的種種夢想，不知不覺消失在記憶的彼端。",
+    "english": "The many dreams I held as a child eventually faded into the distance of memory.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2510",
+    "japanese": "私はよく楽しい夢を見ます。",
+    "chunks": [
+      "私",
+      "は",
+      "よく",
+      "楽しい",
+      "夢",
+      "を",
+      "見ます。"
+    ],
+    "translation": "我常常做開心的夢。",
+    "english": "I often have happy dreams.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2511",
+    "japanese": "子供たちは大きな夢を語り合っていた。",
+    "chunks": [
+      "子供たち",
+      "は",
+      "大きな",
+      "夢",
+      "を",
+      "語り合って",
+      "いた。"
+    ],
+    "translation": "孩子們互相談論著遠大的夢想。",
+    "english": "The children were talking with each other about their big dreams.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2512",
+    "japanese": "夢に向かって、一歩ずつ進んでいる。",
+    "chunks": [
+      "夢",
+      "に",
+      "向かって、",
+      "一歩",
+      "ずつ",
+      "進んで",
+      "いる。"
+    ],
+    "translation": "我正朝著夢想，一步一步地前進。",
+    "english": "I'm moving toward my dream one step at a time.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2513",
+    "japanese": "人はみな、それぞれ異なる夢を胸に秘めて生きている。",
+    "chunks": [
+      "人",
+      "は",
+      "みな、",
+      "それぞれ",
+      "異なる",
+      "夢",
+      "を",
+      "胸",
+      "に",
+      "秘めて",
+      "生きて",
+      "いる。"
+    ],
+    "translation": "每個人都各自懷著不同的夢想活著。",
+    "english": "Everyone lives with a different dream held close in their heart.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2514",
+    "japanese": "私の夢はたくさんあります。",
+    "chunks": [
+      "私",
+      "の",
+      "夢",
+      "は",
+      "たくさん",
+      "あります。"
+    ],
+    "translation": "我的夢想有很多。",
+    "english": "I have many dreams.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2515",
+    "japanese": "夢が破れても、立ち直る力さえあればいい。",
+    "chunks": [
+      "夢",
+      "が",
+      "破れて",
+      "も、",
+      "立ち直る",
+      "力",
+      "さえ",
+      "あれば",
+      "いい。"
+    ],
+    "translation": "即使夢想破滅，只要有重新站起來的力量就好。",
+    "english": "Even if a dream is shattered, all you need is the strength to recover.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "dreams"
+    ]
+  },
+  {
+    "id": "2516",
+    "japanese": "来週、病院で検査があります。",
+    "chunks": [
+      "来週、",
+      "病院",
+      "で",
+      "検査",
+      "が",
+      "あります。"
+    ],
+    "translation": "下週要在醫院做檢查。",
+    "english": "I have a checkup at the hospital next week.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2517",
+    "japanese": "母のお見舞いに病院へ行きました。",
+    "chunks": [
+      "母",
+      "の",
+      "お見舞い",
+      "に",
+      "病院",
+      "へ",
+      "行きました。"
+    ],
+    "translation": "我去醫院探望母親。",
+    "english": "I went to the hospital to visit my mother.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2518",
+    "japanese": "病院は朝から多くの患者で混んでいた。",
+    "chunks": [
+      "病院",
+      "は",
+      "朝",
+      "から",
+      "多く",
+      "の",
+      "患者",
+      "で",
+      "混んで",
+      "いた。"
+    ],
+    "translation": "醫院從早上就擠滿了許多病患。",
+    "english": "The hospital was crowded with many patients from the morning.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2519",
+    "japanese": "救急車で病院に運ばれたが、幸い軽傷で済んだ。",
+    "chunks": [
+      "救急車",
+      "で",
+      "病院",
+      "に",
+      "運ばれた",
+      "が、",
+      "幸い",
+      "軽傷",
+      "で",
+      "済んだ。"
+    ],
+    "translation": "雖然被救護車送往醫院，所幸只是輕傷。",
+    "english": "I was taken to the hospital by ambulance, but luckily it was only a minor injury.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2520",
+    "japanese": "大病院に患者が集中する一方で、地域の診療所は閑散としている。",
+    "chunks": [
+      "大病院",
+      "に",
+      "患者",
+      "が",
+      "集中する",
+      "一方",
+      "で、",
+      "地域",
+      "の",
+      "診療所",
+      "は",
+      "閑散",
+      "と",
+      "して",
+      "いる。"
+    ],
+    "translation": "一方面大醫院病患集中，地方上的診所卻冷冷清清。",
+    "english": "While patients flock to large hospitals, local clinics remain deserted.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2521",
+    "japanese": "病院の受付で名前を呼ばれました。",
+    "chunks": [
+      "病院",
+      "の",
+      "受付",
+      "で",
+      "名前",
+      "を",
+      "呼ばれました。"
+    ],
+    "translation": "在醫院的櫃台被叫到了名字。",
+    "english": "My name was called at the hospital reception.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2522",
+    "japanese": "検査の結果は、一週間後に病院で聞くことになっている。",
+    "chunks": [
+      "検査",
+      "の",
+      "結果",
+      "は、",
+      "一週間後",
+      "に",
+      "病院",
+      "で",
+      "聞く",
+      "こと",
+      "に",
+      "なって",
+      "いる。"
+    ],
+    "translation": "檢查結果預定一週後到醫院聽取。",
+    "english": "I'm scheduled to hear the test results at the hospital a week later.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2523",
+    "japanese": "入院している友人を励ましに行った。",
+    "chunks": [
+      "入院",
+      "して",
+      "いる",
+      "友人",
+      "を",
+      "励まし",
+      "に",
+      "行った。"
+    ],
+    "translation": "我去探望並鼓勵住院的朋友。",
+    "english": "I went to encourage a friend who's hospitalized.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2524",
+    "japanese": "設備の整った病院ほど、待ち時間が長くなる傾向がある。",
+    "chunks": [
+      "設備",
+      "の",
+      "整った",
+      "病院",
+      "ほど、",
+      "待ち時間",
+      "が",
+      "長く",
+      "なる",
+      "傾向",
+      "が",
+      "ある。"
+    ],
+    "translation": "設備越完善的醫院，候診時間往往越長。",
+    "english": "The better-equipped a hospital is, the longer the wait times tend to be.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2525",
+    "japanese": "退院後も、定期的に病院へ通う必要がある。",
+    "chunks": [
+      "退院後",
+      "も、",
+      "定期的",
+      "に",
+      "病院",
+      "へ",
+      "通う",
+      "必要",
+      "が",
+      "ある。"
+    ],
+    "translation": "出院後也需要定期回醫院複診。",
+    "english": "Even after discharge, you need to visit the hospital regularly.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "hospital"
+    ]
+  },
+  {
+    "id": "2526",
+    "japanese": "天気は私たちの生活に影響します。",
+    "chunks": [
+      "天気",
+      "は",
+      "私たち",
+      "の",
+      "生活",
+      "に",
+      "影響します。"
+    ],
+    "translation": "天氣會影響我們的生活。",
+    "english": "The weather affects our daily lives.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "impact"
+    ]
+  },
+  {
+    "id": "2527",
+    "japanese": "その映画は私に大きな影響を与えた。",
+    "chunks": [
+      "その",
+      "映画",
+      "は",
+      "私",
+      "に",
+      "大きな",
+      "影響",
+      "を",
+      "与えた。"
+    ],
+    "translation": "那部電影對我影響很大。",
+    "english": "That movie had a big influence on me.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "impact"
+    ]
+  },
+  {
+    "id": "2528",
+    "japanese": "円安は輸入品の価格に直接影響を及ぼす。",
+    "chunks": [
+      "円安",
+      "は",
+      "輸入品",
+      "の",
+      "価格",
+      "に",
+      "直接",
+      "影響",
+      "を",
+      "及ぼす。"
+    ],
+    "translation": "日圓貶值會直接影響進口商品的價格。",
+    "english": "A weak yen has a direct impact on the prices of imported goods.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "impact"
+    ]
+  },
+  {
+    "id": "2529",
+    "japanese": "一つの政策が社会全体に及ぼす影響は、計り知れない。",
+    "chunks": [
+      "一つ",
+      "の",
+      "政策",
+      "が",
+      "社会全体",
+      "に",
+      "及ぼす",
+      "影響",
+      "は、",
+      "計り知れない。"
+    ],
+    "translation": "一項政策對整個社會造成的影響難以估量。",
+    "english": "The impact a single policy has on society as a whole is immeasurable.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "impact"
+    ]
+  },
+  {
+    "id": "2530",
+    "japanese": "雨は試合に影響しました。",
+    "chunks": [
+      "雨",
+      "は",
+      "試合",
+      "に",
+      "影響",
+      "しました。"
+    ],
+    "translation": "雨影響了比賽。",
+    "english": "The rain affected the game.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "impact"
+    ]
+  },
+  {
+    "id": "2531",
+    "japanese": "SNSの普及は、人々の消費行動に大きな影響を与えた。",
+    "chunks": [
+      "SNS",
+      "の",
+      "普及",
+      "は、",
+      "人々",
+      "の",
+      "消費行動",
+      "に",
+      "大きな",
+      "影響",
+      "を",
+      "与えた。"
+    ],
+    "translation": "社群媒體的普及，對人們的消費行為帶來了很大的影響。",
+    "english": "The spread of social media has greatly influenced people's consumption behavior.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "impact"
+    ]
+  },
+  {
+    "id": "2532",
+    "japanese": "親の言葉は子供に強い影響を残す。",
+    "chunks": [
+      "親",
+      "の",
+      "言葉",
+      "は",
+      "子供",
+      "に",
+      "強い",
+      "影響",
+      "を",
+      "残す。"
+    ],
+    "translation": "父母的話語會在孩子心中留下強烈的影響。",
+    "english": "Parents' words leave a strong impact on their children.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "impact"
+    ]
+  },
+  {
+    "id": "2533",
+    "japanese": "幼少期の体験が、人格形成に深い影響を及ぼすと言われている。",
+    "chunks": [
+      "幼少期",
+      "の",
+      "体験",
+      "が、",
+      "人格形成",
+      "に",
+      "深い",
+      "影響",
+      "を",
+      "及ぼす",
+      "と",
+      "言われて",
+      "いる。"
+    ],
+    "translation": "據說幼年的經歷會對人格的形成造成深遠的影響。",
+    "english": "It's said that childhood experiences have a profound impact on personality formation.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "impact"
+    ]
+  },
+  {
+    "id": "2534",
+    "japanese": "コーヒーは睡眠に影響します。",
+    "chunks": [
+      "コーヒー",
+      "は",
+      "睡眠",
+      "に",
+      "影響",
+      "します。"
+    ],
+    "translation": "咖啡會影響睡眠。",
+    "english": "Coffee affects your sleep.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "impact"
+    ]
+  },
+  {
+    "id": "2535",
+    "japanese": "その事件は社会に大きな衝撃を与えた。",
+    "chunks": [
+      "その",
+      "事件",
+      "は",
+      "社会",
+      "に",
+      "大きな",
+      "衝撃",
+      "を",
+      "与えた。"
+    ],
+    "translation": "那起事件給社會帶來了巨大的衝擊。",
+    "english": "That incident gave society a great shock.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "impact"
+    ]
+  },
+  {
+    "id": "2536",
+    "japanese": "毎日少しずつ努力します。",
+    "chunks": [
+      "毎日",
+      "少し",
+      "ずつ",
+      "努力",
+      "します。"
+    ],
+    "translation": "我每天都努力一點點。",
+    "english": "I make a little effort every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "effort"
+    ]
+  },
+  {
+    "id": "2537",
+    "japanese": "努力すれば、きっと上手になります。",
+    "chunks": [
+      "努力すれば、",
+      "きっと",
+      "上手",
+      "に",
+      "なります。"
+    ],
+    "translation": "只要努力，一定會進步。",
+    "english": "If you make an effort, you'll surely get better.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "effort"
+    ]
+  },
+  {
+    "id": "2538",
+    "japanese": "成功は努力の積み重ねによって生まれる。",
+    "chunks": [
+      "成功",
+      "は",
+      "努力",
+      "の",
+      "積み重ね",
+      "に",
+      "よって",
+      "生まれる。"
+    ],
+    "translation": "成功來自於努力的累積。",
+    "english": "Success is born from the accumulation of effort.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "effort"
+    ]
+  },
+  {
+    "id": "2539",
+    "japanese": "どんなに才能があっても、努力なしには大成しない。",
+    "chunks": [
+      "どんなに",
+      "才能",
+      "が",
+      "あって",
+      "も、",
+      "努力",
+      "なし",
+      "に",
+      "は",
+      "大成しない。"
+    ],
+    "translation": "不管多有才華，沒有努力就難以有大成就。",
+    "english": "No matter how talented you are, you won't achieve greatness without effort.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "effort"
+    ]
+  },
+  {
+    "id": "2540",
+    "japanese": "地道な努力の積み重ねこそが、やがて大きな成果へと結実する。",
+    "chunks": [
+      "地道",
+      "な",
+      "努力",
+      "の",
+      "積み重ね",
+      "こそ",
+      "が、",
+      "やがて",
+      "大きな",
+      "成果",
+      "へ",
+      "と",
+      "結実する。"
+    ],
+    "translation": "唯有腳踏實地的努力累積，終將結成豐碩的成果。",
+    "english": "It's the accumulation of steady effort that eventually bears great results.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "effort"
+    ]
+  },
+  {
+    "id": "2541",
+    "japanese": "彼の努力には頭が下がる。",
+    "chunks": [
+      "彼",
+      "の",
+      "努力",
+      "に",
+      "は",
+      "頭",
+      "が",
+      "下がる。"
+    ],
+    "translation": "他的努力令我由衷敬佩。",
+    "english": "I have nothing but respect for his effort.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "effort"
+    ]
+  },
+  {
+    "id": "2542",
+    "japanese": "結果が出なくても、努力した過程に意味がある。",
+    "chunks": [
+      "結果",
+      "が",
+      "出なくて",
+      "も、",
+      "努力した",
+      "過程",
+      "に",
+      "意味",
+      "が",
+      "ある。"
+    ],
+    "translation": "即使沒有成果，努力的過程也有意義。",
+    "english": "Even if there are no results, there's meaning in the process of having tried.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "effort"
+    ]
+  },
+  {
+    "id": "2543",
+    "japanese": "努力が報われるとは限らないが、努力なくして成功はあり得ない。",
+    "chunks": [
+      "努力",
+      "が",
+      "報われる",
+      "と",
+      "は",
+      "限らない",
+      "が、",
+      "努力",
+      "なくして",
+      "成功",
+      "は",
+      "あり得ない。"
+    ],
+    "translation": "努力未必有回報，但沒有努力就不可能成功。",
+    "english": "Effort isn't always rewarded, but without effort there can be no success.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "effort"
+    ]
+  },
+  {
+    "id": "2544",
+    "japanese": "もっと努力したいと思います。",
+    "chunks": [
+      "もっと",
+      "努力",
+      "したい",
+      "と",
+      "思います。"
+    ],
+    "translation": "我想要更加努力。",
+    "english": "I want to try even harder.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "effort"
+    ]
+  },
+  {
+    "id": "2545",
+    "japanese": "周囲の支えがあったからこそ、努力を続けられた。",
+    "chunks": [
+      "周囲",
+      "の",
+      "支え",
+      "が",
+      "あった",
+      "から",
+      "こそ、",
+      "努力",
+      "を",
+      "続けられた。"
+    ],
+    "translation": "正因為有周遭的支持，我才能持續努力。",
+    "english": "It was precisely because of the support around me that I could keep up my efforts.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "effort"
+    ]
   }
 ]
