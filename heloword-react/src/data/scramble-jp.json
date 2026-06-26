@@ -51998,5 +51998,1090 @@
       "N2",
       "internet"
     ]
+  },
+  {
+    "id": "2596",
+    "japanese": "友達を応援しています。",
+    "chunks": [
+      "友達",
+      "を",
+      "応援",
+      "して",
+      "います。"
+    ],
+    "translation": "我在為朋友加油。",
+    "english": "I'm cheering for my friend.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2597",
+    "japanese": "先生が私を励ましてくれました。",
+    "chunks": [
+      "先生",
+      "が",
+      "私",
+      "を",
+      "励まして",
+      "くれました。"
+    ],
+    "translation": "老師鼓勵了我。",
+    "english": "My teacher encouraged me.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2598",
+    "japanese": "落ち込んでいる友人に優しい言葉をかけた。",
+    "chunks": [
+      "落ち込んで",
+      "いる",
+      "友人",
+      "に",
+      "優しい",
+      "言葉",
+      "を",
+      "かけた。"
+    ],
+    "translation": "我對沮喪的朋友說了溫柔的話。",
+    "english": "I offered kind words to my friend who was feeling down.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2599",
+    "japanese": "みんなの励ましのおかげで、最後まで走りきれた。",
+    "chunks": [
+      "みんな",
+      "の",
+      "励まし",
+      "の",
+      "おかげ",
+      "で、",
+      "最後",
+      "まで",
+      "走りきれた。"
+    ],
+    "translation": "多虧大家的鼓勵，我才能跑到最後。",
+    "english": "Thanks to everyone's encouragement, I was able to run to the finish.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2600",
+    "japanese": "何気ない一言の励ましが、人の人生を大きく変えることもある。",
+    "chunks": [
+      "何気ない",
+      "一言",
+      "の",
+      "励まし",
+      "が、",
+      "人",
+      "の",
+      "人生",
+      "を",
+      "大きく",
+      "変える",
+      "こと",
+      "も",
+      "ある。"
+    ],
+    "translation": "一句不經意的鼓勵，有時能大大改變一個人的人生。",
+    "english": "A casual word of encouragement can sometimes greatly change a person's life.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2601",
+    "japanese": "がんばってと言われて勇気が出た。",
+    "chunks": [
+      "がんばって",
+      "と",
+      "言われて",
+      "勇気",
+      "が",
+      "出た。"
+    ],
+    "translation": "被人說了句加油，我就湧現了勇氣。",
+    "english": "Being told to hang in there gave me courage.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2602",
+    "japanese": "つらいときに支えてくれる人の存在は心強い。",
+    "chunks": [
+      "つらい",
+      "とき",
+      "に",
+      "支えて",
+      "くれる",
+      "人",
+      "の",
+      "存在",
+      "は",
+      "心強い。"
+    ],
+    "translation": "在難熬時有人支持，這份存在令人安心。",
+    "english": "Having someone to support you in hard times is reassuring.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2603",
+    "japanese": "どんなに励まされても、結局は自分自身で立ち上がるしかない。",
+    "chunks": [
+      "どんなに",
+      "励まされて",
+      "も、",
+      "結局",
+      "は",
+      "自分自身",
+      "で",
+      "立ち上がる",
+      "しか",
+      "ない。"
+    ],
+    "translation": "不管再怎麼被鼓勵，最終還是只能靠自己站起來。",
+    "english": "No matter how much you're encouraged, in the end you can only stand up by yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2604",
+    "japanese": "試合の前にチームを励ましました。",
+    "chunks": [
+      "試合",
+      "の",
+      "前",
+      "に",
+      "チーム",
+      "を",
+      "励まし",
+      "ました。"
+    ],
+    "translation": "比賽前我為隊伍打了氣。",
+    "english": "I encouraged the team before the match.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2605",
+    "japanese": "彼の温かい言葉に、思わず涙がこぼれた。",
+    "chunks": [
+      "彼",
+      "の",
+      "温かい",
+      "言葉",
+      "に、",
+      "思わず",
+      "涙",
+      "が",
+      "こぼれた。"
+    ],
+    "translation": "聽到他溫暖的話語，我不禁落下淚來。",
+    "english": "At his warm words, tears spilled out before I knew it.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "2606",
+    "japanese": "昨日、駅で事故がありました。",
+    "chunks": [
+      "昨日、",
+      "駅",
+      "で",
+      "事故",
+      "が",
+      "ありました。"
+    ],
+    "translation": "昨天車站發生了事故。",
+    "english": "There was an accident at the station yesterday.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "incident"
+    ]
+  },
+  {
+    "id": "2607",
+    "japanese": "その事件は町中の話題になった。",
+    "chunks": [
+      "その",
+      "事件",
+      "は",
+      "町中",
+      "の",
+      "話題",
+      "に",
+      "なった。"
+    ],
+    "translation": "那起事件成了全鎮的話題。",
+    "english": "That incident became the talk of the whole town.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "incident"
+    ]
+  },
+  {
+    "id": "2608",
+    "japanese": "事件の真相は、今もって明らかになっていない。",
+    "chunks": [
+      "事件",
+      "の",
+      "真相",
+      "は、",
+      "今もって",
+      "明らか",
+      "に",
+      "なって",
+      "いない。"
+    ],
+    "translation": "事件的真相至今仍未明朗。",
+    "english": "The truth of the incident remains unclear even now.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "incident"
+    ]
+  },
+  {
+    "id": "2609",
+    "japanese": "その事件をきっかけに、社会全体の安全意識が高まった。",
+    "chunks": [
+      "その",
+      "事件",
+      "を",
+      "きっかけ",
+      "に、",
+      "社会全体",
+      "の",
+      "安全意識",
+      "が",
+      "高まった。"
+    ],
+    "translation": "以那起事件為契機，整個社會的安全意識提高了。",
+    "english": "That incident triggered a rise in safety awareness throughout society.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "incident"
+    ]
+  },
+  {
+    "id": "2610",
+    "japanese": "昨夜、近所で火事がありました。",
+    "chunks": [
+      "昨夜、",
+      "近所",
+      "で",
+      "火事",
+      "が",
+      "ありました。"
+    ],
+    "translation": "昨晚附近發生了火災。",
+    "english": "There was a fire in the neighborhood last night.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "incident"
+    ]
+  },
+  {
+    "id": "2611",
+    "japanese": "警察は事件の経緯を詳しく調べている。",
+    "chunks": [
+      "警察",
+      "は",
+      "事件",
+      "の",
+      "経緯",
+      "を",
+      "詳しく",
+      "調べて",
+      "いる。"
+    ],
+    "translation": "警方正在詳細調查事件的經過。",
+    "english": "The police are investigating the details of the incident.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "incident"
+    ]
+  },
+  {
+    "id": "2612",
+    "japanese": "その出来事は私の記憶に強く残っている。",
+    "chunks": [
+      "その",
+      "出来事",
+      "は",
+      "私",
+      "の",
+      "記憶",
+      "に",
+      "強く",
+      "残って",
+      "いる。"
+    ],
+    "translation": "那件事深深留在我的記憶裡。",
+    "english": "That event remains strongly in my memory.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "incident"
+    ]
+  },
+  {
+    "id": "2613",
+    "japanese": "一連の不可解な事件は、人々に言い知れぬ不安を抱かせた。",
+    "chunks": [
+      "一連",
+      "の",
+      "不可解",
+      "な",
+      "事件",
+      "は、",
+      "人々",
+      "に",
+      "言い知れぬ",
+      "不安",
+      "を",
+      "抱かせた。"
+    ],
+    "translation": "一連串難以理解的事件，讓人們心生難以言喻的不安。",
+    "english": "The series of inexplicable incidents filled people with indescribable unease.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "incident"
+    ]
+  },
+  {
+    "id": "2614",
+    "japanese": "その事件のニュースを見て驚きました。",
+    "chunks": [
+      "その",
+      "事件",
+      "の",
+      "ニュース",
+      "を",
+      "見て",
+      "驚きました。"
+    ],
+    "translation": "看到那起事件的新聞，我嚇了一跳。",
+    "english": "I was shocked when I saw the news of that incident.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "incident"
+    ]
+  },
+  {
+    "id": "2615",
+    "japanese": "小さな見落としが、後に重大な事件へと発展することがある。",
+    "chunks": [
+      "小さな",
+      "見落とし",
+      "が、",
+      "後",
+      "に",
+      "重大",
+      "な",
+      "事件",
+      "へ",
+      "と",
+      "発展する",
+      "こと",
+      "が",
+      "ある。"
+    ],
+    "translation": "小小的疏忽，有時會演變成日後重大的事件。",
+    "english": "A small oversight can sometimes develop into a serious incident later.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "incident"
+    ]
+  },
+  {
+    "id": "2616",
+    "japanese": "会社の方針が変わりました。",
+    "chunks": [
+      "会社",
+      "の",
+      "方針",
+      "が",
+      "変わり",
+      "ました。"
+    ],
+    "translation": "公司的方針改變了。",
+    "english": "The company's policy has changed.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "policy"
+    ]
+  },
+  {
+    "id": "2617",
+    "japanese": "政府は新しい経済政策を発表した。",
+    "chunks": [
+      "政府",
+      "は",
+      "新しい",
+      "経済政策",
+      "を",
+      "発表した。"
+    ],
+    "translation": "政府公布了新的經濟政策。",
+    "english": "The government announced a new economic policy.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "policy"
+    ]
+  },
+  {
+    "id": "2618",
+    "japanese": "その政策は、国民の間で賛否が分かれている。",
+    "chunks": [
+      "その",
+      "政策",
+      "は、",
+      "国民",
+      "の",
+      "間",
+      "で",
+      "賛否",
+      "が",
+      "分かれて",
+      "いる。"
+    ],
+    "translation": "那項政策在國民之間意見分歧。",
+    "english": "Opinions on that policy are divided among the public.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "policy"
+    ]
+  },
+  {
+    "id": "2619",
+    "japanese": "場当たり的な政策では、根本的な問題の解決には至らない。",
+    "chunks": [
+      "場当たり的",
+      "な",
+      "政策",
+      "で",
+      "は、",
+      "根本的",
+      "な",
+      "問題",
+      "の",
+      "解決",
+      "に",
+      "は",
+      "至らない。"
+    ],
+    "translation": "臨時應付式的政策，無法從根本上解決問題。",
+    "english": "Ad hoc policies won't lead to a fundamental solution to the problem.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "policy"
+    ]
+  },
+  {
+    "id": "2620",
+    "japanese": "学校には新しいルールがあります。",
+    "chunks": [
+      "学校",
+      "に",
+      "は",
+      "新しい",
+      "ルール",
+      "が",
+      "あります。"
+    ],
+    "translation": "學校有新的規則。",
+    "english": "There's a new rule at school.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "policy"
+    ]
+  },
+  {
+    "id": "2621",
+    "japanese": "環境保護を重視した政策が求められている。",
+    "chunks": [
+      "環境保護",
+      "を",
+      "重視した",
+      "政策",
+      "が",
+      "求められて",
+      "いる。"
+    ],
+    "translation": "社會需要重視環境保護的政策。",
+    "english": "Policies that prioritize environmental protection are needed.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "policy"
+    ]
+  },
+  {
+    "id": "2622",
+    "japanese": "会社の方針に従って仕事を進める。",
+    "chunks": [
+      "会社",
+      "の",
+      "方針",
+      "に",
+      "従って",
+      "仕事",
+      "を",
+      "進める。"
+    ],
+    "translation": "我按照公司的方針推進工作。",
+    "english": "I carry out my work in accordance with the company's policy.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "policy"
+    ]
+  },
+  {
+    "id": "2623",
+    "japanese": "政策の是非は、長い時間を経て初めて評価されるものだ。",
+    "chunks": [
+      "政策",
+      "の",
+      "是非",
+      "は、",
+      "長い",
+      "時間",
+      "を",
+      "経て",
+      "初めて",
+      "評価される",
+      "もの",
+      "だ。"
+    ],
+    "translation": "政策的好壞，要經過漫長的時間才能評斷。",
+    "english": "The merits of a policy can only be judged after a long time has passed.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "policy"
+    ]
+  },
+  {
+    "id": "2624",
+    "japanese": "私はその政策に賛成です。",
+    "chunks": [
+      "私",
+      "は",
+      "その",
+      "政策",
+      "に",
+      "賛成",
+      "です。"
+    ],
+    "translation": "我贊成那項政策。",
+    "english": "I'm in favor of that policy.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "policy"
+    ]
+  },
+  {
+    "id": "2625",
+    "japanese": "政府は子育て支援の政策を強化する方針だ。",
+    "chunks": [
+      "政府",
+      "は",
+      "子育て支援",
+      "の",
+      "政策",
+      "を",
+      "強化する",
+      "方針",
+      "だ。"
+    ],
+    "translation": "政府的方針是要強化育兒支援的政策。",
+    "english": "The government intends to strengthen its child-rearing support policies.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "policy"
+    ]
+  },
+  {
+    "id": "2626",
+    "japanese": "朝ごはんを食べると元気が出ます。",
+    "chunks": [
+      "朝ごはん",
+      "を",
+      "食べる",
+      "と",
+      "元気",
+      "が",
+      "出ます。"
+    ],
+    "translation": "吃了早餐就有精神了。",
+    "english": "Eating breakfast gives me energy.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "energy"
+    ]
+  },
+  {
+    "id": "2627",
+    "japanese": "再生可能エネルギーへの関心が高まっている。",
+    "chunks": [
+      "再生可能エネルギー",
+      "へ",
+      "の",
+      "関心",
+      "が",
+      "高まって",
+      "いる。"
+    ],
+    "translation": "人們對再生能源的關注正在提高。",
+    "english": "Interest in renewable energy is growing.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "energy"
+    ]
+  },
+  {
+    "id": "2628",
+    "japanese": "化石燃料に頼らないエネルギー源が模索されている。",
+    "chunks": [
+      "化石燃料",
+      "に",
+      "頼らない",
+      "エネルギー源",
+      "が",
+      "模索されて",
+      "いる。"
+    ],
+    "translation": "人們正在探尋不依賴化石燃料的能源。",
+    "english": "Energy sources that don't rely on fossil fuels are being explored.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "energy"
+    ]
+  },
+  {
+    "id": "2629",
+    "japanese": "限りある資源をいかに有効活用するかが、今後の課題となる。",
+    "chunks": [
+      "限り",
+      "ある",
+      "資源",
+      "を",
+      "いかに",
+      "有効活用する",
+      "か",
+      "が、",
+      "今後",
+      "の",
+      "課題",
+      "と",
+      "なる。"
+    ],
+    "translation": "如何有效利用有限的資源，將是今後的課題。",
+    "english": "How to make effective use of limited resources will be the challenge going forward.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "energy"
+    ]
+  },
+  {
+    "id": "2630",
+    "japanese": "子供は元気がいっぱいです。",
+    "chunks": [
+      "子供",
+      "は",
+      "元気",
+      "が",
+      "いっぱい",
+      "です。"
+    ],
+    "translation": "小孩子充滿活力。",
+    "english": "Children are full of energy.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "energy"
+    ]
+  },
+  {
+    "id": "2631",
+    "japanese": "太陽光発電は、クリーンなエネルギーとして注目されている。",
+    "chunks": [
+      "太陽光発電",
+      "は、",
+      "クリーン",
+      "な",
+      "エネルギー",
+      "として",
+      "注目されて",
+      "いる。"
+    ],
+    "translation": "太陽能發電作為一種潔淨能源備受矚目。",
+    "english": "Solar power is attracting attention as a clean energy source.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "energy"
+    ]
+  },
+  {
+    "id": "2632",
+    "japanese": "このごろ疲れやすくて、力が出ない。",
+    "chunks": [
+      "このごろ",
+      "疲れ",
+      "やすくて、",
+      "力",
+      "が",
+      "出ない。"
+    ],
+    "translation": "最近容易疲倦，使不出力氣。",
+    "english": "Lately I get tired easily and have no energy.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "energy"
+    ]
+  },
+  {
+    "id": "2633",
+    "japanese": "省エネへの取り組みは、もはや一企業の努力にとどまらない。",
+    "chunks": [
+      "省エネ",
+      "へ",
+      "の",
+      "取り組み",
+      "は、",
+      "もはや",
+      "一企業",
+      "の",
+      "努力",
+      "に",
+      "とどまらない。"
+    ],
+    "translation": "節能的努力，已不再僅止於單一企業。",
+    "english": "Efforts toward energy conservation are no longer confined to a single company.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "energy"
+    ]
+  },
+  {
+    "id": "2634",
+    "japanese": "スポーツをするとエネルギーを使います。",
+    "chunks": [
+      "スポーツ",
+      "を",
+      "する",
+      "と",
+      "エネルギー",
+      "を",
+      "使います。"
+    ],
+    "translation": "做運動會消耗能量。",
+    "english": "Playing sports uses up energy.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "energy"
+    ]
+  },
+  {
+    "id": "2635",
+    "japanese": "電力の使い過ぎは、家計にも環境にも負担をかける。",
+    "chunks": [
+      "電力",
+      "の",
+      "使い過ぎ",
+      "は、",
+      "家計",
+      "に",
+      "も",
+      "環境",
+      "に",
+      "も",
+      "負担",
+      "を",
+      "かける。"
+    ],
+    "translation": "用電過度，會對家計和環境都造成負擔。",
+    "english": "Using too much electricity burdens both your household budget and the environment.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "energy"
+    ]
+  },
+  {
+    "id": "2636",
+    "japanese": "友達を誕生日に招待しました。",
+    "chunks": [
+      "友達",
+      "を",
+      "誕生日",
+      "に",
+      "招待",
+      "しました。"
+    ],
+    "translation": "我邀請了朋友來參加生日會。",
+    "english": "I invited my friend to my birthday.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2637",
+    "japanese": "パーティーに来てくれてありがとう。",
+    "chunks": [
+      "パーティー",
+      "に",
+      "来て",
+      "くれて",
+      "ありがとう。"
+    ],
+    "translation": "謝謝你來參加派對。",
+    "english": "Thank you for coming to the party.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2638",
+    "japanese": "結婚式の招待状が昨日届いた。",
+    "chunks": [
+      "結婚式",
+      "の",
+      "招待状",
+      "が",
+      "昨日",
+      "届いた。"
+    ],
+    "translation": "婚禮的邀請函昨天寄到了。",
+    "english": "The wedding invitation arrived yesterday.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2639",
+    "japanese": "せっかくのお誘いですが、あいにく先約があります。",
+    "chunks": [
+      "せっかく",
+      "の",
+      "お誘い",
+      "です",
+      "が、",
+      "あいにく",
+      "先約",
+      "が",
+      "あります。"
+    ],
+    "translation": "難得您的邀約，但不巧我已經有約了。",
+    "english": "It's kind of you to invite me, but unfortunately I have a prior engagement.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2640",
+    "japanese": "突然の招待にもかかわらず、彼は快く応じてくれた。",
+    "chunks": [
+      "突然",
+      "の",
+      "招待",
+      "に",
+      "も",
+      "かかわらず、",
+      "彼",
+      "は",
+      "快く",
+      "応じて",
+      "くれた。"
+    ],
+    "translation": "儘管是臨時的邀請，他還是爽快地答應了。",
+    "english": "Despite the sudden invitation, he readily accepted.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2641",
+    "japanese": "今度の週末、うちに遊びに来ませんか。",
+    "chunks": [
+      "今度",
+      "の",
+      "週末、",
+      "うち",
+      "に",
+      "遊び",
+      "に",
+      "来ません",
+      "か。"
+    ],
+    "translation": "這個週末要不要來我家玩？",
+    "english": "Won't you come over to my place this weekend?",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2642",
+    "japanese": "招待を受けるかどうか、まだ返事をしていない。",
+    "chunks": [
+      "招待",
+      "を",
+      "受ける",
+      "か",
+      "どうか、",
+      "まだ",
+      "返事",
+      "を",
+      "して",
+      "いない。"
+    ],
+    "translation": "我還沒回覆要不要接受邀請。",
+    "english": "I haven't yet replied whether I'll accept the invitation.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2643",
+    "japanese": "形式的な招待ではなく、心からのもてなしこそが人の心を動かす。",
+    "chunks": [
+      "形式的",
+      "な",
+      "招待",
+      "で",
+      "は",
+      "なく、",
+      "心",
+      "から",
+      "の",
+      "もてなし",
+      "こそ",
+      "が",
+      "人",
+      "の",
+      "心",
+      "を",
+      "動かす。"
+    ],
+    "translation": "能打動人心的，不是形式上的邀請，而是發自內心的款待。",
+    "english": "It's not a formal invitation but heartfelt hospitality that truly moves people.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2644",
+    "japanese": "今夜、夕食に招待されています。",
+    "chunks": [
+      "今夜、",
+      "夕食",
+      "に",
+      "招待されて",
+      "います。"
+    ],
+    "translation": "今晚我受邀去吃晚餐。",
+    "english": "I'm invited to dinner tonight.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "invitation"
+    ]
+  },
+  {
+    "id": "2645",
+    "japanese": "大勢のお客様を招いて、盛大なパーティーを開いた。",
+    "chunks": [
+      "大勢",
+      "の",
+      "お客様",
+      "を",
+      "招いて、",
+      "盛大",
+      "な",
+      "パーティー",
+      "を",
+      "開いた。"
+    ],
+    "translation": "我邀請了眾多賓客，舉辦了盛大的派對。",
+    "english": "We invited many guests and held a grand party.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "invitation"
+    ]
   }
 ]
