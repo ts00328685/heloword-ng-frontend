@@ -53083,5 +53083,1104 @@
       "N2",
       "invitation"
     ]
+  },
+  {
+    "id": "2646",
+    "japanese": "この製品は品質がいいです。",
+    "chunks": [
+      "この",
+      "製品",
+      "は",
+      "品質",
+      "が",
+      "いい",
+      "です。"
+    ],
+    "translation": "這個產品品質很好。",
+    "english": "This product is of good quality.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "quality"
+    ]
+  },
+  {
+    "id": "2647",
+    "japanese": "安いものより質のいいものを選びたい。",
+    "chunks": [
+      "安い",
+      "もの",
+      "より",
+      "質",
+      "の",
+      "いい",
+      "もの",
+      "を",
+      "選びたい。"
+    ],
+    "translation": "比起便宜的東西，我想選品質好的。",
+    "english": "I'd rather choose quality items than cheap ones.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "quality"
+    ]
+  },
+  {
+    "id": "2648",
+    "japanese": "価格を抑えつつ品質を保つのは難しい。",
+    "chunks": [
+      "価格",
+      "を",
+      "抑えつつ",
+      "品質",
+      "を",
+      "保つ",
+      "の",
+      "は",
+      "難しい。"
+    ],
+    "translation": "既要壓低價格又要維持品質是很難的。",
+    "english": "It's hard to maintain quality while keeping the price down.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "quality"
+    ]
+  },
+  {
+    "id": "2649",
+    "japanese": "大量生産の時代にあって、なお品質にこだわる職人も少なくない。",
+    "chunks": [
+      "大量生産",
+      "の",
+      "時代",
+      "に",
+      "あって、",
+      "なお",
+      "品質",
+      "に",
+      "こだわる",
+      "職人",
+      "も",
+      "少なくない。"
+    ],
+    "translation": "在大量生產的時代，仍然講究品質的工匠也不在少數。",
+    "english": "Even in an age of mass production, no few artisans still insist on quality.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "quality"
+    ]
+  },
+  {
+    "id": "2650",
+    "japanese": "この紙は質がいいです。",
+    "chunks": [
+      "この",
+      "紙",
+      "は",
+      "質",
+      "が",
+      "いい",
+      "です。"
+    ],
+    "translation": "這種紙的質感很好。",
+    "english": "This paper is of good quality.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "quality"
+    ]
+  },
+  {
+    "id": "2651",
+    "japanese": "品質管理を徹底することで、信頼を得てきた。",
+    "chunks": [
+      "品質管理",
+      "を",
+      "徹底する",
+      "こと",
+      "で、",
+      "信頼",
+      "を",
+      "得て",
+      "きた。"
+    ],
+    "translation": "藉由徹底的品質管理，贏得了信賴。",
+    "english": "By being thorough about quality control, they have earned trust.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "quality"
+    ]
+  },
+  {
+    "id": "2652",
+    "japanese": "この店のサービスの質はとても高い。",
+    "chunks": [
+      "この",
+      "店",
+      "の",
+      "サービス",
+      "の",
+      "質",
+      "は",
+      "とても",
+      "高い。"
+    ],
+    "translation": "這家店的服務品質非常高。",
+    "english": "The quality of service at this shop is very high.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "quality"
+    ]
+  },
+  {
+    "id": "2653",
+    "japanese": "量を追い求めるあまり、質がおろそかになっては本末転倒だ。",
+    "chunks": [
+      "量",
+      "を",
+      "追い求める",
+      "あまり、",
+      "質",
+      "が",
+      "おろそか",
+      "に",
+      "なって",
+      "は",
+      "本末転倒",
+      "だ。"
+    ],
+    "translation": "一味追求數量而忽略了品質，那就本末倒置了。",
+    "english": "If you chase quantity so much that quality is neglected, you've got your priorities backward.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "quality"
+    ]
+  },
+  {
+    "id": "2654",
+    "japanese": "もっと質のいい材料を使いたいです。",
+    "chunks": [
+      "もっと",
+      "質",
+      "の",
+      "いい",
+      "材料",
+      "を",
+      "使いたい",
+      "です。"
+    ],
+    "translation": "我想用品質更好的材料。",
+    "english": "I want to use higher-quality materials.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "quality"
+    ]
+  },
+  {
+    "id": "2655",
+    "japanese": "睡眠の質を高めることが、健康への近道だ。",
+    "chunks": [
+      "睡眠",
+      "の",
+      "質",
+      "を",
+      "高める",
+      "こと",
+      "が、",
+      "健康",
+      "へ",
+      "の",
+      "近道",
+      "だ。"
+    ],
+    "translation": "提升睡眠品質是通往健康的捷徑。",
+    "english": "Improving the quality of your sleep is a shortcut to good health.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "quality"
+    ]
+  },
+  {
+    "id": "2656",
+    "japanese": "今日はとても幸せな気持ちです。",
+    "chunks": [
+      "今日",
+      "は",
+      "とても",
+      "幸せ",
+      "な",
+      "気持ち",
+      "です。"
+    ],
+    "translation": "我今天的心情非常幸福。",
+    "english": "I feel very happy today.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2657",
+    "japanese": "うれしい気持ちを言葉で伝えました。",
+    "chunks": [
+      "うれしい",
+      "気持ち",
+      "を",
+      "言葉",
+      "で",
+      "伝えました。"
+    ],
+    "translation": "我用言語表達了喜悅的心情。",
+    "english": "I expressed my joy in words.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2658",
+    "japanese": "不安な気持ちをだれかに話したかった。",
+    "chunks": [
+      "不安",
+      "な",
+      "気持ち",
+      "を",
+      "だれか",
+      "に",
+      "話したかった。"
+    ],
+    "translation": "我想把不安的心情找人傾訴。",
+    "english": "I wanted to tell someone about my anxious feelings.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2659",
+    "japanese": "言葉では言い表せないほどの感謝の気持ちでいっぱいだ。",
+    "chunks": [
+      "言葉",
+      "で",
+      "は",
+      "言い表せない",
+      "ほど",
+      "の",
+      "感謝",
+      "の",
+      "気持ち",
+      "で",
+      "いっぱい",
+      "だ。"
+    ],
+    "translation": "我心中充滿了難以言喻的感激之情。",
+    "english": "I'm filled with gratitude beyond what words can express.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2660",
+    "japanese": "抑え込んでいた感情が、ふとした瞬間にあふれ出すことがある。",
+    "chunks": [
+      "抑え込んで",
+      "いた",
+      "感情",
+      "が、",
+      "ふとした",
+      "瞬間",
+      "に",
+      "あふれ出す",
+      "こと",
+      "が",
+      "ある。"
+    ],
+    "translation": "一直壓抑著的情感，有時會在不經意的瞬間湧現出來。",
+    "english": "Emotions you've been holding back can sometimes overflow in an unguarded moment.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2661",
+    "japanese": "彼の気持ちを考えると、何も言えなかった。",
+    "chunks": [
+      "彼",
+      "の",
+      "気持ち",
+      "を",
+      "考える",
+      "と、",
+      "何",
+      "も",
+      "言えなかった。"
+    ],
+    "translation": "一想到他的心情，我就什麼話也說不出口。",
+    "english": "When I thought about how he felt, I couldn't say anything.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2662",
+    "japanese": "怒りの感情に任せて行動すると、後悔することが多い。",
+    "chunks": [
+      "怒り",
+      "の",
+      "感情",
+      "に",
+      "任せて",
+      "行動する",
+      "と、",
+      "後悔する",
+      "こと",
+      "が",
+      "多い。"
+    ],
+    "translation": "任由憤怒的情緒行事，往往會後悔。",
+    "english": "When you act on feelings of anger, you often end up regretting it.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2663",
+    "japanese": "喜びも悲しみも、分かち合える相手がいてこそ深まるものだ。",
+    "chunks": [
+      "喜び",
+      "も",
+      "悲しみ",
+      "も、",
+      "分かち合える",
+      "相手",
+      "が",
+      "いて",
+      "こそ",
+      "深まる",
+      "もの",
+      "だ。"
+    ],
+    "translation": "無論喜悅或悲傷，唯有有人能分享，才會更加深刻。",
+    "english": "Both joy and sorrow deepen only when there's someone to share them with.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2664",
+    "japanese": "友達の気持ちが分かりません。",
+    "chunks": [
+      "友達",
+      "の",
+      "気持ち",
+      "が",
+      "分かりません。"
+    ],
+    "translation": "我不明白朋友的心情。",
+    "english": "I don't understand how my friend feels.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2665",
+    "japanese": "第一印象で、なんとなく良い感じを受けた。",
+    "chunks": [
+      "第一印象",
+      "で、",
+      "なんとなく",
+      "良い",
+      "感じ",
+      "を",
+      "受けた。"
+    ],
+    "translation": "第一印象就隱約覺得不錯。",
+    "english": "From the first impression, I somehow got a good feeling.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "feeling"
+    ]
+  },
+  {
+    "id": "2666",
+    "japanese": "毎日の生活は楽しいです。",
+    "chunks": [
+      "毎日",
+      "の",
+      "生活",
+      "は",
+      "楽しい",
+      "です。"
+    ],
+    "translation": "每天的生活很愉快。",
+    "english": "My daily life is enjoyable.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "life"
+    ]
+  },
+  {
+    "id": "2667",
+    "japanese": "田舎の生活は静かでいいです。",
+    "chunks": [
+      "田舎",
+      "の",
+      "生活",
+      "は",
+      "静か",
+      "で",
+      "いい",
+      "です。"
+    ],
+    "translation": "鄉下的生活很安靜，很不錯。",
+    "english": "Country life is quiet and nice.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "life"
+    ]
+  },
+  {
+    "id": "2668",
+    "japanese": "規則正しい生活を心がけている。",
+    "chunks": [
+      "規則正しい",
+      "生活",
+      "を",
+      "心がけて",
+      "いる。"
+    ],
+    "translation": "我留意要過規律的生活。",
+    "english": "I try to keep a regular lifestyle.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "life"
+    ]
+  },
+  {
+    "id": "2669",
+    "japanese": "都会の生活に疲れて、田舎へ移住する人が増えている。",
+    "chunks": [
+      "都会",
+      "の",
+      "生活",
+      "に",
+      "疲れて、",
+      "田舎",
+      "へ",
+      "移住する",
+      "人",
+      "が",
+      "増えて",
+      "いる。"
+    ],
+    "translation": "厭倦了都市生活而移居鄉下的人正在增加。",
+    "english": "More people, tired of city life, are moving to the countryside.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "life"
+    ]
+  },
+  {
+    "id": "2670",
+    "japanese": "人生において、何を捨て、何を選ぶかが、その人の生き方を決める。",
+    "chunks": [
+      "人生",
+      "に",
+      "おいて、",
+      "何",
+      "を",
+      "捨て、",
+      "何",
+      "を",
+      "選ぶ",
+      "か",
+      "が、",
+      "その",
+      "人",
+      "の",
+      "生き方",
+      "を",
+      "決める。"
+    ],
+    "translation": "在人生中，捨棄什麼、選擇什麼，決定了一個人的活法。",
+    "english": "In life, what you discard and what you choose determine how you live.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "life"
+    ]
+  },
+  {
+    "id": "2671",
+    "japanese": "健康な生活を送るために早寝早起きをする。",
+    "chunks": [
+      "健康",
+      "な",
+      "生活",
+      "を",
+      "送る",
+      "ために",
+      "早寝早起き",
+      "を",
+      "する。"
+    ],
+    "translation": "為了過健康的生活，我早睡早起。",
+    "english": "I go to bed early and rise early to lead a healthy life.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "life"
+    ]
+  },
+  {
+    "id": "2672",
+    "japanese": "一度きりの人生だから、悔いのないように生きたい。",
+    "chunks": [
+      "一度きり",
+      "の",
+      "人生",
+      "だ",
+      "から、",
+      "悔い",
+      "の",
+      "ない",
+      "ように",
+      "生きたい。"
+    ],
+    "translation": "人生只有一次，所以我想活得不留遺憾。",
+    "english": "Since you only live once, I want to live without regrets.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "life"
+    ]
+  },
+  {
+    "id": "2673",
+    "japanese": "平凡に見える日々の暮らしの中にこそ、本当の幸せは潜んでいる。",
+    "chunks": [
+      "平凡",
+      "に",
+      "見える",
+      "日々",
+      "の",
+      "暮らし",
+      "の",
+      "中",
+      "に",
+      "こそ、",
+      "本当",
+      "の",
+      "幸せ",
+      "は",
+      "潜んで",
+      "いる。"
+    ],
+    "translation": "真正的幸福，正潛藏在看似平凡的日常生活之中。",
+    "english": "True happiness lies hidden precisely in the seemingly ordinary days of daily life.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "life"
+    ]
+  },
+  {
+    "id": "2674",
+    "japanese": "新しい生活が始まりました。",
+    "chunks": [
+      "新しい",
+      "生活",
+      "が",
+      "始まり",
+      "ました。"
+    ],
+    "translation": "新的生活開始了。",
+    "english": "A new life has begun.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "life"
+    ]
+  },
+  {
+    "id": "2675",
+    "japanese": "物価の上昇で、暮らしがだんだん苦しくなってきた。",
+    "chunks": [
+      "物価",
+      "の",
+      "上昇",
+      "で、",
+      "暮らし",
+      "が",
+      "だんだん",
+      "苦しく",
+      "なって",
+      "きた。"
+    ],
+    "translation": "由於物價上漲，生活漸漸變得吃緊。",
+    "english": "With rising prices, daily life has gradually become harder.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "life"
+    ]
+  },
+  {
+    "id": "2676",
+    "japanese": "会社のやり方を変える必要があります。",
+    "chunks": [
+      "会社",
+      "の",
+      "やり方",
+      "を",
+      "変える",
+      "必要",
+      "が",
+      "あります。"
+    ],
+    "translation": "公司的做法需要改變。",
+    "english": "We need to change the way the company does things.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "reform"
+    ]
+  },
+  {
+    "id": "2677",
+    "japanese": "教育制度の改革が議論されている。",
+    "chunks": [
+      "教育制度",
+      "の",
+      "改革",
+      "が",
+      "議論されて",
+      "いる。"
+    ],
+    "translation": "教育制度的改革正在被討論。",
+    "english": "Reform of the education system is being debated.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reform"
+    ]
+  },
+  {
+    "id": "2678",
+    "japanese": "大胆な改革なくして、組織の再生はあり得ない。",
+    "chunks": [
+      "大胆",
+      "な",
+      "改革",
+      "なくして、",
+      "組織",
+      "の",
+      "再生",
+      "は",
+      "あり得ない。"
+    ],
+    "translation": "沒有大膽的改革，組織就不可能重生。",
+    "english": "Without bold reform, there can be no revival of the organization.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "reform"
+    ]
+  },
+  {
+    "id": "2679",
+    "japanese": "長年の慣習を改めることには、必ず抵抗が伴うものだ。",
+    "chunks": [
+      "長年",
+      "の",
+      "慣習",
+      "を",
+      "改める",
+      "こと",
+      "に",
+      "は、",
+      "必ず",
+      "抵抗",
+      "が",
+      "伴う",
+      "もの",
+      "だ。"
+    ],
+    "translation": "要改變多年的慣例，必然會伴隨阻力。",
+    "english": "Changing long-standing customs always comes with resistance.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "reform"
+    ]
+  },
+  {
+    "id": "2680",
+    "japanese": "生活を少しずつ変えたいです。",
+    "chunks": [
+      "生活",
+      "を",
+      "少し",
+      "ずつ",
+      "変えたい",
+      "です。"
+    ],
+    "translation": "我想一點一點地改變生活。",
+    "english": "I want to change my life little by little.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "reform"
+    ]
+  },
+  {
+    "id": "2681",
+    "japanese": "働き方改革によって、残業が大幅に減った。",
+    "chunks": [
+      "働き方改革",
+      "に",
+      "よって、",
+      "残業",
+      "が",
+      "大幅",
+      "に",
+      "減った。"
+    ],
+    "translation": "透過工作方式改革，加班大幅減少了。",
+    "english": "Thanks to work-style reform, overtime has dropped significantly.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "reform"
+    ]
+  },
+  {
+    "id": "2682",
+    "japanese": "制度を改善するには時間がかかる。",
+    "chunks": [
+      "制度",
+      "を",
+      "改善する",
+      "に",
+      "は",
+      "時間",
+      "が",
+      "かかる。"
+    ],
+    "translation": "改善制度需要時間。",
+    "english": "Improving the system takes time.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reform"
+    ]
+  },
+  {
+    "id": "2683",
+    "japanese": "表面的な改革に終始すれば、いずれ同じ問題が繰り返される。",
+    "chunks": [
+      "表面的",
+      "な",
+      "改革",
+      "に",
+      "終始すれば、",
+      "いずれ",
+      "同じ",
+      "問題",
+      "が",
+      "繰り返される。"
+    ],
+    "translation": "若始終停留在表面的改革，遲早會重蹈同樣的問題。",
+    "english": "If reform stays merely superficial, the same problems will eventually recur.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "reform"
+    ]
+  },
+  {
+    "id": "2684",
+    "japanese": "古いシステムを新しくしました。",
+    "chunks": [
+      "古い",
+      "システム",
+      "を",
+      "新しく",
+      "しました。"
+    ],
+    "translation": "我把舊的系統更新了。",
+    "english": "We renewed the old system.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "reform"
+    ]
+  },
+  {
+    "id": "2685",
+    "japanese": "改革には、現場の声に耳を傾ける姿勢が欠かせない。",
+    "chunks": [
+      "改革",
+      "に",
+      "は、",
+      "現場",
+      "の",
+      "声",
+      "に",
+      "耳",
+      "を",
+      "傾ける",
+      "姿勢",
+      "が",
+      "欠かせない。"
+    ],
+    "translation": "改革少不了傾聽第一線聲音的態度。",
+    "english": "Reform requires an attitude of listening to voices from the front lines.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "reform"
+    ]
+  },
+  {
+    "id": "2686",
+    "japanese": "毎朝ジョギングをしています。",
+    "chunks": [
+      "毎朝",
+      "ジョギング",
+      "を",
+      "して",
+      "います。"
+    ],
+    "translation": "我每天早上慢跑。",
+    "english": "I go jogging every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2687",
+    "japanese": "健康のために運動を始めました。",
+    "chunks": [
+      "健康",
+      "の",
+      "ために",
+      "運動",
+      "を",
+      "始めました。"
+    ],
+    "translation": "為了健康我開始運動。",
+    "english": "I started exercising for my health.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2688",
+    "japanese": "体力をつけるために毎日歩いている。",
+    "chunks": [
+      "体力",
+      "を",
+      "つける",
+      "ために",
+      "毎日",
+      "歩いて",
+      "いる。"
+    ],
+    "translation": "為了增強體力，我每天走路。",
+    "english": "I walk every day to build up my stamina.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2689",
+    "japanese": "適度な運動は、ストレスの解消にも役立つ。",
+    "chunks": [
+      "適度",
+      "な",
+      "運動",
+      "は、",
+      "ストレス",
+      "の",
+      "解消",
+      "に",
+      "も",
+      "役立つ。"
+    ],
+    "translation": "適度的運動也有助於消除壓力。",
+    "english": "Moderate exercise also helps relieve stress.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2690",
+    "japanese": "日頃の運動を怠れば、体力は知らぬ間に衰えていく。",
+    "chunks": [
+      "日頃",
+      "の",
+      "運動",
+      "を",
+      "怠れば、",
+      "体力",
+      "は",
+      "知らぬ",
+      "間",
+      "に",
+      "衰えて",
+      "いく。"
+    ],
+    "translation": "若疏於平日的運動，體力會在不知不覺間衰退。",
+    "english": "If you neglect regular exercise, your stamina declines before you know it.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2691",
+    "japanese": "久しぶりに走ったら、足が痛くなった。",
+    "chunks": [
+      "久しぶり",
+      "に",
+      "走ったら、",
+      "足",
+      "が",
+      "痛く",
+      "なった。"
+    ],
+    "translation": "久違地跑了步，腳就痛了起來。",
+    "english": "I ran for the first time in a while and my legs got sore.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2692",
+    "japanese": "ジムに通い始めてから、体が引き締まってきた。",
+    "chunks": [
+      "ジム",
+      "に",
+      "通い始めて",
+      "から、",
+      "体",
+      "が",
+      "引き締まって",
+      "きた。"
+    ],
+    "translation": "自從開始上健身房，身材變得結實了。",
+    "english": "Since I started going to the gym, my body has gotten more toned.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2693",
+    "japanese": "激しいトレーニングも、無理を重ねれば故障の原因となりかねない。",
+    "chunks": [
+      "激しい",
+      "トレーニング",
+      "も、",
+      "無理",
+      "を",
+      "重ねれば",
+      "故障",
+      "の",
+      "原因",
+      "と",
+      "なり",
+      "かねない。"
+    ],
+    "translation": "激烈的訓練若一味勉強，也可能成為受傷的原因。",
+    "english": "Intense training, if overdone, can become a cause of injury.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2694",
+    "japanese": "週に三回プールで泳ぎます。",
+    "chunks": [
+      "週",
+      "に",
+      "三回",
+      "プール",
+      "で",
+      "泳ぎます。"
+    ],
+    "translation": "我每週在泳池游泳三次。",
+    "english": "I swim at the pool three times a week.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "fitness"
+    ]
+  },
+  {
+    "id": "2695",
+    "japanese": "年齢を重ねても、運動を続ければ筋力は維持できる。",
+    "chunks": [
+      "年齢",
+      "を",
+      "重ねて",
+      "も、",
+      "運動",
+      "を",
+      "続ければ",
+      "筋力",
+      "は",
+      "維持できる。"
+    ],
+    "translation": "即使上了年紀，只要持續運動就能維持肌力。",
+    "english": "Even as you age, you can maintain muscle strength by continuing to exercise.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "fitness"
+    ]
   }
 ]
