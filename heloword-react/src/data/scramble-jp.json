@@ -45187,5 +45187,1178 @@
       "n4",
       "description"
     ]
+  },
+  {
+    "id": "2297",
+    "japanese": "彼は親切な人です。",
+    "chunks": [
+      "彼",
+      "は",
+      "親切",
+      "な",
+      "人",
+      "です。"
+    ],
+    "translation": "他是個親切的人。",
+    "english": "He is a kind person.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "character"
+    ]
+  },
+  {
+    "id": "2298",
+    "japanese": "妹は明るくて元気な性格です。",
+    "chunks": [
+      "妹",
+      "は",
+      "明るくて",
+      "元気",
+      "な",
+      "性格",
+      "です。"
+    ],
+    "translation": "妹妹的個性開朗又有活力。",
+    "english": "My little sister has a cheerful and energetic personality.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "character"
+    ]
+  },
+  {
+    "id": "2299",
+    "japanese": "彼女は誰に対しても正直に接する性格だ。",
+    "chunks": [
+      "彼女",
+      "は",
+      "誰",
+      "に対しても",
+      "正直",
+      "に",
+      "接する",
+      "性格",
+      "だ。"
+    ],
+    "translation": "她的個性是對任何人都誠實以待。",
+    "english": "She has a personality that treats everyone honestly.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "character"
+    ]
+  },
+  {
+    "id": "2300",
+    "japanese": "困難に直面しても冷静さを失わない彼の人柄を尊敬している。",
+    "chunks": [
+      "困難",
+      "に",
+      "直面",
+      "して",
+      "も",
+      "冷静さ",
+      "を",
+      "失わない",
+      "彼",
+      "の",
+      "人柄",
+      "を",
+      "尊敬",
+      "して",
+      "いる。"
+    ],
+    "translation": "我尊敬他即使面對困難也不失冷靜的人品。",
+    "english": "I respect his character, which never loses its composure even when facing difficulties.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "character"
+    ]
+  },
+  {
+    "id": "2301",
+    "japanese": "温厚な性格ゆえに、彼は他人の理不尽な要求さえも受け入れてしまいがちだ。",
+    "chunks": [
+      "温厚",
+      "な",
+      "性格",
+      "ゆえに、",
+      "彼",
+      "は",
+      "他人",
+      "の",
+      "理不尽",
+      "な",
+      "要求",
+      "さえも",
+      "受け入れて",
+      "しまいがちだ。"
+    ],
+    "translation": "正因為個性溫和，他往往連別人不合理的要求也會接受。",
+    "english": "Because of his gentle nature, he tends to accept even other people's unreasonable demands.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "character"
+    ]
+  },
+  {
+    "id": "2302",
+    "japanese": "一見クールに見えるが、実は情に厚い性格だ。",
+    "chunks": [
+      "一見",
+      "クール",
+      "に",
+      "見える",
+      "が、",
+      "実は",
+      "情",
+      "に",
+      "厚い",
+      "性格",
+      "だ。"
+    ],
+    "translation": "乍看之下很冷酷，其實是個重感情的人。",
+    "english": "At first glance he seems cool, but he actually has a warm-hearted personality.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "character"
+    ]
+  },
+  {
+    "id": "2303",
+    "japanese": "子供の頃から負けず嫌いな性格だった。",
+    "chunks": [
+      "子供",
+      "の",
+      "頃",
+      "から",
+      "負けず嫌い",
+      "な",
+      "性格",
+      "だった。"
+    ],
+    "translation": "從小我就是不服輸的個性。",
+    "english": "Ever since childhood, I've had a competitive personality that hates to lose.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "character"
+    ]
+  },
+  {
+    "id": "2304",
+    "japanese": "彼の几帳面な性格は、時として周囲の人間を息苦しくさせることがある。",
+    "chunks": [
+      "彼",
+      "の",
+      "几帳面",
+      "な",
+      "性格",
+      "は、",
+      "時として",
+      "周囲",
+      "の",
+      "人間",
+      "を",
+      "息苦しく",
+      "させる",
+      "こと",
+      "が",
+      "ある。"
+    ],
+    "translation": "他一絲不苟的個性，有時會讓周遭的人感到喘不過氣。",
+    "english": "His meticulous personality can sometimes make the people around him feel suffocated.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "character"
+    ]
+  },
+  {
+    "id": "2305",
+    "japanese": "父は静かで真面目な性格です。",
+    "chunks": [
+      "父",
+      "は",
+      "静か",
+      "で",
+      "真面目",
+      "な",
+      "性格",
+      "です。"
+    ],
+    "translation": "父親的個性安靜又認真。",
+    "english": "My father has a quiet and serious personality.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "character"
+    ]
+  },
+  {
+    "id": "2306",
+    "japanese": "性格は環境によって少しずつ変わっていくものだ。",
+    "chunks": [
+      "性格",
+      "は",
+      "環境",
+      "に",
+      "よって",
+      "少しずつ",
+      "変わって",
+      "いく",
+      "もの",
+      "だ。"
+    ],
+    "translation": "性格會隨著環境而一點一點地改變。",
+    "english": "One's personality gradually changes depending on the environment.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "character"
+    ]
+  },
+  {
+    "id": "2307",
+    "japanese": "私は棚を自分で作りました。",
+    "chunks": [
+      "私",
+      "は",
+      "棚",
+      "を",
+      "自分",
+      "で",
+      "作りました。"
+    ],
+    "translation": "我自己做了架子。",
+    "english": "I made the shelf myself.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "diy"
+    ]
+  },
+  {
+    "id": "2308",
+    "japanese": "週末に古い椅子を修理するつもりです。",
+    "chunks": [
+      "週末",
+      "に",
+      "古い",
+      "椅子",
+      "を",
+      "修理する",
+      "つもり",
+      "です。"
+    ],
+    "translation": "我打算週末修理那把舊椅子。",
+    "english": "I plan to repair the old chair this weekend.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "diy"
+    ]
+  },
+  {
+    "id": "2309",
+    "japanese": "必要な道具をそろえてから作業を始めましょう。",
+    "chunks": [
+      "必要",
+      "な",
+      "道具",
+      "を",
+      "そろえて",
+      "から",
+      "作業",
+      "を",
+      "始めましょう。"
+    ],
+    "translation": "備齊必要的工具之後再開始作業吧。",
+    "english": "Let's gather the necessary tools before we start the work.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "diy"
+    ]
+  },
+  {
+    "id": "2310",
+    "japanese": "この本棚は市販品ではなく、彼が一から手作りしたものだ。",
+    "chunks": [
+      "この",
+      "本棚",
+      "は",
+      "市販品",
+      "では",
+      "なく、",
+      "彼",
+      "が",
+      "一から",
+      "手作り",
+      "した",
+      "もの",
+      "だ。"
+    ],
+    "translation": "這個書架不是市售品，而是他從頭手工製作的。",
+    "english": "This bookshelf isn't store-bought; he made it by hand from scratch.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "diy"
+    ]
+  },
+  {
+    "id": "2311",
+    "japanese": "設計図さえ用意すれば、素人でもそれなりの家具を組み立てられるものだ。",
+    "chunks": [
+      "設計図",
+      "さえ",
+      "用意すれば、",
+      "素人",
+      "でも",
+      "それなり",
+      "の",
+      "家具",
+      "を",
+      "組み立てられる",
+      "もの",
+      "だ。"
+    ],
+    "translation": "只要準備好設計圖，就算是外行人也能組裝出像樣的家具。",
+    "english": "As long as you prepare a blueprint, even an amateur can assemble decent furniture.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "diy"
+    ]
+  },
+  {
+    "id": "2312",
+    "japanese": "壁を塗る前に、家具にシートをかけておいた。",
+    "chunks": [
+      "壁",
+      "を",
+      "塗る",
+      "前",
+      "に、",
+      "家具",
+      "に",
+      "シート",
+      "を",
+      "かけて",
+      "おいた。"
+    ],
+    "translation": "在粉刷牆壁之前，我先用布把家具蓋了起來。",
+    "english": "Before painting the wall, I covered the furniture with a sheet.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "diy"
+    ]
+  },
+  {
+    "id": "2313",
+    "japanese": "ねじが足りなかったので、近所の店まで買いに行った。",
+    "chunks": [
+      "ねじ",
+      "が",
+      "足りなかった",
+      "ので、",
+      "近所",
+      "の",
+      "店",
+      "まで",
+      "買い",
+      "に",
+      "行った。"
+    ],
+    "translation": "因為螺絲不夠，我跑到附近的店去買。",
+    "english": "I didn't have enough screws, so I went to the neighborhood store to buy some.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "diy"
+    ]
+  },
+  {
+    "id": "2314",
+    "japanese": "のこぎりで板を半分に切ります。",
+    "chunks": [
+      "のこぎり",
+      "で",
+      "板",
+      "を",
+      "半分",
+      "に",
+      "切ります。"
+    ],
+    "translation": "用鋸子把木板鋸成兩半。",
+    "english": "I cut the board in half with a saw.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "diy"
+    ]
+  },
+  {
+    "id": "2315",
+    "japanese": "手間こそかかるが、自分で作った家具には既製品にはない愛着が湧く。",
+    "chunks": [
+      "手間",
+      "こそ",
+      "かかる",
+      "が、",
+      "自分",
+      "で",
+      "作った",
+      "家具",
+      "に",
+      "は",
+      "既製品",
+      "に",
+      "は",
+      "ない",
+      "愛着",
+      "が",
+      "湧く。"
+    ],
+    "translation": "雖然費工夫，但自己做的家具會湧現出成品所沒有的情感。",
+    "english": "It does take effort, but furniture you make yourself stirs an attachment that ready-made items don't.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "diy"
+    ]
+  },
+  {
+    "id": "2316",
+    "japanese": "説明書を読みながら、慎重に部品を組み合わせた。",
+    "chunks": [
+      "説明書",
+      "を",
+      "読み",
+      "ながら、",
+      "慎重",
+      "に",
+      "部品",
+      "を",
+      "組み合わせた。"
+    ],
+    "translation": "我一邊看說明書，一邊謹慎地組合零件。",
+    "english": "Reading the manual, I carefully assembled the parts.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "diy"
+    ]
+  },
+  {
+    "id": "2317",
+    "japanese": "この町の人口は年々減っている。",
+    "chunks": [
+      "この",
+      "町",
+      "の",
+      "人口",
+      "は",
+      "年々",
+      "減って",
+      "いる。"
+    ],
+    "translation": "這個城鎮的人口正逐年減少。",
+    "english": "This town's population is decreasing year by year.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2318",
+    "japanese": "少子高齢化は多くの先進国が抱える深刻な問題だ。",
+    "chunks": [
+      "少子高齢化",
+      "は",
+      "多く",
+      "の",
+      "先進国",
+      "が",
+      "抱える",
+      "深刻",
+      "な",
+      "問題",
+      "だ。"
+    ],
+    "translation": "少子高齡化是許多先進國家面臨的嚴重問題。",
+    "english": "A declining birthrate and aging population is a serious problem many developed countries face.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2319",
+    "japanese": "出生率の低下が続けば、労働人口の減少は避けられないだろう。",
+    "chunks": [
+      "出生率",
+      "の",
+      "低下",
+      "が",
+      "続けば、",
+      "労働人口",
+      "の",
+      "減少",
+      "は",
+      "避けられない",
+      "だろう。"
+    ],
+    "translation": "如果出生率持續下降，勞動人口的減少恐怕難以避免。",
+    "english": "If the birthrate keeps falling, a decline in the working population will be unavoidable.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2320",
+    "japanese": "都市の人口はとても多いです。",
+    "chunks": [
+      "都市",
+      "の",
+      "人口",
+      "は",
+      "とても",
+      "多い",
+      "です。"
+    ],
+    "translation": "都市的人口非常多。",
+    "english": "The population of the city is very large.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2321",
+    "japanese": "若者の多くが地方から都市へ移り住んでいる。",
+    "chunks": [
+      "若者",
+      "の",
+      "多く",
+      "が",
+      "地方",
+      "から",
+      "都市",
+      "へ",
+      "移り住んで",
+      "いる。"
+    ],
+    "translation": "許多年輕人正從鄉下搬到都市居住。",
+    "english": "Many young people are moving from rural areas to the cities.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2322",
+    "japanese": "移民の受け入れをめぐる議論は、人口構成の変化と密接に関わっている。",
+    "chunks": [
+      "移民",
+      "の",
+      "受け入れ",
+      "を",
+      "めぐる",
+      "議論",
+      "は、",
+      "人口構成",
+      "の",
+      "変化",
+      "と",
+      "密接",
+      "に",
+      "関わって",
+      "いる。"
+    ],
+    "translation": "圍繞接納移民的爭論，與人口結構的變化密切相關。",
+    "english": "The debate over accepting immigrants is closely tied to changes in the population structure.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2323",
+    "japanese": "調査によると、この地域の平均年齢は上がっている。",
+    "chunks": [
+      "調査",
+      "に",
+      "よると、",
+      "この",
+      "地域",
+      "の",
+      "平均年齢",
+      "は",
+      "上がって",
+      "いる。"
+    ],
+    "translation": "根據調查，這個地區的平均年齡正在上升。",
+    "english": "According to the survey, the average age in this region is rising.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2324",
+    "japanese": "人口が集中する都市では住宅価格が高騰している。",
+    "chunks": [
+      "人口",
+      "が",
+      "集中する",
+      "都市",
+      "で",
+      "は",
+      "住宅価格",
+      "が",
+      "高騰",
+      "して",
+      "いる。"
+    ],
+    "translation": "在人口集中的都市，房價正在飆漲。",
+    "english": "In cities where the population is concentrated, housing prices are soaring.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2325",
+    "japanese": "この村には子供が少ないです。",
+    "chunks": [
+      "この",
+      "村",
+      "に",
+      "は",
+      "子供",
+      "が",
+      "少ない",
+      "です。"
+    ],
+    "translation": "這個村子裡的小孩很少。",
+    "english": "There are few children in this village.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2326",
+    "japanese": "政府は人口減少に歯止めをかけるべく、様々な政策を打ち出している。",
+    "chunks": [
+      "政府",
+      "は",
+      "人口減少",
+      "に",
+      "歯止め",
+      "を",
+      "かける",
+      "べく、",
+      "様々",
+      "な",
+      "政策",
+      "を",
+      "打ち出して",
+      "いる。"
+    ],
+    "translation": "政府為了遏止人口減少，推出了各種政策。",
+    "english": "The government is rolling out various policies in order to curb the population decline.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "demographics"
+    ]
+  },
+  {
+    "id": "2327",
+    "japanese": "静かな部屋で勉強に集中します。",
+    "chunks": [
+      "静か",
+      "な",
+      "部屋",
+      "で",
+      "勉強",
+      "に",
+      "集中します。"
+    ],
+    "translation": "我在安靜的房間裡專心讀書。",
+    "english": "I concentrate on studying in a quiet room.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2328",
+    "japanese": "周りがうるさくて、なかなか集中できない。",
+    "chunks": [
+      "周り",
+      "が",
+      "うるさくて、",
+      "なかなか",
+      "集中",
+      "できない。"
+    ],
+    "translation": "周圍很吵，很難專心。",
+    "english": "It's noisy around me, so I can hardly concentrate.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2329",
+    "japanese": "締め切りが近づくと、いつも以上に集中力が高まる。",
+    "chunks": [
+      "締め切り",
+      "が",
+      "近づく",
+      "と、",
+      "いつも",
+      "以上",
+      "に",
+      "集中力",
+      "が",
+      "高まる。"
+    ],
+    "translation": "一接近截止日期，專注力就會比平常更高。",
+    "english": "As the deadline approaches, my concentration sharpens more than usual.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2330",
+    "japanese": "雑念を払い、目の前の作業にひたすら没頭することが肝心だ。",
+    "chunks": [
+      "雑念",
+      "を",
+      "払い、",
+      "目",
+      "の",
+      "前",
+      "の",
+      "作業",
+      "に",
+      "ひたすら",
+      "没頭する",
+      "こと",
+      "が",
+      "肝心",
+      "だ。"
+    ],
+    "translation": "摒除雜念、一心埋首於眼前的工作才是關鍵。",
+    "english": "It's essential to clear away distractions and immerse yourself entirely in the task at hand.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2331",
+    "japanese": "集中するために、スマートフォンの電源を切った。",
+    "chunks": [
+      "集中する",
+      "ために、",
+      "スマートフォン",
+      "の",
+      "電源",
+      "を",
+      "切った。"
+    ],
+    "translation": "為了專心，我把智慧型手機關機了。",
+    "english": "To concentrate, I turned off my smartphone.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2332",
+    "japanese": "短い休憩を挟むと、かえって集中が続くらしい。",
+    "chunks": [
+      "短い",
+      "休憩",
+      "を",
+      "挟む",
+      "と、",
+      "かえって",
+      "集中",
+      "が",
+      "続く",
+      "らしい。"
+    ],
+    "translation": "據說中間穿插短暫的休息，反而能讓專注力持續。",
+    "english": "Apparently, taking short breaks actually helps you stay focused longer.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2333",
+    "japanese": "長時間にわたって高い集中力を維持するのは、容易なことではない。",
+    "chunks": [
+      "長時間",
+      "に",
+      "わたって",
+      "高い",
+      "集中力",
+      "を",
+      "維持する",
+      "の",
+      "は、",
+      "容易",
+      "な",
+      "こと",
+      "では",
+      "ない。"
+    ],
+    "translation": "要長時間維持高度的專注力並非易事。",
+    "english": "Maintaining a high level of concentration over a long period is no easy task.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2334",
+    "japanese": "私は音楽を聞くと集中できます。",
+    "chunks": [
+      "私",
+      "は",
+      "音楽",
+      "を",
+      "聞く",
+      "と",
+      "集中",
+      "できます。"
+    ],
+    "translation": "我聽音樂就能專心。",
+    "english": "I can concentrate when I listen to music.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2335",
+    "japanese": "試験の間はずっと集中していました。",
+    "chunks": [
+      "試験",
+      "の",
+      "間",
+      "は",
+      "ずっと",
+      "集中",
+      "して",
+      "いました。"
+    ],
+    "translation": "考試期間我一直保持專注。",
+    "english": "I stayed focused throughout the entire exam.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2336",
+    "japanese": "疲れているときは集中力が落ちて、ミスが増える。",
+    "chunks": [
+      "疲れて",
+      "いる",
+      "とき",
+      "は",
+      "集中力",
+      "が",
+      "落ちて、",
+      "ミス",
+      "が",
+      "増える。"
+    ],
+    "translation": "疲倦的時候專注力會下降，失誤也跟著變多。",
+    "english": "When I'm tired, my concentration drops and I make more mistakes.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "concentration"
+    ]
+  },
+  {
+    "id": "2337",
+    "japanese": "食事の前に手を洗うのがマナーです。",
+    "chunks": [
+      "食事",
+      "の",
+      "前",
+      "に",
+      "手",
+      "を",
+      "洗う",
+      "の",
+      "が",
+      "マナー",
+      "です。"
+    ],
+    "translation": "用餐前洗手是基本禮儀。",
+    "english": "It's good manners to wash your hands before a meal.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2338",
+    "japanese": "電車の中では大きな声で話さないようにしましょう。",
+    "chunks": [
+      "電車",
+      "の",
+      "中",
+      "で",
+      "は",
+      "大きな",
+      "声",
+      "で",
+      "話さない",
+      "ように",
+      "しましょう。"
+    ],
+    "translation": "在電車裡盡量不要大聲說話吧。",
+    "english": "Let's try not to talk in a loud voice on the train.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2339",
+    "japanese": "訪問先では、靴をそろえて脱ぐのが礼儀とされている。",
+    "chunks": [
+      "訪問先",
+      "で",
+      "は、",
+      "靴",
+      "を",
+      "そろえて",
+      "脱ぐ",
+      "の",
+      "が",
+      "礼儀",
+      "と",
+      "されて",
+      "いる。"
+    ],
+    "translation": "在拜訪的人家，把鞋子擺整齊脫下被視為一種禮貌。",
+    "english": "At someone's home, it's considered polite to take off your shoes and line them up neatly.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2340",
+    "japanese": "相手の文化を尊重した振る舞いこそ、真のマナーと言えるだろう。",
+    "chunks": [
+      "相手",
+      "の",
+      "文化",
+      "を",
+      "尊重した",
+      "振る舞い",
+      "こそ、",
+      "真",
+      "の",
+      "マナー",
+      "と",
+      "言える",
+      "だろう。"
+    ],
+    "translation": "尊重對方文化的舉止，才稱得上是真正的禮儀。",
+    "english": "Behavior that respects the other person's culture is what can truly be called good manners.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2341",
+    "japanese": "目上の人には丁寧な言葉を使うべきだ。",
+    "chunks": [
+      "目上",
+      "の",
+      "人",
+      "に",
+      "は",
+      "丁寧",
+      "な",
+      "言葉",
+      "を",
+      "使う",
+      "べき",
+      "だ。"
+    ],
+    "translation": "對長輩應該使用禮貌的措辭。",
+    "english": "You should use polite language with those senior to you.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2342",
+    "japanese": "会議に遅れる場合は、必ず事前に連絡するのがマナーだ。",
+    "chunks": [
+      "会議",
+      "に",
+      "遅れる",
+      "場合",
+      "は、",
+      "必ず",
+      "事前",
+      "に",
+      "連絡する",
+      "の",
+      "が",
+      "マナー",
+      "だ。"
+    ],
+    "translation": "開會若會遲到，事先務必聯絡才合乎禮儀。",
+    "english": "If you're going to be late for a meeting, it's proper etiquette to always notify others in advance.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2343",
+    "japanese": "形式的な礼儀作法にとらわれすぎると、かえって相手を窮屈にさせかねない。",
+    "chunks": [
+      "形式的",
+      "な",
+      "礼儀作法",
+      "に",
+      "とらわれ",
+      "すぎる",
+      "と、",
+      "かえって",
+      "相手",
+      "を",
+      "窮屈",
+      "に",
+      "させ",
+      "かねない。"
+    ],
+    "translation": "過於拘泥形式上的禮節，反而可能讓對方感到拘束。",
+    "english": "If you get too caught up in formal etiquette, you may actually make the other person feel uncomfortable.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2344",
+    "japanese": "お礼を言うのは大切なマナーです。",
+    "chunks": [
+      "お礼",
+      "を",
+      "言う",
+      "の",
+      "は",
+      "大切",
+      "な",
+      "マナー",
+      "です。"
+    ],
+    "translation": "道謝是重要的禮貌。",
+    "english": "Saying thank you is an important courtesy.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2345",
+    "japanese": "携帯電話はマナーモードに設定しておいてください。",
+    "chunks": [
+      "携帯電話",
+      "は",
+      "マナーモード",
+      "に",
+      "設定して",
+      "おいて",
+      "ください。"
+    ],
+    "translation": "請事先把手機設定成靜音模式。",
+    "english": "Please set your mobile phone to silent mode.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "etiquette"
+    ]
+  },
+  {
+    "id": "2346",
+    "japanese": "人前でくしゃみをするときは口を手で覆いましょう。",
+    "chunks": [
+      "人前",
+      "で",
+      "くしゃみ",
+      "を",
+      "する",
+      "とき",
+      "は",
+      "口",
+      "を",
+      "手",
+      "で",
+      "覆いましょう。"
+    ],
+    "translation": "在他人面前打噴嚏時，用手把嘴遮住吧。",
+    "english": "When you sneeze in front of others, cover your mouth with your hand.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "etiquette"
+    ]
   }
 ]
