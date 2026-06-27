@@ -64123,5 +64123,1047 @@
       "N4",
       "preferences"
     ]
+  },
+  {
+    "id": "3145",
+    "japanese": "人と人とのつながりを大切にしたい。",
+    "chunks": [
+      "人",
+      "と",
+      "人",
+      "と",
+      "の",
+      "つながり",
+      "を",
+      "大切",
+      "に",
+      "したい。"
+    ],
+    "translation": "我想珍惜人與人之間的連結。",
+    "english": "I want to cherish the connections between people.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3146",
+    "japanese": "信頼関係は一日で築けるものではない。",
+    "chunks": [
+      "信頼関係",
+      "は",
+      "一日",
+      "で",
+      "築ける",
+      "もの",
+      "で",
+      "は",
+      "ない。"
+    ],
+    "translation": "信任關係不是一天就能建立的。",
+    "english": "A relationship of trust is not something you can build in a day.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3147",
+    "japanese": "人間関係のもつれは、時に深い傷を残す。",
+    "chunks": [
+      "人間関係",
+      "の",
+      "もつれ",
+      "は、",
+      "時",
+      "に",
+      "深い",
+      "傷",
+      "を",
+      "残す。"
+    ],
+    "translation": "人際關係的糾葛，有時會留下深深的傷痕。",
+    "english": "Tangled relationships sometimes leave deep wounds.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3148",
+    "japanese": "私は家族との関係がとても良いです。",
+    "chunks": [
+      "私",
+      "は",
+      "家族",
+      "と",
+      "の",
+      "関係",
+      "が",
+      "とても",
+      "良い",
+      "です。"
+    ],
+    "translation": "我和家人的關係非常好。",
+    "english": "I have a very good relationship with my family.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3149",
+    "japanese": "同僚とは協力し合う関係を保っている。",
+    "chunks": [
+      "同僚",
+      "と",
+      "は",
+      "協力",
+      "し合う",
+      "関係",
+      "を",
+      "保って",
+      "いる。"
+    ],
+    "translation": "我和同事維持著互相合作的關係。",
+    "english": "I maintain a cooperative relationship with my colleagues.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3150",
+    "japanese": "友達は多いほうがいいですか。",
+    "chunks": [
+      "友達",
+      "は",
+      "多い",
+      "ほう",
+      "が",
+      "いい",
+      "です",
+      "か。"
+    ],
+    "translation": "朋友是越多越好嗎？",
+    "english": "Is it better to have more friends?",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3151",
+    "japanese": "互いの違いを認め合うことから、良い関係が始まる。",
+    "chunks": [
+      "互い",
+      "の",
+      "違い",
+      "を",
+      "認め合う",
+      "こと",
+      "から、",
+      "良い",
+      "関係",
+      "が",
+      "始まる。"
+    ],
+    "translation": "良好的關係，始於彼此承認差異。",
+    "english": "Good relationships begin with acknowledging each other's differences.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3152",
+    "japanese": "長い付き合いの友人には、何でも話せる。",
+    "chunks": [
+      "長い",
+      "付き合い",
+      "の",
+      "友人",
+      "に",
+      "は、",
+      "何でも",
+      "話せる。"
+    ],
+    "translation": "對於交往多年的朋友，我什麼都能說。",
+    "english": "With a long-time friend, I can talk about anything.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3153",
+    "japanese": "近所の人とあいさつを交わす。",
+    "chunks": [
+      "近所",
+      "の",
+      "人",
+      "と",
+      "あいさつ",
+      "を",
+      "交わす。"
+    ],
+    "translation": "我和鄰居互相打招呼。",
+    "english": "I exchange greetings with my neighbors.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3154",
+    "japanese": "人脈を広げることが、仕事の幅を広げる。",
+    "chunks": [
+      "人脈",
+      "を",
+      "広げる",
+      "こと",
+      "が、",
+      "仕事",
+      "の",
+      "幅",
+      "を",
+      "広げる。"
+    ],
+    "translation": "拓展人脈，能拓寬工作的廣度。",
+    "english": "Expanding your network broadens the scope of your work.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "relationships"
+    ]
+  },
+  {
+    "id": "3155",
+    "japanese": "手洗いは病気の予防に役立つ。",
+    "chunks": [
+      "手洗い",
+      "は",
+      "病気",
+      "の",
+      "予防",
+      "に",
+      "役立つ。"
+    ],
+    "translation": "洗手有助於預防疾病。",
+    "english": "Washing your hands helps prevent illness.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3156",
+    "japanese": "事故を防ぐために、ルールを守りましょう。",
+    "chunks": [
+      "事故",
+      "を",
+      "防ぐ",
+      "ため",
+      "に、",
+      "ルール",
+      "を",
+      "守りましょう。"
+    ],
+    "translation": "為了防止事故，我們遵守規則吧。",
+    "english": "Let's follow the rules in order to prevent accidents.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3157",
+    "japanese": "火災を未然に防ぐ対策が求められている。",
+    "chunks": [
+      "火災",
+      "を",
+      "未然",
+      "に",
+      "防ぐ",
+      "対策",
+      "が",
+      "求められて",
+      "いる。"
+    ],
+    "translation": "防患於未然的防火對策正受到要求。",
+    "english": "Measures to prevent fires before they happen are being called for.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3158",
+    "japanese": "定期的な点検が、大きな事故を防ぐ鍵となる。",
+    "chunks": [
+      "定期的",
+      "な",
+      "点検",
+      "が、",
+      "大きな",
+      "事故",
+      "を",
+      "防ぐ",
+      "鍵",
+      "と",
+      "なる。"
+    ],
+    "translation": "定期的檢查，是防止重大事故的關鍵。",
+    "english": "Regular inspections become the key to preventing major accidents.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3159",
+    "japanese": "かぜをひかないように、暖かくしてください。",
+    "chunks": [
+      "かぜ",
+      "を",
+      "ひかない",
+      "よう",
+      "に、",
+      "暖かく",
+      "して",
+      "ください。"
+    ],
+    "translation": "為了不感冒，請注意保暖。",
+    "english": "Please keep warm so you don't catch a cold.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3160",
+    "japanese": "予防は治療に勝ると言われている。",
+    "chunks": [
+      "予防",
+      "は",
+      "治療",
+      "に",
+      "勝る",
+      "と",
+      "言われて",
+      "いる。"
+    ],
+    "translation": "據說預防勝於治療。",
+    "english": "It is said that prevention is better than cure.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3161",
+    "japanese": "私は毎日歯をみがきます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎日",
+      "歯",
+      "を",
+      "みがきます。"
+    ],
+    "translation": "我每天刷牙。",
+    "english": "I brush my teeth every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3162",
+    "japanese": "災害に備えて、非常食を用意しておくべきだ。",
+    "chunks": [
+      "災害",
+      "に",
+      "備えて、",
+      "非常食",
+      "を",
+      "用意して",
+      "おく",
+      "べき",
+      "だ。"
+    ],
+    "translation": "為了防範災害，應該事先準備緊急糧食。",
+    "english": "We should prepare emergency food in case of disaster.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3163",
+    "japanese": "けがをしないように、準備運動をする。",
+    "chunks": [
+      "けが",
+      "を",
+      "しない",
+      "よう",
+      "に、",
+      "準備運動",
+      "を",
+      "する。"
+    ],
+    "translation": "為了不受傷，我做暖身運動。",
+    "english": "I do warm-up exercises so I don't get injured.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3164",
+    "japanese": "早めの対策が、被害を小さくする。",
+    "chunks": [
+      "早め",
+      "の",
+      "対策",
+      "が、",
+      "被害",
+      "を",
+      "小さく",
+      "する。"
+    ],
+    "translation": "及早採取對策，能減少損害。",
+    "english": "Early countermeasures keep the damage small.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "prevention"
+    ]
+  },
+  {
+    "id": "3165",
+    "japanese": "明日の会議を忘れないようにメモした。",
+    "chunks": [
+      "明日",
+      "の",
+      "会議",
+      "を",
+      "忘れない",
+      "よう",
+      "に",
+      "メモ",
+      "した。"
+    ],
+    "translation": "為了不忘記明天的會議，我做了筆記。",
+    "english": "I made a note so I wouldn't forget tomorrow's meeting.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3166",
+    "japanese": "スマホのアラームが予定を知らせてくれる。",
+    "chunks": [
+      "スマホ",
+      "の",
+      "アラーム",
+      "が",
+      "予定",
+      "を",
+      "知らせて",
+      "くれる。"
+    ],
+    "translation": "手機的鬧鐘會提醒我行程。",
+    "english": "My phone's alarm reminds me of my schedule.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3167",
+    "japanese": "念のために、もう一度確認してください。",
+    "chunks": [
+      "念のため",
+      "に、",
+      "もう一度",
+      "確認",
+      "して",
+      "ください。"
+    ],
+    "translation": "為了保險起見，請再確認一次。",
+    "english": "Just to be safe, please check once more.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3168",
+    "japanese": "締め切りが近いことを改めてお知らせします。",
+    "chunks": [
+      "締め切り",
+      "が",
+      "近い",
+      "こと",
+      "を",
+      "改めて",
+      "お知らせ",
+      "します。"
+    ],
+    "translation": "謹此再次提醒您截止日期將近。",
+    "english": "I am writing to remind you again that the deadline is near.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3169",
+    "japanese": "薬を飲むのを忘れてしまった。",
+    "chunks": [
+      "薬",
+      "を",
+      "飲む",
+      "の",
+      "を",
+      "忘れて",
+      "しまった。"
+    ],
+    "translation": "我忘了吃藥。",
+    "english": "I forgot to take my medicine.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3170",
+    "japanese": "カレンダーに予定を書いておきます。",
+    "chunks": [
+      "カレンダー",
+      "に",
+      "予定",
+      "を",
+      "書いて",
+      "おきます。"
+    ],
+    "translation": "我會把行程寫在月曆上。",
+    "english": "I'll write the plan on the calendar in advance.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3171",
+    "japanese": "私は毎朝リストを見ます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "リスト",
+      "を",
+      "見ます。"
+    ],
+    "translation": "我每天早上看清單。",
+    "english": "I look at my list every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3172",
+    "japanese": "大事な用件は、付箋に書いて目立つ所に貼る。",
+    "chunks": [
+      "大事な",
+      "用件",
+      "は、",
+      "付箋",
+      "に",
+      "書いて",
+      "目立つ",
+      "所",
+      "に",
+      "貼る。"
+    ],
+    "translation": "重要的事項，我會寫在便利貼上貼在顯眼處。",
+    "english": "I write important matters on sticky notes and put them somewhere visible.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3173",
+    "japanese": "うっかり忘れないように、通知を設定した。",
+    "chunks": [
+      "うっかり",
+      "忘れない",
+      "よう",
+      "に、",
+      "通知",
+      "を",
+      "設定",
+      "した。"
+    ],
+    "translation": "為了不一時疏忽忘記，我設定了通知。",
+    "english": "I set a notification so I wouldn't carelessly forget.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3174",
+    "japanese": "折に触れて、初心を思い出すようにしている。",
+    "chunks": [
+      "折に触れて、",
+      "初心",
+      "を",
+      "思い出す",
+      "よう",
+      "に",
+      "して",
+      "いる。"
+    ],
+    "translation": "我時時提醒自己不忘初衷。",
+    "english": "From time to time, I try to remind myself of my original intentions.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "reminders"
+    ]
+  },
+  {
+    "id": "3175",
+    "japanese": "問題を一つずつ解決していこう。",
+    "chunks": [
+      "問題",
+      "を",
+      "一つ",
+      "ずつ",
+      "解決",
+      "して",
+      "いこう。"
+    ],
+    "translation": "我們一個一個地解決問題吧。",
+    "english": "Let's solve the problems one by one.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3176",
+    "japanese": "原因を正しくつかめば、解決策が見えてくる。",
+    "chunks": [
+      "原因",
+      "を",
+      "正しく",
+      "つかめば、",
+      "解決策",
+      "が",
+      "見えて",
+      "くる。"
+    ],
+    "translation": "只要正確掌握原因，解決方法就會浮現。",
+    "english": "If you grasp the cause correctly, the solution becomes visible.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3177",
+    "japanese": "複雑な課題ほど、冷静な分析が欠かせない。",
+    "chunks": [
+      "複雑",
+      "な",
+      "課題",
+      "ほど、",
+      "冷静",
+      "な",
+      "分析",
+      "が",
+      "欠かせない。"
+    ],
+    "translation": "越是複雜的課題，越不能少了冷靜的分析。",
+    "english": "The more complex the issue, the more indispensable calm analysis is.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3178",
+    "japanese": "みんなで話し合って、答えを見つけた。",
+    "chunks": [
+      "みんな",
+      "で",
+      "話し合って、",
+      "答え",
+      "を",
+      "見つけた。"
+    ],
+    "translation": "大家一起討論，找到了答案。",
+    "english": "We discussed it together and found the answer.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3179",
+    "japanese": "このトラブルをどう解決すればいいだろう。",
+    "chunks": [
+      "この",
+      "トラブル",
+      "を",
+      "どう",
+      "解決",
+      "すれば",
+      "いい",
+      "だろう。"
+    ],
+    "translation": "這個麻煩該怎麼解決才好呢？",
+    "english": "How should we solve this trouble?",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3180",
+    "japanese": "失敗の原因を分析することが大切だ。",
+    "chunks": [
+      "失敗",
+      "の",
+      "原因",
+      "を",
+      "分析",
+      "する",
+      "こと",
+      "が",
+      "大切",
+      "だ。"
+    ],
+    "translation": "分析失敗的原因是很重要的。",
+    "english": "It is important to analyze the cause of failure.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3181",
+    "japanese": "わからないときは、人に聞きます。",
+    "chunks": [
+      "わからない",
+      "とき",
+      "は、",
+      "人",
+      "に",
+      "聞きます。"
+    ],
+    "translation": "不懂的時候，我會問別人。",
+    "english": "When I don't understand, I ask others.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3182",
+    "japanese": "根本から解決しなければ、同じ問題が繰り返される。",
+    "chunks": [
+      "根本",
+      "から",
+      "解決",
+      "しなければ、",
+      "同じ",
+      "問題",
+      "が",
+      "繰り返される。"
+    ],
+    "translation": "若不從根本解決，同樣的問題會一再重演。",
+    "english": "Unless solved at the root, the same problem will repeat.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3183",
+    "japanese": "別の角度から考えたら、良い案が浮かんだ。",
+    "chunks": [
+      "別",
+      "の",
+      "角度",
+      "から",
+      "考えたら、",
+      "良い",
+      "案",
+      "が",
+      "浮かんだ。"
+    ],
+    "translation": "從別的角度思考後，浮現了好的方案。",
+    "english": "When I thought about it from a different angle, a good idea came to mind.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3184",
+    "japanese": "小さな工夫で、問題があっさり片付いた。",
+    "chunks": [
+      "小さな",
+      "工夫",
+      "で、",
+      "問題",
+      "が",
+      "あっさり",
+      "片付いた。"
+    ],
+    "translation": "靠著小小的巧思，問題輕鬆地解決了。",
+    "english": "With a small bit of ingenuity, the problem was settled easily.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "problem solving"
+    ]
+  },
+  {
+    "id": "3185",
+    "japanese": "すみませんが、少し手伝ってもらえますか。",
+    "chunks": [
+      "すみません",
+      "が、",
+      "少し",
+      "手伝って",
+      "もらえます",
+      "か。"
+    ],
+    "translation": "不好意思，可以幫我一下嗎？",
+    "english": "Excuse me, but could you help me a little?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "request"
+    ]
+  },
+  {
+    "id": "3186",
+    "japanese": "お願いがあるんですけど、聞いてもらえますか。",
+    "chunks": [
+      "お願い",
+      "が",
+      "ある",
+      "ん",
+      "です",
+      "けど、",
+      "聞いて",
+      "もらえます",
+      "か。"
+    ],
+    "translation": "我有個請求，可以聽我說嗎？",
+    "english": "I have a favor to ask; would you hear me out?",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "request"
+    ]
+  },
+  {
+    "id": "3187",
+    "japanese": "恐れ入りますが、こちらにご記入ください。",
+    "chunks": [
+      "恐れ入りますが、",
+      "こちら",
+      "に",
+      "ご記入",
+      "ください。"
+    ],
+    "translation": "不好意思，請在這裡填寫。",
+    "english": "I'm sorry to trouble you, but please fill this in.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "request"
+    ]
+  },
+  {
+    "id": "3188",
+    "japanese": "この資料をコピーしてください。",
+    "chunks": [
+      "この",
+      "資料",
+      "を",
+      "コピー",
+      "して",
+      "ください。"
+    ],
+    "translation": "請幫我影印這份資料。",
+    "english": "Please make a copy of this document.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "request"
+    ]
+  },
+  {
+    "id": "3189",
+    "japanese": "可能であれば、締め切りを延ばしていただきたい。",
+    "chunks": [
+      "可能",
+      "で",
+      "あれば、",
+      "締め切り",
+      "を",
+      "延ばして",
+      "いただきたい。"
+    ],
+    "translation": "如果可以的話，希望能延長截止日期。",
+    "english": "If possible, I would like the deadline extended.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "request"
+    ]
+  },
+  {
+    "id": "3190",
+    "japanese": "ちょっと窓を開けてくれませんか。",
+    "chunks": [
+      "ちょっと",
+      "窓",
+      "を",
+      "開けて",
+      "くれません",
+      "か。"
+    ],
+    "translation": "可以幫我把窗戶打開一下嗎？",
+    "english": "Could you open the window for me a little?",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "request"
+    ]
+  },
+  {
+    "id": "3191",
+    "japanese": "ご多忙のところ恐縮ですが、ご検討ください。",
+    "chunks": [
+      "ご多忙",
+      "の",
+      "ところ",
+      "恐縮",
+      "です",
+      "が、",
+      "ご検討",
+      "ください。"
+    ],
+    "translation": "百忙之中打擾您，還請您考慮。",
+    "english": "I'm sorry to trouble you when you're busy, but please consider it.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "request"
+    ]
+  },
+  {
+    "id": "3192",
+    "japanese": "もう少しゆっくり話してもらえますか。",
+    "chunks": [
+      "もう少し",
+      "ゆっくり",
+      "話して",
+      "もらえます",
+      "か。"
+    ],
+    "translation": "可以請你說得再慢一點嗎？",
+    "english": "Could you speak a little more slowly?",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "request"
+    ]
+  },
+  {
+    "id": "3193",
+    "japanese": "お手数ですが、折り返しご連絡ください。",
+    "chunks": [
+      "お手数",
+      "です",
+      "が、",
+      "折り返し",
+      "ご連絡",
+      "ください。"
+    ],
+    "translation": "麻煩您了，請回電給我。",
+    "english": "Sorry for the trouble, but please call me back.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "request"
+    ]
+  },
+  {
+    "id": "3194",
+    "japanese": "そこの塩を取ってください。",
+    "chunks": [
+      "そこ",
+      "の",
+      "塩",
+      "を",
+      "取って",
+      "ください。"
+    ],
+    "translation": "請把那邊的鹽遞給我。",
+    "english": "Please pass me the salt over there.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "request"
+    ]
   }
 ]
