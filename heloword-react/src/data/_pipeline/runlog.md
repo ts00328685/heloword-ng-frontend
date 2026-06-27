@@ -70,3 +70,11 @@
 - **2026-06-26** (run #68): iter#68: +50 jp (topics: housing/influence/empathy/human relations/internet), 70% N1-N3 / 30% N4-N5
 - **2026-06-26** (run #69): iter#69: +50 jp (topics: encouragement/incident/policy/energy/invitation), 70% N1-N3 / 30% N4-N5
 - **2026-06-26** (run #70): iter#70: +50 jp (topics: quality/feeling/life/reform/fitness), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #71): iter#71: +50 jp (topics: location/repatriation/goal/manners/research), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #72): iter#72: +50 jp (topics: growth/moving/risk/habit/nature), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #73): iter#73: +50 jp (topics: rules/improvement/night/social contribution/inspiration), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #74): iter#74: +50 jp (topics: objects/social welfare/kindness/outdoor/social work), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #75): iter#75: +50 jp (topics: leadership/parenting/society/life goal/people), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #76): iter#76: +50 jp (topics: state/lifelong learning/permission/timeless/mental health), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #77): iter#77: +50 jp (topics: places/trends/mentoring/planning/truth), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #78): iter#78: +50 jp (topics: mentorship/plans/university/nutrition/polite), 70% N1-N3 / 30% N4-N5
