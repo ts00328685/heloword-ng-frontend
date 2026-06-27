@@ -78,3 +78,16 @@
 - **2026-06-27** (run #76): iter#76: +50 jp (topics: state/lifelong learning/permission/timeless/mental health), 70% N1-N3 / 30% N4-N5
 - **2026-06-27** (run #77): iter#77: +50 jp (topics: places/trends/mentoring/planning/truth), 70% N1-N3 / 30% N4-N5
 - **2026-06-27** (run #78): iter#78: +50 jp (topics: mentorship/plans/university/nutrition/polite), 70% N1-N3 / 30% N4-N5
+- **2026-06-27** (run #79): (no summary)
+- **2026-06-27** (run #80): (no summary)
+- **2026-06-27** (run #81): (no summary)
+- **2026-06-27** (run #82): (no summary)
+- **2026-06-27** (run #83): (no summary)
+- **2026-06-27** (run #84): (no summary)
+- **2026-06-27** (run #85): (no summary)
+- **2026-06-27** (run #86): (no summary)
+- **2026-06-27** (run #87): (no summary)
+- **2026-06-27** (run #88): (no summary)
+- **2026-06-27** (run #89): (no summary)
+- **2026-06-27** (run #90): (no summary)
+- **2026-06-27** (run #91): (no summary)
