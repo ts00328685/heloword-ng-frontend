@@ -68311,5 +68311,1062 @@
       "N4",
       "relaxation"
     ]
+  },
+  {
+    "id": "3345",
+    "japanese": "人間には五つの感覚がある。",
+    "chunks": [
+      "人間",
+      "に",
+      "は",
+      "五つ",
+      "の",
+      "感覚",
+      "が",
+      "ある。"
+    ],
+    "translation": "人類有五種感官。",
+    "english": "Humans have five senses.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "senses"
+    ]
+  },
+  {
+    "id": "3346",
+    "japanese": "暗い所では、耳が敏感になる。",
+    "chunks": [
+      "暗い",
+      "所",
+      "で",
+      "は、",
+      "耳",
+      "が",
+      "敏感",
+      "に",
+      "なる。"
+    ],
+    "translation": "在黑暗的地方，耳朵會變得敏感。",
+    "english": "In dark places, the ears become sensitive.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "senses"
+    ]
+  },
+  {
+    "id": "3347",
+    "japanese": "視覚に頼りすぎると、他の感覚が鈍る。",
+    "chunks": [
+      "視覚",
+      "に",
+      "頼り",
+      "すぎる",
+      "と、",
+      "他",
+      "の",
+      "感覚",
+      "が",
+      "鈍る。"
+    ],
+    "translation": "過度依賴視覺，其他感官就會變遲鈍。",
+    "english": "Relying too much on sight dulls the other senses.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "senses"
+    ]
+  },
+  {
+    "id": "3348",
+    "japanese": "このスープは味が薄い気がします。",
+    "chunks": [
+      "この",
+      "スープ",
+      "は",
+      "味",
+      "が",
+      "薄い",
+      "気",
+      "が",
+      "します。"
+    ],
+    "translation": "我覺得這碗湯味道有點淡。",
+    "english": "I feel this soup tastes bland.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "senses"
+    ]
+  },
+  {
+    "id": "3349",
+    "japanese": "指先の感覚だけで、布の種類が分かる。",
+    "chunks": [
+      "指先",
+      "の",
+      "感覚",
+      "だけ",
+      "で、",
+      "布",
+      "の",
+      "種類",
+      "が",
+      "分かる。"
+    ],
+    "translation": "光憑指尖的觸感，就能分辨布料的種類。",
+    "english": "By touch alone, I can tell the kind of fabric.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "senses"
+    ]
+  },
+  {
+    "id": "3350",
+    "japanese": "鳥の鳴き声が遠くから聞こえてきた。",
+    "chunks": [
+      "鳥",
+      "の",
+      "鳴き声",
+      "が",
+      "遠く",
+      "から",
+      "聞こえて",
+      "きた。"
+    ],
+    "translation": "從遠處傳來了鳥的叫聲。",
+    "english": "The chirping of birds came from far away.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "senses"
+    ]
+  },
+  {
+    "id": "3351",
+    "japanese": "年を取ると、味覚が変わるという。",
+    "chunks": [
+      "年",
+      "を",
+      "取る",
+      "と、",
+      "味覚",
+      "が",
+      "変わる",
+      "と",
+      "いう。"
+    ],
+    "translation": "據說上了年紀，味覺會改變。",
+    "english": "It's said that as you age, your sense of taste changes.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "senses"
+    ]
+  },
+  {
+    "id": "3352",
+    "japanese": "私は目を閉じて、音楽を聞きました。",
+    "chunks": [
+      "私",
+      "は",
+      "目",
+      "を",
+      "閉じて、",
+      "音楽",
+      "を",
+      "聞きました。"
+    ],
+    "translation": "我閉上眼睛，聽了音樂。",
+    "english": "I closed my eyes and listened to music.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "senses"
+    ]
+  },
+  {
+    "id": "3353",
+    "japanese": "冷たい風がほおに当たって気持ちいい。",
+    "chunks": [
+      "冷たい",
+      "風",
+      "が",
+      "ほお",
+      "に",
+      "当たって",
+      "気持ち",
+      "いい。"
+    ],
+    "translation": "冰涼的風吹在臉頰上很舒服。",
+    "english": "The cold wind on my cheeks feels good.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "senses"
+    ]
+  },
+  {
+    "id": "3354",
+    "japanese": "五感を研ぎ澄ますことが、表現の幅を広げる。",
+    "chunks": [
+      "五感",
+      "を",
+      "研ぎ澄ます",
+      "こと",
+      "が、",
+      "表現",
+      "の",
+      "幅",
+      "を",
+      "広げる。"
+    ],
+    "translation": "磨利五感，能拓寬表現的廣度。",
+    "english": "Sharpening the five senses broadens one's range of expression.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "senses"
+    ]
+  },
+  {
+    "id": "3355",
+    "japanese": "今年こそは毎日運動すると決めた。",
+    "chunks": [
+      "今年",
+      "こそ",
+      "は",
+      "毎日",
+      "運動",
+      "する",
+      "と",
+      "決めた。"
+    ],
+    "translation": "今年我決定每天都要運動。",
+    "english": "I've resolved to exercise every day this year.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3356",
+    "japanese": "彼は固い決意を持って、挑戦を始めた。",
+    "chunks": [
+      "彼",
+      "は",
+      "固い",
+      "決意",
+      "を",
+      "持って、",
+      "挑戦",
+      "を",
+      "始めた。"
+    ],
+    "translation": "他懷著堅定的決心，開始了挑戰。",
+    "english": "With firm resolve, he began his challenge.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3357",
+    "japanese": "どんな困難があっても、やり遂げる覚悟だ。",
+    "chunks": [
+      "どんな",
+      "困難",
+      "が",
+      "あって",
+      "も、",
+      "やり遂げる",
+      "覚悟",
+      "だ。"
+    ],
+    "translation": "無論有什麼困難，我都有完成的覺悟。",
+    "english": "Whatever hardships come, I'm resolved to see it through.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3358",
+    "japanese": "私はたばこをやめると決めました。",
+    "chunks": [
+      "私",
+      "は",
+      "たばこ",
+      "を",
+      "やめる",
+      "と",
+      "決めました。"
+    ],
+    "translation": "我決定要戒菸。",
+    "english": "I've decided to quit smoking.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3359",
+    "japanese": "一度決めたことは、最後までやり通す。",
+    "chunks": [
+      "一度",
+      "決めた",
+      "こと",
+      "は、",
+      "最後",
+      "まで",
+      "やり通す。"
+    ],
+    "translation": "一旦決定的事，就會堅持到最後。",
+    "english": "Once I decide something, I see it through to the end.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3360",
+    "japanese": "新年に、新しい目標を立てました。",
+    "chunks": [
+      "新年",
+      "に、",
+      "新しい",
+      "目標",
+      "を",
+      "立てました。"
+    ],
+    "translation": "新年時，我立下了新的目標。",
+    "english": "At New Year, I set a new goal.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3361",
+    "japanese": "強い意志がなければ、習慣は変えられない。",
+    "chunks": [
+      "強い",
+      "意志",
+      "が",
+      "なければ、",
+      "習慣",
+      "は",
+      "変えられない。"
+    ],
+    "translation": "沒有堅強的意志，就無法改變習慣。",
+    "english": "Without a strong will, you can't change habits.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3362",
+    "japanese": "迷いを捨てて、前に進むことにした。",
+    "chunks": [
+      "迷い",
+      "を",
+      "捨てて、",
+      "前",
+      "に",
+      "進む",
+      "こと",
+      "に",
+      "した。"
+    ],
+    "translation": "我決定捨棄迷惘，向前邁進。",
+    "english": "I decided to cast off my hesitation and move forward.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3363",
+    "japanese": "明日から早起きしようと思っています。",
+    "chunks": [
+      "明日",
+      "から",
+      "早起き",
+      "しよう",
+      "と",
+      "思って",
+      "います。"
+    ],
+    "translation": "我打算從明天開始早起。",
+    "english": "I'm thinking of getting up early from tomorrow.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3364",
+    "japanese": "彼女は何度失敗してもあきらめなかった。",
+    "chunks": [
+      "彼女",
+      "は",
+      "何度",
+      "失敗",
+      "して",
+      "も",
+      "あきらめ",
+      "なかった。"
+    ],
+    "translation": "她無論失敗幾次都不放棄。",
+    "english": "No matter how often she failed, she didn't give up.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "resolution"
+    ]
+  },
+  {
+    "id": "3365",
+    "japanese": "森の中は、音もにおいも新鮮だ。",
+    "chunks": [
+      "森",
+      "の",
+      "中",
+      "は、",
+      "音",
+      "も",
+      "におい",
+      "も",
+      "新鮮",
+      "だ。"
+    ],
+    "translation": "森林之中，聲音和氣味都很新鮮。",
+    "english": "In the forest, both the sounds and smells are fresh.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3366",
+    "japanese": "雨の音を聞くと、なぜか落ち着く。",
+    "chunks": [
+      "雨",
+      "の",
+      "音",
+      "を",
+      "聞く",
+      "と、",
+      "なぜか",
+      "落ち着く。"
+    ],
+    "translation": "聽著雨聲，不知為何就平靜下來。",
+    "english": "Hearing the sound of rain calms me for some reason.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3367",
+    "japanese": "強い光が目に刺さるように感じた。",
+    "chunks": [
+      "強い",
+      "光",
+      "が",
+      "目",
+      "に",
+      "刺さる",
+      "よう",
+      "に",
+      "感じた。"
+    ],
+    "translation": "強光感覺像是刺進眼睛裡。",
+    "english": "The strong light felt like it was piercing my eyes.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3368",
+    "japanese": "この布は手ざわりがとてもやわらかい。",
+    "chunks": [
+      "この",
+      "布",
+      "は",
+      "手ざわり",
+      "が",
+      "とても",
+      "やわらかい。"
+    ],
+    "translation": "這塊布的手感非常柔軟。",
+    "english": "This cloth has a very soft texture.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3369",
+    "japanese": "五感を通して、季節の変化を味わう。",
+    "chunks": [
+      "五感",
+      "を",
+      "通して、",
+      "季節",
+      "の",
+      "変化",
+      "を",
+      "味わう。"
+    ],
+    "translation": "透過五感，品味季節的變化。",
+    "english": "Through the senses, I savor the changing seasons.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3370",
+    "japanese": "熱いお湯に手を入れて、少し驚いた。",
+    "chunks": [
+      "熱い",
+      "お湯",
+      "に",
+      "手",
+      "を",
+      "入れて、",
+      "少し",
+      "驚いた。"
+    ],
+    "translation": "把手伸進熱水裡，嚇了一跳。",
+    "english": "I put my hand in the hot water and was a bit startled.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3371",
+    "japanese": "甘い香りとやわらかい光が、部屋を包んだ。",
+    "chunks": [
+      "甘い",
+      "香り",
+      "と",
+      "やわらかい",
+      "光",
+      "が、",
+      "部屋",
+      "を",
+      "包んだ。"
+    ],
+    "translation": "甜美的香氣與柔和的光，籠罩了房間。",
+    "english": "A sweet scent and soft light enveloped the room.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3372",
+    "japanese": "静かな夜には、時計の音がよく聞こえる。",
+    "chunks": [
+      "静か",
+      "な",
+      "夜",
+      "に",
+      "は、",
+      "時計",
+      "の",
+      "音",
+      "が",
+      "よく",
+      "聞こえる。"
+    ],
+    "translation": "在安靜的夜裡，時鐘的聲音聽得很清楚。",
+    "english": "On a quiet night, the clock's ticking is clearly heard.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3373",
+    "japanese": "冷たい水で顔を洗うと、目が覚める。",
+    "chunks": [
+      "冷たい",
+      "水",
+      "で",
+      "顔",
+      "を",
+      "洗うと、",
+      "目",
+      "が",
+      "覚める。"
+    ],
+    "translation": "用冷水洗臉，就會清醒過來。",
+    "english": "Washing my face with cold water wakes me up.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3374",
+    "japanese": "指先に伝わるぬくもりが、心を和ませた。",
+    "chunks": [
+      "指先",
+      "に",
+      "伝わる",
+      "ぬくもり",
+      "が、",
+      "心",
+      "を",
+      "和ませた。"
+    ],
+    "translation": "傳到指尖的溫暖，撫慰了心靈。",
+    "english": "The warmth conveyed to my fingertips soothed my heart.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3375",
+    "japanese": "私は祖父をとても尊敬しています。",
+    "chunks": [
+      "私",
+      "は",
+      "祖父",
+      "を",
+      "とても",
+      "尊敬",
+      "して",
+      "います。"
+    ],
+    "translation": "我非常尊敬我的祖父。",
+    "english": "I respect my grandfather very much.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "respect"
+    ]
+  },
+  {
+    "id": "3376",
+    "japanese": "相手の意見を尊重することが大切だ。",
+    "chunks": [
+      "相手",
+      "の",
+      "意見",
+      "を",
+      "尊重",
+      "する",
+      "こと",
+      "が",
+      "大切",
+      "だ。"
+    ],
+    "translation": "尊重對方的意見是很重要的。",
+    "english": "It's important to respect the other person's opinion.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "respect"
+    ]
+  },
+  {
+    "id": "3377",
+    "japanese": "年上の人には、ていねいな言葉を使う。",
+    "chunks": [
+      "年上",
+      "の",
+      "人",
+      "に",
+      "は、",
+      "ていねい",
+      "な",
+      "言葉",
+      "を",
+      "使う。"
+    ],
+    "translation": "對長輩，要使用禮貌的言詞。",
+    "english": "Toward elders, use polite language.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "respect"
+    ]
+  },
+  {
+    "id": "3378",
+    "japanese": "互いを敬う気持ちが、良い社会を作る。",
+    "chunks": [
+      "互い",
+      "を",
+      "敬う",
+      "気持ち",
+      "が、",
+      "良い",
+      "社会",
+      "を",
+      "作る。"
+    ],
+    "translation": "互相尊敬的心，能建立良好的社會。",
+    "english": "A feeling of mutual respect builds a good society.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "respect"
+    ]
+  },
+  {
+    "id": "3379",
+    "japanese": "彼の誠実な態度に、深く敬意を抱いた。",
+    "chunks": [
+      "彼",
+      "の",
+      "誠実",
+      "な",
+      "態度",
+      "に、",
+      "深く",
+      "敬意",
+      "を",
+      "抱いた。"
+    ],
+    "translation": "對於他誠實的態度，我深感敬意。",
+    "english": "I felt deep respect for his sincere attitude.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "respect"
+    ]
+  },
+  {
+    "id": "3380",
+    "japanese": "先生は生徒の考えを大事にしてくれる。",
+    "chunks": [
+      "先生",
+      "は",
+      "生徒",
+      "の",
+      "考え",
+      "を",
+      "大事",
+      "に",
+      "して",
+      "くれる。"
+    ],
+    "translation": "老師很重視學生的想法。",
+    "english": "The teacher values the students' ideas.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "respect"
+    ]
+  },
+  {
+    "id": "3381",
+    "japanese": "立場が違っても、敬意を忘れたくない。",
+    "chunks": [
+      "立場",
+      "が",
+      "違って",
+      "も、",
+      "敬意",
+      "を",
+      "忘れたく",
+      "ない。"
+    ],
+    "translation": "即使立場不同，也不想忘記尊重。",
+    "english": "Even when our positions differ, I don't want to forget respect.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "respect"
+    ]
+  },
+  {
+    "id": "3382",
+    "japanese": "私はあいさつをきちんとするようにしている。",
+    "chunks": [
+      "私",
+      "は",
+      "あいさつ",
+      "を",
+      "きちんと",
+      "する",
+      "よう",
+      "に",
+      "して",
+      "いる。"
+    ],
+    "translation": "我會好好地打招呼。",
+    "english": "I make sure to greet people properly.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "respect"
+    ]
+  },
+  {
+    "id": "3383",
+    "japanese": "異なる文化を敬う姿勢が求められている。",
+    "chunks": [
+      "異なる",
+      "文化",
+      "を",
+      "敬う",
+      "姿勢",
+      "が",
+      "求められて",
+      "いる。"
+    ],
+    "translation": "尊重不同文化的態度正受到要求。",
+    "english": "An attitude of respecting different cultures is being called for.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "respect"
+    ]
+  },
+  {
+    "id": "3384",
+    "japanese": "週末にスーパーで食料品を買います。",
+    "chunks": [
+      "週末",
+      "に",
+      "スーパー",
+      "で",
+      "食料品",
+      "を",
+      "買います。"
+    ],
+    "translation": "週末我會在超市買食品。",
+    "english": "On weekends I buy groceries at the supermarket.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3385",
+    "japanese": "このシャツは少し高い気がします。",
+    "chunks": [
+      "この",
+      "シャツ",
+      "は",
+      "少し",
+      "高い",
+      "気",
+      "が",
+      "します。"
+    ],
+    "translation": "我覺得這件襯衫有點貴。",
+    "english": "I feel this shirt is a little expensive.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3386",
+    "japanese": "セールのときに、まとめて買うとお得だ。",
+    "chunks": [
+      "セール",
+      "の",
+      "とき",
+      "に、",
+      "まとめて",
+      "買う",
+      "と",
+      "お得",
+      "だ。"
+    ],
+    "translation": "在特賣時一次買齊比較划算。",
+    "english": "Buying in bulk during a sale is a good deal.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3387",
+    "japanese": "買い物の前に、リストを作っておく。",
+    "chunks": [
+      "買い物",
+      "の",
+      "前",
+      "に、",
+      "リスト",
+      "を",
+      "作って",
+      "おく。"
+    ],
+    "translation": "購物前，我會先列好清單。",
+    "english": "Before shopping, I make a list in advance.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3388",
+    "japanese": "最近は、ネットで買い物をする人が増えた。",
+    "chunks": [
+      "最近",
+      "は、",
+      "ネット",
+      "で",
+      "買い物",
+      "を",
+      "する",
+      "人",
+      "が",
+      "増えた。"
+    ],
+    "translation": "最近在網路上購物的人變多了。",
+    "english": "Recently, more people shop online.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3389",
+    "japanese": "値段だけでなく、品質もよく確かめる。",
+    "chunks": [
+      "値段",
+      "だけ",
+      "で",
+      "なく、",
+      "品質",
+      "も",
+      "よく",
+      "確かめる。"
+    ],
+    "translation": "不只看價格，也要好好確認品質。",
+    "english": "I check not just the price but also the quality carefully.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3390",
+    "japanese": "私はかわいいかばんを見つけました。",
+    "chunks": [
+      "私",
+      "は",
+      "かわいい",
+      "かばん",
+      "を",
+      "見つけました。"
+    ],
+    "translation": "我找到了一個可愛的包包。",
+    "english": "I found a cute bag.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3391",
+    "japanese": "衝動買いをしないように、気をつけている。",
+    "chunks": [
+      "衝動買い",
+      "を",
+      "しない",
+      "よう",
+      "に、",
+      "気",
+      "を",
+      "つけて",
+      "いる。"
+    ],
+    "translation": "為了不衝動購物，我很注意。",
+    "english": "I'm careful not to make impulse purchases.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3392",
+    "japanese": "お店の人に、色違いがあるか聞いた。",
+    "chunks": [
+      "お店",
+      "の",
+      "人",
+      "に、",
+      "色",
+      "違い",
+      "が",
+      "ある",
+      "か",
+      "聞いた。"
+    ],
+    "translation": "我問了店員有沒有其他顏色。",
+    "english": "I asked the staff if there were other colors.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "shopping"
+    ]
+  },
+  {
+    "id": "3393",
+    "japanese": "賢い消費者は、本当に必要な物だけ買う。",
+    "chunks": [
+      "賢い",
+      "消費者",
+      "は、",
+      "本当",
+      "に",
+      "必要",
+      "な",
+      "物",
+      "だけ",
+      "買う。"
+    ],
+    "translation": "聰明的消費者只買真正需要的東西。",
+    "english": "A wise consumer buys only what is truly necessary.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "shopping"
+    ]
   }
 ]
