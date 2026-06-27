@@ -71488,5 +71488,1040 @@
       "N2",
       "status"
     ]
+  },
+  {
+    "id": "3494",
+    "japanese": "時間を上手に使う人は、余裕がある。",
+    "chunks": [
+      "時間",
+      "を",
+      "上手",
+      "に",
+      "使う",
+      "人",
+      "は、",
+      "余裕",
+      "が",
+      "ある。"
+    ],
+    "translation": "善於運用時間的人，總是從容不迫。",
+    "english": "People who use time well have room to spare.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "time management"
+    ]
+  },
+  {
+    "id": "3495",
+    "japanese": "私は毎朝予定を確認します。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "予定",
+      "を",
+      "確認",
+      "します。"
+    ],
+    "translation": "我每天早上確認行程。",
+    "english": "I check my schedule every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "time management"
+    ]
+  },
+  {
+    "id": "3496",
+    "japanese": "やることに優先順位をつけるといい。",
+    "chunks": [
+      "やる",
+      "こと",
+      "に",
+      "優先順位",
+      "を",
+      "つける",
+      "と",
+      "いい。"
+    ],
+    "translation": "替待辦事項排出優先順序會比較好。",
+    "english": "It's good to prioritize the things you have to do.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "time management"
+    ]
+  },
+  {
+    "id": "3497",
+    "japanese": "限られた時間を、いかに生かすかが問われる。",
+    "chunks": [
+      "限られた",
+      "時間",
+      "を、",
+      "いかに",
+      "生かす",
+      "か",
+      "が",
+      "問われる。"
+    ],
+    "translation": "如何活用有限的時間，正受到考驗。",
+    "english": "How to make the most of limited time is what's tested.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "time management"
+    ]
+  },
+  {
+    "id": "3498",
+    "japanese": "だらだら過ごすと、一日があっという間だ。",
+    "chunks": [
+      "だらだら",
+      "過ごす",
+      "と、",
+      "一日",
+      "が",
+      "あっという間",
+      "だ。"
+    ],
+    "translation": "懶散地度過，一天轉眼就過去了。",
+    "english": "If you dawdle, a day passes in an instant.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "time management"
+    ]
+  },
+  {
+    "id": "3499",
+    "japanese": "時間を区切って作業すると、集中できる。",
+    "chunks": [
+      "時間",
+      "を",
+      "区切って",
+      "作業",
+      "する",
+      "と、",
+      "集中",
+      "できる。"
+    ],
+    "translation": "把時間切分來工作，就能專注。",
+    "english": "Working in time blocks helps me concentrate.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "time management"
+    ]
+  },
+  {
+    "id": "3500",
+    "japanese": "私はいつも五分前に着きます。",
+    "chunks": [
+      "私",
+      "は",
+      "いつも",
+      "五分",
+      "前",
+      "に",
+      "着きます。"
+    ],
+    "translation": "我總是提早五分鐘到。",
+    "english": "I always arrive five minutes early.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "time management"
+    ]
+  },
+  {
+    "id": "3501",
+    "japanese": "むだな時間を減らす工夫をしている。",
+    "chunks": [
+      "むだ",
+      "な",
+      "時間",
+      "を",
+      "減らす",
+      "工夫",
+      "を",
+      "して",
+      "いる。"
+    ],
+    "translation": "我在想辦法減少無謂的時間。",
+    "english": "I'm finding ways to cut wasted time.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "time management"
+    ]
+  },
+  {
+    "id": "3502",
+    "japanese": "締め切りから逆算して、計画を立てる。",
+    "chunks": [
+      "締め切り",
+      "から",
+      "逆算",
+      "して、",
+      "計画",
+      "を",
+      "立てる。"
+    ],
+    "translation": "從截止日往回推算來擬定計畫。",
+    "english": "I plan by working backward from the deadline.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "time management"
+    ]
+  },
+  {
+    "id": "3503",
+    "japanese": "朝の三十分が、一日の質を決める。",
+    "chunks": [
+      "朝",
+      "の",
+      "三十分",
+      "が、",
+      "一日",
+      "の",
+      "質",
+      "を",
+      "決める。"
+    ],
+    "translation": "早上的三十分鐘，決定了一天的品質。",
+    "english": "The first thirty minutes of the morning determine the day's quality.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "time management"
+    ]
+  },
+  {
+    "id": "3504",
+    "japanese": "一つ、提案があるのですが、いいですか。",
+    "chunks": [
+      "一つ、",
+      "提案",
+      "が",
+      "ある",
+      "の",
+      "です",
+      "が、",
+      "いい",
+      "です",
+      "か。"
+    ],
+    "translation": "我有一個提議，可以說嗎？",
+    "english": "I have one suggestion; may I share it?",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3505",
+    "japanese": "もしよければ、別の方法を試してみませんか。",
+    "chunks": [
+      "もし",
+      "よければ、",
+      "別",
+      "の",
+      "方法",
+      "を",
+      "試して",
+      "みません",
+      "か。"
+    ],
+    "translation": "如果可以的話，要不要試試別的方法？",
+    "english": "If you'd like, shall we try another method?",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3506",
+    "japanese": "その案はとてもおもしろいと思います。",
+    "chunks": [
+      "その",
+      "案",
+      "は",
+      "とても",
+      "おもしろい",
+      "と",
+      "思います。"
+    ],
+    "translation": "我覺得那個提案非常有趣。",
+    "english": "I think that idea is very interesting.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3507",
+    "japanese": "建設的な提案は、議論を前に進める。",
+    "chunks": [
+      "建設的",
+      "な",
+      "提案",
+      "は、",
+      "議論",
+      "を",
+      "前",
+      "に",
+      "進める。"
+    ],
+    "translation": "建設性的提案，能推進討論。",
+    "english": "A constructive suggestion moves the discussion forward.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3508",
+    "japanese": "こうしたほうがいいと彼に勧めた。",
+    "chunks": [
+      "こう",
+      "した",
+      "ほう",
+      "が",
+      "いい",
+      "と",
+      "彼",
+      "に",
+      "勧めた。"
+    ],
+    "translation": "我建議他這樣做比較好。",
+    "english": "I suggested to him that it'd be better to do it this way.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3509",
+    "japanese": "何かいいアイデアはありますか。",
+    "chunks": [
+      "何",
+      "か",
+      "いい",
+      "アイデア",
+      "は",
+      "あります",
+      "か。"
+    ],
+    "translation": "有什麼好點子嗎？",
+    "english": "Do you have any good ideas?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3510",
+    "japanese": "皆さんのご意見を、ぜひお聞かせください。",
+    "chunks": [
+      "皆さん",
+      "の",
+      "ご意見",
+      "を、",
+      "ぜひ",
+      "お聞かせ",
+      "ください。"
+    ],
+    "translation": "請務必讓我聽聽各位的意見。",
+    "english": "Please do let me hear all of your opinions.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3511",
+    "japanese": "相手を否定せずに、代案を示す。",
+    "chunks": [
+      "相手",
+      "を",
+      "否定",
+      "せ",
+      "ず",
+      "に、",
+      "代案",
+      "を",
+      "示す。"
+    ],
+    "translation": "不否定對方，而是提出替代方案。",
+    "english": "Rather than rejecting the other person, offer an alternative.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3512",
+    "japanese": "私は旅行先を友達に勧めました。",
+    "chunks": [
+      "私",
+      "は",
+      "旅行先",
+      "を",
+      "友達",
+      "に",
+      "勧めました。"
+    ],
+    "translation": "我向朋友推薦了旅遊地點。",
+    "english": "I suggested a travel destination to my friend.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3513",
+    "japanese": "時間がないなら、これを先にやろう。",
+    "chunks": [
+      "時間",
+      "が",
+      "ない",
+      "なら、",
+      "これ",
+      "を",
+      "先",
+      "に",
+      "やろう。"
+    ],
+    "translation": "如果沒時間，就先做這個吧。",
+    "english": "If you're short on time, let's do this first.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "suggestion"
+    ]
+  },
+  {
+    "id": "3514",
+    "japanese": "残業を減らして、家族との時間を増やす。",
+    "chunks": [
+      "残業",
+      "を",
+      "減らして、",
+      "家族",
+      "と",
+      "の",
+      "時間",
+      "を",
+      "増やす。"
+    ],
+    "translation": "減少加班，增加和家人相處的時間。",
+    "english": "I cut overtime and increase time with family.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3515",
+    "japanese": "休むことも、良い仕事をするための一部だ。",
+    "chunks": [
+      "休む",
+      "こと",
+      "も、",
+      "良い",
+      "仕事",
+      "を",
+      "する",
+      "ため",
+      "の",
+      "一部",
+      "だ。"
+    ],
+    "translation": "休息也是把工作做好的一部分。",
+    "english": "Resting is also part of doing good work.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3516",
+    "japanese": "私は週末には仕事をしません。",
+    "chunks": [
+      "私",
+      "は",
+      "週末",
+      "に",
+      "は",
+      "仕事",
+      "を",
+      "しません。"
+    ],
+    "translation": "我週末不工作。",
+    "english": "I don't work on weekends.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3517",
+    "japanese": "仕事に追われる毎日から、少し離れたい。",
+    "chunks": [
+      "仕事",
+      "に",
+      "追われる",
+      "毎日",
+      "から、",
+      "少し",
+      "離れたい。"
+    ],
+    "translation": "我想稍微脫離被工作追著跑的日子。",
+    "english": "I want to step back from days driven by work.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3518",
+    "japanese": "趣味の時間が、明日への活力になる。",
+    "chunks": [
+      "趣味",
+      "の",
+      "時間",
+      "が、",
+      "明日",
+      "への",
+      "活力",
+      "に",
+      "なる。"
+    ],
+    "translation": "興趣的時間，會成為迎接明天的活力。",
+    "english": "Time for hobbies becomes energy for tomorrow.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3519",
+    "japanese": "私は昼休みに必ず散歩をします。",
+    "chunks": [
+      "私",
+      "は",
+      "昼休み",
+      "に",
+      "必ず",
+      "散歩",
+      "を",
+      "します。"
+    ],
+    "translation": "我午休時一定會去散步。",
+    "english": "I always take a walk during my lunch break.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3520",
+    "japanese": "心と体の健康が、何よりの資本だ。",
+    "chunks": [
+      "心",
+      "と",
+      "体",
+      "の",
+      "健康",
+      "が、",
+      "何より",
+      "の",
+      "資本",
+      "だ。"
+    ],
+    "translation": "身心的健康，是最重要的本錢。",
+    "english": "Mental and physical health is one's greatest asset.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3521",
+    "japanese": "仕事ばかりでは、いつか疲れてしまう。",
+    "chunks": [
+      "仕事",
+      "ばかり",
+      "で",
+      "は、",
+      "いつか",
+      "疲れて",
+      "しまう。"
+    ],
+    "translation": "只顧著工作，總有一天會累垮。",
+    "english": "If it's all work, you'll burn out someday.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3522",
+    "japanese": "メリハリのある生活を心がけている。",
+    "chunks": [
+      "メリハリ",
+      "の",
+      "ある",
+      "生活",
+      "を",
+      "心がけて",
+      "いる。"
+    ],
+    "translation": "我留意過著張弛有度的生活。",
+    "english": "I try to live a life with clear on-off rhythms.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "work-life balance"
+    ]
+  },
+  {
+    "id": "3523",
+    "japanese": "みんなからたくさんの提案が集まった。",
+    "chunks": [
+      "みんな",
+      "から",
+      "たくさん",
+      "の",
+      "提案",
+      "が",
+      "集まった。"
+    ],
+    "translation": "從大家那裡收集到了許多提案。",
+    "english": "Many suggestions gathered from everyone.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3524",
+    "japanese": "改善のための意見を、自由に出してください。",
+    "chunks": [
+      "改善",
+      "の",
+      "ため",
+      "の",
+      "意見",
+      "を、",
+      "自由",
+      "に",
+      "出して",
+      "ください。"
+    ],
+    "translation": "請自由提出改善的意見。",
+    "english": "Please freely offer suggestions for improvement.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3525",
+    "japanese": "いくつかの案の中から、一つを選ぶ。",
+    "chunks": [
+      "いくつ",
+      "か",
+      "の",
+      "案",
+      "の",
+      "中",
+      "から、",
+      "一つ",
+      "を",
+      "選ぶ。"
+    ],
+    "translation": "從幾個方案之中，選出一個。",
+    "english": "We choose one from among several proposals.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3526",
+    "japanese": "お客様の声を、商品作りに生かす。",
+    "chunks": [
+      "お客様",
+      "の",
+      "声",
+      "を、",
+      "商品",
+      "作り",
+      "に",
+      "生かす。"
+    ],
+    "translation": "把顧客的意見活用在商品製作上。",
+    "english": "We make use of customer feedback in product design.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3527",
+    "japanese": "私は先生にいくつか質問しました。",
+    "chunks": [
+      "私",
+      "は",
+      "先生",
+      "に",
+      "いくつか",
+      "質問",
+      "しました。"
+    ],
+    "translation": "我向老師問了幾個問題。",
+    "english": "I asked the teacher several questions.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3528",
+    "japanese": "どんな小さな提案でも、歓迎します。",
+    "chunks": [
+      "どんな",
+      "小さな",
+      "提案",
+      "で",
+      "も、",
+      "歓迎",
+      "します。"
+    ],
+    "translation": "不論多小的提案，我們都歡迎。",
+    "english": "We welcome any suggestion, no matter how small.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3529",
+    "japanese": "寄せられた意見を、一つずつ検討する。",
+    "chunks": [
+      "寄せられた",
+      "意見",
+      "を、",
+      "一つ",
+      "ずつ",
+      "検討",
+      "する。"
+    ],
+    "translation": "把收到的意見，一個一個地檢討。",
+    "english": "We examine the submitted suggestions one by one.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3530",
+    "japanese": "もっとこうしたら、と思う点がある。",
+    "chunks": [
+      "もっと",
+      "こう",
+      "したら、",
+      "と",
+      "思う",
+      "点",
+      "が",
+      "ある。"
+    ],
+    "translation": "我有些覺得這樣做會更好的地方。",
+    "english": "There are points where I think it'd be better done this way.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3531",
+    "japanese": "私は箱にアイデアを入れました。",
+    "chunks": [
+      "私",
+      "は",
+      "箱",
+      "に",
+      "アイデア",
+      "を",
+      "入れました。"
+    ],
+    "translation": "我把點子放進了箱子裡。",
+    "english": "I put my idea in the box.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3532",
+    "japanese": "多様な提案が、新しい発想を生む。",
+    "chunks": [
+      "多様",
+      "な",
+      "提案",
+      "が、",
+      "新しい",
+      "発想",
+      "を",
+      "生む。"
+    ],
+    "translation": "多元的提案，能催生出新的構想。",
+    "english": "Diverse suggestions give rise to new ideas.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "suggestions"
+    ]
+  },
+  {
+    "id": "3533",
+    "japanese": "私は古い服を寄付しました。",
+    "chunks": [
+      "私",
+      "は",
+      "古い",
+      "服",
+      "を",
+      "寄付",
+      "しました。"
+    ],
+    "translation": "我捐了舊衣服。",
+    "english": "I donated my old clothes.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "charity"
+    ]
+  },
+  {
+    "id": "3534",
+    "japanese": "少しずつでも、寄付は誰かを助ける。",
+    "chunks": [
+      "少し",
+      "ずつ",
+      "で",
+      "も、",
+      "寄付",
+      "は",
+      "誰か",
+      "を",
+      "助ける。"
+    ],
+    "translation": "即使只是一點一點，捐款也能幫助某人。",
+    "english": "Even little by little, donations help someone.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "charity"
+    ]
+  },
+  {
+    "id": "3535",
+    "japanese": "災害の被災地に、支援の物資を送った。",
+    "chunks": [
+      "災害",
+      "の",
+      "被災地",
+      "に、",
+      "支援",
+      "の",
+      "物資",
+      "を",
+      "送った。"
+    ],
+    "translation": "我向災區送去了支援的物資。",
+    "english": "I sent relief supplies to the disaster area.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "charity"
+    ]
+  },
+  {
+    "id": "3536",
+    "japanese": "見返りを求めない行いに、心を打たれた。",
+    "chunks": [
+      "見返り",
+      "を",
+      "求め",
+      "ない",
+      "行い",
+      "に、",
+      "心",
+      "を",
+      "打たれた。"
+    ],
+    "translation": "對於不求回報的行為，我深受感動。",
+    "english": "I was moved by an act that sought no reward.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "charity"
+    ]
+  },
+  {
+    "id": "3537",
+    "japanese": "週末に、ボランティア活動に参加します。",
+    "chunks": [
+      "週末",
+      "に、",
+      "ボランティア",
+      "活動",
+      "に",
+      "参加",
+      "します。"
+    ],
+    "translation": "我週末會參加志工活動。",
+    "english": "I take part in volunteer activities on weekends.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "charity"
+    ]
+  },
+  {
+    "id": "3538",
+    "japanese": "私は毎月少しのお金を募金します。",
+    "chunks": [
+      "私",
+      "は",
+      "毎月",
+      "少し",
+      "の",
+      "お金",
+      "を",
+      "募金",
+      "します。"
+    ],
+    "translation": "我每個月捐一點錢。",
+    "english": "I donate a little money every month.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "charity"
+    ]
+  },
+  {
+    "id": "3539",
+    "japanese": "小さな親切が、大きな支えになる。",
+    "chunks": [
+      "小さな",
+      "親切",
+      "が、",
+      "大きな",
+      "支え",
+      "に",
+      "なる。"
+    ],
+    "translation": "小小的善意，能成為莫大的支持。",
+    "english": "A small kindness can become great support.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "charity"
+    ]
+  },
+  {
+    "id": "3540",
+    "japanese": "困っている人に手を差し伸べたい。",
+    "chunks": [
+      "困って",
+      "いる",
+      "人",
+      "に",
+      "手",
+      "を",
+      "差し伸べたい。"
+    ],
+    "translation": "我想對有困難的人伸出援手。",
+    "english": "I want to lend a hand to those in trouble.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "charity"
+    ]
+  },
+  {
+    "id": "3541",
+    "japanese": "寄付の文化を、社会に根づかせたい。",
+    "chunks": [
+      "寄付",
+      "の",
+      "文化",
+      "を、",
+      "社会",
+      "に",
+      "根づかせたい。"
+    ],
+    "translation": "我想讓捐款的文化在社會中扎根。",
+    "english": "I want to root a culture of giving in society.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "charity"
+    ]
+  },
+  {
+    "id": "3542",
+    "japanese": "みんなの善意が集まって、大きな力になった。",
+    "chunks": [
+      "みんな",
+      "の",
+      "善意",
+      "が",
+      "集まって、",
+      "大きな",
+      "力",
+      "に",
+      "なった。"
+    ],
+    "translation": "大家的善意匯聚起來，成為了巨大的力量。",
+    "english": "Everyone's goodwill gathered into a great force.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "charity"
+    ]
   }
 ]
