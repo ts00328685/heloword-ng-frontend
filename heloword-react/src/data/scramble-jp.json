@@ -67261,5 +67261,1055 @@
       "N2",
       "school"
     ]
+  },
+  {
+    "id": "3295",
+    "japanese": "けががだいぶよくなってきました。",
+    "chunks": [
+      "けが",
+      "が",
+      "だいぶ",
+      "よく",
+      "なって",
+      "きました。"
+    ],
+    "translation": "傷勢已經好很多了。",
+    "english": "My injury has gotten a lot better.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3296",
+    "japanese": "十分な睡眠が、疲れの回復を助ける。",
+    "chunks": [
+      "十分",
+      "な",
+      "睡眠",
+      "が、",
+      "疲れ",
+      "の",
+      "回復",
+      "を",
+      "助ける。"
+    ],
+    "translation": "充足的睡眠有助於消除疲勞。",
+    "english": "Sufficient sleep helps recovery from fatigue.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3297",
+    "japanese": "手術の後、彼は少しずつ元気になった。",
+    "chunks": [
+      "手術",
+      "の",
+      "後、",
+      "彼",
+      "は",
+      "少しずつ",
+      "元気",
+      "に",
+      "なった。"
+    ],
+    "translation": "手術後，他漸漸恢復了精神。",
+    "english": "After the surgery, he gradually got better.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3298",
+    "japanese": "災害からの復興には、長い年月がかかる。",
+    "chunks": [
+      "災害",
+      "から",
+      "の",
+      "復興",
+      "に",
+      "は、",
+      "長い",
+      "年月",
+      "が",
+      "かかる。"
+    ],
+    "translation": "從災害中復興，需要漫長的歲月。",
+    "english": "Recovery from a disaster takes many long years.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3299",
+    "japanese": "風邪をひいたけど、もう治りました。",
+    "chunks": [
+      "風邪",
+      "を",
+      "ひいた",
+      "けど、",
+      "もう",
+      "治りました。"
+    ],
+    "translation": "我感冒了，但已經好了。",
+    "english": "I caught a cold, but I've already recovered.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3300",
+    "japanese": "焦らずに休めば、体力は必ず戻る。",
+    "chunks": [
+      "焦らず",
+      "に",
+      "休めば、",
+      "体力",
+      "は",
+      "必ず",
+      "戻る。"
+    ],
+    "translation": "別著急好好休息，體力一定會恢復。",
+    "english": "If you rest without rushing, your strength will surely return.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3301",
+    "japanese": "景気はゆるやかに回復しているようだ。",
+    "chunks": [
+      "景気",
+      "は",
+      "ゆるやか",
+      "に",
+      "回復",
+      "して",
+      "いる",
+      "ようだ。"
+    ],
+    "translation": "景氣似乎正在緩慢地復甦。",
+    "english": "The economy seems to be recovering gradually.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3302",
+    "japanese": "温泉に入ったら、疲れが取れました。",
+    "chunks": [
+      "温泉",
+      "に",
+      "入ったら、",
+      "疲れ",
+      "が",
+      "取れました。"
+    ],
+    "translation": "泡了溫泉之後，疲勞消除了。",
+    "english": "After getting in the hot spring, my fatigue went away.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3303",
+    "japanese": "失敗から立ち直るには、時間が必要だ。",
+    "chunks": [
+      "失敗",
+      "から",
+      "立ち直る",
+      "に",
+      "は、",
+      "時間",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "要從失敗中振作起來，需要時間。",
+    "english": "It takes time to recover from failure.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3304",
+    "japanese": "薬を飲んで、ゆっくり休んでください。",
+    "chunks": [
+      "薬",
+      "を",
+      "飲んで、",
+      "ゆっくり",
+      "休んで",
+      "ください。"
+    ],
+    "translation": "請吃藥，好好休息。",
+    "english": "Please take the medicine and rest well.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "recovery"
+    ]
+  },
+  {
+    "id": "3305",
+    "japanese": "春になると、桜がいっせいに咲きます。",
+    "chunks": [
+      "春",
+      "に",
+      "なると、",
+      "桜",
+      "が",
+      "いっせいに",
+      "咲きます。"
+    ],
+    "translation": "一到春天，櫻花就齊綻放。",
+    "english": "When spring comes, the cherry blossoms bloom all at once.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3306",
+    "japanese": "夏は暑いので、海へ泳ぎに行きます。",
+    "chunks": [
+      "夏",
+      "は",
+      "暑い",
+      "ので、",
+      "海",
+      "へ",
+      "泳ぎ",
+      "に",
+      "行きます。"
+    ],
+    "translation": "夏天很熱，所以我去海邊游泳。",
+    "english": "Summer is hot, so I go to the sea to swim.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3307",
+    "japanese": "秋の紅葉は、息をのむほど美しい。",
+    "chunks": [
+      "秋",
+      "の",
+      "紅葉",
+      "は、",
+      "息",
+      "を",
+      "のむ",
+      "ほど",
+      "美しい。"
+    ],
+    "translation": "秋天的紅葉，美得令人屏息。",
+    "english": "The autumn leaves are breathtakingly beautiful.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3308",
+    "japanese": "冬は寒くて、朝起きるのがつらい。",
+    "chunks": [
+      "冬",
+      "は",
+      "寒くて、",
+      "朝",
+      "起きる",
+      "の",
+      "が",
+      "つらい。"
+    ],
+    "translation": "冬天很冷，早上起床很痛苦。",
+    "english": "Winter is cold, and getting up in the morning is hard.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3309",
+    "japanese": "四季の移ろいを感じられるのは、幸せだ。",
+    "chunks": [
+      "四季",
+      "の",
+      "移ろい",
+      "を",
+      "感じられる",
+      "の",
+      "は、",
+      "幸せ",
+      "だ。"
+    ],
+    "translation": "能感受到四季的更迭，是一種幸福。",
+    "english": "Being able to feel the changing of the seasons is a blessing.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3310",
+    "japanese": "梅雨の時期は、毎日雨が降り続く。",
+    "chunks": [
+      "梅雨",
+      "の",
+      "時期",
+      "は、",
+      "毎日",
+      "雨",
+      "が",
+      "降り",
+      "続く。"
+    ],
+    "translation": "梅雨季節，每天持續下雨。",
+    "english": "During the rainy season, it keeps raining every day.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3311",
+    "japanese": "私は一年の中で秋が一番好きです。",
+    "chunks": [
+      "私",
+      "は",
+      "一年",
+      "の",
+      "中",
+      "で",
+      "秋",
+      "が",
+      "一番",
+      "好き",
+      "です。"
+    ],
+    "translation": "在一年之中，我最喜歡秋天。",
+    "english": "Out of the whole year, I like autumn best.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3312",
+    "japanese": "季節の変わり目は、体調を崩しやすい。",
+    "chunks": [
+      "季節",
+      "の",
+      "変わり目",
+      "は、",
+      "体調",
+      "を",
+      "崩し",
+      "やすい。"
+    ],
+    "translation": "季節交替時，容易身體不適。",
+    "english": "At the change of seasons, it's easy to fall ill.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3313",
+    "japanese": "雪が積もって、町が真っ白になった。",
+    "chunks": [
+      "雪",
+      "が",
+      "積もって、",
+      "町",
+      "が",
+      "真っ白",
+      "に",
+      "なった。"
+    ],
+    "translation": "雪堆積起來，城鎮變得一片雪白。",
+    "english": "The snow piled up and the town turned pure white.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3314",
+    "japanese": "暖かくなって、公園の花が咲き始めた。",
+    "chunks": [
+      "暖かく",
+      "なって、",
+      "公園",
+      "の",
+      "花",
+      "が",
+      "咲き始めた。"
+    ],
+    "translation": "天氣變暖了，公園的花開始綻放。",
+    "english": "It got warm, and the flowers in the park began to bloom.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "seasons"
+    ]
+  },
+  {
+    "id": "3315",
+    "japanese": "もっと早く始めればよかったと後悔している。",
+    "chunks": [
+      "もっと",
+      "早く",
+      "始めれば",
+      "よかった",
+      "と",
+      "後悔",
+      "して",
+      "いる。"
+    ],
+    "translation": "我後悔要是早點開始就好了。",
+    "english": "I regret that I should have started sooner.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "regret"
+    ]
+  },
+  {
+    "id": "3316",
+    "japanese": "あの時の言葉を、今でも悔やんでいる。",
+    "chunks": [
+      "あの",
+      "時",
+      "の",
+      "言葉",
+      "を、",
+      "今",
+      "でも",
+      "悔やんで",
+      "いる。"
+    ],
+    "translation": "對於那時的話，我至今仍懊悔。",
+    "english": "I still regret the words I said back then.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "regret"
+    ]
+  },
+  {
+    "id": "3317",
+    "japanese": "宿題をしなかったことを後悔しました。",
+    "chunks": [
+      "宿題",
+      "を",
+      "しなかった",
+      "こと",
+      "を",
+      "後悔",
+      "しました。"
+    ],
+    "translation": "我後悔沒寫作業。",
+    "english": "I regretted not doing my homework.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "regret"
+    ]
+  },
+  {
+    "id": "3318",
+    "japanese": "チャンスを逃したのが、とても残念です。",
+    "chunks": [
+      "チャンス",
+      "を",
+      "逃した",
+      "の",
+      "が、",
+      "とても",
+      "残念",
+      "です。"
+    ],
+    "translation": "錯失了機會，非常可惜。",
+    "english": "It's a great pity that I missed the chance.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "regret"
+    ]
+  },
+  {
+    "id": "3319",
+    "japanese": "後悔のないように、全力を尽くしたい。",
+    "chunks": [
+      "後悔",
+      "の",
+      "ない",
+      "よう",
+      "に、",
+      "全力",
+      "を",
+      "尽くしたい。"
+    ],
+    "translation": "為了不留遺憾，我想全力以赴。",
+    "english": "I want to give it my all so I have no regrets.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "regret"
+    ]
+  },
+  {
+    "id": "3320",
+    "japanese": "買いすぎて、少し反省しています。",
+    "chunks": [
+      "買い",
+      "すぎて、",
+      "少し",
+      "反省",
+      "して",
+      "います。"
+    ],
+    "translation": "買太多了，我有點反省。",
+    "english": "I bought too much, and I'm a bit remorseful.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "regret"
+    ]
+  },
+  {
+    "id": "3321",
+    "japanese": "言わなければよかったと、後で気づいた。",
+    "chunks": [
+      "言わなければ",
+      "よかった",
+      "と、",
+      "後",
+      "で",
+      "気づいた。"
+    ],
+    "translation": "事後才發現要是沒說就好了。",
+    "english": "Afterward I realized I shouldn't have said it.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "regret"
+    ]
+  },
+  {
+    "id": "3322",
+    "japanese": "私は昨日の失敗をとても悔しく思う。",
+    "chunks": [
+      "私",
+      "は",
+      "昨日",
+      "の",
+      "失敗",
+      "を",
+      "とても",
+      "悔しく",
+      "思う。"
+    ],
+    "translation": "我對昨天的失敗感到非常不甘心。",
+    "english": "I feel very frustrated about yesterday's failure.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "regret"
+    ]
+  },
+  {
+    "id": "3323",
+    "japanese": "もう少し勉強しておけばよかったです。",
+    "chunks": [
+      "もう少し",
+      "勉強",
+      "して",
+      "おけば",
+      "よかった",
+      "です。"
+    ],
+    "translation": "要是再多讀點書就好了。",
+    "english": "I wish I had studied a little more.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "regret"
+    ]
+  },
+  {
+    "id": "3324",
+    "japanese": "過ぎたことを悔やんでも、何も変わらない。",
+    "chunks": [
+      "過ぎた",
+      "こと",
+      "を",
+      "悔やんで",
+      "も、",
+      "何",
+      "も",
+      "変わらない。"
+    ],
+    "translation": "再懊悔過去的事，也什麼都不會改變。",
+    "english": "No matter how much you regret the past, nothing changes.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "regret"
+    ]
+  },
+  {
+    "id": "3325",
+    "japanese": "これは二人だけの秘密にしよう。",
+    "chunks": [
+      "これ",
+      "は",
+      "二人",
+      "だけ",
+      "の",
+      "秘密",
+      "に",
+      "しよう。"
+    ],
+    "translation": "這就當作我們兩個人的秘密吧。",
+    "english": "Let's keep this a secret just between us.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "secret"
+    ]
+  },
+  {
+    "id": "3326",
+    "japanese": "彼は誰にも本音を明かさなかった。",
+    "chunks": [
+      "彼",
+      "は",
+      "誰",
+      "に",
+      "も",
+      "本音",
+      "を",
+      "明かさ",
+      "なかった。"
+    ],
+    "translation": "他沒有對任何人吐露真心話。",
+    "english": "He didn't reveal his true feelings to anyone.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "secret"
+    ]
+  },
+  {
+    "id": "3327",
+    "japanese": "このことは、誰にも言わないでください。",
+    "chunks": [
+      "この",
+      "こと",
+      "は、",
+      "誰",
+      "に",
+      "も",
+      "言わ",
+      "ないで",
+      "ください。"
+    ],
+    "translation": "這件事請不要對任何人說。",
+    "english": "Please don't tell anyone about this.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "secret"
+    ]
+  },
+  {
+    "id": "3328",
+    "japanese": "秘密を守るのは、思ったより難しい。",
+    "chunks": [
+      "秘密",
+      "を",
+      "守る",
+      "の",
+      "は、",
+      "思った",
+      "より",
+      "難しい。"
+    ],
+    "translation": "保守秘密比想像中還難。",
+    "english": "Keeping a secret is harder than I thought.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "secret"
+    ]
+  },
+  {
+    "id": "3329",
+    "japanese": "彼女は私に小さな秘密を打ち明けた。",
+    "chunks": [
+      "彼女",
+      "は",
+      "私",
+      "に",
+      "小さな",
+      "秘密",
+      "を",
+      "打ち明けた。"
+    ],
+    "translation": "她向我吐露了一個小秘密。",
+    "english": "She confided a small secret to me.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "secret"
+    ]
+  },
+  {
+    "id": "3330",
+    "japanese": "長年隠してきた真実が、ついに明らかになった。",
+    "chunks": [
+      "長年",
+      "隠して",
+      "きた",
+      "真実",
+      "が、",
+      "ついに",
+      "明らかに",
+      "なった。"
+    ],
+    "translation": "隱藏多年的真相，終於水落石出。",
+    "english": "The truth hidden for years finally came to light.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "secret"
+    ]
+  },
+  {
+    "id": "3331",
+    "japanese": "その話は内緒にしておきます。",
+    "chunks": [
+      "その",
+      "話",
+      "は",
+      "内緒",
+      "に",
+      "して",
+      "おきます。"
+    ],
+    "translation": "那件事我會保密。",
+    "english": "I'll keep that story secret.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "secret"
+    ]
+  },
+  {
+    "id": "3332",
+    "japanese": "うわさはあっという間に広がってしまった。",
+    "chunks": [
+      "うわさ",
+      "は",
+      "あっという間",
+      "に",
+      "広がって",
+      "しまった。"
+    ],
+    "translation": "傳聞一轉眼就傳開了。",
+    "english": "The rumor spread in the blink of an eye.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "secret"
+    ]
+  },
+  {
+    "id": "3333",
+    "japanese": "成功の秘訣は、地道な努力にある。",
+    "chunks": [
+      "成功",
+      "の",
+      "秘訣",
+      "は、",
+      "地道",
+      "な",
+      "努力",
+      "に",
+      "ある。"
+    ],
+    "translation": "成功的秘訣，在於踏實的努力。",
+    "english": "The secret to success lies in steady effort.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "secret"
+    ]
+  },
+  {
+    "id": "3334",
+    "japanese": "私は母にだけその話をしました。",
+    "chunks": [
+      "私",
+      "は",
+      "母",
+      "に",
+      "だけ",
+      "その",
+      "話",
+      "を",
+      "しました。"
+    ],
+    "translation": "我只把那件事告訴了媽媽。",
+    "english": "I only told that story to my mother.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "secret"
+    ]
+  },
+  {
+    "id": "3335",
+    "japanese": "温かいお茶を飲むと、心が落ち着く。",
+    "chunks": [
+      "温かい",
+      "お茶",
+      "を",
+      "飲む",
+      "と、",
+      "心",
+      "が",
+      "落ち着く。"
+    ],
+    "translation": "喝杯溫熱的茶，心情就平靜下來。",
+    "english": "Drinking warm tea calms my heart.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3336",
+    "japanese": "週末は家でゆっくり過ごします。",
+    "chunks": [
+      "週末",
+      "は",
+      "家",
+      "で",
+      "ゆっくり",
+      "過ごします。"
+    ],
+    "translation": "週末我在家悠閒地度過。",
+    "english": "On weekends, I spend time relaxing at home.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3337",
+    "japanese": "音楽を聞いていると、気持ちが和らぐ。",
+    "chunks": [
+      "音楽",
+      "を",
+      "聞いて",
+      "いる",
+      "と、",
+      "気持ち",
+      "が",
+      "和らぐ。"
+    ],
+    "translation": "聽著音樂，心情就會放鬆。",
+    "english": "Listening to music eases my mind.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3338",
+    "japanese": "深く息を吸えば、少しリラックスできる。",
+    "chunks": [
+      "深く",
+      "息",
+      "を",
+      "吸えば、",
+      "少し",
+      "リラックス",
+      "できる。"
+    ],
+    "translation": "深呼吸的話，就能稍微放鬆。",
+    "english": "If you breathe deeply, you can relax a little.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3339",
+    "japanese": "忙しい毎日の中でも、休息は欠かせない。",
+    "chunks": [
+      "忙しい",
+      "毎日",
+      "の",
+      "中",
+      "で",
+      "も、",
+      "休息",
+      "は",
+      "欠かせない。"
+    ],
+    "translation": "即使在忙碌的每一天，休息也不可或缺。",
+    "english": "Even in busy days, rest is indispensable.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3340",
+    "japanese": "お風呂にゆっくり入るのが好きです。",
+    "chunks": [
+      "お風呂",
+      "に",
+      "ゆっくり",
+      "入る",
+      "の",
+      "が",
+      "好き",
+      "です。"
+    ],
+    "translation": "我喜歡悠閒地泡澡。",
+    "english": "I like taking a leisurely bath.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3341",
+    "japanese": "自然の中で過ごすと、疲れがいやされる。",
+    "chunks": [
+      "自然",
+      "の",
+      "中",
+      "で",
+      "過ごす",
+      "と、",
+      "疲れ",
+      "が",
+      "いやされる。"
+    ],
+    "translation": "在大自然中度過，疲憊就會被療癒。",
+    "english": "Spending time in nature soothes my fatigue.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3342",
+    "japanese": "何もせずにぼんやりする時間も必要だ。",
+    "chunks": [
+      "何",
+      "も",
+      "せず",
+      "に",
+      "ぼんやり",
+      "する",
+      "時間",
+      "も",
+      "必要",
+      "だ。"
+    ],
+    "translation": "什麼都不做、發呆放空的時間也是必要的。",
+    "english": "Time to do nothing and just space out is also necessary.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3343",
+    "japanese": "昼寝を少ししたら、頭がすっきりした。",
+    "chunks": [
+      "昼寝",
+      "を",
+      "少し",
+      "したら、",
+      "頭",
+      "が",
+      "すっきり",
+      "した。"
+    ],
+    "translation": "稍微睡了個午覺，頭腦就清醒了。",
+    "english": "After a short nap, my head felt refreshed.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "relaxation"
+    ]
+  },
+  {
+    "id": "3344",
+    "japanese": "私は休みの日によく散歩をします。",
+    "chunks": [
+      "私",
+      "は",
+      "休み",
+      "の",
+      "日",
+      "に",
+      "よく",
+      "散歩",
+      "を",
+      "します。"
+    ],
+    "translation": "我休假日常常散步。",
+    "english": "I often take walks on my days off.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "relaxation"
+    ]
   }
 ]
