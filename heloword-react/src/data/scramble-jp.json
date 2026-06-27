@@ -58589,5 +58589,1126 @@
       "N2",
       "social work"
     ]
+  },
+  {
+    "id": "2895",
+    "japanese": "彼はチームのリーダーです。",
+    "chunks": [
+      "彼",
+      "は",
+      "チーム",
+      "の",
+      "リーダー",
+      "です。"
+    ],
+    "translation": "他是團隊的領導者。",
+    "english": "He's the leader of the team.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2896",
+    "japanese": "良いリーダーは人の話をよく聞く。",
+    "chunks": [
+      "良い",
+      "リーダー",
+      "は",
+      "人",
+      "の",
+      "話",
+      "を",
+      "よく",
+      "聞く。"
+    ],
+    "translation": "好的領導者會仔細聆聽別人說話。",
+    "english": "A good leader listens carefully to others.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2897",
+    "japanese": "リーダーには、決断力と責任感が求められる。",
+    "chunks": [
+      "リーダー",
+      "に",
+      "は、",
+      "決断力",
+      "と",
+      "責任感",
+      "が",
+      "求められる。"
+    ],
+    "translation": "領導者被要求要有決斷力與責任感。",
+    "english": "A leader is required to have decisiveness and a sense of responsibility.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2898",
+    "japanese": "真のリーダーとは、率先して困難に立ち向かう者のことだ。",
+    "chunks": [
+      "真",
+      "の",
+      "リーダー",
+      "と",
+      "は、",
+      "率先して",
+      "困難",
+      "に",
+      "立ち向かう",
+      "者",
+      "の",
+      "こと",
+      "だ。"
+    ],
+    "translation": "所謂真正的領導者，是指率先迎向困難的人。",
+    "english": "A true leader is someone who takes the lead in facing difficulties.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2899",
+    "japanese": "彼はみんなをまとめる人です。",
+    "chunks": [
+      "彼",
+      "は",
+      "みんな",
+      "を",
+      "まとめる",
+      "人",
+      "です。"
+    ],
+    "translation": "他是個能凝聚大家的人。",
+    "english": "He's the kind of person who brings everyone together.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2900",
+    "japanese": "部下を信頼して任せることも、リーダーの務めだ。",
+    "chunks": [
+      "部下",
+      "を",
+      "信頼して",
+      "任せる",
+      "こと",
+      "も、",
+      "リーダー",
+      "の",
+      "務め",
+      "だ。"
+    ],
+    "translation": "信任並託付部下，也是領導者的職責。",
+    "english": "Trusting subordinates and delegating to them is also a leader's duty.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2901",
+    "japanese": "リーダーとして、チームをまとめるのは難しい。",
+    "chunks": [
+      "リーダー",
+      "として、",
+      "チーム",
+      "を",
+      "まとめる",
+      "の",
+      "は",
+      "難しい。"
+    ],
+    "translation": "身為領導者，要凝聚團隊很困難。",
+    "english": "As a leader, it's hard to keep the team together.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2902",
+    "japanese": "優れた指導者は、自らの過ちを認める勇気を持ち合わせている。",
+    "chunks": [
+      "優れた",
+      "指導者",
+      "は、",
+      "自ら",
+      "の",
+      "過ち",
+      "を",
+      "認める",
+      "勇気",
+      "を",
+      "持ち合わせて",
+      "いる。"
+    ],
+    "translation": "優秀的領導者，具備承認自身過錯的勇氣。",
+    "english": "An excellent leader possesses the courage to admit their own mistakes.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2903",
+    "japanese": "みんなが彼を信頼しています。",
+    "chunks": [
+      "みんな",
+      "が",
+      "彼",
+      "を",
+      "信頼",
+      "して",
+      "います。"
+    ],
+    "translation": "大家都信任他。",
+    "english": "Everyone trusts him.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2904",
+    "japanese": "危機のときこそ、リーダーの真価が問われる。",
+    "chunks": [
+      "危機",
+      "の",
+      "とき",
+      "こそ、",
+      "リーダー",
+      "の",
+      "真価",
+      "が",
+      "問われる。"
+    ],
+    "translation": "正是在危機之際，領導者的真本事才會受到考驗。",
+    "english": "It's precisely in times of crisis that a leader's true worth is tested.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "leadership"
+    ]
+  },
+  {
+    "id": "2905",
+    "japanese": "子供を育てるのは大変です。",
+    "chunks": [
+      "子供",
+      "を",
+      "育てる",
+      "の",
+      "は",
+      "大変",
+      "です。"
+    ],
+    "translation": "養育孩子很辛苦。",
+    "english": "Raising children is hard.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2906",
+    "japanese": "子供をほめて育てるようにしている。",
+    "chunks": [
+      "子供",
+      "を",
+      "ほめて",
+      "育てる",
+      "ように",
+      "して",
+      "いる。"
+    ],
+    "translation": "我盡量以稱讚的方式養育孩子。",
+    "english": "I try to raise my children with praise.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2907",
+    "japanese": "子育ては、親自身が成長する機会でもある。",
+    "chunks": [
+      "子育て",
+      "は、",
+      "親自身",
+      "が",
+      "成長する",
+      "機会",
+      "で",
+      "も",
+      "ある。"
+    ],
+    "translation": "育兒，也是父母自身成長的機會。",
+    "english": "Child-rearing is also an opportunity for the parents themselves to grow.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2908",
+    "japanese": "子に手をかけすぎることが、かえって自立を妨げる場合もある。",
+    "chunks": [
+      "子",
+      "に",
+      "手",
+      "を",
+      "かけすぎる",
+      "こと",
+      "が、",
+      "かえって",
+      "自立",
+      "を",
+      "妨げる",
+      "場合",
+      "も",
+      "ある。"
+    ],
+    "translation": "對孩子過度照料，有時反而會妨礙他們的獨立。",
+    "english": "Doting too much on a child can sometimes hinder their independence instead.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2909",
+    "japanese": "赤ちゃんはよく泣きます。",
+    "chunks": [
+      "赤ちゃん",
+      "は",
+      "よく",
+      "泣き",
+      "ます。"
+    ],
+    "translation": "嬰兒常常哭。",
+    "english": "Babies cry a lot.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2910",
+    "japanese": "共働きの家庭では、育児の分担が欠かせない。",
+    "chunks": [
+      "共働き",
+      "の",
+      "家庭",
+      "で",
+      "は、",
+      "育児",
+      "の",
+      "分担",
+      "が",
+      "欠かせない。"
+    ],
+    "translation": "在雙薪家庭，分擔育兒不可或缺。",
+    "english": "In dual-income households, sharing childcare is essential.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2911",
+    "japanese": "子供と過ごす時間を大切にしたい。",
+    "chunks": [
+      "子供",
+      "と",
+      "過ごす",
+      "時間",
+      "を",
+      "大切",
+      "に",
+      "したい。"
+    ],
+    "translation": "我想珍惜和孩子相處的時間。",
+    "english": "I want to cherish the time I spend with my children.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2912",
+    "japanese": "子どもの個性を尊重しつつ、社会の規範も教えていくのは容易ではない。",
+    "chunks": [
+      "子ども",
+      "の",
+      "個性",
+      "を",
+      "尊重しつつ、",
+      "社会",
+      "の",
+      "規範",
+      "も",
+      "教えて",
+      "いく",
+      "の",
+      "は",
+      "容易",
+      "では",
+      "ない。"
+    ],
+    "translation": "既要尊重孩子的個性，又要教導社會規範，並非易事。",
+    "english": "It's not easy to teach social norms while respecting a child's individuality.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2913",
+    "japanese": "父は子供の世話をよくします。",
+    "chunks": [
+      "父",
+      "は",
+      "子供",
+      "の",
+      "世話",
+      "を",
+      "よく",
+      "します。"
+    ],
+    "translation": "父親很常照顧孩子。",
+    "english": "My father often takes care of the children.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2914",
+    "japanese": "子供を叱るときも、頭ごなしにはしないようにしている。",
+    "chunks": [
+      "子供",
+      "を",
+      "叱る",
+      "とき",
+      "も、",
+      "頭ごなし",
+      "に",
+      "は",
+      "しない",
+      "ように",
+      "して",
+      "いる。"
+    ],
+    "translation": "即使在責備孩子時，我也盡量不一味地斥責。",
+    "english": "Even when I scold my children, I try not to be overbearing about it.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "parenting"
+    ]
+  },
+  {
+    "id": "2915",
+    "japanese": "社会にはいろいろな人がいます。",
+    "chunks": [
+      "社会",
+      "に",
+      "は",
+      "いろいろ",
+      "な",
+      "人",
+      "が",
+      "います。"
+    ],
+    "translation": "社會上有各式各樣的人。",
+    "english": "There are all sorts of people in society.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "society"
+    ]
+  },
+  {
+    "id": "2916",
+    "japanese": "学校を出て、社会に出ることになった。",
+    "chunks": [
+      "学校",
+      "を",
+      "出て、",
+      "社会",
+      "に",
+      "出る",
+      "こと",
+      "に",
+      "なった。"
+    ],
+    "translation": "我畢業後即將踏入社會。",
+    "english": "After finishing school, I'm about to go out into society.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "society"
+    ]
+  },
+  {
+    "id": "2917",
+    "japanese": "高齢化は、社会のあり方そのものを変えつつある。",
+    "chunks": [
+      "高齢化",
+      "は、",
+      "社会",
+      "の",
+      "あり方",
+      "そのもの",
+      "を",
+      "変えつつ",
+      "ある。"
+    ],
+    "translation": "高齡化正逐漸改變社會的形態本身。",
+    "english": "Aging is gradually changing the very form of society.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "society"
+    ]
+  },
+  {
+    "id": "2918",
+    "japanese": "多様な価値観が共存する社会こそ、成熟した社会と言えるだろう。",
+    "chunks": [
+      "多様",
+      "な",
+      "価値観",
+      "が",
+      "共存する",
+      "社会",
+      "こそ、",
+      "成熟した",
+      "社会",
+      "と",
+      "言える",
+      "だろう。"
+    ],
+    "translation": "唯有多元價值觀共存的社會，才稱得上是成熟的社會吧。",
+    "english": "A society where diverse values coexist is what can be called a mature society.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "society"
+    ]
+  },
+  {
+    "id": "2919",
+    "japanese": "みんなで社会を作ります。",
+    "chunks": [
+      "みんな",
+      "で",
+      "社会",
+      "を",
+      "作り",
+      "ます。"
+    ],
+    "translation": "由大家共同打造社會。",
+    "english": "We all build society together.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "society"
+    ]
+  },
+  {
+    "id": "2920",
+    "japanese": "一人ひとりの行動が、社会を少しずつ変えていく。",
+    "chunks": [
+      "一人ひとり",
+      "の",
+      "行動",
+      "が、",
+      "社会",
+      "を",
+      "少しずつ",
+      "変えて",
+      "いく。"
+    ],
+    "translation": "每個人的行動，一點一點地改變著社會。",
+    "english": "Each person's actions gradually change society.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "society"
+    ]
+  },
+  {
+    "id": "2921",
+    "japanese": "ニュースを通して社会の動きを知る。",
+    "chunks": [
+      "ニュース",
+      "を",
+      "通して",
+      "社会",
+      "の",
+      "動き",
+      "を",
+      "知る。"
+    ],
+    "translation": "我透過新聞了解社會的動向。",
+    "english": "I learn about what's happening in society through the news.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "society"
+    ]
+  },
+  {
+    "id": "2922",
+    "japanese": "情報があふれる現代社会では、何を信じるかが問われている。",
+    "chunks": [
+      "情報",
+      "が",
+      "あふれる",
+      "現代社会",
+      "で",
+      "は、",
+      "何",
+      "を",
+      "信じる",
+      "か",
+      "が",
+      "問われて",
+      "いる。"
+    ],
+    "translation": "在資訊氾濫的現代社會，該相信什麼成了一大課題。",
+    "english": "In today's information-flooded society, what to believe is in question.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "society"
+    ]
+  },
+  {
+    "id": "2923",
+    "japanese": "社会のルールを守ることは大切です。",
+    "chunks": [
+      "社会",
+      "の",
+      "ルール",
+      "を",
+      "守る",
+      "こと",
+      "は",
+      "大切",
+      "です。"
+    ],
+    "translation": "遵守社會的規則很重要。",
+    "english": "Following society's rules is important.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "society"
+    ]
+  },
+  {
+    "id": "2924",
+    "japanese": "便利な社会の裏には、見えない苦労がある。",
+    "chunks": [
+      "便利",
+      "な",
+      "社会",
+      "の",
+      "裏",
+      "に",
+      "は、",
+      "見えない",
+      "苦労",
+      "が",
+      "ある。"
+    ],
+    "translation": "在便利社會的背後，有著看不見的辛勞。",
+    "english": "Behind a convenient society lie unseen hardships.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "society"
+    ]
+  },
+  {
+    "id": "2925",
+    "japanese": "私の人生の目標は世界を旅することです。",
+    "chunks": [
+      "私",
+      "の",
+      "人生",
+      "の",
+      "目標",
+      "は",
+      "世界",
+      "を",
+      "旅する",
+      "こと",
+      "です。"
+    ],
+    "translation": "我人生的目標是環遊世界。",
+    "english": "My life goal is to travel the world.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2926",
+    "japanese": "何のために生きるのか、ときどき考える。",
+    "chunks": [
+      "何",
+      "の",
+      "ために",
+      "生きる",
+      "の",
+      "か、",
+      "ときどき",
+      "考える。"
+    ],
+    "translation": "我有時會思考自己為了什麼而活。",
+    "english": "Sometimes I wonder what I'm living for.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2927",
+    "japanese": "明確な人生の目標があれば、毎日に張りが出る。",
+    "chunks": [
+      "明確",
+      "な",
+      "人生",
+      "の",
+      "目標",
+      "が",
+      "あれば、",
+      "毎日",
+      "に",
+      "張り",
+      "が",
+      "出る。"
+    ],
+    "translation": "只要有明確的人生目標，每天就會充滿幹勁。",
+    "english": "If you have a clear life goal, your days take on a sense of purpose.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2928",
+    "japanese": "人生の目標を見失ったとき、人はかえって自分と向き合うことになる。",
+    "chunks": [
+      "人生",
+      "の",
+      "目標",
+      "を",
+      "見失った",
+      "とき、",
+      "人",
+      "は",
+      "かえって",
+      "自分",
+      "と",
+      "向き合う",
+      "こと",
+      "に",
+      "なる。"
+    ],
+    "translation": "當迷失人生目標時，人反而會去面對自己。",
+    "english": "When you lose sight of your life's goal, you end up confronting yourself instead.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2929",
+    "japanese": "私は幸せに生きたいです。",
+    "chunks": [
+      "私",
+      "は",
+      "幸せ",
+      "に",
+      "生きたい",
+      "です。"
+    ],
+    "translation": "我想幸福地活著。",
+    "english": "I want to live happily.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2930",
+    "japanese": "誰かの役に立つことが、私の生きがいだ。",
+    "chunks": [
+      "誰か",
+      "の",
+      "役",
+      "に",
+      "立つ",
+      "こと",
+      "が、",
+      "私",
+      "の",
+      "生きがい",
+      "だ。"
+    ],
+    "translation": "能對某人有所幫助，就是我生存的意義。",
+    "english": "Being useful to someone is what makes my life worth living.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2931",
+    "japanese": "目標があるからこそ、つらくても頑張れる。",
+    "chunks": [
+      "目標",
+      "が",
+      "ある",
+      "から",
+      "こそ、",
+      "つらくて",
+      "も",
+      "頑張れる。"
+    ],
+    "translation": "正因為有目標，即使辛苦也能努力。",
+    "english": "It's precisely because I have a goal that I can keep going even when it's hard.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2932",
+    "japanese": "生涯をかけて打ち込めるものに出会えた人は、幸せだと言える。",
+    "chunks": [
+      "生涯",
+      "を",
+      "かけて",
+      "打ち込める",
+      "もの",
+      "に",
+      "出会えた",
+      "人",
+      "は、",
+      "幸せ",
+      "だ",
+      "と",
+      "言える。"
+    ],
+    "translation": "能遇見值得傾注一生去投入之事的人，可說是幸福的。",
+    "english": "Those who find something they can devote their whole life to can be called fortunate.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2933",
+    "japanese": "将来、自分の店を持ちたいです。",
+    "chunks": [
+      "将来、",
+      "自分",
+      "の",
+      "店",
+      "を",
+      "持ちたい",
+      "です。"
+    ],
+    "translation": "將來我想擁有自己的店。",
+    "english": "In the future, I want to have my own shop.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2934",
+    "japanese": "人生の目標は、年齢とともに変わっていくものだ。",
+    "chunks": [
+      "人生",
+      "の",
+      "目標",
+      "は、",
+      "年齢",
+      "と",
+      "ともに",
+      "変わって",
+      "いく",
+      "もの",
+      "だ。"
+    ],
+    "translation": "人生的目標，會隨著年齡而改變。",
+    "english": "Life goals change as you grow older.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "life goal"
+    ]
+  },
+  {
+    "id": "2935",
+    "japanese": "公園にたくさんの人がいます。",
+    "chunks": [
+      "公園",
+      "に",
+      "たくさん",
+      "の",
+      "人",
+      "が",
+      "います。"
+    ],
+    "translation": "公園裡有很多人。",
+    "english": "There are a lot of people in the park.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "people"
+    ]
+  },
+  {
+    "id": "2936",
+    "japanese": "駅は人でいっぱいでした。",
+    "chunks": [
+      "駅",
+      "は",
+      "人",
+      "で",
+      "いっぱい",
+      "でした。"
+    ],
+    "translation": "車站擠滿了人。",
+    "english": "The station was full of people.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "people"
+    ]
+  },
+  {
+    "id": "2937",
+    "japanese": "いろいろな人と話すのは楽しい。",
+    "chunks": [
+      "いろいろ",
+      "な",
+      "人",
+      "と",
+      "話す",
+      "の",
+      "は",
+      "楽しい。"
+    ],
+    "translation": "和各式各樣的人聊天很愉快。",
+    "english": "It's fun to talk with all kinds of people.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "people"
+    ]
+  },
+  {
+    "id": "2938",
+    "japanese": "困っている人を見たら、つい声をかけてしまう。",
+    "chunks": [
+      "困って",
+      "いる",
+      "人",
+      "を",
+      "見たら、",
+      "つい",
+      "声",
+      "を",
+      "かけて",
+      "しまう。"
+    ],
+    "translation": "一看到有困難的人，我就忍不住會出聲關心。",
+    "english": "When I see someone in trouble, I can't help but speak up to them.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "people"
+    ]
+  },
+  {
+    "id": "2939",
+    "japanese": "人はみな、それぞれの事情を抱えて生きているものだ。",
+    "chunks": [
+      "人",
+      "は",
+      "みな、",
+      "それぞれ",
+      "の",
+      "事情",
+      "を",
+      "抱えて",
+      "生きて",
+      "いる",
+      "もの",
+      "だ。"
+    ],
+    "translation": "每個人都各自背負著自己的難處活著。",
+    "english": "Everyone lives carrying their own circumstances.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "people"
+    ]
+  },
+  {
+    "id": "2940",
+    "japanese": "祭りには大勢の人が集まった。",
+    "chunks": [
+      "祭り",
+      "に",
+      "は",
+      "大勢",
+      "の",
+      "人",
+      "が",
+      "集まった。"
+    ],
+    "translation": "慶典上聚集了許多人。",
+    "english": "A large crowd of people gathered at the festival.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "people"
+    ]
+  },
+  {
+    "id": "2941",
+    "japanese": "人は見かけによらないと、つくづく感じた。",
+    "chunks": [
+      "人",
+      "は",
+      "見かけ",
+      "に",
+      "よらない",
+      "と、",
+      "つくづく",
+      "感じた。"
+    ],
+    "translation": "我深深感到，人不可貌相。",
+    "english": "I keenly felt that you can't judge people by their appearance.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "people"
+    ]
+  },
+  {
+    "id": "2942",
+    "japanese": "多くの人と関わるほど、自分の視野は広がっていく。",
+    "chunks": [
+      "多く",
+      "の",
+      "人",
+      "と",
+      "関わる",
+      "ほど、",
+      "自分",
+      "の",
+      "視野",
+      "は",
+      "広がって",
+      "いく。"
+    ],
+    "translation": "與越多的人往來，自己的視野就越開闊。",
+    "english": "The more people you engage with, the more your horizons broaden.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "people"
+    ]
+  },
+  {
+    "id": "2943",
+    "japanese": "その店はいつも人が多いです。",
+    "chunks": [
+      "その",
+      "店",
+      "は",
+      "いつも",
+      "人",
+      "が",
+      "多い",
+      "です。"
+    ],
+    "translation": "那家店總是人很多。",
+    "english": "That shop is always crowded with people.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "people"
+    ]
+  },
+  {
+    "id": "2944",
+    "japanese": "人と人とのつながりが、私たちを支えている。",
+    "chunks": [
+      "人",
+      "と",
+      "人",
+      "と",
+      "の",
+      "つながり",
+      "が、",
+      "私たち",
+      "を",
+      "支えて",
+      "いる。"
+    ],
+    "translation": "人與人之間的連結，支撐著我們。",
+    "english": "The connections between people support us.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "people"
+    ]
   }
 ]
