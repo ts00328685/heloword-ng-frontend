@@ -73578,5 +73578,1040 @@
       "N1",
       "teamwork"
     ]
+  },
+  {
+    "id": "3593",
+    "japanese": "時間は誰にも平等に流れる。",
+    "chunks": [
+      "時間",
+      "は",
+      "誰",
+      "に",
+      "も",
+      "平等",
+      "に",
+      "流れる。"
+    ],
+    "translation": "時間對任何人都平等地流逝。",
+    "english": "Time flows equally for everyone.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "time"
+    ]
+  },
+  {
+    "id": "3594",
+    "japanese": "私は毎朝六時に起きます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "六",
+      "時",
+      "に",
+      "起きます。"
+    ],
+    "translation": "我每天早上六點起床。",
+    "english": "I get up at six every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "time"
+    ]
+  },
+  {
+    "id": "3595",
+    "japanese": "過ぎた時間は、二度と戻ってこない。",
+    "chunks": [
+      "過ぎた",
+      "時間",
+      "は、",
+      "二度",
+      "と",
+      "戻って",
+      "こない。"
+    ],
+    "translation": "逝去的時間，再也不會回來。",
+    "english": "Time that has passed never comes back.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "time"
+    ]
+  },
+  {
+    "id": "3596",
+    "japanese": "待ち合わせに、少し遅れてしまいました。",
+    "chunks": [
+      "待ち合わせ",
+      "に、",
+      "少し",
+      "遅れて",
+      "しまいました。"
+    ],
+    "translation": "我和人約見面遲到了一點。",
+    "english": "I was a little late for the meeting.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "time"
+    ]
+  },
+  {
+    "id": "3597",
+    "japanese": "限りある時間を、どう使うかが問われる。",
+    "chunks": [
+      "限りある",
+      "時間",
+      "を、",
+      "どう",
+      "使う",
+      "か",
+      "が",
+      "問われる。"
+    ],
+    "translation": "如何運用有限的時間，正受到考驗。",
+    "english": "How we use our finite time is what's tested.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "time"
+    ]
+  },
+  {
+    "id": "3598",
+    "japanese": "楽しい時間は、あっという間に過ぎる。",
+    "chunks": [
+      "楽しい",
+      "時間",
+      "は、",
+      "あっという間",
+      "に",
+      "過ぎる。"
+    ],
+    "translation": "快樂的時光，轉眼就過去了。",
+    "english": "Fun times pass in the blink of an eye.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "time"
+    ]
+  },
+  {
+    "id": "3599",
+    "japanese": "私は時計を見て、急ぎました。",
+    "chunks": [
+      "私",
+      "は",
+      "時計",
+      "を",
+      "見て、",
+      "急ぎました。"
+    ],
+    "translation": "我看了時鐘，趕緊行動。",
+    "english": "I looked at the clock and hurried.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "time"
+    ]
+  },
+  {
+    "id": "3600",
+    "japanese": "時の流れとともに、価値観も変わる。",
+    "chunks": [
+      "時",
+      "の",
+      "流れ",
+      "と",
+      "ともに、",
+      "価値観",
+      "も",
+      "変わる。"
+    ],
+    "translation": "隨著時間的流逝，價值觀也會改變。",
+    "english": "As time flows, values change too.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "time"
+    ]
+  },
+  {
+    "id": "3601",
+    "japanese": "約束の時間は、きちんと守りましょう。",
+    "chunks": [
+      "約束",
+      "の",
+      "時間",
+      "は、",
+      "きちんと",
+      "守りましょう。"
+    ],
+    "translation": "約定的時間，要好好遵守。",
+    "english": "Let's be sure to keep the agreed-upon time.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "time"
+    ]
+  },
+  {
+    "id": "3602",
+    "japanese": "今この瞬間を、大切に生きたい。",
+    "chunks": [
+      "今",
+      "この",
+      "瞬間",
+      "を、",
+      "大切",
+      "に",
+      "生きたい。"
+    ],
+    "translation": "我想珍惜當下這一刻地活著。",
+    "english": "I want to live cherishing this very moment.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "time"
+    ]
+  },
+  {
+    "id": "3603",
+    "japanese": "朝は道がとても込みます。",
+    "chunks": [
+      "朝",
+      "は",
+      "道",
+      "が",
+      "とても",
+      "込みます。"
+    ],
+    "translation": "早上的路非常擁擠。",
+    "english": "The roads are very crowded in the morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3604",
+    "japanese": "事故のせいで、電車が遅れています。",
+    "chunks": [
+      "事故",
+      "の",
+      "せい",
+      "で、",
+      "電車",
+      "が",
+      "遅れて",
+      "います。"
+    ],
+    "translation": "因為事故，電車誤點了。",
+    "english": "Because of an accident, the train is delayed.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3605",
+    "japanese": "都市の交通渋滞は、深刻な問題だ。",
+    "chunks": [
+      "都市",
+      "の",
+      "交通渋滞",
+      "は、",
+      "深刻",
+      "な",
+      "問題",
+      "だ。"
+    ],
+    "translation": "都市的交通堵塞，是嚴重的問題。",
+    "english": "Urban traffic congestion is a serious problem.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3606",
+    "japanese": "私は信号が青になるのを待ちました。",
+    "chunks": [
+      "私",
+      "は",
+      "信号",
+      "が",
+      "青",
+      "に",
+      "なる",
+      "の",
+      "を",
+      "待ちました。"
+    ],
+    "translation": "我等紅綠燈變綠。",
+    "english": "I waited for the light to turn green.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3607",
+    "japanese": "公共交通の整備が、暮らしを支える。",
+    "chunks": [
+      "公共",
+      "交通",
+      "の",
+      "整備",
+      "が、",
+      "暮らし",
+      "を",
+      "支える。"
+    ],
+    "translation": "公共交通的完善，支撐著生活。",
+    "english": "Developing public transit supports daily life.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3608",
+    "japanese": "雨の日は、運転に気をつける。",
+    "chunks": [
+      "雨",
+      "の",
+      "日",
+      "は、",
+      "運転",
+      "に",
+      "気",
+      "を",
+      "つける。"
+    ],
+    "translation": "下雨天，開車要小心。",
+    "english": "On rainy days, I'm careful when driving.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3609",
+    "japanese": "この道は一方通行なので、注意して。",
+    "chunks": [
+      "この",
+      "道",
+      "は",
+      "一方通行",
+      "な",
+      "ので、",
+      "注意",
+      "して。"
+    ],
+    "translation": "這條路是單行道，所以要注意。",
+    "english": "This road is one-way, so be careful.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3610",
+    "japanese": "私はバスで会社に行きます。",
+    "chunks": [
+      "私",
+      "は",
+      "バス",
+      "で",
+      "会社",
+      "に",
+      "行きます。"
+    ],
+    "translation": "我搭公車去公司。",
+    "english": "I go to the office by bus.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3611",
+    "japanese": "渋滞を避けるため、早めに家を出た。",
+    "chunks": [
+      "渋滞",
+      "を",
+      "避ける",
+      "ため、",
+      "早め",
+      "に",
+      "家",
+      "を",
+      "出た。"
+    ],
+    "translation": "為了避開塞車，我提早出門了。",
+    "english": "To avoid traffic, I left home early.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3612",
+    "japanese": "車の数が増えれば、事故の危険も増す。",
+    "chunks": [
+      "車",
+      "の",
+      "数",
+      "が",
+      "増えれば、",
+      "事故",
+      "の",
+      "危険",
+      "も",
+      "増す。"
+    ],
+    "translation": "車輛數量增加，事故的危險也會增加。",
+    "english": "As the number of cars rises, so does the risk of accidents.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "traffic"
+    ]
+  },
+  {
+    "id": "3613",
+    "japanese": "困ったときは、すぐに相談してください。",
+    "chunks": [
+      "困った",
+      "とき",
+      "は、",
+      "すぐ",
+      "に",
+      "相談",
+      "して",
+      "ください。"
+    ],
+    "translation": "遇到困難時，請馬上找我商量。",
+    "english": "When you're in trouble, please consult me right away.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3614",
+    "japanese": "パソコンが急に動かなくなった。",
+    "chunks": [
+      "パソコン",
+      "が",
+      "急に",
+      "動か",
+      "なく",
+      "なった。"
+    ],
+    "translation": "電腦突然不動了。",
+    "english": "My computer suddenly stopped working.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3615",
+    "japanese": "小さな問題のうちに、対処しておく。",
+    "chunks": [
+      "小さな",
+      "問題",
+      "の",
+      "うち",
+      "に、",
+      "対処",
+      "して",
+      "おく。"
+    ],
+    "translation": "趁問題還小的時候就先處理。",
+    "english": "I deal with problems while they're still small.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3616",
+    "japanese": "道に迷って、少しあわてました。",
+    "chunks": [
+      "道",
+      "に",
+      "迷って、",
+      "少し",
+      "あわてました。"
+    ],
+    "translation": "迷路了，有點慌張。",
+    "english": "I got lost and panicked a little.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3617",
+    "japanese": "どんな困難にも、必ず解決策がある。",
+    "chunks": [
+      "どんな",
+      "困難",
+      "に",
+      "も、",
+      "必ず",
+      "解決策",
+      "が",
+      "ある。"
+    ],
+    "translation": "無論什麼困難，都一定有解決辦法。",
+    "english": "For any difficulty, there's always a solution.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3618",
+    "japanese": "財布をなくして、本当に困りました。",
+    "chunks": [
+      "財布",
+      "を",
+      "なくして、",
+      "本当",
+      "に",
+      "困りました。"
+    ],
+    "translation": "我弄丟了錢包，真的很困擾。",
+    "english": "I lost my wallet and was really in trouble.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3619",
+    "japanese": "問題を一人で抱え込まないほうがいい。",
+    "chunks": [
+      "問題",
+      "を",
+      "一人",
+      "で",
+      "抱え込ま",
+      "ない",
+      "ほう",
+      "が",
+      "いい。"
+    ],
+    "translation": "問題最好不要一個人扛。",
+    "english": "It's better not to shoulder problems alone.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3620",
+    "japanese": "雨に降られて、服がぬれました。",
+    "chunks": [
+      "雨",
+      "に",
+      "降られて、",
+      "服",
+      "が",
+      "ぬれました。"
+    ],
+    "translation": "被雨淋了，衣服都濕了。",
+    "english": "I got caught in the rain and my clothes got wet.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3621",
+    "japanese": "トラブルの原因を、冷静に探る。",
+    "chunks": [
+      "トラブル",
+      "の",
+      "原因",
+      "を、",
+      "冷静",
+      "に",
+      "探る。"
+    ],
+    "translation": "冷靜地探究麻煩的原因。",
+    "english": "I calmly look into the cause of the trouble.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3622",
+    "japanese": "逆境こそが、人を強くする。",
+    "chunks": [
+      "逆境",
+      "こそ",
+      "が、",
+      "人",
+      "を",
+      "強く",
+      "する。"
+    ],
+    "translation": "正是逆境，使人變得堅強。",
+    "english": "It is precisely adversity that makes people strong.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "trouble"
+    ]
+  },
+  {
+    "id": "3623",
+    "japanese": "都会の生活は、便利だが忙しい。",
+    "chunks": [
+      "都会",
+      "の",
+      "生活",
+      "は、",
+      "便利",
+      "だ",
+      "が",
+      "忙しい。"
+    ],
+    "translation": "都市的生活，方便但忙碌。",
+    "english": "City life is convenient but busy.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3624",
+    "japanese": "私は駅の近くに住んでいます。",
+    "chunks": [
+      "私",
+      "は",
+      "駅",
+      "の",
+      "近く",
+      "に",
+      "住んで",
+      "います。"
+    ],
+    "translation": "我住在車站附近。",
+    "english": "I live near the station.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3625",
+    "japanese": "高層ビルが立ち並ぶ風景に、圧倒された。",
+    "chunks": [
+      "高層ビル",
+      "が",
+      "立ち並ぶ",
+      "風景",
+      "に、",
+      "圧倒",
+      "された。"
+    ],
+    "translation": "對於高樓林立的景象，我深感震撼。",
+    "english": "I was overwhelmed by the landscape of towering buildings.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3626",
+    "japanese": "人が多くて、電車はいつも混んでいる。",
+    "chunks": [
+      "人",
+      "が",
+      "多くて、",
+      "電車",
+      "は",
+      "いつも",
+      "混んで",
+      "いる。"
+    ],
+    "translation": "人很多，電車總是很擁擠。",
+    "english": "There are so many people; the trains are always packed.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3627",
+    "japanese": "都市には、便利さと孤独が共存する。",
+    "chunks": [
+      "都市",
+      "に",
+      "は、",
+      "便利さ",
+      "と",
+      "孤独",
+      "が",
+      "共存",
+      "する。"
+    ],
+    "translation": "都市裡，便利與孤獨並存。",
+    "english": "In the city, convenience and loneliness coexist.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3628",
+    "japanese": "近くにお店がたくさんあって、便利です。",
+    "chunks": [
+      "近く",
+      "に",
+      "お店",
+      "が",
+      "たくさん",
+      "あって、",
+      "便利",
+      "です。"
+    ],
+    "translation": "附近有很多店家，很方便。",
+    "english": "There are many shops nearby, so it's convenient.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3629",
+    "japanese": "都会の喧騒を離れて、自然にふれたい。",
+    "chunks": [
+      "都会",
+      "の",
+      "喧騒",
+      "を",
+      "離れて、",
+      "自然",
+      "に",
+      "ふれたい。"
+    ],
+    "translation": "我想遠離都市的喧囂，接觸大自然。",
+    "english": "I want to leave the city's bustle and touch nature.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3630",
+    "japanese": "私は休みに公園でゆっくりします。",
+    "chunks": [
+      "私",
+      "は",
+      "休み",
+      "に",
+      "公園",
+      "で",
+      "ゆっくり",
+      "します。"
+    ],
+    "translation": "我休假時在公園悠閒度過。",
+    "english": "On my days off, I relax in the park.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3631",
+    "japanese": "家賃が高いのが、都市の悩みだ。",
+    "chunks": [
+      "家賃",
+      "が",
+      "高い",
+      "の",
+      "が、",
+      "都市",
+      "の",
+      "悩み",
+      "だ。"
+    ],
+    "translation": "房租很高，是都市的煩惱。",
+    "english": "High rent is a worry of city living.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3632",
+    "japanese": "夜でも明るい街は、眠らないようだ。",
+    "chunks": [
+      "夜",
+      "でも",
+      "明るい",
+      "街",
+      "は、",
+      "眠ら",
+      "ない",
+      "よう",
+      "だ。"
+    ],
+    "translation": "即使到了夜晚也明亮的街道，彷彿不會入睡。",
+    "english": "The city, bright even at night, seems never to sleep.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "urban life"
+    ]
+  },
+  {
+    "id": "3633",
+    "japanese": "私は週末にボランティアをします。",
+    "chunks": [
+      "私",
+      "は",
+      "週末",
+      "に",
+      "ボランティア",
+      "を",
+      "します。"
+    ],
+    "translation": "我週末做志工。",
+    "english": "I do volunteer work on weekends.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3634",
+    "japanese": "地域の清掃に、多くの人が集まった。",
+    "chunks": [
+      "地域",
+      "の",
+      "清掃",
+      "に、",
+      "多く",
+      "の",
+      "人",
+      "が",
+      "集まった。"
+    ],
+    "translation": "許多人聚集起來進行社區清掃。",
+    "english": "Many people gathered for the community cleanup.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3635",
+    "japanese": "見返りを求めない活動に、意味がある。",
+    "chunks": [
+      "見返り",
+      "を",
+      "求め",
+      "ない",
+      "活動",
+      "に、",
+      "意味",
+      "が",
+      "ある。"
+    ],
+    "translation": "不求回報的活動，才有意義。",
+    "english": "There is meaning in activity that seeks no reward.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3636",
+    "japanese": "困っている人を、少しでも助けたい。",
+    "chunks": [
+      "困って",
+      "いる",
+      "人",
+      "を、",
+      "少し",
+      "でも",
+      "助けたい。"
+    ],
+    "translation": "我想盡可能幫助有困難的人。",
+    "english": "I want to help those in trouble, even a little.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3637",
+    "japanese": "私はお年寄りの話し相手になりました。",
+    "chunks": [
+      "私",
+      "は",
+      "お年寄り",
+      "の",
+      "話し相手",
+      "に",
+      "なりました。"
+    ],
+    "translation": "我成了老人家的聊天對象。",
+    "english": "I became a conversation partner for the elderly.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3638",
+    "japanese": "小さな行動が、大きな変化を生む。",
+    "chunks": [
+      "小さな",
+      "行動",
+      "が、",
+      "大きな",
+      "変化",
+      "を",
+      "生む。"
+    ],
+    "translation": "小小的行動，能催生巨大的改變。",
+    "english": "A small action gives rise to a big change.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3639",
+    "japanese": "災害の現場で、多くの人が汗を流した。",
+    "chunks": [
+      "災害",
+      "の",
+      "現場",
+      "で、",
+      "多く",
+      "の",
+      "人",
+      "が",
+      "汗",
+      "を",
+      "流した。"
+    ],
+    "translation": "在災害現場，許多人揮灑了汗水。",
+    "english": "At the disaster site, many people sweated for others.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3640",
+    "japanese": "子どもたちに本を読んであげました。",
+    "chunks": [
+      "子ども",
+      "たち",
+      "に",
+      "本",
+      "を",
+      "読んで",
+      "あげました。"
+    ],
+    "translation": "我念書給孩子們聽。",
+    "english": "I read books to the children.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3641",
+    "japanese": "人のために動くと、自分も元気になる。",
+    "chunks": [
+      "人",
+      "の",
+      "ため",
+      "に",
+      "動く",
+      "と、",
+      "自分",
+      "も",
+      "元気",
+      "に",
+      "なる。"
+    ],
+    "translation": "為他人付出，自己也會變得有精神。",
+    "english": "Acting for others energizes you too.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "volunteer"
+    ]
+  },
+  {
+    "id": "3642",
+    "japanese": "支え合う気持ちが、強い地域を作る。",
+    "chunks": [
+      "支え合う",
+      "気持ち",
+      "が、",
+      "強い",
+      "地域",
+      "を",
+      "作る。"
+    ],
+    "translation": "互相扶持的心，能造就堅韌的社區。",
+    "english": "A spirit of mutual support builds a strong community.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "volunteer"
+    ]
   }
 ]
