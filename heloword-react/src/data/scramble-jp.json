@@ -59710,5 +59710,1112 @@
       "N2",
       "people"
     ]
+  },
+  {
+    "id": "2945",
+    "japanese": "今、どんな状態ですか。",
+    "chunks": [
+      "今、",
+      "どんな",
+      "状態",
+      "です",
+      "か。"
+    ],
+    "translation": "現在是什麼狀態？",
+    "english": "What state is it in right now?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "state"
+    ]
+  },
+  {
+    "id": "2946",
+    "japanese": "機械が故障した状態のままだ。",
+    "chunks": [
+      "機械",
+      "が",
+      "故障した",
+      "状態",
+      "の",
+      "まま",
+      "だ。"
+    ],
+    "translation": "機器一直處於故障的狀態。",
+    "english": "The machine remains in a broken state.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "state"
+    ]
+  },
+  {
+    "id": "2947",
+    "japanese": "道路は雪で、運転しにくい状態だった。",
+    "chunks": [
+      "道路",
+      "は",
+      "雪",
+      "で、",
+      "運転",
+      "しにくい",
+      "状態",
+      "だった。"
+    ],
+    "translation": "道路因積雪而處於難以行駛的狀態。",
+    "english": "The road was snowy and in a state that made it hard to drive.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "state"
+    ]
+  },
+  {
+    "id": "2948",
+    "japanese": "心身ともに健全な状態を保つことは、思いのほか難しい。",
+    "chunks": [
+      "心身",
+      "ともに",
+      "健全",
+      "な",
+      "状態",
+      "を",
+      "保つ",
+      "こと",
+      "は、",
+      "思いのほか",
+      "難しい。"
+    ],
+    "translation": "要保持身心都健全的狀態，比想像中還難。",
+    "english": "Keeping both mind and body in a sound state is harder than you'd think.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "state"
+    ]
+  },
+  {
+    "id": "2949",
+    "japanese": "部屋がきれいな状態です。",
+    "chunks": [
+      "部屋",
+      "が",
+      "きれい",
+      "な",
+      "状態",
+      "です。"
+    ],
+    "translation": "房間處於整潔的狀態。",
+    "english": "The room is in a clean state.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "state"
+    ]
+  },
+  {
+    "id": "2950",
+    "japanese": "システムは現在、正常に動いている状態だ。",
+    "chunks": [
+      "システム",
+      "は",
+      "現在、",
+      "正常",
+      "に",
+      "動いて",
+      "いる",
+      "状態",
+      "だ。"
+    ],
+    "translation": "系統目前處於正常運作的狀態。",
+    "english": "The system is currently in a normally functioning state.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "state"
+    ]
+  },
+  {
+    "id": "2951",
+    "japanese": "緊張した状態では、力を出しきれない。",
+    "chunks": [
+      "緊張した",
+      "状態",
+      "で",
+      "は、",
+      "力",
+      "を",
+      "出しきれない。"
+    ],
+    "translation": "在緊張的狀態下，無法完全發揮實力。",
+    "english": "In a tense state, you can't give your full performance.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "state"
+    ]
+  },
+  {
+    "id": "2952",
+    "japanese": "不安定な状態が長く続けば、組織はやがて立ち行かなくなる。",
+    "chunks": [
+      "不安定",
+      "な",
+      "状態",
+      "が",
+      "長く",
+      "続けば、",
+      "組織",
+      "は",
+      "やがて",
+      "立ち行かなく",
+      "なる。"
+    ],
+    "translation": "不穩定的狀態若持續太久，組織終將難以維持。",
+    "english": "If an unstable state continues for long, the organization will eventually become unsustainable.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "state"
+    ]
+  },
+  {
+    "id": "2953",
+    "japanese": "体の状態が少し良くなりました。",
+    "chunks": [
+      "体",
+      "の",
+      "状態",
+      "が",
+      "少し",
+      "良く",
+      "なりました。"
+    ],
+    "translation": "身體狀況稍微好轉了。",
+    "english": "My physical condition has improved a little.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "state"
+    ]
+  },
+  {
+    "id": "2954",
+    "japanese": "現状を正しく把握してから、対策を立てるべきだ。",
+    "chunks": [
+      "現状",
+      "を",
+      "正しく",
+      "把握して",
+      "から、",
+      "対策",
+      "を",
+      "立てる",
+      "べき",
+      "だ。"
+    ],
+    "translation": "應該先正確掌握現狀，再制定對策。",
+    "english": "You should grasp the current situation correctly before devising countermeasures.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "state"
+    ]
+  },
+  {
+    "id": "2955",
+    "japanese": "祖母は今も英語を勉強しています。",
+    "chunks": [
+      "祖母",
+      "は",
+      "今",
+      "も",
+      "英語",
+      "を",
+      "勉強",
+      "して",
+      "います。"
+    ],
+    "translation": "祖母現在仍在學英語。",
+    "english": "My grandmother is still studying English.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2956",
+    "japanese": "何歳になっても学ぶことは大切だ。",
+    "chunks": [
+      "何歳",
+      "に",
+      "なって",
+      "も",
+      "学ぶ",
+      "こと",
+      "は",
+      "大切",
+      "だ。"
+    ],
+    "translation": "不管到了幾歲，學習都很重要。",
+    "english": "No matter your age, learning is important.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2957",
+    "japanese": "定年後、大学で学び直す人が増えている。",
+    "chunks": [
+      "定年後、",
+      "大学",
+      "で",
+      "学び直す",
+      "人",
+      "が",
+      "増えて",
+      "いる。"
+    ],
+    "translation": "退休後重回大學進修的人正在增加。",
+    "english": "More people are going back to university to study after retirement.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2958",
+    "japanese": "学びに終わりはなく、生涯を通じて続けるべきものだ。",
+    "chunks": [
+      "学び",
+      "に",
+      "終わり",
+      "は",
+      "なく、",
+      "生涯",
+      "を",
+      "通じて",
+      "続ける",
+      "べき",
+      "もの",
+      "だ。"
+    ],
+    "translation": "學習沒有盡頭，是該終其一生持續下去的事。",
+    "english": "Learning has no end; it's something to continue throughout one's life.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2959",
+    "japanese": "私は毎日少し勉強します。",
+    "chunks": [
+      "私",
+      "は",
+      "毎日",
+      "少し",
+      "勉強",
+      "します。"
+    ],
+    "translation": "我每天都讀一點書。",
+    "english": "I study a little every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2960",
+    "japanese": "新しいことを学ぶと、世界が広がるように感じる。",
+    "chunks": [
+      "新しい",
+      "こと",
+      "を",
+      "学ぶ",
+      "と、",
+      "世界",
+      "が",
+      "広がる",
+      "ように",
+      "感じる。"
+    ],
+    "translation": "學習新事物時，感覺世界變得寬廣。",
+    "english": "When I learn something new, I feel as if my world expands.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2961",
+    "japanese": "趣味の教室に通って、料理を習っている。",
+    "chunks": [
+      "趣味",
+      "の",
+      "教室",
+      "に",
+      "通って、",
+      "料理",
+      "を",
+      "習って",
+      "いる。"
+    ],
+    "translation": "我去興趣班學做菜。",
+    "english": "I attend a hobby class and am learning to cook.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2962",
+    "japanese": "変化の激しい時代には、学び続ける姿勢こそが武器となる。",
+    "chunks": [
+      "変化",
+      "の",
+      "激しい",
+      "時代",
+      "に",
+      "は、",
+      "学び続ける",
+      "姿勢",
+      "こそ",
+      "が",
+      "武器",
+      "と",
+      "なる。"
+    ],
+    "translation": "在變化劇烈的時代，持續學習的態度才是利器。",
+    "english": "In an era of rapid change, a posture of continuous learning is itself a weapon.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2963",
+    "japanese": "大人になっても新しいことを学べます。",
+    "chunks": [
+      "大人",
+      "に",
+      "なって",
+      "も",
+      "新しい",
+      "こと",
+      "を",
+      "学べます。"
+    ],
+    "translation": "即使成了大人，也能學習新事物。",
+    "english": "Even as an adult, you can learn new things.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2964",
+    "japanese": "学ぶ意欲さえあれば、年齢は問題にならない。",
+    "chunks": [
+      "学ぶ",
+      "意欲",
+      "さえ",
+      "あれば、",
+      "年齢",
+      "は",
+      "問題",
+      "に",
+      "ならない。"
+    ],
+    "translation": "只要有學習的意願，年齡就不是問題。",
+    "english": "As long as you have the will to learn, age is no obstacle.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "lifelong learning"
+    ]
+  },
+  {
+    "id": "2965",
+    "japanese": "ここで写真を撮ってもいいですか。",
+    "chunks": [
+      "ここ",
+      "で",
+      "写真",
+      "を",
+      "撮って",
+      "も",
+      "いい",
+      "です",
+      "か。"
+    ],
+    "translation": "我可以在這裡拍照嗎？",
+    "english": "May I take a photo here?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "permission"
+    ]
+  },
+  {
+    "id": "2966",
+    "japanese": "先生に許可をもらってから出かけた。",
+    "chunks": [
+      "先生",
+      "に",
+      "許可",
+      "を",
+      "もらって",
+      "から",
+      "出かけた。"
+    ],
+    "translation": "我得到老師的許可後才出門。",
+    "english": "I got permission from my teacher before going out.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "permission"
+    ]
+  },
+  {
+    "id": "2967",
+    "japanese": "上司の許可なしに、勝手に決めてはいけない。",
+    "chunks": [
+      "上司",
+      "の",
+      "許可",
+      "なし",
+      "に、",
+      "勝手",
+      "に",
+      "決めて",
+      "は",
+      "いけない。"
+    ],
+    "translation": "沒有上司的許可，不能擅自決定。",
+    "english": "You mustn't decide on your own without your boss's permission.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "permission"
+    ]
+  },
+  {
+    "id": "2968",
+    "japanese": "正式な許可を得ないまま事を進めれば、後で責任を問われかねない。",
+    "chunks": [
+      "正式",
+      "な",
+      "許可",
+      "を",
+      "得ない",
+      "まま",
+      "事",
+      "を",
+      "進めれば、",
+      "後",
+      "で",
+      "責任",
+      "を",
+      "問われ",
+      "かねない。"
+    ],
+    "translation": "若在未取得正式許可的情況下推進事情，日後可能會被追究責任。",
+    "english": "If you proceed without obtaining formal permission, you may be held responsible later.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "permission"
+    ]
+  },
+  {
+    "id": "2969",
+    "japanese": "入ってもいいですか。",
+    "chunks": [
+      "入って",
+      "も",
+      "いい",
+      "です",
+      "か。"
+    ],
+    "translation": "我可以進去嗎？",
+    "english": "May I come in?",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "permission"
+    ]
+  },
+  {
+    "id": "2970",
+    "japanese": "利用するには、事前に申請して許可を得る必要がある。",
+    "chunks": [
+      "利用する",
+      "に",
+      "は、",
+      "事前",
+      "に",
+      "申請して",
+      "許可",
+      "を",
+      "得る",
+      "必要",
+      "が",
+      "ある。"
+    ],
+    "translation": "要使用的話，需要事先申請並取得許可。",
+    "english": "To use it, you need to apply in advance and obtain permission.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "permission"
+    ]
+  },
+  {
+    "id": "2971",
+    "japanese": "親に許可をもらえば、旅行に行ける。",
+    "chunks": [
+      "親",
+      "に",
+      "許可",
+      "を",
+      "もらえば、",
+      "旅行",
+      "に",
+      "行ける。"
+    ],
+    "translation": "只要得到父母的許可，就能去旅行。",
+    "english": "If I get my parents' permission, I can go on the trip.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "permission"
+    ]
+  },
+  {
+    "id": "2972",
+    "japanese": "一度与えた許可を、正当な理由なく取り消すことはできない。",
+    "chunks": [
+      "一度",
+      "与えた",
+      "許可",
+      "を、",
+      "正当",
+      "な",
+      "理由",
+      "なく",
+      "取り消す",
+      "こと",
+      "は",
+      "できない。"
+    ],
+    "translation": "一旦給予的許可，沒有正當理由是無法撤銷的。",
+    "english": "Permission once granted cannot be revoked without a legitimate reason.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "permission"
+    ]
+  },
+  {
+    "id": "2973",
+    "japanese": "この部屋を使ってもいいですよ。",
+    "chunks": [
+      "この",
+      "部屋",
+      "を",
+      "使って",
+      "も",
+      "いい",
+      "です",
+      "よ。"
+    ],
+    "translation": "你可以使用這個房間喔。",
+    "english": "You may use this room.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "permission"
+    ]
+  },
+  {
+    "id": "2974",
+    "japanese": "撮影には、施設側の許可が必要だ。",
+    "chunks": [
+      "撮影",
+      "に",
+      "は、",
+      "施設側",
+      "の",
+      "許可",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "拍攝需要設施方的許可。",
+    "english": "Filming requires permission from the facility.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "permission"
+    ]
+  },
+  {
+    "id": "2975",
+    "japanese": "この歌は今でも人気があります。",
+    "chunks": [
+      "この",
+      "歌",
+      "は",
+      "今",
+      "でも",
+      "人気",
+      "が",
+      "あります。"
+    ],
+    "translation": "這首歌至今仍很受歡迎。",
+    "english": "This song is still popular even now.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2976",
+    "japanese": "古い物語は今も読み継がれている。",
+    "chunks": [
+      "古い",
+      "物語",
+      "は",
+      "今",
+      "も",
+      "読み継がれて",
+      "いる。"
+    ],
+    "translation": "古老的故事至今仍被傳頌閱讀。",
+    "english": "Old tales are still being read and passed down.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2977",
+    "japanese": "名作は、時代を超えて人々に愛され続ける。",
+    "chunks": [
+      "名作",
+      "は、",
+      "時代",
+      "を",
+      "超えて",
+      "人々",
+      "に",
+      "愛され続ける。"
+    ],
+    "translation": "名作會超越時代，持續受到人們的喜愛。",
+    "english": "Masterpieces continue to be loved by people across the ages.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2978",
+    "japanese": "真に優れた芸術は、時の流れにも色あせることがない。",
+    "chunks": [
+      "真に",
+      "優れた",
+      "芸術",
+      "は、",
+      "時",
+      "の",
+      "流れ",
+      "に",
+      "も",
+      "色あせる",
+      "こと",
+      "が",
+      "ない。"
+    ],
+    "translation": "真正優秀的藝術，不會隨時間的流逝而褪色。",
+    "english": "Truly great art never fades, even with the passage of time.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2979",
+    "japanese": "この絵はとても古いです。",
+    "chunks": [
+      "この",
+      "絵",
+      "は",
+      "とても",
+      "古い",
+      "です。"
+    ],
+    "translation": "這幅畫非常古老。",
+    "english": "This painting is very old.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2980",
+    "japanese": "親から子へ、変わらぬ価値が受け継がれていく。",
+    "chunks": [
+      "親",
+      "から",
+      "子",
+      "へ、",
+      "変わらぬ",
+      "価値",
+      "が",
+      "受け継がれて",
+      "いく。"
+    ],
+    "translation": "不變的價值，由父母傳承給孩子。",
+    "english": "Unchanging values are passed down from parent to child.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2981",
+    "japanese": "昔の知恵は、今でも役に立つことが多い。",
+    "chunks": [
+      "昔",
+      "の",
+      "知恵",
+      "は、",
+      "今",
+      "でも",
+      "役",
+      "に",
+      "立つ",
+      "こと",
+      "が",
+      "多い。"
+    ],
+    "translation": "古人的智慧，至今仍常常派得上用場。",
+    "english": "Old wisdom is still often useful today.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2982",
+    "japanese": "普遍的なテーマを扱った作品は、世代を問わず共感を呼ぶ。",
+    "chunks": [
+      "普遍的",
+      "な",
+      "テーマ",
+      "を",
+      "扱った",
+      "作品",
+      "は、",
+      "世代",
+      "を",
+      "問わず",
+      "共感",
+      "を",
+      "呼ぶ。"
+    ],
+    "translation": "處理普遍主題的作品，能不分世代引起共鳴。",
+    "english": "Works that deal with universal themes resonate regardless of generation.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2983",
+    "japanese": "この本は昔から有名です。",
+    "chunks": [
+      "この",
+      "本",
+      "は",
+      "昔",
+      "から",
+      "有名",
+      "です。"
+    ],
+    "translation": "這本書自古以來就很有名。",
+    "english": "This book has been famous for a long time.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2984",
+    "japanese": "流行は移り変わるが、本質は変わらない。",
+    "chunks": [
+      "流行",
+      "は",
+      "移り変わる",
+      "が、",
+      "本質",
+      "は",
+      "変わらない。"
+    ],
+    "translation": "流行會變遷，但本質不變。",
+    "english": "Fashions come and go, but the essence stays the same.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "timeless"
+    ]
+  },
+  {
+    "id": "2985",
+    "japanese": "よく眠ると、気分が良くなります。",
+    "chunks": [
+      "よく",
+      "眠る",
+      "と、",
+      "気分",
+      "が",
+      "良く",
+      "なります。"
+    ],
+    "translation": "睡得好，心情就會變好。",
+    "english": "When you sleep well, you feel better.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2986",
+    "japanese": "悩みは一人で抱え込まない方がいい。",
+    "chunks": [
+      "悩み",
+      "は",
+      "一人",
+      "で",
+      "抱え込まない",
+      "方",
+      "が",
+      "いい。"
+    ],
+    "translation": "煩惱最好不要一個人獨自承受。",
+    "english": "It's better not to bottle up your worries alone.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2987",
+    "japanese": "ストレスをためすぎると、心の健康を損なう。",
+    "chunks": [
+      "ストレス",
+      "を",
+      "ためすぎる",
+      "と、",
+      "心",
+      "の",
+      "健康",
+      "を",
+      "損なう。"
+    ],
+    "translation": "累積太多壓力，會損害心理健康。",
+    "english": "Building up too much stress harms your mental health.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2988",
+    "japanese": "心の不調は、目に見えないだけに見過ごされがちだ。",
+    "chunks": [
+      "心",
+      "の",
+      "不調",
+      "は、",
+      "目",
+      "に",
+      "見えない",
+      "だけ",
+      "に",
+      "見過ごされ",
+      "がち",
+      "だ。"
+    ],
+    "translation": "心理的不適，正因為看不見而容易被忽視。",
+    "english": "Mental distress, precisely because it's invisible, tends to be overlooked.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2989",
+    "japanese": "つらいときは友達に話します。",
+    "chunks": [
+      "つらい",
+      "とき",
+      "は",
+      "友達",
+      "に",
+      "話します。"
+    ],
+    "translation": "難過的時候我會找朋友傾訴。",
+    "english": "When things are hard, I talk to my friends.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2990",
+    "japanese": "適度に休むことも、心の健康には欠かせない。",
+    "chunks": [
+      "適度",
+      "に",
+      "休む",
+      "こと",
+      "も、",
+      "心",
+      "の",
+      "健康",
+      "に",
+      "は",
+      "欠かせない。"
+    ],
+    "translation": "適度休息，對心理健康也是不可或缺的。",
+    "english": "Resting in moderation is also essential to mental health.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2991",
+    "japanese": "気分が沈むときは、外の空気を吸うといい。",
+    "chunks": [
+      "気分",
+      "が",
+      "沈む",
+      "とき",
+      "は、",
+      "外",
+      "の",
+      "空気",
+      "を",
+      "吸う",
+      "と",
+      "いい。"
+    ],
+    "translation": "心情低落時，去呼吸外面的空氣會比較好。",
+    "english": "When you feel down, it's good to get some fresh air outside.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2992",
+    "japanese": "心の健康を保つには、悩みを打ち明けられる相手の存在が大きい。",
+    "chunks": [
+      "心",
+      "の",
+      "健康",
+      "を",
+      "保つ",
+      "に",
+      "は、",
+      "悩み",
+      "を",
+      "打ち明けられる",
+      "相手",
+      "の",
+      "存在",
+      "が",
+      "大きい。"
+    ],
+    "translation": "要維持心理健康，有個能傾訴煩惱的對象很重要。",
+    "english": "To maintain mental health, having someone you can confide your worries to matters greatly.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2993",
+    "japanese": "笑うことは心にいいそうです。",
+    "chunks": [
+      "笑う",
+      "こと",
+      "は",
+      "心",
+      "に",
+      "いい",
+      "そう",
+      "です。"
+    ],
+    "translation": "聽說笑對心理有益。",
+    "english": "They say laughing is good for the mind.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "mental health"
+    ]
+  },
+  {
+    "id": "2994",
+    "japanese": "心が疲れたら、無理をせずに休むべきだ。",
+    "chunks": [
+      "心",
+      "が",
+      "疲れたら、",
+      "無理",
+      "を",
+      "せず",
+      "に",
+      "休む",
+      "べき",
+      "だ。"
+    ],
+    "translation": "心累了的時候，就該別勉強好好休息。",
+    "english": "When your mind is tired, you should rest instead of pushing yourself.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "mental health"
+    ]
   }
 ]
