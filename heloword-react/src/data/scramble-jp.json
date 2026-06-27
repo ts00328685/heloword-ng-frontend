@@ -74613,5 +74613,1045 @@
       "N1",
       "volunteer"
     ]
+  },
+  {
+    "id": "3643",
+    "japanese": "私は駅で友達を待ちました。",
+    "chunks": [
+      "私",
+      "は",
+      "駅",
+      "で",
+      "友達",
+      "を",
+      "待ちました。"
+    ],
+    "translation": "我在車站等朋友。",
+    "english": "I waited for my friend at the station.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3644",
+    "japanese": "バスがなかなか来なくて、いらいらした。",
+    "chunks": [
+      "バス",
+      "が",
+      "なかなか",
+      "来",
+      "なくて、",
+      "いらいら",
+      "した。"
+    ],
+    "translation": "公車遲遲不來，我焦躁了起來。",
+    "english": "The bus wouldn't come, and I got irritated.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3645",
+    "japanese": "結果を待つ間は、落ち着かなかった。",
+    "chunks": [
+      "結果",
+      "を",
+      "待つ",
+      "間",
+      "は、",
+      "落ち着か",
+      "なかった。"
+    ],
+    "translation": "等待結果的期間，我靜不下心。",
+    "english": "While waiting for the result, I couldn't settle down.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3646",
+    "japanese": "少しお待ちください、すぐに戻ります。",
+    "chunks": [
+      "少し",
+      "お待ち",
+      "ください、",
+      "すぐ",
+      "に",
+      "戻ります。"
+    ],
+    "translation": "請稍等一下，我馬上回來。",
+    "english": "Please wait a moment; I'll be right back.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3647",
+    "japanese": "待つことには、思いがけない学びがある。",
+    "chunks": [
+      "待つ",
+      "こと",
+      "に",
+      "は、",
+      "思いがけ",
+      "ない",
+      "学び",
+      "が",
+      "ある。"
+    ],
+    "translation": "等待之中，有著意想不到的學習。",
+    "english": "In waiting, there is unexpected learning.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3648",
+    "japanese": "列に並んで、順番を待ちました。",
+    "chunks": [
+      "列",
+      "に",
+      "並んで、",
+      "順番",
+      "を",
+      "待ちました。"
+    ],
+    "translation": "我排在隊伍裡，等候順序。",
+    "english": "I lined up and waited my turn.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3649",
+    "japanese": "焦らずに待てば、時は必ず来る。",
+    "chunks": [
+      "焦らず",
+      "に",
+      "待てば、",
+      "時",
+      "は",
+      "必ず",
+      "来る。"
+    ],
+    "translation": "不急躁地等待，時機一定會到來。",
+    "english": "If you wait without rushing, the time will surely come.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3650",
+    "japanese": "私は電車をホームで待っています。",
+    "chunks": [
+      "私",
+      "は",
+      "電車",
+      "を",
+      "ホーム",
+      "で",
+      "待って",
+      "います。"
+    ],
+    "translation": "我在月台等電車。",
+    "english": "I'm waiting for the train on the platform.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3651",
+    "japanese": "返事を待ちながら、他の仕事を進めた。",
+    "chunks": [
+      "返事",
+      "を",
+      "待ち",
+      "ながら、",
+      "他",
+      "の",
+      "仕事",
+      "を",
+      "進めた。"
+    ],
+    "translation": "一邊等待回覆，一邊推進其他工作。",
+    "english": "While waiting for a reply, I got on with other work.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3652",
+    "japanese": "待ちに待った知らせが、ついに届いた。",
+    "chunks": [
+      "待ち",
+      "に",
+      "待った",
+      "知らせ",
+      "が、",
+      "ついに",
+      "届いた。"
+    ],
+    "translation": "盼了又盼的消息，終於送到了。",
+    "english": "The long-awaited news finally arrived.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "waiting"
+    ]
+  },
+  {
+    "id": "3653",
+    "japanese": "冬は寒いので、厚いコートを着ます。",
+    "chunks": [
+      "冬",
+      "は",
+      "寒い",
+      "ので、",
+      "厚い",
+      "コート",
+      "を",
+      "着ます。"
+    ],
+    "translation": "冬天很冷，所以我穿厚外套。",
+    "english": "Winter is cold, so I wear a thick coat.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "winter"
+    ]
+  },
+  {
+    "id": "3654",
+    "japanese": "朝起きると、窓が凍っていた。",
+    "chunks": [
+      "朝",
+      "起きる",
+      "と、",
+      "窓",
+      "が",
+      "凍って",
+      "いた。"
+    ],
+    "translation": "早上起床，窗戶結凍了。",
+    "english": "When I got up, the window was frozen.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "winter"
+    ]
+  },
+  {
+    "id": "3655",
+    "japanese": "雪国の冬は、厳しくても美しい。",
+    "chunks": [
+      "雪国",
+      "の",
+      "冬",
+      "は、",
+      "厳しく",
+      "て",
+      "も",
+      "美しい。"
+    ],
+    "translation": "雪國的冬天，嚴酷卻也美麗。",
+    "english": "Winter in snow country is harsh but beautiful.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "winter"
+    ]
+  },
+  {
+    "id": "3656",
+    "japanese": "私は温かいスープを飲みました。",
+    "chunks": [
+      "私",
+      "は",
+      "温かい",
+      "スープ",
+      "を",
+      "飲みました。"
+    ],
+    "translation": "我喝了溫熱的湯。",
+    "english": "I drank some warm soup.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "winter"
+    ]
+  },
+  {
+    "id": "3657",
+    "japanese": "こたつに入って、みかんを食べる。",
+    "chunks": [
+      "こたつ",
+      "に",
+      "入って、",
+      "みかん",
+      "を",
+      "食べる。"
+    ],
+    "translation": "鑽進暖桌，吃橘子。",
+    "english": "I get into the kotatsu and eat a tangerine.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "winter"
+    ]
+  },
+  {
+    "id": "3658",
+    "japanese": "長い冬を越えてこそ、春のありがたさが分かる。",
+    "chunks": [
+      "長い",
+      "冬",
+      "を",
+      "越えて",
+      "こそ、",
+      "春",
+      "の",
+      "ありがたさ",
+      "が",
+      "分かる。"
+    ],
+    "translation": "正因熬過了漫長的冬天，才懂得春天的可貴。",
+    "english": "Only by getting through a long winter do you appreciate spring.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "winter"
+    ]
+  },
+  {
+    "id": "3659",
+    "japanese": "雪が静かに降り積もっていく。",
+    "chunks": [
+      "雪",
+      "が",
+      "静か",
+      "に",
+      "降り",
+      "積もって",
+      "いく。"
+    ],
+    "translation": "雪靜靜地不斷堆積。",
+    "english": "The snow quietly piles up.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "winter"
+    ]
+  },
+  {
+    "id": "3660",
+    "japanese": "私は冬にスキーをしに行きます。",
+    "chunks": [
+      "私",
+      "は",
+      "冬",
+      "に",
+      "スキー",
+      "を",
+      "しに",
+      "行きます。"
+    ],
+    "translation": "我冬天會去滑雪。",
+    "english": "I go skiing in winter.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "winter"
+    ]
+  },
+  {
+    "id": "3661",
+    "japanese": "寒さが厳しいほど、温もりが身にしみる。",
+    "chunks": [
+      "寒さ",
+      "が",
+      "厳しい",
+      "ほど、",
+      "温もり",
+      "が",
+      "身",
+      "に",
+      "しみる。"
+    ],
+    "translation": "寒冷越是嚴酷，溫暖越是沁人心脾。",
+    "english": "The harsher the cold, the deeper warmth touches you.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "winter"
+    ]
+  },
+  {
+    "id": "3662",
+    "japanese": "手がかじかんで、うまく動かない。",
+    "chunks": [
+      "手",
+      "が",
+      "かじかんで、",
+      "うまく",
+      "動か",
+      "ない。"
+    ],
+    "translation": "手凍僵了，動不太了。",
+    "english": "My hands are numb and won't move well.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "winter"
+    ]
+  },
+  {
+    "id": "3663",
+    "japanese": "自分の長所と短所を、よく知る。",
+    "chunks": [
+      "自分",
+      "の",
+      "長所",
+      "と",
+      "短所",
+      "を、",
+      "よく",
+      "知る。"
+    ],
+    "translation": "好好了解自己的優點和缺點。",
+    "english": "I know my own strengths and weaknesses well.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3664",
+    "japanese": "私は少しせっかちなところがあります。",
+    "chunks": [
+      "私",
+      "は",
+      "少し",
+      "せっかち",
+      "な",
+      "ところ",
+      "が",
+      "あります。"
+    ],
+    "translation": "我有點性急的地方。",
+    "english": "I have a slightly impatient side.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3665",
+    "japanese": "自分を見つめ直すことは、成長の第一歩だ。",
+    "chunks": [
+      "自分",
+      "を",
+      "見つめ直す",
+      "こと",
+      "は、",
+      "成長",
+      "の",
+      "第一歩",
+      "だ。"
+    ],
+    "translation": "重新審視自己，是成長的第一步。",
+    "english": "Reexamining yourself is the first step to growth.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3666",
+    "japanese": "怒りの原因は、案外自分の中にある。",
+    "chunks": [
+      "怒り",
+      "の",
+      "原因",
+      "は、",
+      "案外",
+      "自分",
+      "の",
+      "中",
+      "に",
+      "ある。"
+    ],
+    "translation": "憤怒的原因，意外地在自己心中。",
+    "english": "The cause of anger is, surprisingly, within yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3667",
+    "japanese": "私は自分の気持ちをノートに書きます。",
+    "chunks": [
+      "私",
+      "は",
+      "自分",
+      "の",
+      "気持ち",
+      "を",
+      "ノート",
+      "に",
+      "書きます。"
+    ],
+    "translation": "我把自己的心情寫在筆記本上。",
+    "english": "I write my feelings in a notebook.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3668",
+    "japanese": "失敗を通して、自分の弱さに気づいた。",
+    "chunks": [
+      "失敗",
+      "を",
+      "通して、",
+      "自分",
+      "の",
+      "弱さ",
+      "に",
+      "気づいた。"
+    ],
+    "translation": "透過失敗，我察覺到自己的軟弱。",
+    "english": "Through failure, I became aware of my own weakness.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3669",
+    "japanese": "何が好きか、改めて考えてみた。",
+    "chunks": [
+      "何",
+      "が",
+      "好き",
+      "か、",
+      "改めて",
+      "考えて",
+      "みた。"
+    ],
+    "translation": "我重新思考了自己喜歡什麼。",
+    "english": "I tried reconsidering what I like.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3670",
+    "japanese": "他人と比べず、自分のペースを保つ。",
+    "chunks": [
+      "他人",
+      "と",
+      "比べ",
+      "ず、",
+      "自分",
+      "の",
+      "ペース",
+      "を",
+      "保つ。"
+    ],
+    "translation": "不和別人比較，保持自己的步調。",
+    "english": "Without comparing to others, I keep my own pace.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3671",
+    "japanese": "私は朝のほうが集中できます。",
+    "chunks": [
+      "私",
+      "は",
+      "朝",
+      "の",
+      "ほう",
+      "が",
+      "集中",
+      "できます。"
+    ],
+    "translation": "我早上比較能專注。",
+    "english": "I can concentrate better in the morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3672",
+    "japanese": "自分らしくあることが、一番の強みだ。",
+    "chunks": [
+      "自分",
+      "らしく",
+      "ある",
+      "こと",
+      "が、",
+      "一番",
+      "の",
+      "強み",
+      "だ。"
+    ],
+    "translation": "活出自我，是最大的強項。",
+    "english": "Being true to yourself is your greatest strength.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "self-awareness"
+    ]
+  },
+  {
+    "id": "3673",
+    "japanese": "私は毎朝コーヒーを飲みます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "コーヒー",
+      "を",
+      "飲みます。"
+    ],
+    "translation": "我每天早上喝咖啡。",
+    "english": "I drink coffee every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "daily"
+    ]
+  },
+  {
+    "id": "3674",
+    "japanese": "何気ない一日にこそ、幸せがある。",
+    "chunks": [
+      "何気ない",
+      "一日",
+      "に",
+      "こそ、",
+      "幸せ",
+      "が",
+      "ある。"
+    ],
+    "translation": "正是在平凡的一天裡，存在著幸福。",
+    "english": "Happiness lies precisely in ordinary days.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "daily"
+    ]
+  },
+  {
+    "id": "3675",
+    "japanese": "仕事の後に、近所を散歩します。",
+    "chunks": [
+      "仕事",
+      "の",
+      "後",
+      "に、",
+      "近所",
+      "を",
+      "散歩",
+      "します。"
+    ],
+    "translation": "工作後，我在附近散步。",
+    "english": "After work, I take a walk around the neighborhood.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "daily"
+    ]
+  },
+  {
+    "id": "3676",
+    "japanese": "毎日の習慣が、人を形づくる。",
+    "chunks": [
+      "毎日",
+      "の",
+      "習慣",
+      "が、",
+      "人",
+      "を",
+      "形づくる。"
+    ],
+    "translation": "每天的習慣，塑造著一個人。",
+    "english": "Daily habits shape who you are.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "daily"
+    ]
+  },
+  {
+    "id": "3677",
+    "japanese": "朝はパンを食べることが多い。",
+    "chunks": [
+      "朝",
+      "は",
+      "パン",
+      "を",
+      "食べる",
+      "こと",
+      "が",
+      "多い。"
+    ],
+    "translation": "我早上常吃麵包。",
+    "english": "I often eat bread in the morning.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "daily"
+    ]
+  },
+  {
+    "id": "3678",
+    "japanese": "小さな幸せを、日々の中で見つける。",
+    "chunks": [
+      "小さな",
+      "幸せ",
+      "を、",
+      "日々",
+      "の",
+      "中",
+      "で",
+      "見つける。"
+    ],
+    "translation": "在每一天之中，發現小小的幸福。",
+    "english": "I find small joys within everyday life.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "daily"
+    ]
+  },
+  {
+    "id": "3679",
+    "japanese": "私は寝る前に本を少し読みます。",
+    "chunks": [
+      "私",
+      "は",
+      "寝る",
+      "前",
+      "に",
+      "本",
+      "を",
+      "少し",
+      "読みます。"
+    ],
+    "translation": "我睡前會看一點書。",
+    "english": "I read a little before going to bed.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "daily"
+    ]
+  },
+  {
+    "id": "3680",
+    "japanese": "代わり映えのない毎日にも、変化はある。",
+    "chunks": [
+      "代わり映え",
+      "の",
+      "ない",
+      "毎日",
+      "に",
+      "も、",
+      "変化",
+      "は",
+      "ある。"
+    ],
+    "translation": "在一成不變的日子裡，也有變化。",
+    "english": "Even in unchanging days, there is change.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "daily"
+    ]
+  },
+  {
+    "id": "3681",
+    "japanese": "休みの日は、ゆっくり朝寝坊します。",
+    "chunks": [
+      "休み",
+      "の",
+      "日",
+      "は、",
+      "ゆっくり",
+      "朝寝坊",
+      "します。"
+    ],
+    "translation": "休假日我會悠閒地睡懶覺。",
+    "english": "On days off, I sleep in leisurely.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "daily"
+    ]
+  },
+  {
+    "id": "3682",
+    "japanese": "規則正しい生活が、心身を整える。",
+    "chunks": [
+      "規則正しい",
+      "生活",
+      "が、",
+      "心身",
+      "を",
+      "整える。"
+    ],
+    "translation": "規律的生活，能調整身心。",
+    "english": "A regular lifestyle keeps body and mind in order.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "daily"
+    ]
+  },
+  {
+    "id": "3683",
+    "japanese": "私は将来、先生になりたいです。",
+    "chunks": [
+      "私",
+      "は",
+      "将来、",
+      "先生",
+      "に",
+      "なりたい",
+      "です。"
+    ],
+    "translation": "我將來想當老師。",
+    "english": "In the future, I want to become a teacher.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "career"
+    ]
+  },
+  {
+    "id": "3684",
+    "japanese": "自分に合った仕事を、じっくり探す。",
+    "chunks": [
+      "自分",
+      "に",
+      "合った",
+      "仕事",
+      "を、",
+      "じっくり",
+      "探す。"
+    ],
+    "translation": "我慢慢尋找適合自己的工作。",
+    "english": "I take my time finding a job that suits me.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "career"
+    ]
+  },
+  {
+    "id": "3685",
+    "japanese": "経験を積むほど、仕事の幅が広がる。",
+    "chunks": [
+      "経験",
+      "を",
+      "積む",
+      "ほど、",
+      "仕事",
+      "の",
+      "幅",
+      "が",
+      "広がる。"
+    ],
+    "translation": "經驗越豐富，工作的範圍就越廣。",
+    "english": "The more experience you gain, the wider your work's scope.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "career"
+    ]
+  },
+  {
+    "id": "3686",
+    "japanese": "転職を機に、新しい分野に挑戦した。",
+    "chunks": [
+      "転職",
+      "を",
+      "機",
+      "に、",
+      "新しい",
+      "分野",
+      "に",
+      "挑戦",
+      "した。"
+    ],
+    "translation": "藉著轉職的機會，我挑戰了新的領域。",
+    "english": "Taking the job change as an opportunity, I tried a new field.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "career"
+    ]
+  },
+  {
+    "id": "3687",
+    "japanese": "私は今の仕事に満足しています。",
+    "chunks": [
+      "私",
+      "は",
+      "今",
+      "の",
+      "仕事",
+      "に",
+      "満足",
+      "して",
+      "います。"
+    ],
+    "translation": "我對現在的工作很滿意。",
+    "english": "I'm satisfied with my current job.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "career"
+    ]
+  },
+  {
+    "id": "3688",
+    "japanese": "どんな道に進むか、真剣に悩んだ。",
+    "chunks": [
+      "どんな",
+      "道",
+      "に",
+      "進む",
+      "か、",
+      "真剣",
+      "に",
+      "悩んだ。"
+    ],
+    "translation": "我認真地煩惱該走哪條路。",
+    "english": "I seriously agonized over which path to take.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "career"
+    ]
+  },
+  {
+    "id": "3689",
+    "japanese": "長い目で見て、今の努力は必ず生きる。",
+    "chunks": [
+      "長い",
+      "目",
+      "で",
+      "見て、",
+      "今",
+      "の",
+      "努力",
+      "は",
+      "必ず",
+      "生きる。"
+    ],
+    "translation": "從長遠來看，現在的努力一定會有所回報。",
+    "english": "In the long run, today's effort will surely pay off.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "career"
+    ]
+  },
+  {
+    "id": "3690",
+    "japanese": "私は資格を取るために勉強しています。",
+    "chunks": [
+      "私",
+      "は",
+      "資格",
+      "を",
+      "取る",
+      "ため",
+      "に",
+      "勉強",
+      "して",
+      "います。"
+    ],
+    "translation": "我為了取得證照而念書。",
+    "english": "I'm studying to get a qualification.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "career"
+    ]
+  },
+  {
+    "id": "3691",
+    "japanese": "仕事を通して、少しずつ成長していきたい。",
+    "chunks": [
+      "仕事",
+      "を",
+      "通して、",
+      "少しずつ",
+      "成長",
+      "して",
+      "いきたい。"
+    ],
+    "translation": "我想透過工作，一點一點地成長。",
+    "english": "I want to grow little by little through my work.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "career"
+    ]
+  },
+  {
+    "id": "3692",
+    "japanese": "やりがいのある仕事に、めぐり会えた。",
+    "chunks": [
+      "やりがい",
+      "の",
+      "ある",
+      "仕事",
+      "に、",
+      "めぐり会えた。"
+    ],
+    "translation": "我有幸遇見了有意義的工作。",
+    "english": "I was fortunate to come across rewarding work.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "career"
+    ]
   }
 ]
