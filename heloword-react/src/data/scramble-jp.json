@@ -70443,5 +70443,1050 @@
       "N2",
       "skills"
     ]
+  },
+  {
+    "id": "3444",
+    "japanese": "新しい仕事を来月から始めます。",
+    "chunks": [
+      "新しい",
+      "仕事",
+      "を",
+      "来月",
+      "から",
+      "始めます。"
+    ],
+    "translation": "我下個月開始新工作。",
+    "english": "I'll start a new job next month.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "start"
+    ]
+  },
+  {
+    "id": "3445",
+    "japanese": "何事も、始めるのに遅すぎることはない。",
+    "chunks": [
+      "何事",
+      "も、",
+      "始める",
+      "の",
+      "に",
+      "遅",
+      "すぎる",
+      "こと",
+      "は",
+      "ない。"
+    ],
+    "translation": "凡事都不會有開始得太晚這回事。",
+    "english": "It's never too late to start anything.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "start"
+    ]
+  },
+  {
+    "id": "3446",
+    "japanese": "まず小さな一歩から始めてみよう。",
+    "chunks": [
+      "まず",
+      "小さな",
+      "一歩",
+      "から",
+      "始めて",
+      "みよう。"
+    ],
+    "translation": "先從一小步開始試試吧。",
+    "english": "Let's start with a small step first.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "start"
+    ]
+  },
+  {
+    "id": "3447",
+    "japanese": "授業は九時に始まります。",
+    "chunks": [
+      "授業",
+      "は",
+      "九",
+      "時",
+      "に",
+      "始まります。"
+    ],
+    "translation": "課程在九點開始。",
+    "english": "Class starts at nine o'clock.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "start"
+    ]
+  },
+  {
+    "id": "3448",
+    "japanese": "準備が整ったら、すぐに取りかかる。",
+    "chunks": [
+      "準備",
+      "が",
+      "整ったら、",
+      "すぐ",
+      "に",
+      "取りかかる。"
+    ],
+    "translation": "準備就緒後，馬上著手進行。",
+    "english": "Once preparations are done, I get to work right away.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "start"
+    ]
+  },
+  {
+    "id": "3449",
+    "japanese": "最初の一歩を踏み出す勇気が大切だ。",
+    "chunks": [
+      "最初",
+      "の",
+      "一歩",
+      "を",
+      "踏み出す",
+      "勇気",
+      "が",
+      "大切",
+      "だ。"
+    ],
+    "translation": "踏出第一步的勇氣很重要。",
+    "english": "The courage to take the first step is important.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "start"
+    ]
+  },
+  {
+    "id": "3450",
+    "japanese": "雨が降り始めたので、傘をさしました。",
+    "chunks": [
+      "雨",
+      "が",
+      "降り",
+      "始めた",
+      "ので、",
+      "傘",
+      "を",
+      "さしました。"
+    ],
+    "translation": "因為開始下雨，我撐起了傘。",
+    "english": "It started to rain, so I put up my umbrella.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "start"
+    ]
+  },
+  {
+    "id": "3451",
+    "japanese": "新しいプロジェクトが、ついに動き出した。",
+    "chunks": [
+      "新しい",
+      "プロジェクト",
+      "が、",
+      "ついに",
+      "動き",
+      "出した。"
+    ],
+    "translation": "新的專案，終於開始動起來了。",
+    "english": "The new project has finally gotten underway.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "start"
+    ]
+  },
+  {
+    "id": "3452",
+    "japanese": "私は毎朝ラジオ体操から一日を始めます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "ラジオ",
+      "体操",
+      "から",
+      "一日",
+      "を",
+      "始めます。"
+    ],
+    "translation": "我每天早上從廣播體操開始一天。",
+    "english": "I start my day with radio exercises every morning.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "start"
+    ]
+  },
+  {
+    "id": "3453",
+    "japanese": "思い立ったその日が、始めどきだ。",
+    "chunks": [
+      "思い立った",
+      "その",
+      "日",
+      "が、",
+      "始め",
+      "どき",
+      "だ。"
+    ],
+    "translation": "想到的那一天，就是開始的時機。",
+    "english": "The day you decide is the right time to start.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "start"
+    ]
+  },
+  {
+    "id": "3454",
+    "japanese": "相手の目を見て話すと、信頼が生まれる。",
+    "chunks": [
+      "相手",
+      "の",
+      "目",
+      "を",
+      "見て",
+      "話す",
+      "と、",
+      "信頼",
+      "が",
+      "生まれる。"
+    ],
+    "translation": "看著對方的眼睛說話，就會產生信任。",
+    "english": "Talking while looking the other person in the eye builds trust.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3455",
+    "japanese": "私は初対面の人と話すのが苦手です。",
+    "chunks": [
+      "私",
+      "は",
+      "初対面",
+      "の",
+      "人",
+      "と",
+      "話す",
+      "の",
+      "が",
+      "苦手",
+      "です。"
+    ],
+    "translation": "我不擅長和初次見面的人說話。",
+    "english": "I'm not good at talking with people I meet for the first time.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3456",
+    "japanese": "人の話をよく聞くことが、信頼を生む。",
+    "chunks": [
+      "人",
+      "の",
+      "話",
+      "を",
+      "よく",
+      "聞く",
+      "こと",
+      "が、",
+      "信頼",
+      "を",
+      "生む。"
+    ],
+    "translation": "好好聽別人說話，能產生信任。",
+    "english": "Listening well to others creates trust.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3457",
+    "japanese": "笑顔であいさつすると、印象がよくなる。",
+    "chunks": [
+      "笑顔",
+      "で",
+      "あいさつ",
+      "する",
+      "と、",
+      "印象",
+      "が",
+      "よく",
+      "なる。"
+    ],
+    "translation": "面帶笑容打招呼，印象就會變好。",
+    "english": "Greeting with a smile leaves a good impression.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3458",
+    "japanese": "私は友達と電話で話します。",
+    "chunks": [
+      "私",
+      "は",
+      "友達",
+      "と",
+      "電話",
+      "で",
+      "話します。"
+    ],
+    "translation": "我和朋友講電話。",
+    "english": "I talk with my friend on the phone.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3459",
+    "japanese": "場の空気を読むのは、意外と難しい。",
+    "chunks": [
+      "場",
+      "の",
+      "空気",
+      "を",
+      "読む",
+      "の",
+      "は、",
+      "意外",
+      "と",
+      "難しい。"
+    ],
+    "translation": "察言觀色，意外地困難。",
+    "english": "Reading the mood of a room is surprisingly difficult.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3460",
+    "japanese": "感謝の言葉を素直に伝えたい。",
+    "chunks": [
+      "感謝",
+      "の",
+      "言葉",
+      "を",
+      "素直",
+      "に",
+      "伝えたい。"
+    ],
+    "translation": "我想坦率地表達感謝的話。",
+    "english": "I want to honestly express words of gratitude.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3461",
+    "japanese": "上手な断り方を身につけたい。",
+    "chunks": [
+      "上手",
+      "な",
+      "断り方",
+      "を",
+      "身",
+      "に",
+      "つけたい。"
+    ],
+    "translation": "我想學會高明的拒絕方式。",
+    "english": "I want to master a skillful way of declining.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3462",
+    "japanese": "私はみんなと仲良くしたいです。",
+    "chunks": [
+      "私",
+      "は",
+      "みんな",
+      "と",
+      "仲良く",
+      "したい",
+      "です。"
+    ],
+    "translation": "我想和大家好好相處。",
+    "english": "I want to get along with everyone.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3463",
+    "japanese": "相手の立場を思いやれば、会話は弾む。",
+    "chunks": [
+      "相手",
+      "の",
+      "立場",
+      "を",
+      "思いやれば、",
+      "会話",
+      "は",
+      "弾む。"
+    ],
+    "translation": "替對方著想的話，對話就會熱絡。",
+    "english": "If you consider the other's position, conversation flows.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "social skills"
+    ]
+  },
+  {
+    "id": "3464",
+    "japanese": "私は新しいノートを買いました。",
+    "chunks": [
+      "私",
+      "は",
+      "新しい",
+      "ノート",
+      "を",
+      "買いました。"
+    ],
+    "translation": "我買了新的筆記本。",
+    "english": "I bought a new notebook.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3465",
+    "japanese": "このボールペンは書き心地がとてもいい。",
+    "chunks": [
+      "この",
+      "ボールペン",
+      "は",
+      "書き心地",
+      "が",
+      "とても",
+      "いい。"
+    ],
+    "translation": "這支原子筆的書寫手感非常好。",
+    "english": "This ballpoint pen writes very smoothly.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3466",
+    "japanese": "机の上に、ペンと消しゴムがあります。",
+    "chunks": [
+      "机",
+      "の",
+      "上",
+      "に、",
+      "ペン",
+      "と",
+      "消しゴム",
+      "が",
+      "あります。"
+    ],
+    "translation": "桌上有筆和橡皮擦。",
+    "english": "There's a pen and an eraser on the desk.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3467",
+    "japanese": "大事な所は、赤いペンでしるしをつける。",
+    "chunks": [
+      "大事な",
+      "所",
+      "は、",
+      "赤い",
+      "ペン",
+      "で",
+      "しるし",
+      "を",
+      "つける。"
+    ],
+    "translation": "重要的地方，我用紅筆做記號。",
+    "english": "I mark important parts with a red pen.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3468",
+    "japanese": "気に入った文房具は、作業のやる気を高める。",
+    "chunks": [
+      "気",
+      "に",
+      "入った",
+      "文房具",
+      "は、",
+      "作業",
+      "の",
+      "やる気",
+      "を",
+      "高める。"
+    ],
+    "translation": "喜歡的文具，能提升工作的動力。",
+    "english": "Stationery you love boosts your motivation to work.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3469",
+    "japanese": "はさみをちょっと貸してもらえますか。",
+    "chunks": [
+      "はさみ",
+      "を",
+      "ちょっと",
+      "貸して",
+      "もらえます",
+      "か。"
+    ],
+    "translation": "可以借我一下剪刀嗎？",
+    "english": "Could you lend me the scissors for a moment?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3470",
+    "japanese": "万年筆のなめらかな書き味が、たまらない。",
+    "chunks": [
+      "万年筆",
+      "の",
+      "なめらか",
+      "な",
+      "書き味",
+      "が、",
+      "たまらない。"
+    ],
+    "translation": "鋼筆滑順的書寫感，讓人欲罷不能。",
+    "english": "The smooth writing feel of a fountain pen is irresistible.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3471",
+    "japanese": "手帳に予定を書いて、持ち歩いています。",
+    "chunks": [
+      "手帳",
+      "に",
+      "予定",
+      "を",
+      "書いて、",
+      "持ち歩いて",
+      "います。"
+    ],
+    "translation": "我把行程寫在手帳裡隨身攜帶。",
+    "english": "I write my schedule in a planner and carry it around.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3472",
+    "japanese": "こだわりの文房具を集めるのが趣味だ。",
+    "chunks": [
+      "こだわり",
+      "の",
+      "文房具",
+      "を",
+      "集める",
+      "の",
+      "が",
+      "趣味",
+      "だ。"
+    ],
+    "translation": "蒐集講究的文具是我的興趣。",
+    "english": "Collecting carefully chosen stationery is my hobby.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3473",
+    "japanese": "シャープペンシルの芯がまた折れてしまった。",
+    "chunks": [
+      "シャープペンシル",
+      "の",
+      "芯",
+      "が",
+      "また",
+      "折れて",
+      "しまった。"
+    ],
+    "translation": "自動鉛筆的筆芯又斷掉了。",
+    "english": "The mechanical pencil's lead broke again.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "stationery"
+    ]
+  },
+  {
+    "id": "3474",
+    "japanese": "努力を続ければ、いつか成功する。",
+    "chunks": [
+      "努力",
+      "を",
+      "続ければ、",
+      "いつか",
+      "成功",
+      "する。"
+    ],
+    "translation": "持續努力，總有一天會成功。",
+    "english": "If you keep trying, you'll succeed someday.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "success"
+    ]
+  },
+  {
+    "id": "3475",
+    "japanese": "彼は長年の夢をついにかなえた。",
+    "chunks": [
+      "彼",
+      "は",
+      "長年",
+      "の",
+      "夢",
+      "を",
+      "ついに",
+      "かなえた。"
+    ],
+    "translation": "他終於實現了多年的夢想。",
+    "english": "He finally realized his long-cherished dream.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "success"
+    ]
+  },
+  {
+    "id": "3476",
+    "japanese": "成功の裏には、数えきれない失敗がある。",
+    "chunks": [
+      "成功",
+      "の",
+      "裏",
+      "に",
+      "は、",
+      "数えきれない",
+      "失敗",
+      "が",
+      "ある。"
+    ],
+    "translation": "成功的背後，有著數不清的失敗。",
+    "english": "Behind success lie countless failures.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "success"
+    ]
+  },
+  {
+    "id": "3477",
+    "japanese": "私は試験に合格しました。",
+    "chunks": [
+      "私",
+      "は",
+      "試験",
+      "に",
+      "合格",
+      "しました。"
+    ],
+    "translation": "我通過了考試。",
+    "english": "I passed the exam.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "success"
+    ]
+  },
+  {
+    "id": "3478",
+    "japanese": "小さな成功の積み重ねが、自信になる。",
+    "chunks": [
+      "小さな",
+      "成功",
+      "の",
+      "積み重ね",
+      "が、",
+      "自信",
+      "に",
+      "なる。"
+    ],
+    "translation": "小成功的累積，會成為自信。",
+    "english": "An accumulation of small successes becomes confidence.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "success"
+    ]
+  },
+  {
+    "id": "3479",
+    "japanese": "目標を達成できて、本当にうれしい。",
+    "chunks": [
+      "目標",
+      "を",
+      "達成",
+      "できて、",
+      "本当",
+      "に",
+      "うれしい。"
+    ],
+    "translation": "能達成目標，真的很開心。",
+    "english": "I'm truly happy I could achieve my goal.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "success"
+    ]
+  },
+  {
+    "id": "3480",
+    "japanese": "真の成功とは何か、改めて考える。",
+    "chunks": [
+      "真",
+      "の",
+      "成功",
+      "と",
+      "は",
+      "何",
+      "か、",
+      "改めて",
+      "考える。"
+    ],
+    "translation": "重新思考真正的成功究竟是什麼。",
+    "english": "I reconsider what true success really is.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "success"
+    ]
+  },
+  {
+    "id": "3481",
+    "japanese": "みんなの協力のおかげで、うまくいきました。",
+    "chunks": [
+      "みんな",
+      "の",
+      "協力",
+      "の",
+      "おかげ",
+      "で、",
+      "うまく",
+      "いきました。"
+    ],
+    "translation": "多虧了大家的協助，進行得很順利。",
+    "english": "Thanks to everyone's cooperation, it went well.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "success"
+    ]
+  },
+  {
+    "id": "3482",
+    "japanese": "彼女は若くして事業を成功させた。",
+    "chunks": [
+      "彼女",
+      "は",
+      "若く",
+      "して",
+      "事業",
+      "を",
+      "成功",
+      "させた。"
+    ],
+    "translation": "她年紀輕輕就讓事業成功了。",
+    "english": "She made her business a success at a young age.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "success"
+    ]
+  },
+  {
+    "id": "3483",
+    "japanese": "私は初めてケーキを上手に焼けました。",
+    "chunks": [
+      "私",
+      "は",
+      "初めて",
+      "ケーキ",
+      "を",
+      "上手",
+      "に",
+      "焼けました。"
+    ],
+    "translation": "我第一次成功地烤好了蛋糕。",
+    "english": "I baked a cake well for the first time.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "success"
+    ]
+  },
+  {
+    "id": "3484",
+    "japanese": "注文の状況を確認してください。",
+    "chunks": [
+      "注文",
+      "の",
+      "状況",
+      "を",
+      "確認",
+      "して",
+      "ください。"
+    ],
+    "translation": "請確認訂單的狀況。",
+    "english": "Please check the status of the order.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "status"
+    ]
+  },
+  {
+    "id": "3485",
+    "japanese": "現在の進み具合を簡単に報告します。",
+    "chunks": [
+      "現在",
+      "の",
+      "進み",
+      "具合",
+      "を",
+      "簡単",
+      "に",
+      "報告",
+      "します。"
+    ],
+    "translation": "我簡單報告目前的進展狀況。",
+    "english": "I'll briefly report the current progress status.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "status"
+    ]
+  },
+  {
+    "id": "3486",
+    "japanese": "彼は社内で高い地位にある。",
+    "chunks": [
+      "彼",
+      "は",
+      "社内",
+      "で",
+      "高い",
+      "地位",
+      "に",
+      "ある。"
+    ],
+    "translation": "他在公司內部位居高位。",
+    "english": "He holds a high status within the company.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "status"
+    ]
+  },
+  {
+    "id": "3487",
+    "japanese": "今の体調はどうですか。",
+    "chunks": [
+      "今",
+      "の",
+      "体調",
+      "は",
+      "どう",
+      "です",
+      "か。"
+    ],
+    "translation": "你現在的身體狀況如何？",
+    "english": "How is your physical condition now?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "status"
+    ]
+  },
+  {
+    "id": "3488",
+    "japanese": "肩書きよりも、中身のほうが大事だ。",
+    "chunks": [
+      "肩書き",
+      "より",
+      "も、",
+      "中身",
+      "の",
+      "ほう",
+      "が",
+      "大事",
+      "だ。"
+    ],
+    "translation": "比起頭銜，內涵更重要。",
+    "english": "What's inside matters more than one's title.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "status"
+    ]
+  },
+  {
+    "id": "3489",
+    "japanese": "申請は今、審査の段階にあります。",
+    "chunks": [
+      "申請",
+      "は",
+      "今、",
+      "審査",
+      "の",
+      "段階",
+      "に",
+      "あります。"
+    ],
+    "translation": "申請目前處於審查的階段。",
+    "english": "The application is now at the review stage.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "status"
+    ]
+  },
+  {
+    "id": "3490",
+    "japanese": "私は電車の運行状況を調べました。",
+    "chunks": [
+      "私",
+      "は",
+      "電車",
+      "の",
+      "運行",
+      "状況",
+      "を",
+      "調べました。"
+    ],
+    "translation": "我查了電車的運行狀況。",
+    "english": "I checked the train's operation status.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "status"
+    ]
+  },
+  {
+    "id": "3491",
+    "japanese": "地位が上がるほど、責任も重くなる。",
+    "chunks": [
+      "地位",
+      "が",
+      "上がる",
+      "ほど、",
+      "責任",
+      "も",
+      "重く",
+      "なる。"
+    ],
+    "translation": "地位越高，責任也越重。",
+    "english": "The higher the status, the heavier the responsibility.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "status"
+    ]
+  },
+  {
+    "id": "3492",
+    "japanese": "今日の天気は、朝からずっと晴れです。",
+    "chunks": [
+      "今日",
+      "の",
+      "天気",
+      "は、",
+      "朝",
+      "から",
+      "ずっと",
+      "晴れ",
+      "です。"
+    ],
+    "translation": "今天的天氣，從早上就一直放晴。",
+    "english": "Today's weather has been sunny since morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "status"
+    ]
+  },
+  {
+    "id": "3493",
+    "japanese": "プロジェクトの現状を、チームで共有した。",
+    "chunks": [
+      "プロジェクト",
+      "の",
+      "現状",
+      "を、",
+      "チーム",
+      "で",
+      "共有",
+      "した。"
+    ],
+    "translation": "我們在團隊裡分享了專案的現況。",
+    "english": "We shared the project's current status within the team.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "status"
+    ]
   }
 ]
