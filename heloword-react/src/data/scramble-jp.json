@@ -69368,5 +69368,1080 @@
       "N1",
       "shopping"
     ]
+  },
+  {
+    "id": "3394",
+    "japanese": "自分の仕事には、最後まで責任を持つ。",
+    "chunks": [
+      "自分",
+      "の",
+      "仕事",
+      "に",
+      "は、",
+      "最後",
+      "まで",
+      "責任",
+      "を",
+      "持つ。"
+    ],
+    "translation": "對自己的工作，要負責到最後。",
+    "english": "I take responsibility for my work to the very end.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3395",
+    "japanese": "リーダーには、重い責任がともなう。",
+    "chunks": [
+      "リーダー",
+      "に",
+      "は、",
+      "重い",
+      "責任",
+      "が",
+      "ともなう。"
+    ],
+    "translation": "身為領導者，伴隨著沉重的責任。",
+    "english": "Being a leader comes with heavy responsibility.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3396",
+    "japanese": "失敗の責任を、人のせいにしてはいけない。",
+    "chunks": [
+      "失敗",
+      "の",
+      "責任",
+      "を、",
+      "人",
+      "の",
+      "せい",
+      "に",
+      "して",
+      "は",
+      "いけない。"
+    ],
+    "translation": "不可以把失敗的責任推給別人。",
+    "english": "You mustn't blame your failures on others.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3397",
+    "japanese": "私は毎日犬の世話をしています。",
+    "chunks": [
+      "私",
+      "は",
+      "毎日",
+      "犬",
+      "の",
+      "世話",
+      "を",
+      "して",
+      "います。"
+    ],
+    "translation": "我每天照顧狗。",
+    "english": "I take care of the dog every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3398",
+    "japanese": "約束をした以上、必ず守ります。",
+    "chunks": [
+      "約束",
+      "を",
+      "した",
+      "以上、",
+      "必ず",
+      "守ります。"
+    ],
+    "translation": "既然做了約定，就一定會遵守。",
+    "english": "Since I made a promise, I will surely keep it.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3399",
+    "japanese": "子どもには、少しずつ責任を教える。",
+    "chunks": [
+      "子ども",
+      "に",
+      "は、",
+      "少しずつ",
+      "責任",
+      "を",
+      "教える。"
+    ],
+    "translation": "對孩子要一點一點地教導責任。",
+    "english": "I teach children responsibility little by little.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3400",
+    "japanese": "与えられた役割を、きちんと果たしたい。",
+    "chunks": [
+      "与えられた",
+      "役割",
+      "を、",
+      "きちんと",
+      "果たしたい。"
+    ],
+    "translation": "我想好好地完成被賦予的角色。",
+    "english": "I want to properly fulfill the role I'm given.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3401",
+    "japanese": "責任ある立場の人ほど、言動に注意が必要だ。",
+    "chunks": [
+      "責任",
+      "ある",
+      "立場",
+      "の",
+      "人",
+      "ほど、",
+      "言動",
+      "に",
+      "注意",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "越是身負責任的人，越需要注意言行。",
+    "english": "The more responsible one's position, the more careful one's conduct must be.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3402",
+    "japanese": "私は部屋の掃除を担当しています。",
+    "chunks": [
+      "私",
+      "は",
+      "部屋",
+      "の",
+      "掃除",
+      "を",
+      "担当",
+      "して",
+      "います。"
+    ],
+    "translation": "我負責房間的打掃。",
+    "english": "I'm in charge of cleaning the room.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3403",
+    "japanese": "みんなが責任を分け合えば、負担は軽くなる。",
+    "chunks": [
+      "みんな",
+      "が",
+      "責任",
+      "を",
+      "分け合えば、",
+      "負担",
+      "は",
+      "軽く",
+      "なる。"
+    ],
+    "translation": "若大家分擔責任，負擔就會減輕。",
+    "english": "If everyone shares the responsibility, the burden lightens.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "responsibility"
+    ]
+  },
+  {
+    "id": "3404",
+    "japanese": "私はいつも同じ店で買い物をします。",
+    "chunks": [
+      "私",
+      "は",
+      "いつも",
+      "同じ",
+      "店",
+      "で",
+      "買い物",
+      "を",
+      "します。"
+    ],
+    "translation": "我總是在同一家店購物。",
+    "english": "I always shop at the same store.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3405",
+    "japanese": "買う前に、本当に必要か考える。",
+    "chunks": [
+      "買う",
+      "前",
+      "に、",
+      "本当",
+      "に",
+      "必要",
+      "か",
+      "考える。"
+    ],
+    "translation": "買之前，我會思考是不是真的需要。",
+    "english": "Before buying, I consider whether it's truly necessary.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3406",
+    "japanese": "安いからといって、つい買いすぎてしまう。",
+    "chunks": [
+      "安い",
+      "から",
+      "と",
+      "いって、",
+      "つい",
+      "買い",
+      "すぎて",
+      "しまう。"
+    ],
+    "translation": "因為便宜，就不小心買太多。",
+    "english": "Just because it's cheap, I end up buying too much.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3407",
+    "japanese": "毎月の食費を、きちんと記録している。",
+    "chunks": [
+      "毎月",
+      "の",
+      "食費",
+      "を、",
+      "きちんと",
+      "記録",
+      "して",
+      "いる。"
+    ],
+    "translation": "我有好好記錄每個月的伙食費。",
+    "english": "I keep careful records of my monthly food expenses.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3408",
+    "japanese": "私は現金よりカードをよく使います。",
+    "chunks": [
+      "私",
+      "は",
+      "現金",
+      "より",
+      "カード",
+      "を",
+      "よく",
+      "使います。"
+    ],
+    "translation": "比起現金，我更常用卡片。",
+    "english": "I use cards more often than cash.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3409",
+    "japanese": "計画的な買い物が、無駄遣いを防ぐ。",
+    "chunks": [
+      "計画的",
+      "な",
+      "買い物",
+      "が、",
+      "無駄遣い",
+      "を",
+      "防ぐ。"
+    ],
+    "translation": "有計畫的購物，能防止亂花錢。",
+    "english": "Planned shopping prevents wasteful spending.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3410",
+    "japanese": "広告を見て、欲しくなることが多い。",
+    "chunks": [
+      "広告",
+      "を",
+      "見て、",
+      "欲しく",
+      "なる",
+      "こと",
+      "が",
+      "多い。"
+    ],
+    "translation": "看了廣告，常常就會想要。",
+    "english": "After seeing ads, I often start wanting things.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3411",
+    "japanese": "買い物は、空腹のときを避けるとよい。",
+    "chunks": [
+      "買い物",
+      "は、",
+      "空腹",
+      "の",
+      "とき",
+      "を",
+      "避ける",
+      "と",
+      "よい。"
+    ],
+    "translation": "購物時，最好避開肚子餓的時候。",
+    "english": "It's good to avoid shopping when you're hungry.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3412",
+    "japanese": "私は週に一度まとめて買います。",
+    "chunks": [
+      "私",
+      "は",
+      "週",
+      "に",
+      "一度",
+      "まとめて",
+      "買います。"
+    ],
+    "translation": "我一週採買一次。",
+    "english": "I do my shopping all at once, once a week.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3413",
+    "japanese": "値段を比べてから、買うか決める。",
+    "chunks": [
+      "値段",
+      "を",
+      "比べて",
+      "から、",
+      "買う",
+      "か",
+      "決める。"
+    ],
+    "translation": "比較價格後，再決定要不要買。",
+    "english": "I compare prices before deciding whether to buy.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "shopping habits"
+    ]
+  },
+  {
+    "id": "3414",
+    "japanese": "この技術を身につけるには、練習がいる。",
+    "chunks": [
+      "この",
+      "技術",
+      "を",
+      "身",
+      "に",
+      "つける",
+      "に",
+      "は、",
+      "練習",
+      "が",
+      "いる。"
+    ],
+    "translation": "要學會這項技術，需要練習。",
+    "english": "Acquiring this skill takes practice.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "skill"
+    ]
+  },
+  {
+    "id": "3415",
+    "japanese": "彼の料理の腕前は、プロ並みだ。",
+    "chunks": [
+      "彼",
+      "の",
+      "料理",
+      "の",
+      "腕前",
+      "は、",
+      "プロ",
+      "並み",
+      "だ。"
+    ],
+    "translation": "他的廚藝，跟專業的不相上下。",
+    "english": "His cooking skill is on par with a professional's.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "skill"
+    ]
+  },
+  {
+    "id": "3416",
+    "japanese": "私は少しピアノが弾けます。",
+    "chunks": [
+      "私",
+      "は",
+      "少し",
+      "ピアノ",
+      "が",
+      "弾けます。"
+    ],
+    "translation": "我會彈一點鋼琴。",
+    "english": "I can play the piano a little.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "skill"
+    ]
+  },
+  {
+    "id": "3417",
+    "japanese": "熟練した職人の技に、思わず見とれた。",
+    "chunks": [
+      "熟練",
+      "した",
+      "職人",
+      "の",
+      "技",
+      "に、",
+      "思わず",
+      "見とれた。"
+    ],
+    "translation": "對熟練工匠的技藝，我不禁看得入迷。",
+    "english": "I couldn't help admiring the master craftsman's skill.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "skill"
+    ]
+  },
+  {
+    "id": "3418",
+    "japanese": "何度も練習すれば、だんだん上手になる。",
+    "chunks": [
+      "何度",
+      "も",
+      "練習",
+      "すれば、",
+      "だんだん",
+      "上手",
+      "に",
+      "なる。"
+    ],
+    "translation": "多次練習的話，就會漸漸變厲害。",
+    "english": "If you practice many times, you gradually improve.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "skill"
+    ]
+  },
+  {
+    "id": "3419",
+    "japanese": "彼女は三か国語を流ちょうに話す。",
+    "chunks": [
+      "彼女",
+      "は",
+      "三",
+      "か",
+      "国語",
+      "を",
+      "流ちょう",
+      "に",
+      "話す。"
+    ],
+    "translation": "她能流利地說三國語言。",
+    "english": "She speaks three languages fluently.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "skill"
+    ]
+  },
+  {
+    "id": "3420",
+    "japanese": "私はパソコンを使うのが得意です。",
+    "chunks": [
+      "私",
+      "は",
+      "パソコン",
+      "を",
+      "使う",
+      "の",
+      "が",
+      "得意",
+      "です。"
+    ],
+    "translation": "我很擅長使用電腦。",
+    "english": "I'm good at using computers.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "skill"
+    ]
+  },
+  {
+    "id": "3421",
+    "japanese": "長年培った技術は、簡単には失われない。",
+    "chunks": [
+      "長年",
+      "培った",
+      "技術",
+      "は、",
+      "簡単",
+      "に",
+      "は",
+      "失われ",
+      "ない。"
+    ],
+    "translation": "多年培養的技術，不會輕易消失。",
+    "english": "A skill cultivated over years is not easily lost.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "skill"
+    ]
+  },
+  {
+    "id": "3422",
+    "japanese": "基礎をしっかり学べば、応用も利く。",
+    "chunks": [
+      "基礎",
+      "を",
+      "しっかり",
+      "学べば、",
+      "応用",
+      "も",
+      "利く。"
+    ],
+    "translation": "若紮實學好基礎，也能融會貫通。",
+    "english": "If you learn the basics well, you can apply them too.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "skill"
+    ]
+  },
+  {
+    "id": "3423",
+    "japanese": "絵をかくのが、昔から好きです。",
+    "chunks": [
+      "絵",
+      "を",
+      "かく",
+      "の",
+      "が、",
+      "昔",
+      "から",
+      "好き",
+      "です。"
+    ],
+    "translation": "我從以前就喜歡畫畫。",
+    "english": "I've liked drawing since long ago.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "skill"
+    ]
+  },
+  {
+    "id": "3424",
+    "japanese": "私は週末によくテニスをします。",
+    "chunks": [
+      "私",
+      "は",
+      "週末",
+      "に",
+      "よく",
+      "テニス",
+      "を",
+      "します。"
+    ],
+    "translation": "我週末常打網球。",
+    "english": "I often play tennis on weekends.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "sports"
+    ]
+  },
+  {
+    "id": "3425",
+    "japanese": "チームが勝つために、全力を尽くした。",
+    "chunks": [
+      "チーム",
+      "が",
+      "勝つ",
+      "ため",
+      "に、",
+      "全力",
+      "を",
+      "尽くした。"
+    ],
+    "translation": "為了讓隊伍獲勝，我盡了全力。",
+    "english": "I gave my all so the team could win.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "sports"
+    ]
+  },
+  {
+    "id": "3426",
+    "japanese": "毎日の練習が、本番での成果につながる。",
+    "chunks": [
+      "毎日",
+      "の",
+      "練習",
+      "が、",
+      "本番",
+      "で",
+      "の",
+      "成果",
+      "に",
+      "つながる。"
+    ],
+    "translation": "每天的練習，會帶來正式比賽的成果。",
+    "english": "Daily practice leads to results in the real match.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "sports"
+    ]
+  },
+  {
+    "id": "3427",
+    "japanese": "彼はけがを乗り越えて、見事に復帰した。",
+    "chunks": [
+      "彼",
+      "は",
+      "けが",
+      "を",
+      "乗り越えて、",
+      "見事",
+      "に",
+      "復帰",
+      "した。"
+    ],
+    "translation": "他克服了傷勢，漂亮地回歸了。",
+    "english": "He overcame his injury and made a splendid comeback.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "sports"
+    ]
+  },
+  {
+    "id": "3428",
+    "japanese": "試合の前に、しっかり準備運動をする。",
+    "chunks": [
+      "試合",
+      "の",
+      "前",
+      "に、",
+      "しっかり",
+      "準備運動",
+      "を",
+      "する。"
+    ],
+    "translation": "比賽前，要好好做暖身運動。",
+    "english": "Before the match, do a proper warm-up.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "sports"
+    ]
+  },
+  {
+    "id": "3429",
+    "japanese": "スポーツは、体だけでなく心も鍛える。",
+    "chunks": [
+      "スポーツ",
+      "は、",
+      "体",
+      "だけ",
+      "で",
+      "なく",
+      "心",
+      "も",
+      "鍛える。"
+    ],
+    "translation": "運動不僅鍛鍊身體，也鍛鍊心智。",
+    "english": "Sports train not only the body but also the mind.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "sports"
+    ]
+  },
+  {
+    "id": "3430",
+    "japanese": "私は子どものころ水泳を習いました。",
+    "chunks": [
+      "私",
+      "は",
+      "子ども",
+      "の",
+      "ころ",
+      "水泳",
+      "を",
+      "習いました。"
+    ],
+    "translation": "我小時候學過游泳。",
+    "english": "I learned swimming as a child.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "sports"
+    ]
+  },
+  {
+    "id": "3431",
+    "japanese": "最後まであきらめない姿に、感動した。",
+    "chunks": [
+      "最後",
+      "まで",
+      "あきらめ",
+      "ない",
+      "姿",
+      "に、",
+      "感動",
+      "した。"
+    ],
+    "translation": "對於堅持到最後不放棄的身影，我深受感動。",
+    "english": "I was moved by his refusal to give up to the end.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "sports"
+    ]
+  },
+  {
+    "id": "3432",
+    "japanese": "走るのは苦手だが、泳ぐのは好きだ。",
+    "chunks": [
+      "走る",
+      "の",
+      "は",
+      "苦手",
+      "だ",
+      "が、",
+      "泳ぐ",
+      "の",
+      "は",
+      "好き",
+      "だ。"
+    ],
+    "translation": "我不擅長跑步，但喜歡游泳。",
+    "english": "I'm bad at running, but I like swimming.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "sports"
+    ]
+  },
+  {
+    "id": "3433",
+    "japanese": "観客の声援が、選手の力になる。",
+    "chunks": [
+      "観客",
+      "の",
+      "声援",
+      "が、",
+      "選手",
+      "の",
+      "力",
+      "に",
+      "なる。"
+    ],
+    "translation": "觀眾的加油聲，成為選手的力量。",
+    "english": "The spectators' cheers become the athletes' strength.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "sports"
+    ]
+  },
+  {
+    "id": "3434",
+    "japanese": "新しい技能を学ぶのは、いくつになっても楽しい。",
+    "chunks": [
+      "新しい",
+      "技能",
+      "を",
+      "学ぶ",
+      "の",
+      "は、",
+      "いくつ",
+      "に",
+      "なって",
+      "も",
+      "楽しい。"
+    ],
+    "translation": "學習新技能，不論幾歲都很快樂。",
+    "english": "Learning new skills is fun no matter your age.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "skills"
+    ]
+  },
+  {
+    "id": "3435",
+    "japanese": "私は料理と裁縫ができます。",
+    "chunks": [
+      "私",
+      "は",
+      "料理",
+      "と",
+      "裁縫",
+      "が",
+      "できます。"
+    ],
+    "translation": "我會做菜和縫紉。",
+    "english": "I can cook and sew.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "skills"
+    ]
+  },
+  {
+    "id": "3436",
+    "japanese": "仕事に役立つ技能を、少しずつ増やしている。",
+    "chunks": [
+      "仕事",
+      "に",
+      "役立つ",
+      "技能",
+      "を、",
+      "少しずつ",
+      "増やして",
+      "いる。"
+    ],
+    "translation": "我正一點一點增加對工作有幫助的技能。",
+    "english": "I'm gradually building up skills useful for work.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "skills"
+    ]
+  },
+  {
+    "id": "3437",
+    "japanese": "時代の変化に応じて、必要な能力も変わる。",
+    "chunks": [
+      "時代",
+      "の",
+      "変化",
+      "に",
+      "応じて、",
+      "必要",
+      "な",
+      "能力",
+      "も",
+      "変わる。"
+    ],
+    "translation": "隨著時代的變化，所需的能力也會改變。",
+    "english": "As the times change, the necessary skills change too.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "skills"
+    ]
+  },
+  {
+    "id": "3438",
+    "japanese": "話す力をのばすには、練習あるのみだ。",
+    "chunks": [
+      "話す",
+      "力",
+      "を",
+      "のばす",
+      "に",
+      "は、",
+      "練習",
+      "あるのみ",
+      "だ。"
+    ],
+    "translation": "要提升口說能力，唯有練習。",
+    "english": "To improve speaking, there's nothing but practice.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "skills"
+    ]
+  },
+  {
+    "id": "3439",
+    "japanese": "彼は幅広い知識と技能を持っている。",
+    "chunks": [
+      "彼",
+      "は",
+      "幅広い",
+      "知識",
+      "と",
+      "技能",
+      "を",
+      "持って",
+      "いる。"
+    ],
+    "translation": "他擁有廣泛的知識與技能。",
+    "english": "He has a wide range of knowledge and skills.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "skills"
+    ]
+  },
+  {
+    "id": "3440",
+    "japanese": "私はタイピングが少し速くなりました。",
+    "chunks": [
+      "私",
+      "は",
+      "タイピング",
+      "が",
+      "少し",
+      "速く",
+      "なりました。"
+    ],
+    "translation": "我的打字稍微變快了。",
+    "english": "My typing has gotten a bit faster.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "skills"
+    ]
+  },
+  {
+    "id": "3441",
+    "japanese": "問題を解決する力は、経験から育つ。",
+    "chunks": [
+      "問題",
+      "を",
+      "解決",
+      "する",
+      "力",
+      "は、",
+      "経験",
+      "から",
+      "育つ。"
+    ],
+    "translation": "解決問題的能力，是從經驗中培養的。",
+    "english": "Problem-solving skills grow from experience.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "skills"
+    ]
+  },
+  {
+    "id": "3442",
+    "japanese": "毎日少しずつ練習すれば、必ず上達する。",
+    "chunks": [
+      "毎日",
+      "少し",
+      "ずつ",
+      "練習",
+      "すれば、",
+      "必ず",
+      "上達",
+      "する。"
+    ],
+    "translation": "每天一點一點練習，一定會進步。",
+    "english": "If you practice a little each day, you'll surely improve.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "skills"
+    ]
+  },
+  {
+    "id": "3443",
+    "japanese": "人と協力する力も、大切な技能だ。",
+    "chunks": [
+      "人",
+      "と",
+      "協力",
+      "する",
+      "力",
+      "も、",
+      "大切",
+      "な",
+      "技能",
+      "だ。"
+    ],
+    "translation": "與人合作的能力，也是重要的技能。",
+    "english": "The ability to cooperate with others is also an important skill.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "skills"
+    ]
   }
 ]
