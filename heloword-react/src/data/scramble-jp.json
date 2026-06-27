@@ -75653,5 +75653,1062 @@
       "N1",
       "career"
     ]
+  },
+  {
+    "id": "3693",
+    "japanese": "私は毎日日本語を勉強しています。",
+    "chunks": [
+      "私",
+      "は",
+      "毎日",
+      "日本語",
+      "を",
+      "勉強",
+      "して",
+      "います。"
+    ],
+    "translation": "我每天學習日語。",
+    "english": "I study Japanese every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "language"
+    ]
+  },
+  {
+    "id": "3694",
+    "japanese": "言葉は、使えば使うほど身につく。",
+    "chunks": [
+      "言葉",
+      "は、",
+      "使え",
+      "ば",
+      "使う",
+      "ほど",
+      "身",
+      "に",
+      "つく。"
+    ],
+    "translation": "語言越用就越能掌握。",
+    "english": "The more you use a language, the more it becomes yours.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "language"
+    ]
+  },
+  {
+    "id": "3695",
+    "japanese": "外国語を学ぶと、世界が広がる。",
+    "chunks": [
+      "外国語",
+      "を",
+      "学ぶ",
+      "と、",
+      "世界",
+      "が",
+      "広がる。"
+    ],
+    "translation": "學習外語，世界就會變得寬廣。",
+    "english": "Learning a foreign language broadens your world.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "language"
+    ]
+  },
+  {
+    "id": "3696",
+    "japanese": "言語は、その国の文化を映す鏡だ。",
+    "chunks": [
+      "言語",
+      "は、",
+      "その",
+      "国",
+      "の",
+      "文化",
+      "を",
+      "映す",
+      "鏡",
+      "だ。"
+    ],
+    "translation": "語言是映照那個國家文化的鏡子。",
+    "english": "Language is a mirror reflecting a country's culture.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "language"
+    ]
+  },
+  {
+    "id": "3697",
+    "japanese": "私は英語を少し話せます。",
+    "chunks": [
+      "私",
+      "は",
+      "英語",
+      "を",
+      "少し",
+      "話せます。"
+    ],
+    "translation": "我會說一點英語。",
+    "english": "I can speak a little English.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "language"
+    ]
+  },
+  {
+    "id": "3698",
+    "japanese": "発音を直すのは、思ったより難しい。",
+    "chunks": [
+      "発音",
+      "を",
+      "直す",
+      "の",
+      "は、",
+      "思った",
+      "より",
+      "難しい。"
+    ],
+    "translation": "矯正發音比想像中還難。",
+    "english": "Correcting pronunciation is harder than I thought.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "language"
+    ]
+  },
+  {
+    "id": "3699",
+    "japanese": "母語以外の言葉で考えるのは、刺激的だ。",
+    "chunks": [
+      "母語",
+      "以外",
+      "の",
+      "言葉",
+      "で",
+      "考える",
+      "の",
+      "は、",
+      "刺激的",
+      "だ。"
+    ],
+    "translation": "用母語以外的語言思考，很有刺激性。",
+    "english": "Thinking in a language other than your mother tongue is stimulating.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "language"
+    ]
+  },
+  {
+    "id": "3700",
+    "japanese": "新しい単語を、毎日少しずつ覚える。",
+    "chunks": [
+      "新しい",
+      "単語",
+      "を、",
+      "毎日",
+      "少し",
+      "ずつ",
+      "覚える。"
+    ],
+    "translation": "我每天記一點新單字。",
+    "english": "I memorize a few new words every day.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "language"
+    ]
+  },
+  {
+    "id": "3701",
+    "japanese": "言葉の選び方一つで、印象は変わる。",
+    "chunks": [
+      "言葉",
+      "の",
+      "選び方",
+      "一つ",
+      "で、",
+      "印象",
+      "は",
+      "変わる。"
+    ],
+    "translation": "光是用詞的選擇，印象就會改變。",
+    "english": "A single choice of words can change the impression.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "language"
+    ]
+  },
+  {
+    "id": "3702",
+    "japanese": "私は映画を見て、会話を学びます。",
+    "chunks": [
+      "私",
+      "は",
+      "映画",
+      "を",
+      "見て、",
+      "会話",
+      "を",
+      "学びます。"
+    ],
+    "translation": "我看電影學會話。",
+    "english": "I learn conversation by watching movies.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "language"
+    ]
+  },
+  {
+    "id": "3703",
+    "japanese": "私は週末にアニメを見ます。",
+    "chunks": [
+      "私",
+      "は",
+      "週末",
+      "に",
+      "アニメ",
+      "を",
+      "見ます。"
+    ],
+    "translation": "我週末看動畫。",
+    "english": "I watch anime on weekends.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "anime"
+    ]
+  },
+  {
+    "id": "3704",
+    "japanese": "このアニメは、話がとてもおもしろい。",
+    "chunks": [
+      "この",
+      "アニメ",
+      "は、",
+      "話",
+      "が",
+      "とても",
+      "おもしろい。"
+    ],
+    "translation": "這部動畫的故事非常有趣。",
+    "english": "This anime has a very interesting story.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "anime"
+    ]
+  },
+  {
+    "id": "3705",
+    "japanese": "美しい作画に、思わず見入ってしまった。",
+    "chunks": [
+      "美しい",
+      "作画",
+      "に、",
+      "思わず",
+      "見入って",
+      "しまった。"
+    ],
+    "translation": "對於美麗的作畫，我不禁看得入迷。",
+    "english": "I couldn't help being drawn in by the beautiful animation.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "anime"
+    ]
+  },
+  {
+    "id": "3706",
+    "japanese": "子どものころから、ずっとアニメが好きだ。",
+    "chunks": [
+      "子ども",
+      "の",
+      "ころ",
+      "から、",
+      "ずっと",
+      "アニメ",
+      "が",
+      "好き",
+      "だ。"
+    ],
+    "translation": "我從小就一直喜歡動畫。",
+    "english": "I've loved anime ever since I was a child.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "anime"
+    ]
+  },
+  {
+    "id": "3707",
+    "japanese": "日本のアニメは、世界中で愛されている。",
+    "chunks": [
+      "日本",
+      "の",
+      "アニメ",
+      "は、",
+      "世界中",
+      "で",
+      "愛されて",
+      "いる。"
+    ],
+    "translation": "日本的動畫，受到全世界的喜愛。",
+    "english": "Japanese anime is loved all over the world.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "anime"
+    ]
+  },
+  {
+    "id": "3708",
+    "japanese": "主人公の成長に、胸が熱くなった。",
+    "chunks": [
+      "主人公",
+      "の",
+      "成長",
+      "に、",
+      "胸",
+      "が",
+      "熱く",
+      "なった。"
+    ],
+    "translation": "對於主角的成長，我心頭一熱。",
+    "english": "My heart warmed at the protagonist's growth.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "anime"
+    ]
+  },
+  {
+    "id": "3709",
+    "japanese": "私は好きなキャラクターのグッズを集めている。",
+    "chunks": [
+      "私",
+      "は",
+      "好き",
+      "な",
+      "キャラクター",
+      "の",
+      "グッズ",
+      "を",
+      "集めて",
+      "いる。"
+    ],
+    "translation": "我蒐集喜歡角色的周邊商品。",
+    "english": "I collect goods of my favorite characters.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "anime"
+    ]
+  },
+  {
+    "id": "3710",
+    "japanese": "物語に込められたメッセージが、心に残る。",
+    "chunks": [
+      "物語",
+      "に",
+      "込められた",
+      "メッセージ",
+      "が、",
+      "心",
+      "に",
+      "残る。"
+    ],
+    "translation": "故事中蘊含的訊息，留在心中。",
+    "english": "The message embedded in the story stays with you.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "anime"
+    ]
+  },
+  {
+    "id": "3711",
+    "japanese": "この映画の音楽が、とても印象的だ。",
+    "chunks": [
+      "この",
+      "映画",
+      "の",
+      "音楽",
+      "が、",
+      "とても",
+      "印象的",
+      "だ。"
+    ],
+    "translation": "這部電影的音樂，非常令人印象深刻。",
+    "english": "This film's music is very memorable.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "anime"
+    ]
+  },
+  {
+    "id": "3712",
+    "japanese": "友達と、好きなアニメの話をしました。",
+    "chunks": [
+      "友達",
+      "と、",
+      "好き",
+      "な",
+      "アニメ",
+      "の",
+      "話",
+      "を",
+      "しました。"
+    ],
+    "translation": "我和朋友聊了喜歡的動畫。",
+    "english": "I talked about favorite anime with my friend.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "anime"
+    ]
+  },
+  {
+    "id": "3713",
+    "japanese": "私はスマホで写真を撮ります。",
+    "chunks": [
+      "私",
+      "は",
+      "スマホ",
+      "で",
+      "写真",
+      "を",
+      "撮ります。"
+    ],
+    "translation": "我用手機拍照。",
+    "english": "I take photos with my smartphone.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "technology"
+    ]
+  },
+  {
+    "id": "3714",
+    "japanese": "新しい技術が、暮らしを便利にした。",
+    "chunks": [
+      "新しい",
+      "技術",
+      "が、",
+      "暮らし",
+      "を",
+      "便利",
+      "に",
+      "した。"
+    ],
+    "translation": "新技術讓生活變得方便。",
+    "english": "New technology has made life convenient.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "technology"
+    ]
+  },
+  {
+    "id": "3715",
+    "japanese": "人工知能の進歩は、めざましい。",
+    "chunks": [
+      "人工知能",
+      "の",
+      "進歩",
+      "は、",
+      "めざましい。"
+    ],
+    "translation": "人工智慧的進步，十分驚人。",
+    "english": "The progress of artificial intelligence is remarkable.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "technology"
+    ]
+  },
+  {
+    "id": "3716",
+    "japanese": "便利さの裏には、新しい課題もある。",
+    "chunks": [
+      "便利さ",
+      "の",
+      "裏",
+      "に",
+      "は、",
+      "新しい",
+      "課題",
+      "も",
+      "ある。"
+    ],
+    "translation": "便利的背後，也有新的課題。",
+    "english": "Behind convenience lie new challenges too.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "technology"
+    ]
+  },
+  {
+    "id": "3717",
+    "japanese": "私はネットで買い物をします。",
+    "chunks": [
+      "私",
+      "は",
+      "ネット",
+      "で",
+      "買い物",
+      "を",
+      "します。"
+    ],
+    "translation": "我在網路上購物。",
+    "english": "I shop online.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "technology"
+    ]
+  },
+  {
+    "id": "3718",
+    "japanese": "技術は、使う人次第で善にも悪にもなる。",
+    "chunks": [
+      "技術",
+      "は、",
+      "使う",
+      "人",
+      "次第",
+      "で",
+      "善",
+      "に",
+      "も",
+      "悪",
+      "に",
+      "も",
+      "なる。"
+    ],
+    "translation": "技術依使用者而定，可善可惡。",
+    "english": "Technology becomes good or bad depending on the user.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "technology"
+    ]
+  },
+  {
+    "id": "3719",
+    "japanese": "このアプリのおかげで、作業が楽になった。",
+    "chunks": [
+      "この",
+      "アプリ",
+      "の",
+      "おかげ",
+      "で、",
+      "作業",
+      "が",
+      "楽",
+      "に",
+      "なった。"
+    ],
+    "translation": "多虧了這個應用程式，作業變輕鬆了。",
+    "english": "Thanks to this app, the work got easier.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "technology"
+    ]
+  },
+  {
+    "id": "3720",
+    "japanese": "パソコンの調子が悪くて、困っています。",
+    "chunks": [
+      "パソコン",
+      "の",
+      "調子",
+      "が",
+      "悪くて、",
+      "困って",
+      "います。"
+    ],
+    "translation": "電腦狀況不好，讓我很困擾。",
+    "english": "My computer is acting up, and I'm troubled.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "technology"
+    ]
+  },
+  {
+    "id": "3721",
+    "japanese": "急速な変化に、ついていくのが大変だ。",
+    "chunks": [
+      "急速",
+      "な",
+      "変化",
+      "に、",
+      "ついていく",
+      "の",
+      "が",
+      "大変",
+      "だ。"
+    ],
+    "translation": "要跟上快速的變化，很辛苦。",
+    "english": "It's tough keeping up with rapid change.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "technology"
+    ]
+  },
+  {
+    "id": "3722",
+    "japanese": "私は新しいパソコンを買いたいです。",
+    "chunks": [
+      "私",
+      "は",
+      "新しい",
+      "パソコン",
+      "を",
+      "買いたい",
+      "です。"
+    ],
+    "translation": "我想買新的電腦。",
+    "english": "I want to buy a new computer.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "technology"
+    ]
+  },
+  {
+    "id": "3723",
+    "japanese": "自分を信じることが、力になる。",
+    "chunks": [
+      "自分",
+      "を",
+      "信じる",
+      "こと",
+      "が、",
+      "力",
+      "に",
+      "なる。"
+    ],
+    "translation": "相信自己，會成為力量。",
+    "english": "Believing in yourself becomes your strength.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3724",
+    "japanese": "私はきっとできると思っています。",
+    "chunks": [
+      "私",
+      "は",
+      "きっと",
+      "できる",
+      "と",
+      "思って",
+      "います。"
+    ],
+    "translation": "我認為自己一定做得到。",
+    "english": "I believe I can surely do it.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3725",
+    "japanese": "どんなに不安でも、一歩踏み出してみる。",
+    "chunks": [
+      "どんな",
+      "に",
+      "不安",
+      "でも、",
+      "一歩",
+      "踏み出して",
+      "みる。"
+    ],
+    "translation": "無論多麼不安，也試著踏出一步。",
+    "english": "However anxious, I try to take a step forward.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3726",
+    "japanese": "自分の可能性を、自分で限らない。",
+    "chunks": [
+      "自分",
+      "の",
+      "可能性",
+      "を、",
+      "自分",
+      "で",
+      "限ら",
+      "ない。"
+    ],
+    "translation": "不要由自己來限制自己的可能性。",
+    "english": "Don't limit your own potential yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3727",
+    "japanese": "失敗しても、自分を責めすぎない。",
+    "chunks": [
+      "失敗",
+      "して",
+      "も、",
+      "自分",
+      "を",
+      "責め",
+      "すぎ",
+      "ない。"
+    ],
+    "translation": "即使失敗，也不過度責備自己。",
+    "english": "Even if I fail, I don't blame myself too much.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3728",
+    "japanese": "できると信じて続ければ、道は開ける。",
+    "chunks": [
+      "できる",
+      "と",
+      "信じて",
+      "続ければ、",
+      "道",
+      "は",
+      "開ける。"
+    ],
+    "translation": "只要相信能做到並持續下去，道路就會開展。",
+    "english": "If you keep believing you can, a path will open.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3729",
+    "japanese": "私は自分の選択に自信があります。",
+    "chunks": [
+      "私",
+      "は",
+      "自分",
+      "の",
+      "選択",
+      "に",
+      "自信",
+      "が",
+      "あります。"
+    ],
+    "translation": "我對自己的選擇有自信。",
+    "english": "I'm confident in my own choices.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3730",
+    "japanese": "小さな成功が、自信を少しずつ育てる。",
+    "chunks": [
+      "小さな",
+      "成功",
+      "が、",
+      "自信",
+      "を",
+      "少しずつ",
+      "育てる。"
+    ],
+    "translation": "小小的成功，一點一點地培養自信。",
+    "english": "Small successes nurture confidence little by little.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3731",
+    "japanese": "私はあきらめないことを決めました。",
+    "chunks": [
+      "私",
+      "は",
+      "あきらめ",
+      "ない",
+      "こと",
+      "を",
+      "決めました。"
+    ],
+    "translation": "我決定不放棄。",
+    "english": "I've decided not to give up.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3732",
+    "japanese": "他人の評価より、自分の信念を大切にする。",
+    "chunks": [
+      "他人",
+      "の",
+      "評価",
+      "より、",
+      "自分",
+      "の",
+      "信念",
+      "を",
+      "大切",
+      "に",
+      "する。"
+    ],
+    "translation": "比起他人的評價，更珍惜自己的信念。",
+    "english": "I value my own conviction over others' judgment.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "self-belief"
+    ]
+  },
+  {
+    "id": "3733",
+    "japanese": "私は毎朝七時に家を出ます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "七",
+      "時",
+      "に",
+      "家",
+      "を",
+      "出ます。"
+    ],
+    "translation": "我每天早上七點出門。",
+    "english": "I leave home at seven every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3734",
+    "japanese": "買い物の帰りに、公園に寄りました。",
+    "chunks": [
+      "買い物",
+      "の",
+      "帰り",
+      "に、",
+      "公園",
+      "に",
+      "寄りました。"
+    ],
+    "translation": "購物回家的路上，我順道去了公園。",
+    "english": "On the way back from shopping, I stopped by the park.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3735",
+    "japanese": "何気ない日常に、ささやかな喜びがある。",
+    "chunks": [
+      "何気ない",
+      "日常",
+      "に、",
+      "ささやか",
+      "な",
+      "喜び",
+      "が",
+      "ある。"
+    ],
+    "translation": "在平凡的日常中，有著微小的喜悅。",
+    "english": "In ordinary daily life, there are small joys.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3736",
+    "japanese": "夕食の後は、家族とテレビを見ます。",
+    "chunks": [
+      "夕食",
+      "の",
+      "後",
+      "は、",
+      "家族",
+      "と",
+      "テレビ",
+      "を",
+      "見ます。"
+    ],
+    "translation": "晚餐後，我和家人一起看電視。",
+    "english": "After dinner, I watch TV with my family.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3737",
+    "japanese": "決まったリズムが、心を落ち着かせる。",
+    "chunks": [
+      "決まった",
+      "リズム",
+      "が、",
+      "心",
+      "を",
+      "落ち着かせる。"
+    ],
+    "translation": "固定的節奏，能讓心情平靜。",
+    "english": "A set rhythm calms the mind.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3738",
+    "japanese": "週に一度、部屋をきれいに掃除します。",
+    "chunks": [
+      "週",
+      "に",
+      "一度、",
+      "部屋",
+      "を",
+      "きれい",
+      "に",
+      "掃除",
+      "します。"
+    ],
+    "translation": "我一週把房間打掃乾淨一次。",
+    "english": "Once a week, I clean the room thoroughly.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3739",
+    "japanese": "私は休みの日に洗濯をします。",
+    "chunks": [
+      "私",
+      "は",
+      "休み",
+      "の",
+      "日",
+      "に",
+      "洗濯",
+      "を",
+      "します。"
+    ],
+    "translation": "我休假日洗衣服。",
+    "english": "I do laundry on my days off.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3740",
+    "japanese": "当たり前の毎日こそ、実はかけがえがない。",
+    "chunks": [
+      "当たり前",
+      "の",
+      "毎日",
+      "こそ、",
+      "実",
+      "は",
+      "かけがえ",
+      "が",
+      "ない。"
+    ],
+    "translation": "正是理所當然的日常，其實無可取代。",
+    "english": "It's the ordinary days that are truly irreplaceable.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3741",
+    "japanese": "朝ごはんをしっかり食べるようにしている。",
+    "chunks": [
+      "朝",
+      "ごはん",
+      "を",
+      "しっかり",
+      "食べる",
+      "よう",
+      "に",
+      "して",
+      "いる。"
+    ],
+    "translation": "我盡量好好吃早餐。",
+    "english": "I try to eat a proper breakfast.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "daily life"
+    ]
+  },
+  {
+    "id": "3742",
+    "japanese": "忙しくても、食事の時間は大事にする。",
+    "chunks": [
+      "忙しく",
+      "て",
+      "も、",
+      "食事",
+      "の",
+      "時間",
+      "は",
+      "大事",
+      "に",
+      "する。"
+    ],
+    "translation": "即使忙碌，也重視用餐的時間。",
+    "english": "Even when busy, I value mealtimes.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "daily life"
+    ]
   }
 ]
