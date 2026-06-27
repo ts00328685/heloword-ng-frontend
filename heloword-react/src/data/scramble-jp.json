@@ -63017,5 +63017,1111 @@
       "N2",
       "polite"
     ]
+  },
+  {
+    "id": "3095",
+    "japanese": "私の視点から見ると、この問題は単純ではない。",
+    "chunks": [
+      "私",
+      "の",
+      "視点",
+      "から",
+      "見る",
+      "と、",
+      "この",
+      "問題",
+      "は",
+      "単純",
+      "で",
+      "は",
+      "ない。"
+    ],
+    "translation": "從我的觀點來看，這個問題並不單純。",
+    "english": "From my perspective, this problem is not simple.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3096",
+    "japanese": "視点を変えれば、欠点も長所に見えてくる。",
+    "chunks": [
+      "視点",
+      "を",
+      "変えれば、",
+      "欠点",
+      "も",
+      "長所",
+      "に",
+      "見えて",
+      "くる。"
+    ],
+    "translation": "換個角度看，缺點也會看起來像優點。",
+    "english": "If you change your perspective, even flaws start to look like strengths.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3097",
+    "japanese": "多角的な視点を持つことが、本質を見抜く鍵だ。",
+    "chunks": [
+      "多角的",
+      "な",
+      "視点",
+      "を",
+      "持つ",
+      "こと",
+      "が、",
+      "本質",
+      "を",
+      "見抜く",
+      "鍵",
+      "だ。"
+    ],
+    "translation": "擁有多角度的視野，是看穿本質的關鍵。",
+    "english": "Having a multifaceted perspective is the key to seeing the essence.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3098",
+    "japanese": "相手の立場に立って考えてみましょう。",
+    "chunks": [
+      "相手",
+      "の",
+      "立場",
+      "に",
+      "立って",
+      "考えて",
+      "みましょう。"
+    ],
+    "translation": "試著站在對方的立場思考看看。",
+    "english": "Let's try thinking from the other person's standpoint.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3099",
+    "japanese": "高い所から町の景色を見ました。",
+    "chunks": [
+      "高い",
+      "所",
+      "から",
+      "町",
+      "の",
+      "景色",
+      "を",
+      "見ました。"
+    ],
+    "translation": "我從高處看了城鎮的景色。",
+    "english": "I looked at the view of the town from a high place.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3100",
+    "japanese": "客観的な視点がなければ、判断を誤りやすい。",
+    "chunks": [
+      "客観的",
+      "な",
+      "視点",
+      "が",
+      "なければ、",
+      "判断",
+      "を",
+      "誤り",
+      "やすい。"
+    ],
+    "translation": "若缺乏客觀的觀點，就容易判斷錯誤。",
+    "english": "Without an objective viewpoint, you tend to misjudge.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3101",
+    "japanese": "歴史を異なる視点から捉え直す必要がある。",
+    "chunks": [
+      "歴史",
+      "を",
+      "異なる",
+      "視点",
+      "から",
+      "捉え直す",
+      "必要",
+      "が",
+      "ある。"
+    ],
+    "translation": "有必要從不同的觀點重新審視歷史。",
+    "english": "It is necessary to reinterpret history from a different perspective.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3102",
+    "japanese": "子どもの目線で世界を見ると、新鮮に感じる。",
+    "chunks": [
+      "子ども",
+      "の",
+      "目線",
+      "で",
+      "世界",
+      "を",
+      "見る",
+      "と、",
+      "新鮮",
+      "に",
+      "感じる。"
+    ],
+    "translation": "以孩子的視角看世界，會感覺很新鮮。",
+    "english": "Seeing the world from a child's eye level feels fresh.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3103",
+    "japanese": "私はその意見に賛成です。",
+    "chunks": [
+      "私",
+      "は",
+      "その",
+      "意見",
+      "に",
+      "賛成",
+      "です。"
+    ],
+    "translation": "我贊成那個意見。",
+    "english": "I agree with that opinion.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3104",
+    "japanese": "第三者の視点で見ると、問題点がよく分かる。",
+    "chunks": [
+      "第三者",
+      "の",
+      "視点",
+      "で",
+      "見る",
+      "と、",
+      "問題点",
+      "が",
+      "よく",
+      "分かる。"
+    ],
+    "translation": "以第三者的角度來看，問題點就看得很清楚。",
+    "english": "Seen from a third party's perspective, the issues become clear.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "perspective"
+    ]
+  },
+  {
+    "id": "3105",
+    "japanese": "先生がこの本を薦めてくれました。",
+    "chunks": [
+      "先生",
+      "が",
+      "この",
+      "本",
+      "を",
+      "薦めて",
+      "くれました。"
+    ],
+    "translation": "老師推薦了這本書給我。",
+    "english": "The teacher recommended this book to me.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3106",
+    "japanese": "友達におすすめのレストランを教えてもらった。",
+    "chunks": [
+      "友達",
+      "に",
+      "おすすめ",
+      "の",
+      "レストラン",
+      "を",
+      "教えて",
+      "もらった。"
+    ],
+    "translation": "朋友告訴了我推薦的餐廳。",
+    "english": "A friend told me about a recommended restaurant.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3107",
+    "japanese": "この映画は、ぜひ多くの人に薦めたい作品だ。",
+    "chunks": [
+      "この",
+      "映画",
+      "は、",
+      "ぜひ",
+      "多く",
+      "の",
+      "人",
+      "に",
+      "薦めたい",
+      "作品",
+      "だ。"
+    ],
+    "translation": "這部電影是我非常想推薦給很多人的作品。",
+    "english": "This film is a work I really want to recommend to many people.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3108",
+    "japanese": "専門家の推薦があれば、信頼性は格段に高まる。",
+    "chunks": [
+      "専門家",
+      "の",
+      "推薦",
+      "が",
+      "あれば、",
+      "信頼性",
+      "は",
+      "格段",
+      "に",
+      "高まる。"
+    ],
+    "translation": "若有專家的推薦，可信度會大幅提升。",
+    "english": "With an expert's recommendation, credibility rises dramatically.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3109",
+    "japanese": "店員さんがこのワインを薦めてくれた。",
+    "chunks": [
+      "店員",
+      "さん",
+      "が",
+      "この",
+      "ワイン",
+      "を",
+      "薦めて",
+      "くれた。"
+    ],
+    "translation": "店員推薦了這款葡萄酒給我。",
+    "english": "The shop clerk recommended this wine to me.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3110",
+    "japanese": "あなたにぴったりの仕事を推薦させてください。",
+    "chunks": [
+      "あなた",
+      "に",
+      "ぴったり",
+      "の",
+      "仕事",
+      "を",
+      "推薦",
+      "させて",
+      "ください。"
+    ],
+    "translation": "請讓我為你推薦最適合的工作。",
+    "english": "Please let me recommend a job that's perfect for you.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3111",
+    "japanese": "これはとても良い本です。",
+    "chunks": [
+      "これ",
+      "は",
+      "とても",
+      "良い",
+      "本",
+      "です。"
+    ],
+    "translation": "這是一本非常好的書。",
+    "english": "This is a very good book.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3112",
+    "japanese": "上司の推薦状のおかげで、面接に進むことができた。",
+    "chunks": [
+      "上司",
+      "の",
+      "推薦状",
+      "の",
+      "おかげ",
+      "で、",
+      "面接",
+      "に",
+      "進む",
+      "こと",
+      "が",
+      "できた。"
+    ],
+    "translation": "多虧了上司的推薦信，我才得以進入面試。",
+    "english": "Thanks to my boss's letter of recommendation, I was able to advance to the interview.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3113",
+    "japanese": "おすすめのメニューはどれですか。",
+    "chunks": [
+      "おすすめ",
+      "の",
+      "メニュー",
+      "は",
+      "どれ",
+      "です",
+      "か。"
+    ],
+    "translation": "推薦的菜色是哪一道呢？",
+    "english": "Which is the recommended item on the menu?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3114",
+    "japanese": "旅行先として、この島を強く推薦します。",
+    "chunks": [
+      "旅行先",
+      "と",
+      "して、",
+      "この",
+      "島",
+      "を",
+      "強く",
+      "推薦",
+      "します。"
+    ],
+    "translation": "作為旅遊地點，我強力推薦這座島。",
+    "english": "As a travel destination, I strongly recommend this island.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "recommendation"
+    ]
+  },
+  {
+    "id": "3115",
+    "japanese": "先生は私の絵を褒めてくれました。",
+    "chunks": [
+      "先生",
+      "は",
+      "私",
+      "の",
+      "絵",
+      "を",
+      "褒めて",
+      "くれました。"
+    ],
+    "translation": "老師稱讚了我的畫。",
+    "english": "The teacher praised my drawing.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "praise"
+    ]
+  },
+  {
+    "id": "3116",
+    "japanese": "母に料理が上手だと褒められた。",
+    "chunks": [
+      "母",
+      "に",
+      "料理",
+      "が",
+      "上手",
+      "だ",
+      "と",
+      "褒められた。"
+    ],
+    "translation": "我被媽媽稱讚很會做菜。",
+    "english": "I was praised by my mother for being good at cooking.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "praise"
+    ]
+  },
+  {
+    "id": "3117",
+    "japanese": "彼の努力は、みんなから高く評価されている。",
+    "chunks": [
+      "彼",
+      "の",
+      "努力",
+      "は、",
+      "みんな",
+      "から",
+      "高く",
+      "評価",
+      "されて",
+      "いる。"
+    ],
+    "translation": "他的努力受到了大家高度的評價。",
+    "english": "His efforts are highly valued by everyone.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "praise"
+    ]
+  },
+  {
+    "id": "3118",
+    "japanese": "過度な称賛は、かえって相手を傷つけることもある。",
+    "chunks": [
+      "過度",
+      "な",
+      "称賛",
+      "は、",
+      "かえって",
+      "相手",
+      "を",
+      "傷つける",
+      "こと",
+      "も",
+      "ある。"
+    ],
+    "translation": "過度的稱讚有時反而會傷害對方。",
+    "english": "Excessive praise can sometimes hurt the other person instead.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "praise"
+    ]
+  },
+  {
+    "id": "3119",
+    "japanese": "子どもは褒められると、もっと頑張る。",
+    "chunks": [
+      "子ども",
+      "は",
+      "褒められる",
+      "と、",
+      "もっと",
+      "頑張る。"
+    ],
+    "translation": "孩子被稱讚後會更加努力。",
+    "english": "Children try harder when they are praised.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "praise"
+    ]
+  },
+  {
+    "id": "3120",
+    "japanese": "その作品は批評家から絶賛された。",
+    "chunks": [
+      "その",
+      "作品",
+      "は",
+      "批評家",
+      "から",
+      "絶賛",
+      "された。"
+    ],
+    "translation": "那部作品受到了評論家的盛讚。",
+    "english": "That work was highly acclaimed by the critics.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "praise"
+    ]
+  },
+  {
+    "id": "3121",
+    "japanese": "あなたの日本語はとても上手です。",
+    "chunks": [
+      "あなた",
+      "の",
+      "日本語",
+      "は",
+      "とても",
+      "上手",
+      "です。"
+    ],
+    "translation": "你的日語非常好。",
+    "english": "Your Japanese is very good.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "praise"
+    ]
+  },
+  {
+    "id": "3122",
+    "japanese": "心からの賛辞は、何よりの励みになる。",
+    "chunks": [
+      "心",
+      "から",
+      "の",
+      "賛辞",
+      "は、",
+      "何より",
+      "の",
+      "励み",
+      "に",
+      "なる。"
+    ],
+    "translation": "發自內心的讚美，是比什麼都更大的鼓勵。",
+    "english": "Heartfelt praise is the greatest encouragement of all.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "praise"
+    ]
+  },
+  {
+    "id": "3123",
+    "japanese": "上司は彼の成果をみんなの前で褒めた。",
+    "chunks": [
+      "上司",
+      "は",
+      "彼",
+      "の",
+      "成果",
+      "を",
+      "みんな",
+      "の",
+      "前",
+      "で",
+      "褒めた。"
+    ],
+    "translation": "上司在大家面前稱讚了他的成果。",
+    "english": "The boss praised his results in front of everyone.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "praise"
+    ]
+  },
+  {
+    "id": "3124",
+    "japanese": "人を褒めるときは、具体的に言うとよい。",
+    "chunks": [
+      "人",
+      "を",
+      "褒める",
+      "とき",
+      "は、",
+      "具体的",
+      "に",
+      "言う",
+      "と",
+      "よい。"
+    ],
+    "translation": "稱讚別人時，具體地說會比較好。",
+    "english": "When praising someone, it's good to be specific.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "praise"
+    ]
+  },
+  {
+    "id": "3125",
+    "japanese": "良い人間関係を築くには、信頼が必要だ。",
+    "chunks": [
+      "良い",
+      "人間関係",
+      "を",
+      "築く",
+      "に",
+      "は、",
+      "信頼",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "要建立良好的人際關係，信任是必要的。",
+    "english": "To build good relationships, trust is necessary.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3126",
+    "japanese": "彼とは長年にわたって良い関係を保っている。",
+    "chunks": [
+      "彼",
+      "と",
+      "は",
+      "長年",
+      "に",
+      "わたって",
+      "良い",
+      "関係",
+      "を",
+      "保って",
+      "いる。"
+    ],
+    "translation": "我和他多年來都維持著良好的關係。",
+    "english": "I have maintained a good relationship with him for many years.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3127",
+    "japanese": "利害関係が絡むと、友情も複雑になりがちだ。",
+    "chunks": [
+      "利害",
+      "関係",
+      "が",
+      "絡む",
+      "と、",
+      "友情",
+      "も",
+      "複雑",
+      "に",
+      "なり",
+      "がち",
+      "だ。"
+    ],
+    "translation": "一旦牽涉到利害關係，友情也容易變得複雜。",
+    "english": "When interests are involved, friendships tend to get complicated too.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3128",
+    "japanese": "私は近所の人と仲が良いです。",
+    "chunks": [
+      "私",
+      "は",
+      "近所",
+      "の",
+      "人",
+      "と",
+      "仲",
+      "が",
+      "良い",
+      "です。"
+    ],
+    "translation": "我和鄰居關係很好。",
+    "english": "I get along well with my neighbors.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3129",
+    "japanese": "けんかをしても、すぐに仲直りした。",
+    "chunks": [
+      "けんか",
+      "を",
+      "しても、",
+      "すぐ",
+      "に",
+      "仲直り",
+      "した。"
+    ],
+    "translation": "即使吵了架，也馬上和好了。",
+    "english": "Even though we fought, we made up right away.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3130",
+    "japanese": "職場の人間関係に悩む人は少なくない。",
+    "chunks": [
+      "職場",
+      "の",
+      "人間関係",
+      "に",
+      "悩む",
+      "人",
+      "は",
+      "少なく",
+      "ない。"
+    ],
+    "translation": "為職場人際關係煩惱的人不在少數。",
+    "english": "There are not a few people who worry about workplace relationships.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3131",
+    "japanese": "私は彼と友達になりたいです。",
+    "chunks": [
+      "私",
+      "は",
+      "彼",
+      "と",
+      "友達",
+      "に",
+      "なりたい",
+      "です。"
+    ],
+    "translation": "我想和他成為朋友。",
+    "english": "I want to become friends with him.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3132",
+    "japanese": "互いを尊重し合う関係こそが、長続きする。",
+    "chunks": [
+      "互い",
+      "を",
+      "尊重",
+      "し合う",
+      "関係",
+      "こそ",
+      "が、",
+      "長続き",
+      "する。"
+    ],
+    "translation": "唯有互相尊重的關係，才能長久。",
+    "english": "It is precisely a relationship of mutual respect that lasts.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3133",
+    "japanese": "親との関係が、その後の人生に影響する。",
+    "chunks": [
+      "親",
+      "と",
+      "の",
+      "関係",
+      "が、",
+      "その後",
+      "の",
+      "人生",
+      "に",
+      "影響",
+      "する。"
+    ],
+    "translation": "與父母的關係，會影響日後的人生。",
+    "english": "One's relationship with parents affects the rest of one's life.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3134",
+    "japanese": "距離が近すぎると、関係がこじれることもある。",
+    "chunks": [
+      "距離",
+      "が",
+      "近",
+      "すぎる",
+      "と、",
+      "関係",
+      "が",
+      "こじれる",
+      "こと",
+      "も",
+      "ある。"
+    ],
+    "translation": "距離太近，關係有時也會變得不和。",
+    "english": "When the distance is too close, the relationship can sometimes sour.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "relationship"
+    ]
+  },
+  {
+    "id": "3135",
+    "japanese": "私は甘い物より辛い物が好きです。",
+    "chunks": [
+      "私",
+      "は",
+      "甘い",
+      "物",
+      "より",
+      "辛い",
+      "物",
+      "が",
+      "好き",
+      "です。"
+    ],
+    "translation": "比起甜食，我更喜歡辣的東西。",
+    "english": "I prefer spicy food over sweet food.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3136",
+    "japanese": "人によって好みは大きく異なる。",
+    "chunks": [
+      "人",
+      "に",
+      "よって",
+      "好み",
+      "は",
+      "大きく",
+      "異なる。"
+    ],
+    "translation": "每個人的喜好差異很大。",
+    "english": "Preferences differ greatly from person to person.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3137",
+    "japanese": "食の好みは、育った環境に左右されやすい。",
+    "chunks": [
+      "食",
+      "の",
+      "好み",
+      "は、",
+      "育った",
+      "環境",
+      "に",
+      "左右",
+      "され",
+      "やすい。"
+    ],
+    "translation": "飲食喜好容易受成長環境影響。",
+    "english": "Food preferences are easily influenced by the environment one grew up in.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3138",
+    "japanese": "個人の嗜好を尊重することが、多様性につながる。",
+    "chunks": [
+      "個人",
+      "の",
+      "嗜好",
+      "を",
+      "尊重",
+      "する",
+      "こと",
+      "が、",
+      "多様性",
+      "に",
+      "つながる。"
+    ],
+    "translation": "尊重個人的喜好，能促進多元性。",
+    "english": "Respecting individual tastes leads to diversity.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3139",
+    "japanese": "私はコーヒーが好きです。",
+    "chunks": [
+      "私",
+      "は",
+      "コーヒー",
+      "が",
+      "好き",
+      "です。"
+    ],
+    "translation": "我喜歡咖啡。",
+    "english": "I like coffee.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3140",
+    "japanese": "どんな音楽がお好みですか。",
+    "chunks": [
+      "どんな",
+      "音楽",
+      "が",
+      "お",
+      "好み",
+      "です",
+      "か。"
+    ],
+    "translation": "你喜歡什麼樣的音樂呢？",
+    "english": "What kind of music do you prefer?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3141",
+    "japanese": "年を取るにつれて、好みも変わってきた。",
+    "chunks": [
+      "年",
+      "を",
+      "取る",
+      "に",
+      "つれて、",
+      "好み",
+      "も",
+      "変わって",
+      "きた。"
+    ],
+    "translation": "隨著年齡增長，喜好也漸漸改變了。",
+    "english": "As I've gotten older, my preferences have changed.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3142",
+    "japanese": "彼の服装には、独特の美的嗜好が表れている。",
+    "chunks": [
+      "彼",
+      "の",
+      "服装",
+      "に",
+      "は、",
+      "独特",
+      "の",
+      "美的",
+      "嗜好",
+      "が",
+      "表れて",
+      "いる。"
+    ],
+    "translation": "他的穿著展現出獨特的審美品味。",
+    "english": "His clothing reveals a distinctive aesthetic taste.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3143",
+    "japanese": "私の好みに合う色を選んでくれた。",
+    "chunks": [
+      "私",
+      "の",
+      "好み",
+      "に",
+      "合う",
+      "色",
+      "を",
+      "選んで",
+      "くれた。"
+    ],
+    "translation": "他幫我選了符合我喜好的顏色。",
+    "english": "They chose a color that suits my preference.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "preferences"
+    ]
+  },
+  {
+    "id": "3144",
+    "japanese": "飲み物は何がいいですか。",
+    "chunks": [
+      "飲み物",
+      "は",
+      "何",
+      "が",
+      "いい",
+      "です",
+      "か。"
+    ],
+    "translation": "飲料要喝什麼好呢？",
+    "english": "What would you like to drink?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "preferences"
+    ]
   }
 ]
