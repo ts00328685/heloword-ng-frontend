@@ -1,6 +1,6 @@
 {
   "en_next_id": 3821,
-  "jp_next_id": 2845,
+  "jp_next_id": 2895,
   "worklist_pointer": 1594,
   "cleaned_ids": [
     1,
@@ -1599,6 +1599,6 @@
     3156
   ],
   "generated_en": 662,
-  "generated_jp": 1459,
-  "runs": 73
+  "generated_jp": 1509,
+  "runs": 74
 }

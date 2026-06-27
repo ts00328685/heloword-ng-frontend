@@ -57485,5 +57485,1109 @@
       "N2",
       "inspiration"
     ]
+  },
+  {
+    "id": "2845",
+    "japanese": "机の上に本があります。",
+    "chunks": [
+      "机",
+      "の",
+      "上",
+      "に",
+      "本",
+      "が",
+      "あります。"
+    ],
+    "translation": "桌上有書。",
+    "english": "There's a book on the desk.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "objects"
+    ]
+  },
+  {
+    "id": "2846",
+    "japanese": "この箱の中には何が入っていますか。",
+    "chunks": [
+      "この",
+      "箱",
+      "の",
+      "中",
+      "に",
+      "は",
+      "何",
+      "が",
+      "入って",
+      "います",
+      "か。"
+    ],
+    "translation": "這個箱子裡裝著什麼？",
+    "english": "What's inside this box?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "objects"
+    ]
+  },
+  {
+    "id": "2847",
+    "japanese": "重い荷物を二階まで運んだ。",
+    "chunks": [
+      "重い",
+      "荷物",
+      "を",
+      "二階",
+      "まで",
+      "運んだ。"
+    ],
+    "translation": "我把沉重的行李搬到了二樓。",
+    "english": "I carried the heavy luggage up to the second floor.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "objects"
+    ]
+  },
+  {
+    "id": "2848",
+    "japanese": "使わない物は、押し入れにしまってある。",
+    "chunks": [
+      "使わない",
+      "物",
+      "は、",
+      "押し入れ",
+      "に",
+      "しまって",
+      "ある。"
+    ],
+    "translation": "不用的東西，都收在壁櫥裡。",
+    "english": "Things I don't use are stored in the closet.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "objects"
+    ]
+  },
+  {
+    "id": "2849",
+    "japanese": "古い道具には、持ち主の暮らしの痕跡が刻み込まれている。",
+    "chunks": [
+      "古い",
+      "道具",
+      "に",
+      "は、",
+      "持ち主",
+      "の",
+      "暮らし",
+      "の",
+      "痕跡",
+      "が",
+      "刻み込まれて",
+      "いる。"
+    ],
+    "translation": "老舊的器具上，刻印著主人生活的痕跡。",
+    "english": "Old tools bear the imprint of their owner's way of life.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "objects"
+    ]
+  },
+  {
+    "id": "2850",
+    "japanese": "テーブルの上に物がたくさん置いてある。",
+    "chunks": [
+      "テーブル",
+      "の",
+      "上",
+      "に",
+      "物",
+      "が",
+      "たくさん",
+      "置いて",
+      "ある。"
+    ],
+    "translation": "桌上放著很多東西。",
+    "english": "There are a lot of things on the table.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "objects"
+    ]
+  },
+  {
+    "id": "2851",
+    "japanese": "軽くて丈夫な素材が、製品に使われている。",
+    "chunks": [
+      "軽くて",
+      "丈夫",
+      "な",
+      "素材",
+      "が、",
+      "製品",
+      "に",
+      "使われて",
+      "いる。"
+    ],
+    "translation": "產品中使用了輕巧又堅固的材料。",
+    "english": "Light, sturdy materials are used in the product.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "objects"
+    ]
+  },
+  {
+    "id": "2852",
+    "japanese": "物を大切に扱う心は、暮らしの豊かさにもつながっている。",
+    "chunks": [
+      "物",
+      "を",
+      "大切",
+      "に",
+      "扱う",
+      "心",
+      "は、",
+      "暮らし",
+      "の",
+      "豊かさ",
+      "に",
+      "も",
+      "つながって",
+      "いる。"
+    ],
+    "translation": "珍惜物品的心，也與生活的富足相連。",
+    "english": "A heart that treats things with care is also connected to a richness of life.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "objects"
+    ]
+  },
+  {
+    "id": "2853",
+    "japanese": "その丸い物は何ですか。",
+    "chunks": [
+      "その",
+      "丸い",
+      "物",
+      "は",
+      "何",
+      "です",
+      "か。"
+    ],
+    "translation": "那個圓圓的東西是什麼？",
+    "english": "What is that round object?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "objects"
+    ]
+  },
+  {
+    "id": "2854",
+    "japanese": "不要な物を減らすと、部屋が広く感じられる。",
+    "chunks": [
+      "不要",
+      "な",
+      "物",
+      "を",
+      "減らす",
+      "と、",
+      "部屋",
+      "が",
+      "広く",
+      "感じられる。"
+    ],
+    "translation": "減少不需要的東西，房間就會感覺變寬敞。",
+    "english": "When you cut down on unnecessary items, the room feels more spacious.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "objects"
+    ]
+  },
+  {
+    "id": "2855",
+    "japanese": "お年寄りのための施設があります。",
+    "chunks": [
+      "お年寄り",
+      "の",
+      "ため",
+      "の",
+      "施設",
+      "が",
+      "あります。"
+    ],
+    "translation": "有為老人設立的設施。",
+    "english": "There are facilities for the elderly.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2856",
+    "japanese": "福祉の制度について調べている。",
+    "chunks": [
+      "福祉",
+      "の",
+      "制度",
+      "に",
+      "ついて",
+      "調べて",
+      "いる。"
+    ],
+    "translation": "我正在查關於福利制度的資料。",
+    "english": "I'm researching the welfare system.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2857",
+    "japanese": "高齢者福祉の充実が、急がれている。",
+    "chunks": [
+      "高齢者福祉",
+      "の",
+      "充実",
+      "が、",
+      "急がれて",
+      "いる。"
+    ],
+    "translation": "充實高齡者福利刻不容緩。",
+    "english": "Enhancing welfare for the elderly is urgently needed.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2858",
+    "japanese": "福祉とは、誰もが等しく尊厳をもって生きられる社会を目指す営みだ。",
+    "chunks": [
+      "福祉",
+      "と",
+      "は、",
+      "誰",
+      "も",
+      "が",
+      "等しく",
+      "尊厳",
+      "を",
+      "もって",
+      "生きられる",
+      "社会",
+      "を",
+      "目指す",
+      "営み",
+      "だ。"
+    ],
+    "translation": "所謂福利，是一種以人人都能平等且有尊嚴地生活的社會為目標的事業。",
+    "english": "Welfare is an endeavor aimed at a society where everyone can live equally and with dignity.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2859",
+    "japanese": "町に新しい病院ができました。",
+    "chunks": [
+      "町",
+      "に",
+      "新しい",
+      "病院",
+      "が",
+      "できました。"
+    ],
+    "translation": "鎮上蓋了一間新醫院。",
+    "english": "A new hospital was built in town.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2860",
+    "japanese": "障害のある人が働きやすい環境を整える。",
+    "chunks": [
+      "障害",
+      "の",
+      "ある",
+      "人",
+      "が",
+      "働きやすい",
+      "環境",
+      "を",
+      "整える。"
+    ],
+    "translation": "打造讓身障者容易工作的環境。",
+    "english": "We create an environment where people with disabilities can work easily.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2861",
+    "japanese": "子育てを支える福祉サービスが増えてきた。",
+    "chunks": [
+      "子育て",
+      "を",
+      "支える",
+      "福祉サービス",
+      "が",
+      "増えて",
+      "きた。"
+    ],
+    "translation": "支援育兒的福利服務增加了。",
+    "english": "Welfare services that support child-rearing have been increasing.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2862",
+    "japanese": "社会保障制度は、世代を超えて支え合う仕組みの上に成り立っている。",
+    "chunks": [
+      "社会保障制度",
+      "は、",
+      "世代",
+      "を",
+      "超えて",
+      "支え合う",
+      "仕組み",
+      "の",
+      "上",
+      "に",
+      "成り立って",
+      "いる。"
+    ],
+    "translation": "社會保障制度，建立在跨世代相互扶持的機制之上。",
+    "english": "The social security system rests on a structure of mutual support across generations.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2863",
+    "japanese": "福祉のために税金が使われます。",
+    "chunks": [
+      "福祉",
+      "の",
+      "ために",
+      "税金",
+      "が",
+      "使われます。"
+    ],
+    "translation": "稅金被用於福利。",
+    "english": "Taxes are used for welfare.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2864",
+    "japanese": "困っている人を社会全体で支えることが大切だ。",
+    "chunks": [
+      "困って",
+      "いる",
+      "人",
+      "を",
+      "社会全体",
+      "で",
+      "支える",
+      "こと",
+      "が",
+      "大切",
+      "だ。"
+    ],
+    "translation": "由整個社會來支持有困難的人很重要。",
+    "english": "It's important for society as a whole to support those in need.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "social welfare"
+    ]
+  },
+  {
+    "id": "2865",
+    "japanese": "駅で親切な人に会いました。",
+    "chunks": [
+      "駅",
+      "で",
+      "親切",
+      "な",
+      "人",
+      "に",
+      "会いました。"
+    ],
+    "translation": "我在車站遇到了親切的人。",
+    "english": "I met a kind person at the station.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2866",
+    "japanese": "道を教えてくれてありがとう。",
+    "chunks": [
+      "道",
+      "を",
+      "教えて",
+      "くれて",
+      "ありがとう。"
+    ],
+    "translation": "謝謝你告訴我路怎麼走。",
+    "english": "Thank you for telling me the way.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2867",
+    "japanese": "知らない人が荷物を運ぶのを手伝ってくれた。",
+    "chunks": [
+      "知らない",
+      "人",
+      "が",
+      "荷物",
+      "を",
+      "運ぶ",
+      "の",
+      "を",
+      "手伝って",
+      "くれた。"
+    ],
+    "translation": "一個陌生人幫我搬了行李。",
+    "english": "A stranger helped me carry my luggage.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2868",
+    "japanese": "何気ない親切が、その日一日を温かくしてくれる。",
+    "chunks": [
+      "何気ない",
+      "親切",
+      "が、",
+      "その",
+      "日",
+      "一日",
+      "を",
+      "温かく",
+      "して",
+      "くれる。"
+    ],
+    "translation": "不經意的親切，會讓那一整天都變得溫暖。",
+    "english": "A small act of kindness can warm a whole day.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2869",
+    "japanese": "見返りを求めない優しさこそが、人の心を本当に動かすのだろう。",
+    "chunks": [
+      "見返り",
+      "を",
+      "求めない",
+      "優しさ",
+      "こそ",
+      "が、",
+      "人",
+      "の",
+      "心",
+      "を",
+      "本当に",
+      "動かす",
+      "の",
+      "だろう。"
+    ],
+    "translation": "不求回報的善意，才真正打動人心吧。",
+    "english": "It's kindness that seeks no return that truly moves people's hearts.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2870",
+    "japanese": "困ったときに親切にしてもらって、うれしかった。",
+    "chunks": [
+      "困った",
+      "とき",
+      "に",
+      "親切",
+      "に",
+      "して",
+      "もらって、",
+      "うれしかった。"
+    ],
+    "translation": "在困難時受到善意對待，我很開心。",
+    "english": "I was happy to be treated kindly when I was in trouble.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2871",
+    "japanese": "彼女の優しさに、何度も救われてきた。",
+    "chunks": [
+      "彼女",
+      "の",
+      "優しさ",
+      "に、",
+      "何度",
+      "も",
+      "救われて",
+      "きた。"
+    ],
+    "translation": "她的溫柔，多次拯救了我。",
+    "english": "Her kindness has saved me many times.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2872",
+    "japanese": "小さな親切の連鎖が、社会全体の空気をやわらげていく。",
+    "chunks": [
+      "小さな",
+      "親切",
+      "の",
+      "連鎖",
+      "が、",
+      "社会全体",
+      "の",
+      "空気",
+      "を",
+      "やわらげて",
+      "いく。"
+    ],
+    "translation": "小小親切的連鎖，會讓整個社會的氛圍變得柔和。",
+    "english": "A chain of small kindnesses softens the atmosphere of society as a whole.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2873",
+    "japanese": "先生はいつも優しいです。",
+    "chunks": [
+      "先生",
+      "は",
+      "いつも",
+      "優しい",
+      "です。"
+    ],
+    "translation": "老師總是很溫柔。",
+    "english": "The teacher is always kind.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2874",
+    "japanese": "親切にするときは、相手の気持ちも考えたい。",
+    "chunks": [
+      "親切",
+      "に",
+      "する",
+      "とき",
+      "は、",
+      "相手",
+      "の",
+      "気持ち",
+      "も",
+      "考えたい。"
+    ],
+    "translation": "在待人親切時，我也想顧及對方的感受。",
+    "english": "When I'm being kind, I want to also consider the other person's feelings.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "kindness"
+    ]
+  },
+  {
+    "id": "2875",
+    "japanese": "週末に公園でピクニックをします。",
+    "chunks": [
+      "週末",
+      "に",
+      "公園",
+      "で",
+      "ピクニック",
+      "を",
+      "します。"
+    ],
+    "translation": "週末我會在公園野餐。",
+    "english": "I'll have a picnic in the park this weekend.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2876",
+    "japanese": "山に登るのが好きです。",
+    "chunks": [
+      "山",
+      "に",
+      "登る",
+      "の",
+      "が",
+      "好き",
+      "です。"
+    ],
+    "translation": "我喜歡爬山。",
+    "english": "I like climbing mountains.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2877",
+    "japanese": "キャンプで星空を眺めるのは気持ちがいい。",
+    "chunks": [
+      "キャンプ",
+      "で",
+      "星空",
+      "を",
+      "眺める",
+      "の",
+      "は",
+      "気持ち",
+      "が",
+      "いい。"
+    ],
+    "translation": "露營時眺望星空很舒服。",
+    "english": "Gazing at the starry sky while camping feels wonderful.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2878",
+    "japanese": "自然の中で過ごすと、心も体もリフレッシュできる。",
+    "chunks": [
+      "自然",
+      "の",
+      "中",
+      "で",
+      "過ごす",
+      "と、",
+      "心",
+      "も",
+      "体",
+      "も",
+      "リフレッシュ",
+      "できる。"
+    ],
+    "translation": "在大自然中度過時光，身心都能煥然一新。",
+    "english": "Spending time in nature refreshes both mind and body.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2879",
+    "japanese": "大自然の懐に抱かれると、日頃の悩みなど取るに足りなく思えてくる。",
+    "chunks": [
+      "大自然",
+      "の",
+      "懐",
+      "に",
+      "抱かれる",
+      "と、",
+      "日頃",
+      "の",
+      "悩み",
+      "など",
+      "取るに足りなく",
+      "思えて",
+      "くる。"
+    ],
+    "translation": "投入大自然的懷抱，平日的煩惱便顯得微不足道。",
+    "english": "Held in the embrace of nature, everyday worries come to seem trivial.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2880",
+    "japanese": "海辺でバーベキューを楽しみました。",
+    "chunks": [
+      "海辺",
+      "で",
+      "バーベキュー",
+      "を",
+      "楽しみ",
+      "ました。"
+    ],
+    "translation": "我在海邊享受了烤肉。",
+    "english": "I enjoyed a barbecue at the seaside.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2881",
+    "japanese": "天気がいいので、外で昼食をとることにした。",
+    "chunks": [
+      "天気",
+      "が",
+      "いい",
+      "ので、",
+      "外",
+      "で",
+      "昼食",
+      "を",
+      "とる",
+      "こと",
+      "に",
+      "した。"
+    ],
+    "translation": "因為天氣好，我決定在戶外吃午餐。",
+    "english": "Since the weather was nice, I decided to have lunch outside.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2882",
+    "japanese": "登山の醍醐味は、苦労して頂に立ったときの達成感にある。",
+    "chunks": [
+      "登山",
+      "の",
+      "醍醐味",
+      "は、",
+      "苦労して",
+      "頂",
+      "に",
+      "立った",
+      "とき",
+      "の",
+      "達成感",
+      "に",
+      "ある。"
+    ],
+    "translation": "登山的妙趣，在於歷盡艱辛站上山頂時的成就感。",
+    "english": "The real joy of mountain climbing lies in the sense of achievement when you finally reach the summit.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2883",
+    "japanese": "川で魚を釣りました。",
+    "chunks": [
+      "川",
+      "で",
+      "魚",
+      "を",
+      "釣り",
+      "ました。"
+    ],
+    "translation": "我在河裡釣了魚。",
+    "english": "I caught fish in the river.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2884",
+    "japanese": "屋外での運動は、気分転換にもってこいだ。",
+    "chunks": [
+      "屋外",
+      "で",
+      "の",
+      "運動",
+      "は、",
+      "気分転換",
+      "に",
+      "もってこい",
+      "だ。"
+    ],
+    "translation": "戶外運動最適合轉換心情。",
+    "english": "Exercising outdoors is perfect for a change of pace.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "2885",
+    "japanese": "老人ホームでヘルパーとして働いています。",
+    "chunks": [
+      "老人ホーム",
+      "で",
+      "ヘルパー",
+      "として",
+      "働いて",
+      "います。"
+    ],
+    "translation": "我在養老院當看護工作。",
+    "english": "I work as a helper at a nursing home.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social work"
+    ]
+  },
+  {
+    "id": "2886",
+    "japanese": "子供たちを支援する活動に参加した。",
+    "chunks": [
+      "子供たち",
+      "を",
+      "支援する",
+      "活動",
+      "に",
+      "参加した。"
+    ],
+    "translation": "我參加了支援孩子們的活動。",
+    "english": "I took part in an activity to support children.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social work"
+    ]
+  },
+  {
+    "id": "2887",
+    "japanese": "福祉の現場では、人手が常に足りていない。",
+    "chunks": [
+      "福祉",
+      "の",
+      "現場",
+      "で",
+      "は、",
+      "人手",
+      "が",
+      "常に",
+      "足りて",
+      "いない。"
+    ],
+    "translation": "在福利的第一線，人手總是不足。",
+    "english": "In welfare work, there's always a shortage of hands.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "social work"
+    ]
+  },
+  {
+    "id": "2888",
+    "japanese": "介護の仕事は、相手の尊厳を守る繊細な配慮が欠かせない。",
+    "chunks": [
+      "介護",
+      "の",
+      "仕事",
+      "は、",
+      "相手",
+      "の",
+      "尊厳",
+      "を",
+      "守る",
+      "繊細",
+      "な",
+      "配慮",
+      "が",
+      "欠かせない。"
+    ],
+    "translation": "照護工作少不了維護對方尊嚴的細膩體貼。",
+    "english": "Caregiving work requires delicate consideration that protects the dignity of those being cared for.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social work"
+    ]
+  },
+  {
+    "id": "2889",
+    "japanese": "私はお年寄りを助けたいです。",
+    "chunks": [
+      "私",
+      "は",
+      "お年寄り",
+      "を",
+      "助けたい",
+      "です。"
+    ],
+    "translation": "我想幫助老人家。",
+    "english": "I want to help the elderly.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "social work"
+    ]
+  },
+  {
+    "id": "2890",
+    "japanese": "相談員として、生活に困る人々を支えている。",
+    "chunks": [
+      "相談員",
+      "として、",
+      "生活",
+      "に",
+      "困る",
+      "人々",
+      "を",
+      "支えて",
+      "いる。"
+    ],
+    "translation": "我以諮詢員的身分，支援生活困頓的人們。",
+    "english": "As a counselor, I support people who struggle to make ends meet.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "social work"
+    ]
+  },
+  {
+    "id": "2891",
+    "japanese": "ボランティアで地域の高齢者を訪問している。",
+    "chunks": [
+      "ボランティア",
+      "で",
+      "地域",
+      "の",
+      "高齢者",
+      "を",
+      "訪問",
+      "して",
+      "いる。"
+    ],
+    "translation": "我擔任志工，探訪地區的高齡者。",
+    "english": "As a volunteer, I visit elderly people in the community.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social work"
+    ]
+  },
+  {
+    "id": "2892",
+    "japanese": "福祉に携わる人々の献身が、社会の見えない部分を支えている。",
+    "chunks": [
+      "福祉",
+      "に",
+      "携わる",
+      "人々",
+      "の",
+      "献身",
+      "が、",
+      "社会",
+      "の",
+      "見えない",
+      "部分",
+      "を",
+      "支えて",
+      "いる。"
+    ],
+    "translation": "投身福利工作者的奉獻，支撐著社會看不見的部分。",
+    "english": "The devotion of those engaged in welfare work supports the unseen parts of society.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social work"
+    ]
+  },
+  {
+    "id": "2893",
+    "japanese": "困った人の相談にのる仕事です。",
+    "chunks": [
+      "困った",
+      "人",
+      "の",
+      "相談",
+      "に",
+      "のる",
+      "仕事",
+      "です。"
+    ],
+    "translation": "這是一份替有困難的人提供諮詢的工作。",
+    "english": "It's a job where you give advice to people in trouble.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social work"
+    ]
+  },
+  {
+    "id": "2894",
+    "japanese": "福祉の仕事は大変だが、やりがいも大きい。",
+    "chunks": [
+      "福祉",
+      "の",
+      "仕事",
+      "は",
+      "大変",
+      "だ",
+      "が、",
+      "やりがい",
+      "も",
+      "大きい。"
+    ],
+    "translation": "福利工作雖然辛苦，但也很有成就感。",
+    "english": "Welfare work is demanding, but it's also very rewarding.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "social work"
+    ]
   }
 ]
