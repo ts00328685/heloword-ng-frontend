@@ -60817,5 +60817,1112 @@
       "N2",
       "mental health"
     ]
+  },
+  {
+    "id": "2995",
+    "japanese": "私の好きな場所は海です。",
+    "chunks": [
+      "私",
+      "の",
+      "好き",
+      "な",
+      "場所",
+      "は",
+      "海",
+      "です。"
+    ],
+    "translation": "我喜歡的地方是海邊。",
+    "english": "My favorite place is the sea.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "places"
+    ]
+  },
+  {
+    "id": "2996",
+    "japanese": "この町には有名なお寺があります。",
+    "chunks": [
+      "この",
+      "町",
+      "に",
+      "は",
+      "有名",
+      "な",
+      "お寺",
+      "が",
+      "あります。"
+    ],
+    "translation": "這個城鎮裡有一座有名的寺廟。",
+    "english": "There's a famous temple in this town.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "places"
+    ]
+  },
+  {
+    "id": "2997",
+    "japanese": "静かな場所で本を読むのが好きだ。",
+    "chunks": [
+      "静か",
+      "な",
+      "場所",
+      "で",
+      "本",
+      "を",
+      "読む",
+      "の",
+      "が",
+      "好き",
+      "だ。"
+    ],
+    "translation": "我喜歡在安靜的地方看書。",
+    "english": "I like reading books in a quiet place.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "places"
+    ]
+  },
+  {
+    "id": "2998",
+    "japanese": "観光客に人気の場所は、いつも混んでいる。",
+    "chunks": [
+      "観光客",
+      "に",
+      "人気",
+      "の",
+      "場所",
+      "は、",
+      "いつも",
+      "混んで",
+      "いる。"
+    ],
+    "translation": "受觀光客歡迎的地方總是很擁擠。",
+    "english": "Places popular with tourists are always crowded.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "places"
+    ]
+  },
+  {
+    "id": "2999",
+    "japanese": "思い出の詰まった場所を訪れると、当時の感情がよみがえってくる。",
+    "chunks": [
+      "思い出",
+      "の",
+      "詰まった",
+      "場所",
+      "を",
+      "訪れる",
+      "と、",
+      "当時",
+      "の",
+      "感情",
+      "が",
+      "よみがえって",
+      "くる。"
+    ],
+    "translation": "造訪充滿回憶的地方時，當時的情感便會湧上心頭。",
+    "english": "When you visit a place full of memories, the emotions of that time come flooding back.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "places"
+    ]
+  },
+  {
+    "id": "3000",
+    "japanese": "待ち合わせの場所が分からなくて困った。",
+    "chunks": [
+      "待ち合わせ",
+      "の",
+      "場所",
+      "が",
+      "分からなくて",
+      "困った。"
+    ],
+    "translation": "不知道碰面的地點在哪，真傷腦筋。",
+    "english": "I was at a loss because I didn't know the meeting spot.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "places"
+    ]
+  },
+  {
+    "id": "3001",
+    "japanese": "この公園は、子供連れの家族に人気の場所だ。",
+    "chunks": [
+      "この",
+      "公園",
+      "は、",
+      "子供連れ",
+      "の",
+      "家族",
+      "に",
+      "人気",
+      "の",
+      "場所",
+      "だ。"
+    ],
+    "translation": "這座公園是帶孩子的家庭很喜歡的地方。",
+    "english": "This park is a popular spot for families with children.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "places"
+    ]
+  },
+  {
+    "id": "3002",
+    "japanese": "何気ない路地裏にこそ、その土地ならではの魅力が隠れている。",
+    "chunks": [
+      "何気ない",
+      "路地裏",
+      "に",
+      "こそ、",
+      "その",
+      "土地",
+      "ならでは",
+      "の",
+      "魅力",
+      "が",
+      "隠れて",
+      "いる。"
+    ],
+    "translation": "正是在不起眼的小巷裡，藏著當地獨有的魅力。",
+    "english": "It's precisely in unremarkable back alleys that a place's unique charm hides.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "places"
+    ]
+  },
+  {
+    "id": "3003",
+    "japanese": "駅の近くにいい店がたくさんあります。",
+    "chunks": [
+      "駅",
+      "の",
+      "近く",
+      "に",
+      "いい",
+      "店",
+      "が",
+      "たくさん",
+      "あります。"
+    ],
+    "translation": "車站附近有很多不錯的店。",
+    "english": "There are a lot of good shops near the station.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "places"
+    ]
+  },
+  {
+    "id": "3004",
+    "japanese": "落ち着いて話せる場所を探している。",
+    "chunks": [
+      "落ち着いて",
+      "話せる",
+      "場所",
+      "を",
+      "探して",
+      "いる。"
+    ],
+    "translation": "我在找一個能靜下心來談話的地方。",
+    "english": "I'm looking for a place where we can talk calmly.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "places"
+    ]
+  },
+  {
+    "id": "3005",
+    "japanese": "最近、この服が流行っています。",
+    "chunks": [
+      "最近、",
+      "この",
+      "服",
+      "が",
+      "流行って",
+      "います。"
+    ],
+    "translation": "最近這種衣服很流行。",
+    "english": "These clothes are in fashion lately.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "trends"
+    ]
+  },
+  {
+    "id": "3006",
+    "japanese": "若者の間で新しい言葉が流行している。",
+    "chunks": [
+      "若者",
+      "の",
+      "間",
+      "で",
+      "新しい",
+      "言葉",
+      "が",
+      "流行",
+      "して",
+      "いる。"
+    ],
+    "translation": "新的詞彙在年輕人之間流行。",
+    "english": "New words are trending among young people.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "trends"
+    ]
+  },
+  {
+    "id": "3007",
+    "japanese": "流行を追いかけすぎると、お金がいくらあっても足りない。",
+    "chunks": [
+      "流行",
+      "を",
+      "追いかけすぎる",
+      "と、",
+      "お金",
+      "が",
+      "いくら",
+      "あって",
+      "も",
+      "足りない。"
+    ],
+    "translation": "太過追逐流行，再多的錢也不夠。",
+    "english": "If you chase trends too much, no amount of money is enough.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "trends"
+    ]
+  },
+  {
+    "id": "3008",
+    "japanese": "一時的な流行に流されず、自分の好みを大切にしたい。",
+    "chunks": [
+      "一時的",
+      "な",
+      "流行",
+      "に",
+      "流されず、",
+      "自分",
+      "の",
+      "好み",
+      "を",
+      "大切",
+      "に",
+      "したい。"
+    ],
+    "translation": "我想不隨一時的流行起舞，珍惜自己的喜好。",
+    "english": "I want to value my own tastes rather than being swept up by passing trends.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "trends"
+    ]
+  },
+  {
+    "id": "3009",
+    "japanese": "今、この歌が人気です。",
+    "chunks": [
+      "今、",
+      "この",
+      "歌",
+      "が",
+      "人気",
+      "です。"
+    ],
+    "translation": "現在這首歌很受歡迎。",
+    "english": "This song is popular right now.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "trends"
+    ]
+  },
+  {
+    "id": "3010",
+    "japanese": "SNSをきっかけに、その商品は一気に流行した。",
+    "chunks": [
+      "SNS",
+      "を",
+      "きっかけ",
+      "に、",
+      "その",
+      "商品",
+      "は",
+      "一気",
+      "に",
+      "流行した。"
+    ],
+    "translation": "以社群媒體為契機，那項商品一下子就流行起來。",
+    "english": "Triggered by social media, that product became a hit all at once.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "trends"
+    ]
+  },
+  {
+    "id": "3011",
+    "japanese": "流行の店は、いつも行列ができている。",
+    "chunks": [
+      "流行",
+      "の",
+      "店",
+      "は、",
+      "いつも",
+      "行列",
+      "が",
+      "できて",
+      "いる。"
+    ],
+    "translation": "流行的店總是大排長龍。",
+    "english": "Trendy shops always have long lines.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "trends"
+    ]
+  },
+  {
+    "id": "3012",
+    "japanese": "流行とは、いずれ過ぎ去る運命にあるからこそ価値があるのかもしれない。",
+    "chunks": [
+      "流行",
+      "と",
+      "は、",
+      "いずれ",
+      "過ぎ去る",
+      "運命",
+      "に",
+      "ある",
+      "から",
+      "こそ",
+      "価値",
+      "が",
+      "ある",
+      "の",
+      "かもしれない。"
+    ],
+    "translation": "所謂流行，或許正因為終將消逝的命運才顯得有價值。",
+    "english": "Perhaps trends have value precisely because they're destined to pass.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "trends"
+    ]
+  },
+  {
+    "id": "3013",
+    "japanese": "今年は青い色が流行りそうです。",
+    "chunks": [
+      "今年",
+      "は",
+      "青い",
+      "色",
+      "が",
+      "流行り",
+      "そう",
+      "です。"
+    ],
+    "translation": "今年似乎會流行藍色。",
+    "english": "It looks like blue will be in fashion this year.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "trends"
+    ]
+  },
+  {
+    "id": "3014",
+    "japanese": "時代の流れを読むことが、商売には欠かせない。",
+    "chunks": [
+      "時代",
+      "の",
+      "流れ",
+      "を",
+      "読む",
+      "こと",
+      "が、",
+      "商売",
+      "に",
+      "は",
+      "欠かせない。"
+    ],
+    "translation": "解讀時代的潮流，對做生意不可或缺。",
+    "english": "Reading the trends of the times is essential in business.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "trends"
+    ]
+  },
+  {
+    "id": "3015",
+    "japanese": "先輩がいろいろ教えてくれます。",
+    "chunks": [
+      "先輩",
+      "が",
+      "いろいろ",
+      "教えて",
+      "くれます。"
+    ],
+    "translation": "前輩教了我很多。",
+    "english": "My senior teaches me all sorts of things.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3016",
+    "japanese": "新人にやさしく仕事を教えている。",
+    "chunks": [
+      "新人",
+      "に",
+      "やさしく",
+      "仕事",
+      "を",
+      "教えて",
+      "いる。"
+    ],
+    "translation": "我親切地教新人工作。",
+    "english": "I patiently teach the newcomers the job.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3017",
+    "japanese": "後輩の成長を見守るのも、先輩の役目だ。",
+    "chunks": [
+      "後輩",
+      "の",
+      "成長",
+      "を",
+      "見守る",
+      "の",
+      "も、",
+      "先輩",
+      "の",
+      "役目",
+      "だ。"
+    ],
+    "translation": "守護後輩的成長，也是前輩的職責。",
+    "english": "Watching over a junior's growth is also a senior's role.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3018",
+    "japanese": "良き師との出会いが、その後の人生を大きく方向づけることがある。",
+    "chunks": [
+      "良き",
+      "師",
+      "と",
+      "の",
+      "出会い",
+      "が、",
+      "その後",
+      "の",
+      "人生",
+      "を",
+      "大きく",
+      "方向づける",
+      "こと",
+      "が",
+      "ある。"
+    ],
+    "translation": "與良師的相遇，有時會大大決定往後人生的方向。",
+    "english": "Meeting a good mentor can greatly shape the direction of one's later life.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3019",
+    "japanese": "先生は私に勉強を教えます。",
+    "chunks": [
+      "先生",
+      "は",
+      "私",
+      "に",
+      "勉強",
+      "を",
+      "教えます。"
+    ],
+    "translation": "老師教我功課。",
+    "english": "The teacher teaches me my studies.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3020",
+    "japanese": "答えを教えるより、考え方を教える方がいい。",
+    "chunks": [
+      "答え",
+      "を",
+      "教える",
+      "より、",
+      "考え方",
+      "を",
+      "教える",
+      "方",
+      "が",
+      "いい。"
+    ],
+    "translation": "與其告訴答案，不如教導思考方式。",
+    "english": "It's better to teach how to think than to give the answer.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3021",
+    "japanese": "困ったときは、いつでも相談に乗るよ。",
+    "chunks": [
+      "困った",
+      "とき",
+      "は、",
+      "いつ",
+      "でも",
+      "相談",
+      "に",
+      "乗る",
+      "よ。"
+    ],
+    "translation": "有困難的時候，我隨時都可以聽你商量喔。",
+    "english": "Whenever you're in trouble, I'm always here to talk.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3022",
+    "japanese": "部下を育てるとは、失敗を許し、挑戦を促すことにほかならない。",
+    "chunks": [
+      "部下",
+      "を",
+      "育てる",
+      "と",
+      "は、",
+      "失敗",
+      "を",
+      "許し、",
+      "挑戦",
+      "を",
+      "促す",
+      "こと",
+      "に",
+      "ほかならない。"
+    ],
+    "translation": "培育部下，無非就是包容失敗、鼓勵挑戰。",
+    "english": "Developing subordinates is nothing other than allowing failure and encouraging challenge.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3023",
+    "japanese": "兄が宿題を手伝ってくれました。",
+    "chunks": [
+      "兄",
+      "が",
+      "宿題",
+      "を",
+      "手伝って",
+      "くれました。"
+    ],
+    "translation": "哥哥幫我做了作業。",
+    "english": "My older brother helped me with my homework.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3024",
+    "japanese": "経験者の助言は、何よりも参考になる。",
+    "chunks": [
+      "経験者",
+      "の",
+      "助言",
+      "は、",
+      "何より",
+      "も",
+      "参考",
+      "に",
+      "なる。"
+    ],
+    "translation": "過來人的建議，比什麼都值得參考。",
+    "english": "Advice from those with experience is more helpful than anything.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "mentoring"
+    ]
+  },
+  {
+    "id": "3025",
+    "japanese": "週末の計画を立てます。",
+    "chunks": [
+      "週末",
+      "の",
+      "計画",
+      "を",
+      "立て",
+      "ます。"
+    ],
+    "translation": "我來訂週末的計畫。",
+    "english": "I'll make plans for the weekend.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "planning"
+    ]
+  },
+  {
+    "id": "3026",
+    "japanese": "夏休みの旅行を計画しています。",
+    "chunks": [
+      "夏休み",
+      "の",
+      "旅行",
+      "を",
+      "計画",
+      "して",
+      "います。"
+    ],
+    "translation": "我正在規劃暑假的旅行。",
+    "english": "I'm planning a trip for summer vacation.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "planning"
+    ]
+  },
+  {
+    "id": "3027",
+    "japanese": "計画通りに物事が進むとは限らない。",
+    "chunks": [
+      "計画通り",
+      "に",
+      "物事",
+      "が",
+      "進む",
+      "と",
+      "は",
+      "限らない。"
+    ],
+    "translation": "事情未必會照計畫進行。",
+    "english": "Things don't always go according to plan.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "planning"
+    ]
+  },
+  {
+    "id": "3028",
+    "japanese": "しっかりした計画があれば、無駄な時間を減らせる。",
+    "chunks": [
+      "しっかり",
+      "した",
+      "計画",
+      "が",
+      "あれば、",
+      "無駄",
+      "な",
+      "時間",
+      "を",
+      "減らせる。"
+    ],
+    "translation": "只要有完善的計畫，就能減少浪費的時間。",
+    "english": "With a solid plan, you can cut down on wasted time.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "planning"
+    ]
+  },
+  {
+    "id": "3029",
+    "japanese": "どんなに綿密な計画も、実行に移さなければ絵に描いた餅にすぎない。",
+    "chunks": [
+      "どんなに",
+      "綿密",
+      "な",
+      "計画",
+      "も、",
+      "実行",
+      "に",
+      "移さなければ",
+      "絵に描いた餅",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "再縝密的計畫，若不付諸實行，也不過是畫餅充饑。",
+    "english": "No matter how meticulous, a plan not put into action is nothing but a pie in the sky.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "planning"
+    ]
+  },
+  {
+    "id": "3030",
+    "japanese": "旅行の計画を友達と一緒に立てた。",
+    "chunks": [
+      "旅行",
+      "の",
+      "計画",
+      "を",
+      "友達",
+      "と",
+      "一緒",
+      "に",
+      "立てた。"
+    ],
+    "translation": "我和朋友一起訂了旅行計畫。",
+    "english": "I made travel plans together with my friends.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "planning"
+    ]
+  },
+  {
+    "id": "3031",
+    "japanese": "計画を立てるときは、予備の時間も見込んでおく。",
+    "chunks": [
+      "計画",
+      "を",
+      "立てる",
+      "とき",
+      "は、",
+      "予備",
+      "の",
+      "時間",
+      "も",
+      "見込んで",
+      "おく。"
+    ],
+    "translation": "制定計畫時，要預留備用的時間。",
+    "english": "When making a plan, allow for some spare time too.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "planning"
+    ]
+  },
+  {
+    "id": "3032",
+    "japanese": "長期的な視点に立った計画こそが、組織を着実に成長させる。",
+    "chunks": [
+      "長期的",
+      "な",
+      "視点",
+      "に",
+      "立った",
+      "計画",
+      "こそ",
+      "が、",
+      "組織",
+      "を",
+      "着実",
+      "に",
+      "成長させる。"
+    ],
+    "translation": "唯有立足於長遠視角的計畫，才能讓組織穩健成長。",
+    "english": "It's plans based on a long-term perspective that steadily grow an organization.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "planning"
+    ]
+  },
+  {
+    "id": "3033",
+    "japanese": "明日の予定を手帳に書きました。",
+    "chunks": [
+      "明日",
+      "の",
+      "予定",
+      "を",
+      "手帳",
+      "に",
+      "書きました。"
+    ],
+    "translation": "我把明天的行程寫進了記事本。",
+    "english": "I wrote tomorrow's schedule in my planner.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "planning"
+    ]
+  },
+  {
+    "id": "3034",
+    "japanese": "予定が急に変わって、計画を立て直した。",
+    "chunks": [
+      "予定",
+      "が",
+      "急",
+      "に",
+      "変わって、",
+      "計画",
+      "を",
+      "立て直した。"
+    ],
+    "translation": "行程突然有變，我重新擬定了計畫。",
+    "english": "My schedule changed suddenly, so I redid my plan.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "planning"
+    ]
+  },
+  {
+    "id": "3035",
+    "japanese": "本当のことを言ってください。",
+    "chunks": [
+      "本当",
+      "の",
+      "こと",
+      "を",
+      "言って",
+      "ください。"
+    ],
+    "translation": "請說實話。",
+    "english": "Please tell the truth.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "truth"
+    ]
+  },
+  {
+    "id": "3036",
+    "japanese": "彼はいつも正直に話す。",
+    "chunks": [
+      "彼",
+      "は",
+      "いつも",
+      "正直",
+      "に",
+      "話す。"
+    ],
+    "translation": "他總是誠實地說話。",
+    "english": "He always speaks honestly.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "truth"
+    ]
+  },
+  {
+    "id": "3037",
+    "japanese": "真実を知るのが、必ずしも幸せとは限らない。",
+    "chunks": [
+      "真実",
+      "を",
+      "知る",
+      "の",
+      "が、",
+      "必ずしも",
+      "幸せ",
+      "と",
+      "は",
+      "限らない。"
+    ],
+    "translation": "知道真相未必就是幸福。",
+    "english": "Knowing the truth isn't necessarily a blessing.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "truth"
+    ]
+  },
+  {
+    "id": "3038",
+    "japanese": "真実は、時として人を深く傷つけることもある。",
+    "chunks": [
+      "真実",
+      "は、",
+      "時として",
+      "人",
+      "を",
+      "深く",
+      "傷つける",
+      "こと",
+      "も",
+      "ある。"
+    ],
+    "translation": "真相有時也會深深地傷害人。",
+    "english": "The truth can sometimes wound people deeply.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "truth"
+    ]
+  },
+  {
+    "id": "3039",
+    "japanese": "それは本当の話です。",
+    "chunks": [
+      "それ",
+      "は",
+      "本当",
+      "の",
+      "話",
+      "です。"
+    ],
+    "translation": "那是真實的事。",
+    "english": "That's a true story.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "truth"
+    ]
+  },
+  {
+    "id": "3040",
+    "japanese": "うわさの真相は、誰にも分からなかった。",
+    "chunks": [
+      "うわさ",
+      "の",
+      "真相",
+      "は、",
+      "誰",
+      "に",
+      "も",
+      "分からなかった。"
+    ],
+    "translation": "流言的真相，誰也不清楚。",
+    "english": "No one knew the truth behind the rumor.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "truth"
+    ]
+  },
+  {
+    "id": "3041",
+    "japanese": "嘘をつかずに、正直に答えた。",
+    "chunks": [
+      "嘘",
+      "を",
+      "つかず",
+      "に、",
+      "正直",
+      "に",
+      "答えた。"
+    ],
+    "translation": "我沒有說謊，誠實地回答了。",
+    "english": "I answered honestly, without lying.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "truth"
+    ]
+  },
+  {
+    "id": "3042",
+    "japanese": "どれほど隠そうとしても、真実はいつか明らかになるものだ。",
+    "chunks": [
+      "どれほど",
+      "隠そう",
+      "と",
+      "して",
+      "も、",
+      "真実",
+      "は",
+      "いつか",
+      "明らか",
+      "に",
+      "なる",
+      "もの",
+      "だ。"
+    ],
+    "translation": "不管再怎麼想隱瞞，真相總有一天會水落石出。",
+    "english": "No matter how hard you try to hide it, the truth always comes to light eventually.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "truth"
+    ]
+  },
+  {
+    "id": "3043",
+    "japanese": "彼の話は本当だと思います。",
+    "chunks": [
+      "彼",
+      "の",
+      "話",
+      "は",
+      "本当",
+      "だ",
+      "と",
+      "思います。"
+    ],
+    "translation": "我認為他說的是真的。",
+    "english": "I think what he said is true.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "truth"
+    ]
+  },
+  {
+    "id": "3044",
+    "japanese": "表面だけを見て、真実を見失ってはいけない。",
+    "chunks": [
+      "表面",
+      "だけ",
+      "を",
+      "見て、",
+      "真実",
+      "を",
+      "見失って",
+      "は",
+      "いけない。"
+    ],
+    "translation": "不能只看表面，而忽略了真相。",
+    "english": "You mustn't lose sight of the truth by looking only at the surface.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "truth"
+    ]
   }
 ]
