@@ -66198,5 +66198,1068 @@
       "N2",
       "reactions"
     ]
+  },
+  {
+    "id": "3245",
+    "japanese": "道を渡るときは、左右をよく見ましょう。",
+    "chunks": [
+      "道",
+      "を",
+      "渡る",
+      "とき",
+      "は、",
+      "左右",
+      "を",
+      "よく",
+      "見ましょう。"
+    ],
+    "translation": "過馬路時，要好好看清左右。",
+    "english": "When crossing the road, look carefully both ways.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "safety"
+    ]
+  },
+  {
+    "id": "3246",
+    "japanese": "工事現場では、ヘルメットの着用が義務だ。",
+    "chunks": [
+      "工事現場",
+      "で",
+      "は、",
+      "ヘルメット",
+      "の",
+      "着用",
+      "が",
+      "義務",
+      "だ。"
+    ],
+    "translation": "在工地，配戴安全帽是義務。",
+    "english": "At a construction site, wearing a helmet is mandatory.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "safety"
+    ]
+  },
+  {
+    "id": "3247",
+    "japanese": "万一に備えて、避難経路を確認しておく。",
+    "chunks": [
+      "万一",
+      "に",
+      "備えて、",
+      "避難経路",
+      "を",
+      "確認",
+      "して",
+      "おく。"
+    ],
+    "translation": "為了以防萬一，事先確認逃生路線。",
+    "english": "In case of emergency, I check the evacuation route in advance.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "safety"
+    ]
+  },
+  {
+    "id": "3248",
+    "japanese": "子どもの安全は、何よりも大切です。",
+    "chunks": [
+      "子ども",
+      "の",
+      "安全",
+      "は、",
+      "何より",
+      "も",
+      "大切",
+      "です。"
+    ],
+    "translation": "孩子的安全比什麼都重要。",
+    "english": "Children's safety is more important than anything.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "safety"
+    ]
+  },
+  {
+    "id": "3249",
+    "japanese": "車に乗るときは、シートベルトをしめます。",
+    "chunks": [
+      "車",
+      "に",
+      "乗る",
+      "とき",
+      "は、",
+      "シートベルト",
+      "を",
+      "しめます。"
+    ],
+    "translation": "搭車時，我會繫上安全帶。",
+    "english": "When riding in a car, I fasten my seatbelt.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "safety"
+    ]
+  },
+  {
+    "id": "3250",
+    "japanese": "危険な場所には近づかないほうがいい。",
+    "chunks": [
+      "危険",
+      "な",
+      "場所",
+      "に",
+      "は",
+      "近づかない",
+      "ほう",
+      "が",
+      "いい。"
+    ],
+    "translation": "最好不要靠近危險的地方。",
+    "english": "It's better not to go near dangerous places.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "safety"
+    ]
+  },
+  {
+    "id": "3251",
+    "japanese": "安全を確保するための対策が強化された。",
+    "chunks": [
+      "安全",
+      "を",
+      "確保",
+      "する",
+      "ため",
+      "の",
+      "対策",
+      "が",
+      "強化",
+      "された。"
+    ],
+    "translation": "為了確保安全的對策被加強了。",
+    "english": "Measures to ensure safety have been strengthened.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "safety"
+    ]
+  },
+  {
+    "id": "3252",
+    "japanese": "火を使った後は、必ず消してください。",
+    "chunks": [
+      "火",
+      "を",
+      "使った",
+      "後",
+      "は、",
+      "必ず",
+      "消して",
+      "ください。"
+    ],
+    "translation": "用完火之後，請務必關掉。",
+    "english": "After using fire, be sure to put it out.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "safety"
+    ]
+  },
+  {
+    "id": "3253",
+    "japanese": "私は夜道を一人で歩くのがこわい。",
+    "chunks": [
+      "私",
+      "は",
+      "夜道",
+      "を",
+      "一人",
+      "で",
+      "歩くの",
+      "が",
+      "こわい。"
+    ],
+    "translation": "我害怕一個人走夜路。",
+    "english": "I'm scared of walking the night road alone.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "safety"
+    ]
+  },
+  {
+    "id": "3254",
+    "japanese": "地震のときは、まず身の安全を守る。",
+    "chunks": [
+      "地震",
+      "の",
+      "とき",
+      "は、",
+      "まず",
+      "身",
+      "の",
+      "安全",
+      "を",
+      "守る。"
+    ],
+    "translation": "地震時，首先要保護自身的安全。",
+    "english": "During an earthquake, first protect your own safety.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "safety"
+    ]
+  },
+  {
+    "id": "3255",
+    "japanese": "心配しないで、きっとうまくいきますよ。",
+    "chunks": [
+      "心配",
+      "しない",
+      "で、",
+      "きっと",
+      "うまく",
+      "いきます",
+      "よ。"
+    ],
+    "translation": "別擔心，一定會順利的。",
+    "english": "Don't worry, it'll surely go well.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3256",
+    "japanese": "大丈夫だから、落ち着いて話してください。",
+    "chunks": [
+      "大丈夫",
+      "だ",
+      "から、",
+      "落ち着いて",
+      "話して",
+      "ください。"
+    ],
+    "translation": "沒事的，請冷靜地說。",
+    "english": "It's okay, so please calm down and talk.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3257",
+    "japanese": "あなたの気持ちはよく分かりますよ。",
+    "chunks": [
+      "あなた",
+      "の",
+      "気持ち",
+      "は",
+      "よく",
+      "分かります",
+      "よ。"
+    ],
+    "translation": "我很明白你的心情。",
+    "english": "I understand your feelings well.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3258",
+    "japanese": "どんな結果でも、私はあなたの味方です。",
+    "chunks": [
+      "どんな",
+      "結果",
+      "で",
+      "も、",
+      "私",
+      "は",
+      "あなた",
+      "の",
+      "味方",
+      "です。"
+    ],
+    "translation": "不論結果如何，我都是你的夥伴。",
+    "english": "Whatever the outcome, I'm on your side.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3259",
+    "japanese": "焦らなくていいから、ゆっくりやってください。",
+    "chunks": [
+      "焦らなくて",
+      "いい",
+      "から、",
+      "ゆっくり",
+      "やって",
+      "ください。"
+    ],
+    "translation": "不用急，請慢慢來。",
+    "english": "There's no need to rush, so take your time.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3260",
+    "japanese": "不安な気持ちを和らげる言葉をかけた。",
+    "chunks": [
+      "不安",
+      "な",
+      "気持ち",
+      "を",
+      "和らげる",
+      "言葉",
+      "を",
+      "かけた。"
+    ],
+    "translation": "我說了能緩和不安心情的話。",
+    "english": "I offered words to ease the anxious feelings.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3261",
+    "japanese": "何かあれば、いつでも相談してください。",
+    "chunks": [
+      "何",
+      "か",
+      "あれば、",
+      "いつ",
+      "でも",
+      "相談",
+      "して",
+      "ください。"
+    ],
+    "translation": "若有任何事，隨時都可以找我商量。",
+    "english": "If anything comes up, feel free to consult me anytime.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3262",
+    "japanese": "君なら必ず乗り越えられると信じている。",
+    "chunks": [
+      "君",
+      "なら",
+      "必ず",
+      "乗り越えられる",
+      "と",
+      "信じて",
+      "いる。"
+    ],
+    "translation": "我相信你一定能跨越過去。",
+    "english": "I believe you can surely overcome it.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3263",
+    "japanese": "先生の一言が、私の不安を取り除いてくれた。",
+    "chunks": [
+      "先生",
+      "の",
+      "一言",
+      "が、",
+      "私",
+      "の",
+      "不安",
+      "を",
+      "取り除いて",
+      "くれた。"
+    ],
+    "translation": "老師的一句話，消除了我的不安。",
+    "english": "The teacher's single word removed my anxiety.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3264",
+    "japanese": "みんながそばにいるから、安心して。",
+    "chunks": [
+      "みんな",
+      "が",
+      "そば",
+      "に",
+      "いる",
+      "から、",
+      "安心",
+      "して。"
+    ],
+    "translation": "因為大家都在身邊，所以放心吧。",
+    "english": "Everyone is by your side, so rest assured.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "reassurance"
+    ]
+  },
+  {
+    "id": "3265",
+    "japanese": "庭の花から、いい香りがしてきた。",
+    "chunks": [
+      "庭",
+      "の",
+      "花",
+      "から、",
+      "いい",
+      "香り",
+      "が",
+      "して",
+      "きた。"
+    ],
+    "translation": "從庭院的花朵傳來了好聞的香味。",
+    "english": "A nice scent came from the flowers in the garden.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "scent"
+    ]
+  },
+  {
+    "id": "3266",
+    "japanese": "この香水は少し強すぎる気がする。",
+    "chunks": [
+      "この",
+      "香水",
+      "は",
+      "少し",
+      "強すぎる",
+      "気",
+      "が",
+      "する。"
+    ],
+    "translation": "我覺得這款香水有點太濃了。",
+    "english": "I feel this perfume is a little too strong.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "scent"
+    ]
+  },
+  {
+    "id": "3267",
+    "japanese": "焼きたてのパンのにおいが大好きです。",
+    "chunks": [
+      "焼きたて",
+      "の",
+      "パン",
+      "の",
+      "におい",
+      "が",
+      "大好き",
+      "です。"
+    ],
+    "translation": "我最喜歡剛出爐麵包的香味。",
+    "english": "I love the smell of freshly baked bread.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "scent"
+    ]
+  },
+  {
+    "id": "3268",
+    "japanese": "コーヒーの香りで目が覚めました。",
+    "chunks": [
+      "コーヒー",
+      "の",
+      "香り",
+      "で",
+      "目",
+      "が",
+      "覚めました。"
+    ],
+    "translation": "我被咖啡的香味喚醒了。",
+    "english": "I woke up to the aroma of coffee.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "scent"
+    ]
+  },
+  {
+    "id": "3269",
+    "japanese": "その匂いをかいだとたん、昔を思い出した。",
+    "chunks": [
+      "その",
+      "匂い",
+      "を",
+      "かいだ",
+      "とたん、",
+      "昔",
+      "を",
+      "思い出した。"
+    ],
+    "translation": "一聞到那個味道，就想起了往事。",
+    "english": "The moment I smelled it, I recalled the past.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "scent"
+    ]
+  },
+  {
+    "id": "3270",
+    "japanese": "雨上がりの土の匂いが好きです。",
+    "chunks": [
+      "雨上がり",
+      "の",
+      "土",
+      "の",
+      "匂い",
+      "が",
+      "好き",
+      "です。"
+    ],
+    "translation": "我喜歡雨後泥土的氣味。",
+    "english": "I like the smell of earth after the rain.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "scent"
+    ]
+  },
+  {
+    "id": "3271",
+    "japanese": "香りは記憶と深く結びついている。",
+    "chunks": [
+      "香り",
+      "は",
+      "記憶",
+      "と",
+      "深く",
+      "結びついて",
+      "いる。"
+    ],
+    "translation": "香味與記憶有著深刻的連結。",
+    "english": "Scent is deeply tied to memory.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "scent"
+    ]
+  },
+  {
+    "id": "3272",
+    "japanese": "この部屋は少し変なにおいがする。",
+    "chunks": [
+      "この",
+      "部屋",
+      "は",
+      "少し",
+      "変な",
+      "におい",
+      "が",
+      "する。"
+    ],
+    "translation": "這個房間有點奇怪的味道。",
+    "english": "This room has a slightly strange smell.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "scent"
+    ]
+  },
+  {
+    "id": "3273",
+    "japanese": "お香のほのかな香りに、心が落ち着く。",
+    "chunks": [
+      "お香",
+      "の",
+      "ほのか",
+      "な",
+      "香り",
+      "に、",
+      "心",
+      "が",
+      "落ち着く。"
+    ],
+    "translation": "薰香淡淡的香氣，讓心情平靜下來。",
+    "english": "The faint scent of incense calms my mind.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "scent"
+    ]
+  },
+  {
+    "id": "3274",
+    "japanese": "せっけんのさわやかな匂いが残っている。",
+    "chunks": [
+      "せっけん",
+      "の",
+      "さわやか",
+      "な",
+      "匂い",
+      "が",
+      "残って",
+      "いる。"
+    ],
+    "translation": "肥皂清爽的香味還殘留著。",
+    "english": "The refreshing smell of soap lingers.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "scent"
+    ]
+  },
+  {
+    "id": "3275",
+    "japanese": "彼の顔をすぐに思い出せなかった。",
+    "chunks": [
+      "彼",
+      "の",
+      "顔",
+      "を",
+      "すぐ",
+      "に",
+      "思い出せ",
+      "なかった。"
+    ],
+    "translation": "我沒能馬上想起他的臉。",
+    "english": "I couldn't immediately recall his face.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3276",
+    "japanese": "長年の努力が、ついに認められた。",
+    "chunks": [
+      "長年",
+      "の",
+      "努力",
+      "が、",
+      "ついに",
+      "認められた。"
+    ],
+    "translation": "多年的努力，終於得到了認可。",
+    "english": "Years of effort were finally recognized.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3277",
+    "japanese": "私は彼女の声をすぐに分かりました。",
+    "chunks": [
+      "私",
+      "は",
+      "彼女",
+      "の",
+      "声",
+      "を",
+      "すぐ",
+      "に",
+      "分かりました。"
+    ],
+    "translation": "我馬上就認出了她的聲音。",
+    "english": "I recognized her voice right away.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3278",
+    "japanese": "このアプリは顔を自動で認識する。",
+    "chunks": [
+      "この",
+      "アプリ",
+      "は",
+      "顔",
+      "を",
+      "自動",
+      "で",
+      "認識",
+      "する。"
+    ],
+    "translation": "這個應用程式會自動辨識臉孔。",
+    "english": "This app recognizes faces automatically.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3279",
+    "japanese": "社会に貢献した功績が高く評価された。",
+    "chunks": [
+      "社会",
+      "に",
+      "貢献",
+      "した",
+      "功績",
+      "が",
+      "高く",
+      "評価",
+      "された。"
+    ],
+    "translation": "對社會有貢獻的功績受到高度評價。",
+    "english": "His contributions to society were highly recognized.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3280",
+    "japanese": "久しぶりに会ったので、誰だか分からなかった。",
+    "chunks": [
+      "久しぶり",
+      "に",
+      "会った",
+      "ので、",
+      "誰",
+      "だ",
+      "か",
+      "分からなかった。"
+    ],
+    "translation": "因為很久沒見，我認不出是誰了。",
+    "english": "Since it had been a while, I didn't recognize who it was.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3281",
+    "japanese": "自分の間違いを素直に認めるのは難しい。",
+    "chunks": [
+      "自分",
+      "の",
+      "間違い",
+      "を",
+      "素直",
+      "に",
+      "認める",
+      "の",
+      "は",
+      "難しい。"
+    ],
+    "translation": "坦率地承認自己的錯誤是很難的。",
+    "english": "It's hard to honestly admit one's own mistakes.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3282",
+    "japanese": "看板の字が小さくて、よく見えません。",
+    "chunks": [
+      "看板",
+      "の",
+      "字",
+      "が",
+      "小さくて、",
+      "よく",
+      "見えません。"
+    ],
+    "translation": "招牌的字很小，看不太清楚。",
+    "english": "The sign's letters are small and hard to make out.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3283",
+    "japanese": "先生は生徒一人ひとりの成長を認めた。",
+    "chunks": [
+      "先生",
+      "は",
+      "生徒",
+      "一人ひとり",
+      "の",
+      "成長",
+      "を",
+      "認めた。"
+    ],
+    "translation": "老師認可了每一位學生的成長。",
+    "english": "The teacher acknowledged each student's growth.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3284",
+    "japanese": "私はその曲を聞いてすぐに気づいた。",
+    "chunks": [
+      "私",
+      "は",
+      "その",
+      "曲",
+      "を",
+      "聞いて",
+      "すぐ",
+      "に",
+      "気づいた。"
+    ],
+    "translation": "我聽到那首曲子馬上就察覺到了。",
+    "english": "I noticed it right away when I heard that song.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "recognition"
+    ]
+  },
+  {
+    "id": "3285",
+    "japanese": "私は毎朝バスで学校に通っています。",
+    "chunks": [
+      "私",
+      "は",
+      "毎朝",
+      "バス",
+      "で",
+      "学校",
+      "に",
+      "通って",
+      "います。"
+    ],
+    "translation": "我每天早上搭公車上學。",
+    "english": "I commute to school by bus every morning.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "school"
+    ]
+  },
+  {
+    "id": "3286",
+    "japanese": "授業が終わったら、図書館で勉強します。",
+    "chunks": [
+      "授業",
+      "が",
+      "終わったら、",
+      "図書館",
+      "で",
+      "勉強",
+      "します。"
+    ],
+    "translation": "下課後，我會在圖書館念書。",
+    "english": "After class ends, I study in the library.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "school"
+    ]
+  },
+  {
+    "id": "3287",
+    "japanese": "試験に向けて、計画的に準備を進める。",
+    "chunks": [
+      "試験",
+      "に",
+      "向けて、",
+      "計画的",
+      "に",
+      "準備",
+      "を",
+      "進める。"
+    ],
+    "translation": "為了考試，我有計畫地推進準備。",
+    "english": "I prepare systematically for the exam.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "school"
+    ]
+  },
+  {
+    "id": "3288",
+    "japanese": "先生は黒板に大きな字を書きました。",
+    "chunks": [
+      "先生",
+      "は",
+      "黒板",
+      "に",
+      "大きな",
+      "字",
+      "を",
+      "書きました。"
+    ],
+    "translation": "老師在黑板上寫了很大的字。",
+    "english": "The teacher wrote large letters on the blackboard.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "school"
+    ]
+  },
+  {
+    "id": "3289",
+    "japanese": "学校は、知識だけでなく協調性も育てる場だ。",
+    "chunks": [
+      "学校",
+      "は、",
+      "知識",
+      "だけ",
+      "で",
+      "なく",
+      "協調性",
+      "も",
+      "育てる",
+      "場",
+      "だ。"
+    ],
+    "translation": "學校不僅培養知識，也是培養合作性的場所。",
+    "english": "School is a place that fosters not just knowledge but cooperation.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "school"
+    ]
+  },
+  {
+    "id": "3290",
+    "japanese": "クラスのみんなと文化祭を準備している。",
+    "chunks": [
+      "クラス",
+      "の",
+      "みんな",
+      "と",
+      "文化祭",
+      "を",
+      "準備",
+      "して",
+      "いる。"
+    ],
+    "translation": "我正和全班一起準備文化祭。",
+    "english": "I'm preparing for the school festival with my whole class.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "school"
+    ]
+  },
+  {
+    "id": "3291",
+    "japanese": "宿題を忘れて、先生に叱られました。",
+    "chunks": [
+      "宿題",
+      "を",
+      "忘れて、",
+      "先生",
+      "に",
+      "叱られました。"
+    ],
+    "translation": "我忘了寫作業，被老師罵了。",
+    "english": "I forgot my homework and was scolded by the teacher.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "school"
+    ]
+  },
+  {
+    "id": "3292",
+    "japanese": "教育の現場では、個性を伸ばす工夫が必要だ。",
+    "chunks": [
+      "教育",
+      "の",
+      "現場",
+      "で",
+      "は、",
+      "個性",
+      "を",
+      "伸ばす",
+      "工夫",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "在教育現場，需要發揮個性的巧思。",
+    "english": "In education, ingenuity to develop individuality is needed.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "school"
+    ]
+  },
+  {
+    "id": "3293",
+    "japanese": "友達と放課後に公園で遊びました。",
+    "chunks": [
+      "友達",
+      "と",
+      "放課後",
+      "に",
+      "公園",
+      "で",
+      "遊びました。"
+    ],
+    "translation": "放學後我和朋友在公園玩。",
+    "english": "I played with friends in the park after school.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "school"
+    ]
+  },
+  {
+    "id": "3294",
+    "japanese": "この学校は部活動がとても盛んです。",
+    "chunks": [
+      "この",
+      "学校",
+      "は",
+      "部活動",
+      "が",
+      "とても",
+      "盛ん",
+      "です。"
+    ],
+    "translation": "這所學校的社團活動非常興盛。",
+    "english": "This school's club activities are very active.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "school"
+    ]
   }
 ]
