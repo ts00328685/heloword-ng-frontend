@@ -72523,5 +72523,1060 @@
       "N2",
       "charity"
     ]
+  },
+  {
+    "id": "3543",
+    "japanese": "夏は暑いので、よく水を飲みます。",
+    "chunks": [
+      "夏",
+      "は",
+      "暑い",
+      "ので、",
+      "よく",
+      "水",
+      "を",
+      "飲みます。"
+    ],
+    "translation": "夏天很熱，所以我常喝水。",
+    "english": "Summer is hot, so I drink water often.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "summer"
+    ]
+  },
+  {
+    "id": "3544",
+    "japanese": "子どものころ、夏休みが待ち遠しかった。",
+    "chunks": [
+      "子ども",
+      "の",
+      "ころ、",
+      "夏休み",
+      "が",
+      "待ち遠しかった。"
+    ],
+    "translation": "小時候，總是很期待暑假。",
+    "english": "As a child, I couldn't wait for summer vacation.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "summer"
+    ]
+  },
+  {
+    "id": "3545",
+    "japanese": "真夏の日差しは、肌を刺すほど強い。",
+    "chunks": [
+      "真夏",
+      "の",
+      "日差し",
+      "は、",
+      "肌",
+      "を",
+      "刺す",
+      "ほど",
+      "強い。"
+    ],
+    "translation": "盛夏的陽光，強烈得刺痛肌膚。",
+    "english": "The midsummer sun is strong enough to sting the skin.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "summer"
+    ]
+  },
+  {
+    "id": "3546",
+    "japanese": "私は海で泳ぐのが大好きです。",
+    "chunks": [
+      "私",
+      "は",
+      "海",
+      "で",
+      "泳ぐ",
+      "の",
+      "が",
+      "大好き",
+      "です。"
+    ],
+    "translation": "我最喜歡在海裡游泳。",
+    "english": "I love swimming in the sea.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "summer"
+    ]
+  },
+  {
+    "id": "3547",
+    "japanese": "夜になっても、暑さが和らがない。",
+    "chunks": [
+      "夜",
+      "に",
+      "なって",
+      "も、",
+      "暑さ",
+      "が",
+      "和らが",
+      "ない。"
+    ],
+    "translation": "即使到了晚上，暑氣也不見緩和。",
+    "english": "Even at night, the heat doesn't let up.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "summer"
+    ]
+  },
+  {
+    "id": "3548",
+    "japanese": "夏祭りで、きれいな花火を見ました。",
+    "chunks": [
+      "夏祭り",
+      "で、",
+      "きれい",
+      "な",
+      "花火",
+      "を",
+      "見ました。"
+    ],
+    "translation": "我在夏日祭典看了美麗的煙火。",
+    "english": "I saw beautiful fireworks at the summer festival.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "summer"
+    ]
+  },
+  {
+    "id": "3549",
+    "japanese": "うだるような暑さに、食欲さえ失せた。",
+    "chunks": [
+      "うだる",
+      "よう",
+      "な",
+      "暑さ",
+      "に、",
+      "食欲",
+      "さえ",
+      "失せた。"
+    ],
+    "translation": "悶熱難耐的暑氣，連食慾都消失了。",
+    "english": "In the sweltering heat, even my appetite vanished.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "summer"
+    ]
+  },
+  {
+    "id": "3550",
+    "japanese": "私は毎年夏に祖母の家へ行きます。",
+    "chunks": [
+      "私",
+      "は",
+      "毎年",
+      "夏",
+      "に",
+      "祖母",
+      "の",
+      "家",
+      "へ",
+      "行きます。"
+    ],
+    "translation": "我每年夏天都去祖母家。",
+    "english": "I go to my grandmother's house every summer.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "summer"
+    ]
+  },
+  {
+    "id": "3551",
+    "japanese": "セミの声が、夏の訪れを告げる。",
+    "chunks": [
+      "セミ",
+      "の",
+      "声",
+      "が、",
+      "夏",
+      "の",
+      "訪れ",
+      "を",
+      "告げる。"
+    ],
+    "translation": "蟬鳴宣告著夏天的到來。",
+    "english": "The cicadas' cries announce summer's arrival.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "summer"
+    ]
+  },
+  {
+    "id": "3552",
+    "japanese": "暑い日には、冷たいそばがおいしい。",
+    "chunks": [
+      "暑い",
+      "日",
+      "に",
+      "は、",
+      "冷たい",
+      "そば",
+      "が",
+      "おいしい。"
+    ],
+    "translation": "在炎熱的日子，冰涼的蕎麥麵很美味。",
+    "english": "On hot days, cold soba is delicious.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "summer"
+    ]
+  },
+  {
+    "id": "3553",
+    "japanese": "人を批判するのは簡単だ。",
+    "chunks": [
+      "人",
+      "を",
+      "批判",
+      "する",
+      "の",
+      "は",
+      "簡単",
+      "だ。"
+    ],
+    "translation": "批評別人很容易。",
+    "english": "It's easy to criticize others.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3554",
+    "japanese": "彼は厳しい批判にも、冷静に応えた。",
+    "chunks": [
+      "彼",
+      "は",
+      "厳しい",
+      "批判",
+      "に",
+      "も、",
+      "冷静",
+      "に",
+      "応えた。"
+    ],
+    "translation": "他即使面對嚴厲的批評，也冷靜地回應。",
+    "english": "He responded calmly even to harsh criticism.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3555",
+    "japanese": "私は先生に作文を直されました。",
+    "chunks": [
+      "私",
+      "は",
+      "先生",
+      "に",
+      "作文",
+      "を",
+      "直されました。"
+    ],
+    "translation": "我的作文被老師修改了。",
+    "english": "My essay was corrected by the teacher.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3556",
+    "japanese": "建設的な批判は、成長の糧となる。",
+    "chunks": [
+      "建設的",
+      "な",
+      "批判",
+      "は、",
+      "成長",
+      "の",
+      "糧",
+      "と",
+      "なる。"
+    ],
+    "translation": "建設性的批評，能成為成長的養分。",
+    "english": "Constructive criticism becomes nourishment for growth.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3557",
+    "japanese": "欠点ばかりを責めても、何も始まらない。",
+    "chunks": [
+      "欠点",
+      "ばかり",
+      "を",
+      "責めて",
+      "も、",
+      "何",
+      "も",
+      "始まら",
+      "ない。"
+    ],
+    "translation": "光是指責缺點，什麼也無法開始。",
+    "english": "Just blaming the flaws gets you nowhere.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3558",
+    "japanese": "批判する前に、まず話をよく聞く。",
+    "chunks": [
+      "批判",
+      "する",
+      "前",
+      "に、",
+      "まず",
+      "話",
+      "を",
+      "よく",
+      "聞く。"
+    ],
+    "translation": "批評之前，先好好聽對方說。",
+    "english": "Before criticizing, first listen carefully.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3559",
+    "japanese": "この映画は評論家から厳しく批評された。",
+    "chunks": [
+      "この",
+      "映画",
+      "は",
+      "評論家",
+      "から",
+      "厳しく",
+      "批評",
+      "された。"
+    ],
+    "translation": "這部電影受到了評論家嚴厲的批評。",
+    "english": "This film was harshly criticized by reviewers.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3560",
+    "japanese": "私は少し注意を受けました。",
+    "chunks": [
+      "私",
+      "は",
+      "少し",
+      "注意",
+      "を",
+      "受けました。"
+    ],
+    "translation": "我受到了一點告誡。",
+    "english": "I received a little reprimand.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3561",
+    "japanese": "相手の人格ではなく、行動を批判する。",
+    "chunks": [
+      "相手",
+      "の",
+      "人格",
+      "で",
+      "は",
+      "なく、",
+      "行動",
+      "を",
+      "批判",
+      "する。"
+    ],
+    "translation": "批評的是行為，而不是對方的人格。",
+    "english": "Criticize the behavior, not the person's character.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3562",
+    "japanese": "反対意見にも、耳を傾けたい。",
+    "chunks": [
+      "反対",
+      "意見",
+      "に",
+      "も、",
+      "耳",
+      "を",
+      "傾けたい。"
+    ],
+    "translation": "對於反對意見，我也想傾聽。",
+    "english": "I want to lend an ear to opposing views too.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "criticism"
+    ]
+  },
+  {
+    "id": "3563",
+    "japanese": "突然の知らせに、本当に驚いた。",
+    "chunks": [
+      "突然",
+      "の",
+      "知らせ",
+      "に、",
+      "本当",
+      "に",
+      "驚いた。"
+    ],
+    "translation": "對於突如其來的消息，我真的很驚訝。",
+    "english": "I was really surprised at the sudden news.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3564",
+    "japanese": "プレゼントをもらって、とてもうれしかった。",
+    "chunks": [
+      "プレゼント",
+      "を",
+      "もらって、",
+      "とても",
+      "うれしかった。"
+    ],
+    "translation": "收到禮物，我非常開心。",
+    "english": "I was very happy to receive a present.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3565",
+    "japanese": "彼の変わりように、目を疑った。",
+    "chunks": [
+      "彼",
+      "の",
+      "変わりよう",
+      "に、",
+      "目",
+      "を",
+      "疑った。"
+    ],
+    "translation": "對於他的轉變，我簡直不敢相信。",
+    "english": "I doubted my eyes at how much he'd changed.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3566",
+    "japanese": "まさか彼が来るとは思わなかった。",
+    "chunks": [
+      "まさか",
+      "彼",
+      "が",
+      "来る",
+      "と",
+      "は",
+      "思わ",
+      "なかった。"
+    ],
+    "translation": "我萬萬沒想到他會來。",
+    "english": "I never imagined that he would come.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3567",
+    "japanese": "友達が急に家に来て、びっくりした。",
+    "chunks": [
+      "友達",
+      "が",
+      "急に",
+      "家",
+      "に",
+      "来て、",
+      "びっくり",
+      "した。"
+    ],
+    "translation": "朋友突然來家裡，嚇了我一跳。",
+    "english": "My friend came over suddenly, and I was startled.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3568",
+    "japanese": "予想をはるかに超える結果に、言葉を失った。",
+    "chunks": [
+      "予想",
+      "を",
+      "はるか",
+      "に",
+      "超える",
+      "結果",
+      "に、",
+      "言葉",
+      "を",
+      "失った。"
+    ],
+    "translation": "對於遠超預期的結果，我說不出話來。",
+    "english": "At a result far beyond expectations, I was speechless.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3569",
+    "japanese": "箱を開けたら、かわいい猫がいました。",
+    "chunks": [
+      "箱",
+      "を",
+      "開けたら、",
+      "かわいい",
+      "猫",
+      "が",
+      "いました。"
+    ],
+    "translation": "打開箱子，裡面有一隻可愛的貓。",
+    "english": "When I opened the box, there was a cute cat.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3570",
+    "japanese": "思いがけない再会に、胸が熱くなった。",
+    "chunks": [
+      "思いがけない",
+      "再会",
+      "に、",
+      "胸",
+      "が",
+      "熱く",
+      "なった。"
+    ],
+    "translation": "對於意想不到的重逢，我心頭一熱。",
+    "english": "At the unexpected reunion, my heart warmed.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3571",
+    "japanese": "みんなで、彼女の誕生日を祝いました。",
+    "chunks": [
+      "みんな",
+      "で、",
+      "彼女",
+      "の",
+      "誕生日",
+      "を",
+      "祝いました。"
+    ],
+    "translation": "我們大家一起慶祝了她的生日。",
+    "english": "We all celebrated her birthday together.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3572",
+    "japanese": "そのニュースは、世間を大いに驚かせた。",
+    "chunks": [
+      "その",
+      "ニュース",
+      "は、",
+      "世間",
+      "を",
+      "大いに",
+      "驚かせた。"
+    ],
+    "translation": "那則新聞讓社會大為震驚。",
+    "english": "That news greatly surprised the public.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "surprise"
+    ]
+  },
+  {
+    "id": "3573",
+    "japanese": "格差の問題を、もっと真剣に考えるべきだ。",
+    "chunks": [
+      "格差",
+      "の",
+      "問題",
+      "を、",
+      "もっと",
+      "真剣",
+      "に",
+      "考える",
+      "べき",
+      "だ。"
+    ],
+    "translation": "貧富差距的問題，應該更認真地思考。",
+    "english": "We should think more seriously about the gap problem.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3574",
+    "japanese": "便利さの裏に、失われたものもある。",
+    "chunks": [
+      "便利さ",
+      "の",
+      "裏",
+      "に、",
+      "失われた",
+      "もの",
+      "も",
+      "ある。"
+    ],
+    "translation": "便利的背後，也有失去的東西。",
+    "english": "Behind convenience, there are also things lost.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3575",
+    "japanese": "みんなが同じである必要はない。",
+    "chunks": [
+      "みんな",
+      "が",
+      "同じ",
+      "で",
+      "ある",
+      "必要",
+      "は",
+      "ない。"
+    ],
+    "translation": "大家沒有必要都一樣。",
+    "english": "There's no need for everyone to be the same.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3576",
+    "japanese": "情報をうのみにせず、自分で考える。",
+    "chunks": [
+      "情報",
+      "を",
+      "うのみ",
+      "に",
+      "せ",
+      "ず、",
+      "自分",
+      "で",
+      "考える。"
+    ],
+    "translation": "不輕信資訊，要自己思考。",
+    "english": "Don't swallow information whole; think for yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3577",
+    "japanese": "私はニュースを毎日読みます。",
+    "chunks": [
+      "私",
+      "は",
+      "ニュース",
+      "を",
+      "毎日",
+      "読みます。"
+    ],
+    "translation": "我每天看新聞。",
+    "english": "I read the news every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3578",
+    "japanese": "古い習慣が、変化をさまたげることもある。",
+    "chunks": [
+      "古い",
+      "習慣",
+      "が、",
+      "変化",
+      "を",
+      "さまたげる",
+      "こと",
+      "も",
+      "ある。"
+    ],
+    "translation": "陳舊的習慣，有時也會阻礙改變。",
+    "english": "Old customs can sometimes hinder change.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3579",
+    "japanese": "豊かさとは何か、改めて問い直す。",
+    "chunks": [
+      "豊か",
+      "さ",
+      "と",
+      "は",
+      "何",
+      "か、",
+      "改めて",
+      "問い直す。"
+    ],
+    "translation": "重新追問富足究竟是什麼。",
+    "english": "We reexamine what affluence really means.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3580",
+    "japanese": "みんなが声を上げれば、社会は変わる。",
+    "chunks": [
+      "みんな",
+      "が",
+      "声",
+      "を",
+      "上げれば、",
+      "社会",
+      "は",
+      "変わる。"
+    ],
+    "translation": "只要大家發出聲音，社會就會改變。",
+    "english": "If everyone speaks up, society will change.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3581",
+    "japanese": "私は環境の問題に関心があります。",
+    "chunks": [
+      "私",
+      "は",
+      "環境",
+      "の",
+      "問題",
+      "に",
+      "関心",
+      "が",
+      "あります。"
+    ],
+    "translation": "我對環境問題很關心。",
+    "english": "I'm interested in environmental issues.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3582",
+    "japanese": "多数の意見が、いつも正しいとは限らない。",
+    "chunks": [
+      "多数",
+      "の",
+      "意見",
+      "が、",
+      "いつも",
+      "正しい",
+      "と",
+      "は",
+      "限らない。"
+    ],
+    "translation": "多數的意見，未必總是正確。",
+    "english": "The majority opinion isn't always right.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "social criticism"
+    ]
+  },
+  {
+    "id": "3583",
+    "japanese": "みんなで協力すれば、早く終わります。",
+    "chunks": [
+      "みんな",
+      "で",
+      "協力",
+      "すれば、",
+      "早く",
+      "終わります。"
+    ],
+    "translation": "大家合作的話，就會早點結束。",
+    "english": "If we all cooperate, it'll finish sooner.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3584",
+    "japanese": "チームの力は、一人ひとりの信頼から生まれる。",
+    "chunks": [
+      "チーム",
+      "の",
+      "力",
+      "は、",
+      "一人ひとり",
+      "の",
+      "信頼",
+      "から",
+      "生まれる。"
+    ],
+    "translation": "團隊的力量，源自每個人之間的信任。",
+    "english": "A team's strength is born from the trust of each member.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3585",
+    "japanese": "私は友達と一緒に掃除をしました。",
+    "chunks": [
+      "私",
+      "は",
+      "友達",
+      "と",
+      "一緒",
+      "に",
+      "掃除",
+      "を",
+      "しました。"
+    ],
+    "translation": "我和朋友一起打掃。",
+    "english": "I cleaned together with my friend.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3586",
+    "japanese": "役割を分担すれば、作業ははかどる。",
+    "chunks": [
+      "役割",
+      "を",
+      "分担",
+      "すれば、",
+      "作業",
+      "は",
+      "はかどる。"
+    ],
+    "translation": "分擔角色的話，工作就會有進展。",
+    "english": "If we divide the roles, the work progresses.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3587",
+    "japanese": "意見がちがっても、目標は同じだ。",
+    "chunks": [
+      "意見",
+      "が",
+      "ちがって",
+      "も、",
+      "目標",
+      "は",
+      "同じ",
+      "だ。"
+    ],
+    "translation": "即使意見不同，目標也是相同的。",
+    "english": "Even if opinions differ, the goal is the same.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3588",
+    "japanese": "互いの強みを生かすのが、良いチームだ。",
+    "chunks": [
+      "互い",
+      "の",
+      "強み",
+      "を",
+      "生かす",
+      "の",
+      "が、",
+      "良い",
+      "チーム",
+      "だ。"
+    ],
+    "translation": "活用彼此的優勢，才是好的團隊。",
+    "english": "A good team makes the most of each other's strengths.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3589",
+    "japanese": "困ったときは、遠慮せずに助け合う。",
+    "chunks": [
+      "困った",
+      "とき",
+      "は、",
+      "遠慮",
+      "せ",
+      "ず",
+      "に",
+      "助け合う。"
+    ],
+    "translation": "遇到困難時，不必客氣，互相幫助。",
+    "english": "When in trouble, help each other without holding back.",
+    "difficulty": "hard",
+    "tags": [
+      "N2",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3590",
+    "japanese": "私たちは力を合わせて、試合に勝った。",
+    "chunks": [
+      "私",
+      "たち",
+      "は",
+      "力",
+      "を",
+      "合わせて、",
+      "試合",
+      "に",
+      "勝った。"
+    ],
+    "translation": "我們齊心協力，贏得了比賽。",
+    "english": "We joined forces and won the match.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3591",
+    "japanese": "一人では無理でも、みんなならできる。",
+    "chunks": [
+      "一人",
+      "で",
+      "は",
+      "無理",
+      "で",
+      "も、",
+      "みんな",
+      "なら",
+      "できる。"
+    ],
+    "translation": "一個人辦不到，但大家一起就能做到。",
+    "english": "Alone it's impossible, but together we can do it.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "teamwork"
+    ]
+  },
+  {
+    "id": "3592",
+    "japanese": "協調性は、これからの時代に欠かせない。",
+    "chunks": [
+      "協調性",
+      "は、",
+      "これ",
+      "から",
+      "の",
+      "時代",
+      "に",
+      "欠かせ",
+      "ない。"
+    ],
+    "translation": "協調性，在今後的時代不可或缺。",
+    "english": "Cooperativeness is indispensable in the times to come.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "teamwork"
+    ]
   }
 ]
