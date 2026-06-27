@@ -54182,5 +54182,1083 @@
       "N2",
       "fitness"
     ]
+  },
+  {
+    "id": "2696",
+    "japanese": "駅はどこですか。",
+    "chunks": [
+      "駅",
+      "は",
+      "どこ",
+      "です",
+      "か。"
+    ],
+    "translation": "車站在哪裡？",
+    "english": "Where is the station?",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "location"
+    ]
+  },
+  {
+    "id": "2697",
+    "japanese": "待ち合わせの場所を教えてください。",
+    "chunks": [
+      "待ち合わせ",
+      "の",
+      "場所",
+      "を",
+      "教えて",
+      "ください。"
+    ],
+    "translation": "請告訴我碰面的地點。",
+    "english": "Please tell me the meeting place.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "location"
+    ]
+  },
+  {
+    "id": "2698",
+    "japanese": "この辺りは静かで住みやすい。",
+    "chunks": [
+      "この",
+      "辺り",
+      "は",
+      "静か",
+      "で",
+      "住みやすい。"
+    ],
+    "translation": "這一帶很安靜，很適合居住。",
+    "english": "This area is quiet and easy to live in.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "location"
+    ]
+  },
+  {
+    "id": "2699",
+    "japanese": "店の立地は、売り上げを大きく左右する。",
+    "chunks": [
+      "店",
+      "の",
+      "立地",
+      "は、",
+      "売り上げ",
+      "を",
+      "大きく",
+      "左右する。"
+    ],
+    "translation": "店面的地點會大大左右銷售額。",
+    "english": "A store's location greatly affects its sales.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "location"
+    ]
+  },
+  {
+    "id": "2700",
+    "japanese": "どこに拠点を置くかは、事業の成否を分ける重要な判断だ。",
+    "chunks": [
+      "どこ",
+      "に",
+      "拠点",
+      "を",
+      "置く",
+      "か",
+      "は、",
+      "事業",
+      "の",
+      "成否",
+      "を",
+      "分ける",
+      "重要",
+      "な",
+      "判断",
+      "だ。"
+    ],
+    "translation": "把據點設在哪裡，是攸關事業成敗的重要決定。",
+    "english": "Where to base yourself is a crucial decision that determines a business's success or failure.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "location"
+    ]
+  },
+  {
+    "id": "2701",
+    "japanese": "地図を見ても、目的地の場所が分からなかった。",
+    "chunks": [
+      "地図",
+      "を",
+      "見て",
+      "も、",
+      "目的地",
+      "の",
+      "場所",
+      "が",
+      "分からなかった。"
+    ],
+    "translation": "即使看了地圖，也不知道目的地在哪裡。",
+    "english": "Even looking at the map, I couldn't figure out where the destination was.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "location"
+    ]
+  },
+  {
+    "id": "2702",
+    "japanese": "この施設は、駅から少し離れた場所にある。",
+    "chunks": [
+      "この",
+      "施設",
+      "は、",
+      "駅",
+      "から",
+      "少し",
+      "離れた",
+      "場所",
+      "に",
+      "ある。"
+    ],
+    "translation": "這座設施位於離車站稍遠的地方。",
+    "english": "This facility is located a little away from the station.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "location"
+    ]
+  },
+  {
+    "id": "2703",
+    "japanese": "災害時の避難場所を、日頃から確認しておくに越したことはない。",
+    "chunks": [
+      "災害時",
+      "の",
+      "避難場所",
+      "を、",
+      "日頃",
+      "から",
+      "確認",
+      "して",
+      "おく",
+      "に",
+      "越した",
+      "こと",
+      "は",
+      "ない。"
+    ],
+    "translation": "災害時的避難場所，平時先確認好總是不會錯。",
+    "english": "There's nothing better than checking your evacuation site in advance for emergencies.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "location"
+    ]
+  },
+  {
+    "id": "2704",
+    "japanese": "かばんを置いた場所を忘れました。",
+    "chunks": [
+      "かばん",
+      "を",
+      "置いた",
+      "場所",
+      "を",
+      "忘れました。"
+    ],
+    "translation": "我忘了把包包放在哪裡了。",
+    "english": "I forgot where I put my bag.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "location"
+    ]
+  },
+  {
+    "id": "2705",
+    "japanese": "静かな環境を求めて、郊外に事務所を移した。",
+    "chunks": [
+      "静か",
+      "な",
+      "環境",
+      "を",
+      "求めて、",
+      "郊外",
+      "に",
+      "事務所",
+      "を",
+      "移した。"
+    ],
+    "translation": "為了尋求安靜的環境，把辦公室搬到了郊外。",
+    "english": "Seeking a quiet environment, they moved the office to the suburbs.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "location"
+    ]
+  },
+  {
+    "id": "2706",
+    "japanese": "来月、自分の国へ帰ります。",
+    "chunks": [
+      "来月、",
+      "自分",
+      "の",
+      "国",
+      "へ",
+      "帰ります。"
+    ],
+    "translation": "下個月我要回自己的國家。",
+    "english": "I'm going back to my home country next month.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2707",
+    "japanese": "長い留学を終えて、ようやく帰国した。",
+    "chunks": [
+      "長い",
+      "留学",
+      "を",
+      "終えて、",
+      "ようやく",
+      "帰国した。"
+    ],
+    "translation": "結束了漫長的留學，我終於回國了。",
+    "english": "After a long study abroad, I finally returned home.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2708",
+    "japanese": "帰国したら、まず家族に会いに行きたい。",
+    "chunks": [
+      "帰国したら、",
+      "まず",
+      "家族",
+      "に",
+      "会い",
+      "に",
+      "行きたい。"
+    ],
+    "translation": "回國後，我想先去見家人。",
+    "english": "When I get back home, I want to go see my family first.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2709",
+    "japanese": "長年異国で暮らした彼にとって、帰国はむしろ戸惑いの連続だった。",
+    "chunks": [
+      "長年",
+      "異国",
+      "で",
+      "暮らした",
+      "彼",
+      "に",
+      "とって、",
+      "帰国",
+      "は",
+      "むしろ",
+      "戸惑い",
+      "の",
+      "連続",
+      "だった。"
+    ],
+    "translation": "對於長年在異國生活的他來說，回國反而是一連串的不知所措。",
+    "english": "For him, who had lived abroad for years, returning home was rather a string of bewilderment.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2710",
+    "japanese": "夏休みに国へ帰ります。",
+    "chunks": [
+      "夏休み",
+      "に",
+      "国",
+      "へ",
+      "帰ります。"
+    ],
+    "translation": "暑假我要回國。",
+    "english": "I'll return to my country during summer vacation.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2711",
+    "japanese": "不法に滞在していた人々が、本国へ送還された。",
+    "chunks": [
+      "不法",
+      "に",
+      "滞在",
+      "して",
+      "いた",
+      "人々",
+      "が、",
+      "本国",
+      "へ",
+      "送還された。"
+    ],
+    "translation": "非法滯留的人們被遣返回本國。",
+    "english": "People who had been staying illegally were repatriated to their home countries.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2712",
+    "japanese": "仕事の都合で、急に帰国することになった。",
+    "chunks": [
+      "仕事",
+      "の",
+      "都合",
+      "で、",
+      "急",
+      "に",
+      "帰国する",
+      "こと",
+      "に",
+      "なった。"
+    ],
+    "translation": "因為工作的關係，我突然得回國了。",
+    "english": "Due to work circumstances, I suddenly had to return home.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2713",
+    "japanese": "難民の帰還には、安全の確保という大きな課題が伴う。",
+    "chunks": [
+      "難民",
+      "の",
+      "帰還",
+      "に",
+      "は、",
+      "安全",
+      "の",
+      "確保",
+      "と",
+      "いう",
+      "大きな",
+      "課題",
+      "が",
+      "伴う。"
+    ],
+    "translation": "難民的返鄉，伴隨著確保安全這項重大課題。",
+    "english": "The return of refugees comes with the major challenge of ensuring their safety.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2714",
+    "japanese": "国に帰ったら何をしますか。",
+    "chunks": [
+      "国",
+      "に",
+      "帰ったら",
+      "何",
+      "を",
+      "します",
+      "か。"
+    ],
+    "translation": "回國以後你要做什麼？",
+    "english": "What will you do when you return to your country?",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2715",
+    "japanese": "海外勤務を終えて、五年ぶりに帰国した。",
+    "chunks": [
+      "海外勤務",
+      "を",
+      "終えて、",
+      "五年ぶり",
+      "に",
+      "帰国した。"
+    ],
+    "translation": "結束海外工作，睽違五年回到了國內。",
+    "english": "After finishing my overseas posting, I returned home for the first time in five years.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "2716",
+    "japanese": "私の目標は日本語を話すことです。",
+    "chunks": [
+      "私",
+      "の",
+      "目標",
+      "は",
+      "日本語",
+      "を",
+      "話す",
+      "こと",
+      "です。"
+    ],
+    "translation": "我的目標是會說日語。",
+    "english": "My goal is to speak Japanese.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "goal"
+    ]
+  },
+  {
+    "id": "2717",
+    "japanese": "目標があると、毎日が充実する。",
+    "chunks": [
+      "目標",
+      "が",
+      "ある",
+      "と、",
+      "毎日",
+      "が",
+      "充実する。"
+    ],
+    "translation": "有了目標，每天都很充實。",
+    "english": "When you have a goal, every day feels fulfilling.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "goal"
+    ]
+  },
+  {
+    "id": "2718",
+    "japanese": "高すぎる目標は、かえってやる気を失わせる。",
+    "chunks": [
+      "高すぎる",
+      "目標",
+      "は、",
+      "かえって",
+      "やる気",
+      "を",
+      "失わせる。"
+    ],
+    "translation": "過高的目標，反而會讓人失去幹勁。",
+    "english": "A goal that's too high can actually sap your motivation.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "goal"
+    ]
+  },
+  {
+    "id": "2719",
+    "japanese": "目標を達成するには、日々の地道な積み重ねが何よりも物を言う。",
+    "chunks": [
+      "目標",
+      "を",
+      "達成する",
+      "に",
+      "は、",
+      "日々",
+      "の",
+      "地道",
+      "な",
+      "積み重ね",
+      "が",
+      "何より",
+      "も",
+      "物を言う。"
+    ],
+    "translation": "要達成目標，每天踏實的累積比什麼都重要。",
+    "english": "To reach a goal, steady daily accumulation matters more than anything.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "goal"
+    ]
+  },
+  {
+    "id": "2720",
+    "japanese": "チーム全員で同じ目標に向かっている。",
+    "chunks": [
+      "チーム",
+      "全員",
+      "で",
+      "同じ",
+      "目標",
+      "に",
+      "向かって",
+      "いる。"
+    ],
+    "translation": "整個團隊朝著同一個目標前進。",
+    "english": "The whole team is working toward the same goal.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "goal"
+    ]
+  },
+  {
+    "id": "2721",
+    "japanese": "目標を小さく分けると、達成しやすくなる。",
+    "chunks": [
+      "目標",
+      "を",
+      "小さく",
+      "分ける",
+      "と、",
+      "達成",
+      "しやすく",
+      "なる。"
+    ],
+    "translation": "把目標分得小一點，就比較容易達成。",
+    "english": "When you break a goal into small parts, it becomes easier to achieve.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "goal"
+    ]
+  },
+  {
+    "id": "2722",
+    "japanese": "明確な目標を掲げぬまま努力しても、成果は実りにくい。",
+    "chunks": [
+      "明確",
+      "な",
+      "目標",
+      "を",
+      "掲げぬ",
+      "まま",
+      "努力",
+      "して",
+      "も、",
+      "成果",
+      "は",
+      "実りにくい。"
+    ],
+    "translation": "沒有立下明確目標就努力，成果也很難開花結果。",
+    "english": "Even if you work hard without setting a clear goal, results are hard to come by.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "goal"
+    ]
+  },
+  {
+    "id": "2723",
+    "japanese": "来年は留学するのが目標です。",
+    "chunks": [
+      "来年",
+      "は",
+      "留学する",
+      "の",
+      "が",
+      "目標",
+      "です。"
+    ],
+    "translation": "我的目標是明年去留學。",
+    "english": "My goal is to study abroad next year.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "goal"
+    ]
+  },
+  {
+    "id": "2724",
+    "japanese": "ようやく長年の目標を達成することができた。",
+    "chunks": [
+      "ようやく",
+      "長年",
+      "の",
+      "目標",
+      "を",
+      "達成する",
+      "こと",
+      "が",
+      "できた。"
+    ],
+    "translation": "我終於達成了多年的目標。",
+    "english": "I was finally able to achieve my long-held goal.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "goal"
+    ]
+  },
+  {
+    "id": "2725",
+    "japanese": "食事のマナーを子供に教えます。",
+    "chunks": [
+      "食事",
+      "の",
+      "マナー",
+      "を",
+      "子供",
+      "に",
+      "教えます。"
+    ],
+    "translation": "我教孩子用餐的禮儀。",
+    "english": "I teach my child table manners.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "manners"
+    ]
+  },
+  {
+    "id": "2726",
+    "japanese": "箸の使い方にもマナーがある。",
+    "chunks": [
+      "箸",
+      "の",
+      "使い方",
+      "に",
+      "も",
+      "マナー",
+      "が",
+      "ある。"
+    ],
+    "translation": "使用筷子也有規矩。",
+    "english": "There are manners even for how you use chopsticks.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "manners"
+    ]
+  },
+  {
+    "id": "2727",
+    "japanese": "公共の場では、周りへの配慮が求められる。",
+    "chunks": [
+      "公共",
+      "の",
+      "場",
+      "で",
+      "は、",
+      "周り",
+      "へ",
+      "の",
+      "配慮",
+      "が",
+      "求められる。"
+    ],
+    "translation": "在公共場合，需要顧及周遭的人。",
+    "english": "In public places, consideration for those around you is expected.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "manners"
+    ]
+  },
+  {
+    "id": "2728",
+    "japanese": "マナーとは、他者を思いやる心が形となって表れたものだ。",
+    "chunks": [
+      "マナー",
+      "と",
+      "は、",
+      "他者",
+      "を",
+      "思いやる",
+      "心",
+      "が",
+      "形",
+      "と",
+      "なって",
+      "表れた",
+      "もの",
+      "だ。"
+    ],
+    "translation": "所謂禮儀，就是體諒他人的心化為具體形式的表現。",
+    "english": "Manners are the expression, in concrete form, of a heart that cares for others.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "manners"
+    ]
+  },
+  {
+    "id": "2729",
+    "japanese": "大きな声で話すのはよくないです。",
+    "chunks": [
+      "大きな",
+      "声",
+      "で",
+      "話す",
+      "の",
+      "は",
+      "よくない",
+      "です。"
+    ],
+    "translation": "大聲說話是不好的。",
+    "english": "It's not good to talk loudly.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "manners"
+    ]
+  },
+  {
+    "id": "2730",
+    "japanese": "ドアは次の人のために押さえておくのがマナーだ。",
+    "chunks": [
+      "ドア",
+      "は",
+      "次",
+      "の",
+      "人",
+      "の",
+      "ために",
+      "押さえて",
+      "おく",
+      "の",
+      "が",
+      "マナー",
+      "だ。"
+    ],
+    "translation": "為下一個人扶住門是一種禮貌。",
+    "english": "Holding the door for the next person is good manners.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "manners"
+    ]
+  },
+  {
+    "id": "2731",
+    "japanese": "食べる前に「いただきます」と言う。",
+    "chunks": [
+      "食べる",
+      "前",
+      "に",
+      "「いただきます」",
+      "と",
+      "言う。"
+    ],
+    "translation": "吃飯前要說「我開動了」。",
+    "english": "Before eating, you say 'itadakimasu.'",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "manners"
+    ]
+  },
+  {
+    "id": "2732",
+    "japanese": "その場にふさわしい振る舞いができてこそ、一人前の社会人と言える。",
+    "chunks": [
+      "その場",
+      "に",
+      "ふさわしい",
+      "振る舞い",
+      "が",
+      "できて",
+      "こそ、",
+      "一人前",
+      "の",
+      "社会人",
+      "と",
+      "言える。"
+    ],
+    "translation": "唯有能做出符合場合的舉止，才稱得上是獨當一面的社會人士。",
+    "english": "Only when you can behave appropriately for the occasion can you be called a full-fledged member of society.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "manners"
+    ]
+  },
+  {
+    "id": "2733",
+    "japanese": "食事中に音を立てないようにしましょう。",
+    "chunks": [
+      "食事中",
+      "に",
+      "音",
+      "を",
+      "立てない",
+      "ように",
+      "しましょう。"
+    ],
+    "translation": "用餐時盡量不要發出聲音吧。",
+    "english": "Let's try not to make noise while eating.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "manners"
+    ]
+  },
+  {
+    "id": "2734",
+    "japanese": "テーブルマナーは、国によって大きく異なる。",
+    "chunks": [
+      "テーブルマナー",
+      "は、",
+      "国",
+      "に",
+      "よって",
+      "大きく",
+      "異なる。"
+    ],
+    "translation": "餐桌禮儀因國家而有很大的差異。",
+    "english": "Table manners differ greatly from country to country.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "manners"
+    ]
+  },
+  {
+    "id": "2735",
+    "japanese": "大学で歴史を研究しています。",
+    "chunks": [
+      "大学",
+      "で",
+      "歴史",
+      "を",
+      "研究",
+      "して",
+      "います。"
+    ],
+    "translation": "我在大學研究歷史。",
+    "english": "I'm researching history at university.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "research"
+    ]
+  },
+  {
+    "id": "2736",
+    "japanese": "その問題について詳しく調べた。",
+    "chunks": [
+      "その",
+      "問題",
+      "に",
+      "ついて",
+      "詳しく",
+      "調べた。"
+    ],
+    "translation": "我針對那個問題做了詳細的調查。",
+    "english": "I looked into that problem in detail.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "research"
+    ]
+  },
+  {
+    "id": "2737",
+    "japanese": "研究の成果が、ようやく論文として発表された。",
+    "chunks": [
+      "研究",
+      "の",
+      "成果",
+      "が、",
+      "ようやく",
+      "論文",
+      "として",
+      "発表された。"
+    ],
+    "translation": "研究的成果終於以論文的形式發表了。",
+    "english": "The research findings were finally published as a paper.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "research"
+    ]
+  },
+  {
+    "id": "2738",
+    "japanese": "地道な基礎研究なくして、画期的な発見は生まれない。",
+    "chunks": [
+      "地道",
+      "な",
+      "基礎研究",
+      "なくして、",
+      "画期的",
+      "な",
+      "発見",
+      "は",
+      "生まれない。"
+    ],
+    "translation": "沒有踏實的基礎研究，就不會有劃時代的發現。",
+    "english": "Without steady basic research, no groundbreaking discoveries are born.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "research"
+    ]
+  },
+  {
+    "id": "2739",
+    "japanese": "私は科学の研究が好きです。",
+    "chunks": [
+      "私",
+      "は",
+      "科学",
+      "の",
+      "研究",
+      "が",
+      "好き",
+      "です。"
+    ],
+    "translation": "我喜歡科學研究。",
+    "english": "I like scientific research.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "research"
+    ]
+  },
+  {
+    "id": "2740",
+    "japanese": "最新の研究によると、運動は脳にも良いそうだ。",
+    "chunks": [
+      "最新",
+      "の",
+      "研究",
+      "に",
+      "よると、",
+      "運動",
+      "は",
+      "脳",
+      "に",
+      "も",
+      "良い",
+      "そう",
+      "だ。"
+    ],
+    "translation": "根據最新的研究，運動對大腦也有好處。",
+    "english": "According to the latest research, exercise is good for the brain too.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "research"
+    ]
+  },
+  {
+    "id": "2741",
+    "japanese": "研究を進めるには多くの資料が必要だ。",
+    "chunks": [
+      "研究",
+      "を",
+      "進める",
+      "に",
+      "は",
+      "多く",
+      "の",
+      "資料",
+      "が",
+      "必要",
+      "だ。"
+    ],
+    "translation": "要推進研究需要大量的資料。",
+    "english": "Advancing the research requires a lot of materials.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "research"
+    ]
+  },
+  {
+    "id": "2742",
+    "japanese": "研究者は、たとえ結果が出なくとも、真理の探求をやめてはならない。",
+    "chunks": [
+      "研究者",
+      "は、",
+      "たとえ",
+      "結果",
+      "が",
+      "出なく",
+      "とも、",
+      "真理",
+      "の",
+      "探求",
+      "を",
+      "やめて",
+      "は",
+      "ならない。"
+    ],
+    "translation": "研究者即使得不到結果，也不該停止對真理的探求。",
+    "english": "Researchers must not give up the pursuit of truth, even if no results come.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "research"
+    ]
+  },
+  {
+    "id": "2743",
+    "japanese": "この本は研究にとても役立ちます。",
+    "chunks": [
+      "この",
+      "本",
+      "は",
+      "研究",
+      "に",
+      "とても",
+      "役立ちます。"
+    ],
+    "translation": "這本書對研究非常有幫助。",
+    "english": "This book is very useful for research.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "research"
+    ]
+  },
+  {
+    "id": "2744",
+    "japanese": "長年の研究が実を結び、新しい技術が生まれた。",
+    "chunks": [
+      "長年",
+      "の",
+      "研究",
+      "が",
+      "実を結び、",
+      "新しい",
+      "技術",
+      "が",
+      "生まれた。"
+    ],
+    "translation": "多年的研究開花結果，誕生了新的技術。",
+    "english": "Years of research bore fruit, and a new technology was born.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "research"
+    ]
   }
 ]
