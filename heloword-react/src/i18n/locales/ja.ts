@@ -926,6 +926,7 @@ const ja = {
     host: 'ホスト',
     performing: '演奏中',
     nowPlaying: '演奏中',
+    googleIt: 'Google で検索',
   },
 } as const;
 

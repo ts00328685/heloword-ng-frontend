@@ -925,8 +925,9 @@ const zh = {
     maybeLater: '稍後再說',
     like: '讚',
     host: '主持人',
-    performing: '正在表演',
-    nowPlaying: '表演中',
+    performing: 'NOW',
+    nowPlaying: 'NOW',
+    googleIt: 'Google 一下',
   },
 } as const;
 

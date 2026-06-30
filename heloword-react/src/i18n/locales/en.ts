@@ -927,6 +927,7 @@ const en = {
     host: 'Host',
     performing: 'Performing now',
     nowPlaying: 'Now',
+    googleIt: 'Google it',
   },
 } as const;
 
