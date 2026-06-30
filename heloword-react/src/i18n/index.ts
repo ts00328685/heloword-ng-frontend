@@ -8,11 +8,12 @@ export type Language = 'en' | 'zh' | 'ja';
 
 export const LANGUAGES: { code: Language; label: string }[] = [
   { code: 'en', label: 'EN' },
-  { code: 'zh', label: '繁中' },
+  { code: 'zh', label: '中' },
   { code: 'ja', label: '日' },
 ];
 
-const savedLang = (localStorage.getItem('hw-lang') as Language) || 'en';
+// First-time visitors (no saved preference) default to Traditional Chinese.
+const savedLang = (localStorage.getItem('hw-lang') as Language) || 'zh';
 
 i18n.use(initReactI18next).init({
   resources: {
