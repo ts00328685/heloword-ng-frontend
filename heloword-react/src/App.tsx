@@ -12,6 +12,8 @@ import { UIProvider } from './contexts/UIContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 import { SocialProvider } from './contexts/SocialContext';
+import { BoardProvider } from './contexts/BoardContext';
+import LiveBoardPopup from './components/LiveBoardPopup';
 import { ChallengeProvider } from './contexts/ChallengeContext';
 import { DailyGoalProvider } from './contexts/DailyGoalContext';
 import GuestSetupModal from './components/GuestSetupModal';
@@ -46,9 +48,10 @@ const NHKArticleListPage      = React.lazy(() => import('./pages/NHK/NHKArticleL
 const NHKArticleDetailPage    = React.lazy(() => import('./pages/NHK/NHKArticleDetailPage'));
 const ENArticleListPage       = React.lazy(() => import('./pages/EN/ENArticleListPage'));
 const ENArticleDetailPage     = React.lazy(() => import('./pages/EN/ENArticleDetailPage'));
+const BoardPage               = React.lazy(() => import('./pages/Board/BoardPage'));
 
 // Pages where we don't show the bottom tabs
-const NO_TABS_PATHS = ['/vocabulary/quiz', '/login'];
+const NO_TABS_PATHS = ['/vocabulary/quiz', '/login', '/board/'];
 
 const AppLayout: React.FC = () => {
   const showTabs = !NO_TABS_PATHS.some((p) =>
@@ -95,10 +98,14 @@ const AppLayout: React.FC = () => {
           <Route path="/nhk-articles/:id" element={<NHKArticleDetailPage />} />
           <Route path="/en-articles" element={<ENArticleListPage />} />
           <Route path="/en-articles/:id" element={<ENArticleDetailPage />} />
+          <Route path="/board/:sessionId" element={<BoardPage />} />
           {/* Catch-all */}
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </Suspense>
+
+      {/* Live board entry pop-up (shown app-wide while a session is live) */}
+      <LiveBoardPopup />
 
       {/* Real-time message notification toasts */}
       <MessageNotificationToast />
@@ -111,9 +118,19 @@ const AppLayout: React.FC = () => {
       <WalkthroughOverlay />
       <CookieConsentBanner />
 
-      {/* Floating chatbot assistant */}
-      <ChatBot />
+      {/* Floating chatbot assistant — hidden on the live board page */}
+      <ChatBotWrapper />
     </AppInitializer>
+  );
+};
+
+/** Renders the floating chatbot assistant everywhere except the live board page. */
+const ChatBotWrapper: React.FC = () => {
+  return (
+    <Routes>
+      <Route path="/board/:sessionId" element={null} />
+      <Route path="*" element={<ChatBot />} />
+    </Routes>
   );
 };
 
@@ -127,6 +144,7 @@ const BottomTabsWrapper: React.FC = () => {
     <Routes>
       <Route path="/vocabulary/quiz" element={null} />
       <Route path="/login" element={null} />
+      <Route path="/board/:sessionId" element={null} />
       <Route path="*" element={<BottomTabs />} />
     </Routes>
   );
@@ -142,11 +160,13 @@ const App: React.FC = () => {
               <NotificationProvider>
                 <DailyGoalProvider>
                 <SocialProvider>
-                  <ChallengeProvider>
-                    <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-                      <AppLayout />
-                    </Router>
-                  </ChallengeProvider>
+                  <BoardProvider>
+                    <ChallengeProvider>
+                      <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+                        <AppLayout />
+                      </Router>
+                    </ChallengeProvider>
+                  </BoardProvider>
                 </SocialProvider>
                 </DailyGoalProvider>
               </NotificationProvider>

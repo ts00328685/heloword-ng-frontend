@@ -6,8 +6,16 @@ import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSocial } from '../contexts/SocialContext';
 import { LANGUAGES, changeLanguage, Language } from '../i18n';
-import { doPut } from '../services/api.service';
 import { getTTSSettings, setTTSSettings, TTSSettings } from '../services/ttsSettings.service';
+import { useNicknameSave } from './NicknameEditor';
+import { useBoard } from '../contexts/BoardContext';
+import {
+  LiveBoardSession,
+  createBoardSession,
+  endBoardSession,
+  fetchBoardSessions,
+  restartBoardSession,
+} from '../services/board.service';
 
 interface HeaderProps {
   title: string;
@@ -19,10 +27,17 @@ const MAX_NICK = 20;
 
 const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }) => {
   const navigate = useNavigate();
-  const { user, isLoggedIn, logout, updateUser } = useAuth();
+  const { user, isLoggedIn, logout, hasAnyRole } = useAuth();
   const { isDark, toggle } = useTheme();
   const { i18n, t } = useTranslation();
-  const { myDisplayName, setGuestName } = useSocial();
+  const { myDisplayName } = useSocial();
+  const saveNickname = useNicknameSave();
+  const { activeSession, refreshActive } = useBoard();
+  const isAdmin = hasAnyRole(['ADMIN']);
+
+  const [boardName, setBoardName] = useState('');
+  const [boardSessions, setBoardSessions] = useState<LiveBoardSession[]>([]);
+  const [boardBusy, setBoardBusy] = useState(false);
 
   const currentLang = i18n.language as Language;
 
@@ -80,18 +95,10 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
   const closeMenu = () => { setMenuOpen(false); setOpenSection(null); };
 
   const handleSave = async () => {
-    const trimmed = draft.trim();
-    if (!trimmed) return;
+    if (!draft.trim()) return;
     setSaving(true);
     try {
-      if (isLoggedIn) {
-        const res = await doPut('/frontend-api/api/fe/user/nickname', { nickname: trimmed });
-        if (res.code === '0000') {
-          updateUser({ ...user, nickname: trimmed });
-        }
-      } else {
-        setGuestName(`Guest-${trimmed}`);
-      }
+      await saveNickname(draft);
       setMenuOpen(false);
     } finally {
       setSaving(false);
@@ -101,6 +108,55 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') handleSave();
     if (e.key === 'Escape') closeMenu();
+  };
+
+  // ── Live Board (admin) ──────────────────────────────────────────────────
+  const loadBoardSessions = async () => {
+    setBoardSessions(await fetchBoardSessions());
+  };
+
+  const openBoardSection = () => {
+    const willOpen = openSection !== 'board';
+    setOpenSection(willOpen ? 'board' : null);
+    if (willOpen) loadBoardSessions();
+  };
+
+  const handleStartBoard = async () => {
+    if (!boardName.trim() || boardBusy) return;
+    setBoardBusy(true);
+    try {
+      const res = await createBoardSession(boardName.trim());
+      if (res.ok && res.data) {
+        setBoardName('');
+        await refreshActive();
+        closeMenu();
+        navigate(`/board/${res.data.id}`);
+      }
+    } finally {
+      setBoardBusy(false);
+    }
+  };
+
+  const handleEndBoard = async (id: number) => {
+    setBoardBusy(true);
+    try {
+      await endBoardSession(id);
+      await refreshActive();
+      await loadBoardSessions();
+    } finally {
+      setBoardBusy(false);
+    }
+  };
+
+  const handleRestartBoard = async (id: number) => {
+    setBoardBusy(true);
+    try {
+      await restartBoardSession(id);
+      await refreshActive();
+      await loadBoardSessions();
+    } finally {
+      setBoardBusy(false);
+    }
   };
 
   const displayLabel = isLoggedIn
@@ -370,6 +426,107 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 </div>
               )}
             </div>
+
+            {/* Row 4: Live Board (admin only) */}
+            {isAdmin && (
+              <div className="border-b border-gray-100 dark:border-gray-800">
+                <button
+                  onClick={openBoardSection}
+                  className="flex items-center justify-between w-full px-4 py-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                >
+                  <span className="flex items-center gap-1.5">
+                    {t('board.liveBoard', 'Live Board')}
+                    {activeSession && (
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                    )}
+                  </span>
+                  <svg className={`w-4 h-4 transition-transform duration-200 ${openSection === 'board' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openSection === 'board' && (
+                  <div className="pl-6 pr-4 pb-4 pt-1 space-y-3">
+                    {/* Active session controls */}
+                    {activeSession && (
+                      <div className="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-3">
+                        <div className="flex items-center gap-1.5 mb-2">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                          <span className="text-xs font-semibold text-red-600 dark:text-red-400 truncate">{activeSession.name}</span>
+                          <span className="text-[10px] uppercase font-bold text-red-400">{t('board.live', 'Live')}</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => { closeMenu(); navigate(`/board/${activeSession.id}`); }}
+                            className="flex-1 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold py-1.5 rounded-lg transition-colors"
+                          >
+                            {t('board.open', 'Open')}
+                          </button>
+                          <button
+                            onClick={() => handleEndBoard(activeSession.id)}
+                            disabled={boardBusy}
+                            className="flex-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 text-xs font-semibold py-1.5 rounded-lg transition-colors disabled:opacity-40"
+                          >
+                            {t('board.end', 'End')}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Start a new session */}
+                    <div>
+                      <input
+                        type="text"
+                        value={boardName}
+                        onChange={(e) => setBoardName(e.target.value.slice(0, 60))}
+                        onKeyDown={(e) => { if (e.key === 'Enter') handleStartBoard(); }}
+                        placeholder={t('board.newSessionName', 'New session name…')}
+                        className="w-full px-3 py-2.5 mb-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                      <button
+                        onClick={handleStartBoard}
+                        disabled={!boardName.trim() || boardBusy}
+                        className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-2 rounded-xl transition-colors text-sm"
+                      >
+                        {boardBusy ? '…' : t('board.startSession', 'Start session')}
+                      </button>
+                    </div>
+
+                    {/* History */}
+                    {boardSessions.length > 0 && (
+                      <div>
+                        <p className="text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-1.5">
+                          {t('board.history', 'History')}
+                        </p>
+                        <div className="space-y-1 max-h-60 overflow-y-auto">
+                          {boardSessions.map((s) => (
+                            <div key={s.id} className="flex items-center gap-2 py-1">
+                              <button
+                                onClick={() => { closeMenu(); navigate(`/board/${s.id}`); }}
+                                className="flex-1 text-left min-w-0"
+                              >
+                                <span className="block text-xs font-medium text-gray-700 dark:text-gray-200 truncate">{s.name}</span>
+                                <span className={`text-[10px] ${s.boardState === 'ACTIVE' ? 'text-red-500' : 'text-gray-400'}`}>
+                                  {s.boardState === 'ACTIVE' ? t('board.live', 'Live') : t('board.ended', 'Ended')}
+                                </span>
+                              </button>
+                              {s.boardState !== 'ACTIVE' && (
+                                <button
+                                  onClick={() => handleRestartBoard(s.id)}
+                                  disabled={boardBusy}
+                                  className="text-[11px] text-blue-500 hover:text-blue-700 font-medium shrink-0 disabled:opacity-40"
+                                >
+                                  {t('board.restart', 'Restart')}
+                                </button>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       , document.body)}

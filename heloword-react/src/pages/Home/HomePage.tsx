@@ -22,6 +22,7 @@ import { Sentence, WordStore } from '../../models';
 import { doPost } from '../../services/api.service';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
+import { useBoard } from '../../contexts/BoardContext';
 
 import { pronounceWord, speakSentence, cancelPronouncing } from '../../services/tts.service';
 import { getWordInsight, getWordComparison } from '../../services/llm.service';
@@ -598,6 +599,7 @@ const HomePage: React.FC = () => {
   const isAdmin = hasAnyRole(['ADMIN']);
   const { wordStore, previewWordStore, sentenceStore, updateWordStore, updatePreviewWordStore, updateSentenceStore, isWordStoreEmpty, isFullyLoaded, loadFullDashboard } = useData();
   const { dueCount } = useNotifications();
+  const { activeSession } = useBoard();
   const { showLoading, hideLoading, showAlert } = useUI();
   const hasFetched = useRef(false);
   const [showAuthor, setShowAuthor] = useState(false);
@@ -757,6 +759,29 @@ const HomePage: React.FC = () => {
       <Header title="Heloword" />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
+        {activeSession && (
+          <div
+            onClick={() => navigate(`/board/${activeSession.id}`)}
+            className="notification-breathe flex items-center gap-3 bg-gradient-to-br from-red-500 to-pink-600 text-white rounded-2xl p-4 mb-6 cursor-pointer hover:from-red-600 hover:to-pink-700 transition-colors shadow-lg"
+          >
+            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h6m-6 8l-4-4h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12z" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold flex items-center gap-1.5">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                {t('board.liveNow', 'Live now')}
+              </p>
+              <p className="text-xs text-white/90 mt-0.5 truncate">{activeSession.name}</p>
+            </div>
+            <svg className="w-4 h-4 text-white/80 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        )}
+
         <div className="relative bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-5 mb-6 text-white shadow-lg">
           <button
             onClick={() => setShowAuthor(true)}

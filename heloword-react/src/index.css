@@ -518,6 +518,39 @@ ruby rt {
   z-index: 2;
 }
 
+/* Live board official (admin) message — golden shining card */
+@keyframes gold-glow {
+  0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.35), 0 0 0 1px rgba(251,191,36,0.45), 0 0 10px rgba(251,191,36,0.18); }
+  50%      { box-shadow: 0 6px 26px rgba(0,0,0,0.45), 0 0 0 1px rgba(252,211,77,0.8), 0 0 26px rgba(251,191,36,0.45); }
+}
+@keyframes gold-sheen {
+  0%, 70%, 100% { transform: translateX(-130%) skewX(-18deg); opacity: 0; }
+  74%           { opacity: 1; }
+  88%           { transform: translateX(230%) skewX(-18deg); opacity: 0; }
+}
+/* Luxury black-and-gold announcement card */
+.board-official-gold {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, #2a1c08 0%, #4a330f 38%, #3a2a0c 62%, #241806 100%);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  animation: gold-glow 3s ease-in-out infinite;
+}
+.board-official-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(252,211,77,0.16) 46%, rgba(255,238,180,0.55) 50%, rgba(252,211,77,0.16) 54%, transparent 70%);
+  animation: gold-sheen 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+.board-official-gold > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* Number input arrows hidden */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
