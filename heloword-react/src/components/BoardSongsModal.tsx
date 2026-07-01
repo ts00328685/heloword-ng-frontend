@@ -19,6 +19,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
   const { t } = useTranslation();
   const [newTitle, setNewTitle] = useState('');
   const [adding, setAdding] = useState(false);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
 
   const toggle = (songId: number, action: 'sung' | 'request' | 'performing') => {
     if (!active) return;
@@ -167,7 +168,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
               {/* Delete (admin only) */}
               {isAdmin && (
                 <button
-                  onClick={() => remove(song.id)}
+                  onClick={() => setConfirmDeleteId(song.id)}
                   className="shrink-0 text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
                   aria-label={t('board.delete', 'Delete')}
                   title={t('board.delete', 'Delete')}
@@ -201,6 +202,36 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
             >
               {adding ? '…' : t('common.add', 'Add')}
             </button>
+          </div>
+        )}
+
+        {confirmDeleteId !== null && (
+          <div
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 px-4"
+            onClick={() => setConfirmDeleteId(null)}
+          >
+            <div
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-xs p-6 animate-fade-in"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <p className="text-sm text-gray-700 dark:text-gray-200 mb-5">
+                {t('board.confirmDeleteSong', 'Delete this song?')}
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setConfirmDeleteId(null)}
+                  className="flex-1 py-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                >
+                  {t('common.cancel', 'Cancel')}
+                </button>
+                <button
+                  onClick={() => { remove(confirmDeleteId); setConfirmDeleteId(null); }}
+                  className="flex-1 py-2 rounded-xl bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-semibold text-sm transition-colors"
+                >
+                  {t('board.delete', 'Delete')}
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>

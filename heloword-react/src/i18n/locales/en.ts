@@ -928,6 +928,9 @@ const en = {
     performing: 'Performing now',
     nowPlaying: 'Now',
     googleIt: 'Google it',
+    confirmDelete: 'Delete this message?',
+    confirmMute: 'Mute {name}? They will no longer be able to post.',
+    confirmDeleteSong: 'Delete this song?',
   },
 } as const;
 

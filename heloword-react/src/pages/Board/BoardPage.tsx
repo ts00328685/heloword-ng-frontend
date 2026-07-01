@@ -63,6 +63,7 @@ const BoardPage: React.FC = () => {
   const [error, setError] = useState('');
   const [songsOpen, setSongsOpen] = useState(false);
   const [officialMode, setOfficialMode] = useState(false);
+  const [confirm, setConfirm] = useState<null | { message: string; confirmLabel: string; onConfirm: () => void }>(null);
 
   const myUserIdRef = useRef(myUserId);
   myUserIdRef.current = myUserId;
@@ -236,6 +237,28 @@ const BoardPage: React.FC = () => {
     }
   };
 
+  // Admin moderation → confirm first (avoid accidental taps during a live gig).
+  const askDelete = (messageId: number) => {
+    setConfirm({
+      message: t('board.confirmDelete', 'Delete this message?'),
+      confirmLabel: t('board.delete', 'Delete'),
+      onConfirm: () => handleDelete(messageId),
+    });
+  };
+
+  const askMute = (userId: string, name: string) => {
+    // Un-muting is harmless — do it directly; only confirm when muting.
+    if (mutedIds.has(userId)) {
+      handleMute(userId, name);
+      return;
+    }
+    setConfirm({
+      message: t('board.confirmMute', 'Mute {name}? They will no longer be able to post.').replace('{name}', name),
+      confirmLabel: t('board.mute', 'Mute'),
+      onConfirm: () => handleMute(userId, name),
+    });
+  };
+
   const toggleLike = async (msg: LiveBoardMessage) => {
     if (!myUserId) return;
     const wasLiked = likedIds.has(msg.id);
@@ -286,7 +309,7 @@ const BoardPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col h-screen [height:100dvh] bg-gray-50 dark:bg-gray-900">
       <Header title={session.name} showBack />
 
       {/* Status bar */}
@@ -308,12 +331,17 @@ const BoardPage: React.FC = () => {
         </div>
         <button
           onClick={() => setSongsOpen(true)}
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-500 hover:text-blue-600"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-3.5 py-1.5 rounded-full shadow-sm hover:shadow transition-all"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19a3 3 0 11-6 0 3 3 0 016 0zm12-3a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
-          {t('board.setlist', 'Setlist')}{songs.length > 0 ? ` (${songs.length})` : ''}
+          {t('board.setlist', 'Setlist')}
+          {songs.length > 0 && (
+            <span className="inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1 text-[11px] font-bold text-blue-600 bg-white rounded-full">
+              {songs.length}
+            </span>
+          )}
         </button>
       </div>
 
@@ -361,7 +389,7 @@ const BoardPage: React.FC = () => {
                 <span className="text-sm font-bold tracking-wide text-amber-300 [text-shadow:0_0_10px_rgba(251,191,36,0.45)]">{m.authorName}</span>
                 <span className="ml-auto shrink-0 text-[10px] text-amber-200/60">{formatTime(m.createDate)}</span>
                 {isAdmin && (
-                  <button onClick={() => handleDelete(m.id)} className="shrink-0 text-amber-200/70 hover:text-amber-100 font-medium text-xs">
+                  <button onClick={() => askDelete(m.id)} className="shrink-0 text-amber-200/70 hover:text-amber-100 font-medium text-xs">
                     {t('board.delete', 'Delete')}
                   </button>
                 )}
@@ -416,10 +444,10 @@ const BoardPage: React.FC = () => {
                   </button>
                   {isAdmin && !mine && (
                     <span className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-                      <button onClick={() => handleDelete(m.id)} className="text-[10px] text-red-400 hover:text-red-600">
+                      <button onClick={() => askDelete(m.id)} className="text-[10px] text-red-400 hover:text-red-600">
                         {t('board.delete', 'Delete')}
                       </button>
-                      <button onClick={() => handleMute(m.authorUserId, m.authorName)} className="text-[10px] text-amber-500 hover:text-amber-600">
+                      <button onClick={() => askMute(m.authorUserId, m.authorName)} className="text-[10px] text-amber-500 hover:text-amber-600">
                         {mutedIds.has(m.authorUserId) ? t('board.unmute', 'Unmute') : t('board.mute', 'Mute')}
                       </button>
                     </span>
@@ -443,7 +471,7 @@ const BoardPage: React.FC = () => {
       </div>
 
       {/* Composer / ended notice */}
-      <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 max-w-2xl mx-auto w-full">
+      <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom))] max-w-2xl mx-auto w-full">
         {!active ? (
           <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-2">
             {t('board.endedNotice', 'This session has ended. You can read the messages but can no longer post.')}
@@ -503,6 +531,34 @@ const BoardPage: React.FC = () => {
           active={active}
           onClose={() => setSongsOpen(false)}
         />
+      )}
+
+      {confirm && (
+        <div
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 px-4"
+          onClick={() => setConfirm(null)}
+        >
+          <div
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-xs p-6 animate-fade-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-sm text-gray-700 dark:text-gray-200 mb-5">{confirm.message}</p>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setConfirm(null)}
+                className="flex-1 py-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              >
+                {t('common.cancel', 'Cancel')}
+              </button>
+              <button
+                onClick={() => { confirm.onConfirm(); setConfirm(null); }}
+                className="flex-1 py-2 rounded-xl bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-semibold text-sm transition-colors"
+              >
+                {confirm.confirmLabel}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
