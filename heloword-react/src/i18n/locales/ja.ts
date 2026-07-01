@@ -927,6 +927,9 @@ const ja = {
     performing: '演奏中',
     nowPlaying: '演奏中',
     googleIt: 'Google で検索',
+    confirmDelete: 'このメッセージを削除しますか？',
+    confirmMute: '{name} をミュートしますか？投稿できなくなります。',
+    confirmDeleteSong: 'この曲を削除しますか？',
   },
 } as const;
 

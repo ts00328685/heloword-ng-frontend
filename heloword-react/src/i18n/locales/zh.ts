@@ -928,6 +928,9 @@ const zh = {
     performing: 'NOW',
     nowPlaying: 'NOW',
     googleIt: 'Google 一下',
+    confirmDelete: '確定要刪除這則訊息嗎？',
+    confirmMute: '確定要禁言 {name}？對方將無法再發言。',
+    confirmDeleteSong: '確定要刪除這首歌嗎？',
   },
 } as const;
 
