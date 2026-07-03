@@ -14,7 +14,7 @@
 import { doPost, getCommonHeaders } from './api.service';
 import { environment } from '../config/environment';
 
-export type AnalyticsEventType = 'PAGE_VIEW' | 'BUTTON' | 'FEATURE';
+export type AnalyticsEventType = 'PAGE_VIEW' | 'BUTTON' | 'FEATURE' | 'CLICK' | 'VIEW';
 
 interface AnalyticsEvent {
   userUuid: string | null;
@@ -22,6 +22,7 @@ interface AnalyticsEvent {
   sessionId: string;
   eventType: AnalyticsEventType;
   eventName: string;
+  label?: string;
   path: string;
   locale: string;
   device: string;
@@ -38,6 +39,7 @@ let identity: { uuid: string | null; guest: boolean } = { uuid: null, guest: tru
 let buffer: AnalyticsEvent[] = [];
 let flushTimer: ReturnType<typeof setTimeout> | null = null;
 let listenersAttached = false;
+let autocaptureAttached = false;
 
 /**
  * Feed the current identity (call from AuthContext). Members pass their UUID with
@@ -55,7 +57,7 @@ export function setAnalyticsIdentity(uuid: string | null, guest: boolean): void 
 export function track(
   eventType: AnalyticsEventType,
   eventName: string,
-  extra?: { path?: string; durationMs?: number; referrer?: string }
+  extra?: { path?: string; durationMs?: number; referrer?: string; label?: string }
 ): void {
   try {
     if (!eventName) return;
@@ -67,6 +69,7 @@ export function track(
       sessionId: getSessionId(),
       eventType,
       eventName: String(eventName).slice(0, 255),
+      label: extra?.label ? String(extra.label).slice(0, 512) : undefined,
       path: (extra?.path ?? window.location.pathname).slice(0, 512),
       locale: getLocale(),
       device: getDevice(),
@@ -91,6 +94,62 @@ export function trackPageView(path: string, durationMs?: number): void {
     durationMs,
     referrer: getExternalReferrer(),
   });
+}
+
+/**
+ * Record that a specific piece of content was viewed (e.g. an article/word).
+ * `kind` is the category (e.g. "nhk_article"), `label` the human subject (title/word).
+ */
+export function trackContentView(kind: string, label: string): void {
+  track('VIEW', kind, { label });
+}
+
+/**
+ * Attach a single delegated click listener that auto-captures every button/link/
+ * role=button (or anything tagged `data-analytics`). The label is derived, in order,
+ * from `data-analytics` → `aria-label` → trimmed text → tag name. Idempotent and
+ * fully fail-safe; call once at app start.
+ */
+export function initAutocapture(): void {
+  try {
+    if (autocaptureAttached || typeof document === 'undefined') return;
+    autocaptureAttached = true;
+    document.addEventListener(
+      'click',
+      (e) => {
+        try {
+          const target = e.target as Element | null;
+          if (!target || typeof target.closest !== 'function') return;
+          const el = target.closest(
+            '[data-analytics], button, a, [role="button"]'
+          ) as HTMLElement | null;
+          if (!el || el.hasAttribute('data-no-analytics')) return;
+          const label = deriveLabel(el);
+          if (!label) return;
+          track('CLICK', label);
+        } catch {
+          /* never throw from a click handler */
+        }
+      },
+      { capture: true, passive: true }
+    );
+  } catch {
+    /* noop */
+  }
+}
+
+function deriveLabel(el: HTMLElement): string {
+  try {
+    const explicit = el.getAttribute('data-analytics');
+    if (explicit && explicit.trim()) return explicit.trim().slice(0, 80);
+    const aria = el.getAttribute('aria-label');
+    if (aria && aria.trim()) return aria.trim().slice(0, 80);
+    const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+    if (text) return text.slice(0, 80);
+    return el.tagName.toLowerCase();
+  } catch {
+    return '';
+  }
 }
 
 // ── internals ────────────────────────────────────────────────────────────────

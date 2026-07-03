@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
-import { trackPageView } from './services/analytics.service';
+import { trackPageView, initAutocapture } from './services/analytics.service';
 import AppInitializer from './components/AppInitializer';
 import AlertDialog from './components/AlertDialog';
 import BottomTabs from './components/BottomTabs';
@@ -136,6 +136,10 @@ const AppLayout: React.FC = () => {
  */
 const RouteAnalytics: React.FC = () => {
   const location = useLocation();
+  // Attach the global click autocapture listener once.
+  useEffect(() => {
+    initAutocapture();
+  }, []);
   useEffect(() => {
     trackPageView(location.pathname);
   }, [location.pathname]);
