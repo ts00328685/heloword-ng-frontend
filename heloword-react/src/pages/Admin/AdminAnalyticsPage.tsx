@@ -40,6 +40,7 @@ interface Dashboard {
   daily: Point[];
   topPages: CountItem[];
   topEvents: CountItem[];
+  topContent: CountItem[];
   devices: CountItem[];
   userTypes: CountItem[];
 }
@@ -165,7 +166,12 @@ const AdminAnalyticsPage: React.FC = () => {
         {/* Top pages & top actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <RankList title={t('analytics.topPages', 'Top pages')} items={data?.topPages} barColor="bg-blue-400" />
-          <RankList title={t('analytics.topActions', 'Top buttons & features')} items={data?.topEvents} barColor="bg-purple-400" />
+          <RankList title={t('analytics.topActions', 'Top clicks & actions')} items={data?.topEvents} barColor="bg-purple-400" />
+        </div>
+
+        {/* Top content viewed (articles / words) */}
+        <div className="mb-4">
+          <RankList title={t('analytics.topContent', 'Top content viewed')} items={data?.topContent} barColor="bg-emerald-400" />
         </div>
 
         {/* Device & audience splits */}

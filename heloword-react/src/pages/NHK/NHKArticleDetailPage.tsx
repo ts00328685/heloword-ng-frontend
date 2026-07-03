@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
 import { speakSentence, cancelPronouncing } from '../../services/tts.service';
 import { LangKey, ParagraphCard } from './ArticleShared';
+import { trackContentView } from '../../services/analytics.service';
 
 function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
   const jaParas = article.contentJa?.split('\n\n').filter(Boolean) ?? [];
@@ -76,7 +77,10 @@ const NHKArticleDetailPage: React.FC = () => {
     fetchNHKArticleById(id)
       .then((data) => {
         if (!data) setError(true);
-        else setArticle(data);
+        else {
+          setArticle(data);
+          trackContentView('nhk_article', data.title);
+        }
       })
       .catch(() => setError(true))
       .finally(() => setLoading(false));
