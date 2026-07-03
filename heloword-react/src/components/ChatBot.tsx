@@ -7,6 +7,7 @@ import { useAiInsight } from '../hooks/useAiInsight';
 import { pronounceWord, cleanSentenceForTTS, toLangCode } from '../services/tts.service';
 import AddToGroupModal from './AddToGroupModal';
 import { Sentence } from '../models';
+import { track } from '../services/analytics.service';
 
 const HISTORY_KEY = 'hw-chatbot-history';
 
@@ -378,6 +379,7 @@ const ChatBot: React.FC = () => {
       return;
     }
     if (!isOpen) {
+      track('FEATURE', 'chatbot_open');
       // Auto-paste last copied text
       if (lastCopied.current && !input) {
         setInput(lastCopied.current);

@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import { useChallenge } from '../../contexts/ChallengeContext';
 import { ChallengeRoom } from '../../services/challenge.service';
 import ChallengeRoomPage from './ChallengeRoomPage';
+import { track } from '../../services/analytics.service';
 
 const GAME_TYPE_KEYS: Record<string, string> = {
   wordEnglishList: 'wordLists.wordEnglishList',
@@ -154,7 +155,7 @@ const GameSection: React.FC<{
           {games.map(({ path, state, icon: gIcon, gradient, titleKey, descKey }) => (
             <div key={titleKey} className="p-2">
               <button
-                onClick={() => onNavigate(path, { state })}
+                onClick={() => { track('BUTTON', 'challenge_start:' + path); onNavigate(path, { state }); }}
                 className="w-full flex items-center gap-3 p-3 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm hover:border-blue-400 dark:hover:border-blue-600 transition-colors text-left"
               >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style={{ background: gradient }}>

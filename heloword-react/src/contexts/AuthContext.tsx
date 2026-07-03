@@ -1,6 +1,7 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { User } from '../models';
 import { doPost, resetApiInstance } from '../services/api.service';
+import { setAnalyticsIdentity } from '../services/analytics.service';
 
 interface AuthContextType {
   user: User;
@@ -23,6 +24,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const enriched: User = { ...newUser, isLoggedIn: !!newUser?.email };
     setUser(enriched);
   }, []);
+
+  // Feed the current identity to analytics (UUID-only; guests tracked separately).
+  useEffect(() => {
+    if (user?.isLoggedIn && user?.uuid) {
+      setAnalyticsIdentity(user.uuid, false);
+    } else {
+      setAnalyticsIdentity(null, true);
+    }
+  }, [user]);
 
   const logout = useCallback(async () => {
     const wasLoggedIn = !!user?.email;

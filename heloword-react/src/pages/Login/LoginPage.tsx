@@ -8,6 +8,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
 import { User } from '../../models';
 import { doPost } from '../../services/api.service';
+import { track } from '../../services/analytics.service';
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const LoginPage: React.FC = () => {
         return;
       }
 
+      track('FEATURE', 'login_success');
       updateUser(user);
       navigate('/home', { replace: true });
     } catch {

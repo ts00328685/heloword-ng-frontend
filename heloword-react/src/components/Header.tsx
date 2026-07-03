@@ -527,6 +527,21 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 )}
               </div>
             )}
+
+            {/* Admin: Analytics dashboard */}
+            {isAdmin && (
+              <div className="border-b border-gray-100 dark:border-gray-800">
+                <button
+                  onClick={() => { closeMenu(); navigate('/admin/analytics'); }}
+                  className="flex items-center justify-between w-full px-4 py-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                >
+                  <span>{t('analytics.title', 'Analytics')}</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       , document.body)}

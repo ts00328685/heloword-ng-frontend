@@ -1,5 +1,6 @@
-import React, { Suspense } from 'react';
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
+import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
+import { trackPageView } from './services/analytics.service';
 import AppInitializer from './components/AppInitializer';
 import AlertDialog from './components/AlertDialog';
 import BottomTabs from './components/BottomTabs';
@@ -49,6 +50,7 @@ const NHKArticleDetailPage    = React.lazy(() => import('./pages/NHK/NHKArticleD
 const ENArticleListPage       = React.lazy(() => import('./pages/EN/ENArticleListPage'));
 const ENArticleDetailPage     = React.lazy(() => import('./pages/EN/ENArticleDetailPage'));
 const BoardPage               = React.lazy(() => import('./pages/Board/BoardPage'));
+const AdminAnalyticsPage      = React.lazy(() => import('./pages/Admin/AdminAnalyticsPage'));
 
 // Pages where we don't show the bottom tabs
 const NO_TABS_PATHS = ['/vocabulary/quiz', '/login', '/board/'];
@@ -60,6 +62,9 @@ const AppLayout: React.FC = () => {
 
   return (
     <AppInitializer>
+      {/* Fire-and-forget page-view analytics on every route change */}
+      <RouteAnalytics />
+
       {/* Global overlays */}
       <LoadingSpinner />
       <Toast />
@@ -99,6 +104,7 @@ const AppLayout: React.FC = () => {
           <Route path="/en-articles" element={<ENArticleListPage />} />
           <Route path="/en-articles/:id" element={<ENArticleDetailPage />} />
           <Route path="/board/:sessionId" element={<BoardPage />} />
+          <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
           {/* Catch-all */}
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
@@ -122,6 +128,18 @@ const AppLayout: React.FC = () => {
       <ChatBotWrapper />
     </AppInitializer>
   );
+};
+
+/**
+ * Emits a PAGE_VIEW analytics event on every route change. Renders nothing and
+ * never blocks — tracking is fully fire-and-forget.
+ */
+const RouteAnalytics: React.FC = () => {
+  const location = useLocation();
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location.pathname]);
+  return null;
 };
 
 /** Renders the floating chatbot assistant everywhere except the live board page. */
