@@ -326,7 +326,7 @@ const BoardPage: React.FC = () => {
               {t('board.live', 'Live')}
             </span>
           ) : (
-            <span className="text-xs font-semibold text-gray-400">{t('board.ended', 'Ended')}</span>
+            <span className="text-xs font-semibold text-gray-400">{t('board.ended', 'Ended / Not started')}</span>
           )}
           {active && (
             <span className="text-xs text-gray-400 dark:text-gray-500">
@@ -479,7 +479,7 @@ const BoardPage: React.FC = () => {
       <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom))] max-w-2xl mx-auto w-full">
         {!active && !isAdmin ? (
           <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-2">
-            {t('board.endedNotice', 'This session has ended. You can read the messages but can no longer post.')}
+            {t('board.endedNotice', 'This session has ended or hasn’t started yet. You can read the messages but can no longer post.')}
           </p>
         ) : iAmMuted ? (
           <p className="text-center text-sm text-amber-500 py-2">
@@ -489,7 +489,7 @@ const BoardPage: React.FC = () => {
           <>
             {endedAdmin && (
               <p className="text-[11px] text-amber-500 mb-2">
-                {t('board.endedAdminNotice', 'This session has ended — your message will be posted as an official announcement.')}
+                {t('board.endedAdminNotice', 'This session has ended or hasn’t started yet — your message will be posted as an official announcement.')}
               </p>
             )}
             <div className="flex items-center justify-between mb-2">
