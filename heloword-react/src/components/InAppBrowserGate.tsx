@@ -3,8 +3,12 @@ import { useTranslation } from 'react-i18next';
 import {
   isInAppBrowser,
   isLineWebview,
+  isInstagramWebview,
+  isAndroid,
+  canAutoRedirectExternal,
   getLineExternalUrl,
-  lineRedirectAlreadySent,
+  getAndroidIntentUrl,
+  externalRedirectAlreadySent,
 } from '../utils/inAppBrowser';
 
 const HELOWORD_URL = 'https://heloword.com';
@@ -14,15 +18,20 @@ const InAppBrowserGate: React.FC<{ children: React.ReactNode }> = ({ children })
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (isLineWebview && !lineRedirectAlreadySent()) {
+    if (externalRedirectAlreadySent() || !canAutoRedirectExternal) return;
+    // LINE honours ?openExternalBrowser=1; Instagram on Android needs an intent:// URL.
+    // (iOS Instagram has no programmatic escape — it falls through to the manual gate.)
+    if (isLineWebview) {
       window.location.href = getLineExternalUrl();
+    } else if (isInstagramWebview && isAndroid) {
+      window.location.href = getAndroidIntentUrl();
     }
   }, []);
 
   if (!isInAppBrowser) return <>{children}</>;
 
-  // LINE: redirect in progress — show spinner while LINE hands off to system browser
-  if (isLineWebview && !lineRedirectAlreadySent()) {
+  // Redirect in progress — show spinner while the in-app browser hands off to the system browser
+  if (canAutoRedirectExternal && !externalRedirectAlreadySent()) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center gap-4">
@@ -51,8 +60,8 @@ const InAppBrowserGate: React.FC<{ children: React.ReactNode }> = ({ children })
 
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 px-6">
-      <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl mb-6 flex items-center justify-center shadow-lg">
-        <span className="text-white text-3xl font-black">Hw</span>
+      <div className="w-20 h-20 rounded-3xl mb-6 overflow-hidden shadow-lg">
+        <img src={`${import.meta.env.BASE_URL}apple-touch-icon.png`} alt="Heloword" className="w-full h-full object-contain" />
       </div>
 
       <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 text-center">
