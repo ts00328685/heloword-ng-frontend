@@ -21,8 +21,12 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
   const [adding, setAdding] = useState(false);
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
 
+  // Admin keeps full control of the setlist even after the session has ended
+  // (fix the running order, mark encores, tidy up); the audience "request"
+  // action stays gated on a live session.
   const toggle = (songId: number, action: 'sung' | 'request' | 'performing') => {
-    if (!active) return;
+    const adminAction = action !== 'request' && isAdmin;
+    if (!active && !adminAction) return;
     toggleBoardSong(sessionId, songId, action).catch(() => {});
   };
 
@@ -91,7 +95,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
               {isAdmin ? (
                 <button
                   onClick={() => toggle(song.id, 'sung')}
-                  disabled={!active}
+                  disabled={!active && !isAdmin}
                   className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors disabled:opacity-50 ${
                     song.sung ? 'bg-green-500 border-green-500' : 'border-gray-300 dark:border-gray-500'
                   }`}
@@ -123,7 +127,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
               {isAdmin && (
                 <button
                   onClick={() => toggle(song.id, 'performing')}
-                  disabled={!active}
+                  disabled={!active && !isAdmin}
                   className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors disabled:opacity-50 ${
                     song.performing ? 'bg-amber-500 border-amber-500' : 'border-gray-300 dark:border-gray-500'
                   }`}
