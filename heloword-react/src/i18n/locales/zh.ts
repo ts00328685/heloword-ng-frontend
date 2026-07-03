@@ -915,6 +915,7 @@ const zh = {
     viewers: '{n} 人在線',
     beFirst: '還沒有訊息，搶先打聲招呼吧！👋',
     endedNotice: '此場次已結束，你仍可閱讀訊息，但無法再發言。',
+    endedAdminNotice: '此場次已結束－你的訊息將以官方公告發布。',
     mutedNotice: '你已被主持人禁言。',
     registerCta: '登入送好禮～',
     notFound: '此留言板無法使用。',

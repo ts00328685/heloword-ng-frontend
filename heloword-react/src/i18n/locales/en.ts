@@ -915,6 +915,7 @@ const en = {
     viewers: '{n} watching',
     beFirst: 'No messages yet — be the first to say hi! 👋',
     endedNotice: 'This session has ended. You can read the messages but can no longer post.',
+    endedAdminNotice: 'This session has ended — your message will be posted as an official announcement.',
     mutedNotice: 'You have been muted by the host.',
     registerCta: 'Log in for more features',
     notFound: 'This board is not available.',

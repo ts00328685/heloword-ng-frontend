@@ -71,6 +71,11 @@ const BoardPage: React.FC = () => {
   const atBottomRef = useRef(true);
 
   const active = session?.boardState === 'ACTIVE';
+  // After a session ends the audience can only read, but the admin can still
+  // leave announcements. Regular posts are rejected by the backend once the
+  // board is not live, so an admin's message on an ended board goes out as an
+  // official announcement.
+  const endedAdmin = !active && isAdmin;
   const iAmMuted = mutedIds.has(myUserId);
   const officials = messages.filter((m) => m.official);
   const comments = messages.filter((m) => !m.official);
@@ -195,7 +200,7 @@ const BoardPage: React.FC = () => {
     setPosting(true);
     setError('');
     try {
-      if (officialMode && isAdmin) {
+      if (isAdmin && (officialMode || endedAdmin)) {
         const msg = await postOfficialMessage(id, content);
         if (msg) setMessages((prev) => (prev.some((m) => m.id === msg.id) ? prev : [...prev, msg]));
         setDraft('');
@@ -472,7 +477,7 @@ const BoardPage: React.FC = () => {
 
       {/* Composer / ended notice */}
       <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom))] max-w-2xl mx-auto w-full">
-        {!active ? (
+        {!active && !isAdmin ? (
           <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-2">
             {t('board.endedNotice', 'This session has ended. You can read the messages but can no longer post.')}
           </p>
@@ -482,9 +487,14 @@ const BoardPage: React.FC = () => {
           </p>
         ) : (
           <>
+            {endedAdmin && (
+              <p className="text-[11px] text-amber-500 mb-2">
+                {t('board.endedAdminNotice', 'This session has ended — your message will be posted as an official announcement.')}
+              </p>
+            )}
             <div className="flex items-center justify-between mb-2">
               <NicknameEditor />
-              {isAdmin && (
+              {isAdmin && !endedAdmin && (
                 <button
                   onClick={() => setOfficialMode((v) => !v)}
                   className={`text-[11px] font-semibold px-2 py-1 rounded-lg transition-colors ${
@@ -505,7 +515,7 @@ const BoardPage: React.FC = () => {
                 onKeyDown={onKeyDown}
                 rows={1}
                 placeholder={
-                  officialMode && isAdmin
+                  isAdmin && (officialMode || endedAdmin)
                     ? t('board.officialPlaceholder', 'Post an official message…')
                     : t('board.placeholder', 'Say something…')
                 }
