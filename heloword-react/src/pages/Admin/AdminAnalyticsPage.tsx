@@ -20,7 +20,7 @@ import { useUI } from '../../contexts/UIContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { doGet } from '../../services/api.service';
 
-type Range = 7 | 30 | 90;
+type Range = 1 | 7 | 30 | 90;
 
 interface CountItem {
   name: string;
@@ -47,7 +47,7 @@ interface Dashboard {
 
 function formatXLabel(date: string, range: Range): string {
   const d = new Date(date + 'T00:00:00');
-  if (range === 7) return d.toLocaleDateString('en-US', { weekday: 'short' });
+  if (range <= 7) return d.toLocaleDateString('en-US', { weekday: 'short' });
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
@@ -106,6 +106,7 @@ const AdminAnalyticsPage: React.FC = () => {
     : { backgroundColor: '#ffffff', border: '1px solid #e5e7eb', color: '#111827' };
 
   const RANGES: { label: string; value: Range }[] = [
+    { label: t('analytics.rangeToday', 'Today'), value: 1 },
     { label: t('analytics.range7d', '7 days'), value: 7 },
     { label: t('analytics.range30d', '30 days'), value: 30 },
     { label: t('analytics.range90d', '90 days'), value: 90 },
@@ -153,12 +154,12 @@ const AdminAnalyticsPage: React.FC = () => {
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
-              <XAxis dataKey="label" tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} interval={range === 7 ? 0 : Math.floor(range / 7)} />
+              <XAxis dataKey="label" tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} interval={range <= 7 ? 0 : Math.floor(range / 7)} />
               <YAxis tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} allowDecimals={false} />
               <Tooltip contentStyle={tooltipStyle} />
               <Legend wrapperStyle={{ fontSize: 11, color: textColor }} />
-              <Line type="monotone" dataKey="events" name={t('analytics.events', 'Events')} stroke="#3b82f6" strokeWidth={2} dot={false} activeDot={{ r: 5 }} />
-              <Line type="monotone" dataKey="users" name={t('analytics.visitors', 'Visitors')} stroke="#22c55e" strokeWidth={2} dot={false} activeDot={{ r: 5 }} />
+              <Line type="monotone" dataKey="events" name={t('analytics.events', 'Events')} stroke="#3b82f6" strokeWidth={2} dot={chartData.length <= 1} activeDot={{ r: 5 }} />
+              <Line type="monotone" dataKey="users" name={t('analytics.visitors', 'Visitors')} stroke="#22c55e" strokeWidth={2} dot={chartData.length <= 1} activeDot={{ r: 5 }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
