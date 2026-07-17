@@ -84473,5 +84473,1293 @@
       "N4",
       "culture"
     ]
+  },
+  {
+    "id": "4043",
+    "japanese": "何度も転ぶことより、どれだけ早く立ち上がるかが大切だ。",
+    "chunks": [
+      "何度",
+      "も",
+      "転ぶ",
+      "こと",
+      "より、",
+      "どれだけ",
+      "早く",
+      "立ち上がる",
+      "か",
+      "が",
+      "大切だ。"
+    ],
+    "translation": "比起跌倒多少次，多快站起來才重要。",
+    "english": "What matters is not how often you fall, but how quickly you get back up.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "4044",
+    "japanese": "三度も試験に落ちながらも、彼女はあきらめずに挑み続け、ついに合格を勝ち取った。",
+    "chunks": [
+      "三度",
+      "も",
+      "試験",
+      "に",
+      "落ち",
+      "ながら",
+      "も、",
+      "彼女",
+      "は",
+      "あきらめず",
+      "に",
+      "挑み続け、",
+      "ついに",
+      "合格",
+      "を",
+      "勝ち取った。"
+    ],
+    "translation": "儘管考試落榜了三次，她仍不放棄地持續挑戰，最終贏得了合格。",
+    "english": "Even after failing the exam three times, she kept trying without giving up and finally won her pass.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "4045",
+    "japanese": "あきらめないで、もう一度やってみよう。",
+    "chunks": [
+      "あきらめ",
+      "ないで、",
+      "もう一度",
+      "やって",
+      "みよう。"
+    ],
+    "translation": "別放棄，再試一次吧。",
+    "english": "Don't give up—let's try one more time.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "4046",
+    "japanese": "雨のにおいは、今でも彼を子ども時代の夏へと一気に連れ戻す。",
+    "chunks": [
+      "雨",
+      "の",
+      "におい",
+      "は、",
+      "今",
+      "でも",
+      "彼",
+      "を",
+      "子ども時代",
+      "の",
+      "夏",
+      "へ",
+      "と",
+      "一気に",
+      "連れ戻す。"
+    ],
+    "translation": "雨的氣味，如今仍會一下子把他帶回童年的夏天。",
+    "english": "The smell of rain still whisks him back to the summers of his childhood.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "childhood"
+    ]
+  },
+  {
+    "id": "4047",
+    "japanese": "子どものころ、よく川で魚をとって遊んだ。",
+    "chunks": [
+      "子ども",
+      "の",
+      "ころ、",
+      "よく",
+      "川",
+      "で",
+      "魚",
+      "を",
+      "とって",
+      "遊んだ。"
+    ],
+    "translation": "小時候，我常在河裡抓魚玩。",
+    "english": "As a child, I often caught fish in the river for fun.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "childhood"
+    ]
+  },
+  {
+    "id": "4048",
+    "japanese": "うまい宣伝は声高に叫ばず、静かに「分かってもらえた」と感じさせる。",
+    "chunks": [
+      "うまい",
+      "宣伝",
+      "は",
+      "声高",
+      "に",
+      "叫ばず、",
+      "静かに",
+      "「分かって",
+      "もらえた」",
+      "と",
+      "感じさせる。"
+    ],
+    "translation": "高明的宣傳不會大聲叫嚷，而是靜靜地讓人感到「被理解了」。",
+    "english": "Good advertising doesn't shout; it quietly makes you feel understood.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "marketing"
+    ]
+  },
+  {
+    "id": "4049",
+    "japanese": "広告にお金をかけても、商品そのものが良くなければ意味がない。",
+    "chunks": [
+      "広告",
+      "に",
+      "お金",
+      "を",
+      "かけて",
+      "も、",
+      "商品",
+      "そのもの",
+      "が",
+      "良くなければ",
+      "意味",
+      "が",
+      "ない。"
+    ],
+    "translation": "就算砸錢打廣告，商品本身不好的話也沒有意義。",
+    "english": "No matter how much you spend on ads, it's meaningless if the product itself isn't good.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "marketing"
+    ]
+  },
+  {
+    "id": "4050",
+    "japanese": "この店は、新しい商品のポスターをたくさん貼っている。",
+    "chunks": [
+      "この",
+      "店",
+      "は、",
+      "新しい",
+      "商品",
+      "の",
+      "ポスター",
+      "を",
+      "たくさん",
+      "貼っている。"
+    ],
+    "translation": "這家店貼了很多新商品的海報。",
+    "english": "This store has put up lots of posters for new products.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "marketing"
+    ]
+  },
+  {
+    "id": "4051",
+    "japanese": "教育は、何を暗記するかよりも、どう考えるかを子どもに教えるべきだ。",
+    "chunks": [
+      "教育",
+      "は、",
+      "何",
+      "を",
+      "暗記する",
+      "か",
+      "より",
+      "も、",
+      "どう",
+      "考える",
+      "か",
+      "を",
+      "子ども",
+      "に",
+      "教える",
+      "べきだ。"
+    ],
+    "translation": "教育應該教孩子如何思考，而非背什麼。",
+    "english": "Education should teach children how to think, rather than what to memorize.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "education"
+    ]
+  },
+  {
+    "id": "4052",
+    "japanese": "学校で学んだことは、社会に出てから役に立つことも多い。",
+    "chunks": [
+      "学校",
+      "で",
+      "学んだ",
+      "こと",
+      "は、",
+      "社会",
+      "に",
+      "出て",
+      "から",
+      "役",
+      "に",
+      "立つ",
+      "こと",
+      "も",
+      "多い。"
+    ],
+    "translation": "在學校學到的東西，出社會後派上用場的情況也很多。",
+    "english": "What you learn at school often proves useful after you enter society.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "education"
+    ]
+  },
+  {
+    "id": "4053",
+    "japanese": "子どもたちは学校で読み書きを習います。",
+    "chunks": [
+      "子どもたち",
+      "は",
+      "学校",
+      "で",
+      "読み書き",
+      "を",
+      "習います。"
+    ],
+    "translation": "孩子們在學校學習讀寫。",
+    "english": "Children learn to read and write at school.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "education"
+    ]
+  },
+  {
+    "id": "4054",
+    "japanese": "いちばん創造的なアイデアは、追い求めるのをやめたときにやってくることが多い。",
+    "chunks": [
+      "いちばん",
+      "創造的な",
+      "アイデア",
+      "は、",
+      "追い求める",
+      "の",
+      "を",
+      "やめた",
+      "とき",
+      "に",
+      "やってくる",
+      "こと",
+      "が",
+      "多い。"
+    ],
+    "translation": "最有創意的點子，往往在你停止追求它時才會到來。",
+    "english": "The most creative ideas often arrive when you stop chasing them.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "creative"
+    ]
+  },
+  {
+    "id": "4055",
+    "japanese": "散歩をしていると、いいアイデアが浮かぶことがある。",
+    "chunks": [
+      "散歩",
+      "を",
+      "していると、",
+      "いい",
+      "アイデア",
+      "が",
+      "浮かぶ",
+      "こと",
+      "が",
+      "ある。"
+    ],
+    "translation": "散步的時候，有時會浮現好點子。",
+    "english": "Sometimes a good idea comes to me while I'm taking a walk.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "creative"
+    ]
+  },
+  {
+    "id": "4056",
+    "japanese": "立ち直る力は、穏やかな海ではなく、乗り越えてきた嵐の中でこそ育まれる。",
+    "chunks": [
+      "立ち直る",
+      "力",
+      "は、",
+      "穏やかな",
+      "海",
+      "で",
+      "は",
+      "なく、",
+      "乗り越えて",
+      "きた",
+      "嵐",
+      "の",
+      "中",
+      "で",
+      "こそ",
+      "育まれる。"
+    ],
+    "translation": "重新振作的力量，不是在平靜的海上，而正是在你熬過的風暴之中孕育出來的。",
+    "english": "The power to bounce back is nurtured not in calm seas but in the storms you've weathered.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "resilience"
+    ]
+  },
+  {
+    "id": "4057",
+    "japanese": "つらいことがあっても、少し休めばまた頑張れる。",
+    "chunks": [
+      "つらい",
+      "こと",
+      "が",
+      "あって",
+      "も、",
+      "少し",
+      "休めば",
+      "また",
+      "頑張れる。"
+    ],
+    "translation": "就算遇到難受的事，稍微休息一下就又能努力了。",
+    "english": "Even when hard things happen, I can push on again after a little rest.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "resilience"
+    ]
+  },
+  {
+    "id": "4058",
+    "japanese": "年を重ねて、彼女は自分の心配のほとんどが不要だったことに気づいた。",
+    "chunks": [
+      "年",
+      "を",
+      "重ねて、",
+      "彼女",
+      "は",
+      "自分",
+      "の",
+      "心配",
+      "の",
+      "ほとんど",
+      "が",
+      "不要だった",
+      "こと",
+      "に",
+      "気づいた。"
+    ],
+    "translation": "隨著年歲增長，她發現自己大部分的擔憂其實都是多餘的。",
+    "english": "As she grew older, she realized that most of her worries had been unnecessary.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "aging"
+    ]
+  },
+  {
+    "id": "4059",
+    "japanese": "祖父は八十歳を過ぎても、とても元気です。",
+    "chunks": [
+      "祖父",
+      "は",
+      "八十歳",
+      "を",
+      "過ぎて",
+      "も、",
+      "とても",
+      "元気です。"
+    ],
+    "translation": "祖父過了八十歲，還是非常有精神。",
+    "english": "My grandfather is very healthy even though he's past eighty.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "aging"
+    ]
+  },
+  {
+    "id": "4060",
+    "japanese": "本物の革新は、うまくいくその瞬間まで、たいてい失敗にしか見えないものだ。",
+    "chunks": [
+      "本物",
+      "の",
+      "革新",
+      "は、",
+      "うまくいく",
+      "その",
+      "瞬間",
+      "まで、",
+      "たいてい",
+      "失敗",
+      "に",
+      "しか",
+      "見えない",
+      "ものだ。"
+    ],
+    "translation": "真正的革新，在成功的那一刻之前，通常看起來都只像是失敗。",
+    "english": "True innovation usually looks like nothing but failure right up until the moment it works.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "innovation"
+    ]
+  },
+  {
+    "id": "4061",
+    "japanese": "彼らは新しいものを発明したのではなく、古いものを新鮮な形で組み合わせた。",
+    "chunks": [
+      "彼ら",
+      "は",
+      "新しい",
+      "もの",
+      "を",
+      "発明した",
+      "の",
+      "で",
+      "は",
+      "なく、",
+      "古い",
+      "もの",
+      "を",
+      "新鮮な",
+      "形",
+      "で",
+      "組み合わせた。"
+    ],
+    "translation": "他們並非發明了新東西，而是用新鮮的方式組合了舊事物。",
+    "english": "They didn't invent something new; they combined old things in a fresh way.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "innovation"
+    ]
+  },
+  {
+    "id": "4062",
+    "japanese": "この新しい機械は、仕事をとても速くしてくれる。",
+    "chunks": [
+      "この",
+      "新しい",
+      "機械",
+      "は、",
+      "仕事",
+      "を",
+      "とても",
+      "速く",
+      "して",
+      "くれる。"
+    ],
+    "translation": "這台新機器能讓工作變得非常快。",
+    "english": "This new machine makes the work go very fast.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "innovation"
+    ]
+  },
+  {
+    "id": "4063",
+    "japanese": "すぐれた小説は、自分では決して生きられなかった人生を、しばし貸し与えてくれる。",
+    "chunks": [
+      "すぐれた",
+      "小説",
+      "は、",
+      "自分",
+      "で",
+      "は",
+      "決して",
+      "生きられなかった",
+      "人生",
+      "を、",
+      "しばし",
+      "貸し与えて",
+      "くれる。"
+    ],
+    "translation": "出色的小說，會暫且借給你一段你自己絕不可能活過的人生。",
+    "english": "A great novel lends you, for a while, a life you could never have lived yourself.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "literary"
+    ]
+  },
+  {
+    "id": "4064",
+    "japanese": "好きな物語を読み返すたびに、新しい発見がある。",
+    "chunks": [
+      "好きな",
+      "物語",
+      "を",
+      "読み返す",
+      "たび",
+      "に、",
+      "新しい",
+      "発見",
+      "が",
+      "ある。"
+    ],
+    "translation": "每次重讀喜歡的故事，都會有新的發現。",
+    "english": "Every time I reread a story I love, there's a new discovery.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "literary"
+    ]
+  },
+  {
+    "id": "4065",
+    "japanese": "創造性は制約の中でこそ花開き、真っ白な紙ほど埋めるのが難しいものはない。",
+    "chunks": [
+      "創造性",
+      "は",
+      "制約",
+      "の",
+      "中",
+      "で",
+      "こそ",
+      "花開き、",
+      "真っ白な",
+      "紙",
+      "ほど",
+      "埋める",
+      "の",
+      "が",
+      "難しい",
+      "もの",
+      "は",
+      "ない。"
+    ],
+    "translation": "創意正是在限制之中綻放，沒有什麼比一張全白的紙更難填滿。",
+    "english": "Creativity blossoms precisely within limits; nothing is harder to fill than a blank page.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "creativity"
+    ]
+  },
+  {
+    "id": "4066",
+    "japanese": "子どもは自由に絵を描くのが大好きだ。",
+    "chunks": [
+      "子ども",
+      "は",
+      "自由に",
+      "絵",
+      "を",
+      "描く",
+      "の",
+      "が",
+      "大好きだ。"
+    ],
+    "translation": "孩子最喜歡自由地畫畫。",
+    "english": "Children love drawing pictures freely.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "creativity"
+    ]
+  },
+  {
+    "id": "4067",
+    "japanese": "問題を解くことの半分は、それをはっきり言葉にして見えるようにすることだ。",
+    "chunks": [
+      "問題",
+      "を",
+      "解く",
+      "こと",
+      "の",
+      "半分",
+      "は、",
+      "それ",
+      "を",
+      "はっきり",
+      "言葉",
+      "に",
+      "して",
+      "見える",
+      "ように",
+      "する",
+      "ことだ。"
+    ],
+    "translation": "解決問題有一半，在於把它清楚地化為語言，讓它變得看得見。",
+    "english": "Half of solving a problem is putting it clearly into words so you can see it.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "problem-solving"
+    ]
+  },
+  {
+    "id": "4068",
+    "japanese": "行き詰まったときは、答えより問い方を変えてみるといい。",
+    "chunks": [
+      "行き詰まった",
+      "とき",
+      "は、",
+      "答え",
+      "より",
+      "問い方",
+      "を",
+      "変えて",
+      "みる",
+      "といい。"
+    ],
+    "translation": "陷入僵局時，與其換答案，不如試著換個提問方式。",
+    "english": "When you're stuck, it's better to change how you ask than to change the answer.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "problem-solving"
+    ]
+  },
+  {
+    "id": "4069",
+    "japanese": "難しい問題は、紙に書くと考えやすくなる。",
+    "chunks": [
+      "難しい",
+      "問題",
+      "は、",
+      "紙",
+      "に",
+      "書く",
+      "と",
+      "考えやすくなる。"
+    ],
+    "translation": "困難的問題，寫在紙上就比較容易思考。",
+    "english": "A hard problem becomes easier to think about when you write it down on paper.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "problem-solving"
+    ]
+  },
+  {
+    "id": "4070",
+    "japanese": "彼の熱心さは、口にする言葉よりも、黙って続ける行動によく表れていた。",
+    "chunks": [
+      "彼",
+      "の",
+      "熱心さ",
+      "は、",
+      "口",
+      "に",
+      "する",
+      "言葉",
+      "より",
+      "も、",
+      "黙って",
+      "続ける",
+      "行動",
+      "に",
+      "よく",
+      "表れていた。"
+    ],
+    "translation": "他的熱忱，與其說在他說的話裡，不如說更明顯地展現在他默默持續的行動上。",
+    "english": "His dedication showed less in the words he spoke than in the actions he quietly kept up.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "dedication"
+    ]
+  },
+  {
+    "id": "4071",
+    "japanese": "毎日欠かさず練習する姿に、みんなが心を打たれた。",
+    "chunks": [
+      "毎日",
+      "欠かさず",
+      "練習する",
+      "姿",
+      "に、",
+      "みんな",
+      "が",
+      "心",
+      "を",
+      "打たれた。"
+    ],
+    "translation": "他每天不間斷練習的身影，讓大家深受感動。",
+    "english": "Everyone was moved by the sight of him practicing every single day without fail.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "dedication"
+    ]
+  },
+  {
+    "id": "4072",
+    "japanese": "高齢化が進むにつれ、小さな町は学校を維持するのに苦労している。",
+    "chunks": [
+      "高齢化",
+      "が",
+      "進む",
+      "につれ、",
+      "小さな",
+      "町",
+      "は",
+      "学校",
+      "を",
+      "維持する",
+      "の",
+      "に",
+      "苦労している。"
+    ],
+    "translation": "隨著高齡化加劇，小鎮正為維持學校運作而苦惱。",
+    "english": "As the population ages, small towns are struggling to keep their schools running.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "aging society"
+    ]
+  },
+  {
+    "id": "4073",
+    "japanese": "この村では若い人が減って、お年寄りばかりになった。",
+    "chunks": [
+      "この",
+      "村",
+      "で",
+      "は",
+      "若い",
+      "人",
+      "が",
+      "減って、",
+      "お年寄り",
+      "ばかり",
+      "に",
+      "なった。"
+    ],
+    "translation": "這個村子年輕人變少，變得只剩老人家了。",
+    "english": "In this village, young people have decreased and it's become mostly elderly.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "aging society"
+    ]
+  },
+  {
+    "id": "4074",
+    "japanese": "その工場は今、かつて一週間かかっていた量を一日で作れるようになった。",
+    "chunks": [
+      "その",
+      "工場",
+      "は",
+      "今、",
+      "かつて",
+      "一週間",
+      "かかっていた",
+      "量",
+      "を",
+      "一日",
+      "で",
+      "作れる",
+      "ように",
+      "なった。"
+    ],
+    "translation": "那家工廠現在能在一天內生產出過去要花一週的量。",
+    "english": "The factory can now produce in a day what once took a week.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "manufacturing"
+    ]
+  },
+  {
+    "id": "4075",
+    "japanese": "機械が増えたことで、以前より少ない人数で工場が回るようになった。",
+    "chunks": [
+      "機械",
+      "が",
+      "増えた",
+      "こと",
+      "で、",
+      "以前",
+      "より",
+      "少ない",
+      "人数",
+      "で",
+      "工場",
+      "が",
+      "回る",
+      "ように",
+      "なった。"
+    ],
+    "translation": "由於機器增加，工廠變得能用比以前更少的人力運轉。",
+    "english": "With more machines, the factory now runs with fewer people than before.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "manufacturing"
+    ]
+  },
+  {
+    "id": "4076",
+    "japanese": "この工場では、車の部品を作っています。",
+    "chunks": [
+      "この",
+      "工場",
+      "で",
+      "は、",
+      "車",
+      "の",
+      "部品",
+      "を",
+      "作っています。"
+    ],
+    "translation": "這家工廠製造汽車零件。",
+    "english": "This factory makes car parts.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "manufacturing"
+    ]
+  },
+  {
+    "id": "4077",
+    "japanese": "古典文学が生き延びるのは、世代ごとにそれぞれ違う読み方をされるからにほかならない。",
+    "chunks": [
+      "古典文学",
+      "が",
+      "生き延びる",
+      "の",
+      "は、",
+      "世代ごと",
+      "に",
+      "それぞれ",
+      "違う",
+      "読み方",
+      "を",
+      "される",
+      "から",
+      "に",
+      "ほかならない。"
+    ],
+    "translation": "經典文學之所以能流傳下來，無非是因為每個世代都以各自不同的方式閱讀它。",
+    "english": "Classic literature survives for no other reason than that each generation reads it differently.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "literature"
+    ]
+  },
+  {
+    "id": "4078",
+    "japanese": "気に入った文章に線を引いておくと、あとでその一節にすぐ戻れる。",
+    "chunks": [
+      "気に入った",
+      "文章",
+      "に",
+      "線",
+      "を",
+      "引いて",
+      "おく",
+      "と、",
+      "あと",
+      "で",
+      "その",
+      "一節",
+      "に",
+      "すぐ",
+      "戻れる。"
+    ],
+    "translation": "在喜歡的句子上先畫線，之後就能馬上回到那一段。",
+    "english": "If you underline sentences you like, you can quickly return to that passage later.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "literature"
+    ]
+  },
+  {
+    "id": "4079",
+    "japanese": "図書館で日本の有名な小説を借りた。",
+    "chunks": [
+      "図書館",
+      "で",
+      "日本",
+      "の",
+      "有名な",
+      "小説",
+      "を",
+      "借りた。"
+    ],
+    "translation": "我在圖書館借了日本有名的小說。",
+    "english": "I borrowed a famous Japanese novel from the library.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "literature"
+    ]
+  },
+  {
+    "id": "4080",
+    "japanese": "本当の休息とは、何もしないことではなく、活力を取り戻せる何かをすることだ。",
+    "chunks": [
+      "本当",
+      "の",
+      "休息",
+      "と",
+      "は、",
+      "何",
+      "も",
+      "しない",
+      "こと",
+      "で",
+      "は",
+      "なく、",
+      "活力",
+      "を",
+      "取り戻せる",
+      "何か",
+      "を",
+      "する",
+      "ことだ。"
+    ],
+    "translation": "真正的休息，不是什麼都不做，而是做能讓你恢復活力的事。",
+    "english": "True rest is not doing nothing, but doing something that restores your energy.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "leisure"
+    ]
+  },
+  {
+    "id": "4081",
+    "japanese": "週末は仕事のことを忘れて、ゆっくり過ごすようにしている。",
+    "chunks": [
+      "週末",
+      "は",
+      "仕事",
+      "の",
+      "こと",
+      "を",
+      "忘れて、",
+      "ゆっくり",
+      "過ごす",
+      "ように",
+      "している。"
+    ],
+    "translation": "週末我盡量忘掉工作的事，悠閒地度過。",
+    "english": "On weekends I try to forget about work and take it easy.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "leisure"
+    ]
+  },
+  {
+    "id": "4082",
+    "japanese": "休みの日は、公園を散歩したり本を読んだりする。",
+    "chunks": [
+      "休み",
+      "の",
+      "日",
+      "は、",
+      "公園",
+      "を",
+      "散歩したり",
+      "本",
+      "を",
+      "読んだり",
+      "する。"
+    ],
+    "translation": "放假的日子，我會去公園散步、看看書。",
+    "english": "On my days off, I walk in the park and read books, among other things.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "leisure"
+    ]
+  },
+  {
+    "id": "4083",
+    "japanese": "丁寧な分析は、あいまいな勘を、人に説明できる判断に変えてくれる。",
+    "chunks": [
+      "丁寧な",
+      "分析",
+      "は、",
+      "あいまいな",
+      "勘",
+      "を、",
+      "人",
+      "に",
+      "説明できる",
+      "判断",
+      "に",
+      "変えて",
+      "くれる。"
+    ],
+    "translation": "縝密的分析，能把模糊的直覺，變成一個能向別人說明的判斷。",
+    "english": "Careful analysis turns a vague hunch into a judgment you can explain to others.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "analysis"
+    ]
+  },
+  {
+    "id": "4084",
+    "japanese": "数字そのものは嘘をつかないが、並べ方しだいでほとんどどんな物語にも仕立てられる。",
+    "chunks": [
+      "数字",
+      "そのもの",
+      "は",
+      "嘘",
+      "を",
+      "つかない",
+      "が、",
+      "並べ方",
+      "しだい",
+      "で",
+      "ほとんど",
+      "どんな",
+      "物語",
+      "に",
+      "も",
+      "仕立てられる。"
+    ],
+    "translation": "數字本身不說謊，但依排列方式，幾乎能編織成任何故事。",
+    "english": "Numbers themselves don't lie, but depending on how they're arranged they can be made into almost any story.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "analysis"
+    ]
+  },
+  {
+    "id": "4085",
+    "japanese": "売り上げのデータを、グラフにして見せた。",
+    "chunks": [
+      "売り上げ",
+      "の",
+      "データ",
+      "を、",
+      "グラフ",
+      "に",
+      "して",
+      "見せた。"
+    ],
+    "translation": "我把銷售的數據做成圖表展示。",
+    "english": "I turned the sales data into a graph and showed it.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "analysis"
+    ]
+  },
+  {
+    "id": "4086",
+    "japanese": "忍耐とは、ただじっと待つことではなく、時間がかかる間も落ち着いていることだ。",
+    "chunks": [
+      "忍耐",
+      "と",
+      "は、",
+      "ただ",
+      "じっと",
+      "待つ",
+      "こと",
+      "で",
+      "は",
+      "なく、",
+      "時間",
+      "が",
+      "かかる",
+      "間",
+      "も",
+      "落ち着いている",
+      "ことだ。"
+    ],
+    "translation": "耐心不只是靜靜地等待，而是在耗時的過程中也能保持沉著。",
+    "english": "Patience is not just waiting still, but staying calm while things take time.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "patience"
+    ]
+  },
+  {
+    "id": "4087",
+    "japanese": "急がないで、一つずつゆっくりやれば大丈夫です。",
+    "chunks": [
+      "急がないで、",
+      "一つ",
+      "ずつ",
+      "ゆっくり",
+      "やれば",
+      "大丈夫です。"
+    ],
+    "translation": "別急，一個一個慢慢做就沒問題。",
+    "english": "Don't rush; if you do it slowly one at a time, you'll be fine.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "patience"
+    ]
+  },
+  {
+    "id": "4088",
+    "japanese": "年老いた親の介護は、自分に必要になるとは思ってもみなかった優しさを教えてくれる。",
+    "chunks": [
+      "年老いた",
+      "親",
+      "の",
+      "介護",
+      "は、",
+      "自分",
+      "に",
+      "必要",
+      "に",
+      "なる",
+      "と",
+      "は",
+      "思って",
+      "も",
+      "みなかった",
+      "優しさ",
+      "を",
+      "教えて",
+      "くれる。"
+    ],
+    "translation": "照顧年邁的父母，會教會你一種你從未想過自己會需要的溫柔。",
+    "english": "Caring for an aging parent teaches you a tenderness you never imagined you'd need.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "elderly care"
+    ]
+  },
+  {
+    "id": "4089",
+    "japanese": "その看護師は、自分がされたいと思うのと同じ優しさで、どの入居者にも接した。",
+    "chunks": [
+      "その",
+      "看護師",
+      "は、",
+      "自分",
+      "が",
+      "されたい",
+      "と",
+      "思う",
+      "の",
+      "と",
+      "同じ",
+      "優しさ",
+      "で、",
+      "どの",
+      "入居者",
+      "に",
+      "も",
+      "接した。"
+    ],
+    "translation": "那位護理師以她希望自己也被如此對待的同樣溫柔，對待每一位住民。",
+    "english": "The nurse treated every resident with the same kindness she'd want shown to herself.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "elderly care"
+    ]
+  },
+  {
+    "id": "4090",
+    "japanese": "祖母の世話をするために、毎週実家に帰っている。",
+    "chunks": [
+      "祖母",
+      "の",
+      "世話",
+      "を",
+      "する",
+      "ため",
+      "に、",
+      "毎週",
+      "実家",
+      "に",
+      "帰っている。"
+    ],
+    "translation": "為了照顧祖母，我每週都回老家。",
+    "english": "I go back to my parents' home every week to care for my grandmother.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "elderly care"
+    ]
+  },
+  {
+    "id": "4091",
+    "japanese": "どの選択肢も同じくらい良く見えるときは、選ぶこと自体より、それをやり抜く覚悟のほうが大事になる。",
+    "chunks": [
+      "どの",
+      "選択肢",
+      "も",
+      "同じ",
+      "くらい",
+      "良く",
+      "見える",
+      "とき",
+      "は、",
+      "選ぶ",
+      "こと",
+      "自体",
+      "より、",
+      "それ",
+      "を",
+      "やり抜く",
+      "覚悟",
+      "の",
+      "ほう",
+      "が",
+      "大事",
+      "に",
+      "なる。"
+    ],
+    "translation": "當每個選項看起來都一樣好時，比起選擇本身，把它貫徹到底的決心才更重要。",
+    "english": "When every option looks equally good, the resolve to see it through matters more than the choice itself.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "decision making"
+    ]
+  },
+  {
+    "id": "4092",
+    "japanese": "迷いすぎて決められないうちに、状況のほうが先に変わってしまった。",
+    "chunks": [
+      "迷いすぎて",
+      "決められない",
+      "うち",
+      "に、",
+      "状況",
+      "の",
+      "ほう",
+      "が",
+      "先",
+      "に",
+      "変わって",
+      "しまった。"
+    ],
+    "translation": "在猶豫太久遲遲無法決定的期間，情況反而先變了。",
+    "english": "While I hesitated too much to decide, the situation itself changed first.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "decision making"
+    ]
   }
 ]

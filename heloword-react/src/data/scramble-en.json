@@ -19998,5 +19998,155 @@
         "id": 4000,
         "translate_ch": "在國外生活，會慢慢揭露出你自己文化中那些看不見的規則。",
         "sentence": "Living abroad slowly reveals the invisible rules of your own culture."
+    },
+    {
+        "id": 4001,
+        "translate_ch": "毅力不在於永不跌倒，而在於你選擇多快站起來。",
+        "sentence": "Perseverance isn't about never falling; it's about how quickly you choose to rise."
+    },
+    {
+        "id": 4002,
+        "translate_ch": "她考試失敗了三次，但第四次終於通過了。",
+        "sentence": "She failed the exam three times, but on the fourth she finally passed."
+    },
+    {
+        "id": 4003,
+        "translate_ch": "雨水的氣味，仍能把他一下子帶回童年的夏天。",
+        "sentence": "The smell of rain still takes him straight back to his childhood summers."
+    },
+    {
+        "id": 4004,
+        "translate_ch": "好的行銷不會大聲喧嚷，而是悄悄地讓你覺得被理解。",
+        "sentence": "Good marketing doesn't shout; it quietly makes you feel understood."
+    },
+    {
+        "id": 4005,
+        "translate_ch": "他們花大錢打廣告，卻忘了把產品做好。",
+        "sentence": "They spent a fortune on ads but forgot to make the product any good."
+    },
+    {
+        "id": 4006,
+        "translate_ch": "教育應該教孩子如何思考，而不只是背什麼。",
+        "sentence": "Education should teach children how to think, not just what to memorize."
+    },
+    {
+        "id": 4007,
+        "translate_ch": "最有創意的點子，往往在你終於不再追逐它們時才出現。",
+        "sentence": "The most creative ideas often arrive when you finally stop chasing them."
+    },
+    {
+        "id": 4008,
+        "translate_ch": "當每個選項看起來都一樣好時，選擇本身比不上你對它的堅持重要。",
+        "sentence": "When every option looks equally good, the choice itself matters less than committing to it."
+    },
+    {
+        "id": 4009,
+        "translate_ch": "他把決定拖了太久，結果情勢替他做了決定。",
+        "sentence": "He put off the decision so long that circumstances made it for him."
+    },
+    {
+        "id": 4010,
+        "translate_ch": "韌性不是在風平浪靜中鍛鍊出來的，而是在我們熬過的風暴裡。",
+        "sentence": "Resilience is built not in calm waters but in the storms we survive."
+    },
+    {
+        "id": 4011,
+        "translate_ch": "年紀漸長，她才體會到自己過去的擔憂有多少其實毫無必要。",
+        "sentence": "Growing older, she realized how little of her worry had ever been necessary."
+    },
+    {
+        "id": 4012,
+        "translate_ch": "真正的創新，在成功之前通常看起來都像個錯誤。",
+        "sentence": "Real innovation usually looks like a mistake right up until it works."
+    },
+    {
+        "id": 4013,
+        "translate_ch": "他們沒有發明什麼新東西，只是用嶄新的方式組合了舊事物。",
+        "sentence": "They didn't invent something new; they combined old things in a fresh way."
+    },
+    {
+        "id": 4014,
+        "translate_ch": "一部偉大的小說，借給你一段你自己絕不可能活過的人生。",
+        "sentence": "A great novel lends you a life you could never have lived yourself."
+    },
+    {
+        "id": 4015,
+        "translate_ch": "創意在限制下才蓬勃；一張空白的紙往往最難填滿。",
+        "sentence": "Creativity thrives under limits; a blank page is often the hardest to fill."
+    },
+    {
+        "id": 4016,
+        "translate_ch": "解決問題有一半，在於把它描述得夠清楚，好讓你看見它。",
+        "sentence": "Half of solving a problem is describing it clearly enough to see it."
+    },
+    {
+        "id": 4017,
+        "translate_ch": "當你卡住時，換個問題往往比換個答案更有幫助。",
+        "sentence": "When you're stuck, changing the question often helps more than changing the answer."
+    },
+    {
+        "id": 4018,
+        "translate_ch": "他的投入，展現在他默默做的事，而不是他所說的話。",
+        "sentence": "His dedication showed less in what he said than in what he quietly did."
+    },
+    {
+        "id": 4019,
+        "translate_ch": "隨著人口老化，小鎮正艱難地維持著學校的運作。",
+        "sentence": "As the population ages, small towns are struggling to keep their schools open."
+    },
+    {
+        "id": 4020,
+        "translate_ch": "這家工廠現在一天就能生產出過去要花一整週的量。",
+        "sentence": "The factory can now produce in a day what once took a whole week."
+    },
+    {
+        "id": 4021,
+        "translate_ch": "經典文學之所以流傳，是因為每個世代都以不同的方式閱讀它。",
+        "sentence": "Classic literature survives because each generation reads it differently."
+    },
+    {
+        "id": 4022,
+        "translate_ch": "她把最喜歡的句子畫上底線，好讓自己能循著路回到它們。",
+        "sentence": "She underlines her favourite sentences so she can find her way back to them."
+    },
+    {
+        "id": 4023,
+        "translate_ch": "真正的休息不是什麼都不做，而是做能讓你恢復精力的事。",
+        "sentence": "True rest isn't doing nothing; it's doing something that gives you back your energy."
+    },
+    {
+        "id": 4024,
+        "translate_ch": "縝密的分析，能把模糊的直覺變成一個你能捍衛的決定。",
+        "sentence": "A careful analysis can turn a vague hunch into a decision you can defend."
+    },
+    {
+        "id": 4025,
+        "translate_ch": "數字很少說謊，但它們可以被排列來訴說幾乎任何故事。",
+        "sentence": "Numbers rarely lie, but they can be arranged to tell almost any story."
+    },
+    {
+        "id": 4026,
+        "translate_ch": "耐心不是被動地等待，而是在事情需要時間時保持穩定。",
+        "sentence": "Patience is not passive waiting; it's staying steady while things take their time."
+    },
+    {
+        "id": 4027,
+        "translate_ch": "照顧年邁的父母，教會你一種你從未預料到會需要的溫柔。",
+        "sentence": "Caring for an aging parent teaches a tenderness you never expected to need."
+    },
+    {
+        "id": 4028,
+        "translate_ch": "這位護理師對待每一位住民，都懷著她希望自己也能被如此對待的耐心。",
+        "sentence": "The nurse treated every resident with the same patience she'd want for herself."
+    },
+    {
+        "id": 4029,
+        "translate_ch": "小時候，一個下午感覺就能像一整個季節那麼長。",
+        "sentence": "As a child, a single afternoon could feel as long as a whole season."
+    },
+    {
+        "id": 4030,
+        "translate_ch": "他開始園藝，不是為了種菜，而是為了讓週末慢下來。",
+        "sentence": "He picked up gardening not to grow food, but to slow his weekends down."
     }
 ]
