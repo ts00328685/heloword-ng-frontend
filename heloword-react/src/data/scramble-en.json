@@ -19398,5 +19398,155 @@
         "id": 3880,
         "translate_ch": "說明書寫得太含糊，沒有兩個人組裝出來的方式是一樣的。",
         "sentence": "The instructions were so vague that no two people assembled it the same way."
+    },
+    {
+        "id": 3881,
+        "translate_ch": "自從他迷上木工，週末就再也不夠用了。",
+        "sentence": "Ever since he took up woodworking, his weekends have never felt long enough."
+    },
+    {
+        "id": 3882,
+        "translate_ch": "一個你熱愛的嗜好，會悄悄成為你一週中最美好的部分。",
+        "sentence": "A hobby you love can quietly become the best part of your week."
+    },
+    {
+        "id": 3883,
+        "translate_ch": "問題不在於人生是否有意義，而在於你選擇賦予它什麼意義。",
+        "sentence": "The question isn't whether life has meaning, but what meaning you choose to give it."
+    },
+    {
+        "id": 3884,
+        "translate_ch": "即使在最黑暗的日子裡，一絲希望也讓她持續前行。",
+        "sentence": "Even in the darkest weeks, a small hope kept her moving forward."
+    },
+    {
+        "id": 3885,
+        "translate_ch": "希望不是計畫，但少了它，任何計畫都無從開始。",
+        "sentence": "Hope is not a plan, but without it no plan ever gets started."
+    },
+    {
+        "id": 3886,
+        "translate_ch": "搬到鄉下之後，他們用漫長的通勤換來了寧靜的清晨。",
+        "sentence": "After moving to the countryside, they traded long commutes for quiet mornings."
+    },
+    {
+        "id": 3887,
+        "translate_ch": "在有些公司，加班到很晚被誤以為是真正的敬業。",
+        "sentence": "In some companies, staying late is mistaken for real dedication."
+    },
+    {
+        "id": 3888,
+        "translate_ch": "健康的職場文化，看重的是成果，遠勝於坐在桌前的時數。",
+        "sentence": "A healthy work culture values results far more than hours spent at a desk."
+    },
+    {
+        "id": 3889,
+        "translate_ch": "好的老師不只是回答問題，還教你如何提問。",
+        "sentence": "A good teacher doesn't just answer questions; she teaches you how to ask them."
+    },
+    {
+        "id": 3890,
+        "translate_ch": "向初學者解釋一件事，往往會揭露出你其實理解得多麼淺薄。",
+        "sentence": "Explaining something to a beginner often reveals how little you truly understand it."
+    },
+    {
+        "id": 3891,
+        "translate_ch": "畫畫一開始只是為了放鬆，慢慢地卻變成了認真的熱情。",
+        "sentence": "Painting started as a way to relax and slowly turned into a serious passion."
+    },
+    {
+        "id": 3892,
+        "translate_ch": "這裡的冬天，比起僅僅二十年前溫和多了。",
+        "sentence": "Winters here are far milder than they were just twenty years ago."
+    },
+    {
+        "id": 3893,
+        "translate_ch": "幸福往往不在於得到你想要的，而在於想要你已擁有的。",
+        "sentence": "Happiness often lies less in getting what you want than in wanting what you have."
+    },
+    {
+        "id": 3894,
+        "translate_ch": "每日的小確幸，累積起來的幸福，比一場盛大的事件還多。",
+        "sentence": "Small daily pleasures add up to more happiness than a single grand event."
+    },
+    {
+        "id": 3895,
+        "translate_ch": "公平地分擔家事，讓整個家庭運作得很順暢。",
+        "sentence": "Splitting the chores fairly kept the whole household running smoothly."
+    },
+    {
+        "id": 3896,
+        "translate_ch": "一位同事突然辭職，他的工作量在一夜之間翻了倍。",
+        "sentence": "His workload doubled overnight when a colleague suddenly quit."
+    },
+    {
+        "id": 3897,
+        "translate_ch": "學會拒絕，是讓工作量維持在可控範圍內的唯一辦法。",
+        "sentence": "Learning to say no is the only way to keep your workload manageable."
+    },
+    {
+        "id": 3898,
+        "translate_ch": "她在清晨、世界甦醒之前，讀書效率最高。",
+        "sentence": "She studies best in the early morning, before the world wakes up."
+    },
+    {
+        "id": 3899,
+        "translate_ch": "好的設計解決問題時如此順暢，你根本不會察覺它在運作。",
+        "sentence": "Good design solves a problem so smoothly that you never notice it working."
+    },
+    {
+        "id": 3900,
+        "translate_ch": "那張椅子看起來很驚豔，卻幾乎沒辦法舒服地坐上去。",
+        "sentence": "The chair looked stunning but was almost impossible to sit in comfortably."
+    },
+    {
+        "id": 3901,
+        "translate_ch": "減少使用塑膠是個小習慣，卻有出乎意料的巨大影響。",
+        "sentence": "Cutting down on plastic is a small habit with a surprisingly large impact."
+    },
+    {
+        "id": 3902,
+        "translate_ch": "動力讓你起步，但讓你持續下去的是習慣。",
+        "sentence": "Motivation gets you started, but routine is what keeps you going."
+    },
+    {
+        "id": 3903,
+        "translate_ch": "每晚花十分鐘整理，能為你省下週末一整個下午。",
+        "sentence": "Ten minutes of tidying every night saves you a whole afternoon on the weekend."
+    },
+    {
+        "id": 3904,
+        "translate_ch": "在家工作模糊了他辦公室和客廳之間的界線。",
+        "sentence": "Working from home blurred the line between his office and his living room."
+    },
+    {
+        "id": 3905,
+        "translate_ch": "遠距工作給了她自由，卻也帶來一種她未曾預料的孤獨。",
+        "sentence": "Remote work gave her freedom, but also a loneliness she hadn't expected."
+    },
+    {
+        "id": 3906,
+        "translate_ch": "每天複習一點，勝過考試前一晚臨時抱佛腳。",
+        "sentence": "Reviewing a little every day beats cramming the night before an exam."
+    },
+    {
+        "id": 3907,
+        "translate_ch": "一套簡單卻合身的衣服，往往比昂貴的東西更好看。",
+        "sentence": "A simple outfit, well fitted, often looks better than something expensive."
+    },
+    {
+        "id": 3908,
+        "translate_ch": "她保留幾件經典款，而不去追逐每一波新潮流。",
+        "sentence": "She keeps a few timeless pieces instead of chasing every new trend."
+    },
+    {
+        "id": 3909,
+        "translate_ch": "地震來襲時，多年的演練終於證明了它的價值。",
+        "sentence": "When the earthquake struck, years of drills finally proved their worth."
+    },
+    {
+        "id": 3910,
+        "translate_ch": "事先備妥幾天份的水和食物，可能就是關鍵所在。",
+        "sentence": "Keeping a few days of water and food ready can make all the difference."
     }
 ]

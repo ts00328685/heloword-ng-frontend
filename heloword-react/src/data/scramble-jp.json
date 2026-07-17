@@ -79259,5 +79259,1312 @@
       "N3",
       "instruction"
     ]
+  },
+  {
+    "id": "3843",
+    "japanese": "木工を始めてから、彼にとって週末はいくらあっても足りなくなった。",
+    "chunks": [
+      "木工",
+      "を",
+      "始めて",
+      "から、",
+      "彼",
+      "に",
+      "とって",
+      "週末",
+      "は",
+      "いくら",
+      "あって",
+      "も",
+      "足りなく",
+      "なった。"
+    ],
+    "translation": "自從開始做木工，對他來說週末再多也不夠用了。",
+    "english": "Ever since he took up woodworking, no amount of weekend has been enough for him.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "3844",
+    "japanese": "心から打ち込める趣味は、いつのまにか一週間で最も充実した時間になっていることがある。",
+    "chunks": [
+      "心",
+      "から",
+      "打ち込める",
+      "趣味",
+      "は、",
+      "いつのまにか",
+      "一週間",
+      "で",
+      "最も",
+      "充実した",
+      "時間",
+      "に",
+      "なっている",
+      "こと",
+      "が",
+      "ある。"
+    ],
+    "translation": "能全心投入的嗜好，有時不知不覺就成了一週中最充實的時光。",
+    "english": "A hobby you can throw yourself into sometimes becomes, before you know it, the most fulfilling time of your week.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "3845",
+    "japanese": "私の趣味は写真を撮ることです。",
+    "chunks": [
+      "私",
+      "の",
+      "趣味",
+      "は",
+      "写真",
+      "を",
+      "撮る",
+      "ことです。"
+    ],
+    "translation": "我的興趣是拍照。",
+    "english": "My hobby is taking photographs.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "3846",
+    "japanese": "人生に意味があるかどうかではなく、そこにどんな意味を見いだすかが問われているのだ。",
+    "chunks": [
+      "人生",
+      "に",
+      "意味",
+      "が",
+      "ある",
+      "かどうか",
+      "で",
+      "は",
+      "なく、",
+      "そこ",
+      "に",
+      "どんな",
+      "意味",
+      "を",
+      "見いだす",
+      "か",
+      "が",
+      "問われている",
+      "のだ。"
+    ],
+    "translation": "被追問的並非人生是否有意義，而是你在其中找到什麼樣的意義。",
+    "english": "What's in question is not whether life has meaning, but what meaning you find in it.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "3847",
+    "japanese": "幸せとは何かという問いに、たった一つの答えはない。",
+    "chunks": [
+      "幸せ",
+      "と",
+      "は",
+      "何",
+      "か",
+      "という",
+      "問い",
+      "に、",
+      "たった",
+      "一つ",
+      "の",
+      "答え",
+      "は",
+      "ない。"
+    ],
+    "translation": "對於「幸福是什麼」這個問題，並沒有唯一的答案。",
+    "english": "There is no single answer to the question of what happiness is.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "3848",
+    "japanese": "どんなに暗い日々の中でも、小さな希望が彼女を前へ進ませた。",
+    "chunks": [
+      "どんなに",
+      "暗い",
+      "日々",
+      "の",
+      "中",
+      "でも、",
+      "小さな",
+      "希望",
+      "が",
+      "彼女",
+      "を",
+      "前",
+      "へ",
+      "進ませた。"
+    ],
+    "translation": "無論在多麼黑暗的日子裡，一絲小小的希望都推著她向前走。",
+    "english": "However dark the days, a small hope kept pushing her forward.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "hope"
+    ]
+  },
+  {
+    "id": "3849",
+    "japanese": "希望それ自体は計画ではないが、それがなければどんな計画も動き出すことはない。",
+    "chunks": [
+      "希望",
+      "それ",
+      "自体",
+      "は",
+      "計画",
+      "で",
+      "は",
+      "ない",
+      "が、",
+      "それ",
+      "が",
+      "なければ",
+      "どんな",
+      "計画",
+      "も",
+      "動き出す",
+      "こと",
+      "は",
+      "ない。"
+    ],
+    "translation": "希望本身並不是計畫，但若沒有它，任何計畫都無從啟動。",
+    "english": "Hope in itself is not a plan, but without it no plan ever gets moving.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "hope"
+    ]
+  },
+  {
+    "id": "3850",
+    "japanese": "あきらめなければ、きっといいことがある。",
+    "chunks": [
+      "あきらめ",
+      "なければ、",
+      "きっと",
+      "いい",
+      "こと",
+      "が",
+      "ある。"
+    ],
+    "translation": "只要不放棄，一定會有好事發生。",
+    "english": "If you don't give up, good things will surely come.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "hope"
+    ]
+  },
+  {
+    "id": "3851",
+    "japanese": "田舎に引っ越してから、長い通勤の代わりに静かな朝を手に入れた。",
+    "chunks": [
+      "田舎",
+      "に",
+      "引っ越して",
+      "から、",
+      "長い",
+      "通勤",
+      "の",
+      "代わり",
+      "に",
+      "静かな",
+      "朝",
+      "を",
+      "手",
+      "に",
+      "入れた。"
+    ],
+    "translation": "搬到鄉下之後，他們用漫長的通勤換來了寧靜的清晨。",
+    "english": "After moving to the countryside, they gained quiet mornings in place of long commutes.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "3852",
+    "japanese": "最近、早寝早起きの生活に変えました。",
+    "chunks": [
+      "最近、",
+      "早寝早起き",
+      "の",
+      "生活",
+      "に",
+      "変えました。"
+    ],
+    "translation": "最近我改成了早睡早起的生活。",
+    "english": "Recently I switched to an early-to-bed, early-to-rise lifestyle.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "3853",
+    "japanese": "会社によっては、遅くまで残ることが本当の熱意だと勘違いされている。",
+    "chunks": [
+      "会社",
+      "に",
+      "よって",
+      "は、",
+      "遅く",
+      "まで",
+      "残る",
+      "こと",
+      "が",
+      "本当",
+      "の",
+      "熱意",
+      "だ",
+      "と",
+      "勘違いされている。"
+    ],
+    "translation": "在有些公司，加班到很晚被誤以為是真正的熱忱。",
+    "english": "In some companies, staying late is mistaken for genuine dedication.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "work culture"
+    ]
+  },
+  {
+    "id": "3854",
+    "japanese": "健全な職場では、机に向かった時間の長さよりも、生み出した成果のほうが重んじられる。",
+    "chunks": [
+      "健全な",
+      "職場",
+      "で",
+      "は、",
+      "机",
+      "に",
+      "向かった",
+      "時間",
+      "の",
+      "長さ",
+      "より",
+      "も、",
+      "生み出した",
+      "成果",
+      "の",
+      "ほう",
+      "が",
+      "重んじられる。"
+    ],
+    "translation": "在健全的職場，比起坐在桌前的時間長短，人們更看重所產出的成果。",
+    "english": "In a healthy workplace, the results you produce are valued more than the hours spent at your desk.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "work culture"
+    ]
+  },
+  {
+    "id": "3855",
+    "japanese": "上司が変わってから、会社の雰囲気が少しずつ良くなってきた。",
+    "chunks": [
+      "上司",
+      "が",
+      "変わって",
+      "から、",
+      "会社",
+      "の",
+      "雰囲気",
+      "が",
+      "少しずつ",
+      "良く",
+      "なって",
+      "きた。"
+    ],
+    "translation": "換了上司之後，公司的氛圍漸漸變好了。",
+    "english": "Since the boss changed, the company atmosphere has gradually improved.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "work culture"
+    ]
+  },
+  {
+    "id": "3856",
+    "japanese": "良い教師は答えを教えるだけでなく、問いの立て方そのものを教えてくれる。",
+    "chunks": [
+      "良い",
+      "教師",
+      "は",
+      "答え",
+      "を",
+      "教える",
+      "だけ",
+      "で",
+      "なく、",
+      "問い",
+      "の",
+      "立て方",
+      "そのもの",
+      "を",
+      "教えて",
+      "くれる。"
+    ],
+    "translation": "好的老師不只教答案，還教你如何提出問題本身。",
+    "english": "A good teacher not only gives answers but teaches you how to frame the questions themselves.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "teaching"
+    ]
+  },
+  {
+    "id": "3857",
+    "japanese": "初心者に説明してみると、自分の理解がいかに浅いかに気づかされる。",
+    "chunks": [
+      "初心者",
+      "に",
+      "説明して",
+      "みる",
+      "と、",
+      "自分",
+      "の",
+      "理解",
+      "が",
+      "いかに",
+      "浅い",
+      "か",
+      "に",
+      "気づかされる。"
+    ],
+    "translation": "試著向初學者解釋，就會被迫意識到自己的理解有多麼淺薄。",
+    "english": "When you try to explain something to a beginner, you're made to realize how shallow your own understanding is.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "teaching"
+    ]
+  },
+  {
+    "id": "3858",
+    "japanese": "絵を描くのは、最初はただの気晴らしだったが、今では真剣な趣味になっている。",
+    "chunks": [
+      "絵",
+      "を",
+      "描く",
+      "の",
+      "は、",
+      "最初",
+      "は",
+      "ただ",
+      "の",
+      "気晴らし",
+      "だった",
+      "が、",
+      "今",
+      "で",
+      "は",
+      "真剣な",
+      "趣味",
+      "に",
+      "なっている。"
+    ],
+    "translation": "畫畫一開始只是消遣，如今卻變成了認真的嗜好。",
+    "english": "Painting was just a distraction at first, but now it's become a serious hobby.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "hobby"
+    ]
+  },
+  {
+    "id": "3859",
+    "japanese": "休みの日は、好きな音楽を聞きながらパンを焼きます。",
+    "chunks": [
+      "休み",
+      "の",
+      "日",
+      "は、",
+      "好きな",
+      "音楽",
+      "を",
+      "聞き",
+      "ながら",
+      "パン",
+      "を",
+      "焼きます。"
+    ],
+    "translation": "放假的日子，我會一邊聽喜歡的音樂，一邊烤麵包。",
+    "english": "On my days off, I bake bread while listening to music I like.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "hobby"
+    ]
+  },
+  {
+    "id": "3860",
+    "japanese": "ここの冬は、ほんの二十年前に比べてずいぶん暖かくなった。",
+    "chunks": [
+      "ここ",
+      "の",
+      "冬",
+      "は、",
+      "ほんの",
+      "二十年",
+      "前",
+      "に",
+      "比べて",
+      "ずいぶん",
+      "暖かく",
+      "なった。"
+    ],
+    "translation": "這裡的冬天，比起僅僅二十年前，變得溫暖多了。",
+    "english": "Winters here have become much warmer compared to just twenty years ago.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "climate"
+    ]
+  },
+  {
+    "id": "3861",
+    "japanese": "今年は雨が少なくて、農家の人たちが困っている。",
+    "chunks": [
+      "今年",
+      "は",
+      "雨",
+      "が",
+      "少なくて、",
+      "農家",
+      "の",
+      "人たち",
+      "が",
+      "困っている。"
+    ],
+    "translation": "今年雨水少，農民們很傷腦筋。",
+    "english": "There's been little rain this year, and the farmers are struggling.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "climate"
+    ]
+  },
+  {
+    "id": "3862",
+    "japanese": "幸せとは、欲しいものを手に入れることよりも、今あるものを大切に思えることにあるのかもしれない。",
+    "chunks": [
+      "幸せ",
+      "と",
+      "は、",
+      "欲しい",
+      "もの",
+      "を",
+      "手",
+      "に",
+      "入れる",
+      "こと",
+      "より",
+      "も、",
+      "今",
+      "ある",
+      "もの",
+      "を",
+      "大切",
+      "に",
+      "思える",
+      "こと",
+      "に",
+      "ある",
+      "のかもしれない。"
+    ],
+    "translation": "幸福或許不在於得到想要的東西，而在於能珍惜此刻所擁有的一切。",
+    "english": "Happiness may lie less in obtaining what you want than in being able to cherish what you already have.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "happiness"
+    ]
+  },
+  {
+    "id": "3863",
+    "japanese": "日々のささやかな喜びは、一度の大きな出来事よりも大きな幸せになる。",
+    "chunks": [
+      "日々",
+      "の",
+      "ささやかな",
+      "喜び",
+      "は、",
+      "一度",
+      "の",
+      "大きな",
+      "出来事",
+      "より",
+      "も",
+      "大きな",
+      "幸せ",
+      "に",
+      "なる。"
+    ],
+    "translation": "每日微小的喜悅，累積成的幸福比一次盛大的事件還要大。",
+    "english": "Small daily joys add up to greater happiness than a single grand event.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "happiness"
+    ]
+  },
+  {
+    "id": "3864",
+    "japanese": "おいしいものを食べると、幸せな気持ちになる。",
+    "chunks": [
+      "おいしい",
+      "もの",
+      "を",
+      "食べる",
+      "と、",
+      "幸せ",
+      "な",
+      "気持ち",
+      "に",
+      "なる。"
+    ],
+    "translation": "吃到好吃的東西，就會有幸福的感覺。",
+    "english": "When I eat something delicious, I feel happy.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "happiness"
+    ]
+  },
+  {
+    "id": "3865",
+    "japanese": "家事を公平に分担することで、家全体がうまく回るようになった。",
+    "chunks": [
+      "家事",
+      "を",
+      "公平",
+      "に",
+      "分担する",
+      "こと",
+      "で、",
+      "家",
+      "全体",
+      "が",
+      "うまく",
+      "回る",
+      "ように",
+      "なった。"
+    ],
+    "translation": "藉由公平地分擔家事，整個家開始運作得很順暢。",
+    "english": "By sharing the housework fairly, the whole household came to run smoothly.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "household"
+    ]
+  },
+  {
+    "id": "3866",
+    "japanese": "母は毎朝、家じゅうの窓を開けて空気を入れかえる。",
+    "chunks": [
+      "母",
+      "は",
+      "毎朝、",
+      "家じゅう",
+      "の",
+      "窓",
+      "を",
+      "開けて",
+      "空気",
+      "を",
+      "入れかえる。"
+    ],
+    "translation": "媽媽每天早上都會打開全家的窗戶換氣。",
+    "english": "Every morning my mother opens all the windows in the house to let in fresh air.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "household"
+    ]
+  },
+  {
+    "id": "3867",
+    "japanese": "同僚が急に辞めたせいで、彼の仕事量は一晩で倍に増えた。",
+    "chunks": [
+      "同僚",
+      "が",
+      "急に",
+      "辞めた",
+      "せい",
+      "で、",
+      "彼",
+      "の",
+      "仕事量",
+      "は",
+      "一晩",
+      "で",
+      "倍",
+      "に",
+      "増えた。"
+    ],
+    "translation": "因為同事突然辭職，他的工作量在一夜之間翻了倍。",
+    "english": "Because a colleague suddenly quit, his workload doubled overnight.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "workload"
+    ]
+  },
+  {
+    "id": "3868",
+    "japanese": "断ることを覚えない限り、仕事はいくらでも増え続け、やがて自分を追い詰めることになる。",
+    "chunks": [
+      "断る",
+      "こと",
+      "を",
+      "覚えない",
+      "限り、",
+      "仕事",
+      "は",
+      "いくらでも",
+      "増え続け、",
+      "やがて",
+      "自分",
+      "を",
+      "追い詰める",
+      "こと",
+      "に",
+      "なる。"
+    ],
+    "translation": "只要不學會拒絕，工作就會無止境地增加，最終把自己逼入絕境。",
+    "english": "Unless you learn to say no, work keeps piling up endlessly and eventually corners you.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "workload"
+    ]
+  },
+  {
+    "id": "3869",
+    "japanese": "締め切りが重なって、今週はほとんど休む時間がなかった。",
+    "chunks": [
+      "締め切り",
+      "が",
+      "重なって、",
+      "今週",
+      "は",
+      "ほとんど",
+      "休む",
+      "時間",
+      "が",
+      "なかった。"
+    ],
+    "translation": "截止期限撞在一起，這週幾乎沒有休息的時間。",
+    "english": "With deadlines piling up, I had almost no time to rest this week.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "workload"
+    ]
+  },
+  {
+    "id": "3870",
+    "japanese": "優れたデザインは、あまりに自然に問題を解決するため、そこに工夫があることにさえ気づかせない。",
+    "chunks": [
+      "優れた",
+      "デザイン",
+      "は、",
+      "あまりに",
+      "自然に",
+      "問題",
+      "を",
+      "解決する",
+      "ため、",
+      "そこ",
+      "に",
+      "工夫",
+      "が",
+      "ある",
+      "こと",
+      "に",
+      "さえ",
+      "気づかせない。"
+    ],
+    "translation": "出色的設計解決問題時如此自然，甚至讓你察覺不到其中的巧思。",
+    "english": "Excellent design solves a problem so naturally that it doesn't even let you notice the ingenuity behind it.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "design"
+    ]
+  },
+  {
+    "id": "3871",
+    "japanese": "その椅子は見た目は素晴らしいが、座り心地はあまり良くない。",
+    "chunks": [
+      "その",
+      "椅子",
+      "は",
+      "見た目",
+      "は",
+      "素晴らしい",
+      "が、",
+      "座り心地",
+      "は",
+      "あまり",
+      "良くない。"
+    ],
+    "translation": "那張椅子外觀很棒，但坐起來不太舒服。",
+    "english": "That chair looks wonderful, but it's not very comfortable to sit in.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "design"
+    ]
+  },
+  {
+    "id": "3872",
+    "japanese": "このアプリはシンプルで、だれでもすぐに使えます。",
+    "chunks": [
+      "この",
+      "アプリ",
+      "は",
+      "シンプル",
+      "で、",
+      "だれ",
+      "でも",
+      "すぐに",
+      "使えます。"
+    ],
+    "translation": "這個應用程式很簡單，誰都能馬上上手。",
+    "english": "This app is simple, so anyone can use it right away.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "design"
+    ]
+  },
+  {
+    "id": "3873",
+    "japanese": "プラスチックを減らすというささやかな習慣が、思いのほか大きな影響を持つ。",
+    "chunks": [
+      "プラスチック",
+      "を",
+      "減らす",
+      "という",
+      "ささやかな",
+      "習慣",
+      "が、",
+      "思いのほか",
+      "大きな",
+      "影響",
+      "を",
+      "持つ。"
+    ],
+    "translation": "減少塑膠這個微小的習慣，卻有著出乎意料的巨大影響。",
+    "english": "The small habit of cutting down on plastic has a surprisingly large impact.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "environment"
+    ]
+  },
+  {
+    "id": "3874",
+    "japanese": "ごみを分別するのは面倒だが、環境のために続けている。",
+    "chunks": [
+      "ごみ",
+      "を",
+      "分別する",
+      "の",
+      "は",
+      "面倒だ",
+      "が、",
+      "環境",
+      "の",
+      "ため",
+      "に",
+      "続けている。"
+    ],
+    "translation": "垃圾分類雖然麻煩，但為了環境我一直堅持著。",
+    "english": "Sorting the trash is a hassle, but I keep doing it for the environment.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "environment"
+    ]
+  },
+  {
+    "id": "3875",
+    "japanese": "やる気は物事を始めるきっかけにすぎず、続けさせてくれるのは習慣だ。",
+    "chunks": [
+      "やる気",
+      "は",
+      "物事",
+      "を",
+      "始める",
+      "きっかけ",
+      "に",
+      "すぎず、",
+      "続けさせて",
+      "くれる",
+      "の",
+      "は",
+      "習慣",
+      "だ。"
+    ],
+    "translation": "幹勁只不過是開始一件事的契機，讓你持續下去的是習慣。",
+    "english": "Motivation is merely the spark to start; what keeps you going is habit.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "motivation"
+    ]
+  },
+  {
+    "id": "3876",
+    "japanese": "やる気が出るのを待っているうちは、たいてい何も始まらないものだ。",
+    "chunks": [
+      "やる気",
+      "が",
+      "出る",
+      "の",
+      "を",
+      "待っている",
+      "うち",
+      "は、",
+      "たいてい",
+      "何",
+      "も",
+      "始まらない",
+      "ものだ。"
+    ],
+    "translation": "一直等著幹勁湧現的期間，通常什麼都不會開始。",
+    "english": "As long as you're waiting for motivation to appear, usually nothing gets started.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "motivation"
+    ]
+  },
+  {
+    "id": "3877",
+    "japanese": "好きなことなら、自然とやる気が出る。",
+    "chunks": [
+      "好きな",
+      "こと",
+      "なら、",
+      "自然",
+      "と",
+      "やる気",
+      "が",
+      "出る。"
+    ],
+    "translation": "只要是喜歡的事，自然就會有幹勁。",
+    "english": "When it's something you like, motivation comes naturally.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "motivation"
+    ]
+  },
+  {
+    "id": "3878",
+    "japanese": "毎晩十分だけ片付けておくと、週末に半日つぶさずにすむ。",
+    "chunks": [
+      "毎晩",
+      "十分",
+      "だけ",
+      "片付けて",
+      "おく",
+      "と、",
+      "週末",
+      "に",
+      "半日",
+      "つぶさず",
+      "に",
+      "すむ。"
+    ],
+    "translation": "每晚只要整理十分鐘，週末就不必浪費半天。",
+    "english": "If you tidy up just ten minutes every night, you won't have to waste half a weekend day.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "cleaning"
+    ]
+  },
+  {
+    "id": "3879",
+    "japanese": "週末に部屋のそうじをして、洗濯もします。",
+    "chunks": [
+      "週末",
+      "に",
+      "部屋",
+      "の",
+      "そうじ",
+      "を",
+      "して、",
+      "洗濯",
+      "も",
+      "します。"
+    ],
+    "translation": "週末我會打掃房間，也會洗衣服。",
+    "english": "On the weekend I clean my room and do laundry too.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "cleaning"
+    ]
+  },
+  {
+    "id": "3880",
+    "japanese": "在宅勤務のおかげで通勤はなくなったが、仕事と生活の境目が曖昧になった。",
+    "chunks": [
+      "在宅勤務",
+      "の",
+      "おかげ",
+      "で",
+      "通勤",
+      "は",
+      "なくなった",
+      "が、",
+      "仕事",
+      "と",
+      "生活",
+      "の",
+      "境目",
+      "が",
+      "曖昧",
+      "に",
+      "なった。"
+    ],
+    "translation": "多虧了在家上班，通勤沒了，但工作與生活的界線變得模糊。",
+    "english": "Thanks to working from home, the commute disappeared, but the line between work and life grew blurry.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "remote work"
+    ]
+  },
+  {
+    "id": "3881",
+    "japanese": "在宅勤務は自由をもたらす一方で、思いがけない孤独を感じさせることもある。",
+    "chunks": [
+      "在宅勤務",
+      "は",
+      "自由",
+      "を",
+      "もたらす",
+      "一方",
+      "で、",
+      "思いがけない",
+      "孤独",
+      "を",
+      "感じさせる",
+      "こと",
+      "も",
+      "ある。"
+    ],
+    "translation": "在家工作在帶來自由的同時，有時也讓人感受到意想不到的孤獨。",
+    "english": "While remote work brings freedom, it can also make you feel an unexpected loneliness.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "remote work"
+    ]
+  },
+  {
+    "id": "3882",
+    "japanese": "家で働くと、昼ごはんを自分で作れて便利です。",
+    "chunks": [
+      "家",
+      "で",
+      "働く",
+      "と、",
+      "昼ごはん",
+      "を",
+      "自分",
+      "で",
+      "作れて",
+      "便利です。"
+    ],
+    "translation": "在家工作的話，午餐能自己做，很方便。",
+    "english": "When I work from home, I can make my own lunch, which is convenient.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "remote work"
+    ]
+  },
+  {
+    "id": "3883",
+    "japanese": "高価な服より、体に合ったシンプルな服のほうが上品に見えることが多い。",
+    "chunks": [
+      "高価な",
+      "服",
+      "より、",
+      "体",
+      "に",
+      "合った",
+      "シンプルな",
+      "服",
+      "の",
+      "ほう",
+      "が",
+      "上品",
+      "に",
+      "見える",
+      "こと",
+      "が",
+      "多い。"
+    ],
+    "translation": "比起昂貴的衣服，合身的簡單衣著往往看起來更優雅。",
+    "english": "A simple, well-fitting outfit often looks more elegant than expensive clothes.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "clothing"
+    ]
+  },
+  {
+    "id": "3884",
+    "japanese": "流行を追いかけるより、長く着られる服を選ぶようにしている。",
+    "chunks": [
+      "流行",
+      "を",
+      "追いかける",
+      "より、",
+      "長く",
+      "着られる",
+      "服",
+      "を",
+      "選ぶ",
+      "ように",
+      "している。"
+    ],
+    "translation": "比起追逐流行，我盡量選能穿得久的衣服。",
+    "english": "Rather than chasing trends, I try to choose clothes I can wear for a long time.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "clothing"
+    ]
+  },
+  {
+    "id": "3885",
+    "japanese": "寒いので、厚いコートを着て出かけた。",
+    "chunks": [
+      "寒い",
+      "ので、",
+      "厚い",
+      "コート",
+      "を",
+      "着て",
+      "出かけた。"
+    ],
+    "translation": "因為很冷，我穿了厚外套出門。",
+    "english": "Since it was cold, I went out wearing a thick coat.",
+    "difficulty": "easy",
+    "tags": [
+      "N5",
+      "clothing"
+    ]
+  },
+  {
+    "id": "3886",
+    "japanese": "地震が起きたとき、長年続けてきた訓練の成果がようやく発揮された。",
+    "chunks": [
+      "地震",
+      "が",
+      "起きた",
+      "とき、",
+      "長年",
+      "続けて",
+      "きた",
+      "訓練",
+      "の",
+      "成果",
+      "が",
+      "ようやく",
+      "発揮された。"
+    ],
+    "translation": "地震發生時，多年來持續進行的演練，其成果終於得以發揮。",
+    "english": "When the earthquake hit, the fruits of years of drills were finally put to use.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "disaster"
+    ]
+  },
+  {
+    "id": "3887",
+    "japanese": "数日分の水や食料を用意しておくだけで、いざというとき大きな差になる。",
+    "chunks": [
+      "数日分",
+      "の",
+      "水",
+      "や",
+      "食料",
+      "を",
+      "用意して",
+      "おく",
+      "だけ",
+      "で、",
+      "いざ",
+      "という",
+      "とき",
+      "大きな",
+      "差",
+      "に",
+      "なる。"
+    ],
+    "translation": "光是事先準備好幾天份的水和糧食，關鍵時刻就會有很大的差別。",
+    "english": "Just keeping a few days' worth of water and food ready makes a big difference when it counts.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "disaster"
+    ]
+  },
+  {
+    "id": "3888",
+    "japanese": "台風が来るので、早めに家に帰りました。",
+    "chunks": [
+      "台風",
+      "が",
+      "来る",
+      "ので、",
+      "早めに",
+      "家",
+      "に",
+      "帰りました。"
+    ],
+    "translation": "因為颱風要來，我提早回家了。",
+    "english": "Since a typhoon was coming, I went home early.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "disaster"
+    ]
+  },
+  {
+    "id": "3889",
+    "japanese": "彼女は、世界が目を覚ます前の早朝がいちばん集中できるらしい。",
+    "chunks": [
+      "彼女",
+      "は、",
+      "世界",
+      "が",
+      "目",
+      "を",
+      "覚ます",
+      "前",
+      "の",
+      "早朝",
+      "が",
+      "いちばん",
+      "集中できる",
+      "らしい。"
+    ],
+    "translation": "據說她在世界甦醒之前的清晨最能集中精神。",
+    "english": "Apparently she can concentrate best in the early morning, before the world wakes up.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "study"
+    ]
+  },
+  {
+    "id": "3890",
+    "japanese": "試験が近いので、毎日図書館で勉強しています。",
+    "chunks": [
+      "試験",
+      "が",
+      "近い",
+      "ので、",
+      "毎日",
+      "図書館",
+      "で",
+      "勉強しています。"
+    ],
+    "translation": "因為考試快到了，我每天都在圖書館讀書。",
+    "english": "Since the exam is near, I study at the library every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "study"
+    ]
+  },
+  {
+    "id": "3891",
+    "japanese": "毎日少しずつ復習するほうが、試験前夜に一気に詰め込むより効果的だ。",
+    "chunks": [
+      "毎日",
+      "少しずつ",
+      "復習する",
+      "ほう",
+      "が、",
+      "試験前夜",
+      "に",
+      "一気に",
+      "詰め込む",
+      "より",
+      "効果的だ。"
+    ],
+    "translation": "每天複習一點點，比考試前一晚一口氣硬塞更有效。",
+    "english": "Reviewing a little every day is more effective than cramming all at once the night before the exam.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "study habits"
+    ]
+  },
+  {
+    "id": "3892",
+    "japanese": "勉強を習慣にするには、決まった時間に机に向かうのがいちばんだ。",
+    "chunks": [
+      "勉強",
+      "を",
+      "習慣",
+      "に",
+      "する",
+      "に",
+      "は、",
+      "決まった",
+      "時間",
+      "に",
+      "机",
+      "に",
+      "向かう",
+      "の",
+      "が",
+      "いちばん",
+      "だ。"
+    ],
+    "translation": "要把讀書變成習慣，在固定的時間坐到書桌前是最好的辦法。",
+    "english": "To make studying a habit, the best thing is to sit at your desk at a fixed time.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "study habits"
+    ]
   }
 ]
