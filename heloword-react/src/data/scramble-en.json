@@ -22248,5 +22248,155 @@
         "id": 4450,
         "translate_ch": "即使是一點微光，對一個久坐黑暗中的人來說也顯得巨大。",
         "sentence": "Even a small light looks enormous to someone who has been sitting in the dark."
+    },
+    {
+        "id": 4451,
+        "translate_ch": "更簡單的生活不在於擁有更少，而在於一開始就想要得更少。",
+        "sentence": "A simpler life isn't about owning less; it's about wanting less in the first place."
+    },
+    {
+        "id": 4452,
+        "translate_ch": "你如何度過星期六，比你如何度過星期一更能說明你的價值觀。",
+        "sentence": "How you spend your Saturday says more about your values than how you spend your Monday."
+    },
+    {
+        "id": 4453,
+        "translate_ch": "文化不是公司寫在牆上的東西，而是它在走廊裡容忍的東西。",
+        "sentence": "A culture is not what a company writes on its walls, but what it tolerates in its hallways."
+    },
+    {
+        "id": 4454,
+        "translate_ch": "會議會不斷增生，來填補一支團隊未能建立的信任。",
+        "sentence": "Meetings multiply to fill the trust a team has failed to build."
+    },
+    {
+        "id": 4455,
+        "translate_ch": "你要等到必須教一個困惑的人，才算真正學會一門學問。",
+        "sentence": "You never really learn a subject until you've had to teach it to someone confused."
+    },
+    {
+        "id": 4456,
+        "translate_ch": "嗜好的意義，就在於它除了做它的樂趣之外別無意義。",
+        "sentence": "The point of a hobby is that it has no point beyond the joy of doing it."
+    },
+    {
+        "id": 4457,
+        "translate_ch": "氣候不會談判，它只是保持著一份非常有耐心、非常精確的紀錄。",
+        "sentence": "The climate doesn't negotiate; it simply keeps a very patient, very exact record."
+    },
+    {
+        "id": 4458,
+        "translate_ch": "分享出去的快樂不會減少，反而奇怪地像是加倍了。",
+        "sentence": "Happiness shared doesn't divide; it strangely seems to multiply."
+    },
+    {
+        "id": 4459,
+        "translate_ch": "直接追逐快樂，是最保證看著它繞過轉角溜走的方式。",
+        "sentence": "Chasing happiness directly is the surest way to watch it slip around a corner."
+    },
+    {
+        "id": 4460,
+        "translate_ch": "比較是個小偷，偷走你一瞬間之前還握著的喜悅。",
+        "sentence": "Comparison is the thief that steals a joy you were holding just a moment ago."
+    },
+    {
+        "id": 4461,
+        "translate_ch": "那些沒人謝你的家事，通常正是撐起一切的那些。",
+        "sentence": "The chores no one thanks you for are usually the ones holding everything together."
+    },
+    {
+        "id": 4462,
+        "translate_ch": "感到不堪負荷，往往只是對此刻真正重要的事不夠清楚。",
+        "sentence": "Being overwhelmed is often just being unclear about what actually matters right now."
+    },
+    {
+        "id": 4463,
+        "translate_ch": "你不必更用功地讀書，而是要更誠實地讀書。",
+        "sentence": "You don't have to study harder so much as you have to study more honestly."
+    },
+    {
+        "id": 4464,
+        "translate_ch": "好的設計是隱形的，你只會注意到糟糕的那種，而且會不斷注意到。",
+        "sentence": "Good design is invisible; you only notice the bad kind, and then constantly."
+    },
+    {
+        "id": 4465,
+        "translate_ch": "使用者從不看說明書；好的設計會確保他們永遠不需要看。",
+        "sentence": "The user never reads the manual; a good design makes sure they never need to."
+    },
+    {
+        "id": 4466,
+        "translate_ch": "我們把地球當成倉庫，卻忘了它是我們唯一的家。",
+        "sentence": "We treat the planet like a warehouse, forgetting it's the only home we get."
+    },
+    {
+        "id": 4467,
+        "translate_ch": "微小的環保習慣單獨看來毫無意義，但它們本就不是要單獨行動的。",
+        "sentence": "Small green habits feel pointless alone, but they were never meant to act alone."
+    },
+    {
+        "id": 4468,
+        "translate_ch": "等著感覺有動力，是大多數好點子悄悄夭折的方式。",
+        "sentence": "Waiting to feel motivated is how most good ideas quietly die."
+    },
+    {
+        "id": 4469,
+        "translate_ch": "紀律，只是興奮退去後仍信守承諾的動力。",
+        "sentence": "Discipline is just motivation that kept its promise after the excitement wore off."
+    },
+    {
+        "id": 4470,
+        "translate_ch": "整理你的空間，有種奇特的辦法能一併整理你腦中的某樣東西。",
+        "sentence": "Tidying your space has a strange way of tidying something in your head too."
+    },
+    {
+        "id": 4471,
+        "translate_ch": "在家工作，你省下了通勤，卻悄悄失去了那條為一天畫下句點的界線。",
+        "sentence": "Working from home, you save the commute but quietly lose the line that ended the day."
+    },
+    {
+        "id": 4472,
+        "translate_ch": "最好的讀書習慣，是無聊到你真的會持續下去的那一個。",
+        "sentence": "The best study habit is the one boring enough that you'll actually keep it."
+    },
+    {
+        "id": 4473,
+        "translate_ch": "少買、選好，讓你擁有的每樣東西都真正配得上它的位置。",
+        "sentence": "Buy less, choose well, and let each thing you own actually earn its place."
+    },
+    {
+        "id": 4474,
+        "translate_ch": "最舒服的衣服，是那種你穿了一整天卻忘了自己穿著的。",
+        "sentence": "The most comfortable clothes are the ones you forget you're wearing all day."
+    },
+    {
+        "id": 4475,
+        "translate_ch": "在真正的緊急關頭，人們大多挺身而出，少數沒有的只是被記得更響亮。",
+        "sentence": "In a real emergency, people mostly rise, and the few who don't are simply remembered louder."
+    },
+    {
+        "id": 4476,
+        "translate_ch": "我們用意圖評判自己，卻用行為評判所有其他人。",
+        "sentence": "We judge ourselves by our intentions but everyone else by their actions."
+    },
+    {
+        "id": 4477,
+        "translate_ch": "頭腦幾乎會相信任何你重複得夠頻繁、夠平靜的東西。",
+        "sentence": "The mind believes almost anything you repeat to it often and calmly enough."
+    },
+    {
+        "id": 4478,
+        "translate_ch": "最好的飲食，就是那種你能想像自己一年後還在遵循的健康飲食。",
+        "sentence": "The best diet is simply the healthy one you can imagine still following in a year."
+    },
+    {
+        "id": 4479,
+        "translate_ch": "用感應付款讓花錢變得毫無痛感，而這恰恰就是問題所在。",
+        "sentence": "Paying with a tap makes spending painless, which is exactly the problem."
+    },
+    {
+        "id": 4480,
+        "translate_ch": "自動化讓儲蓄變得毫不費力，卻無法替你決定要開始。",
+        "sentence": "Automation makes saving effortless, but it can't make you decide to start."
     }
 ]
