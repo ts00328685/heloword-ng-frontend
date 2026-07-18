@@ -20748,5 +20748,155 @@
         "id": 4150,
         "translate_ch": "一則不經意的貼文，能跟著你好幾年，早在你忘了它之後。",
         "sentence": "A single careless post can follow you for years, long after you've forgotten it."
+    },
+    {
+        "id": 4151,
+        "translate_ch": "深度專注是一種肌肉；你每抵抗一次分心，它就變強一點。",
+        "sentence": "Deep focus is a muscle; every distraction you resist makes it a little stronger."
+    },
+    {
+        "id": 4152,
+        "translate_ch": "他以九十分鐘為一段集中工作，然後在靈感枯竭前起身離開。",
+        "sentence": "He works in ninety-minute bursts, then walks away before the well runs dry."
+    },
+    {
+        "id": 4153,
+        "translate_ch": "好的禮儀無關規則，而是關於讓別人感到自在。",
+        "sentence": "Good manners aren't about rules; they're about making others feel at ease."
+    },
+    {
+        "id": 4154,
+        "translate_ch": "一群想法相同的人組成的團隊，會很快達成共識，卻幾乎錯過一切。",
+        "sentence": "A team of people who think alike will agree quickly and miss almost everything."
+    },
+    {
+        "id": 4155,
+        "translate_ch": "多元不只是誰在場，而是誰的想法真正被聽見。",
+        "sentence": "Diversity isn't just who's in the room, but whose ideas actually get heard."
+    },
+    {
+        "id": 4156,
+        "translate_ch": "不做決定本身就是一個決定，而且通常是代價最高的那個。",
+        "sentence": "Not deciding is itself a decision, usually the most expensive one."
+    },
+    {
+        "id": 4157,
+        "translate_ch": "知識能從書本借來，但經驗你得自己付出代價。",
+        "sentence": "You can borrow knowledge from a book, but experience you have to pay for yourself."
+    },
+    {
+        "id": 4158,
+        "translate_ch": "這場考試測驗記憶的成分，遠多於測驗理解。",
+        "sentence": "The exam tested memory far more than it ever tested understanding."
+    },
+    {
+        "id": 4159,
+        "translate_ch": "她讀了一整晚，卻仍覺得那些題目像是出自完全不同的科目。",
+        "sentence": "She studied all night and still felt the questions came from another subject entirely."
+    },
+    {
+        "id": 4160,
+        "translate_ch": "好的決定很少讓人舒服，通常感覺像失去了什麼。",
+        "sentence": "Good decisions rarely feel comfortable; they usually feel like losing something."
+    },
+    {
+        "id": 4161,
+        "translate_ch": "用心做的最簡單的餐點，往往勝過最精緻的。",
+        "sentence": "The simplest meals, made with care, often outshine the most elaborate ones."
+    },
+    {
+        "id": 4162,
+        "translate_ch": "未來不是一次到來的，而是在上千個平凡的星期二裡到來。",
+        "sentence": "The future arrives not all at once, but in a thousand ordinary Tuesdays."
+    },
+    {
+        "id": 4163,
+        "translate_ch": "真正的成長令人不適，這正是為何很少有人主動追求它。",
+        "sentence": "Real growth is uncomfortable, which is exactly why so few people seek it out."
+    },
+    {
+        "id": 4164,
+        "translate_ch": "一項技能，在你勉強能做到的邊緣，發展得最快。",
+        "sentence": "A skill develops fastest at the edge of what you can barely do."
+    },
+    {
+        "id": 4165,
+        "translate_ch": "那封信太過正式，它的溫暖在客套之中不知丟到哪裡去了。",
+        "sentence": "The letter was so formal that its warmth got lost somewhere in the politeness."
+    },
+    {
+        "id": 4166,
+        "translate_ch": "評判一個政府，看的不是它的承諾，而是它從不填補的坑洞。",
+        "sentence": "A government is judged less by its promises than by the potholes it never fills."
+    },
+    {
+        "id": 4167,
+        "translate_ch": "困難的不是開始，而是在你已經失敗一次之後，重新開始。",
+        "sentence": "The difficulty isn't starting; it's starting again after you've already failed once."
+    },
+    {
+        "id": 4168,
+        "translate_ch": "今天感覺難如登天的事，一年後往往看起來近乎容易。",
+        "sentence": "What feels impossibly hard today often looks almost easy a year from now."
+    },
+    {
+        "id": 4169,
+        "translate_ch": "我們用健康去追求財富，然後又用財富去把健康追回來。",
+        "sentence": "We spend our health chasing wealth, then spend our wealth chasing health back."
+    },
+    {
+        "id": 4170,
+        "translate_ch": "有根據的猜測，只不過是穿著更自信外衣的假設罷了。",
+        "sentence": "An educated guess is just a hypothesis wearing more confident clothes."
+    },
+    {
+        "id": 4171,
+        "translate_ch": "她在黎明時記下那個夢，到了早餐時它已經褪去了。",
+        "sentence": "She wrote down the dream at dawn, and by breakfast it had already faded."
+    },
+    {
+        "id": 4172,
+        "translate_ch": "好的醫療照護是治療人，而不僅僅是病歷上的數字。",
+        "sentence": "Good healthcare treats the person, not merely the numbers on the chart."
+    },
+    {
+        "id": 4173,
+        "translate_ch": "預防比治療安靜，也正因如此，它總是資金不足。",
+        "sentence": "Prevention is quieter than cure, and for that reason it's always underfunded."
+    },
+    {
+        "id": 4174,
+        "translate_ch": "讓我們成為人的，與其說是智力，不如說是我們行善的能力。",
+        "sentence": "What makes us human is less our intelligence than our capacity for kindness."
+    },
+    {
+        "id": 4175,
+        "translate_ch": "懷抱遠大的夢想不花分毫，但真正去追逐它卻要付出一切。",
+        "sentence": "Big dreams cost nothing to hold, but everything to actually pursue."
+    },
+    {
+        "id": 4176,
+        "translate_ch": "在醫院的候診室裡，陌生人共享著一種比任何言語都深的沉默。",
+        "sentence": "In the hospital waiting room, strangers share a silence deeper than any words."
+    },
+    {
+        "id": 4177,
+        "translate_ch": "那位夜班護士記得每位病人的名字，儘管很少人記得她的。",
+        "sentence": "The night nurse remembered every patient's name, though few remembered hers."
+    },
+    {
+        "id": 4178,
+        "translate_ch": "當事實稀少時，果斷的人只是更早地依據更少的資訊行動。",
+        "sentence": "When facts are scarce, decisive people simply act sooner on less."
+    },
+    {
+        "id": 4179,
+        "translate_ch": "二十年的經驗，可能只是把一年重複了二十遍。",
+        "sentence": "Twenty years of experience can be one year repeated twenty times."
+    },
+    {
+        "id": 4180,
+        "translate_ch": "我們高估一年能做的事，卻忘了十年能容納多少。",
+        "sentence": "We overestimate what we can do in a year and forget what a decade can hold."
     }
 ]
