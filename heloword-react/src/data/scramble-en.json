@@ -23898,5 +23898,155 @@
         "id": 4780,
         "translate_ch": "你無法一邊朝著光成長，一邊緊抓著自己曾是那顆種子的形狀。",
         "sentence": "You can't grow toward the light while clinging to the shape of the seed you used to be."
+    },
+    {
+        "id": 4781,
+        "translate_ch": "搬家會清楚地教你，你擁有多少從來一次也不需要的東西。",
+        "sentence": "Moving house teaches you exactly how much you own that you never once needed."
+    },
+    {
+        "id": 4782,
+        "translate_ch": "你打包的每一個箱子，都是一場關於什麼才真正值得跟你走的小小對話。",
+        "sentence": "Every box you pack is a small conversation about what actually deserves to come with you."
+    },
+    {
+        "id": 4783,
+        "translate_ch": "最大的風險，往往是你沒去冒的那個，悄悄偽裝成明智的樣子。",
+        "sentence": "The biggest risk is often the one you don't take, quietly disguised as being sensible."
+    },
+    {
+        "id": 4784,
+        "translate_ch": "並非所有避開懸崖的人都是明智的；有些人只是從未靠近過那風景。",
+        "sentence": "Not all who avoid the cliff are wise; some simply never came near the view."
+    },
+    {
+        "id": 4785,
+        "translate_ch": "你不會升到目標的高度，而是會落到習慣的高度。",
+        "sentence": "You don't rise to the level of your goals; you fall to the level of your habits."
+    },
+    {
+        "id": 4786,
+        "translate_ch": "習慣是一個你只需做一次的決定，之後便悄悄地不必再做。",
+        "sentence": "A habit is a decision you only have to make once, and then quietly never again."
+    },
+    {
+        "id": 4787,
+        "translate_ch": "大自然從不匆忙，然而它想做的一切，不知怎地都完成了。",
+        "sentence": "Nature doesn't hurry, and yet somehow everything it sets out to do gets done."
+    },
+    {
+        "id": 4788,
+        "translate_ch": "我們稱之為「環境」，彷彿它在別處，而不是我們肺裡的空氣。",
+        "sentence": "We call it 'the environment' as if it were somewhere else, and not the air in our lungs."
+    },
+    {
+        "id": 4789,
+        "translate_ch": "規則之所以存在，是為了承載那些在你需要時不會在場的人的智慧。",
+        "sentence": "Rules exist to carry the wisdom of people who won't be in the room when you need it."
+    },
+    {
+        "id": 4790,
+        "translate_ch": "每天進步百分之一聽起來微不足道，直到你把它乘上一整年。",
+        "sentence": "Getting one percent better every day sounds small until you multiply it across a year."
+    },
+    {
+        "id": 4791,
+        "translate_ch": "目標不是週五之前變完美，而是比週一時錯得少一點。",
+        "sentence": "The goal isn't to be perfect by Friday; it's to be a little less wrong than you were on Monday."
+    },
+    {
+        "id": 4792,
+        "translate_ch": "午夜時感覺龐大的問題，到了早晨往往縮回它們真正的大小。",
+        "sentence": "Problems that feel enormous at midnight often shrink to their real size by morning."
+    },
+    {
+        "id": 4793,
+        "translate_ch": "夜晚不會對你說謊；它只是移除了讓你得以迴避真相的白日喧囂。",
+        "sentence": "The night doesn't lie to you; it just removes the daytime noise that let you avoid the truth."
+    },
+    {
+        "id": 4794,
+        "translate_ch": "衡量一生的，不是你聚集了什麼，而是你離開後留下什麼還在運轉。",
+        "sentence": "The measure of a life isn't what you gathered, but what you left running after you left."
+    },
+    {
+        "id": 4795,
+        "translate_ch": "靈感是給業餘者的；我們其餘的人只是現身然後開始工作。",
+        "sentence": "Inspiration is for amateurs; the rest of us just show up and get to work."
+    },
+    {
+        "id": 4796,
+        "translate_ch": "等待靈感降臨，就是好點子在抽屜裡悄悄老死的方式。",
+        "sentence": "Waiting to feel inspired is how good ideas quietly die of old age in a drawer."
+    },
+    {
+        "id": 4797,
+        "translate_ch": "我們留最久的物品，很少是值錢的那些，而是那些替我們記住往事的。",
+        "sentence": "The objects we keep longest are rarely the valuable ones; they're the ones that remember for us."
+    },
+    {
+        "id": 4798,
+        "translate_ch": "一個社會如何對待那些永遠無法回報它的人，揭示了它真正的價值觀。",
+        "sentence": "A society reveals its true values in how it treats those who can never repay it."
+    },
+    {
+        "id": 4799,
+        "translate_ch": "善良是一種聾者能聽見、盲者能看見的語言。",
+        "sentence": "Kindness is a language the deaf can hear and the blind can see."
+    },
+    {
+        "id": 4800,
+        "translate_ch": "沒有一件善舉，無論多小，是真正白費的——它只是走得比你看得見的更遠。",
+        "sentence": "No act of kindness, however small, is ever truly wasted—it just travels farther than you can see."
+    },
+    {
+        "id": 4801,
+        "translate_ch": "在戶外度過的一天，能重置我們身上某種再多睡眠也觸及不到的東西。",
+        "sentence": "A day spent outdoors resets something in us that no amount of sleep quite reaches."
+    },
+    {
+        "id": 4802,
+        "translate_ch": "最難以衡量的工作，往往正是默默把社會維繫在一起的那些。",
+        "sentence": "The hardest jobs to measure are often the ones holding society quietly together."
+    },
+    {
+        "id": 4803,
+        "translate_ch": "領導力不在於做房間裡最聰明的人，而在於讓整個房間變得更聰明。",
+        "sentence": "Leadership is not about being the smartest in the room; it's about making the room smarter."
+    },
+    {
+        "id": 4804,
+        "translate_ch": "最好的領導者承擔比自己該負的多一點的責備，領取比該得的少一點的功勞。",
+        "sentence": "The best leaders take a little more than their share of the blame and a little less of the credit."
+    },
+    {
+        "id": 4805,
+        "translate_ch": "教養是一門漫長的藝術，是慢慢地對一個你願為之赴死的人變得不再必要。",
+        "sentence": "Parenting is the long art of slowly becoming unnecessary to someone you'd die for."
+    },
+    {
+        "id": 4806,
+        "translate_ch": "當老人種下他們明知自己永遠坐不到樹蔭的樹時，社會才會變得偉大。",
+        "sentence": "A society grows great when old people plant trees whose shade they know they'll never sit in."
+    },
+    {
+        "id": 4807,
+        "translate_ch": "人生目標的重點不在於頂峰，而在於攀登要求你成為的那個人。",
+        "sentence": "The point of a life goal isn't the summit; it's the person the climb requires you to become."
+    },
+    {
+        "id": 4808,
+        "translate_ch": "人們會忘記你說過什麼，但永遠不會忘記你帶給他們的感受。",
+        "sentence": "People will forget what you said, but they will never forget how you made them feel."
+    },
+    {
+        "id": 4809,
+        "translate_ch": "你悄悄且不可避免地，是你花最多時間相處的五個人的平均值。",
+        "sentence": "You are, quietly and unavoidably, the average of the five people you spend the most time with."
+    },
+    {
+        "id": 4810,
+        "translate_ch": "國家在最少被感覺到、最多被信任時，是它最好的狀態。",
+        "sentence": "The state is at its best when it is felt least and trusted most."
     }
 ]
