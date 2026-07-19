@@ -23748,5 +23748,155 @@
         "id": 4750,
         "translate_ch": "房子是用錢買的，但家，是由你在其中度過的那些平凡夜晚建成的。",
         "sentence": "A house is bought with money, but a home is built out of the ordinary evenings you spend in it."
+    },
+    {
+        "id": 4751,
+        "translate_ch": "你對那些看你怎麼做的人的影響力，遠大於對那些聽你怎麼說的人。",
+        "sentence": "You have far more influence over the people who watch what you do than over the ones who hear what you say."
+    },
+    {
+        "id": 4752,
+        "translate_ch": "會議中最安靜的人，往往是那個大家私下都在等他發表意見的人。",
+        "sentence": "The quietest person in the meeting is often the one whose opinion everyone secretly waits for."
+    },
+    {
+        "id": 4753,
+        "translate_ch": "同理心不是同意某人，而是願意站在他們的位置，從那裡向外看。",
+        "sentence": "Empathy isn't agreeing with someone; it's being willing to stand where they stand and look out from there."
+    },
+    {
+        "id": 4754,
+        "translate_ch": "想像那個粗魯的陌生人只是過得比你糟得多，這不花你一分錢。",
+        "sentence": "It costs nothing to imagine that the rude stranger is simply having a far worse day than you."
+    },
+    {
+        "id": 4755,
+        "translate_ch": "大多數關係不是在一場爆炸中結束，而是在沒說出口的事一點點累積中結束。",
+        "sentence": "Most relationships don't end in an explosion; they end in a slow accumulation of things left unsaid."
+    },
+    {
+        "id": 4756,
+        "translate_ch": "最難去愛的人，通常正是那些以最令人困惑的方式尋求愛的人。",
+        "sentence": "The people who are hardest to love are usually the ones asking for it in the most confusing way."
+    },
+    {
+        "id": 4757,
+        "translate_ch": "網路給了每個人一支麥克風，卻悄悄忘了發放使用它的智慧。",
+        "sentence": "The internet gave everyone a microphone and quietly forgot to hand out the wisdom to use it."
+    },
+    {
+        "id": 4758,
+        "translate_ch": "恰當時機的一句鼓勵，能帶一個人走得比一年的建議還遠。",
+        "sentence": "A word of encouragement at the right moment can carry someone further than a year of advice."
+    },
+    {
+        "id": 4759,
+        "translate_ch": "有時候，你能對一個人說的最勇敢的話，就只是「我相信你做得到」。",
+        "sentence": "Sometimes the bravest thing you can say to someone is simply, 'I believe you can.'"
+    },
+    {
+        "id": 4760,
+        "translate_ch": "一個小小的事件，若處理不當，就能毀掉花了數年默默建立的名聲。",
+        "sentence": "One small incident, handled badly, can undo a reputation that took years to build quietly."
+    },
+    {
+        "id": 4761,
+        "translate_ch": "好的政策是為那九十九人而寫的，而不是為了一個人而懲罰所有人。",
+        "sentence": "A good policy is written for the ninety-nine, not designed to punish everyone for the one."
+    },
+    {
+        "id": 4762,
+        "translate_ch": "管理你的精力，而不只是時間；行事曆再滿，油箱空了也到不了任何地方。",
+        "sentence": "Manage your energy, not just your time; a full calendar with an empty tank arrives nowhere."
+    },
+    {
+        "id": 4763,
+        "translate_ch": "守護你的早晨；那是精力最充沛的那個你真正現身的時候。",
+        "sentence": "Protect your mornings; that's when the version of you with the most energy actually shows up."
+    },
+    {
+        "id": 4764,
+        "translate_ch": "邀請是一個小小的勇氣之舉；你是在給某人一個說不的機會。",
+        "sentence": "An invitation is a small act of courage; you're offering someone the chance to say no."
+    },
+    {
+        "id": 4765,
+        "translate_ch": "品質在價格被遺忘很久之後仍被記得，這正是為什麼便宜往往是最昂貴的選擇。",
+        "sentence": "Quality is remembered long after the price is forgotten, which is why cheap is often the most expensive choice."
+    },
+    {
+        "id": 4766,
+        "translate_ch": "把事做對比把事做快花更多時間，但只有做對才能讓你不必再重做一遍。",
+        "sentence": "Doing it right takes longer than doing it fast, but only doing it right lets you stop doing it again."
+    },
+    {
+        "id": 4767,
+        "translate_ch": "感覺是糟糕的主人，卻是絕佳的顧問；訣竅在於知道該給它們哪張椅子。",
+        "sentence": "Feelings make terrible masters but excellent advisers; the trick is knowing which chair to give them."
+    },
+    {
+        "id": 4768,
+        "translate_ch": "生活，就發生在你不斷刷新頁面、等它終於開始的時候。",
+        "sentence": "Life is what happens while you're refreshing the page, waiting for it to finally begin."
+    },
+    {
+        "id": 4769,
+        "translate_ch": "生活不會變得更容易；只是你越來越擅長扛起那些曾經看似不可能的東西。",
+        "sentence": "Life doesn't get easier; you just get better at carrying what once seemed impossible."
+    },
+    {
+        "id": 4770,
+        "translate_ch": "每一場改革在事後看來都顯而易見，而在它發生的前一刻之前都看似不可能。",
+        "sentence": "Every reform looks obvious in hindsight and impossible right up until the moment it happens."
+    },
+    {
+        "id": 4771,
+        "translate_ch": "健身不是一個夏季計畫，而是你為了繼續住在自己身體裡而付的、安靜的租金。",
+        "sentence": "Fitness isn't a summer project; it's the quiet rent you pay to keep living in your own body."
+    },
+    {
+        "id": 4772,
+        "translate_ch": "對的想法在錯的地方會枯萎；時機和地點是每一次成功的一半。",
+        "sentence": "The right idea in the wrong place withers; timing and location are half of every success."
+    },
+    {
+        "id": 4773,
+        "translate_ch": "離開多年後返鄉，你發現地方沒變，而自己已認不出來。",
+        "sentence": "Returning home after years away, you find the place unchanged and yourself unrecognizable."
+    },
+    {
+        "id": 4774,
+        "translate_ch": "一個沒有下一步具體行動的目標，只是一個你決定為之內疚的願望。",
+        "sentence": "A goal without a next physical action is just a wish you've decided to feel guilty about."
+    },
+    {
+        "id": 4775,
+        "translate_ch": "什麼都不瞄準，你每一次都會以驚人的準確度命中它。",
+        "sentence": "Aim at nothing and you'll hit it with remarkable accuracy every single time."
+    },
+    {
+        "id": 4776,
+        "translate_ch": "禮貌，是我們用上千種微小的方式表明，他人存在且重要。",
+        "sentence": "Manners are how we show, in a thousand tiny ways, that other people exist and matter."
+    },
+    {
+        "id": 4777,
+        "translate_ch": "好的研究不會證實你所期望的，而是告訴你實際存在什麼，無論你是否希望。",
+        "sentence": "Good research doesn't confirm what you hoped; it tells you what's actually there, hope or not."
+    },
+    {
+        "id": 4778,
+        "translate_ch": "科學中最誠實的一句話，往往是那句安靜的：「我們還不知道。」",
+        "sentence": "The most honest sentence in science is often the quiet one: 'we don't know yet.'"
+    },
+    {
+        "id": 4779,
+        "translate_ch": "成長天生就令人不適；如果它讓人感到安全，你早就做了。",
+        "sentence": "Growth is uncomfortable by design; if it felt safe, you'd have done it a long time ago."
+    },
+    {
+        "id": 4780,
+        "translate_ch": "你無法一邊朝著光成長，一邊緊抓著自己曾是那顆種子的形狀。",
+        "sentence": "You can't grow toward the light while clinging to the shape of the seed you used to be."
     }
 ]
