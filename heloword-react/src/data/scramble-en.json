@@ -22548,5 +22548,155 @@
         "id": 4510,
         "translate_ch": "你要等到在一座城市裡愉快而徹底地迷路，才算真正看見了它。",
         "sentence": "You don't really see a city until you get pleasantly, hopelessly lost in it."
+    },
+    {
+        "id": 4511,
+        "translate_ch": "在大城市裡，你從不孤單，卻也從未真正與任何人相守。",
+        "sentence": "In a big city you're never alone and never quite together with anyone either."
+    },
+    {
+        "id": 4512,
+        "translate_ch": "城市獎勵快的人，卻悄悄磨損那些需要停下來的人。",
+        "sentence": "The city rewards the fast and quietly grinds down the ones who need to pause."
+    },
+    {
+        "id": 4513,
+        "translate_ch": "性格大多是那些你累得無暇質疑的習慣的總和。",
+        "sentence": "Personality is mostly the sum of the habits you were too tired to question."
+    },
+    {
+        "id": 4514,
+        "translate_ch": "房裡最大聲的人，通常對自己所說的最沒把握。",
+        "sentence": "The loudest person in the room is usually the least sure of what they're saying."
+    },
+    {
+        "id": 4515,
+        "translate_ch": "真正的款待，是客人不必開口就自己去添第二碗。",
+        "sentence": "Real welcome is when a guest reaches for a second helping without asking."
+    },
+    {
+        "id": 4516,
+        "translate_ch": "付款越容易，就越難感受到自己花了什麼。",
+        "sentence": "The easier it is to pay, the harder it becomes to feel what you're spending."
+    },
+    {
+        "id": 4517,
+        "translate_ch": "不執著地持有一個看法並非軟弱，而是你保持能學習的方式。",
+        "sentence": "Holding an opinion loosely is not weakness; it's how you stay able to learn."
+    },
+    {
+        "id": 4518,
+        "translate_ch": "當你能把對立面也論述得好時，你自己的觀點才終於掙得了它的分量。",
+        "sentence": "The moment you can argue the other side well, your own view finally earns its weight."
+    },
+    {
+        "id": 4519,
+        "translate_ch": "旅行不會給你的生命增加日子，卻會給你的日子增添生命。",
+        "sentence": "Travel doesn't add days to your life, but it does add life to your days."
+    },
+    {
+        "id": 4520,
+        "translate_ch": "你保存最久的紀念品，從來不是你真正買的那個。",
+        "sentence": "The souvenir you keep longest is never the one you actually bought."
+    },
+    {
+        "id": 4521,
+        "translate_ch": "那些出錯的旅程，正是你未來幾十年會笑著談起的。",
+        "sentence": "The trips that go wrong are the ones you'll be laughing about for decades."
+    },
+    {
+        "id": 4522,
+        "translate_ch": "一座圍繞汽車規劃的城市，會慢慢忘記它本該是為人而建的。",
+        "sentence": "A city planned around cars slowly forgets it was supposed to be for people."
+    },
+    {
+        "id": 4523,
+        "translate_ch": "一個你能衡量的目標，才是你真正能追上的目標。",
+        "sentence": "A goal you can measure is a goal you can actually chase down."
+    },
+    {
+        "id": 4524,
+        "translate_ch": "洗手是你將悄悄擁有的、最無聊的超能力。",
+        "sentence": "Washing your hands is the most boring superpower you'll ever quietly possess."
+    },
+    {
+        "id": 4525,
+        "translate_ch": "特賣不是省錢，而是帶著笑容更快地花錢。",
+        "sentence": "A sale isn't saving money; it's spending money faster with a smile on your face."
+    },
+    {
+        "id": 4526,
+        "translate_ch": "有主見卻不執著，是比單獨任一半都罕見得多的能力。",
+        "sentence": "Strong opinions, loosely held, is a much rarer skill than either half alone."
+    },
+    {
+        "id": 4527,
+        "translate_ch": "壯麗的景色使你謙卑，奇妙地讓你的煩惱變得更能承受。",
+        "sentence": "A great view humbles you and, strangely, makes your problems feel more bearable."
+    },
+    {
+        "id": 4528,
+        "translate_ch": "你能拍下一座山，卻拍不下它對你所做的一切。",
+        "sentence": "You can photograph a mountain, but you can't photograph what it does to you."
+    },
+    {
+        "id": 4529,
+        "translate_ch": "我們比任何世代都更相連，卻也比其中大多數更孤獨。",
+        "sentence": "We're more connected than any generation and lonelier than most of them too."
+    },
+    {
+        "id": 4530,
+        "translate_ch": "便利悄悄地把你的注意力當作代價，而我們通常都付了。",
+        "sentence": "Convenience quietly asks for your attention as the price, and we usually pay."
+    },
+    {
+        "id": 4531,
+        "translate_ch": "最私人的決定，正是那些你只能在最少建議下做出的。",
+        "sentence": "The most personal decisions are the ones you have to make with the least advice."
+    },
+    {
+        "id": 4532,
+        "translate_ch": "睡眠是唯一你無法欺瞞的東西，那筆債總會回來討。",
+        "sentence": "Sleep is the one thing you can't cheat; the debt always comes back to collect."
+    },
+    {
+        "id": 4533,
+        "translate_ch": "一夜好眠，能解決你清醒的頭腦不斷弄糟的問題。",
+        "sentence": "A good night's sleep solves problems your waking mind kept making worse."
+    },
+    {
+        "id": 4534,
+        "translate_ch": "我們買不需要的東西，去打動不在乎的人。",
+        "sentence": "We buy things we don't need to impress people who don't care."
+    },
+    {
+        "id": 4535,
+        "translate_ch": "一場演說會因一句話而被記住，所以把你的心力花在找出那一句上。",
+        "sentence": "A speech is remembered for one sentence, so spend your effort finding that one."
+    },
+    {
+        "id": 4536,
+        "translate_ch": "我們為一場夕陽拍上千張照片，卻忘了真正去看它。",
+        "sentence": "We take a thousand photos of a sunset and forget to actually watch it."
+    },
+    {
+        "id": 4537,
+        "translate_ch": "一個人最好的照片，捕捉的是他擺好姿勢前的半秒。",
+        "sentence": "The best photo of a person catches them a half-second before they pose."
+    },
+    {
+        "id": 4538,
+        "translate_ch": "如今世界縫合得如此緊密，一座城市的咳嗽會讓另一座打寒顫。",
+        "sentence": "The world is stitched so tightly now that a cough in one city chills another."
+    },
+    {
+        "id": 4539,
+        "translate_ch": "你決定的不是你的未來，你決定的是你的習慣，而你的習慣決定它。",
+        "sentence": "You do not decide your future; you decide your habits, and your habits decide it."
+    },
+    {
+        "id": 4540,
+        "translate_ch": "你最引以為傲的習慣，通常除了你自己，沒人看得見。",
+        "sentence": "The habit you're proudest of is usually invisible to everyone but you."
     }
 ]
