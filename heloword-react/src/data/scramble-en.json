@@ -23448,5 +23448,1205 @@
         "id": 4690,
         "translate_ch": "遠距工作把你的時間還給你，卻悄悄要求你自己去守護它。",
         "sentence": "Remote work gives you your hours back but quietly asks you to guard them yourself."
+    },
+    {
+        "id": 4691,
+        "translate_ch": "社群媒體給你看每個人的精彩片段，卻悄悄要你拿它和自己的NG畫面相比。",
+        "sentence": "Social media shows you everyone's highlight reel and quietly asks you to compare it to your bloopers."
+    },
+    {
+        "id": 4692,
+        "translate_ch": "把app刪掉一週，會教你它悄悄製造了你多少的焦躁。",
+        "sentence": "Deleting the app for a week teaches you how much of your restlessness it was quietly manufacturing."
+    },
+    {
+        "id": 4693,
+        "translate_ch": "一個理論的好壞，取決於它能扛住的最難看的那個事實。",
+        "sentence": "A theory is only as good as the ugliest fact it can survive."
+    },
+    {
+        "id": 4694,
+        "translate_ch": "理論上，理論和實踐沒有差別；實踐上，總是有的。",
+        "sentence": "In theory there's no difference between theory and practice; in practice there always is."
+    },
+    {
+        "id": 4695,
+        "translate_ch": "人們很少因為你說了什麼而改變行為，而是因為你始終如一地做了什麼。",
+        "sentence": "People rarely change their behavior because of what you say; they change it because of what you consistently do."
+    },
+    {
+        "id": 4696,
+        "translate_ch": "我們以自己的意圖評判自己，卻以他人的行為評判他人。",
+        "sentence": "We judge ourselves by our intentions and everyone else by their behavior."
+    },
+    {
+        "id": 4697,
+        "translate_ch": "合作不是每個人都同意，而是即使各有想法，大家仍一起划槳。",
+        "sentence": "Cooperation isn't everyone agreeing; it's everyone rowing even when they'd have picked a different direction."
+    },
+    {
+        "id": 4698,
+        "translate_ch": "好的服務是隱形的；你只在它消失的那一刻才察覺到。",
+        "sentence": "Good service is invisible; you only notice it the moment it disappears."
+    },
+    {
+        "id": 4699,
+        "translate_ch": "顧客很少記得價格；他們記得的是你把問題變成了他們的，還是你的。",
+        "sentence": "The customer rarely remembers the price; they remember how you made the problem theirs or yours."
+    },
+    {
+        "id": 4700,
+        "translate_ch": "風格，是知道自己是誰，有膽做自己，並且不為其餘的事道歉。",
+        "sentence": "Style is knowing who you are, having the nerve to be it, and not apologizing for the rest."
+    },
+    {
+        "id": 4701,
+        "translate_ch": "危險不在於AI像我們一樣思考，而在於我們開始像它一樣思考。",
+        "sentence": "The danger isn't that AI thinks like us; it's that we start thinking like it."
+    },
+    {
+        "id": 4702,
+        "translate_ch": "AI能在幾秒內草擬答案，但知道該問哪個問題，仍需要一個人。",
+        "sentence": "AI can draft the answer in seconds, but knowing which question to ask still takes a human."
+    },
+    {
+        "id": 4703,
+        "translate_ch": "在AI時代，最有用的技能，或許只是知道自己真正想要什麼。",
+        "sentence": "The most useful skill in the age of AI may simply be knowing what you actually want."
+    },
+    {
+        "id": 4704,
+        "translate_ch": "努力最好的好處，很少出現在發薪日，而是出現在你成為了什麼樣的人。",
+        "sentence": "The best benefits of hard work rarely show up on payday; they show up in who you've become."
+    },
+    {
+        "id": 4705,
+        "translate_ch": "好的描述不會列出每個細節，而是遞給你那個能讓其餘一切浮現的細節。",
+        "sentence": "A good description doesn't list every detail; it hands you the one that makes the rest appear."
+    },
+    {
+        "id": 4706,
+        "translate_ch": "工作會膨脹到填滿你給它的時間，所以給它比它要求的再少一點。",
+        "sentence": "Work expands to fill the time you give it, so give it a little less than it asks for."
+    },
+    {
+        "id": 4707,
+        "translate_ch": "忙碌和高效共用一本行事曆，卻幾乎從不共享一個成果。",
+        "sentence": "Being busy and being productive share a calendar but almost never share a result."
+    },
+    {
+        "id": 4708,
+        "translate_ch": "在學術界，最小的一個註腳，可能悄悄推翻最喧囂的一章。",
+        "sentence": "In academia, the smallest footnote can quietly overturn the loudest chapter."
+    },
+    {
+        "id": 4709,
+        "translate_ch": "你選擇的挑戰像是冒險；同樣的挑戰被強加於你，就像是負擔。",
+        "sentence": "A challenge you choose feels like adventure; the same challenge forced on you feels like a burden."
+    },
+    {
+        "id": 4710,
+        "translate_ch": "那堵牆不是為了阻止你，而是為了阻止那些不夠渴望它的人。",
+        "sentence": "The wall isn't there to stop you; it's there to stop the people who don't want it badly enough."
+    },
+    {
+        "id": 4711,
+        "translate_ch": "早點問路吧；自尊心從來沒有一次縮短過走錯的路。",
+        "sentence": "Ask for directions early; pride has never once shortened a wrong road."
+    },
+    {
+        "id": 4712,
+        "translate_ch": "每個選擇都會寄來一張帳單，唯一的問題是它何時送達。",
+        "sentence": "Every choice sends an invoice; the only question is when it arrives."
+    },
+    {
+        "id": 4713,
+        "translate_ch": "品格，是當掌聲停止、沒人在計分時，你身上所剩下的東西。",
+        "sentence": "Character is what's left of you when the applause stops and no one is keeping score."
+    },
+    {
+        "id": 4714,
+        "translate_ch": "自己動手做，會清楚地教你為什麼專業人士要收那個價。",
+        "sentence": "Doing it yourself teaches you exactly why the professional charges what they charge."
+    },
+    {
+        "id": 4715,
+        "translate_ch": "一個國家變老的方式和一個人一樣——先是靜悄悄地，然後突然之間。",
+        "sentence": "A country grows old the way a person does—quietly, then all at once."
+    },
+    {
+        "id": 4716,
+        "translate_ch": "專注力是一塊我們訓練自己在健身房裡跳過的肌肉。",
+        "sentence": "Concentration is a muscle we've trained ourselves to skip at the gym."
+    },
+    {
+        "id": 4717,
+        "translate_ch": "你無法在零碎的時間裡做深度工作；有些東西只在第一個無聊的小時之後才會開啟。",
+        "sentence": "You can't do deep work in shallow time; some things only open up after the first boring hour."
+    },
+    {
+        "id": 4718,
+        "translate_ch": "禮儀，不過是讓你周圍的人感到自在的藝術。",
+        "sentence": "Etiquette is simply the art of making the people around you feel at ease."
+    },
+    {
+        "id": 4719,
+        "translate_ch": "準時，是告訴一個人他的時間和你的一樣重要的、最安靜的方式。",
+        "sentence": "Being on time is the quietest way of telling someone their time matters as much as yours."
+    },
+    {
+        "id": 4720,
+        "translate_ch": "多元把想法帶上桌，包容才是讓它們真正被聽見的東西。",
+        "sentence": "Diversity brings the ideas to the table; inclusion is what lets them actually be heard."
+    },
+    {
+        "id": 4721,
+        "translate_ch": "一個你不斷重新考慮的決定，其實從沒真正下過，只是被自信地推遲了。",
+        "sentence": "A decision you keep revisiting was never really made; it was just postponed with confidence."
+    },
+    {
+        "id": 4722,
+        "translate_ch": "不做決定本身就是一個決定——通常是那個讓別人替你決定的決定。",
+        "sentence": "Not deciding is itself a decision—usually the one that lets someone else decide for you."
+    },
+    {
+        "id": 4723,
+        "translate_ch": "經驗，是我們給那些活得夠久、久到能從中學到東西的錯誤所取的名字。",
+        "sentence": "Experience is the name we give to the mistakes we survived long enough to learn from."
+    },
+    {
+        "id": 4724,
+        "translate_ch": "二十年的經驗，可能只是一年重複了二十次，如果你從不冒任何新的險。",
+        "sentence": "Twenty years of experience can be one year repeated twenty times if you never risk anything new."
+    },
+    {
+        "id": 4725,
+        "translate_ch": "考試衡量的是你在壓力下的表現，遠多於你實際知道的東西。",
+        "sentence": "An exam measures how well you perform under pressure far more than what you actually know."
+    },
+    {
+        "id": 4726,
+        "translate_ch": "考試前的那一夜，教你關於自己習慣的東西，多過關於那門科目的。",
+        "sentence": "The night before an exam teaches you more about your habits than about the subject."
+    },
+    {
+        "id": 4727,
+        "translate_ch": "好的決策，重點不在於正確，而在於願意迅速地承認錯誤。",
+        "sentence": "Good decision-making is less about being right and more about being willing to be wrong quickly."
+    },
+    {
+        "id": 4728,
+        "translate_ch": "滋養你的食物和撫慰你的食物，很少在同一個盤子裡。",
+        "sentence": "The food that nourishes you and the food that comforts you are rarely on the same plate."
+    },
+    {
+        "id": 4729,
+        "translate_ch": "為某人下廚，是說出「我希望你活著並在我身邊」最古老的方式之一。",
+        "sentence": "Cooking for someone is one of the oldest ways of saying 'I want you to stay alive and near me.'"
+    },
+    {
+        "id": 4730,
+        "translate_ch": "我們高估未來會遞給我們的，卻低估今天默默建造的。",
+        "sentence": "We overestimate what the future will hand us and underestimate what today quietly builds."
+    },
+    {
+        "id": 4731,
+        "translate_ch": "未來是一個個平凡的星期二陸續到來的，從不是我們想像中那戲劇性的一整包。",
+        "sentence": "The future arrives one ordinary Tuesday at a time, never in the dramatic bundle we imagined."
+    },
+    {
+        "id": 4732,
+        "translate_ch": "真正的成長，感覺不像直線攀登，更像繞著一座山，緩緩地上升。",
+        "sentence": "Real development feels less like a straight climb and more like circling a mountain, slowly gaining height."
+    },
+    {
+        "id": 4733,
+        "translate_ch": "房間越正式，一句真誠的話就越容易迴響。",
+        "sentence": "The more formal the room, the more a single honest sentence tends to echo."
+    },
+    {
+        "id": 4734,
+        "translate_ch": "評判一個政府，看的不是它做出的承諾，而是它默默守住的那些。",
+        "sentence": "A government is judged less by the promises it makes than by the ones it quietly keeps."
+    },
+    {
+        "id": 4735,
+        "translate_ch": "檢驗一個好政府的標準，不是它如何對待有權勢者，而是它如何對待被遺忘的人。",
+        "sentence": "The test of a good government isn't how it treats the powerful, but how it treats the forgotten."
+    },
+    {
+        "id": 4736,
+        "translate_ch": "困難是通往任何值得抵達之地的收費公路；輕鬆的車道都通往某個平凡的地方。",
+        "sentence": "Difficulty is the toll road to anything worth reaching; the easy lanes all lead somewhere ordinary."
+    },
+    {
+        "id": 4737,
+        "translate_ch": "我們不會記得輕鬆的日子；塑造我們的，幾乎全是那些艱難的日子。",
+        "sentence": "We don't remember the easy days; we're shaped almost entirely by the difficult ones."
+    },
+    {
+        "id": 4738,
+        "translate_ch": "健康是戴在健康者頭上的王冠，只有生病的人才看得清楚。",
+        "sentence": "Health is the crown on the well person's head that only the sick can clearly see."
+    },
+    {
+        "id": 4739,
+        "translate_ch": "有根據的猜測，只是做足了功課的謙遜。",
+        "sentence": "An educated guess is just humility that has done its homework."
+    },
+    {
+        "id": 4740,
+        "translate_ch": "沒有期限的夢想，只是穿了更貴衣服的願望。",
+        "sentence": "A dream without a deadline is just a wish wearing more expensive clothes."
+    },
+    {
+        "id": 4741,
+        "translate_ch": "在醫療中，房間裡最昂貴的機器，仍無法取代一個願意傾聽的人。",
+        "sentence": "In healthcare, the most expensive machine in the room is still no substitute for someone who listens."
+    },
+    {
+        "id": 4742,
+        "translate_ch": "讓我們成為人的，不是我們從不跌倒，而是我們俯身把下一個人扶起來。",
+        "sentence": "What makes us human isn't that we never fall; it's that we reach down to lift the next person up."
+    },
+    {
+        "id": 4743,
+        "translate_ch": "儘管去追逐你的夢想，但也要善待那些資助這場追逐的平凡日子。",
+        "sentence": "Chase your dreams by all means, but be kind to the ordinary days that fund the chase."
+    },
+    {
+        "id": 4744,
+        "translate_ch": "有些夢想你必須放手，不是因為它們死了，而是因為你已經長大超越了它們。",
+        "sentence": "Some dreams you have to let go of, not because they died, but because you outgrew them."
+    },
+    {
+        "id": 4745,
+        "translate_ch": "醫院，是陌生人溫柔地捧著你最糟的一天，然後放你走回平凡日子的地方。",
+        "sentence": "A hospital is where strangers hold your worst day gently and then let you walk back into an ordinary one."
+    },
+    {
+        "id": 4746,
+        "translate_ch": "你很少能看到自己善意的全部影響；而這正是它之所以是禮物的原因。",
+        "sentence": "You rarely get to see the full impact of your kindness; that's precisely what makes it a gift."
+    },
+    {
+        "id": 4747,
+        "translate_ch": "一位好老師的影響無法追溯；它只是靜靜地改變了上百個人生的形狀。",
+        "sentence": "The impact of a good teacher can't be traced; it just quietly changes the shape of a hundred lives."
+    },
+    {
+        "id": 4748,
+        "translate_ch": "努力是結果中唯一完全屬於你的部分；其餘的都是天氣。",
+        "sentence": "Effort is the only part of the outcome you fully own; the rest is weather."
+    },
+    {
+        "id": 4749,
+        "translate_ch": "天賦設定了上限，但努力才是真正決定你能靠近它多少的東西。",
+        "sentence": "Talent sets the ceiling, but effort is what actually decides how close to it you get."
+    },
+    {
+        "id": 4750,
+        "translate_ch": "房子是用錢買的，但家，是由你在其中度過的那些平凡夜晚建成的。",
+        "sentence": "A house is bought with money, but a home is built out of the ordinary evenings you spend in it."
+    },
+    {
+        "id": 4751,
+        "translate_ch": "你對那些看你怎麼做的人的影響力，遠大於對那些聽你怎麼說的人。",
+        "sentence": "You have far more influence over the people who watch what you do than over the ones who hear what you say."
+    },
+    {
+        "id": 4752,
+        "translate_ch": "會議中最安靜的人，往往是那個大家私下都在等他發表意見的人。",
+        "sentence": "The quietest person in the meeting is often the one whose opinion everyone secretly waits for."
+    },
+    {
+        "id": 4753,
+        "translate_ch": "同理心不是同意某人，而是願意站在他們的位置，從那裡向外看。",
+        "sentence": "Empathy isn't agreeing with someone; it's being willing to stand where they stand and look out from there."
+    },
+    {
+        "id": 4754,
+        "translate_ch": "想像那個粗魯的陌生人只是過得比你糟得多，這不花你一分錢。",
+        "sentence": "It costs nothing to imagine that the rude stranger is simply having a far worse day than you."
+    },
+    {
+        "id": 4755,
+        "translate_ch": "大多數關係不是在一場爆炸中結束，而是在沒說出口的事一點點累積中結束。",
+        "sentence": "Most relationships don't end in an explosion; they end in a slow accumulation of things left unsaid."
+    },
+    {
+        "id": 4756,
+        "translate_ch": "最難去愛的人，通常正是那些以最令人困惑的方式尋求愛的人。",
+        "sentence": "The people who are hardest to love are usually the ones asking for it in the most confusing way."
+    },
+    {
+        "id": 4757,
+        "translate_ch": "網路給了每個人一支麥克風，卻悄悄忘了發放使用它的智慧。",
+        "sentence": "The internet gave everyone a microphone and quietly forgot to hand out the wisdom to use it."
+    },
+    {
+        "id": 4758,
+        "translate_ch": "恰當時機的一句鼓勵，能帶一個人走得比一年的建議還遠。",
+        "sentence": "A word of encouragement at the right moment can carry someone further than a year of advice."
+    },
+    {
+        "id": 4759,
+        "translate_ch": "有時候，你能對一個人說的最勇敢的話，就只是「我相信你做得到」。",
+        "sentence": "Sometimes the bravest thing you can say to someone is simply, 'I believe you can.'"
+    },
+    {
+        "id": 4760,
+        "translate_ch": "一個小小的事件，若處理不當，就能毀掉花了數年默默建立的名聲。",
+        "sentence": "One small incident, handled badly, can undo a reputation that took years to build quietly."
+    },
+    {
+        "id": 4761,
+        "translate_ch": "好的政策是為那九十九人而寫的，而不是為了一個人而懲罰所有人。",
+        "sentence": "A good policy is written for the ninety-nine, not designed to punish everyone for the one."
+    },
+    {
+        "id": 4762,
+        "translate_ch": "管理你的精力，而不只是時間；行事曆再滿，油箱空了也到不了任何地方。",
+        "sentence": "Manage your energy, not just your time; a full calendar with an empty tank arrives nowhere."
+    },
+    {
+        "id": 4763,
+        "translate_ch": "守護你的早晨；那是精力最充沛的那個你真正現身的時候。",
+        "sentence": "Protect your mornings; that's when the version of you with the most energy actually shows up."
+    },
+    {
+        "id": 4764,
+        "translate_ch": "邀請是一個小小的勇氣之舉；你是在給某人一個說不的機會。",
+        "sentence": "An invitation is a small act of courage; you're offering someone the chance to say no."
+    },
+    {
+        "id": 4765,
+        "translate_ch": "品質在價格被遺忘很久之後仍被記得，這正是為什麼便宜往往是最昂貴的選擇。",
+        "sentence": "Quality is remembered long after the price is forgotten, which is why cheap is often the most expensive choice."
+    },
+    {
+        "id": 4766,
+        "translate_ch": "把事做對比把事做快花更多時間，但只有做對才能讓你不必再重做一遍。",
+        "sentence": "Doing it right takes longer than doing it fast, but only doing it right lets you stop doing it again."
+    },
+    {
+        "id": 4767,
+        "translate_ch": "感覺是糟糕的主人，卻是絕佳的顧問；訣竅在於知道該給它們哪張椅子。",
+        "sentence": "Feelings make terrible masters but excellent advisers; the trick is knowing which chair to give them."
+    },
+    {
+        "id": 4768,
+        "translate_ch": "生活，就發生在你不斷刷新頁面、等它終於開始的時候。",
+        "sentence": "Life is what happens while you're refreshing the page, waiting for it to finally begin."
+    },
+    {
+        "id": 4769,
+        "translate_ch": "生活不會變得更容易；只是你越來越擅長扛起那些曾經看似不可能的東西。",
+        "sentence": "Life doesn't get easier; you just get better at carrying what once seemed impossible."
+    },
+    {
+        "id": 4770,
+        "translate_ch": "每一場改革在事後看來都顯而易見，而在它發生的前一刻之前都看似不可能。",
+        "sentence": "Every reform looks obvious in hindsight and impossible right up until the moment it happens."
+    },
+    {
+        "id": 4771,
+        "translate_ch": "健身不是一個夏季計畫，而是你為了繼續住在自己身體裡而付的、安靜的租金。",
+        "sentence": "Fitness isn't a summer project; it's the quiet rent you pay to keep living in your own body."
+    },
+    {
+        "id": 4772,
+        "translate_ch": "對的想法在錯的地方會枯萎；時機和地點是每一次成功的一半。",
+        "sentence": "The right idea in the wrong place withers; timing and location are half of every success."
+    },
+    {
+        "id": 4773,
+        "translate_ch": "離開多年後返鄉，你發現地方沒變，而自己已認不出來。",
+        "sentence": "Returning home after years away, you find the place unchanged and yourself unrecognizable."
+    },
+    {
+        "id": 4774,
+        "translate_ch": "一個沒有下一步具體行動的目標，只是一個你決定為之內疚的願望。",
+        "sentence": "A goal without a next physical action is just a wish you've decided to feel guilty about."
+    },
+    {
+        "id": 4775,
+        "translate_ch": "什麼都不瞄準，你每一次都會以驚人的準確度命中它。",
+        "sentence": "Aim at nothing and you'll hit it with remarkable accuracy every single time."
+    },
+    {
+        "id": 4776,
+        "translate_ch": "禮貌，是我們用上千種微小的方式表明，他人存在且重要。",
+        "sentence": "Manners are how we show, in a thousand tiny ways, that other people exist and matter."
+    },
+    {
+        "id": 4777,
+        "translate_ch": "好的研究不會證實你所期望的，而是告訴你實際存在什麼，無論你是否希望。",
+        "sentence": "Good research doesn't confirm what you hoped; it tells you what's actually there, hope or not."
+    },
+    {
+        "id": 4778,
+        "translate_ch": "科學中最誠實的一句話，往往是那句安靜的：「我們還不知道。」",
+        "sentence": "The most honest sentence in science is often the quiet one: 'we don't know yet.'"
+    },
+    {
+        "id": 4779,
+        "translate_ch": "成長天生就令人不適；如果它讓人感到安全，你早就做了。",
+        "sentence": "Growth is uncomfortable by design; if it felt safe, you'd have done it a long time ago."
+    },
+    {
+        "id": 4780,
+        "translate_ch": "你無法一邊朝著光成長，一邊緊抓著自己曾是那顆種子的形狀。",
+        "sentence": "You can't grow toward the light while clinging to the shape of the seed you used to be."
+    },
+    {
+        "id": 4781,
+        "translate_ch": "搬家會清楚地教你，你擁有多少從來一次也不需要的東西。",
+        "sentence": "Moving house teaches you exactly how much you own that you never once needed."
+    },
+    {
+        "id": 4782,
+        "translate_ch": "你打包的每一個箱子，都是一場關於什麼才真正值得跟你走的小小對話。",
+        "sentence": "Every box you pack is a small conversation about what actually deserves to come with you."
+    },
+    {
+        "id": 4783,
+        "translate_ch": "最大的風險，往往是你沒去冒的那個，悄悄偽裝成明智的樣子。",
+        "sentence": "The biggest risk is often the one you don't take, quietly disguised as being sensible."
+    },
+    {
+        "id": 4784,
+        "translate_ch": "並非所有避開懸崖的人都是明智的；有些人只是從未靠近過那風景。",
+        "sentence": "Not all who avoid the cliff are wise; some simply never came near the view."
+    },
+    {
+        "id": 4785,
+        "translate_ch": "你不會升到目標的高度，而是會落到習慣的高度。",
+        "sentence": "You don't rise to the level of your goals; you fall to the level of your habits."
+    },
+    {
+        "id": 4786,
+        "translate_ch": "習慣是一個你只需做一次的決定，之後便悄悄地不必再做。",
+        "sentence": "A habit is a decision you only have to make once, and then quietly never again."
+    },
+    {
+        "id": 4787,
+        "translate_ch": "大自然從不匆忙，然而它想做的一切，不知怎地都完成了。",
+        "sentence": "Nature doesn't hurry, and yet somehow everything it sets out to do gets done."
+    },
+    {
+        "id": 4788,
+        "translate_ch": "我們稱之為「環境」，彷彿它在別處，而不是我們肺裡的空氣。",
+        "sentence": "We call it 'the environment' as if it were somewhere else, and not the air in our lungs."
+    },
+    {
+        "id": 4789,
+        "translate_ch": "規則之所以存在，是為了承載那些在你需要時不會在場的人的智慧。",
+        "sentence": "Rules exist to carry the wisdom of people who won't be in the room when you need it."
+    },
+    {
+        "id": 4790,
+        "translate_ch": "每天進步百分之一聽起來微不足道，直到你把它乘上一整年。",
+        "sentence": "Getting one percent better every day sounds small until you multiply it across a year."
+    },
+    {
+        "id": 4791,
+        "translate_ch": "目標不是週五之前變完美，而是比週一時錯得少一點。",
+        "sentence": "The goal isn't to be perfect by Friday; it's to be a little less wrong than you were on Monday."
+    },
+    {
+        "id": 4792,
+        "translate_ch": "午夜時感覺龐大的問題，到了早晨往往縮回它們真正的大小。",
+        "sentence": "Problems that feel enormous at midnight often shrink to their real size by morning."
+    },
+    {
+        "id": 4793,
+        "translate_ch": "夜晚不會對你說謊；它只是移除了讓你得以迴避真相的白日喧囂。",
+        "sentence": "The night doesn't lie to you; it just removes the daytime noise that let you avoid the truth."
+    },
+    {
+        "id": 4794,
+        "translate_ch": "衡量一生的，不是你聚集了什麼，而是你離開後留下什麼還在運轉。",
+        "sentence": "The measure of a life isn't what you gathered, but what you left running after you left."
+    },
+    {
+        "id": 4795,
+        "translate_ch": "靈感是給業餘者的；我們其餘的人只是現身然後開始工作。",
+        "sentence": "Inspiration is for amateurs; the rest of us just show up and get to work."
+    },
+    {
+        "id": 4796,
+        "translate_ch": "等待靈感降臨，就是好點子在抽屜裡悄悄老死的方式。",
+        "sentence": "Waiting to feel inspired is how good ideas quietly die of old age in a drawer."
+    },
+    {
+        "id": 4797,
+        "translate_ch": "我們留最久的物品，很少是值錢的那些，而是那些替我們記住往事的。",
+        "sentence": "The objects we keep longest are rarely the valuable ones; they're the ones that remember for us."
+    },
+    {
+        "id": 4798,
+        "translate_ch": "一個社會如何對待那些永遠無法回報它的人，揭示了它真正的價值觀。",
+        "sentence": "A society reveals its true values in how it treats those who can never repay it."
+    },
+    {
+        "id": 4799,
+        "translate_ch": "善良是一種聾者能聽見、盲者能看見的語言。",
+        "sentence": "Kindness is a language the deaf can hear and the blind can see."
+    },
+    {
+        "id": 4800,
+        "translate_ch": "沒有一件善舉，無論多小，是真正白費的——它只是走得比你看得見的更遠。",
+        "sentence": "No act of kindness, however small, is ever truly wasted—it just travels farther than you can see."
+    },
+    {
+        "id": 4801,
+        "translate_ch": "在戶外度過的一天，能重置我們身上某種再多睡眠也觸及不到的東西。",
+        "sentence": "A day spent outdoors resets something in us that no amount of sleep quite reaches."
+    },
+    {
+        "id": 4802,
+        "translate_ch": "最難以衡量的工作，往往正是默默把社會維繫在一起的那些。",
+        "sentence": "The hardest jobs to measure are often the ones holding society quietly together."
+    },
+    {
+        "id": 4803,
+        "translate_ch": "領導力不在於做房間裡最聰明的人，而在於讓整個房間變得更聰明。",
+        "sentence": "Leadership is not about being the smartest in the room; it's about making the room smarter."
+    },
+    {
+        "id": 4804,
+        "translate_ch": "最好的領導者承擔比自己該負的多一點的責備，領取比該得的少一點的功勞。",
+        "sentence": "The best leaders take a little more than their share of the blame and a little less of the credit."
+    },
+    {
+        "id": 4805,
+        "translate_ch": "教養是一門漫長的藝術，是慢慢地對一個你願為之赴死的人變得不再必要。",
+        "sentence": "Parenting is the long art of slowly becoming unnecessary to someone you'd die for."
+    },
+    {
+        "id": 4806,
+        "translate_ch": "當老人種下他們明知自己永遠坐不到樹蔭的樹時，社會才會變得偉大。",
+        "sentence": "A society grows great when old people plant trees whose shade they know they'll never sit in."
+    },
+    {
+        "id": 4807,
+        "translate_ch": "人生目標的重點不在於頂峰，而在於攀登要求你成為的那個人。",
+        "sentence": "The point of a life goal isn't the summit; it's the person the climb requires you to become."
+    },
+    {
+        "id": 4808,
+        "translate_ch": "人們會忘記你說過什麼，但永遠不會忘記你帶給他們的感受。",
+        "sentence": "People will forget what you said, but they will never forget how you made them feel."
+    },
+    {
+        "id": 4809,
+        "translate_ch": "你悄悄且不可避免地，是你花最多時間相處的五個人的平均值。",
+        "sentence": "You are, quietly and unavoidably, the average of the five people you spend the most time with."
+    },
+    {
+        "id": 4810,
+        "translate_ch": "國家在最少被感覺到、最多被信任時，是它最好的狀態。",
+        "sentence": "The state is at its best when it is felt least and trusted most."
+    },
+    {
+        "id": 4811,
+        "translate_ch": "你決定自己學夠了的那一刻，就是你悄悄開始萎縮的那一刻。",
+        "sentence": "The moment you decide you've learned enough is the moment you quietly begin to shrink."
+    },
+    {
+        "id": 4812,
+        "translate_ch": "任何語言中最危險的一句話，是「我們一直都是這樣做的」。",
+        "sentence": "The most dangerous phrase in any language is 'we've always done it this way.'"
+    },
+    {
+        "id": 4813,
+        "translate_ch": "你在等待的大多數許可，是只有你能給自己的許可。",
+        "sentence": "Most of the permission you're waiting for is permission you're only allowed to give yourself."
+    },
+    {
+        "id": 4814,
+        "translate_ch": "潮流告訴你今天大家想要什麼；永恆告訴你人們一直以來需要什麼。",
+        "sentence": "Trends tell you what everyone wants today; the timeless tells you what people have always needed."
+    },
+    {
+        "id": 4815,
+        "translate_ch": "休息不是你崩潰之後才掙來的獎賞，而是防止崩潰的保養。",
+        "sentence": "Rest is not a reward you earn after the breakdown; it's the maintenance that prevents it."
+    },
+    {
+        "id": 4816,
+        "translate_ch": "你沒有義務點燃自己，只為了讓別人取暖。",
+        "sentence": "You are not required to set yourself on fire to keep other people warm."
+    },
+    {
+        "id": 4817,
+        "translate_ch": "有些地方不會改變你，只是提醒你，在世界變吵之前你是誰。",
+        "sentence": "Some places don't change you; they simply remind you who you were before the world got loud."
+    },
+    {
+        "id": 4818,
+        "translate_ch": "追逐每一個潮流，是最保證讓你到哪都遲到、哪都不屬於的方式。",
+        "sentence": "Chasing every trend is the surest way to arrive everywhere late and belong nowhere."
+    },
+    {
+        "id": 4819,
+        "translate_ch": "等到一個潮流安全到人人可用時，真正的優勢早已離場。",
+        "sentence": "By the time a trend is safe enough for everyone, the real advantage has already left the room."
+    },
+    {
+        "id": 4820,
+        "translate_ch": "好的導師不會把地圖遞給你，而是教你自己如何判讀地形。",
+        "sentence": "A good mentor doesn't hand you the map; they teach you how to read the terrain yourself."
+    },
+    {
+        "id": 4821,
+        "translate_ch": "計畫本身毫無價值，但計畫的過程是一切；價值在於思考，而非那張紙。",
+        "sentence": "Plans are worthless, but planning is everything; the value is in the thinking, not the paper."
+    },
+    {
+        "id": 4822,
+        "translate_ch": "給我六小時砍樹，我會用頭四個小時磨斧頭。",
+        "sentence": "Give me six hours to chop a tree and I'll spend the first four sharpening the axe."
+    },
+    {
+        "id": 4823,
+        "translate_ch": "真相不需要你為它辯護，它只需要你不再躲避它。",
+        "sentence": "The truth doesn't need you to defend it; it only needs you to stop hiding from it."
+    },
+    {
+        "id": 4824,
+        "translate_ch": "一個舒服的謊言能讓你今晚暖和，但只有殘酷的真相能讓你自由。",
+        "sentence": "A comfortable lie will keep you warm tonight, but only a hard truth will keep you free."
+    },
+    {
+        "id": 4825,
+        "translate_ch": "一位導師曾給我最好的東西，不是一個答案，而是一個更好的問題。",
+        "sentence": "The best thing a mentor ever gave me wasn't an answer; it was a better question."
+    },
+    {
+        "id": 4826,
+        "translate_ch": "生活，就是在你忙著捍衛計畫時，發生在計畫身上的事。",
+        "sentence": "Life is what happens to your plans while you're busy defending them."
+    },
+    {
+        "id": 4827,
+        "translate_ch": "大學教你的，關於答案的少，關於哪些問題值得你花上數年人生的多。",
+        "sentence": "University teaches you less about the answers and more about which questions are worth years of your life."
+    },
+    {
+        "id": 4828,
+        "translate_ch": "你無法靠訓練彌補糟糕的飲食；身體記的帳，比健身房嚴格得多。",
+        "sentence": "You can't out-train a bad diet; the body keeps a stricter ledger than the gym does."
+    },
+    {
+        "id": 4829,
+        "translate_ch": "有禮貌不花一分錢，卻是能打開金錢永遠打不開的門的貨幣。",
+        "sentence": "Being polite costs nothing, yet it's the currency that opens doors money never could."
+    },
+    {
+        "id": 4830,
+        "translate_ch": "每一個被忽視的警告，終究會變成一個以「我早該知道」開頭的故事。",
+        "sentence": "Every warning ignored becomes, in time, a story that begins with 'I should have known.'"
+    },
+    {
+        "id": 4831,
+        "translate_ch": "大多數人看卻沒看見；善於觀察的人，只是拒絕讓平凡的事物被忽略。",
+        "sentence": "Most people look but don't see; the observant simply refuse to let the ordinary go unnoticed."
+    },
+    {
+        "id": 4832,
+        "translate_ch": "慢下來到足以留意，平凡的世界便悄悄顯露出它的非凡。",
+        "sentence": "Slow down enough to notice, and the ordinary world quietly turns out to be extraordinary."
+    },
+    {
+        "id": 4833,
+        "translate_ch": "運氣，是當默默的準備終於遇上一個不期而至的機會時所發生的事。",
+        "sentence": "Luck is what happens when quiet preparation finally meets an unannounced opportunity."
+    },
+    {
+        "id": 4834,
+        "translate_ch": "你走進考場時感到的平靜，只是那些沒人看見你投入的時數的迴響。",
+        "sentence": "The calm you feel walking into the exam is just the echo of the hours no one saw you put in."
+    },
+    {
+        "id": 4835,
+        "translate_ch": "壓力之下，你不會升到情境的高度，而是會退回到準備的水平。",
+        "sentence": "Under pressure you don't rise to the occasion; you fall back to the level of your preparation."
+    },
+    {
+        "id": 4836,
+        "translate_ch": "食譜只是別人的地圖；偉大的廚師終將學會不靠它旅行。",
+        "sentence": "A recipe is just someone else's map; the great cooks eventually learn to travel without one."
+    },
+    {
+        "id": 4837,
+        "translate_ch": "每一頓好菜的祕密食材，幾乎總是同一樣：不慌不忙的專注。",
+        "sentence": "The secret ingredient in every good meal is almost always the same: unhurried attention."
+    },
+    {
+        "id": 4838,
+        "translate_ch": "換一扇你觀看的窗，同一片風景就會訴說一個完全不同的故事。",
+        "sentence": "Change the window you're looking through and the same landscape tells a completely different story."
+    },
+    {
+        "id": 4839,
+        "translate_ch": "問題很少是問題本身；通常是你堅持觀看它的那個角度。",
+        "sentence": "The problem is rarely the problem; it's usually the angle from which you insist on seeing it."
+    },
+    {
+        "id": 4840,
+        "translate_ch": "對那些早已忘記如何有禮的人依然保持客氣，是一種安靜的力量。",
+        "sentence": "There's a quiet strength in staying courteous with people who have long since forgotten how."
+    },
+    {
+        "id": 4841,
+        "translate_ch": "最好的推薦不是最大聲的評論，而是一個安靜的朋友說：「這個，相信我。」",
+        "sentence": "The best recommendation isn't the loudest review; it's a quiet friend saying, 'this one, trust me.'"
+    },
+    {
+        "id": 4842,
+        "translate_ch": "讚美你看得見的努力，而不只是你看不見的天賦；孩子只能重複其中之一。",
+        "sentence": "Praise the effort you can see, not just the talent you can't; only one of them a child can repeat."
+    },
+    {
+        "id": 4843,
+        "translate_ch": "公開讚美、私下糾正，是一條拯救了千段友誼的安靜規則。",
+        "sentence": "Praise given in public and correction given in private is a quiet rule that saves a thousand friendships."
+    },
+    {
+        "id": 4844,
+        "translate_ch": "一段關係不是兩個人彼此凝視，而是兩個人一起望向同一個方向。",
+        "sentence": "A relationship isn't two people staring at each other; it's two people looking together in the same direction."
+    },
+    {
+        "id": 4845,
+        "translate_ch": "你的偏好會悄悄變成你的品格；比你以為它們該得的更用心地選擇那些小事。",
+        "sentence": "Your preferences quietly become your character; choose the small ones with more care than you think they deserve."
+    },
+    {
+        "id": 4846,
+        "translate_ch": "能長久的關係，不是沒有衝突的，而是修復得比撕裂還快的。",
+        "sentence": "The relationships that last aren't the ones without conflict, but the ones that repair faster than they tear."
+    },
+    {
+        "id": 4847,
+        "translate_ch": "在任何親密關係中，「你是對的」這句話幾乎不花錢，卻幾乎能買到一切。",
+        "sentence": "In any close relationship, the words 'you were right' cost almost nothing and buy almost everything."
+    },
+    {
+        "id": 4848,
+        "translate_ch": "一小時的預防是隱形的；這正是為什麼沒人感謝那個默默做它的人。",
+        "sentence": "An hour of prevention is invisible; that's exactly why nobody thanks the person who quietly does it."
+    },
+    {
+        "id": 4849,
+        "translate_ch": "我們不需要更多資訊，而是需要被提醒我們已經知道、卻總忘記去做的事。",
+        "sentence": "We don't need more information; we need to be reminded of what we already know but keep forgetting to do."
+    },
+    {
+        "id": 4850,
+        "translate_ch": "解決問題的一半，在於拒絕接受你被交到手上的問題的第一個版本。",
+        "sentence": "Half of solving a problem is refusing to accept the first version of the problem you were handed."
+    },
+    {
+        "id": 4851,
+        "translate_ch": "卡住時，別更用力推門；檢查一下它是不是一直悄悄地是「拉」。",
+        "sentence": "When you're stuck, don't push harder on the door; check whether it was quietly a 'pull' the whole time."
+    },
+    {
+        "id": 4852,
+        "translate_ch": "一個清楚的請求，每次都勝過一個怨懟的暗示；人無法讀懂你從未打開的心。",
+        "sentence": "A clear request beats a resentful hint every time; people can't read a mind you never opened."
+    },
+    {
+        "id": 4853,
+        "translate_ch": "「請」這個字很小，卻悄悄地把一道命令重新歸類為平等者之間的請求。",
+        "sentence": "The word 'please' is small, but it quietly reclassifies an order back into a request between equals."
+    },
+    {
+        "id": 4854,
+        "translate_ch": "生產力不是做更多的事，而是確保那少數重要的事真的被完成。",
+        "sentence": "Productivity isn't doing more things; it's making sure the few things that matter actually get done."
+    },
+    {
+        "id": 4855,
+        "translate_ch": "忙碌是一種懶惰——是偽裝成努力的懶惰思考和不加選擇的行動。",
+        "sentence": "Being busy is a form of laziness—lazy thinking and indiscriminate action dressed up as effort."
+    },
+    {
+        "id": 4856,
+        "translate_ch": "對小請求說不，是你能持續對你真正答應自己的那件大事說好的方式。",
+        "sentence": "Saying no to small requests is how you keep saying yes to the one big thing you actually promised yourself."
+    },
+    {
+        "id": 4857,
+        "translate_ch": "進步很少是直線，而是一個螺旋，一次次從更高的樓層經過同樣的恐懼。",
+        "sentence": "Progress is rarely a straight line; it's a spiral that keeps passing the same fears from a higher floor."
+    },
+    {
+        "id": 4858,
+        "translate_ch": "比較是進步的小偷；你無法拿自己的第一章去衡量別人的第二十章。",
+        "sentence": "Comparison is the thief of progress; you can't measure your chapter one against someone's chapter twenty."
+    },
+    {
+        "id": 4859,
+        "translate_ch": "評判一家餐廳，看的不是它最好的菜，而是它如何對待最簡單的那道。",
+        "sentence": "You can tell a lot about a restaurant not by its best dish, but by how it treats its simplest one."
+    },
+    {
+        "id": 4860,
+        "translate_ch": "熱鬧街上那家空蕩蕩的餐廳，正告訴你一件那家客滿的早已知道的事。",
+        "sentence": "The empty restaurant on a busy street is telling you something the crowded one already knows."
+    },
+    {
+        "id": 4861,
+        "translate_ch": "你無法總是選擇發生什麼，但反應之前的那個空隙，正是你自由所在之處。",
+        "sentence": "You can't always choose what happens, but the gap before your reaction is where your freedom lives."
+    },
+    {
+        "id": 4862,
+        "translate_ch": "沒有人能讓你生氣；他們只能提供，而你才是那個悄悄決定接受的人。",
+        "sentence": "Nobody can make you angry; they can only offer, and you're the one who quietly decides to accept."
+    },
+    {
+        "id": 4863,
+        "translate_ch": "停在港灣的船是安全的，但那不是船被默默造出來的目的。",
+        "sentence": "A ship in harbor is safe, but that is not what ships were quietly built to do."
+    },
+    {
+        "id": 4864,
+        "translate_ch": "我們繫上安全帶，不是因為預期會撞車，而是因為我們尊重無法預測的事。",
+        "sentence": "We buckle the seatbelt not because we expect the crash, but because we respect what we can't predict."
+    },
+    {
+        "id": 4865,
+        "translate_ch": "有時候人們要的不是你的解決方案，而只是想知道自己不是獨自扛著它。",
+        "sentence": "Sometimes people don't want your solution; they just want to know they're not carrying it alone."
+    },
+    {
+        "id": 4866,
+        "translate_ch": "沒有什麼能比一種你從小就沒再聞過的氣味，更快帶回一個失落的十年。",
+        "sentence": "Nothing brings back a lost decade faster than a scent you haven't smelled since you were small."
+    },
+    {
+        "id": 4867,
+        "translate_ch": "人們為了被肯定會比為了加薪更賣力，並默默怨恨忘記這點的領導者。",
+        "sentence": "People will work harder for recognition than for a raise, and quietly resent the leader who forgets this."
+    },
+    {
+        "id": 4868,
+        "translate_ch": "學校教你答案；人生大多考的，是沒人費心寫下來的問題。",
+        "sentence": "School teaches you the answers; life mostly tests you on the questions no one bothered to write down."
+    },
+    {
+        "id": 4869,
+        "translate_ch": "復原不是回到你曾經的樣子，而是帶著些許改變，抵達你如今能成為的樣子。",
+        "sentence": "Recovery isn't going back to who you were; it's arriving, a little changed, at who you can now become."
+    },
+    {
+        "id": 4870,
+        "translate_ch": "療癒不是線性的；有些最勇敢的日子，只是你單純地沒有變得更糟。",
+        "sentence": "Healing isn't linear; some of the bravest days are the ones where you simply didn't get worse."
+    },
+    {
+        "id": 4871,
+        "translate_ch": "秋天讓我們看見，放手可以有多麼美麗。",
+        "sentence": "Autumn shows us how beautiful it can be to let things go."
+    },
+    {
+        "id": 4872,
+        "translate_ch": "冬天不是花園的死亡，而是根部悄悄完成最重要工作的季節。",
+        "sentence": "Winter isn't the death of the garden; it's the season the roots quietly do their most important work."
+    },
+    {
+        "id": 4873,
+        "translate_ch": "我們為沒把握的機會後悔的時間，遠比為把握了卻搞砸的來得長。",
+        "sentence": "We regret the chances we didn't take far longer than the ones we took and fumbled."
+    },
+    {
+        "id": 4874,
+        "translate_ch": "大多數臨終的遺憾不是關於失敗，而是關於那些從未真正活過的安全人生。",
+        "sentence": "Most deathbed regrets aren't about failure; they're about the safe lives that were never truly lived."
+    },
+    {
+        "id": 4875,
+        "translate_ch": "祕密只有在一個人手裡才安全；一旦被分享，它就屬於所有人了。",
+        "sentence": "A secret is only safe with one person; the moment it's shared, it belongs to everyone."
+    },
+    {
+        "id": 4876,
+        "translate_ch": "守住某人的祕密，是一種安靜地說「你的信任在我這裡很安全」的方式。",
+        "sentence": "Keeping someone's secret is a quiet way of saying, 'your trust is safe here, with me.'"
+    },
+    {
+        "id": 4877,
+        "translate_ch": "真正的休息不是工作的缺席，而是某種能重新充滿你的東西的存在。",
+        "sentence": "True rest isn't the absence of work; it's the presence of something that refills you."
+    },
+    {
+        "id": 4878,
+        "translate_ch": "刻意什麼都不做，是我們整個文化悄悄忘了如何教的一種技能。",
+        "sentence": "Doing nothing on purpose is a skill our whole culture has quietly forgotten how to teach."
+    },
+    {
+        "id": 4879,
+        "translate_ch": "我們一輩子盯著螢幕，卻忘了與生俱來的那五扇更古老、更睿智的窗。",
+        "sentence": "We spend our lives looking at screens and forget the five older, wiser windows we were born with."
+    },
+    {
+        "id": 4880,
+        "translate_ch": "大聲宣告的決心往往悄悄死去；能存活的，通常是私下守著的。",
+        "sentence": "A resolution announced loudly often dies quietly; the ones that survive are usually kept private."
+    },
+    {
+        "id": 4881,
+        "translate_ch": "最豐富的記憶很少是視覺的；它們是一種氣味、一種觸感、一隻手確切的重量。",
+        "sentence": "The richest memories are rarely visual; they're a smell, a texture, the exact weight of a hand."
+    },
+    {
+        "id": 4882,
+        "translate_ch": "尊重起初是無償給予的，之後則由你所做的一切來贏得或失去。",
+        "sentence": "Respect is given freely at first, then earned or lost by everything you do afterward."
+    },
+    {
+        "id": 4883,
+        "translate_ch": "你可以要求服從，但尊重是唯一一種靜靜拒絕被命令的東西。",
+        "sentence": "You can demand obedience, but respect is the one thing that quietly refuses to be commanded."
+    },
+    {
+        "id": 4884,
+        "translate_ch": "最好的購物，是那些在興奮退去一個月後你仍感到滿意的。",
+        "sentence": "The best purchases are the ones you still feel good about a month after the excitement fades."
+    },
+    {
+        "id": 4885,
+        "translate_ch": "責任不是壓在你身上的重量，而是你藉以拿起自己人生的把手。",
+        "sentence": "Responsibility isn't a weight placed on you; it's the handle by which you pick up your own life."
+    },
+    {
+        "id": 4886,
+        "translate_ch": "你停止責怪處境的那一刻，正是你獲得凌駕它們的力量的那一刻。",
+        "sentence": "The moment you stop blaming your circumstances is the exact moment you gain power over them."
+    },
+    {
+        "id": 4887,
+        "translate_ch": "我們用沒有的錢，買不需要的東西，去取悅根本不喜歡的人。",
+        "sentence": "We buy things we don't need with money we don't have to impress people we don't even like."
+    },
+    {
+        "id": 4888,
+        "translate_ch": "技能，只是上千個小失敗最終同意按正確順序排列的結果。",
+        "sentence": "A skill is just a thousand small failures that eventually agreed to line up in the right order."
+    },
+    {
+        "id": 4889,
+        "translate_ch": "運動教孩子如何優雅地輸，而這原來是一場終生的考試。",
+        "sentence": "Sport teaches children how to lose with grace, which turns out to be a lifelong exam."
+    },
+    {
+        "id": 4890,
+        "translate_ch": "那些學的時候感覺沒用的技能，往往正是日後悄悄救你一命的。",
+        "sentence": "The skills that feel useless while you're learning them are often the ones that quietly save you later."
+    },
+    {
+        "id": 4891,
+        "translate_ch": "成年後學一項新技能，意味著在一段時間裡公開而愉快地把某事做得很爛。",
+        "sentence": "Learning a new skill as an adult means being publicly, cheerfully bad at something for a while."
+    },
+    {
+        "id": 4892,
+        "translate_ch": "任何旅程最難的部分，是決定停止準備、單純地開始。",
+        "sentence": "The hardest part of any journey is the decision to stop preparing and simply begin."
+    },
+    {
+        "id": 4893,
+        "translate_ch": "你不必看見整段樓梯，只需踏出眼前那看得見的第一階。",
+        "sentence": "You don't have to see the whole staircase; you just have to take the first visible step."
+    },
+    {
+        "id": 4894,
+        "translate_ch": "房間裡最有魅力的人不是在談論自己，而是讓你覺得自己很有趣。",
+        "sentence": "The most charming people in the room aren't talking about themselves; they're making you feel interesting."
+    },
+    {
+        "id": 4895,
+        "translate_ch": "一本全新的筆記本裡有一種安靜的喜悅，是任何數位app都未曾真正複製出來的。",
+        "sentence": "There's a quiet joy in a fresh notebook that no digital app has ever quite managed to copy."
+    },
+    {
+        "id": 4896,
+        "translate_ch": "成功是得到你想要的；幸福是靜靜地想要你已經擁有的。",
+        "sentence": "Success is getting what you want; happiness is quietly wanting what you already got."
+    },
+    {
+        "id": 4897,
+        "translate_ch": "沒有人分享的成功，只是一張擺設精美、你獨自用餐的餐桌。",
+        "sentence": "Success without someone to share it with is just a beautifully set table where you dine alone."
+    },
+    {
+        "id": 4898,
+        "translate_ch": "追逐地位就像喝海水；你吞得越多，就越渴。",
+        "sentence": "Chasing status is like drinking seawater; the more you swallow, the thirstier you become."
+    },
+    {
+        "id": 4899,
+        "translate_ch": "你不是為重要的事找時間，而是靠拒絕把時間給不重要的事來創造它。",
+        "sentence": "You don't find time for what matters; you make it by refusing to give it to what doesn't."
+    },
+    {
+        "id": 4900,
+        "translate_ch": "每個人都擁有同樣的二十四小時；差別在於你選擇讓誰的火繼續燒。",
+        "sentence": "Everyone gets the same twenty-four hours; the difference is whose fires you choose to let burn."
+    },
+    {
+        "id": 4901,
+        "translate_ch": "好的建議像是一扇為你敞開的門，而不是一隻推你穿過去的手。",
+        "sentence": "A good suggestion arrives as a door held open, not as a hand pushing you through it."
+    },
+    {
+        "id": 4902,
+        "translate_ch": "平衡不是把一天平均切分，而是確保重要的那一邊永遠不會徹底枯竭。",
+        "sentence": "Balance isn't splitting the day evenly; it's making sure the important side never runs completely dry."
+    },
+    {
+        "id": 4903,
+        "translate_ch": "沒有人在臨終時，希望自己在週日晚上多回了幾封電子郵件。",
+        "sentence": "No one on their deathbed ever wished they had answered a few more emails on a Sunday night."
+    },
+    {
+        "id": 4904,
+        "translate_ch": "徵求建議，你會招來盟友；下達命令，你只招募到不情願的雙手。",
+        "sentence": "Ask for suggestions and you invite allies; hand down orders and you recruit only reluctant hands."
+    },
+    {
+        "id": 4905,
+        "translate_ch": "真正的慈善，是以一種讓對方雙手都能保住尊嚴的方式給予。",
+        "sentence": "True charity is giving in a way that lets the other person keep their dignity in both hands."
+    },
+    {
+        "id": 4906,
+        "translate_ch": "慷慨的重點不在於禮物的大小，而在於它背後犧牲的大小。",
+        "sentence": "Generosity is less about the size of the gift and more about the size of the sacrifice behind it."
+    },
+    {
+        "id": 4907,
+        "translate_ch": "夏天教會孩子，最棒的日子很少是計畫來的；它們就這麼發生，並拒絕結束。",
+        "sentence": "Summer teaches children that the best days are rarely planned; they simply happen and refuse to end."
+    },
+    {
+        "id": 4908,
+        "translate_ch": "認真對待批評，但別往心裡去；即使包裝無禮，訊息或許仍是禮物。",
+        "sentence": "Take criticism seriously but not personally; the message may be a gift even when the wrapping is rude."
+    },
+    {
+        "id": 4909,
+        "translate_ch": "讚美告訴你去過哪裡；誠實的批評，如果你受得了，會告訴你能去哪裡。",
+        "sentence": "Praise tells you where you've been; honest criticism, if you can bear it, tells you where you can go."
+    },
+    {
+        "id": 4910,
+        "translate_ch": "最好的驚喜不是昂貴的，而是有人一直默默留意著你的證明。",
+        "sentence": "The best surprises aren't the expensive ones; they're the proof that someone was quietly paying attention."
+    },
+    {
+        "id": 4911,
+        "translate_ch": "指出什麼壞了很容易；更難、更勇敢的工作，是默默幫忙重建它。",
+        "sentence": "It's easy to point at what's broken; the harder, braver work is to help quietly rebuild it."
+    },
+    {
+        "id": 4912,
+        "translate_ch": "團隊不是一群一起工作的人，而是一群信任彼此會做好自己那份的人。",
+        "sentence": "A team isn't a group of people who work together; it's a group who trust each other to do their part."
+    },
+    {
+        "id": 4913,
+        "translate_ch": "最強的團隊在室內自由爭論，一離開房間就立刻互相維護。",
+        "sentence": "The strongest teams argue freely in the room and defend one another the moment they leave it."
+    },
+    {
+        "id": 4914,
+        "translate_ch": "時間不是金錢；你總能賺更多錢，但沒有人曾買回過任何一個小時。",
+        "sentence": "Time isn't money; you can always earn more money, but no one has ever bought back a single hour."
+    },
+    {
+        "id": 4915,
+        "translate_ch": "我們說沒有時間，卻總能為那些暗自認定重要的事找到時間。",
+        "sentence": "We say we don't have time, but we always find it for the things we secretly decided matter."
+    },
+    {
+        "id": 4916,
+        "translate_ch": "在塞車中，每個人都被交通困住，卻沒有人承認自己就是交通。",
+        "sentence": "In a traffic jam, everyone is stuck in traffic, and no one ever admits they are the traffic."
+    },
+    {
+        "id": 4917,
+        "translate_ch": "麻煩分擔就減半，但前提是你在被它淹沒之前就告訴了某人。",
+        "sentence": "Trouble shared is trouble halved, but only if you tell someone before you've already drowned in it."
+    },
+    {
+        "id": 4918,
+        "translate_ch": "你避而不談的麻煩，往往在黑暗中滋長，完全由你的沉默餵養。",
+        "sentence": "The trouble you avoid talking about tends to grow in the dark, fed entirely by your silence."
+    },
+    {
+        "id": 4919,
+        "translate_ch": "在城市裡，你能被百萬人包圍，卻仍忘記自己名字的聲音。",
+        "sentence": "In the city you can be surrounded by a million people and still forget the sound of your own name."
+    },
+    {
+        "id": 4920,
+        "translate_ch": "志工領取的是市場從未學會印製的貨幣：他們知道自己是重要的。",
+        "sentence": "Volunteers are paid in a currency the market never learned to print: the knowledge they mattered."
+    },
+    {
+        "id": 4921,
+        "translate_ch": "好好等待本身是一種技能；不耐煩只會讓時鐘更沉重，卻從不更快。",
+        "sentence": "Waiting well is its own skill; impatience only makes the clock heavier, never faster."
+    },
+    {
+        "id": 4922,
+        "translate_ch": "最難的等待，不是等你知道會來的東西，而是等一個可能永遠不會到的答案。",
+        "sentence": "The hardest waiting isn't for something you know is coming; it's for an answer that may never arrive."
+    },
+    {
+        "id": 4923,
+        "translate_ch": "冬天不要求你綻放，它只要求你撐住，而靜靜地，那就足夠了。",
+        "sentence": "Winter doesn't ask you to bloom; it just asks you to endure, and quietly, that is enough."
+    },
+    {
+        "id": 4924,
+        "translate_ch": "你最難對其誠實的人，幾乎總是鏡子裡的那一個。",
+        "sentence": "The person you find hardest to be honest with is almost always the one in the mirror."
+    },
+    {
+        "id": 4925,
+        "translate_ch": "認識自己的弱點不是失敗，而是你在能去任何新地方之前所需要的地圖。",
+        "sentence": "Knowing your own weaknesses isn't defeat; it's the map you need before you can go anywhere new."
+    },
+    {
+        "id": 4926,
+        "translate_ch": "你的人生不是建立在稀有的宏大時刻上，而是由平凡的日常悄悄織成的。",
+        "sentence": "Your life is not built on the rare grand moments; it's woven quietly from the ordinary daily ones."
+    },
+    {
+        "id": 4927,
+        "translate_ch": "職涯是一場馬拉松，卻偽裝成一連串被告知是緊急狀況的短跑。",
+        "sentence": "A career is a marathon disguised as a series of sprints you were told were emergencies."
+    },
+    {
+        "id": 4928,
+        "translate_ch": "追隨那些讓你忘記時間的工作，讓頭銜稍後再來追上你。",
+        "sentence": "Follow the work that makes you lose track of time, and let the title catch up to you later."
+    },
+    {
+        "id": 4929,
+        "translate_ch": "學一門語言不是背單字，而是慢慢賺得第二雙眼睛。",
+        "sentence": "Learning a language is not memorizing words; it's slowly earning a second pair of eyes."
+    },
+    {
+        "id": 4930,
+        "translate_ch": "你學會的每一門語言，都悄悄遞給你一把通往你從不知存在的房間的鑰匙。",
+        "sentence": "Every language you learn quietly hands you the keys to a room you never knew existed."
     }
 ]
