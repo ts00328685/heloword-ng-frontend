@@ -23598,5 +23598,155 @@
         "id": 4720,
         "translate_ch": "多元把想法帶上桌，包容才是讓它們真正被聽見的東西。",
         "sentence": "Diversity brings the ideas to the table; inclusion is what lets them actually be heard."
+    },
+    {
+        "id": 4721,
+        "translate_ch": "一個你不斷重新考慮的決定，其實從沒真正下過，只是被自信地推遲了。",
+        "sentence": "A decision you keep revisiting was never really made; it was just postponed with confidence."
+    },
+    {
+        "id": 4722,
+        "translate_ch": "不做決定本身就是一個決定——通常是那個讓別人替你決定的決定。",
+        "sentence": "Not deciding is itself a decision—usually the one that lets someone else decide for you."
+    },
+    {
+        "id": 4723,
+        "translate_ch": "經驗，是我們給那些活得夠久、久到能從中學到東西的錯誤所取的名字。",
+        "sentence": "Experience is the name we give to the mistakes we survived long enough to learn from."
+    },
+    {
+        "id": 4724,
+        "translate_ch": "二十年的經驗，可能只是一年重複了二十次，如果你從不冒任何新的險。",
+        "sentence": "Twenty years of experience can be one year repeated twenty times if you never risk anything new."
+    },
+    {
+        "id": 4725,
+        "translate_ch": "考試衡量的是你在壓力下的表現，遠多於你實際知道的東西。",
+        "sentence": "An exam measures how well you perform under pressure far more than what you actually know."
+    },
+    {
+        "id": 4726,
+        "translate_ch": "考試前的那一夜，教你關於自己習慣的東西，多過關於那門科目的。",
+        "sentence": "The night before an exam teaches you more about your habits than about the subject."
+    },
+    {
+        "id": 4727,
+        "translate_ch": "好的決策，重點不在於正確，而在於願意迅速地承認錯誤。",
+        "sentence": "Good decision-making is less about being right and more about being willing to be wrong quickly."
+    },
+    {
+        "id": 4728,
+        "translate_ch": "滋養你的食物和撫慰你的食物，很少在同一個盤子裡。",
+        "sentence": "The food that nourishes you and the food that comforts you are rarely on the same plate."
+    },
+    {
+        "id": 4729,
+        "translate_ch": "為某人下廚，是說出「我希望你活著並在我身邊」最古老的方式之一。",
+        "sentence": "Cooking for someone is one of the oldest ways of saying 'I want you to stay alive and near me.'"
+    },
+    {
+        "id": 4730,
+        "translate_ch": "我們高估未來會遞給我們的，卻低估今天默默建造的。",
+        "sentence": "We overestimate what the future will hand us and underestimate what today quietly builds."
+    },
+    {
+        "id": 4731,
+        "translate_ch": "未來是一個個平凡的星期二陸續到來的，從不是我們想像中那戲劇性的一整包。",
+        "sentence": "The future arrives one ordinary Tuesday at a time, never in the dramatic bundle we imagined."
+    },
+    {
+        "id": 4732,
+        "translate_ch": "真正的成長，感覺不像直線攀登，更像繞著一座山，緩緩地上升。",
+        "sentence": "Real development feels less like a straight climb and more like circling a mountain, slowly gaining height."
+    },
+    {
+        "id": 4733,
+        "translate_ch": "房間越正式，一句真誠的話就越容易迴響。",
+        "sentence": "The more formal the room, the more a single honest sentence tends to echo."
+    },
+    {
+        "id": 4734,
+        "translate_ch": "評判一個政府，看的不是它做出的承諾，而是它默默守住的那些。",
+        "sentence": "A government is judged less by the promises it makes than by the ones it quietly keeps."
+    },
+    {
+        "id": 4735,
+        "translate_ch": "檢驗一個好政府的標準，不是它如何對待有權勢者，而是它如何對待被遺忘的人。",
+        "sentence": "The test of a good government isn't how it treats the powerful, but how it treats the forgotten."
+    },
+    {
+        "id": 4736,
+        "translate_ch": "困難是通往任何值得抵達之地的收費公路；輕鬆的車道都通往某個平凡的地方。",
+        "sentence": "Difficulty is the toll road to anything worth reaching; the easy lanes all lead somewhere ordinary."
+    },
+    {
+        "id": 4737,
+        "translate_ch": "我們不會記得輕鬆的日子；塑造我們的，幾乎全是那些艱難的日子。",
+        "sentence": "We don't remember the easy days; we're shaped almost entirely by the difficult ones."
+    },
+    {
+        "id": 4738,
+        "translate_ch": "健康是戴在健康者頭上的王冠，只有生病的人才看得清楚。",
+        "sentence": "Health is the crown on the well person's head that only the sick can clearly see."
+    },
+    {
+        "id": 4739,
+        "translate_ch": "有根據的猜測，只是做足了功課的謙遜。",
+        "sentence": "An educated guess is just humility that has done its homework."
+    },
+    {
+        "id": 4740,
+        "translate_ch": "沒有期限的夢想，只是穿了更貴衣服的願望。",
+        "sentence": "A dream without a deadline is just a wish wearing more expensive clothes."
+    },
+    {
+        "id": 4741,
+        "translate_ch": "在醫療中，房間裡最昂貴的機器，仍無法取代一個願意傾聽的人。",
+        "sentence": "In healthcare, the most expensive machine in the room is still no substitute for someone who listens."
+    },
+    {
+        "id": 4742,
+        "translate_ch": "讓我們成為人的，不是我們從不跌倒，而是我們俯身把下一個人扶起來。",
+        "sentence": "What makes us human isn't that we never fall; it's that we reach down to lift the next person up."
+    },
+    {
+        "id": 4743,
+        "translate_ch": "儘管去追逐你的夢想，但也要善待那些資助這場追逐的平凡日子。",
+        "sentence": "Chase your dreams by all means, but be kind to the ordinary days that fund the chase."
+    },
+    {
+        "id": 4744,
+        "translate_ch": "有些夢想你必須放手，不是因為它們死了，而是因為你已經長大超越了它們。",
+        "sentence": "Some dreams you have to let go of, not because they died, but because you outgrew them."
+    },
+    {
+        "id": 4745,
+        "translate_ch": "醫院，是陌生人溫柔地捧著你最糟的一天，然後放你走回平凡日子的地方。",
+        "sentence": "A hospital is where strangers hold your worst day gently and then let you walk back into an ordinary one."
+    },
+    {
+        "id": 4746,
+        "translate_ch": "你很少能看到自己善意的全部影響；而這正是它之所以是禮物的原因。",
+        "sentence": "You rarely get to see the full impact of your kindness; that's precisely what makes it a gift."
+    },
+    {
+        "id": 4747,
+        "translate_ch": "一位好老師的影響無法追溯；它只是靜靜地改變了上百個人生的形狀。",
+        "sentence": "The impact of a good teacher can't be traced; it just quietly changes the shape of a hundred lives."
+    },
+    {
+        "id": 4748,
+        "translate_ch": "努力是結果中唯一完全屬於你的部分；其餘的都是天氣。",
+        "sentence": "Effort is the only part of the outcome you fully own; the rest is weather."
+    },
+    {
+        "id": 4749,
+        "translate_ch": "天賦設定了上限，但努力才是真正決定你能靠近它多少的東西。",
+        "sentence": "Talent sets the ceiling, but effort is what actually decides how close to it you get."
+    },
+    {
+        "id": 4750,
+        "translate_ch": "房子是用錢買的，但家，是由你在其中度過的那些平凡夜晚建成的。",
+        "sentence": "A house is bought with money, but a home is built out of the ordinary evenings you spend in it."
     }
 ]
