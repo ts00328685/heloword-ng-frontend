@@ -24498,5 +24498,155 @@
         "id": 4900,
         "translate_ch": "每個人都擁有同樣的二十四小時；差別在於你選擇讓誰的火繼續燒。",
         "sentence": "Everyone gets the same twenty-four hours; the difference is whose fires you choose to let burn."
+    },
+    {
+        "id": 4901,
+        "translate_ch": "好的建議像是一扇為你敞開的門，而不是一隻推你穿過去的手。",
+        "sentence": "A good suggestion arrives as a door held open, not as a hand pushing you through it."
+    },
+    {
+        "id": 4902,
+        "translate_ch": "平衡不是把一天平均切分，而是確保重要的那一邊永遠不會徹底枯竭。",
+        "sentence": "Balance isn't splitting the day evenly; it's making sure the important side never runs completely dry."
+    },
+    {
+        "id": 4903,
+        "translate_ch": "沒有人在臨終時，希望自己在週日晚上多回了幾封電子郵件。",
+        "sentence": "No one on their deathbed ever wished they had answered a few more emails on a Sunday night."
+    },
+    {
+        "id": 4904,
+        "translate_ch": "徵求建議，你會招來盟友；下達命令，你只招募到不情願的雙手。",
+        "sentence": "Ask for suggestions and you invite allies; hand down orders and you recruit only reluctant hands."
+    },
+    {
+        "id": 4905,
+        "translate_ch": "真正的慈善，是以一種讓對方雙手都能保住尊嚴的方式給予。",
+        "sentence": "True charity is giving in a way that lets the other person keep their dignity in both hands."
+    },
+    {
+        "id": 4906,
+        "translate_ch": "慷慨的重點不在於禮物的大小，而在於它背後犧牲的大小。",
+        "sentence": "Generosity is less about the size of the gift and more about the size of the sacrifice behind it."
+    },
+    {
+        "id": 4907,
+        "translate_ch": "夏天教會孩子，最棒的日子很少是計畫來的；它們就這麼發生，並拒絕結束。",
+        "sentence": "Summer teaches children that the best days are rarely planned; they simply happen and refuse to end."
+    },
+    {
+        "id": 4908,
+        "translate_ch": "認真對待批評，但別往心裡去；即使包裝無禮，訊息或許仍是禮物。",
+        "sentence": "Take criticism seriously but not personally; the message may be a gift even when the wrapping is rude."
+    },
+    {
+        "id": 4909,
+        "translate_ch": "讚美告訴你去過哪裡；誠實的批評，如果你受得了，會告訴你能去哪裡。",
+        "sentence": "Praise tells you where you've been; honest criticism, if you can bear it, tells you where you can go."
+    },
+    {
+        "id": 4910,
+        "translate_ch": "最好的驚喜不是昂貴的，而是有人一直默默留意著你的證明。",
+        "sentence": "The best surprises aren't the expensive ones; they're the proof that someone was quietly paying attention."
+    },
+    {
+        "id": 4911,
+        "translate_ch": "指出什麼壞了很容易；更難、更勇敢的工作，是默默幫忙重建它。",
+        "sentence": "It's easy to point at what's broken; the harder, braver work is to help quietly rebuild it."
+    },
+    {
+        "id": 4912,
+        "translate_ch": "團隊不是一群一起工作的人，而是一群信任彼此會做好自己那份的人。",
+        "sentence": "A team isn't a group of people who work together; it's a group who trust each other to do their part."
+    },
+    {
+        "id": 4913,
+        "translate_ch": "最強的團隊在室內自由爭論，一離開房間就立刻互相維護。",
+        "sentence": "The strongest teams argue freely in the room and defend one another the moment they leave it."
+    },
+    {
+        "id": 4914,
+        "translate_ch": "時間不是金錢；你總能賺更多錢，但沒有人曾買回過任何一個小時。",
+        "sentence": "Time isn't money; you can always earn more money, but no one has ever bought back a single hour."
+    },
+    {
+        "id": 4915,
+        "translate_ch": "我們說沒有時間，卻總能為那些暗自認定重要的事找到時間。",
+        "sentence": "We say we don't have time, but we always find it for the things we secretly decided matter."
+    },
+    {
+        "id": 4916,
+        "translate_ch": "在塞車中，每個人都被交通困住，卻沒有人承認自己就是交通。",
+        "sentence": "In a traffic jam, everyone is stuck in traffic, and no one ever admits they are the traffic."
+    },
+    {
+        "id": 4917,
+        "translate_ch": "麻煩分擔就減半，但前提是你在被它淹沒之前就告訴了某人。",
+        "sentence": "Trouble shared is trouble halved, but only if you tell someone before you've already drowned in it."
+    },
+    {
+        "id": 4918,
+        "translate_ch": "你避而不談的麻煩，往往在黑暗中滋長，完全由你的沉默餵養。",
+        "sentence": "The trouble you avoid talking about tends to grow in the dark, fed entirely by your silence."
+    },
+    {
+        "id": 4919,
+        "translate_ch": "在城市裡，你能被百萬人包圍，卻仍忘記自己名字的聲音。",
+        "sentence": "In the city you can be surrounded by a million people and still forget the sound of your own name."
+    },
+    {
+        "id": 4920,
+        "translate_ch": "志工領取的是市場從未學會印製的貨幣：他們知道自己是重要的。",
+        "sentence": "Volunteers are paid in a currency the market never learned to print: the knowledge they mattered."
+    },
+    {
+        "id": 4921,
+        "translate_ch": "好好等待本身是一種技能；不耐煩只會讓時鐘更沉重，卻從不更快。",
+        "sentence": "Waiting well is its own skill; impatience only makes the clock heavier, never faster."
+    },
+    {
+        "id": 4922,
+        "translate_ch": "最難的等待，不是等你知道會來的東西，而是等一個可能永遠不會到的答案。",
+        "sentence": "The hardest waiting isn't for something you know is coming; it's for an answer that may never arrive."
+    },
+    {
+        "id": 4923,
+        "translate_ch": "冬天不要求你綻放，它只要求你撐住，而靜靜地，那就足夠了。",
+        "sentence": "Winter doesn't ask you to bloom; it just asks you to endure, and quietly, that is enough."
+    },
+    {
+        "id": 4924,
+        "translate_ch": "你最難對其誠實的人，幾乎總是鏡子裡的那一個。",
+        "sentence": "The person you find hardest to be honest with is almost always the one in the mirror."
+    },
+    {
+        "id": 4925,
+        "translate_ch": "認識自己的弱點不是失敗，而是你在能去任何新地方之前所需要的地圖。",
+        "sentence": "Knowing your own weaknesses isn't defeat; it's the map you need before you can go anywhere new."
+    },
+    {
+        "id": 4926,
+        "translate_ch": "你的人生不是建立在稀有的宏大時刻上，而是由平凡的日常悄悄織成的。",
+        "sentence": "Your life is not built on the rare grand moments; it's woven quietly from the ordinary daily ones."
+    },
+    {
+        "id": 4927,
+        "translate_ch": "職涯是一場馬拉松，卻偽裝成一連串被告知是緊急狀況的短跑。",
+        "sentence": "A career is a marathon disguised as a series of sprints you were told were emergencies."
+    },
+    {
+        "id": 4928,
+        "translate_ch": "追隨那些讓你忘記時間的工作，讓頭銜稍後再來追上你。",
+        "sentence": "Follow the work that makes you lose track of time, and let the title catch up to you later."
+    },
+    {
+        "id": 4929,
+        "translate_ch": "學一門語言不是背單字，而是慢慢賺得第二雙眼睛。",
+        "sentence": "Learning a language is not memorizing words; it's slowly earning a second pair of eyes."
+    },
+    {
+        "id": 4930,
+        "translate_ch": "你學會的每一門語言，都悄悄遞給你一把通往你從不知存在的房間的鑰匙。",
+        "sentence": "Every language you learn quietly hands you the keys to a room you never knew existed."
     }
 ]
