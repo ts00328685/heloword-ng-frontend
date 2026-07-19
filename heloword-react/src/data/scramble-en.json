@@ -23448,5 +23448,155 @@
         "id": 4690,
         "translate_ch": "遠距工作把你的時間還給你，卻悄悄要求你自己去守護它。",
         "sentence": "Remote work gives you your hours back but quietly asks you to guard them yourself."
+    },
+    {
+        "id": 4691,
+        "translate_ch": "社群媒體給你看每個人的精彩片段，卻悄悄要你拿它和自己的NG畫面相比。",
+        "sentence": "Social media shows you everyone's highlight reel and quietly asks you to compare it to your bloopers."
+    },
+    {
+        "id": 4692,
+        "translate_ch": "把app刪掉一週，會教你它悄悄製造了你多少的焦躁。",
+        "sentence": "Deleting the app for a week teaches you how much of your restlessness it was quietly manufacturing."
+    },
+    {
+        "id": 4693,
+        "translate_ch": "一個理論的好壞，取決於它能扛住的最難看的那個事實。",
+        "sentence": "A theory is only as good as the ugliest fact it can survive."
+    },
+    {
+        "id": 4694,
+        "translate_ch": "理論上，理論和實踐沒有差別；實踐上，總是有的。",
+        "sentence": "In theory there's no difference between theory and practice; in practice there always is."
+    },
+    {
+        "id": 4695,
+        "translate_ch": "人們很少因為你說了什麼而改變行為，而是因為你始終如一地做了什麼。",
+        "sentence": "People rarely change their behavior because of what you say; they change it because of what you consistently do."
+    },
+    {
+        "id": 4696,
+        "translate_ch": "我們以自己的意圖評判自己，卻以他人的行為評判他人。",
+        "sentence": "We judge ourselves by our intentions and everyone else by their behavior."
+    },
+    {
+        "id": 4697,
+        "translate_ch": "合作不是每個人都同意，而是即使各有想法，大家仍一起划槳。",
+        "sentence": "Cooperation isn't everyone agreeing; it's everyone rowing even when they'd have picked a different direction."
+    },
+    {
+        "id": 4698,
+        "translate_ch": "好的服務是隱形的；你只在它消失的那一刻才察覺到。",
+        "sentence": "Good service is invisible; you only notice it the moment it disappears."
+    },
+    {
+        "id": 4699,
+        "translate_ch": "顧客很少記得價格；他們記得的是你把問題變成了他們的，還是你的。",
+        "sentence": "The customer rarely remembers the price; they remember how you made the problem theirs or yours."
+    },
+    {
+        "id": 4700,
+        "translate_ch": "風格，是知道自己是誰，有膽做自己，並且不為其餘的事道歉。",
+        "sentence": "Style is knowing who you are, having the nerve to be it, and not apologizing for the rest."
+    },
+    {
+        "id": 4701,
+        "translate_ch": "危險不在於AI像我們一樣思考，而在於我們開始像它一樣思考。",
+        "sentence": "The danger isn't that AI thinks like us; it's that we start thinking like it."
+    },
+    {
+        "id": 4702,
+        "translate_ch": "AI能在幾秒內草擬答案，但知道該問哪個問題，仍需要一個人。",
+        "sentence": "AI can draft the answer in seconds, but knowing which question to ask still takes a human."
+    },
+    {
+        "id": 4703,
+        "translate_ch": "在AI時代，最有用的技能，或許只是知道自己真正想要什麼。",
+        "sentence": "The most useful skill in the age of AI may simply be knowing what you actually want."
+    },
+    {
+        "id": 4704,
+        "translate_ch": "努力最好的好處，很少出現在發薪日，而是出現在你成為了什麼樣的人。",
+        "sentence": "The best benefits of hard work rarely show up on payday; they show up in who you've become."
+    },
+    {
+        "id": 4705,
+        "translate_ch": "好的描述不會列出每個細節，而是遞給你那個能讓其餘一切浮現的細節。",
+        "sentence": "A good description doesn't list every detail; it hands you the one that makes the rest appear."
+    },
+    {
+        "id": 4706,
+        "translate_ch": "工作會膨脹到填滿你給它的時間，所以給它比它要求的再少一點。",
+        "sentence": "Work expands to fill the time you give it, so give it a little less than it asks for."
+    },
+    {
+        "id": 4707,
+        "translate_ch": "忙碌和高效共用一本行事曆，卻幾乎從不共享一個成果。",
+        "sentence": "Being busy and being productive share a calendar but almost never share a result."
+    },
+    {
+        "id": 4708,
+        "translate_ch": "在學術界，最小的一個註腳，可能悄悄推翻最喧囂的一章。",
+        "sentence": "In academia, the smallest footnote can quietly overturn the loudest chapter."
+    },
+    {
+        "id": 4709,
+        "translate_ch": "你選擇的挑戰像是冒險；同樣的挑戰被強加於你，就像是負擔。",
+        "sentence": "A challenge you choose feels like adventure; the same challenge forced on you feels like a burden."
+    },
+    {
+        "id": 4710,
+        "translate_ch": "那堵牆不是為了阻止你，而是為了阻止那些不夠渴望它的人。",
+        "sentence": "The wall isn't there to stop you; it's there to stop the people who don't want it badly enough."
+    },
+    {
+        "id": 4711,
+        "translate_ch": "早點問路吧；自尊心從來沒有一次縮短過走錯的路。",
+        "sentence": "Ask for directions early; pride has never once shortened a wrong road."
+    },
+    {
+        "id": 4712,
+        "translate_ch": "每個選擇都會寄來一張帳單，唯一的問題是它何時送達。",
+        "sentence": "Every choice sends an invoice; the only question is when it arrives."
+    },
+    {
+        "id": 4713,
+        "translate_ch": "品格，是當掌聲停止、沒人在計分時，你身上所剩下的東西。",
+        "sentence": "Character is what's left of you when the applause stops and no one is keeping score."
+    },
+    {
+        "id": 4714,
+        "translate_ch": "自己動手做，會清楚地教你為什麼專業人士要收那個價。",
+        "sentence": "Doing it yourself teaches you exactly why the professional charges what they charge."
+    },
+    {
+        "id": 4715,
+        "translate_ch": "一個國家變老的方式和一個人一樣——先是靜悄悄地，然後突然之間。",
+        "sentence": "A country grows old the way a person does—quietly, then all at once."
+    },
+    {
+        "id": 4716,
+        "translate_ch": "專注力是一塊我們訓練自己在健身房裡跳過的肌肉。",
+        "sentence": "Concentration is a muscle we've trained ourselves to skip at the gym."
+    },
+    {
+        "id": 4717,
+        "translate_ch": "你無法在零碎的時間裡做深度工作；有些東西只在第一個無聊的小時之後才會開啟。",
+        "sentence": "You can't do deep work in shallow time; some things only open up after the first boring hour."
+    },
+    {
+        "id": 4718,
+        "translate_ch": "禮儀，不過是讓你周圍的人感到自在的藝術。",
+        "sentence": "Etiquette is simply the art of making the people around you feel at ease."
+    },
+    {
+        "id": 4719,
+        "translate_ch": "準時，是告訴一個人他的時間和你的一樣重要的、最安靜的方式。",
+        "sentence": "Being on time is the quietest way of telling someone their time matters as much as yours."
+    },
+    {
+        "id": 4720,
+        "translate_ch": "多元把想法帶上桌，包容才是讓它們真正被聽見的東西。",
+        "sentence": "Diversity brings the ideas to the table; inclusion is what lets them actually be heard."
     }
 ]
