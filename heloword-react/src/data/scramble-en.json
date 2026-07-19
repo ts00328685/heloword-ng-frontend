@@ -24048,5 +24048,155 @@
         "id": 4810,
         "translate_ch": "國家在最少被感覺到、最多被信任時，是它最好的狀態。",
         "sentence": "The state is at its best when it is felt least and trusted most."
+    },
+    {
+        "id": 4811,
+        "translate_ch": "你決定自己學夠了的那一刻，就是你悄悄開始萎縮的那一刻。",
+        "sentence": "The moment you decide you've learned enough is the moment you quietly begin to shrink."
+    },
+    {
+        "id": 4812,
+        "translate_ch": "任何語言中最危險的一句話，是「我們一直都是這樣做的」。",
+        "sentence": "The most dangerous phrase in any language is 'we've always done it this way.'"
+    },
+    {
+        "id": 4813,
+        "translate_ch": "你在等待的大多數許可，是只有你能給自己的許可。",
+        "sentence": "Most of the permission you're waiting for is permission you're only allowed to give yourself."
+    },
+    {
+        "id": 4814,
+        "translate_ch": "潮流告訴你今天大家想要什麼；永恆告訴你人們一直以來需要什麼。",
+        "sentence": "Trends tell you what everyone wants today; the timeless tells you what people have always needed."
+    },
+    {
+        "id": 4815,
+        "translate_ch": "休息不是你崩潰之後才掙來的獎賞，而是防止崩潰的保養。",
+        "sentence": "Rest is not a reward you earn after the breakdown; it's the maintenance that prevents it."
+    },
+    {
+        "id": 4816,
+        "translate_ch": "你沒有義務點燃自己，只為了讓別人取暖。",
+        "sentence": "You are not required to set yourself on fire to keep other people warm."
+    },
+    {
+        "id": 4817,
+        "translate_ch": "有些地方不會改變你，只是提醒你，在世界變吵之前你是誰。",
+        "sentence": "Some places don't change you; they simply remind you who you were before the world got loud."
+    },
+    {
+        "id": 4818,
+        "translate_ch": "追逐每一個潮流，是最保證讓你到哪都遲到、哪都不屬於的方式。",
+        "sentence": "Chasing every trend is the surest way to arrive everywhere late and belong nowhere."
+    },
+    {
+        "id": 4819,
+        "translate_ch": "等到一個潮流安全到人人可用時，真正的優勢早已離場。",
+        "sentence": "By the time a trend is safe enough for everyone, the real advantage has already left the room."
+    },
+    {
+        "id": 4820,
+        "translate_ch": "好的導師不會把地圖遞給你，而是教你自己如何判讀地形。",
+        "sentence": "A good mentor doesn't hand you the map; they teach you how to read the terrain yourself."
+    },
+    {
+        "id": 4821,
+        "translate_ch": "計畫本身毫無價值，但計畫的過程是一切；價值在於思考，而非那張紙。",
+        "sentence": "Plans are worthless, but planning is everything; the value is in the thinking, not the paper."
+    },
+    {
+        "id": 4822,
+        "translate_ch": "給我六小時砍樹，我會用頭四個小時磨斧頭。",
+        "sentence": "Give me six hours to chop a tree and I'll spend the first four sharpening the axe."
+    },
+    {
+        "id": 4823,
+        "translate_ch": "真相不需要你為它辯護，它只需要你不再躲避它。",
+        "sentence": "The truth doesn't need you to defend it; it only needs you to stop hiding from it."
+    },
+    {
+        "id": 4824,
+        "translate_ch": "一個舒服的謊言能讓你今晚暖和，但只有殘酷的真相能讓你自由。",
+        "sentence": "A comfortable lie will keep you warm tonight, but only a hard truth will keep you free."
+    },
+    {
+        "id": 4825,
+        "translate_ch": "一位導師曾給我最好的東西，不是一個答案，而是一個更好的問題。",
+        "sentence": "The best thing a mentor ever gave me wasn't an answer; it was a better question."
+    },
+    {
+        "id": 4826,
+        "translate_ch": "生活，就是在你忙著捍衛計畫時，發生在計畫身上的事。",
+        "sentence": "Life is what happens to your plans while you're busy defending them."
+    },
+    {
+        "id": 4827,
+        "translate_ch": "大學教你的，關於答案的少，關於哪些問題值得你花上數年人生的多。",
+        "sentence": "University teaches you less about the answers and more about which questions are worth years of your life."
+    },
+    {
+        "id": 4828,
+        "translate_ch": "你無法靠訓練彌補糟糕的飲食；身體記的帳，比健身房嚴格得多。",
+        "sentence": "You can't out-train a bad diet; the body keeps a stricter ledger than the gym does."
+    },
+    {
+        "id": 4829,
+        "translate_ch": "有禮貌不花一分錢，卻是能打開金錢永遠打不開的門的貨幣。",
+        "sentence": "Being polite costs nothing, yet it's the currency that opens doors money never could."
+    },
+    {
+        "id": 4830,
+        "translate_ch": "每一個被忽視的警告，終究會變成一個以「我早該知道」開頭的故事。",
+        "sentence": "Every warning ignored becomes, in time, a story that begins with 'I should have known.'"
+    },
+    {
+        "id": 4831,
+        "translate_ch": "大多數人看卻沒看見；善於觀察的人，只是拒絕讓平凡的事物被忽略。",
+        "sentence": "Most people look but don't see; the observant simply refuse to let the ordinary go unnoticed."
+    },
+    {
+        "id": 4832,
+        "translate_ch": "慢下來到足以留意，平凡的世界便悄悄顯露出它的非凡。",
+        "sentence": "Slow down enough to notice, and the ordinary world quietly turns out to be extraordinary."
+    },
+    {
+        "id": 4833,
+        "translate_ch": "運氣，是當默默的準備終於遇上一個不期而至的機會時所發生的事。",
+        "sentence": "Luck is what happens when quiet preparation finally meets an unannounced opportunity."
+    },
+    {
+        "id": 4834,
+        "translate_ch": "你走進考場時感到的平靜，只是那些沒人看見你投入的時數的迴響。",
+        "sentence": "The calm you feel walking into the exam is just the echo of the hours no one saw you put in."
+    },
+    {
+        "id": 4835,
+        "translate_ch": "壓力之下，你不會升到情境的高度，而是會退回到準備的水平。",
+        "sentence": "Under pressure you don't rise to the occasion; you fall back to the level of your preparation."
+    },
+    {
+        "id": 4836,
+        "translate_ch": "食譜只是別人的地圖；偉大的廚師終將學會不靠它旅行。",
+        "sentence": "A recipe is just someone else's map; the great cooks eventually learn to travel without one."
+    },
+    {
+        "id": 4837,
+        "translate_ch": "每一頓好菜的祕密食材，幾乎總是同一樣：不慌不忙的專注。",
+        "sentence": "The secret ingredient in every good meal is almost always the same: unhurried attention."
+    },
+    {
+        "id": 4838,
+        "translate_ch": "換一扇你觀看的窗，同一片風景就會訴說一個完全不同的故事。",
+        "sentence": "Change the window you're looking through and the same landscape tells a completely different story."
+    },
+    {
+        "id": 4839,
+        "translate_ch": "問題很少是問題本身；通常是你堅持觀看它的那個角度。",
+        "sentence": "The problem is rarely the problem; it's usually the angle from which you insist on seeing it."
+    },
+    {
+        "id": 4840,
+        "translate_ch": "對那些早已忘記如何有禮的人依然保持客氣，是一種安靜的力量。",
+        "sentence": "There's a quiet strength in staying courteous with people who have long since forgotten how."
     }
 ]
