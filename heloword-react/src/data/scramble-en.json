@@ -26148,5 +26148,155 @@
         "id": 5230,
         "translate_ch": "最好的建議通常不會告訴你該做什麼，而只是問出那個你一直默默迴避的問題。",
         "sentence": "The best advice usually doesn't tell you what to do; it just asks the question you'd been quietly avoiding."
+    },
+    {
+        "id": 5231,
+        "translate_ch": "真正的道歉裡沒有「但是」；「但是」這個字會默默刪掉你在它之前說的一切。",
+        "sentence": "A real apology has no 'but' in it; the word 'but' quietly deletes everything you said before it."
+    },
+    {
+        "id": 5232,
+        "translate_ch": "快速道歉是一種技能；在你的自尊心把它的異議講完之前就道歉，是一種超能力。",
+        "sentence": "Saying sorry quickly is a skill; saying it before your pride has finished its objections is a superpower."
+    },
+    {
+        "id": 5233,
+        "translate_ch": "在談判中，誰比較不在乎走人，誰就默默握有所有真正的力量。",
+        "sentence": "In a negotiation, whoever cares less about walking away is quietly holding all the real power."
+    },
+    {
+        "id": 5234,
+        "translate_ch": "最好的交易會刻意在桌上留一點，好讓對方默默地想再回來。",
+        "sentence": "The best deals leave a little on the table on purpose, so the other side quietly wants to come back."
+    },
+    {
+        "id": 5235,
+        "translate_ch": "最有用的評論從來不是五星或一星，而是誠實列出兩面的那則三星。",
+        "sentence": "The most useful review is never the five-star or the one-star; it's the honest three-star that lists both."
+    },
+    {
+        "id": 5236,
+        "translate_ch": "數學不在乎你對答案有什麼感覺，而這正是它為什麼是個這麼誠實的朋友。",
+        "sentence": "Math doesn't care how you feel about the answer, which is exactly why it's such an honest friend."
+    },
+    {
+        "id": 5237,
+        "translate_ch": "瞄準一顆星，你可能到得了樹梢；瞄準樹梢，你就會默默停在地上。",
+        "sentence": "Aim at a star and you might reach the treetop; aim at the treetop and you'll quietly stay on the ground."
+    },
+    {
+        "id": 5238,
+        "translate_ch": "你所在之處和你想去之處之間的落差不是失敗，而默默地就是你起床的全部理由。",
+        "sentence": "The gap between where you are and where you want to be isn't failure; it's quietly the whole reason to get up."
+    },
+    {
+        "id": 5239,
+        "translate_ch": "關心一個人不是解決他所有的問題，而是默默拒絕讓他獨自面對。",
+        "sentence": "Caring for someone isn't fixing all their problems; it's just quietly refusing to let them face them alone."
+    },
+    {
+        "id": 5240,
+        "translate_ch": "有時候最關心的事不是一個解決方案，而只是默默地陪一個人坐在黑暗裡。",
+        "sentence": "Sometimes the most caring thing is not a solution but simply sitting quietly in the dark with someone."
+    },
+    {
+        "id": 5241,
+        "translate_ch": "在網路上，你買的是照片和承諾；真正的東西，會在三天和一次後悔之後默默送到。",
+        "sentence": "Online, you buy the photo and the promise; the actual thing quietly arrives three days and one regret later."
+    },
+    {
+        "id": 5242,
+        "translate_ch": "「這也會過去」默默地，是你最糟和最好的日子都適用的最有用的一句話。",
+        "sentence": "'This too shall pass' is quietly the most useful sentence for both your worst days and your best ones."
+    },
+    {
+        "id": 5243,
+        "translate_ch": "一個建立在錯誤前提上、邏輯完美的論證，會讓你自信滿滿地走下懸崖。",
+        "sentence": "A perfectly logical argument built on one false assumption will march you confidently off a cliff."
+    },
+    {
+        "id": 5244,
+        "translate_ch": "正確和有說服力是兩種不同的技能，把它們搞混，默默地結束了很多友誼。",
+        "sentence": "Being right and being convincing are two different skills, and confusing them quietly ends a lot of friendships."
+    },
+    {
+        "id": 5245,
+        "translate_ch": "寫下那個你會不好意思承認自己想要的人生；那份難為情，默默地就是指南針。",
+        "sentence": "Write down the life you'd be embarrassed to admit you want; that embarrassment is quietly the compass."
+    },
+    {
+        "id": 5246,
+        "translate_ch": "一個人你可以走得更快，但有趣的地方，幾乎總是遠到沒有同伴就到不了。",
+        "sentence": "Alone you can go faster, but the interesting places are almost always too far to reach without company."
+    },
+    {
+        "id": 5247,
+        "translate_ch": "最好的團隊不是充滿相似的人，而是充滿默默信任彼此的不同的人。",
+        "sentence": "The best teams aren't full of similar people; they're full of different people who quietly trust each other."
+    },
+    {
+        "id": 5248,
+        "translate_ch": "升遷常常是把工作做好的獎賞，方式卻是讓你完全不再做那份工作。",
+        "sentence": "A promotion is often a reward for doing a job well, given by making you stop doing that job entirely."
+    },
+    {
+        "id": 5249,
+        "translate_ch": "在你有頭銜之前就做高一階的工作，頭銜就會默默變成一種形式。",
+        "sentence": "Do the job one level up before you have the title, and the title quietly becomes a formality."
+    },
+    {
+        "id": 5250,
+        "translate_ch": "誠實的年終回顧無關罪惡感，只是默默留意你其實面向的是哪個方向。",
+        "sentence": "An honest year-end review isn't about guilt; it's just quietly noticing which direction you were actually facing."
+    },
+    {
+        "id": 5251,
+        "translate_ch": "只讓你感覺良好的回饋什麼都沒教你；成長默默地住在那個刺痛你的部分裡。",
+        "sentence": "Feedback that only makes you feel good taught you nothing; growth quietly lives in the part that stung."
+    },
+    {
+        "id": 5252,
+        "translate_ch": "一場好爭論的目標不是贏，而是讓兩個人最後都默默比一開始錯得少一點。",
+        "sentence": "The goal of a good argument isn't to win; it's for both people to end up quietly less wrong than they started."
+    },
+    {
+        "id": 5253,
+        "translate_ch": "工作與生活的平衡不是一個你終於擺平的天秤，而是一台你默默地、永無止盡地在轉的腳踏車。",
+        "sentence": "Work-life balance isn't a scale you finally level; it's a bike you keep quietly, endlessly steering."
+    },
+    {
+        "id": 5254,
+        "translate_ch": "你永遠不會「找到」平衡；你每天早上重新建立它，然後默默在午餐前又失去它。",
+        "sentence": "You will never 'find' balance; you build it fresh each morning and quietly lose it again by lunch."
+    },
+    {
+        "id": 5255,
+        "translate_ch": "幾乎每個抱怨背後，都藏著一個還沒找到夠禮貌方式開口的真實需求。",
+        "sentence": "Behind almost every complaint is a real need that just hasn't found a polite enough way to ask."
+    },
+    {
+        "id": 5256,
+        "translate_ch": "遠距工作拿掉了通勤，卻默默把它換成一件更難的事：自己畫界線。",
+        "sentence": "Remote work removes the commute and quietly replaces it with the harder task of drawing your own lines."
+    },
+    {
+        "id": 5257,
+        "translate_ch": "拿你平凡的星期二去比別人的精彩片段，是一場默默設計好要讓你輸的遊戲。",
+        "sentence": "Comparing your ordinary Tuesday to everyone else's highlight reel is a game quietly designed for you to lose."
+    },
+    {
+        "id": 5258,
+        "translate_ch": "理論上，理論和實踐是一樣的；實踐上，那正是麻煩默默開始的地方。",
+        "sentence": "In theory, theory and practice are the same; in practice, that's precisely where the trouble quietly begins."
+    },
+    {
+        "id": 5259,
+        "translate_ch": "在人們相信你說的任何一句話之前很久，他們就已經相信你始終如一在做的事。",
+        "sentence": "People will believe what you consistently do long before they believe a single thing you say."
+    },
+    {
+        "id": 5260,
+        "translate_ch": "小習慣每天都在為那個你默默地、慢慢地正在變成的人投票。",
+        "sentence": "Small habits vote every day for the person you're quietly, slowly becoming."
     }
 ]
