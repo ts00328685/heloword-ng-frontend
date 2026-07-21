@@ -25998,5 +25998,155 @@
         "id": 5200,
         "translate_ch": "禮貌是語言之中的語言，默默告訴一個人，他在你心裡佔了多大的位置。",
         "sentence": "Politeness is a language within a language, quietly telling someone exactly how much space they take up."
+    },
+    {
+        "id": 5201,
+        "translate_ch": "幽默是智慧在玩耍，也是判斷一個人有沒有真的在專心的最快方式。",
+        "sentence": "Humor is intelligence having fun, and it's the fastest way to tell if someone's actually paying attention."
+    },
+    {
+        "id": 5202,
+        "translate_ch": "能夠自嘲，是一種沒人能奪走的、安靜的自由。",
+        "sentence": "Being able to laugh at yourself is a quiet kind of freedom nobody can ever take away from you."
+    },
+    {
+        "id": 5203,
+        "translate_ch": "最難的社會問題不是沒人看見的，而是大家默默達成共識、決定視而不見的。",
+        "sentence": "The hardest social problems aren't the ones nobody sees; they're the ones everybody's quietly agreed to ignore."
+    },
+    {
+        "id": 5204,
+        "translate_ch": "你真正的價值觀不是你嘴上說的，而是你累了、又沒人看的時候，會伸手去拿的東西。",
+        "sentence": "Your real values aren't what you say they are; they're whatever you reach for when you're tired and no one's watching."
+    },
+    {
+        "id": 5205,
+        "translate_ch": "你不可能什麼都是優先；當一切都重要的那一刻，默默地，就什麼都不重要了。",
+        "sentence": "You can't have every priority; the moment everything is important, quietly, nothing is."
+    },
+    {
+        "id": 5206,
+        "translate_ch": "冒險在發生的當下很少感覺像冒險；那時候它只感覺像又冷、又迷路、又沒把握。",
+        "sentence": "Adventure rarely feels like adventure while it's happening; at the time it just feels like being cold, lost, and unsure."
+    },
+    {
+        "id": 5207,
+        "translate_ch": "證書證明你通過了考試，卻默默沒說你到底能不能做那份真正的工作。",
+        "sentence": "A certificate proves you passed a test; it quietly says nothing about whether you can do the actual job."
+    },
+    {
+        "id": 5208,
+        "translate_ch": "線上學習給了你世界上所有的課，卻默默把更難的工作交給你：自己一個人出席。",
+        "sentence": "Online learning gives you every course in the world and quietly hands you the harder job of showing up alone."
+    },
+    {
+        "id": 5209,
+        "translate_ch": "媒體不會告訴你該想什麼，而是默默替你決定，你一整天會在想什麼。",
+        "sentence": "The media doesn't tell you what to think; it quietly decides, for you, what you'll be thinking about all day."
+    },
+    {
+        "id": 5210,
+        "translate_ch": "最危險的標題不是假的那個，而是被精心挑選、用來讓你產生某種感覺的真標題。",
+        "sentence": "The most dangerous headline isn't the false one; it's the true one carefully chosen to make you feel a certain way."
+    },
+    {
+        "id": 5211,
+        "translate_ch": "巨大的改變很少轟然到來；它是靜靜滲進來的，直到某天，舊的方式突然感覺再也行不通。",
+        "sentence": "Big change rarely arrives with a bang; it seeps in quietly, until one day the old way just feels impossible."
+    },
+    {
+        "id": 5212,
+        "translate_ch": "你拚了命才登上的頂峰，在你站上去、看見下一道山脈的那一刻就縮小了。",
+        "sentence": "The summit you fought so hard to reach shrinks the moment you stand on it and see the next range."
+    },
+    {
+        "id": 5213,
+        "translate_ch": "追逐成就，就永遠不夠；追逐成長，成就反而會默默自己出現。",
+        "sentence": "Chase the achievement and it's never enough; chase the growth and the achievements quietly show up anyway."
+    },
+    {
+        "id": 5214,
+        "translate_ch": "年齡不是你活了幾年，而是那幾年裡你真正清醒地活過幾年。",
+        "sentence": "Age isn't the number of years you've lived; it's how many of them you actually stayed awake for."
+    },
+    {
+        "id": 5215,
+        "translate_ch": "老人種下他明知自己永遠坐不到樹蔭的樹，而這默默地就是全部的重點。",
+        "sentence": "The old man plants trees whose shade he knows he'll never sit in, and that's quietly the whole point."
+    },
+    {
+        "id": 5216,
+        "translate_ch": "期限只是一個長了牙的夢；它是「總有一天」和「這週五」之間的差別。",
+        "sentence": "A deadline is just a dream with teeth; it's the difference between someday and this Friday."
+    },
+    {
+        "id": 5217,
+        "translate_ch": "給一件事兩週，它就花掉兩週；給它兩天，你會默默對自己感到驚訝。",
+        "sentence": "Give a task two weeks and it takes two weeks; give it two days and you're quietly amazed at yourself."
+    },
+    {
+        "id": 5218,
+        "translate_ch": "沒人記得你的投影片，他們記得的是你看起來相不相信自己說的每一個字。",
+        "sentence": "Nobody remembers your slides; they remember whether you looked like you believed a single word of it."
+    },
+    {
+        "id": 5219,
+        "translate_ch": "刪掉你最得意的那張投影片；它通常正是那張默默在講你、而不是講他們的。",
+        "sentence": "Cut the slide you're most proud of; it's usually the one that's quietly about you, not about them."
+    },
+    {
+        "id": 5220,
+        "translate_ch": "懷舊是個騙子，它默默剪掉了無聊和等待，只留下那些金黃色的下午。",
+        "sentence": "Nostalgia is a liar that quietly edits out the boredom and the waiting, keeping only the golden afternoons."
+    },
+    {
+        "id": 5221,
+        "translate_ch": "我們想念的不是一個地方，而是一個已經默默不復存在的自己。",
+        "sentence": "We're not homesick for a place; we're homesick for a version of ourselves that quietly no longer exists."
+    },
+    {
+        "id": 5222,
+        "translate_ch": "有些問題大到任何一個國家都扛不住，而全部的關鍵，就是在來不及之前先承認這點。",
+        "sentence": "Some problems are too big for any one country, and the whole trick is admitting that before it's too late."
+    },
+    {
+        "id": 5223,
+        "translate_ch": "活下來的不是最強的，而是那些默默願意變成一個稍微不同的人的。",
+        "sentence": "It's not the strongest who survive, but the ones quietly willing to become someone slightly new."
+    },
+    {
+        "id": 5224,
+        "translate_ch": "你愛上的那個計畫，正是現實默默準備要打破的；輕輕握著它就好。",
+        "sentence": "The plan you fall in love with is the plan reality is quietly preparing to break; hold it loosely."
+    },
+    {
+        "id": 5225,
+        "translate_ch": "狗不會因為你的頭銜而愛你，牠只是默默在門邊等著那唯一重要的東西：你。",
+        "sentence": "A dog doesn't love you for your job title; it just quietly waits by the door for the only thing that matters: you."
+    },
+    {
+        "id": 5226,
+        "translate_ch": "你留在架上的東西，是一場關於一個你不確定真的會來的未來的安靜賭注。",
+        "sentence": "What you keep on the shelf is a quiet bet about a future you're not sure will actually arrive."
+    },
+    {
+        "id": 5227,
+        "translate_ch": "受歡迎是被很多人認識；受尊敬是被少數真正重要的人深深認識。",
+        "sentence": "Being popular is being widely known; being respected is being known well by the few who actually count."
+    },
+    {
+        "id": 5228,
+        "translate_ch": "最好的醫生把你當成一個剛好生病的人，而不是一個剛好附著在人身上的疾病。",
+        "sentence": "The best doctors treat you like a person who happens to be sick, not a disease that happens to have a person."
+    },
+    {
+        "id": 5229,
+        "translate_ch": "免費的建議價值剛好等於你付的錢，除非它來自一個默默走過那條路的人。",
+        "sentence": "Free advice is worth exactly what you paid for it, unless it comes from someone who's quietly walked the road."
+    },
+    {
+        "id": 5230,
+        "translate_ch": "最好的建議通常不會告訴你該做什麼，而只是問出那個你一直默默迴避的問題。",
+        "sentence": "The best advice usually doesn't tell you what to do; it just asks the question you'd been quietly avoiding."
     }
 ]
