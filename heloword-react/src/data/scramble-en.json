@@ -26298,5 +26298,155 @@
         "id": 5260,
         "translate_ch": "小習慣每天都在為那個你默默地、慢慢地正在變成的人投票。",
         "sentence": "Small habits vote every day for the person you're quietly, slowly becoming."
+    },
+    {
+        "id": 5261,
+        "translate_ch": "合作不是每個人做一樣的事，而是每個人在同一時間做他們各自不同的事。",
+        "sentence": "Cooperation isn't everyone doing the same thing; it's everyone doing their different thing at the same time."
+    },
+    {
+        "id": 5262,
+        "translate_ch": "最好的服務會預料到你默默正要問的問題，在你開口前就先回答了。",
+        "sentence": "The best service anticipates the question you were quietly about to ask and answers it before you speak."
+    },
+    {
+        "id": 5263,
+        "translate_ch": "風格不是你買得起的衣服，而是把便宜貨穿得像你精挑細選過的那種自信。",
+        "sentence": "Style isn't the clothes you can afford; it's the confidence to wear the cheap ones like you chose them."
+    },
+    {
+        "id": 5264,
+        "translate_ch": "真正的風格，是把自己了解得夠透，讓潮流默默變成一種選擇，而不是義務。",
+        "sentence": "True style is knowing yourself so well that trends become optional, quietly, rather than mandatory."
+    },
+    {
+        "id": 5265,
+        "translate_ch": "AI很樂意給你所有問題的平均答案，而這正是為什麼你自己的品味現在更重要了。",
+        "sentence": "AI will happily give you the average answer to everything, which is exactly why your own taste matters more now."
+    },
+    {
+        "id": 5266,
+        "translate_ch": "「機器能做這個嗎？」這個問題，遠不如「人類是不是仍然該想做這個？」來得重要。",
+        "sentence": "The question 'can a machine do this?' matters less than 'should a human still want to?'"
+    },
+    {
+        "id": 5267,
+        "translate_ch": "一個艱難的年份最好的好處，從來不會出現在你的履歷上，而是默默出現在你的耐心裡。",
+        "sentence": "The best benefits of a hard year never show up on your résumé; they quietly show up in your patience."
+    },
+    {
+        "id": 5268,
+        "translate_ch": "「展示，別說教」在寫作和人生裡都適用；人們相信他們看見的，遠勝過你宣布的。",
+        "sentence": "Show, don't tell, works in writing and in life; people believe what they see far more than what you announce."
+    },
+    {
+        "id": 5269,
+        "translate_ch": "在你不想做的時候把工作做了，你就會默默賺到那些工作自己會完成的日子。",
+        "sentence": "Do the work when you don't feel like it, and you'll quietly earn the days when the work does itself."
+    },
+    {
+        "id": 5270,
+        "translate_ch": "忙碌和有生產力不一樣；輪子上的倉鼠非常忙，卻哪裡都到不了。",
+        "sentence": "Busy is not the same as productive; a hamster on a wheel is extremely busy and going absolutely nowhere."
+    },
+    {
+        "id": 5271,
+        "translate_ch": "一個沒人讀的註腳，可能默默撐起一整座大家都相信的高塔。",
+        "sentence": "A footnote nobody reads can quietly hold up a whole tower of things everybody believes."
+    },
+    {
+        "id": 5272,
+        "translate_ch": "挑戰只是一種偽裝的稱讚；沒有人會把難事交給一個他覺得會失敗的人。",
+        "sentence": "A challenge is just a compliment in disguise; nobody hands a hard thing to someone they think will fail."
+    },
+    {
+        "id": 5273,
+        "translate_ch": "你一直撞的那堵牆不是為了阻止你，而是為了篩出你到底有多想要。",
+        "sentence": "The wall you keep hitting isn't there to stop you; it's there to sort out how much you actually want it."
+    },
+    {
+        "id": 5274,
+        "translate_ch": "故意迷路，是所剩不多、能真正發現自己身在何處的誠實方法之一。",
+        "sentence": "Getting lost on purpose is one of the last honest ways left to actually discover where you are."
+    },
+    {
+        "id": 5275,
+        "translate_ch": "每一個「好」，默默地都是對你原本能用同一小時做的其他一切說「不」。",
+        "sentence": "Every 'yes' is quietly a 'no' to everything else you could have done with that same hour."
+    },
+    {
+        "id": 5276,
+        "translate_ch": "品格，是就算你確定沒人會發現、也沒人會感謝，你仍會去做的事。",
+        "sentence": "Character is what you'd still do if you were certain nobody would ever find out and nobody would ever thank you."
+    },
+    {
+        "id": 5277,
+        "translate_ch": "一個人怎麼對待一個幫不了他的服務生，會告訴你他履歷上默默略掉的一切。",
+        "sentence": "How someone treats a waiter who can't help them tells you everything their résumé quietly left out."
+    },
+    {
+        "id": 5278,
+        "translate_ch": "自己動手做很少是為了錢，而是那種指著一樣東西說「這是我做的」的安靜驕傲。",
+        "sentence": "Doing it yourself is rarely about the money; it's about the quiet pride of pointing at something and saying 'I made that.'"
+    },
+    {
+        "id": 5279,
+        "translate_ch": "每一張國家未來的圖表，默默地都是一張人們覺得安穩到願意生幾個孩子的圖表。",
+        "sentence": "Every graph of a nation's future is quietly a graph of how many children people felt safe enough to have."
+    },
+    {
+        "id": 5280,
+        "translate_ch": "深度專注是一塊我們都在默默讓它變軟的肌肉，一則通知接著一則。",
+        "sentence": "Deep focus is a muscle we're all quietly letting go soft, one notification at a time."
+    },
+    {
+        "id": 5281,
+        "translate_ch": "你沒辦法在分心的縫隙裡做出好作品；有些東西只在不被打斷的一小時之後才會開啟。",
+        "sentence": "You can't do great work in the cracks between distractions; some things only open up after an unbroken hour."
+    },
+    {
+        "id": 5282,
+        "translate_ch": "禮儀無關該用哪支叉子，而是確保餐桌上沒有人覺得自己很渺小。",
+        "sentence": "Manners aren't about which fork to use; they're about making sure nobody at the table feels small."
+    },
+    {
+        "id": 5283,
+        "translate_ch": "準時，是一種安靜地告訴別人：你和重視自己的時間一樣重視他們的時間。",
+        "sentence": "Being on time is a quiet way of telling people that you value their hours as much as your own."
+    },
+    {
+        "id": 5284,
+        "translate_ch": "一個大家想法都一樣的團隊，會很快達成共識，然後默默地、自信地一起錯。",
+        "sentence": "A team of people who all think alike will agree quickly and be quietly, confidently wrong together."
+    },
+    {
+        "id": 5285,
+        "translate_ch": "傾聽和你不一樣的人，重點不是當好人，而是看見你自己看不到的那部分現實。",
+        "sentence": "The point of listening to people unlike you isn't to be nice; it's to see the parts of reality you can't."
+    },
+    {
+        "id": 5286,
+        "translate_ch": "大多數決定都是可逆的，如果你默默停止把它們全當成最終決定，你會走得快很多。",
+        "sentence": "Most decisions are reversible, and you'd move a lot faster if you quietly stopped treating them all as final."
+    },
+    {
+        "id": 5287,
+        "translate_ch": "不做決定本身就是一個決定；它只是默默把方向盤交給時間、運氣，和其他所有人。",
+        "sentence": "Not deciding is itself a decision; it just quietly hands the wheel to time, luck, and everyone else."
+    },
+    {
+        "id": 5288,
+        "translate_ch": "二十年的經驗只有在它是二十個不同的年份時才有價值，而不是同一年活了二十次。",
+        "sentence": "Twenty years of experience is only valuable if it's twenty different years, not one year lived twenty times."
+    },
+    {
+        "id": 5289,
+        "translate_ch": "智慧只是學會說話的疤痕組織；你靠著撐過那些你絕不會自願經歷的事來賺得它。",
+        "sentence": "Wisdom is just scar tissue that learned to speak; you earn it by surviving what you'd never volunteer for."
+    },
+    {
+        "id": 5290,
+        "translate_ch": "考試衡量的是你在某個特定早晨表現得如何，而不是你實際知道的一切的樣貌。",
+        "sentence": "An exam measures how well you perform on one specific morning, not the shape of everything you actually know."
     }
 ]
