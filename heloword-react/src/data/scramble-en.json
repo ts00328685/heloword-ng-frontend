@@ -25698,5 +25698,155 @@
         "id": 5140,
         "translate_ch": "大多數壞決定不是一瞬間做出的，而是一百個你從沒質疑過的小決定的總和。",
         "sentence": "Most bad decisions aren't made in a moment; they're the sum of a hundred small ones you never questioned."
+    },
+    {
+        "id": 5141,
+        "translate_ch": "韌性不是永不崩潰，而是崩潰之後，默默想辦法把自己黏回去、變得更強。",
+        "sentence": "Resilience isn't never breaking; it's breaking, then quietly figuring out how to glue yourself back stronger."
+    },
+    {
+        "id": 5142,
+        "translate_ch": "韌性不是在你順的日子裡建立的，而是默默建立在你如何對待低潮時的自己。",
+        "sentence": "You don't build resilience on your good days; you quietly build it in how you treat yourself on the bad ones."
+    },
+    {
+        "id": 5143,
+        "translate_ch": "變老，只是一個緩慢而誠實的過程：越來越不在意陌生人怎麼看你。",
+        "sentence": "Getting older is just the slow, honest process of caring less about what strangers think of you."
+    },
+    {
+        "id": 5144,
+        "translate_ch": "沒有人真的怕變老；他們怕的是變老了，卻從沒默默成為過自己。",
+        "sentence": "Nobody actually fears growing old; they fear growing old without ever having quietly become themselves."
+    },
+    {
+        "id": 5145,
+        "translate_ch": "創新不是一道閃電，通常只是一個無聊的點子，被某個夠固執、不肯放棄的人守著。",
+        "sentence": "Innovation isn't a lightning bolt; it's usually a boring idea someone was stubborn enough not to abandon."
+    },
+    {
+        "id": 5146,
+        "translate_ch": "輪子也曾經是創新的；你依賴的每個理所當然的東西，最初都是某人荒謬的點子。",
+        "sentence": "The wheel was innovative once; every obvious thing you rely on was somebody's ridiculous idea first."
+    },
+    {
+        "id": 5147,
+        "translate_ch": "一本好書不會給你答案，它只是默默毀掉那些你以前很滿意的問題。",
+        "sentence": "A great book doesn't give you answers; it just quietly ruins the questions you used to be satisfied with."
+    },
+    {
+        "id": 5148,
+        "translate_ch": "創意會死在一個沒人被允許先大聲說出蠢點子的房間裡。",
+        "sentence": "Creativity dies in a room where nobody's allowed to say a stupid idea out loud first."
+    },
+    {
+        "id": 5149,
+        "translate_ch": "如果問題感覺無解，你大概還在試著解錯的那個版本。",
+        "sentence": "If the problem feels impossible, you're probably still trying to solve the wrong version of it."
+    },
+    {
+        "id": 5150,
+        "translate_ch": "投入，是在那些灰暗的日子也照樣出現，早在掌聲和興奮都回家很久之後。",
+        "sentence": "Dedication is showing up on the grey days too, long after the applause and the excitement have gone home."
+    },
+    {
+        "id": 5151,
+        "translate_ch": "那個一夜成名的專家，在一個沒人鼓掌的房間裡，默默練了十年。",
+        "sentence": "The overnight expert practiced quietly for ten years in a room where nobody was clapping."
+    },
+    {
+        "id": 5152,
+        "translate_ch": "一個遺忘老人的社會，會默默失去那張唯一標示出它是怎麼走到今天的地圖。",
+        "sentence": "A society that forgets its old people quietly loses the one map that shows how it actually got here."
+    },
+    {
+        "id": 5153,
+        "translate_ch": "那家執著於最後百分之一的工廠，就是那個名字被人們默默學會信任的。",
+        "sentence": "The factory that obsesses over the last one percent is the one whose name people quietly learn to trust."
+    },
+    {
+        "id": 5154,
+        "translate_ch": "文學是唯一一種能讓你確切感受到，當一個你永遠不會遇見的人是什麼感覺的科技。",
+        "sentence": "Literature is the one technology that lets you feel exactly what it's like to be someone you'll never meet."
+    },
+    {
+        "id": 5155,
+        "translate_ch": "有些書你長大就超越了，有些則要長大才讀得進去；偉大的書會默默等你準備好。",
+        "sentence": "You outgrow some books and grow into others; the great ones quietly wait for you to be ready."
+    },
+    {
+        "id": 5156,
+        "translate_ch": "真正的休閒不是什麼都不做，而是做一件除了「做它的安靜快樂」之外沒有別的目的的事。",
+        "sentence": "Real leisure isn't doing nothing; it's doing something with no goal except the quiet joy of doing it."
+    },
+    {
+        "id": 5157,
+        "translate_ch": "休息不是完成工作後的獎賞，而是讓工作變好的那份工作的一部分。",
+        "sentence": "Rest isn't the reward for finishing your work; it's part of the work that makes the work any good."
+    },
+    {
+        "id": 5158,
+        "translate_ch": "你可以把一個笑話分析到死，然後你會學到關於它的一切，除了它為什麼好笑。",
+        "sentence": "You can analyze a joke until it's dead, and you'll have learned everything about it except why it was funny."
+    },
+    {
+        "id": 5159,
+        "translate_ch": "數據能告訴你人們做了什麼，但對你最需要的那件事——為什麼——它默默保持沉默。",
+        "sentence": "Data can tell you what people did, but it quietly stays silent on the one thing you need: why."
+    },
+    {
+        "id": 5160,
+        "translate_ch": "耐心不是被動地等，而是在那件慢的事慢慢來的時候，仍保持善意和清醒。",
+        "sentence": "Patience isn't passively waiting; it's staying kind and clear-headed while the slow thing takes its slow time."
+    },
+    {
+        "id": 5161,
+        "translate_ch": "一切值得擁有的東西，都長得比你希望的慢，照著一個完全無視你不耐煩的時間表。",
+        "sentence": "Everything worth having grows slower than you'd like, on a schedule that ignores your impatience entirely."
+    },
+    {
+        "id": 5162,
+        "translate_ch": "照顧一個曾照顧過你的人，是少數幾種你付得越多、反而感覺越輕的債。",
+        "sentence": "Caring for someone who once cared for you is one of the few debts that feels lighter the more you pay it."
+    },
+    {
+        "id": 5163,
+        "translate_ch": "農夫在春天播種，為的是一場他只能想像的收成，信任著一個他無法掌控的季節。",
+        "sentence": "A farmer plants in spring for a harvest they can only imagine, trusting a season they can't control."
+    },
+    {
+        "id": 5164,
+        "translate_ch": "我們記得自己的人生不是靠事實，而是默默把它變成一個故事，好讓它終於說得通。",
+        "sentence": "We don't remember our lives as facts; we quietly turn them into a story so they'll finally make sense."
+    },
+    {
+        "id": 5165,
+        "translate_ch": "美不是裝飾，而是一個安靜的論點：這個世界值得你仔細留意。",
+        "sentence": "Beauty isn't decoration; it's a quiet argument that the world is worth paying close attention to."
+    },
+    {
+        "id": 5166,
+        "translate_ch": "我們淹沒在資訊裡，卻默默渴求著那份知道該對哪一則採取行動的智慧。",
+        "sentence": "We drown in information yet quietly starve for the wisdom to know which piece to act on."
+    },
+    {
+        "id": 5167,
+        "translate_ch": "這個世紀的技能不是找資訊，而是默默選擇要讓什麼從你的腦袋裡放出去。",
+        "sentence": "The skill of the century isn't finding information; it's quietly choosing what to let back out of your head."
+    },
+    {
+        "id": 5168,
+        "translate_ch": "勇氣不是沒有恐懼，而是決定恐懼另一頭的那件事更重要。",
+        "sentence": "Courage isn't the absence of fear; it's deciding the thing on the other side of fear matters more."
+    },
+    {
+        "id": 5169,
+        "translate_ch": "在一個默默獎勵你變得強硬的世界裡，溫柔反而需要更大的勇氣。",
+        "sentence": "It takes more courage to be gentle in a world that quietly rewards you for being hard."
+    },
+    {
+        "id": 5170,
+        "translate_ch": "最誠實的對話很少發生在會議上，而是發生在會後走出去、隨口聊的時候。",
+        "sentence": "The most honest conversations rarely happen at the meeting; they happen casually, on the walk out afterward."
     }
 ]
