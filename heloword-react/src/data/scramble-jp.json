@@ -145666,5 +145666,1515 @@
       "N4",
       "health"
     ]
+  },
+  {
+    "id": "6243",
+    "japanese": "インターネットは、あなたが忘れてしまいたいことは何もかも覚えているのに、覚えておいてほしいことは、すべて忘れてしまう。",
+    "chunks": [
+      "インターネット",
+      "は、",
+      "あなた",
+      "が",
+      "忘れて",
+      "しまいたい",
+      "こと",
+      "は",
+      "何もかも",
+      "覚えている",
+      "のに、",
+      "覚えて",
+      "おいて",
+      "ほしい",
+      "こと",
+      "は、",
+      "すべて",
+      "忘れて",
+      "しまう。"
+    ],
+    "translation": "網路記得所有你巴不得忘記的事，卻忘記所有你希望它留住的。",
+    "english": "The internet remembers everything you'd love to forget, yet forgets everything you'd want it to keep.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "internet"
+    ]
+  },
+  {
+    "id": "6244",
+    "japanese": "インターネットは世界中の知識を手のひらにのせてくれるが、それを何に使うかは、静かにあなた自身に任されている。",
+    "chunks": [
+      "インターネット",
+      "は",
+      "世界中",
+      "の",
+      "知識",
+      "を",
+      "手のひら",
+      "に",
+      "のせて",
+      "くれる",
+      "が、",
+      "それ",
+      "を",
+      "何",
+      "に",
+      "使う",
+      "か",
+      "は、",
+      "静かに",
+      "あなた自身",
+      "に",
+      "任されている。"
+    ],
+    "translation": "網路把世界各地的知識放到你手掌上，但要拿它做什麼，默默地就交給你自己了。",
+    "english": "The internet puts the world's knowledge in your palm, but what you use it for is quietly left to you.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "internet"
+    ]
+  },
+  {
+    "id": "6245",
+    "japanese": "分からないことは、すぐネットで調べられる。",
+    "chunks": [
+      "分からない",
+      "こと",
+      "は、",
+      "すぐ",
+      "ネット",
+      "で",
+      "調べられる。"
+    ],
+    "translation": "不懂的事，馬上就能上網查。",
+    "english": "Whatever you don't understand, you can look up online right away.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "internet"
+    ]
+  },
+  {
+    "id": "6246",
+    "japanese": "ときには「あなたを信じている」という言葉が、何年もあとに渡る一つの橋になる。もう誰が架けたかも忘れたころに。",
+    "chunks": [
+      "ときに",
+      "は",
+      "「あなた",
+      "を",
+      "信じている」",
+      "という",
+      "言葉",
+      "が、",
+      "何年",
+      "も",
+      "あと",
+      "に",
+      "渡る",
+      "一つ",
+      "の",
+      "橋",
+      "に",
+      "なる。",
+      "もう",
+      "誰",
+      "が",
+      "架けた",
+      "か",
+      "も",
+      "忘れた",
+      "ころ",
+      "に。"
+    ],
+    "translation": "有時候「我相信你」這句話，會變成一座某人多年後才走過的橋。在他早已忘記是誰建的時候。",
+    "english": "Sometimes \"I believe in you\" becomes a bridge someone crosses years later, long after they've forgotten who built it.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "6247",
+    "japanese": "落ち込んでいたとき、友達の一言に救われた。",
+    "chunks": [
+      "落ち込んでいた",
+      "とき、",
+      "友達",
+      "の",
+      "一言",
+      "に",
+      "救われた。"
+    ],
+    "translation": "我低落的時候，被朋友的一句話救了。",
+    "english": "When I was down, a single word from a friend saved me.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "encouragement"
+    ]
+  },
+  {
+    "id": "6248",
+    "japanese": "一つの悪い出来事も、みごとに対応すれば、何も起きなかった百日分よりも大きな信頼を築くことがある。",
+    "chunks": [
+      "一つ",
+      "の",
+      "悪い",
+      "出来事",
+      "も、",
+      "みごと",
+      "に",
+      "対応すれば、",
+      "何",
+      "も",
+      "起きなかった",
+      "百日分",
+      "より",
+      "も",
+      "大きな",
+      "信頼",
+      "を",
+      "築く",
+      "こと",
+      "が",
+      "ある。"
+    ],
+    "translation": "一次糟糕的事件，只要處理得漂亮，能建立的信任有時勝過一百天什麼都沒出錯。",
+    "english": "Even one bad incident, if handled beautifully, can build greater trust than a hundred days when nothing went wrong.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "incident"
+    ]
+  },
+  {
+    "id": "6249",
+    "japanese": "昨夜、駅の近くで小さな事故があった。",
+    "chunks": [
+      "昨夜、",
+      "駅",
+      "の",
+      "近く",
+      "で",
+      "小さな",
+      "事故",
+      "が",
+      "あった。"
+    ],
+    "translation": "昨晚，車站附近發生了一起小事故。",
+    "english": "Last night, there was a small accident near the station.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "incident"
+    ]
+  },
+  {
+    "id": "6250",
+    "japanese": "誰もが不正直だと決めてかかる規則は、そもそもそうなるつもりのなかった九十九人を、静かに侮辱している。",
+    "chunks": [
+      "誰",
+      "も",
+      "が",
+      "不正直",
+      "だ",
+      "と",
+      "決めて",
+      "かかる",
+      "規則",
+      "は、",
+      "そもそも",
+      "そう",
+      "なる",
+      "つもり",
+      "の",
+      "なかった",
+      "九十九人",
+      "を、",
+      "静かに",
+      "侮辱している。"
+    ],
+    "translation": "一條認定每個人都不誠實的規則，默默侮辱了那九十九個本來就不打算不誠實的人。",
+    "english": "A rule that assumes everyone is dishonest quietly insults the ninety-nine who never intended to be.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "policy"
+    ]
+  },
+  {
+    "id": "6251",
+    "japanese": "新しい方針について、社員から意見を集めている。",
+    "chunks": [
+      "新しい",
+      "方針",
+      "に",
+      "ついて、",
+      "社員",
+      "から",
+      "意見",
+      "を",
+      "集めている。"
+    ],
+    "translation": "關於新方針，公司正在向員工蒐集意見。",
+    "english": "They're gathering employees' opinions about the new policy.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "policy"
+    ]
+  },
+  {
+    "id": "6252",
+    "japanese": "自分のエネルギーを、予算のように守ろう。ある人は温かい火のようで、ある人は、静かにゆっくり空気が漏れていく穴のようだ。",
+    "chunks": [
+      "自分",
+      "の",
+      "エネルギー",
+      "を、",
+      "予算",
+      "の",
+      "よう",
+      "に",
+      "守ろう。",
+      "ある",
+      "人",
+      "は",
+      "温かい",
+      "火",
+      "の",
+      "よう",
+      "で、",
+      "ある",
+      "人",
+      "は、",
+      "静かに",
+      "ゆっくり",
+      "空気",
+      "が",
+      "漏れていく",
+      "穴",
+      "の",
+      "よう",
+      "だ。"
+    ],
+    "translation": "像管理預算一樣守護你的精力吧。有些人像溫暖的火，有些人則默默像一個慢慢漏氣的洞。",
+    "english": "Guard your energy like a budget; some people are a warm fire, and some are quietly a hole slowly leaking air.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "energy"
+    ]
+  },
+  {
+    "id": "6253",
+    "japanese": "疲れきる前に休んだほうがいい。いちばんよく切れる道具は、研ぐために立ち止まる道具だ。",
+    "chunks": [
+      "疲れきる",
+      "前",
+      "に",
+      "休んだ",
+      "ほうがいい。",
+      "いちばん",
+      "よく",
+      "切れる",
+      "道具",
+      "は、",
+      "研ぐ",
+      "ため",
+      "に",
+      "立ち止まる",
+      "道具",
+      "だ。"
+    ],
+    "translation": "最好在精疲力盡之前休息。最鋒利的工具，是那個會停下來磨的。",
+    "english": "It's best to rest before you're worn out; the sharpest tool is the one that stops to be sharpened.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "energy"
+    ]
+  },
+  {
+    "id": "6254",
+    "japanese": "よく寝たので、今日は一日中元気だ。",
+    "chunks": [
+      "よく",
+      "寝た",
+      "ので、",
+      "今日",
+      "は",
+      "一日中",
+      "元気だ。"
+    ],
+    "translation": "因為睡得好，我今天一整天都很有精神。",
+    "english": "Since I slept well, I've had energy all day today.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "energy"
+    ]
+  },
+  {
+    "id": "6255",
+    "japanese": "たいていの友情でいちばん勇気のいる言葉は、ただの「おいでよ」だ。相手が「うん」と言うかどうか分からないまま、差し出すのだから。",
+    "chunks": [
+      "たいてい",
+      "の",
+      "友情",
+      "で",
+      "いちばん",
+      "勇気",
+      "の",
+      "いる",
+      "言葉",
+      "は、",
+      "ただ",
+      "の",
+      "「おいでよ」",
+      "だ。",
+      "相手",
+      "が",
+      "「うん」",
+      "と",
+      "言う",
+      "かどうか",
+      "分からない",
+      "まま、",
+      "差し出す",
+      "の",
+      "だから。"
+    ],
+    "translation": "大多數友誼裡最需要勇氣的一句話，就只是「來吧」。因為你是在不知道對方會不會說「好」的情況下說出口的。",
+    "english": "The most courageous word in most friendships is simply \"come,\" offered without knowing if they'll say yes.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "invitation"
+    ]
+  },
+  {
+    "id": "6256",
+    "japanese": "誘ってくれたのはうれしいが、その日は都合が悪い。",
+    "chunks": [
+      "誘って",
+      "くれた",
+      "の",
+      "は",
+      "うれしい",
+      "が、",
+      "その",
+      "日",
+      "は",
+      "都合",
+      "が",
+      "悪い。"
+    ],
+    "translation": "你邀我我很開心，但那天我不方便。",
+    "english": "I'm glad you invited me, but that day doesn't work for me.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "invitation"
+    ]
+  },
+  {
+    "id": "6257",
+    "japanese": "品質とは、あなたを最初に誘った安さが、すっかり忘れ去られたずっとあとまで、静かに残っているもののことだ。",
+    "chunks": [
+      "品質",
+      "と",
+      "は、",
+      "あなた",
+      "を",
+      "最初",
+      "に",
+      "誘った",
+      "安さ",
+      "が、",
+      "すっかり",
+      "忘れ去られた",
+      "ずっと",
+      "あと",
+      "まで、",
+      "静かに",
+      "残っている",
+      "もの",
+      "の",
+      "ことだ。"
+    ],
+    "translation": "品質，是在那個一開始吸引你的低價被完全忘記很久之後，仍然默默留下來的東西。",
+    "english": "Quality is what quietly remains long after the low price that first tempted you has been completely forgotten.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "quality"
+    ]
+  },
+  {
+    "id": "6258",
+    "japanese": "一度目にきちんと仕事をしておくことが、いつも暇そうに見える人の、静かで地味な秘密だ。",
+    "chunks": [
+      "一度目",
+      "に",
+      "きちんと",
+      "仕事",
+      "を",
+      "して",
+      "おく",
+      "こと",
+      "が、",
+      "いつも",
+      "暇",
+      "そう",
+      "に",
+      "見える",
+      "人",
+      "の、",
+      "静かで",
+      "地味な",
+      "秘密",
+      "だ。"
+    ],
+    "translation": "第一次就把工作好好做完，是每個看起來總是很有空的人，那個安靜又不起眼的祕密。",
+    "english": "Doing the job properly the first time is the quiet, unglamorous secret of people who always seem to have free time.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "quality"
+    ]
+  },
+  {
+    "id": "6259",
+    "japanese": "この店の服は、高いけれど品質がいい。",
+    "chunks": [
+      "この",
+      "店",
+      "の",
+      "服",
+      "は、",
+      "高い",
+      "けれど",
+      "品質",
+      "が",
+      "いい。"
+    ],
+    "translation": "這家店的衣服，雖然貴但品質好。",
+    "english": "The clothes at this shop are expensive but good quality.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "quality"
+    ]
+  },
+  {
+    "id": "6260",
+    "japanese": "名づけるのを拒んだ気持ちは、出ていったりはしない。ただ静かに地下室へ引っ越して、その家を仕切りはじめるのだ。",
+    "chunks": [
+      "名づける",
+      "の",
+      "を",
+      "拒んだ",
+      "気持ち",
+      "は、",
+      "出て",
+      "いったり",
+      "は",
+      "しない。",
+      "ただ",
+      "静かに",
+      "地下室",
+      "へ",
+      "引っ越して、",
+      "その",
+      "家",
+      "を",
+      "仕切りはじめる",
+      "のだ。"
+    ],
+    "translation": "一種你拒絕命名的感覺不會離開。它只是默默搬進地下室，然後開始掌管那個家。",
+    "english": "A feeling you refuse to name doesn't leave; it just quietly moves into the basement and starts running the house.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "feeling"
+    ]
+  },
+  {
+    "id": "6261",
+    "japanese": "自分の気持ちに正直に名前をつけられると、その感情に振り回されることが、少しずつ減っていく。",
+    "chunks": [
+      "自分",
+      "の",
+      "気持ち",
+      "に",
+      "正直",
+      "に",
+      "名前",
+      "を",
+      "つけられる",
+      "と、",
+      "その",
+      "感情",
+      "に",
+      "振り回される",
+      "こと",
+      "が、",
+      "少し",
+      "ずつ",
+      "減っていく。"
+    ],
+    "translation": "能誠實地為自己的感覺命名，被那份情緒牽著走的情況，就會一點一點變少。",
+    "english": "When you can honestly name your feelings, being jerked around by them gradually lessens.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "feeling"
+    ]
+  },
+  {
+    "id": "6262",
+    "japanese": "その話を聞いて、少しさびしい気持ちになった。",
+    "chunks": [
+      "その",
+      "話",
+      "を",
+      "聞いて、",
+      "少し",
+      "さびしい",
+      "気持ち",
+      "に",
+      "なった。"
+    ],
+    "translation": "聽了那件事，我有點寂寞的感覺。",
+    "english": "Hearing that story, I felt a little lonely.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "feeling"
+    ]
+  },
+  {
+    "id": "6263",
+    "japanese": "人生は、まず試験を出して、それから教訓をくれる。だからこそ、それに向けて勉強しておくのが、こんなにも難しいのだ。",
+    "chunks": [
+      "人生",
+      "は、",
+      "まず",
+      "試験",
+      "を",
+      "出して、",
+      "それ",
+      "から",
+      "教訓",
+      "を",
+      "くれる。",
+      "だから",
+      "こそ、",
+      "それ",
+      "に",
+      "向けて",
+      "勉強して",
+      "おく",
+      "の",
+      "が、",
+      "こんなに",
+      "も",
+      "難しい",
+      "のだ。"
+    ],
+    "translation": "人生先給你考試，然後才給你教訓。正因如此，要為它事先準備，才會這麼難。",
+    "english": "Life gives you the test first and the lesson afterward, which is exactly why studying for it is so hard.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "life"
+    ]
+  },
+  {
+    "id": "6264",
+    "japanese": "人生の前半は人に気づいてほしいと願い、後半は、そっとひとりにしてほしいと願うようになる。",
+    "chunks": [
+      "人生",
+      "の",
+      "前半",
+      "は",
+      "人",
+      "に",
+      "気づいて",
+      "ほしい",
+      "と",
+      "願い、",
+      "後半",
+      "は、",
+      "そっと",
+      "ひとり",
+      "に",
+      "して",
+      "ほしい",
+      "と",
+      "願う",
+      "よう",
+      "に",
+      "なる。"
+    ],
+    "translation": "人生的前半，你渴望被人注意；後半，你會漸漸渴望被默默地留給獨處。",
+    "english": "In the first half of life you wish to be noticed; in the second, you come to wish to be quietly left alone.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "life"
+    ]
+  },
+  {
+    "id": "6265",
+    "japanese": "今の生活に、私はとても満足している。",
+    "chunks": [
+      "今",
+      "の",
+      "生活",
+      "に、",
+      "私",
+      "は",
+      "とても",
+      "満足している。"
+    ],
+    "translation": "對現在的生活，我非常滿足。",
+    "english": "I'm very satisfied with my current life.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "life"
+    ]
+  },
+  {
+    "id": "6266",
+    "japanese": "どんな改革も、起きる前は無謀に見え、起きたあとの瞬間には当たり前に見える。だからこそ、いつも勇気が先に立つのだ。",
+    "chunks": [
+      "どんな",
+      "改革",
+      "も、",
+      "起きる",
+      "前",
+      "は",
+      "無謀",
+      "に",
+      "見え、",
+      "起きた",
+      "あと",
+      "の",
+      "瞬間",
+      "に",
+      "は",
+      "当たり前",
+      "に",
+      "見える。",
+      "だから",
+      "こそ、",
+      "いつも",
+      "勇気",
+      "が",
+      "先",
+      "に",
+      "立つ",
+      "のだ。"
+    ],
+    "translation": "任何改革，在發生前都看似魯莽，發生後的那一刻又顯得理所當然。正因如此，勇氣總是走在最前面。",
+    "english": "Every reform looks reckless before it happens and obvious the moment after; that's exactly why courage always goes first.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "reform"
+    ]
+  },
+  {
+    "id": "6267",
+    "japanese": "学校の古いルールが、少しずつ変わってきた。",
+    "chunks": [
+      "学校",
+      "の",
+      "古い",
+      "ルール",
+      "が、",
+      "少し",
+      "ずつ",
+      "変わってきた。"
+    ],
+    "translation": "學校的舊規則，正一點一點改變。",
+    "english": "The school's old rules have gradually been changing.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "reform"
+    ]
+  },
+  {
+    "id": "6268",
+    "japanese": "体はジムの中で作られるのではなく、あいだにある退屈な時間に、きちんと寝てきちんと食べることを選ぶことで作られる。",
+    "chunks": [
+      "体",
+      "は",
+      "ジム",
+      "の",
+      "中",
+      "で",
+      "作られる",
+      "の",
+      "で",
+      "は",
+      "なく、",
+      "あいだ",
+      "に",
+      "ある",
+      "退屈な",
+      "時間",
+      "に、",
+      "きちんと",
+      "寝て",
+      "きちんと",
+      "食べる",
+      "こと",
+      "を",
+      "選ぶ",
+      "こと",
+      "で",
+      "作られる。"
+    ],
+    "translation": "身體不是在健身房裡練出來的，而是在中間那些無聊的時間裡，選擇好好睡、好好吃練出來的。",
+    "english": "The body isn't built in the gym, but in the boring hours between, by choosing to sleep and eat properly.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "fitness"
+    ]
+  },
+  {
+    "id": "6269",
+    "japanese": "まちがった通りにあるよい店は、静かに客が来ずに立ちゆかなくなる。どんな成功も半分は、人がすでに歩いている場所に立つことだ。",
+    "chunks": [
+      "まちがった",
+      "通り",
+      "に",
+      "ある",
+      "よい",
+      "店",
+      "は、",
+      "静かに",
+      "客",
+      "が",
+      "来ず",
+      "に",
+      "立ちゆかなく",
+      "なる。",
+      "どんな",
+      "成功",
+      "も",
+      "半分",
+      "は、",
+      "人",
+      "が",
+      "すでに",
+      "歩いている",
+      "場所",
+      "に",
+      "立つ",
+      "ことだ。"
+    ],
+    "translation": "開在錯的街上的好店，會默默因為沒客人上門而撐不下去。任何成功的一半，就是站在人們本來就會走過的地方。",
+    "english": "A good shop on the wrong street quietly fails for lack of customers; half of any success is standing where people already walk.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "location"
+    ]
+  },
+  {
+    "id": "6270",
+    "japanese": "引っ越すなら、駅の近くの便利な場所がいい。",
+    "chunks": [
+      "引っ越す",
+      "なら、",
+      "駅",
+      "の",
+      "近く",
+      "の",
+      "便利な",
+      "場所",
+      "が",
+      "いい。"
+    ],
+    "translation": "要搬的話，車站附近方便的地方比較好。",
+    "english": "If I move, a convenient spot near the station would be best.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "location"
+    ]
+  },
+  {
+    "id": "6271",
+    "japanese": "故郷に帰ることは、過去に戻ることではない。扉は同じでも、あなたは、その扉が別のふうに開けてくれる、静かに別の人間になっているのだ。",
+    "chunks": [
+      "故郷",
+      "に",
+      "帰る",
+      "こと",
+      "は、",
+      "過去",
+      "に",
+      "戻る",
+      "こと",
+      "で",
+      "は",
+      "ない。",
+      "扉",
+      "は",
+      "同じ",
+      "でも、",
+      "あなた",
+      "は、",
+      "その",
+      "扉",
+      "が",
+      "別",
+      "の",
+      "ふう",
+      "に",
+      "開けて",
+      "くれる、",
+      "静かに",
+      "別",
+      "の",
+      "人間",
+      "に",
+      "なっている",
+      "のだ。"
+    ],
+    "translation": "回鄉不是回到過去。門是同一扇，但你已經默默變成一個那扇門會為之以不同方式開啟的人。",
+    "english": "Coming home isn't going back to the past; the door is the same, but you've quietly become someone it opens differently for.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "6272",
+    "japanese": "長い留学のあと、日本に帰ってきた。",
+    "chunks": [
+      "長い",
+      "留学",
+      "の",
+      "あと、",
+      "日本",
+      "に",
+      "帰って",
+      "きた。"
+    ],
+    "translation": "在漫長的留學之後，我回到了日本。",
+    "english": "After a long time studying abroad, I came back to Japan.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "repatriation"
+    ]
+  },
+  {
+    "id": "6273",
+    "japanese": "期限のない目標はただの願いで、次の一歩のない目標は、静かに、ただの空想の一種にすぎない。",
+    "chunks": [
+      "期限",
+      "の",
+      "ない",
+      "目標",
+      "は",
+      "ただ",
+      "の",
+      "願い",
+      "で、",
+      "次",
+      "の",
+      "一歩",
+      "の",
+      "ない",
+      "目標",
+      "は、",
+      "静かに、",
+      "ただ",
+      "の",
+      "空想",
+      "の",
+      "一種",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "沒有期限的目標只是願望；沒有下一步的目標，默默地只是一種白日夢。",
+    "english": "A goal without a deadline is just a wish; a goal without a next step is quietly just a form of daydreaming.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "goal"
+    ]
+  },
+  {
+    "id": "6274",
+    "japanese": "今年の目標は、毎日日記を書くことだ。",
+    "chunks": [
+      "今年",
+      "の",
+      "目標",
+      "は、",
+      "毎日",
+      "日記",
+      "を",
+      "書く",
+      "ことだ。"
+    ],
+    "translation": "今年的目標，是每天寫日記。",
+    "english": "My goal this year is to write in my diary every day.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "goal"
+    ]
+  },
+  {
+    "id": "6275",
+    "japanese": "自分に何もしてくれない相手にやさしくできるかどうかは、静かに、その人が本当はどんな人間かを映すいちばん澄んだ窓だ。",
+    "chunks": [
+      "自分",
+      "に",
+      "何",
+      "も",
+      "して",
+      "くれない",
+      "相手",
+      "に",
+      "やさしく",
+      "できる",
+      "かどうか",
+      "は、",
+      "静かに、",
+      "その",
+      "人",
+      "が",
+      "本当",
+      "は",
+      "どんな",
+      "人間",
+      "か",
+      "を",
+      "映す",
+      "いちばん",
+      "澄んだ",
+      "窓",
+      "だ。"
+    ],
+    "translation": "能不能善待一個對你毫無用處的人，默默地是映照出你真正是什麼樣的人的、最清澈的一扇窗。",
+    "english": "Whether you can be kind to someone who does nothing for you is quietly the clearest window into who you really are.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "manners"
+    ]
+  },
+  {
+    "id": "6276",
+    "japanese": "目上の人には、ていねいな言葉づかいを心がける。",
+    "chunks": [
+      "目上",
+      "の",
+      "人",
+      "に",
+      "は、",
+      "ていねいな",
+      "言葉づかい",
+      "を",
+      "心がける。"
+    ],
+    "translation": "對長輩，我會留意用有禮貌的措辭。",
+    "english": "With those senior to me, I make an effort to use polite language.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "manners"
+    ]
+  },
+  {
+    "id": "6277",
+    "japanese": "よい研究とは、いちばん気に入っていた自分の考えが、じつは静かにまちがっていたと知るために、一年をかける覚悟のことだ。",
+    "chunks": [
+      "よい",
+      "研究",
+      "と",
+      "は、",
+      "いちばん",
+      "気",
+      "に",
+      "入っていた",
+      "自分",
+      "の",
+      "考え",
+      "が、",
+      "じつは",
+      "静かに",
+      "まちがっていた",
+      "と",
+      "知る",
+      "ため",
+      "に、",
+      "一年",
+      "を",
+      "かける",
+      "覚悟",
+      "の",
+      "ことだ。"
+    ],
+    "translation": "好的研究，是願意花一年時間，去發現自己最喜歡的那個想法其實默默是錯的那種覺悟。",
+    "english": "Good research is the resolve to spend a year finding out that your favorite idea was quietly wrong.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "research"
+    ]
+  },
+  {
+    "id": "6278",
+    "japanese": "難しい問いへのいちばんよい答えは、しばしば、それまで問うことさえ知らなかった、もっとよい別の問いだ。",
+    "chunks": [
+      "難しい",
+      "問い",
+      "へ",
+      "の",
+      "いちばん",
+      "よい",
+      "答え",
+      "は、",
+      "しばしば、",
+      "それ",
+      "まで",
+      "問う",
+      "こと",
+      "さえ",
+      "知らなかった、",
+      "もっと",
+      "よい",
+      "別",
+      "の",
+      "問い",
+      "だ。"
+    ],
+    "translation": "對一個難題最好的答案，往往是另一個你之前根本不知道該問的、更好的問題。",
+    "english": "The best answer to a hard question is often another, better question you didn't even know to ask before.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "research"
+    ]
+  },
+  {
+    "id": "6279",
+    "japanese": "発表のために、いろいろ調べている。",
+    "chunks": [
+      "発表",
+      "の",
+      "ため",
+      "に、",
+      "いろいろ",
+      "調べている。"
+    ],
+    "translation": "為了發表，我正在查各種資料。",
+    "english": "For my presentation, I'm researching various things.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "research"
+    ]
+  },
+  {
+    "id": "6280",
+    "japanese": "成長と快適さは、同時には手に入らない。快適さとは、静かに、二つの登りのあいだで休む、あの平らな場所にすぎない。",
+    "chunks": [
+      "成長",
+      "と",
+      "快適さ",
+      "は、",
+      "同時",
+      "に",
+      "は",
+      "手",
+      "に",
+      "入らない。",
+      "快適さ",
+      "と",
+      "は、",
+      "静かに、",
+      "二つ",
+      "の",
+      "登り",
+      "の",
+      "あいだ",
+      "で",
+      "休む、",
+      "あの",
+      "平らな",
+      "場所",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "成長和舒服，沒辦法同時擁有。舒服默默地只是你在兩次攀登之間休息的那片平坦之地。",
+    "english": "Growth and comfort can't be had at once; comfort is quietly just that flat place where you rest between two climbs.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "growth"
+    ]
+  },
+  {
+    "id": "6281",
+    "japanese": "五年後の自分は、今読んでいる本と、今そばに置いている人たちから、静かに作られていく。",
+    "chunks": [
+      "五年後",
+      "の",
+      "自分",
+      "は、",
+      "今",
+      "読んでいる",
+      "本",
+      "と、",
+      "今",
+      "そば",
+      "に",
+      "置いている",
+      "人たち",
+      "から、",
+      "静かに",
+      "作られていく。"
+    ],
+    "translation": "五年後的自己，是由現在讀的書和現在留在身邊的人，默默建成的。",
+    "english": "The you of five years from now is quietly built out of the books you read now and the people you keep close now.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "growth"
+    ]
+  },
+  {
+    "id": "6282",
+    "japanese": "新しい仕事で、自分が少し成長したと感じる。",
+    "chunks": [
+      "新しい",
+      "仕事",
+      "で、",
+      "自分",
+      "が",
+      "少し",
+      "成長した",
+      "と",
+      "感じる。"
+    ],
+    "translation": "在新工作中，我覺得自己有一點成長。",
+    "english": "In my new job, I feel I've grown a little.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "growth"
+    ]
+  },
+  {
+    "id": "6283",
+    "japanese": "箱に荷造りをすると、一つの人生まるごとが、必死で守りたいと思う、おどろくほど少ない物の中に、静かに収まるのだと分かる。",
+    "chunks": [
+      "箱",
+      "に",
+      "荷造り",
+      "を",
+      "する",
+      "と、",
+      "一つ",
+      "の",
+      "人生",
+      "まるごと",
+      "が、",
+      "必死",
+      "で",
+      "守りたい",
+      "と",
+      "思う、",
+      "おどろく",
+      "ほど",
+      "少ない",
+      "物",
+      "の",
+      "中",
+      "に、",
+      "静かに",
+      "収まる",
+      "の",
+      "だ",
+      "と",
+      "分かる。"
+    ],
+    "translation": "打包箱子時，你會發現一整個人生，默默地能裝進你會拚命想守住的、少得驚人的東西裡。",
+    "english": "When you pack boxes, you realize a whole life quietly fits into the surprisingly few things you'd fight to keep.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "moving"
+    ]
+  },
+  {
+    "id": "6284",
+    "japanese": "来月、東京のアパートに引っ越す。",
+    "chunks": [
+      "来月、",
+      "東京",
+      "の",
+      "アパート",
+      "に",
+      "引っ越す。"
+    ],
+    "translation": "下個月，我要搬到東京的公寓。",
+    "english": "Next month, I'm moving to an apartment in Tokyo.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "moving"
+    ]
+  },
+  {
+    "id": "6285",
+    "japanese": "いちばん安全に見える道と、いちばん後悔する道が、居心地悪いことに、じつは同じ一本の道であることは、少なくない。",
+    "chunks": [
+      "いちばん",
+      "安全",
+      "に",
+      "見える",
+      "道",
+      "と、",
+      "いちばん",
+      "後悔する",
+      "道",
+      "が、",
+      "居心地",
+      "悪い",
+      "こと",
+      "に、",
+      "じつは",
+      "同じ",
+      "一本",
+      "の",
+      "道",
+      "で",
+      "ある",
+      "こと",
+      "は、",
+      "少なくない。"
+    ],
+    "translation": "看起來最安全的路，和最令人後悔的路，令人不安地，其實常常是同一條。",
+    "english": "The safest-looking path and the most regretted one are, uncomfortably, often the very same road.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "risk"
+    ]
+  },
+  {
+    "id": "6286",
+    "japanese": "短い人生でいちばん危険なのは、何も失うまいとして、それを静かに使い果たしてしまうことだ。",
+    "chunks": [
+      "短い",
+      "人生",
+      "で",
+      "いちばん",
+      "危険な",
+      "の",
+      "は、",
+      "何",
+      "も",
+      "失う",
+      "まい",
+      "と",
+      "して、",
+      "それ",
+      "を",
+      "静かに",
+      "使い果たして",
+      "しまう",
+      "ことだ。"
+    ],
+    "translation": "短短一生中最危險的，就是為了不失去任何東西，默默地把它耗盡。",
+    "english": "The most dangerous thing in a short life is quietly using it all up trying not to lose anything.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "risk"
+    ]
+  },
+  {
+    "id": "6287",
+    "japanese": "新しい仕事には、少し危険もある。",
+    "chunks": [
+      "新しい",
+      "仕事",
+      "に",
+      "は、",
+      "少し",
+      "危険",
+      "も",
+      "ある。"
+    ],
+    "translation": "新工作也有一點風險。",
+    "english": "There's also a bit of risk in the new job.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "risk"
+    ]
+  },
+  {
+    "id": "6288",
+    "japanese": "調子のいい日に築いた習慣こそが、いちばんつらい日を、静かにあなたを支えて通り抜けさせてくれるものになる。",
+    "chunks": [
+      "調子",
+      "の",
+      "いい",
+      "日",
+      "に",
+      "築いた",
+      "習慣",
+      "こそ",
+      "が、",
+      "いちばん",
+      "つらい",
+      "日",
+      "を、",
+      "静かに",
+      "あなた",
+      "を",
+      "支えて",
+      "通り抜けさせて",
+      "くれる",
+      "もの",
+      "に",
+      "なる。"
+    ],
+    "translation": "正是你在順的日子建立的習慣，會成為那個默默撐著你、帶你走過最糟日子的東西。",
+    "english": "The very habit you build on your good days is what quietly carries you through your worst ones.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "habit"
+    ]
+  },
+  {
+    "id": "6289",
+    "japanese": "やる気は出発点まで連れていってくれるが、観客が帰ったあとの一万歩を、静かに歩くのは習慣のほうだ。",
+    "chunks": [
+      "やる気",
+      "は",
+      "出発点",
+      "まで",
+      "連れて",
+      "いって",
+      "くれる",
+      "が、",
+      "観客",
+      "が",
+      "帰った",
+      "あと",
+      "の",
+      "一万歩",
+      "を、",
+      "静かに",
+      "歩く",
+      "の",
+      "は",
+      "習慣",
+      "の",
+      "ほう",
+      "だ。"
+    ],
+    "translation": "動力帶你到起跑點，但在觀眾散場後默默走完那一萬步的，是習慣。",
+    "english": "Motivation carries you to the starting point, but what quietly walks the ten thousand steps after the crowd goes home is habit.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "habit"
+    ]
+  },
+  {
+    "id": "6290",
+    "japanese": "わるい習慣を直すには、まず気づくことが大切だ。",
+    "chunks": [
+      "わるい",
+      "習慣",
+      "を",
+      "直す",
+      "に",
+      "は、",
+      "まず",
+      "気づく",
+      "こと",
+      "が",
+      "大切だ。"
+    ],
+    "translation": "要改掉壞習慣，先察覺到它很重要。",
+    "english": "To fix a bad habit, first noticing it is what matters.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "habit"
+    ]
+  },
+  {
+    "id": "6291",
+    "japanese": "運動を始めてから、体の調子がよくなった。",
+    "chunks": [
+      "運動",
+      "を",
+      "始めて",
+      "から、",
+      "体",
+      "の",
+      "調子",
+      "が",
+      "よく",
+      "なった。"
+    ],
+    "translation": "開始運動之後，身體的狀況變好了。",
+    "english": "Since I started exercising, my physical condition has improved.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "fitness"
+    ]
+  },
+  {
+    "id": "6292",
+    "japanese": "無理な目標より、続けられる目標のほうが、結局は遠くまで行ける。",
+    "chunks": [
+      "無理な",
+      "目標",
+      "より、",
+      "続けられる",
+      "目標",
+      "の",
+      "ほう",
+      "が、",
+      "結局",
+      "は",
+      "遠く",
+      "まで",
+      "行ける。"
+    ],
+    "translation": "比起勉強的目標，能持續下去的目標，最後反而能走得更遠。",
+    "english": "A goal you can keep beats an unrealistic one; in the end it takes you further.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "goal"
+    ]
   }
 ]
