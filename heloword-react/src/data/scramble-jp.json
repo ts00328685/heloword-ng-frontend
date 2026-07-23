@@ -157501,5 +157501,1478 @@
       "N4",
       "home"
     ]
+  },
+  {
+    "id": "6644",
+    "japanese": "よい統治は、意図して静かに退屈だ。刺激的な統治はたいてい、誰かの暮らしがひどく悪くなったことを意味している。",
+    "chunks": [
+      "よい",
+      "統治",
+      "は、",
+      "意図して",
+      "静かに",
+      "退屈",
+      "だ。",
+      "刺激的な",
+      "統治",
+      "は",
+      "たいてい、",
+      "誰か",
+      "の",
+      "暮らし",
+      "が",
+      "ひどく",
+      "悪く",
+      "なった",
+      "こと",
+      "を",
+      "意味している。"
+    ],
+    "translation": "好的治理，是刻意地、默默地無聊。刺激的治理通常意味著，某人的生活變得非常糟。",
+    "english": "Good governance is deliberately, quietly boring; exciting governance usually means someone's life got much worse.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "governance"
+    ]
+  },
+  {
+    "id": "6645",
+    "japanese": "選挙で投票することは、社会に対する小さな責任の一つだと思う。",
+    "chunks": [
+      "選挙",
+      "で",
+      "投票する",
+      "こと",
+      "は、",
+      "社会",
+      "に",
+      "対する",
+      "小さな",
+      "責任",
+      "の",
+      "一つ",
+      "だ",
+      "と",
+      "思う。"
+    ],
+    "translation": "我覺得在選舉中投票，是對社會的一個小小責任。",
+    "english": "I think voting in elections is one of our small responsibilities to society.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "governance"
+    ]
+  },
+  {
+    "id": "6646",
+    "japanese": "私たちが望むものの半分は、一度も会ったことのない、それでいてひそかに感心されたい相手から、静かに借りてきたものだ。",
+    "chunks": [
+      "私たち",
+      "が",
+      "望む",
+      "もの",
+      "の",
+      "半分",
+      "は、",
+      "一度",
+      "も",
+      "会った",
+      "こと",
+      "の",
+      "ない、",
+      "それでいて",
+      "ひそかに",
+      "感心されたい",
+      "相手",
+      "から、",
+      "静かに",
+      "借りて",
+      "きた",
+      "もの",
+      "だ。"
+    ],
+    "translation": "我們渴望的東西有一半，默默地是向一些我們從沒見過、卻又暗自想討好的人借來的。",
+    "english": "Half of what we want is quietly borrowed from people we've never met yet secretly wish to impress.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "desires"
+    ]
+  },
+  {
+    "id": "6647",
+    "japanese": "ほしかったものを手にしたとたん、もっと静かで飢えた次の欲望が、たいていもう隣に引っ越してきている。",
+    "chunks": [
+      "ほしかった",
+      "もの",
+      "を",
+      "手",
+      "に",
+      "した",
+      "とたん、",
+      "もっと",
+      "静かで",
+      "飢えた",
+      "次",
+      "の",
+      "欲望",
+      "が、",
+      "たいてい",
+      "もう",
+      "隣",
+      "に",
+      "引っ越して",
+      "きている。"
+    ],
+    "translation": "在你得到想要的東西那一刻，一個更安靜、更飢渴的下一個渴望，通常早就搬進隔壁了。",
+    "english": "The moment you get what you wanted, a quieter, hungrier next desire has usually already moved in next door.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "desires"
+    ]
+  },
+  {
+    "id": "6648",
+    "japanese": "新しいかばんが、ずっとほしいと思っている。",
+    "chunks": [
+      "新しい",
+      "かばん",
+      "が、",
+      "ずっと",
+      "ほしい",
+      "と",
+      "思っている。"
+    ],
+    "translation": "我一直很想要一個新包包。",
+    "english": "I've been wanting a new bag for a while.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "desires"
+    ]
+  },
+  {
+    "id": "6649",
+    "japanese": "故郷は、昔の自分の写しを静かに保管してくれている。おかげで、自分がどれだけ遠くまで来たかを、いつでも確かめられる。",
+    "chunks": [
+      "故郷",
+      "は、",
+      "昔",
+      "の",
+      "自分",
+      "の",
+      "写し",
+      "を",
+      "静かに",
+      "保管して",
+      "くれている。",
+      "おかげ",
+      "で、",
+      "自分",
+      "が",
+      "どれ",
+      "だけ",
+      "遠く",
+      "まで",
+      "来た",
+      "か",
+      "を、",
+      "いつでも",
+      "確かめられる。"
+    ],
+    "translation": "家鄉默默地為你保存了一份從前的自己。多虧了它，你隨時都能確認自己走了多遠。",
+    "english": "Your hometown quietly keeps a copy of your old self, so you can always check how far you've come.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "hometown"
+    ]
+  },
+  {
+    "id": "6650",
+    "japanese": "都会に住んでいると、たまに田舎の景色が恋しくなる。",
+    "chunks": [
+      "都会",
+      "に",
+      "住んでいる",
+      "と、",
+      "たまに",
+      "田舎",
+      "の",
+      "景色",
+      "が",
+      "恋しく",
+      "なる。"
+    ],
+    "translation": "住在都市，偶爾會想念鄉下的風景。",
+    "english": "Living in the city, I sometimes miss the scenery of the countryside.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "hometown"
+    ]
+  },
+  {
+    "id": "6651",
+    "japanese": "就職活動は、百回「だめ」と言われることが、たった一つの「はい」へ続く道の通行料にすぎないと、静かに教えてくれる。",
+    "chunks": [
+      "就職活動",
+      "は、",
+      "百回",
+      "「だめ」",
+      "と",
+      "言われる",
+      "こと",
+      "が、",
+      "たった",
+      "一つ",
+      "の",
+      "「はい」",
+      "へ",
+      "続く",
+      "道",
+      "の",
+      "通行料",
+      "に",
+      "すぎない",
+      "と、",
+      "静かに",
+      "教えて",
+      "くれる。"
+    ],
+    "translation": "找工作默默地教你：被說一百次「不行」，只是通往那唯一一個「好」的路上要繳的過路費。",
+    "english": "Job hunting quietly teaches you that a hundred \"no\"s are just the toll on the road to one \"yes.\"",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "job hunting"
+    ]
+  },
+  {
+    "id": "6652",
+    "japanese": "何社も受けたが、なかなか採用が決まらない。",
+    "chunks": [
+      "何社",
+      "も",
+      "受けた",
+      "が、",
+      "なかなか",
+      "採用",
+      "が",
+      "決まらない。"
+    ],
+    "translation": "我應徵了好幾家公司，但遲遲沒被錄取。",
+    "english": "I applied to several companies, but I still can't land a job.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "job hunting"
+    ]
+  },
+  {
+    "id": "6653",
+    "japanese": "それを簡単に説明できないなら、近道を得る資格が持てるほど深くは、まだ静かに理解できていないということだ。",
+    "chunks": [
+      "それ",
+      "を",
+      "簡単",
+      "に",
+      "説明できない",
+      "なら、",
+      "近道",
+      "を",
+      "得る",
+      "資格",
+      "が",
+      "持てる",
+      "ほど",
+      "深く",
+      "は、",
+      "まだ",
+      "静かに",
+      "理解できて",
+      "いない",
+      "という",
+      "ことだ。"
+    ],
+    "translation": "如果你沒辦法簡單地解釋它，就默默代表你還沒理解到深得足以配得上那條捷徑。",
+    "english": "If you can't explain it simply, you quietly haven't understood it deeply enough to earn the shortcut.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "explanation"
+    ]
+  },
+  {
+    "id": "6654",
+    "japanese": "先生が、問題の解き方をやさしく説明してくれた。",
+    "chunks": [
+      "先生",
+      "が、",
+      "問題",
+      "の",
+      "解き方",
+      "を",
+      "やさしく",
+      "説明して",
+      "くれた。"
+    ],
+    "translation": "老師溫和地說明了題目的解法。",
+    "english": "The teacher kindly explained how to solve the problem.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "explanation"
+    ]
+  },
+  {
+    "id": "6655",
+    "japanese": "娯楽は、あなたに何も求めてこない。だからこそ、それが多すぎると、静かにこんなにも空しさが残るのだ。",
+    "chunks": [
+      "娯楽",
+      "は、",
+      "あなた",
+      "に",
+      "何",
+      "も",
+      "求めて",
+      "こない。",
+      "だからこそ、",
+      "それ",
+      "が",
+      "多すぎる",
+      "と、",
+      "静かに",
+      "こんなに",
+      "も",
+      "空しさ",
+      "が",
+      "残る",
+      "のだ。"
+    ],
+    "translation": "娛樂不會向你要求任何東西。正因如此，它一多，才會默默地留下如此深的空虛。",
+    "english": "Entertainment asks nothing of you; that's exactly why too much of it quietly leaves such emptiness.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "entertainment"
+    ]
+  },
+  {
+    "id": "6656",
+    "japanese": "週末は、家で映画を見て楽しんだ。",
+    "chunks": [
+      "週末",
+      "は、",
+      "家",
+      "で",
+      "映画",
+      "を",
+      "見て",
+      "楽しんだ。"
+    ],
+    "translation": "週末，我在家看電影，玩得很開心。",
+    "english": "On the weekend, I enjoyed watching movies at home.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "entertainment"
+    ]
+  },
+  {
+    "id": "6657",
+    "japanese": "倫理とは、部屋に残された唯一の目撃者が、自分がこれからならねばならない人間だけになったときに、静かに何をするかということだ。",
+    "chunks": [
+      "倫理",
+      "と",
+      "は、",
+      "部屋",
+      "に",
+      "残された",
+      "唯一",
+      "の",
+      "目撃者",
+      "が、",
+      "自分",
+      "が",
+      "これ",
+      "から",
+      "ならねば",
+      "ならない",
+      "人間",
+      "だけ",
+      "に",
+      "なった",
+      "とき",
+      "に、",
+      "静かに",
+      "何",
+      "を",
+      "する",
+      "か",
+      "という",
+      "ことだ。"
+    ],
+    "translation": "道德就是：當房間裡唯一剩下的見證者，只剩下你不得不成為的那個人時，你會默默地做什麼。",
+    "english": "Ethics is what you quietly do when the only witness left in the room is the person you must become.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "ethics"
+    ]
+  },
+  {
+    "id": "6658",
+    "japanese": "小さな嘘はそのときは無料に感じるが、その一つひとつを、自分の信頼のかけらで静かに支払っている。",
+    "chunks": [
+      "小さな",
+      "嘘",
+      "は",
+      "そのとき",
+      "は",
+      "無料",
+      "に",
+      "感じる",
+      "が、",
+      "その",
+      "一つひとつ",
+      "を、",
+      "自分",
+      "の",
+      "信頼",
+      "の",
+      "かけら",
+      "で",
+      "静かに",
+      "支払っている。"
+    ],
+    "translation": "小謊在當下感覺免費，但你默默地用自己的一片信任，為它們每一個付了帳。",
+    "english": "Small lies feel free at the time, but you quietly pay for each one with a piece of your own trust.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "ethics"
+    ]
+  },
+  {
+    "id": "6659",
+    "japanese": "落ちていた財布を、交番に届けた。",
+    "chunks": [
+      "落ちていた",
+      "財布",
+      "を、",
+      "交番",
+      "に",
+      "届けた。"
+    ],
+    "translation": "我把撿到的錢包，送到了派出所。",
+    "english": "I turned in a wallet I found to the police box.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "ethics"
+    ]
+  },
+  {
+    "id": "6660",
+    "japanese": "決意とは、大きな雄たけびではなく、興奮が何か月も前に消えてしまった灰色の日にも、静かに現れることだ。",
+    "chunks": [
+      "決意",
+      "と",
+      "は、",
+      "大きな",
+      "雄たけび",
+      "で",
+      "は",
+      "なく、",
+      "興奮",
+      "が",
+      "何か月",
+      "も",
+      "前",
+      "に",
+      "消えて",
+      "しまった",
+      "灰色",
+      "の",
+      "日",
+      "に",
+      "も、",
+      "静かに",
+      "現れる",
+      "ことだ。"
+    ],
+    "translation": "決心不是一聲響亮的怒吼，而是在興奮早已在幾個月前消失的灰色日子裡，也默默地出現。",
+    "english": "Determination isn't a loud roar, but quietly showing up even on the grey day when the excitement vanished months ago.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "determination"
+    ]
+  },
+  {
+    "id": "6661",
+    "japanese": "やる気は静かに始めさせてくれるが、そのやる気が目覚ましをかけ忘れた朝に現れるのは、規律だけだ。",
+    "chunks": [
+      "やる気",
+      "は",
+      "静かに",
+      "始めさせて",
+      "くれる",
+      "が、",
+      "その",
+      "やる気",
+      "が",
+      "目覚まし",
+      "を",
+      "かけ忘れた",
+      "朝",
+      "に",
+      "現れる",
+      "の",
+      "は、",
+      "規律",
+      "だけ",
+      "だ。"
+    ],
+    "translation": "動力默默地讓你開始，但在動力忘了設鬧鐘的早晨會出現的，只有紀律。",
+    "english": "Motivation quietly gets you started, but only discipline shows up on the mornings motivation forgot to set an alarm.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "determination"
+    ]
+  },
+  {
+    "id": "6662",
+    "japanese": "どんなに大変でも、最後までやると決めた。",
+    "chunks": [
+      "どんなに",
+      "大変",
+      "でも、",
+      "最後",
+      "まで",
+      "やる",
+      "と",
+      "決めた。"
+    ],
+    "translation": "不管多辛苦，我都決定要做到最後。",
+    "english": "No matter how hard it gets, I decided to see it through.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "determination"
+    ]
+  },
+  {
+    "id": "6663",
+    "japanese": "共同体とは、あなたの問題を自分たちの問題にするほど面白いと判断した、静かな人々の集まりにすぎない。",
+    "chunks": [
+      "共同体",
+      "と",
+      "は、",
+      "あなた",
+      "の",
+      "問題",
+      "を",
+      "自分たち",
+      "の",
+      "問題",
+      "に",
+      "する",
+      "ほど",
+      "面白い",
+      "と",
+      "判断した、",
+      "静かな",
+      "人々",
+      "の",
+      "集まり",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "社群，只不過是一群默默的人，判斷你的問題有趣到值得把它變成自己的。",
+    "english": "A community is just a quiet gathering of people who decided your problem was interesting enough to make theirs.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "community"
+    ]
+  },
+  {
+    "id": "6664",
+    "japanese": "人は、静かにそれを必要としてみて、本当に誰かが来てくれるかどうかを知るまで、共同体を本当には分からない。",
+    "chunks": [
+      "人",
+      "は、",
+      "静かに",
+      "それ",
+      "を",
+      "必要と",
+      "して",
+      "みて、",
+      "本当に",
+      "誰か",
+      "が",
+      "来て",
+      "くれる",
+      "か",
+      "どう",
+      "か",
+      "を",
+      "知る",
+      "まで、",
+      "共同体",
+      "を",
+      "本当に",
+      "は",
+      "分からない。"
+    ],
+    "translation": "人要到默默地需要過它、知道究竟有沒有人真的會來之前，才真正認識一個社群。",
+    "english": "You don't truly know a community until you quietly need it and learn whether anyone actually comes.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "community"
+    ]
+  },
+  {
+    "id": "6665",
+    "japanese": "この町には、あたたかい人が多い。",
+    "chunks": [
+      "この",
+      "町",
+      "に",
+      "は、",
+      "あたたかい",
+      "人",
+      "が",
+      "多い。"
+    ],
+    "translation": "這個城鎮，溫暖的人很多。",
+    "english": "This town has many warm-hearted people.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "community"
+    ]
+  },
+  {
+    "id": "6666",
+    "japanese": "職場は、難しいことを楽そうに見せる人を静かに評価しておきながら、なぜ誰もそれが大変だったと認めないのかと不思議がる。",
+    "chunks": [
+      "職場",
+      "は、",
+      "難しい",
+      "こと",
+      "を",
+      "楽",
+      "そう",
+      "に",
+      "見せる",
+      "人",
+      "を",
+      "静かに",
+      "評価して",
+      "おき",
+      "ながら、",
+      "なぜ",
+      "誰",
+      "も",
+      "それ",
+      "が",
+      "大変だった",
+      "と",
+      "認めない",
+      "の",
+      "か",
+      "と",
+      "不思議がる。"
+    ],
+    "translation": "職場默默地獎勵那個把難事做得看似輕鬆的人，然後又納悶為什麼沒人承認那其實很難。",
+    "english": "The workplace quietly rewards whoever makes the hard look easy, then wonders why no one admits it was hard.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "workplace"
+    ]
+  },
+  {
+    "id": "6667",
+    "japanese": "職場の雰囲気がいいと、仕事もはかどる。",
+    "chunks": [
+      "職場",
+      "の",
+      "雰囲気",
+      "が",
+      "いい",
+      "と、",
+      "仕事",
+      "も",
+      "はかどる。"
+    ],
+    "translation": "職場氣氛好，工作也會有進展。",
+    "english": "When the workplace atmosphere is good, work goes smoothly too.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "workplace"
+    ]
+  },
+  {
+    "id": "6668",
+    "japanese": "いちばんいい説明書は、あなたを賢いけれど不慣れな人として静かに扱い、決して、鈍くてもう知っているべき人としては扱わない。",
+    "chunks": [
+      "いちばん",
+      "いい",
+      "説明書",
+      "は、",
+      "あなた",
+      "を",
+      "賢い",
+      "けれど",
+      "不慣れな",
+      "人",
+      "として",
+      "静かに",
+      "扱い、",
+      "決して、",
+      "鈍くて",
+      "もう",
+      "知っている",
+      "べき",
+      "人",
+      "として",
+      "は",
+      "扱わない。"
+    ],
+    "translation": "最好的說明書，默默地把你當成聰明但陌生的人，而絕不把你當成遲鈍、早就該懂的人。",
+    "english": "The best instructions quietly treat you as smart but new, never as slow and supposed to already know.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "instruction"
+    ]
+  },
+  {
+    "id": "6669",
+    "japanese": "説明が分かりにくいと、かえって時間がかかる。",
+    "chunks": [
+      "説明",
+      "が",
+      "分かりにくい",
+      "と、",
+      "かえって",
+      "時間",
+      "が",
+      "かかる。"
+    ],
+    "translation": "說明如果難懂，反而會更花時間。",
+    "english": "When instructions are hard to follow, it ends up taking more time.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "instruction"
+    ]
+  },
+  {
+    "id": "6670",
+    "japanese": "趣味は、自分が愛する何かで、堂々と、そして無用に下手でいることを許される、静かに残された最後の場所だ。",
+    "chunks": [
+      "趣味",
+      "は、",
+      "自分",
+      "が",
+      "愛する",
+      "何か",
+      "で、",
+      "堂々と、",
+      "そして",
+      "無用",
+      "に",
+      "下手",
+      "で",
+      "いる",
+      "こと",
+      "を",
+      "許される、",
+      "静かに",
+      "残された",
+      "最後",
+      "の",
+      "場所",
+      "だ。"
+    ],
+    "translation": "嗜好，是默默地僅存的最後一個地方，讓你能在一件你熱愛的事上，堂堂正正、又毫無用處地爛著。",
+    "english": "A hobby is the last quietly remaining place where you're allowed to be gloriously, uselessly bad at something you love.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "6671",
+    "japanese": "わたしの趣味は、写真を撮ることです。",
+    "chunks": [
+      "わたし",
+      "の",
+      "趣味",
+      "は、",
+      "写真",
+      "を",
+      "撮る",
+      "こと",
+      "です。"
+    ],
+    "translation": "我的興趣是拍照。",
+    "english": "My hobby is taking photographs.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "6672",
+    "japanese": "哲学は答えを手渡してはくれない。ただ、自分自身の言い訳を切り裂けるほど鋭い問いを立てることを、静かに教えてくれる。",
+    "chunks": [
+      "哲学",
+      "は",
+      "答え",
+      "を",
+      "手渡して",
+      "は",
+      "くれない。",
+      "ただ、",
+      "自分自身",
+      "の",
+      "言い訳",
+      "を",
+      "切り裂ける",
+      "ほど",
+      "鋭い",
+      "問い",
+      "を",
+      "立てる",
+      "こと",
+      "を、",
+      "静かに",
+      "教えて",
+      "くれる。"
+    ],
+    "translation": "哲學不會把答案交給你。它只是默默地教你，問出銳利到能劃穿自己藉口的問題。",
+    "english": "Philosophy doesn't hand you answers; it quietly teaches you to pose questions sharp enough to cut through your own excuses.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "6673",
+    "japanese": "立ち止まって考えない人生は、あまりに速く過ぎ去り、あの年月がどこへ行ったのか、静かに思い出せなくなる。",
+    "chunks": [
+      "立ち止まって",
+      "考えない",
+      "人生",
+      "は、",
+      "あまりに",
+      "速く",
+      "過ぎ去り、",
+      "あの",
+      "年月",
+      "が",
+      "どこ",
+      "へ",
+      "行った",
+      "の",
+      "か、",
+      "静かに",
+      "思い出せなく",
+      "なる。"
+    ],
+    "translation": "不停下來思考的人生，過得太快，你會默默地想不起來，那些年究竟跑去哪了。",
+    "english": "An unexamined life rushes by so fast that you quietly can't recall where all those years went.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "6674",
+    "japanese": "ときどき、生きる意味について考える。",
+    "chunks": [
+      "ときどき、",
+      "生きる",
+      "意味",
+      "に",
+      "ついて",
+      "考える。"
+    ],
+    "translation": "我有時會思考活著的意義。",
+    "english": "Sometimes I think about the meaning of life.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "6675",
+    "japanese": "希望とは、すべてうまくいくという信念ではなく、それでもなお種をまき続けるという、静かな決意のことだ。",
+    "chunks": [
+      "希望",
+      "と",
+      "は、",
+      "すべて",
+      "うまく",
+      "いく",
+      "という",
+      "信念",
+      "で",
+      "は",
+      "なく、",
+      "それでも",
+      "なお",
+      "種",
+      "を",
+      "まき続ける",
+      "という、",
+      "静かな",
+      "決意",
+      "の",
+      "ことだ。"
+    ],
+    "translation": "希望不是相信一切都會順利的信念，而是一種默默的決心：即使如此，仍繼續播種。",
+    "english": "Hope isn't the belief that all will work out, but the quiet resolve to keep planting anyway.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "hope"
+    ]
+  },
+  {
+    "id": "6676",
+    "japanese": "希望は、すべてが立ち止まる理由をくれた翌日にも、静かに働き続ける頑固な小さな筋肉のようなものだ。",
+    "chunks": [
+      "希望",
+      "は、",
+      "すべて",
+      "が",
+      "立ち止まる",
+      "理由",
+      "を",
+      "くれた",
+      "翌日",
+      "に",
+      "も、",
+      "静かに",
+      "働き続ける",
+      "頑固な",
+      "小さな",
+      "筋肉",
+      "の",
+      "よう",
+      "な",
+      "ものだ。"
+    ],
+    "translation": "希望就像一條倔強的小肌肉，在一切都給了你停下理由的隔天，仍默默地繼續運作。",
+    "english": "Hope is like a stubborn little muscle that quietly keeps working the day after everything gave you a reason to stop.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "hope"
+    ]
+  },
+  {
+    "id": "6677",
+    "japanese": "あしたは、きっといい日になると思う。",
+    "chunks": [
+      "あした",
+      "は、",
+      "きっと",
+      "いい",
+      "日",
+      "に",
+      "なる",
+      "と",
+      "思う。"
+    ],
+    "translation": "我覺得明天一定會是好的一天。",
+    "english": "I think tomorrow will surely be a good day.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "hope"
+    ]
+  },
+  {
+    "id": "6678",
+    "japanese": "あなたの生き方は、静かに、「はい」と言ったことの合計から、疲れすぎて断れなかったすべてを引いたものにすぎない。",
+    "chunks": [
+      "あなた",
+      "の",
+      "生き方",
+      "は、",
+      "静かに、",
+      "「はい」",
+      "と",
+      "言った",
+      "こと",
+      "の",
+      "合計",
+      "から、",
+      "疲れ",
+      "すぎて",
+      "断れなかった",
+      "すべて",
+      "を",
+      "引いた",
+      "もの",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "你的生活方式，默默地只是你答應的一切的總和，減去所有你累到無法拒絕的東西。",
+    "english": "Your lifestyle is quietly just the sum of what you said yes to, minus everything you were too tired to refuse.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "6679",
+    "japanese": "健康のために、早く寝るようにしている。",
+    "chunks": [
+      "健康",
+      "の",
+      "ため",
+      "に、",
+      "早く",
+      "寝る",
+      "よう",
+      "に",
+      "している。"
+    ],
+    "translation": "為了健康，我盡量早睡。",
+    "english": "For my health, I try to go to bed early.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "6680",
+    "japanese": "健全な職場文化は、どれだけ疲れて見せられたかではなく、何を仕上げたかで、静かにあなたを評価する。",
+    "chunks": [
+      "健全な",
+      "職場文化",
+      "は、",
+      "どれ",
+      "だけ",
+      "疲れて",
+      "見せられた",
+      "か",
+      "で",
+      "は",
+      "なく、",
+      "何",
+      "を",
+      "仕上げた",
+      "か",
+      "で、",
+      "静かに",
+      "あなた",
+      "を",
+      "評価する。"
+    ],
+    "translation": "健康的職場文化，默默地是用你完成了什麼、而不是你設法讓自己看起來多累，來衡量你。",
+    "english": "A healthy work culture quietly measures you by what you finished, not by how tired you managed to look.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "work culture"
+    ]
+  },
+  {
+    "id": "6681",
+    "japanese": "上司が理解のある人だと、働きやすい。",
+    "chunks": [
+      "上司",
+      "が",
+      "理解",
+      "の",
+      "ある",
+      "人",
+      "だ",
+      "と、",
+      "働きやすい。"
+    ],
+    "translation": "主管如果是個講理的人，就會很好做事。",
+    "english": "When your boss is an understanding person, it's easy to work.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "work culture"
+    ]
+  },
+  {
+    "id": "6682",
+    "japanese": "すぐれた教師は、静かに不要になろうと努め、劣った教師は、いつまでも必要とされ続けようと努める。",
+    "chunks": [
+      "すぐれた",
+      "教師",
+      "は、",
+      "静かに",
+      "不要",
+      "に",
+      "なろう",
+      "と",
+      "努め、",
+      "劣った",
+      "教師",
+      "は、",
+      "いつまで",
+      "も",
+      "必要と",
+      "され続けよう",
+      "と",
+      "努める。"
+    ],
+    "translation": "好的老師默默地努力讓自己變得不再必要；差的老師則努力讓自己永遠被需要。",
+    "english": "A great teacher quietly strives to become unnecessary; a poor one strives to stay forever needed.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "teaching"
+    ]
+  },
+  {
+    "id": "6683",
+    "japanese": "自分を信じる資格を得るより少し前に、静かに自分を信じてくれた先生のことは、一生忘れない。",
+    "chunks": [
+      "自分",
+      "を",
+      "信じる",
+      "資格",
+      "を",
+      "得る",
+      "より",
+      "少し",
+      "前",
+      "に、",
+      "静かに",
+      "自分",
+      "を",
+      "信じて",
+      "くれた",
+      "先生",
+      "の",
+      "こと",
+      "は、",
+      "一生",
+      "忘れない。"
+    ],
+    "translation": "那個在你還沒資格相信自己之前，就默默地相信你的老師，你一輩子都不會忘記。",
+    "english": "You'll never forget the teacher who quietly believed in you slightly before you'd earned the right to.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "teaching"
+    ]
+  },
+  {
+    "id": "6684",
+    "japanese": "いい先生に習えて、本当によかった。",
+    "chunks": [
+      "いい",
+      "先生",
+      "に",
+      "習えて、",
+      "本当",
+      "に",
+      "よかった。"
+    ],
+    "translation": "能跟到好老師學習，真的太好了。",
+    "english": "I'm really glad I got to learn from a good teacher.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "teaching"
+    ]
+  },
+  {
+    "id": "6685",
+    "japanese": "趣味の目的は、それが上手になることではなく、ただ純粋な喜びのために何かをする感覚を、静かに思い出すことだ。",
+    "chunks": [
+      "趣味",
+      "の",
+      "目的",
+      "は、",
+      "それ",
+      "が",
+      "上手",
+      "に",
+      "なる",
+      "こと",
+      "で",
+      "は",
+      "なく、",
+      "ただ",
+      "純粋な",
+      "喜び",
+      "の",
+      "ため",
+      "に",
+      "何か",
+      "を",
+      "する",
+      "感覚",
+      "を、",
+      "静かに",
+      "思い出す",
+      "ことだ。"
+    ],
+    "translation": "嗜好的目的不是要變厲害，而是默默地重新想起，純粹為了快樂做一件事是什麼感覺。",
+    "english": "The point of a hobby isn't to get good at it, but to quietly remember what doing something for pure joy feels like.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "hobby"
+    ]
+  },
+  {
+    "id": "6686",
+    "japanese": "休みの日は、庭で花を育てている。",
+    "chunks": [
+      "休み",
+      "の",
+      "日",
+      "は、",
+      "庭",
+      "で",
+      "花",
+      "を",
+      "育てている。"
+    ],
+    "translation": "休假日，我會在院子裡種花。",
+    "english": "On my days off, I grow flowers in the garden.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "hobby"
+    ]
+  },
+  {
+    "id": "6687",
+    "japanese": "気候は交渉などしない。静かに領収書をすべて取っておき、やがて私たち一人ひとりに、最後の一枚まで請求書を送りつけてくる。",
+    "chunks": [
+      "気候",
+      "は",
+      "交渉",
+      "など",
+      "しない。",
+      "静かに",
+      "領収書",
+      "を",
+      "すべて",
+      "取って",
+      "おき、",
+      "やがて",
+      "私たち",
+      "一人ひとり",
+      "に、",
+      "最後",
+      "の",
+      "一枚",
+      "まで",
+      "請求書",
+      "を",
+      "送りつけて",
+      "くる。"
+    ],
+    "translation": "氣候不會談判。它默默地把所有收據都留著，最終把帳單，連最後一張都寄給我們每一個人。",
+    "english": "The climate doesn't negotiate; it quietly keeps every receipt and eventually sends each of us the bill, down to the last one.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "climate"
+    ]
+  },
+  {
+    "id": "6688",
+    "japanese": "気候の変化は遠い話に思えるが、静かに、私たちの毎日の暮らしのすぐそばまで来ている。",
+    "chunks": [
+      "気候",
+      "の",
+      "変化",
+      "は",
+      "遠い",
+      "話",
+      "に",
+      "思える",
+      "が、",
+      "静かに、",
+      "私たち",
+      "の",
+      "毎日",
+      "の",
+      "暮らし",
+      "の",
+      "すぐ",
+      "そば",
+      "まで",
+      "来ている。"
+    ],
+    "translation": "氣候變化感覺像是遙遠的事，但它默默地，已經來到我們日常生活的身邊了。",
+    "english": "Climate change feels like a distant matter, yet it has quietly come right up close to our daily lives.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "climate"
+    ]
+  },
+  {
+    "id": "6689",
+    "japanese": "今年の夏は、去年よりずっと暑い。",
+    "chunks": [
+      "今年",
+      "の",
+      "夏",
+      "は、",
+      "去年",
+      "より",
+      "ずっと",
+      "暑い。"
+    ],
+    "translation": "今年夏天，比去年熱多了。",
+    "english": "This summer is much hotter than last year.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "climate"
+    ]
+  },
+  {
+    "id": "6690",
+    "japanese": "幸福とは、ついにたどり着く場所ではなく、ありふれた日々の中を、どう旅していくかを学んでいく、静かな道のりのことだ。",
+    "chunks": [
+      "幸福",
+      "と",
+      "は、",
+      "ついに",
+      "たどり着く",
+      "場所",
+      "で",
+      "は",
+      "なく、",
+      "ありふれた",
+      "日々",
+      "の",
+      "中",
+      "を、",
+      "どう",
+      "旅して",
+      "いく",
+      "か",
+      "を",
+      "学んで",
+      "いく、",
+      "静かな",
+      "道のり",
+      "の",
+      "ことだ。"
+    ],
+    "translation": "幸福不是一個你終於抵達的地方，而是一段默默的旅程：學會如何在平凡的日子裡旅行。",
+    "english": "Happiness isn't a place you finally reach, but the quiet journey of learning how to travel through the ordinary.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "happiness"
+    ]
+  },
+  {
+    "id": "6691",
+    "japanese": "幸せを正面から追いかけると、静かに逃げていく。それは、ほかの何かを大切にしているあいだにだけ、そっと姿を見せる。",
+    "chunks": [
+      "幸せ",
+      "を",
+      "正面",
+      "から",
+      "追いかける",
+      "と、",
+      "静かに",
+      "逃げて",
+      "いく。",
+      "それ",
+      "は、",
+      "ほか",
+      "の",
+      "何か",
+      "を",
+      "大切",
+      "に",
+      "している",
+      "あいだ",
+      "に",
+      "だけ、",
+      "そっと",
+      "姿",
+      "を",
+      "見せる。"
+    ],
+    "translation": "正面追逐幸福，它就會默默地逃走。它只在你珍惜著別的東西時，才悄悄現身。",
+    "english": "Chase happiness head-on and it quietly flees; it only shows itself while you're cherishing something else.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "happiness"
+    ]
+  },
+  {
+    "id": "6692",
+    "japanese": "小さなことでも、幸せを感じられる。",
+    "chunks": [
+      "小さな",
+      "こと",
+      "でも、",
+      "幸せ",
+      "を",
+      "感じられる。"
+    ],
+    "translation": "就算是小事，也能感受到幸福。",
+    "english": "I can feel happiness even in small things.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "happiness"
+    ]
+  },
+  {
+    "id": "6693",
+    "japanese": "毎朝、少し散歩をするのが日課だ。",
+    "chunks": [
+      "毎朝、",
+      "少し",
+      "散歩",
+      "を",
+      "する",
+      "の",
+      "が",
+      "日課",
+      "だ。"
+    ],
+    "translation": "每天早上稍微散步一下，是我的例行習慣。",
+    "english": "A short walk every morning is part of my routine.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "lifestyle"
+    ]
   }
 ]
