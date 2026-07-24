@@ -163490,5 +163490,1505 @@
       "N4",
       "photos"
     ]
+  },
+  {
+    "id": "6844",
+    "japanese": "私たちは、加わる群衆によってよりも、いちばん早く返事を返す三、四人の相手によって、静かに形づくられている。",
+    "chunks": [
+      "私たち",
+      "は、",
+      "加わる",
+      "群衆",
+      "に",
+      "よって",
+      "より",
+      "も、",
+      "いちばん",
+      "早く",
+      "返事",
+      "を",
+      "返す",
+      "三、",
+      "四人",
+      "の",
+      "相手",
+      "に",
+      "よって、",
+      "静かに",
+      "形づくられている。"
+    ],
+    "translation": "我們被形塑，默默地取決於我們最快回覆的那三、四個人，而不是我們加入的那些人群。",
+    "english": "We're quietly shaped more by the three or four people we reply to fastest than by the crowds we join.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "social"
+    ]
+  },
+  {
+    "id": "6845",
+    "japanese": "週末は、友達と会って過ごすことが多い。",
+    "chunks": [
+      "週末",
+      "は、",
+      "友達",
+      "と",
+      "会って",
+      "過ごす",
+      "こと",
+      "が",
+      "多い。"
+    ],
+    "translation": "週末，我常常和朋友見面一起度過。",
+    "english": "On weekends, I often spend time meeting friends.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "social"
+    ]
+  },
+  {
+    "id": "6846",
+    "japanese": "よい顧客対応とは、けっしてミスをしないことではなく、してしまったミスを、どれだけ潔く直すかということだ。",
+    "chunks": [
+      "よい",
+      "顧客対応",
+      "と",
+      "は、",
+      "けっして",
+      "ミス",
+      "を",
+      "しない",
+      "こと",
+      "で",
+      "は",
+      "なく、",
+      "して",
+      "しまった",
+      "ミス",
+      "を、",
+      "どれ",
+      "だけ",
+      "潔く",
+      "直す",
+      "か",
+      "という",
+      "ことだ。"
+    ],
+    "translation": "好的客戶服務不是從不犯錯，而是你把已經犯的錯，修得多乾脆。",
+    "english": "Good customer service isn't never making mistakes, but how gracefully you fix the one you did make.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "customer service"
+    ]
+  },
+  {
+    "id": "6847",
+    "japanese": "店員さんが親切だと、また来たくなる。",
+    "chunks": [
+      "店員さん",
+      "が",
+      "親切",
+      "だ",
+      "と、",
+      "また",
+      "来たく",
+      "なる。"
+    ],
+    "translation": "店員很親切的話，就會讓人想再來。",
+    "english": "When the staff are kind, it makes you want to come back.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "customer service"
+    ]
+  },
+  {
+    "id": "6848",
+    "japanese": "知識はトマトが果物だと静かに教えてくれるが、それをフルーツサラダに入れないでおくのは、知恵のほうだ。",
+    "chunks": [
+      "知識",
+      "は",
+      "トマト",
+      "が",
+      "果物",
+      "だ",
+      "と",
+      "静かに",
+      "教えて",
+      "くれる",
+      "が、",
+      "それ",
+      "を",
+      "フルーツサラダ",
+      "に",
+      "入れないで",
+      "おく",
+      "の",
+      "は、",
+      "知恵",
+      "の",
+      "ほう",
+      "だ。"
+    ],
+    "translation": "知識默默地告訴你番茄是水果，但知道別把它放進水果沙拉裡的，是智慧。",
+    "english": "Knowledge quietly tells you a tomato is a fruit, but knowing not to put it in the fruit salad is wisdom.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "knowledge"
+    ]
+  },
+  {
+    "id": "6849",
+    "japanese": "知識は、使ってはじめて本当に自分のものになる。",
+    "chunks": [
+      "知識",
+      "は、",
+      "使って",
+      "はじめて",
+      "本当に",
+      "自分",
+      "の",
+      "もの",
+      "に",
+      "なる。"
+    ],
+    "translation": "知識要用了，才會真正變成自己的。",
+    "english": "Knowledge only truly becomes yours once you use it.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "knowledge"
+    ]
+  },
+  {
+    "id": "6850",
+    "japanese": "伝統とは、誰かがくり返し続けたいと思うほど愛した、そして本人より長く生き残った、静かなただのよい思いつきにすぎない。",
+    "chunks": [
+      "伝統",
+      "と",
+      "は、",
+      "誰か",
+      "が",
+      "くり返し続けたい",
+      "と",
+      "思う",
+      "ほど",
+      "愛した、",
+      "そして",
+      "本人",
+      "より",
+      "長く",
+      "生き残った、",
+      "静かな",
+      "ただ",
+      "の",
+      "よい",
+      "思いつき",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "傳統只不過是一個默默的好點子，有人愛它愛到想不斷重複，而且活得比那個人還久。",
+    "english": "A tradition is just a quiet good idea someone loved enough to keep repeating, and that outlived them.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "tradition"
+    ]
+  },
+  {
+    "id": "6851",
+    "japanese": "この地方には、古くからの祭りが残っている。",
+    "chunks": [
+      "この",
+      "地方",
+      "に",
+      "は、",
+      "古く",
+      "から",
+      "の",
+      "祭り",
+      "が",
+      "残っている。"
+    ],
+    "translation": "這個地方，保留著自古以來的祭典。",
+    "english": "This region still has festivals from long ago.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "tradition"
+    ]
+  },
+  {
+    "id": "6852",
+    "japanese": "どんな複雑な問題にも、単純で、きれいで、そして完全に間違った答えが、信じられるのを静かに待っている。",
+    "chunks": [
+      "どんな",
+      "複雑な",
+      "問題",
+      "に",
+      "も、",
+      "単純",
+      "で、",
+      "きれい",
+      "で、",
+      "そして",
+      "完全",
+      "に",
+      "間違った",
+      "答え",
+      "が、",
+      "信じられる",
+      "の",
+      "を",
+      "静かに",
+      "待っている。"
+    ],
+    "translation": "任何複雜的問題，都有一個簡單、乾淨、又完全錯誤的答案，默默地等著被人相信。",
+    "english": "Every complex problem has a simple, clean, and completely wrong answer quietly waiting to be believed.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "complexity"
+    ]
+  },
+  {
+    "id": "6853",
+    "japanese": "問題が複雑なときほど、あわてずに一つずつ整理したい。",
+    "chunks": [
+      "問題",
+      "が",
+      "複雑な",
+      "とき",
+      "ほど、",
+      "あわてず",
+      "に",
+      "一つ",
+      "ずつ",
+      "整理したい。"
+    ],
+    "translation": "問題越複雜，我越想不慌不忙地一個一個整理。",
+    "english": "The more complex the problem, the more I want to sort it out one piece at a time without panicking.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "complexity"
+    ]
+  },
+  {
+    "id": "6854",
+    "japanese": "自分の考えとただ静かに向き合って座ることは、私たちがほとんど失いかけた技術であり、そして、いちばん取り戻したい技術でもある。",
+    "chunks": [
+      "自分",
+      "の",
+      "考え",
+      "と",
+      "ただ",
+      "静かに",
+      "向き合って",
+      "座る",
+      "こと",
+      "は、",
+      "私たち",
+      "が",
+      "ほとんど",
+      "失いかけた",
+      "技術",
+      "で",
+      "あり、",
+      "そして、",
+      "いちばん",
+      "取り戻したい",
+      "技術",
+      "で",
+      "も",
+      "ある。"
+    ],
+    "translation": "只是安靜地坐著、面對自己的念頭，是一項我們幾乎快失去的技能，也是我們最想找回來的技能。",
+    "english": "Just sitting quietly with your own thoughts is a skill we've nearly lost, and the one we most want back.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "self-reflection"
+    ]
+  },
+  {
+    "id": "6855",
+    "japanese": "たまには、一人で静かに考える時間がほしい。",
+    "chunks": [
+      "たまに",
+      "は、",
+      "一人",
+      "で",
+      "静かに",
+      "考える",
+      "時間",
+      "が",
+      "ほしい。"
+    ],
+    "translation": "偶爾，我想要一段一個人靜靜思考的時間。",
+    "english": "Once in a while, I want time to think quietly alone.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "self-reflection"
+    ]
+  },
+  {
+    "id": "6856",
+    "japanese": "子どもは、こうしなさいと言われたことをするのではなく、あなたが実際にしているのを見ていたことを、ゆっくりと真似て育っていく。",
+    "chunks": [
+      "子ども",
+      "は、",
+      "こう",
+      "しなさい",
+      "と",
+      "言われた",
+      "こと",
+      "を",
+      "する",
+      "の",
+      "で",
+      "は",
+      "なく、",
+      "あなた",
+      "が",
+      "実際",
+      "に",
+      "している",
+      "の",
+      "を",
+      "見ていた",
+      "こと",
+      "を、",
+      "ゆっくり",
+      "と",
+      "真似て",
+      "育って",
+      "いく。"
+    ],
+    "translation": "孩子不會照著「你要這樣做」去做，而是慢慢地模仿他們看著你實際在做的事，然後長大。",
+    "english": "Children don't do what they're told; they slowly grow up imitating what they watched you actually do.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "children"
+    ]
+  },
+  {
+    "id": "6857",
+    "japanese": "子どもは、遊びながらいろいろなことを学んでいく。",
+    "chunks": [
+      "子ども",
+      "は、",
+      "遊び",
+      "ながら",
+      "いろいろな",
+      "こと",
+      "を",
+      "学んで",
+      "いく。"
+    ],
+    "translation": "孩子會一邊玩，一邊學會各種事情。",
+    "english": "Children learn all sorts of things while playing.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "children"
+    ]
+  },
+  {
+    "id": "6858",
+    "japanese": "人は、会社の高い値段は静かに許せても、自分を愚かだと感じさせた相手のことは、なかなか許せない。",
+    "chunks": [
+      "人",
+      "は、",
+      "会社",
+      "の",
+      "高い",
+      "値段",
+      "は",
+      "静かに",
+      "許せて",
+      "も、",
+      "自分",
+      "を",
+      "愚か",
+      "だ",
+      "と",
+      "感じさせた",
+      "相手",
+      "の",
+      "こと",
+      "は、",
+      "なかなか",
+      "許せない。"
+    ],
+    "translation": "人默默地會原諒一家公司的高價，卻很難原諒那個讓自己覺得很蠢的對象。",
+    "english": "People can quietly forgive a company its high prices, but hardly forgive the one that made them feel stupid.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "customer experience"
+    ]
+  },
+  {
+    "id": "6859",
+    "japanese": "この店は、雰囲気がよくて居心地がいい。",
+    "chunks": [
+      "この",
+      "店",
+      "は、",
+      "雰囲気",
+      "が",
+      "よくて",
+      "居心地",
+      "が",
+      "いい。"
+    ],
+    "translation": "這家店氣氛好，待起來很舒服。",
+    "english": "This shop has a nice atmosphere and is comfortable to be in.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "customer experience"
+    ]
+  },
+  {
+    "id": "6860",
+    "japanese": "何かを学ぶいちばん速い道は、まだ下手なうちに、間抜けに見えても平気でいられるほど謙虚でいることだ。",
+    "chunks": [
+      "何か",
+      "を",
+      "学ぶ",
+      "いちばん",
+      "速い",
+      "道",
+      "は、",
+      "まだ",
+      "下手な",
+      "うち",
+      "に、",
+      "間抜け",
+      "に",
+      "見えて",
+      "も",
+      "平気",
+      "で",
+      "いられる",
+      "ほど",
+      "謙虚",
+      "で",
+      "いる",
+      "ことだ。"
+    ],
+    "translation": "學任何東西最快的路，就是在你還很爛的時候，謙虛到就算顯得笨拙也無所謂。",
+    "english": "The fastest way to learn is to be humble enough to be fine with looking foolish while you're still bad at it.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "learning"
+    ]
+  },
+  {
+    "id": "6861",
+    "japanese": "本当の学びは、バケツを満たすことより、自分では起こしていない火をゆっくりともすことに、静かに近い。",
+    "chunks": [
+      "本当",
+      "の",
+      "学び",
+      "は、",
+      "バケツ",
+      "を",
+      "満たす",
+      "こと",
+      "より、",
+      "自分",
+      "で",
+      "は",
+      "起こして",
+      "いない",
+      "火",
+      "を",
+      "ゆっくり",
+      "と",
+      "もす",
+      "こと",
+      "に、",
+      "静かに",
+      "近い。"
+    ],
+    "translation": "真正的學習，比起裝滿一個水桶，其實默默地更接近慢慢點燃一把不是你起的火。",
+    "english": "Real learning is quietly closer to slowly lighting a fire you didn't start than to filling a bucket.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "learning"
+    ]
+  },
+  {
+    "id": "6862",
+    "japanese": "文化は、壮大な記念碑が塵に崩れたずっとあとも、日々の小さなしぐさの中に静かに生き続ける。",
+    "chunks": [
+      "文化",
+      "は、",
+      "壮大な",
+      "記念碑",
+      "が",
+      "塵",
+      "に",
+      "崩れた",
+      "ずっと",
+      "あと",
+      "も、",
+      "日々",
+      "の",
+      "小さな",
+      "しぐさ",
+      "の",
+      "中",
+      "に",
+      "静かに",
+      "生き続ける。"
+    ],
+    "translation": "文化，在宏偉的紀念碑崩成塵土很久之後，仍默默地活在每天的小小舉止裡。",
+    "english": "A culture quietly lives on in small daily gestures long after its grand monuments have crumbled to dust.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "culture"
+    ]
+  },
+  {
+    "id": "6863",
+    "japanese": "その国の文化を知ると、旅がもっと面白くなる。",
+    "chunks": [
+      "その",
+      "国",
+      "の",
+      "文化",
+      "を",
+      "知る",
+      "と、",
+      "旅",
+      "が",
+      "もっと",
+      "面白く",
+      "なる。"
+    ],
+    "translation": "了解那個國家的文化，旅行就會變得更有趣。",
+    "english": "When you know a country's culture, travel becomes more interesting.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "culture"
+    ]
+  },
+  {
+    "id": "6864",
+    "japanese": "戦略とは、より多くのことをすることではなく、あえて何をしないかを決める、静かに残酷な技術のことだ。",
+    "chunks": [
+      "戦略",
+      "と",
+      "は、",
+      "より",
+      "多く",
+      "の",
+      "こと",
+      "を",
+      "する",
+      "こと",
+      "で",
+      "は",
+      "なく、",
+      "あえて",
+      "何",
+      "を",
+      "しない",
+      "か",
+      "を",
+      "決める、",
+      "静かに",
+      "残酷な",
+      "技術",
+      "の",
+      "ことだ。"
+    ],
+    "translation": "策略不是做更多的事，而是一門默默地殘酷的藝術：決定你要刻意不做什麼。",
+    "english": "Strategy isn't doing more things, but the quietly brutal art of deciding what you deliberately won't do.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "strategy"
+    ]
+  },
+  {
+    "id": "6865",
+    "japanese": "何から手をつけるか、まず作戦を立てよう。",
+    "chunks": [
+      "何",
+      "から",
+      "手",
+      "を",
+      "つける",
+      "か、",
+      "まず",
+      "作戦",
+      "を",
+      "立てよう。"
+    ],
+    "translation": "先擬定作戰計畫，決定要從哪裡下手吧。",
+    "english": "Let's first come up with a plan for where to start.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "strategy"
+    ]
+  },
+  {
+    "id": "6866",
+    "japanese": "忍耐は、ちょうどそれが効き始めるまさにその瞬間までは、静かに、ただの頑固さによく似て見える。",
+    "chunks": [
+      "忍耐",
+      "は、",
+      "ちょうど",
+      "それ",
+      "が",
+      "効き始める",
+      "まさに",
+      "その",
+      "瞬間",
+      "まで",
+      "は、",
+      "静かに、",
+      "ただ",
+      "の",
+      "頑固さ",
+      "に",
+      "よく",
+      "似て",
+      "見える。"
+    ],
+    "translation": "毅力，直到它正好開始奏效的那一刻為止，默默地看起來都很像單純的固執。",
+    "english": "Perseverance quietly looks a lot like plain stubbornness, right up to the very moment it starts to work.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "6867",
+    "japanese": "続けたいと感じる必要はない。ただ続ければいい。その気持ちは、たいていあとから追いついてくる。",
+    "chunks": [
+      "続けたい",
+      "と",
+      "感じる",
+      "必要",
+      "は",
+      "ない。",
+      "ただ",
+      "続ければ",
+      "いい。",
+      "その",
+      "気持ち",
+      "は、",
+      "たいてい",
+      "あと",
+      "から",
+      "追いついて",
+      "くる。"
+    ],
+    "translation": "你不必感覺想繼續。只要繼續就好。那種感覺，通常會晚一點才追上來。",
+    "english": "You don't need to feel like continuing; just continue, and the feeling usually catches up later.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "6868",
+    "japanese": "何度失敗しても、あきらめずに続けた。",
+    "chunks": [
+      "何度",
+      "失敗して",
+      "も、",
+      "あきらめず",
+      "に",
+      "続けた。"
+    ],
+    "translation": "不管失敗幾次，我都沒放棄，繼續下去。",
+    "english": "No matter how many times I failed, I kept going without giving up.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "perseverance"
+    ]
+  },
+  {
+    "id": "6869",
+    "japanese": "子ども時代は、誕生日にではなく、初めて他人に対して責任を感じたあの平凡な一日に、静かに終わる。",
+    "chunks": [
+      "子ども",
+      "時代",
+      "は、",
+      "誕生日",
+      "に",
+      "で",
+      "は",
+      "なく、",
+      "初めて",
+      "他人",
+      "に",
+      "対して",
+      "責任",
+      "を",
+      "感じた",
+      "あの",
+      "平凡な",
+      "一日",
+      "に、",
+      "静かに",
+      "終わる。"
+    ],
+    "translation": "童年，不是在某個生日結束，而是在你第一次對別人感到有責任的那個平凡日子，默默地結束。",
+    "english": "Childhood quietly ends not on a birthday, but on the ordinary day you first felt responsible for someone else.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "childhood"
+    ]
+  },
+  {
+    "id": "6870",
+    "japanese": "子どものころは、外で暗くなるまで遊んでいた。",
+    "chunks": [
+      "子ども",
+      "の",
+      "ころ",
+      "は、",
+      "外",
+      "で",
+      "暗く",
+      "なる",
+      "まで",
+      "遊んでいた。"
+    ],
+    "translation": "小時候，我都在外面玩到天黑。",
+    "english": "As a child, I played outside until it got dark.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "childhood"
+    ]
+  },
+  {
+    "id": "6871",
+    "japanese": "マーケティングは、ほとんど何でもあなたに欲しがらせることが静かにできるが、その品物そのものを本当に良くすることは、決してできない。",
+    "chunks": [
+      "マーケティング",
+      "は、",
+      "ほとんど",
+      "何",
+      "でも",
+      "あなた",
+      "に",
+      "欲しがらせる",
+      "こと",
+      "が",
+      "静かに",
+      "できる",
+      "が、",
+      "その",
+      "品物",
+      "そのもの",
+      "を",
+      "本当に",
+      "良く",
+      "する",
+      "こと",
+      "は、",
+      "決して",
+      "できない。"
+    ],
+    "translation": "行銷默默地能讓你想要幾乎任何東西，但要讓那個東西本身真的變好，它永遠做不到。",
+    "english": "Marketing can quietly make you want almost anything, but it can never make the thing itself actually good.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "marketing"
+    ]
+  },
+  {
+    "id": "6872",
+    "japanese": "いちばんいい宣伝は、みんなが友達に話さずにいられない、本当に良い商品そのものだ。",
+    "chunks": [
+      "いちばん",
+      "いい",
+      "宣伝",
+      "は、",
+      "みんな",
+      "が",
+      "友達",
+      "に",
+      "話さず",
+      "に",
+      "いられない、",
+      "本当に",
+      "良い",
+      "商品",
+      "そのもの",
+      "だ。"
+    ],
+    "translation": "最好的宣傳，就是一個好到大家忍不住要跟朋友講的、真正好的產品本身。",
+    "english": "The best advertising is a genuinely good product itself, one people can't help telling their friends about.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "marketing"
+    ]
+  },
+  {
+    "id": "6873",
+    "japanese": "その広告を見て、つい買ってしまった。",
+    "chunks": [
+      "その",
+      "広告",
+      "を",
+      "見て、",
+      "つい",
+      "買って",
+      "しまった。"
+    ],
+    "translation": "看了那個廣告，我就不小心買了。",
+    "english": "I saw that ad and ended up buying it on impulse.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "marketing"
+    ]
+  },
+  {
+    "id": "6874",
+    "japanese": "教育とは、何を暗記したかではなく、それを必死で覚えようともがくあいだに、自分が誰になるかということだ。",
+    "chunks": [
+      "教育",
+      "と",
+      "は、",
+      "何",
+      "を",
+      "暗記した",
+      "か",
+      "で",
+      "は",
+      "なく、",
+      "それ",
+      "を",
+      "必死",
+      "で",
+      "覚えよう",
+      "と",
+      "もがく",
+      "あいだ",
+      "に、",
+      "自分",
+      "が",
+      "誰",
+      "に",
+      "なる",
+      "か",
+      "という",
+      "ことだ。"
+    ],
+    "translation": "教育不是關於你背了什麼，而是關於你在拚命掙扎著要記住的過程中，變成了誰。",
+    "english": "Education isn't about what you memorized, but who you become while struggling desperately to learn it.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "education"
+    ]
+  },
+  {
+    "id": "6875",
+    "japanese": "教育の目的は、教室が手を放したずっとあとも成長し続ける心を、育てることであるべきだ。",
+    "chunks": [
+      "教育",
+      "の",
+      "目的",
+      "は、",
+      "教室",
+      "が",
+      "手",
+      "を",
+      "放した",
+      "ずっと",
+      "あと",
+      "も",
+      "成長し続ける",
+      "心",
+      "を、",
+      "育てる",
+      "こと",
+      "で",
+      "ある",
+      "べき",
+      "だ。"
+    ],
+    "translation": "教育的目的，應該是培養一顆在教室放手很久之後，仍持續成長的心。",
+    "english": "The aim of education should be to grow a mind that keeps growing long after the classroom lets go.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "education"
+    ]
+  },
+  {
+    "id": "6876",
+    "japanese": "子どもの教育について、夫婦でよく話し合う。",
+    "chunks": [
+      "子ども",
+      "の",
+      "教育",
+      "に",
+      "ついて、",
+      "夫婦",
+      "で",
+      "よく",
+      "話し合う。"
+    ],
+    "translation": "關於孩子的教育，我們夫妻常常討論。",
+    "english": "My spouse and I often talk about our child's education.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "education"
+    ]
+  },
+  {
+    "id": "6877",
+    "japanese": "創造性は静かに稲妻などではなく、ほんの少し間抜けに見えることへの、非常に高い耐性を加えた勇気にすぎない。",
+    "chunks": [
+      "創造性",
+      "は",
+      "静かに",
+      "稲妻",
+      "など",
+      "で",
+      "は",
+      "なく、",
+      "ほんの",
+      "少し",
+      "間抜け",
+      "に",
+      "見える",
+      "こと",
+      "へ",
+      "の、",
+      "非常に",
+      "高い",
+      "耐性",
+      "を",
+      "加えた",
+      "勇気",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "創造力默默地不是什麼閃電，而只是勇氣，加上對「顯得有點笨」的極高忍受度而已。",
+    "english": "Creativity quietly isn't a lightning bolt, just courage plus a very high tolerance for looking a bit foolish.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "creative"
+    ]
+  },
+  {
+    "id": "6878",
+    "japanese": "どんな創作も、消さずにおく勇気を持てた、恥ずかしいほど下手な何かとして静かに始まる。",
+    "chunks": [
+      "どんな",
+      "創作",
+      "も、",
+      "消さず",
+      "に",
+      "おく",
+      "勇気",
+      "を",
+      "持てた、",
+      "恥ずかしい",
+      "ほど",
+      "下手な",
+      "何か",
+      "として",
+      "静かに",
+      "始まる。"
+    ],
+    "translation": "任何創作，都默默地始於一個爛到令人尷尬、你卻有勇氣沒把它刪掉的東西。",
+    "english": "Every creative work quietly begins as something embarrassingly bad that you found the courage not to delete.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "creative"
+    ]
+  },
+  {
+    "id": "6879",
+    "japanese": "彼女は、絵を描くのがとても上手だ。",
+    "chunks": [
+      "彼女",
+      "は、",
+      "絵",
+      "を",
+      "描く",
+      "の",
+      "が",
+      "とても",
+      "上手だ。"
+    ],
+    "translation": "她畫畫非常厲害。",
+    "english": "She is very good at drawing.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "creative"
+    ]
+  },
+  {
+    "id": "6880",
+    "japanese": "たいていの決断は、静かに正しいか間違っているかの間ではなく、同時には手に入らない二つの良いものの間にある。",
+    "chunks": [
+      "たいてい",
+      "の",
+      "決断",
+      "は、",
+      "静かに",
+      "正しい",
+      "か",
+      "間違っている",
+      "か",
+      "の",
+      "間",
+      "で",
+      "は",
+      "なく、",
+      "同時",
+      "に",
+      "は",
+      "手",
+      "に",
+      "入らない",
+      "二つ",
+      "の",
+      "良い",
+      "もの",
+      "の",
+      "間",
+      "に",
+      "ある。"
+    ],
+    "translation": "大多數的決定，默默地不是在對與錯之間，而是在兩個你無法同時擁有的好東西之間。",
+    "english": "Most decisions quietly aren't between right and wrong, but between two good things you can't have at once.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "decision making"
+    ]
+  },
+  {
+    "id": "6881",
+    "japanese": "あなたが静かに避け続けているその決断こそ、たいてい、あなたの人生全体が礼儀正しく待っているものだ。",
+    "chunks": [
+      "あなた",
+      "が",
+      "静かに",
+      "避け続けている",
+      "その",
+      "決断",
+      "こそ、",
+      "たいてい、",
+      "あなた",
+      "の",
+      "人生",
+      "全体",
+      "が",
+      "礼儀正しく",
+      "待っている",
+      "もの",
+      "だ。"
+    ],
+    "translation": "那個你一直默默逃避的決定，通常正是你整個人生禮貌地在等待的那一個。",
+    "english": "The very decision you keep quietly avoiding is usually the one your whole life is politely waiting on.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "decision making"
+    ]
+  },
+  {
+    "id": "6882",
+    "japanese": "迷ったときは、後悔の少ないほうを選ぶ。",
+    "chunks": [
+      "迷った",
+      "とき",
+      "は、",
+      "後悔",
+      "の",
+      "少ない",
+      "ほう",
+      "を",
+      "選ぶ。"
+    ],
+    "translation": "猶豫的時候，我會選比較不會後悔的那個。",
+    "english": "When I'm torn, I choose the option I'll regret less.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "decision making"
+    ]
+  },
+  {
+    "id": "6883",
+    "japanese": "回復力とは、決して倒れないことではなく、立ち上がり直すという退屈な技術が、あまりにもうまくなってしまうことだ。",
+    "chunks": [
+      "回復力",
+      "と",
+      "は、",
+      "決して",
+      "倒れない",
+      "こと",
+      "で",
+      "は",
+      "なく、",
+      "立ち上がり直す",
+      "という",
+      "退屈な",
+      "技術",
+      "が、",
+      "あまりに",
+      "も",
+      "うまく",
+      "なって",
+      "しまう",
+      "ことだ。"
+    ],
+    "translation": "韌性不是永不跌倒，而是把「重新站起來」這門無聊的技術，練得太過熟練。",
+    "english": "Resilience isn't never falling, but getting far too good at the boring art of standing back up.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "resilience"
+    ]
+  },
+  {
+    "id": "6884",
+    "japanese": "あなたの知るいちばん強い人は、あなたが知りもしなかったある一日を、静かにこらえて前へ進んだ人にすぎない。",
+    "chunks": [
+      "あなた",
+      "の",
+      "知る",
+      "いちばん",
+      "強い",
+      "人",
+      "は、",
+      "あなた",
+      "が",
+      "知り",
+      "も",
+      "しなかった",
+      "ある",
+      "一日",
+      "を、",
+      "静かに",
+      "こらえて",
+      "前",
+      "へ",
+      "進んだ",
+      "人",
+      "に",
+      "すぎない。"
+    ],
+    "translation": "你認識最堅強的人，只不過是那些在一個你根本不知道的日子裡，默默撐住、繼續往前走的人。",
+    "english": "The strongest person you know is just someone who quietly endured and pushed on through a day you never knew about.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "resilience"
+    ]
+  },
+  {
+    "id": "6885",
+    "japanese": "つらいことがあっても、また立ち直れる。",
+    "chunks": [
+      "つらい",
+      "こと",
+      "が",
+      "あって",
+      "も、",
+      "また",
+      "立ち直れる。"
+    ],
+    "translation": "就算遇到難過的事，我還是能重新振作。",
+    "english": "Even when hard things happen, I can bounce back again.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "resilience"
+    ]
+  },
+  {
+    "id": "6886",
+    "japanese": "老いるとは、静かに若さを失っていくことではなく、活力を、より稀な種類の理解と、ゆっくり辛抱強く交換していくことだ。",
+    "chunks": [
+      "老いる",
+      "と",
+      "は、",
+      "静かに",
+      "若さ",
+      "を",
+      "失って",
+      "いく",
+      "こと",
+      "で",
+      "は",
+      "なく、",
+      "活力",
+      "を、",
+      "より",
+      "稀な",
+      "種類",
+      "の",
+      "理解",
+      "と、",
+      "ゆっくり",
+      "辛抱強く",
+      "交換して",
+      "いく",
+      "ことだ。"
+    ],
+    "translation": "變老不是默默地失去青春，而是用活力，緩慢又耐心地，去換取一種更稀有的理解。",
+    "english": "Aging isn't quietly losing youth, but slowly and patiently trading energy for a rarer kind of understanding.",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "aging"
+    ]
+  },
+  {
+    "id": "6887",
+    "japanese": "年を取ることを静かに恐れる人はいない。本当に恐れているのは、その途中で本当には生きないまま、そこへ着いてしまうことだ。",
+    "chunks": [
+      "年",
+      "を",
+      "取る",
+      "こと",
+      "を",
+      "静かに",
+      "恐れる",
+      "人",
+      "は",
+      "いない。",
+      "本当に",
+      "恐れている",
+      "の",
+      "は、",
+      "その",
+      "途中",
+      "で",
+      "本当に",
+      "は",
+      "生きない",
+      "まま、",
+      "そこ",
+      "へ",
+      "着いて",
+      "しまう",
+      "ことだ。"
+    ],
+    "translation": "沒有人默默地害怕變老。真正害怕的，是在途中沒有真正活過，就抵達了那裡。",
+    "english": "No one quietly fears growing old; what they truly fear is arriving there without having really lived on the way.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "aging"
+    ]
+  },
+  {
+    "id": "6888",
+    "japanese": "祖父は、年を取っても毎日元気に散歩している。",
+    "chunks": [
+      "祖父",
+      "は、",
+      "年",
+      "を",
+      "取って",
+      "も",
+      "毎日",
+      "元気",
+      "に",
+      "散歩している。"
+    ],
+    "translation": "爺爺就算上了年紀，每天還是精神奕奕地散步。",
+    "english": "Even in old age, my grandfather takes a lively walk every day.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "aging"
+    ]
+  },
+  {
+    "id": "6889",
+    "japanese": "革新は、「これがずっと当たり前のやり方だ」と受け入れることを、誰かが静かに拒んだときに起こる。",
+    "chunks": [
+      "革新",
+      "は、",
+      "「これ",
+      "が",
+      "ずっと",
+      "当たり前",
+      "の",
+      "やり方",
+      "だ」",
+      "と",
+      "受け入れる",
+      "こと",
+      "を、",
+      "誰か",
+      "が",
+      "静かに",
+      "拒んだ",
+      "とき",
+      "に",
+      "起こる。"
+    ],
+    "translation": "創新，發生在有人默默地拒絕接受「這就是一直以來理所當然的做法」的時候。",
+    "english": "Innovation happens the moment someone quietly refuses to accept \"this is just how it's always been done.\"",
+    "difficulty": "hard",
+    "tags": [
+      "N1",
+      "innovation"
+    ]
+  },
+  {
+    "id": "6890",
+    "japanese": "たいていの革新は新しい何かを発明することではなく、ほかのみんなが疑うのをやめた古い何かに、静かに気づくことだ。",
+    "chunks": [
+      "たいてい",
+      "の",
+      "革新",
+      "は",
+      "新しい",
+      "何か",
+      "を",
+      "発明する",
+      "こと",
+      "で",
+      "は",
+      "なく、",
+      "ほか",
+      "の",
+      "みんな",
+      "が",
+      "疑う",
+      "の",
+      "を",
+      "やめた",
+      "古い",
+      "何か",
+      "に、",
+      "静かに",
+      "気づく",
+      "ことだ。"
+    ],
+    "translation": "大多數的創新，不是發明新東西，而是默默地注意到一個所有其他人都不再質疑的舊東西。",
+    "english": "Most innovation isn't inventing something new, but quietly noticing an old thing everyone else stopped questioning.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "innovation"
+    ]
+  },
+  {
+    "id": "6891",
+    "japanese": "この会社は、新しい技術の開発に力を入れている。",
+    "chunks": [
+      "この",
+      "会社",
+      "は、",
+      "新しい",
+      "技術",
+      "の",
+      "開発",
+      "に",
+      "力",
+      "を",
+      "入れている。"
+    ],
+    "translation": "這家公司，很致力於新技術的開發。",
+    "english": "This company puts effort into developing new technology.",
+    "difficulty": "medium",
+    "tags": [
+      "N3",
+      "innovation"
+    ]
+  },
+  {
+    "id": "6892",
+    "japanese": "本当に社交的な人は部屋でいちばん声の大きい人ではなく、静かな人たちに歓迎されていると感じさせる人だ。",
+    "chunks": [
+      "本当に",
+      "社交的な",
+      "人",
+      "は",
+      "部屋",
+      "で",
+      "いちばん",
+      "声",
+      "の",
+      "大きい",
+      "人",
+      "で",
+      "は",
+      "なく、",
+      "静かな",
+      "人たち",
+      "に",
+      "歓迎されている",
+      "と",
+      "感じさせる",
+      "人",
+      "だ。"
+    ],
+    "translation": "真正善於社交的人，不是房間裡最大聲的，而是那個讓安靜的人覺得被歡迎的人。",
+    "english": "The truly social person isn't the loudest in the room, but the one who makes the quiet people feel welcome.",
+    "difficulty": "medium",
+    "tags": [
+      "N2",
+      "social"
+    ]
+  },
+  {
+    "id": "6893",
+    "japanese": "分からないことは、その場で聞くようにしている。",
+    "chunks": [
+      "分からない",
+      "こと",
+      "は、",
+      "その",
+      "場",
+      "で",
+      "聞く",
+      "よう",
+      "に",
+      "している。"
+    ],
+    "translation": "不懂的事，我盡量當場就問。",
+    "english": "I try to ask about things I don't understand on the spot.",
+    "difficulty": "easy",
+    "tags": [
+      "N4",
+      "learning"
+    ]
   }
 ]
