@@ -101,7 +101,7 @@
     },
     {
         "id": 21,
-        "translate_ch": "山坡上生長著大量的野花、翠綠的蕨類植物、柔軟的苔蘚和地衣。",
+        "translate_ch": "山坡上長滿了野花、翠綠的蕨類、柔軟的苔蘚和地衣。",
         "sentence": "The slopes are abundant with wild flowers and lizard green ferns, with soft moss and lichens."
     },
     {
@@ -131,17 +131,17 @@
     },
     {
         "id": 27,
-        "translate_ch": "他只收我極少的錢就賣給我一袋堅果，並且拒絕接受小費。",
+        "translate_ch": "他只收我一點點錢就賣給我一袋堅果，還不肯收小費。",
         "sentence": "He sells me a bag of nuts for a pittance and refuses to accept a tip."
     },
     {
         "id": 28,
-        "translate_ch": "他說我們仍在與歧視作鬥爭，但如今感染愛滋病毒的人比以前獲得了更多接納。",
+        "translate_ch": "他說我們還在跟歧視對抗，但現在感染愛滋病毒的人，比以前更能被大家接受了。",
         "sentence": "He said we still battle discrimination, but people with HIV now find more acceptance than before."
     },
     {
         "id": 29,
-        "translate_ch": "沿海地帶仍有五十萬人無法取得自來水。",
+        "translate_ch": "沿海地帶還有五十萬人沒有自來水可用。",
         "sentence": "Half a million people in the coastal strip still do not have access to running water."
     },
     {
@@ -151,12 +151,12 @@
     },
     {
         "id": 31,
-        "translate_ch": "斯蒂芬的病情是在因持續咳嗽就醫後，偶然被診斷出來的。",
+        "translate_ch": "史蒂芬的病，是他因為一直咳嗽去看醫生時，意外被診斷出來的。",
         "sentence": "Stephen's condition was diagnosed by accident, after going to the doctor with a persistent cough."
     },
     {
         "id": 32,
-        "translate_ch": "服用長效糖尿病藥物後，因意外中毒導致的人院率和受傷率最高。",
+        "translate_ch": "服用長效型糖尿病藥物後，因為意外中毒而住院和受傷的比率最高。",
         "sentence": "The rate of hospital admission and injury after accidental poisoning was highest for long-acting diabetes drugs."
     },
     {
@@ -166,7 +166,7 @@
     },
     {
         "id": 34,
-        "translate_ch": "最後，我建議需要重寫第 1201(f) 條，以適應數據互操作性。",
+        "translate_ch": "最後，我建議第 1201(f) 條需要重寫，以配合資料的互通性。",
         "sentence": "In the end, I suggest that section 1201(f) needs to be rewritten to accommodate data interoperability."
     },
     {
@@ -176,7 +176,7 @@
     },
     {
         "id": 36,
-        "translate_ch": "他原定於下個月隨第 14 批空間站人員一同飛行。",
+        "translate_ch": "他原本預定下個月，跟第 14 批太空站的組員一起執行飛行任務。",
         "sentence": "He was due to accompany the 14th space station crew on a flight next month."
     },
     {
@@ -191,7 +191,7 @@
     },
     {
         "id": 39,
-        "translate_ch": "我們正在考慮這個聯盟是否應根據該國際組織的規定承擔更廣泛的責任。",
+        "translate_ch": "我們正在考慮，這個聯盟是否該依照那個國際組織的規範，承擔起更廣泛的責任。",
         "sentence": "We are considering whether the alliance should take on the broader responsibility in accordance with the international body."
     },
     {
