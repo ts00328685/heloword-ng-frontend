@@ -1,0 +1,1 @@
+- **2026-08-03** en: refined 18/20 in batch → cursor 20

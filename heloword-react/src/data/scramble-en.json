@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "translate_ch": "該黨領袖敦促這家足球俱樂部放棄為主場球場改名的計劃。",
+        "translate_ch": "該黨黨魁敦促這家足球俱樂部，放棄把主場球場改名的計畫。",
         "sentence": "The party leader urged the football club to abandon plans to rename its stadium."
     },
     {
@@ -11,42 +11,42 @@
     },
     {
         "id": 3,
-        "translate_ch": "受公共記錄法約束的公共機構顯然無法遵守此類條款。",
+        "translate_ch": "受《公共紀錄法》規範的公共機構，顯然沒辦法遵守這類條款。",
         "sentence": "Public institutions covered by public records laws are clearly unable to abide by such terms."
     },
     {
         "id": 4,
-        "translate_ch": "我資歷尚淺並未以任何方式阻礙我的溝通能力。",
+        "translate_ch": "我資歷還很淺，但這完全沒有影響到我的溝通能力。",
         "sentence": "My lack of seniority has not impeded my ability to communicate in any way."
     },
     {
         "id": 5,
-        "translate_ch": "該聯盟希望有能力反對任何違背我們利益的手段。",
+        "translate_ch": "這個聯盟希望有能力反制任何損害我們利益的操作。",
         "sentence": "The alliance wants to be able to oppose any maneuver that goes against our interests."
     },
     {
         "id": 6,
-        "translate_ch": "動靜脈瘻是動脈和靜脈之間的異常連接。",
+        "translate_ch": "動靜脈瘻管是動脈和靜脈之間一種不正常的連接。",
         "sentence": "An arteriovenous fistula is an abnormal connection between an artery and a vein."
     },
     {
         "id": 7,
-        "translate_ch": "他當時在一架觀測機上，位於領航轟炸機後方，而不在轟炸機本身上。",
+        "translate_ch": "他當時人在一架觀測機上，跟在領航轟炸機後面，而不是在轟炸機上。",
         "sentence": "He was aboard an observation plane behind the lead bomber, not on board the bomber itself."
     },
     {
         "id": 8,
-        "translate_ch": "一個人權組織對裁決表示歡迎，並呼籲奈及利亞政府廢除死刑。",
+        "translate_ch": "一個人權組織對這項判決表示歡迎，並呼籲奈及利亞政府廢除死刑。",
         "sentence": "A human rights organization welcomed the ruling and called for the Nigerian government to abolish the death penalty."
     },
     {
         "id": 9,
-        "translate_ch": "關於它像棋手般策略性地圍捕獵物，以及其卓越隱蔽能力的傳聞比比皆是。",
+        "translate_ch": "關於牠像棋手一樣有策略地圍捕獵物、還有超強隱蔽能力的傳聞，多到數不清。",
         "sentence": "Stories abound of its strategic, chess-player maneuvering of prey and of its extraordinary stealth."
     },
     {
         "id": 10,
-        "translate_ch": "與一群想成為摔跤手的人一起訓練，他看起來精疲力竭且真心感到恐懼。",
+        "translate_ch": "跟一群想當摔角手的人一起訓練，他看起來累到不行，而且是真的很害怕。",
         "sentence": "Training with a group of wannabe wrestlers he looked about fit to drop and genuinely scared."
     },
     {
@@ -56,47 +56,47 @@
     },
     {
         "id": 12,
-        "translate_ch": "除其他事項外，該部門還負責在國外銷售日本技術（包括核技術）。",
+        "translate_ch": "除了其他業務之外，這個部門還負責把日本的技術（包括核能技術）賣到國外。",
         "sentence": "That ministry is charged, among other things, with selling Japanese technology (including nuclear technology) abroad."
     },
     {
         "id": 13,
-        "translate_ch": "大多數分析師預計中國將實現「軟著陸」，並避免突然的經濟衰退。",
+        "translate_ch": "多數分析師預期中國會達成「軟著陸」，避免經濟突然衰退。",
         "sentence": "Most analysts expect China to achieve a \"soft landing\" and avoid an abrupt downturn."
     },
     {
         "id": 14,
-        "translate_ch": "但即便是在其缺席的情況下，第二項條件也開始在美國生效。",
+        "translate_ch": "但就算少了它，第二個條件也開始在美國成立了。",
         "sentence": "But even in its absence, condition number two is beginning to obtain in the United States."
     },
     {
         "id": 15,
-        "translate_ch": "你認為唱片公司為什麼在這場辯論中如此沉默、置身事外？",
+        "translate_ch": "你覺得唱片公司為什麼在這場辯論裡這麼沉默、完全置身事外？",
         "sentence": "Why do you think the record companies are so silent and absent from this debate?"
     },
     {
         "id": 16,
-        "translate_ch": "這名官員將這起墜機事故形容為「慘不忍睹」，並說這令人非常難過。",
+        "translate_ch": "這名官員把這起墜機形容成「慘不忍睹」，還說真的很讓人難過。",
         "sentence": "The official has described the crash as \"absolute carnage\" and said it was very distressing."
     },
     {
         "id": 17,
-        "translate_ch": "這會導致腸道發炎，並使人無法從食物中吸收充足的營養。",
+        "translate_ch": "這會造成腸道發炎，讓人沒辦法從食物裡吸收到足夠的營養。",
         "sentence": "This leads to inflammation of the gut, and an inability to absorb adequate nutrition from food."
     },
     {
         "id": 18,
-        "translate_ch": "當抽象理論與一線實踐發生碰撞時，勝負往往立見分曉。",
+        "translate_ch": "當抽象的理論碰上第一線的實務，勝負往往一下子就分曉了。",
         "sentence": "When abstract knowledge and the smell of the coal face collide, there's often no contest."
     },
     {
         "id": 19,
-        "translate_ch": "但對我們來說，認為我們處於危險之中的說法完全是荒謬的。",
+        "translate_ch": "但對我們來說，說我們有什麼危險，根本就很荒謬。",
         "sentence": "But to us, the suggestion that we were in any danger was completely absurd."
     },
     {
         "id": 20,
-        "translate_ch": "新加坡東部這個安靜的社區擁有眾多優秀的餐廳，供應道地的當地美食。",
+        "translate_ch": "新加坡東部這個安靜的社區有很多很棒的餐廳，供應道地的當地美食。",
         "sentence": "The quiet neighbourhood in east Singapore has an abundance of excellent restaurants serving authentic local cuisine."
     },
     {
