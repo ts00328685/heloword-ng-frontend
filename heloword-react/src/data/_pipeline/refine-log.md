@@ -1,1 +1,2 @@
 - **2026-08-03** en: refined 18/20 in batch → cursor 20
+- **2026-08-03** jp: refined 12/20 in batch → cursor 20
