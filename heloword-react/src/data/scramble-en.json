@@ -1206,7 +1206,7 @@
     },
     {
         "id": 242,
-        "translate_ch": "這些藥物的大約費用是多少，大多數保險計劃是否涵蓋這些費用？",
+        "translate_ch": "這些藥物大概要多少錢？大多數的保險方案有涵蓋嗎？",
         "sentence": "What are the approximate costs of the medicines, and do most insurance plans cover these?"
     },
     {
@@ -1221,7 +1221,7 @@
     },
     {
         "id": 245,
-        "translate_ch": "會向一個與這個家族的死對頭關係如此密切的人發出這樣的邀請嗎？",
+        "translate_ch": "這樣的邀請，會發給一個跟這個家族的死對頭關係如此密切的人嗎？",
         "sentence": "Would such an invitation be extended to a man so intimately associated with the family's arch-enemy?"
     },
     {
@@ -1231,17 +1231,17 @@
     },
     {
         "id": 247,
-        "translate_ch": "它由一位著名建築師設計，這位建築師因在巴塞隆納設計的許多建築而聞名。",
+        "translate_ch": "它出自一位知名建築師之手，這位建築師以他在巴塞隆納設計的眾多建築聞名。",
         "sentence": "It was designed by a famous architect, well-known for many buildings he designed in Barcelona."
     },
     {
         "id": 248,
-        "translate_ch": "研究發現，這座城市的優勢包括其品牌、娛樂和夜生活、購物、建築以及友好度。",
+        "translate_ch": "研究發現，這座城市的優勢包括它的品牌、娛樂與夜生活、購物、建築，還有居民的友善。",
         "sentence": "It found the city's strengths included its brand, entertainment and nightlife, shopping, architecture and friendliness."
     },
     {
         "id": 249,
-        "translate_ch": "如果不是，請舉出一個你認為以色列的行動違背美國利益的領域。",
+        "translate_ch": "如果不是，那就舉一個你認為以色列的行動違背美國利益的例子吧。",
         "sentence": "If not, name one area where you believe Israeli actions are contrary to US interests."
     },
     {
@@ -1271,22 +1271,22 @@
     },
     {
         "id": 255,
-        "translate_ch": "兩位客戶報告牙齒斷裂或碎裂，另有兩位報告肘部或手臂骨折。",
+        "translate_ch": "有兩位顧客反映牙齒斷裂或缺角，另外兩位反映手肘或手臂骨折。",
         "sentence": "Two customers reported broken or chipped teeth, and two reported a broken elbow or arm."
     },
     {
         "id": 256,
-        "translate_ch": "臨時定居點在城市周圍興起，隨後隨著城市的擴張而擴大。",
+        "translate_ch": "臨時的聚落在城市周圍冒了出來，之後隨著城市擴張而變大。",
         "sentence": "Ad hoc settlements sprung up around the city, then expanded as the city ballooned."
     },
     {
         "id": 257,
-        "translate_ch": "他說：「在 20 世紀 30 年代，發生了兩件事引起了西方人的迷戀。」",
+        "translate_ch": "他說：「在 1930 年代，發生了兩件讓西方人著迷的事。」",
         "sentence": "In the 1930s, two things happened to arouse fascination of people in the West, he says."
     },
     {
         "id": 258,
-        "translate_ch": "實際上，任何聲樂團體都可以將自己編排成覆蓋整個音譜的主旋律和對位旋律。",
+        "translate_ch": "其實，任何一個聲樂團體都能把自己編排出涵蓋整個音域的主旋律和對位旋律。",
         "sentence": "Practically any vocal group can arrange itself into melodies and countermelodies that cover the sonic spectrum."
     },
     {
@@ -1296,7 +1296,7 @@
     },
     {
         "id": 260,
-        "translate_ch": "阿普代克在被捕後在監獄中待了一晚，目前已保釋出獄。",
+        "translate_ch": "阿普代克被捕後在牢裡待了一晚，目前已交保出獄。",
         "sentence": "Updyke, who spent a night in jail after his arrest, is free on bond."
     },
     {
