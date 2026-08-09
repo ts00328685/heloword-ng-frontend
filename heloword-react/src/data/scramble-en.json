@@ -616,12 +616,12 @@
     },
     {
         "id": 124,
-        "translate_ch": "這件事已經討論過了，但尚未形成結構性方案，也未達成任何協議。",
+        "translate_ch": "這件事討論過了，但還沒有具體的規劃，也沒有達成任何共識。",
         "sentence": "It's been discussed, but nothing has been structured or no agreement has been reached on that."
     },
     {
         "id": 125,
-        "translate_ch": "這位新部長自近期被任命為農業部長以來，首次出席質詢時間。",
+        "translate_ch": "這位新任農業部長自近期上任以來，首次出席質詢。",
         "sentence": "The new minister appeared for the first question time since her recent appointment as agriculture minister."
     },
     {
@@ -631,12 +631,12 @@
     },
     {
         "id": 127,
-        "translate_ch": "研究人員表示，他們的目的並不是要嚇唬女性或阻止她們服用激素避孕藥。",
+        "translate_ch": "研究人員表示，他們的目的並不是要嚇唬女性或阻止她們服用荷爾蒙避孕藥。",
         "sentence": "Researchers say their aim isn't to scare or stop women from taking hormonal contraceptives."
     },
     {
         "id": 128,
-        "translate_ch": "他們利用通過數據中心引流的室外空氣來降溫，而不是使用昂貴的空調設備。",
+        "translate_ch": "他們靠著透過資料中心引導進來的室外空氣來降溫，而不是用昂貴的冷氣。",
         "sentence": "They keep cool using outside air funneled through a data center instead of pricey air-conditioning units."
     },
     {
@@ -646,17 +646,17 @@
     },
     {
         "id": 130,
-        "translate_ch": "為了最大限度地減少不適感，每個帳篷都配備了空調和私人浴室。",
+        "translate_ch": "為了盡量減少不適，每頂帳篷都配備了冷氣和獨立衛浴。",
         "sentence": "To minimize discomfort, each tent is equipped with air conditioning and a private bathroom."
     },
     {
         "id": 131,
-        "translate_ch": "還有令人擔憂的跡象表明，全球經濟衰退可能會威脅到整體的援助水平。",
+        "translate_ch": "也有令人擔憂的跡象顯示，全球經濟衰退可能會威脅到整體的援助規模。",
         "sentence": "There are also worrying signs that the global economic downturn may threaten all aid levels."
     },
     {
         "id": 132,
-        "translate_ch": "為什麼航空公司拒絕，這仍然是個謎，我已要求他們對此進行調查。",
+        "translate_ch": "航空公司為什麼拒絕仍然是個謎，我已經要求他們去查清楚。",
         "sentence": "Why the airline refused is a mystery, and one that I asked it to look into."
     },
     {
@@ -671,7 +671,7 @@
     },
     {
         "id": 135,
-        "translate_ch": "在好幾週沒見到這對夫婦後，鄰居們發出了警報。",
+        "translate_ch": "這對夫婦好幾週沒露面後，鄰居們報了警。",
         "sentence": "Neighbours raised the alarm after the couple had not been seen for several weeks."
     },
     {
@@ -681,22 +681,22 @@
     },
     {
         "id": 137,
-        "translate_ch": "應瑞典的要求，國際刑警機構於週三對一名通緝犯發布了高度警戒。",
+        "translate_ch": "應瑞典的要求，國際刑警組織週三對一名通緝犯發布了高度警戒。",
         "sentence": "The international police agency issued a high alert for a wanted man on Wednesday at the request of Sweden."
     },
     {
         "id": 138,
-        "translate_ch": "據系外行星追蹤者稱，第 500 個外星世界似乎已被發現。",
+        "translate_ch": "根據系外行星觀測者的說法，第 500 顆系外行星似乎已經被發現。",
         "sentence": "The 500th alien world appears to have been discovered, according to extrasolar planet trackers."
     },
     {
         "id": 139,
-        "translate_ch": "厄瓜多爾政府表示，該省的醫生上週二開始發現酒精中毒病例。",
+        "translate_ch": "厄瓜多政府表示，該省的醫生從上週二開始出現酒精中毒的病例。",
         "sentence": "Doctors in the province first began seeing cases of alcohol poisoning last Tuesday, Ecuador's government said."
     },
     {
         "id": 140,
-        "translate_ch": "對黑客和非黑客來說，這在我看來都像是 DVD 自動點唱機的寶藏。",
+        "translate_ch": "不管是駭客還是一般人，這在我看來都像是 DVD 點唱機的寶藏。",
         "sentence": "For hackers and non-hackers alike, this all looks like DVD jukebox gold to me."
     },
     {
