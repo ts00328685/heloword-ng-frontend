@@ -51,3 +51,5 @@
 - **2026-08-09** jp: refined 9/20 in batch → cursor 520
 - **2026-08-09** en: refined 8/20 in batch → cursor 520
 - **2026-08-09** jp: refined 10/20 in batch → cursor 540
+- **2026-08-09** en: refined 11/20 in batch → cursor 540
+- **2026-08-09** jp: refined 10/20 in batch → cursor 560
