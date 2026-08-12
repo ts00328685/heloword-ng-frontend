@@ -20,7 +20,8 @@ const LiveBoardPopup: React.FC = () => {
   const { activeSession } = useBoard();
   const [dismissed, setDismissed] = useState(false);
 
-  const onBoardPage = location.pathname.startsWith('/board/');
+  // Also skipped on /live, which is already forwarding the visitor to the board.
+  const onBoardPage = location.pathname.startsWith('/board/') || location.pathname === '/live';
 
   // Reset the per-render dismissal whenever the live session changes.
   useEffect(() => {

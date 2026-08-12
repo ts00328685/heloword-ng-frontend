@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Client } from '@stomp/stompjs';
 import Header from '../../components/Header';
@@ -45,6 +45,7 @@ const BoardPage: React.FC = () => {
   const { sessionId } = useParams<{ sessionId: string }>();
   const id = Number(sessionId);
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation();
   const { hasAnyRole, isLoggedIn } = useAuth();
   const { myUserId, myDisplayName } = useSocial();
@@ -64,6 +65,17 @@ const BoardPage: React.FC = () => {
   const [songsOpen, setSongsOpen] = useState(false);
   const [officialMode, setOfficialMode] = useState(false);
   const [confirm, setConfirm] = useState<null | { message: string; confirmLabel: string; onConfirm: () => void }>(null);
+
+  // Back target. A visitor who landed here from /live or by pasting the URL has
+  // nothing of ours behind them in the stack, so popping history would throw
+  // them out of the app entirely — send those to home instead. `fromLink` is
+  // stamped by LiveBoardRedirect; the idx check catches a pasted /board/:id.
+  const cameFromLink = (location.state as { fromLink?: boolean } | null)?.fromLink === true;
+  const isFirstEntry = ((window.history.state?.idx as number | undefined) ?? 0) === 0;
+  const handleBack = useCallback(() => {
+    if (cameFromLink || isFirstEntry) navigate('/home', { replace: true });
+    else navigate(-1);
+  }, [cameFromLink, isFirstEntry, navigate]);
 
   const myUserIdRef = useRef(myUserId);
   myUserIdRef.current = myUserId;
@@ -291,7 +303,7 @@ const BoardPage: React.FC = () => {
   if (loading) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
-        <Header title={t('board.liveBoard', 'Live Board')} showBack />
+        <Header title={t('board.liveBoard', 'Live Board')} showBack onBack={handleBack} />
         <div className="flex-1 flex items-center justify-center">
           <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
         </div>
@@ -302,7 +314,7 @@ const BoardPage: React.FC = () => {
   if (!session) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
-        <Header title={t('board.liveBoard', 'Live Board')} showBack />
+        <Header title={t('board.liveBoard', 'Live Board')} showBack onBack={handleBack} />
         <div className="flex-1 flex flex-col items-center justify-center gap-3 px-6 text-center">
           <p className="text-gray-500 dark:text-gray-400">{t('board.notFound', 'This board is not available.')}</p>
           <button onClick={() => navigate('/home')} className="text-blue-500 font-medium">
@@ -315,7 +327,7 @@ const BoardPage: React.FC = () => {
 
   return (
     <div className="flex flex-col h-screen [height:100dvh] bg-gray-50 dark:bg-gray-900">
-      <Header title={session.name} showBack />
+      <Header title={session.name} showBack onBack={handleBack} />
 
       {/* Status bar */}
       <div className="flex items-center justify-between px-4 py-2 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 max-w-2xl mx-auto w-full">

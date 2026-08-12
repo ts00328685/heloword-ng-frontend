@@ -20,12 +20,14 @@ import {
 interface HeaderProps {
   title: string;
   showBack?: boolean;
+  /** Overrides the default history-pop, for pages reachable by direct link. */
+  onBack?: () => void;
   rightContent?: React.ReactNode;
 }
 
 const MAX_NICK = 20;
 
-const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }) => {
+const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, rightContent }) => {
   const navigate = useNavigate();
   const { user, isLoggedIn, logout, hasAnyRole } = useAuth();
   const { isDark, toggle } = useTheme();
@@ -171,7 +173,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
           <div className="flex items-center gap-2 min-w-[40px]">
             {showBack ? (
               <button
-                onClick={() => navigate(-1)}
+                onClick={onBack ?? (() => navigate(-1))}
                 className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 transition-colors"
                 aria-label={t('common.back', 'Go back')}
               >
