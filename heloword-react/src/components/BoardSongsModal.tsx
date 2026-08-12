@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import { useImeText } from '../hooks/useImeText';
 import { LiveBoardSong, addBoardSong, deleteBoardSong, toggleBoardSong } from '../services/board.service';
 
 interface Props {
@@ -17,7 +18,7 @@ interface Props {
  */
 const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, onClose }) => {
   const { t } = useTranslation();
-  const [newTitle, setNewTitle] = useState('');
+  const newTitle = useImeText(120);
   const [adding, setAdding] = useState(false);
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
 
@@ -35,11 +36,11 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
   };
 
   const add = async () => {
-    if (!newTitle.trim() || adding) return;
+    if (!newTitle.value.trim() || adding) return;
     setAdding(true);
     try {
-      await addBoardSong(sessionId, newTitle.trim());
-      setNewTitle('');
+      await addBoardSong(sessionId, newTitle.value.trim());
+      newTitle.reset();
     } finally {
       setAdding(false);
     }
@@ -160,24 +161,24 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
               <button
                 onClick={() => toggle(song.id, 'request')}
                 disabled={!active}
-                className="shrink-0 inline-flex items-center gap-1 text-xs text-pink-500 hover:text-pink-600 disabled:opacity-50"
+                className="shrink-0 min-w-[44px] min-h-[44px] inline-flex items-center justify-center gap-1 rounded-xl text-xs text-pink-500 hover:text-pink-600 active:scale-90 transition-transform disabled:opacity-50"
                 aria-label={t('board.request', 'Request')}
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                 </svg>
-                {song.requestCount > 0 && <span className="font-semibold">{song.requestCount}</span>}
+                {song.requestCount > 0 && <span className="font-semibold tabular-nums">{song.requestCount}</span>}
               </button>
 
               {/* Delete (admin only) */}
               {isAdmin && (
                 <button
                   onClick={() => setConfirmDeleteId(song.id)}
-                  className="shrink-0 text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                  className="shrink-0 min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
                   aria-label={t('board.delete', 'Delete')}
                   title={t('board.delete', 'Delete')}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                   </svg>
                 </button>
@@ -190,19 +191,20 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
           <div className="border-t border-gray-100 dark:border-gray-700 px-4 py-3 flex gap-2">
             <input
               type="text"
-              value={newTitle}
-              onChange={(e) => setNewTitle(e.target.value.slice(0, 120))}
+              {...newTitle.bind}
               onKeyDown={(e) => {
-                if (e.nativeEvent.isComposing || (e.nativeEvent as KeyboardEvent).keyCode === 229) return;
+                if (newTitle.isImeKey(e)) return;
                 if (e.key === 'Enter') add();
               }}
+              enterKeyHint="done"
+              autoCorrect="off"
               placeholder={t('board.addSong', 'Add a song…')}
-              className="flex-1 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 min-w-0 px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               onClick={add}
-              disabled={!newTitle.trim() || adding}
-              className="bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white font-semibold px-4 rounded-xl transition-colors text-sm"
+              disabled={!newTitle.value.trim() || adding}
+              className="shrink-0 min-h-[44px] bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white font-semibold px-4 rounded-xl transition-colors text-sm"
             >
               {adding ? '…' : t('common.add', 'Add')}
             </button>

@@ -5,9 +5,12 @@ import { Client } from '@stomp/stompjs';
 import Header from '../../components/Header';
 import NicknameEditor from '../../components/NicknameEditor';
 import BoardSongsModal from '../../components/BoardSongsModal';
+import BoardGuestNamePrompt from './BoardGuestNamePrompt';
 import { useAuth } from '../../contexts/AuthContext';
 import { useSocial } from '../../contexts/SocialContext';
 import { useBoard } from '../../contexts/BoardContext';
+import { useImeText } from '../../hooks/useImeText';
+import { useViewportHeight } from '../../hooks/useViewportHeight';
 import { environment } from '../../config/environment';
 import {
   LiveBoardEvent,
@@ -25,8 +28,12 @@ import {
 } from '../../services/board.service';
 
 const MAX_LEN = 1000;
+/** Announcements kept pinned above the chat; older ones collapse behind a toggle. */
+const PINNED_OFFICIALS = 1;
+/** One-tap reactions beside the setlist chip — applause, laughter, love. */
+const QUICK_REACTIONS = ['👏', '😂', '❤️'];
 
-/** Format a message timestamp in Taipei time (GMT+8): "MM/DD HH:mm". */
+/** Absolute timestamp in Taipei time (GMT+8): "MM/DD HH:mm". Shown on tap. */
 const formatTime = (iso: string): string => {
   if (!iso) return '';
   const d = new Date(iso);
@@ -39,6 +46,23 @@ const formatTime = (iso: string): string => {
     hour: '2-digit',
     minute: '2-digit',
   });
+};
+
+/**
+ * Elapsed time, which is what matters during a set — every message shares the
+ * same date and hour, so "3m" carries the information that "08/12 21:47" buries.
+ * Falls back to the absolute stamp once a message is a day old.
+ */
+const formatAgo = (iso: string, t: (k: string, d: string) => string): string => {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  const mins = Math.floor((Date.now() - d.getTime()) / 60_000);
+  if (mins < 1) return t('board.justNow', 'just now');
+  if (mins < 60) return `${mins}m`;
+  const hours = Math.floor(mins / 60);
+  if (hours < 24) return `${hours}h`;
+  return formatTime(iso);
 };
 
 const BoardPage: React.FC = () => {
@@ -59,12 +83,20 @@ const BoardPage: React.FC = () => {
   const [likedIds, setLikedIds] = useState<Set<number>>(new Set());
   const [presence, setPresence] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [draft, setDraft] = useState('');
+  const draft = useImeText(MAX_LEN);
   const [posting, setPosting] = useState(false);
   const [error, setError] = useState('');
   const [songsOpen, setSongsOpen] = useState(false);
   const [officialMode, setOfficialMode] = useState(false);
   const [confirm, setConfirm] = useState<null | { message: string; confirmLabel: string; onConfirm: () => void }>(null);
+  const [annOpen, setAnnOpen] = useState(false);
+  const [showAbsTime, setShowAbsTime] = useState(false);
+  /** Message whose moderation sheet is open (host only). */
+  const [modTarget, setModTarget] = useState<LiveBoardMessage | null>(null);
+  /** Set when a guest tries to post before choosing a name (deferred naming). */
+  const [namePrompt, setNamePrompt] = useState(false);
+  /** What that guest was trying to say, replayed once they have a name. */
+  const [pending, setPending] = useState<{ content: string; fromDraft: boolean } | null>(null);
 
   // Back target. A visitor who landed here from /live or by pasting the URL has
   // nothing of ours behind them in the stack, so popping history would throw
@@ -77,8 +109,13 @@ const BoardPage: React.FC = () => {
     else navigate(-1);
   }, [cameFromLink, isFirstEntry, navigate]);
 
+  // Keeps the composer above the on-screen keyboard on iOS.
+  useViewportHeight();
+
   const myUserIdRef = useRef(myUserId);
   myUserIdRef.current = myUserId;
+  /** Synchronous in-flight latch — see postNow. */
+  const postingRef = useRef(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const atBottomRef = useRef(true);
 
@@ -92,6 +129,11 @@ const BoardPage: React.FC = () => {
   const officials = messages.filter((m) => m.official);
   const comments = messages.filter((m) => !m.official);
   const performingSong = songs.find((s) => s.performing) || null;
+  // Newest announcement stays pinned; the rest collapse, so a run of
+  // announcements can't push the chat off a small screen.
+  const officialsNewestFirst = [...officials].reverse();
+  const pinnedOfficials = officialsNewestFirst.slice(0, PINNED_OFFICIALS);
+  const olderOfficials = officialsNewestFirst.slice(PINNED_OFFICIALS);
 
   // ── Load snapshot ──────────────────────────────────────────────────────────
   useEffect(() => {
@@ -206,35 +248,61 @@ const BoardPage: React.FC = () => {
   };
 
   // ── Actions ──────────────────────────────────────────────────────────────--
-  const send = async () => {
-    const content = draft.trim();
-    if (!content || posting) return;
+
+  /**
+   * Posts content that has already cleared the guest-name gate. `authorName`
+   * is passed explicitly because a guest who just named themselves won't have
+   * the new name in context yet on this tick — reading it from state here would
+   * post their first message under the auto-assigned handle.
+   */
+  const postNow = async (content: string, fromDraft: boolean, authorName?: string) => {
+    // Ref, not the `posting` state: two Enters in the same tick both read the
+    // pre-update state value and both get through. This flips synchronously.
+    if (postingRef.current) return;
+    postingRef.current = true;
     setPosting(true);
     setError('');
     try {
       if (isAdmin && (officialMode || endedAdmin)) {
         const msg = await postOfficialMessage(id, content);
         if (msg) setMessages((prev) => (prev.some((m) => m.id === msg.id) ? prev : [...prev, msg]));
-        setDraft('');
+        if (fromDraft) draft.reset();
       } else {
-        const res = await postBoardMessage(id, content, myUserId, myDisplayName);
+        const res = await postBoardMessage(id, content, myUserId, authorName ?? myDisplayName);
         if (res.ok) {
           if (res.data) setMessages((prev) => (prev.some((m) => m.id === res.data!.id) ? prev : [...prev, res.data!]));
-          setDraft('');
+          if (fromDraft) draft.reset();
         } else {
           setError(res.message || t('board.postFailed', 'Could not post your message.'));
         }
       }
     } finally {
+      postingRef.current = false;
       setPosting(false);
     }
   };
 
+  /** Send the composer's text, or `override` for a one-tap reaction. */
+  const send = (override?: string) => {
+    const fromDraft = override === undefined;
+    const content = (fromDraft ? draft.value : override).trim();
+    if (!content || postingRef.current) return;
+    // Guests read the board without being asked for anything; the name is only
+    // needed at the moment they first speak, where the reason is self-evident.
+    if (!isLoggedIn && !localStorage.getItem('hw-guest-name')) {
+      setPending({ content, fromDraft });
+      setNamePrompt(true);
+      return;
+    }
+    postNow(content, fromDraft);
+  };
+
   const onKeyDown = (e: React.KeyboardEvent) => {
-    // Ignore Enter while an IME (e.g. macOS Chinese/Japanese) is composing —
-    // that Enter is confirming a candidate, not submitting the message.
-    if (e.nativeEvent.isComposing || (e.nativeEvent as KeyboardEvent).keyCode === 229) return;
+    // Never submit on the Enter that confirms an IME candidate — see useImeText.
+    if (draft.isImeKey(e)) return;
     if (e.key === 'Enter' && !e.shiftKey) {
+      // Swallow the key even mid-send, so a second Enter can't insert a newline
+      // into the text still on its way to the server.
       e.preventDefault();
       send();
     }
@@ -303,7 +371,7 @@ const BoardPage: React.FC = () => {
   if (loading) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
-        <Header title={t('board.liveBoard', 'Live Board')} showBack onBack={handleBack} />
+        <Header title={t('board.liveBoard', 'Live Board')} showBack onBack={handleBack} minimal />
         <div className="flex-1 flex items-center justify-center">
           <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
         </div>
@@ -314,7 +382,7 @@ const BoardPage: React.FC = () => {
   if (!session) {
     return (
       <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
-        <Header title={t('board.liveBoard', 'Live Board')} showBack onBack={handleBack} />
+        <Header title={t('board.liveBoard', 'Live Board')} showBack onBack={handleBack} minimal />
         <div className="flex-1 flex flex-col items-center justify-center gap-3 px-6 text-center">
           <p className="text-gray-500 dark:text-gray-400">{t('board.notFound', 'This board is not available.')}</p>
           <button onClick={() => navigate('/home')} className="text-blue-500 font-medium">
@@ -326,8 +394,8 @@ const BoardPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen [height:100dvh] bg-gray-50 dark:bg-gray-900">
-      <Header title={session.name} showBack onBack={handleBack} />
+    <div className="flex flex-col h-screen [height:var(--vvh,100dvh)] bg-gray-50 dark:bg-gray-900">
+      <Header title={session.name} showBack onBack={handleBack} minimal />
 
       {/* Status bar */}
       <div className="flex items-center justify-between px-4 py-2 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 max-w-2xl mx-auto w-full">
@@ -340,26 +408,14 @@ const BoardPage: React.FC = () => {
           ) : (
             <span className="text-xs font-semibold text-gray-400">{t('board.ended', 'Ended / Not started')}</span>
           )}
-          {active && (
+          {/* Audience size is for the host to gauge the crowd — showing a low
+              count to the audience itself only makes a quiet board look dead. */}
+          {active && isAdmin && (
             <span className="text-xs text-gray-400 dark:text-gray-500">
               · {t('board.viewers', '{n} watching').replace('{n}', String(presence))}
             </span>
           )}
         </div>
-        <button
-          onClick={() => setSongsOpen(true)}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 active:bg-blue-700 px-3.5 py-1.5 rounded-full shadow-sm hover:shadow transition-all"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19a3 3 0 11-6 0 3 3 0 016 0zm12-3a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          {t('board.setlist', 'Setlist')}
-          {songs.length > 0 && (
-            <span className="inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1 text-[11px] font-bold text-blue-600 bg-white rounded-full">
-              {songs.length}
-            </span>
-          )}
-        </button>
       </div>
 
       {/* Now-performing banner + pinned official messages */}
@@ -386,7 +442,7 @@ const BoardPage: React.FC = () => {
               </a>
             </div>
           )}
-          {officials.map((m) => (
+          {(annOpen ? officialsNewestFirst : pinnedOfficials).map((m) => (
             <div
               key={m.id}
               className="board-official-gold rounded-2xl px-4 py-3"
@@ -404,9 +460,14 @@ const BoardPage: React.FC = () => {
                   </svg>
                 </a>
                 <span className="text-sm font-bold tracking-wide text-amber-300 [text-shadow:0_0_10px_rgba(251,191,36,0.45)]">{m.authorName}</span>
-                <span className="ml-auto shrink-0 text-[10px] text-amber-200/60">{formatTime(m.createDate)}</span>
+                <span className="ml-auto shrink-0 text-[10px] text-amber-200/60">
+                  {showAbsTime ? formatTime(m.createDate) : formatAgo(m.createDate, t)}
+                </span>
                 {isAdmin && (
-                  <button onClick={() => askDelete(m.id)} className="shrink-0 text-amber-200/70 hover:text-amber-100 font-medium text-xs">
+                  <button
+                    onClick={() => askDelete(m.id)}
+                    className="shrink-0 -mr-1 px-2 py-2 text-amber-200/70 hover:text-amber-100 font-medium text-xs"
+                  >
                     {t('board.delete', 'Delete')}
                   </button>
                 )}
@@ -414,6 +475,24 @@ const BoardPage: React.FC = () => {
               <p className="text-[15px] font-medium leading-relaxed text-amber-50 whitespace-pre-wrap break-words [overflow-wrap:anywhere]">{m.content}</p>
             </div>
           ))}
+
+          {olderOfficials.length > 0 && (
+            <button
+              onClick={() => setAnnOpen((v) => !v)}
+              aria-expanded={annOpen}
+              className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl border border-dashed border-amber-400/40 bg-amber-400/10 text-[11px] font-semibold text-amber-300 hover:bg-amber-400/15 transition-colors"
+            >
+              {annOpen
+                ? t('board.hideAnnouncements', 'Collapse announcements')
+                : t('board.moreAnnouncements', '{n} more announcements').replace('{n}', String(olderOfficials.length))}
+              <svg
+                className={`w-3 h-3 transition-transform ${annOpen ? 'rotate-180' : ''}`}
+                fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
         </div>
       )}
 
@@ -433,8 +512,9 @@ const BoardPage: React.FC = () => {
           const isHost = !!session?.createdByUserId && m.authorUserId === session.createdByUserId;
           return (
             <div key={m.id} className={`flex ${mine ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[80%] group`}>
-                <div className={`flex items-center gap-2 mb-0.5 ${mine ? 'justify-end' : ''}`}>
+              <div className="max-w-[84%]">
+                {/* Name, elapsed time and like share one line above the bubble. */}
+                <div className={`flex items-center gap-1.5 mb-1 ${mine ? 'justify-end' : ''}`}>
                   {isHost && !mine && (
                     <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-1.5 py-0.5 rounded-full shrink-0">
                       <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
@@ -443,43 +523,67 @@ const BoardPage: React.FC = () => {
                       {t('board.host', 'Host')}
                     </span>
                   )}
-                  <span className={`text-[11px] font-semibold truncate max-w-[110px] ${isHost && !mine ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                  <span className={`text-[11px] font-semibold truncate max-w-[140px] ${isHost && !mine ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-gray-400'}`}>
                     {mine ? t('board.you', 'You') : m.authorName}
                   </span>
-                  <span className="text-[10px] text-gray-400 dark:text-gray-500 shrink-0">{formatTime(m.createDate)}</span>
+                  {/* Host moderation: an explicit, always-visible control. A
+                      hover-revealed one is invisible yet still tappable on a
+                      touch screen, which makes destructive actions a mis-tap. */}
+                  {isAdmin && !mine && (
+                    <button
+                      onClick={() => setModTarget(m)}
+                      className="shrink-0 -my-1 p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      aria-label={t('board.messageActions', 'Message actions')}
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <circle cx="10" cy="4" r="1.7" />
+                        <circle cx="10" cy="10" r="1.7" />
+                        <circle cx="10" cy="16" r="1.7" />
+                      </svg>
+                    </button>
+                  )}
+
+                  {/* Elapsed time stays on the name line — it's identity/metadata,
+                      not an action. */}
+                  <button
+                    onClick={() => setShowAbsTime((v) => !v)}
+                    className="shrink-0 -my-2 px-1 py-2 text-[10px] leading-none text-gray-400 dark:text-gray-500 tabular-nums whitespace-nowrap"
+                    aria-label={t('board.toggleTime', 'Show exact time')}
+                  >
+                    {showAbsTime ? formatTime(m.createDate) : formatAgo(m.createDate, t)}
+                  </button>
+                </div>
+
+                <div className={`flex items-center gap-1 ${mine ? 'flex-row-reverse' : ''}`}>
+                  <div
+                    className={`px-3.5 py-2 rounded-2xl text-sm whitespace-pre-wrap break-words [overflow-wrap:anywhere] ${
+                      mine
+                        ? 'bg-blue-500 text-white rounded-br-sm'
+                        : isHost
+                          ? 'bg-amber-50 dark:bg-amber-900/25 text-gray-900 dark:text-amber-50 border border-amber-300 dark:border-amber-600/70 ring-1 ring-amber-300/60 dark:ring-amber-500/30 shadow-sm rounded-bl-sm'
+                          : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700 rounded-bl-sm'
+                    }`}
+                  >
+                    {m.content}
+                  </div>
+
+                  {/* Centred against the bubble it belongs to. `-my-3` keeps the
+                      44px tap target from making this row taller than the
+                      bubble — that overhang is what opened a gap under the name
+                      when the like sat here before. */}
                   <button
                     onClick={() => toggleLike(m)}
-                    className={`shrink-0 inline-flex items-center gap-0.5 text-[11px] transition-colors ${
+                    aria-pressed={likedIds.has(m.id)}
+                    className={`shrink-0 -my-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center gap-0.5 rounded-xl transition-colors active:scale-90 ${
                       likedIds.has(m.id) ? 'text-pink-500' : 'text-gray-400 hover:text-pink-500'
                     }`}
                     aria-label={t('board.like', 'Like')}
                   >
-                    <svg className="w-3.5 h-3.5" fill={likedIds.has(m.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill={likedIds.has(m.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
-                    {m.likeCount > 0 && <span className="font-semibold">{m.likeCount}</span>}
+                    {m.likeCount > 0 && <span className="text-[10px] font-bold leading-none tabular-nums">{m.likeCount}</span>}
                   </button>
-                  {isAdmin && !mine && (
-                    <span className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-                      <button onClick={() => askDelete(m.id)} className="text-[10px] text-red-400 hover:text-red-600">
-                        {t('board.delete', 'Delete')}
-                      </button>
-                      <button onClick={() => askMute(m.authorUserId, m.authorName)} className="text-[10px] text-amber-500 hover:text-amber-600">
-                        {mutedIds.has(m.authorUserId) ? t('board.unmute', 'Unmute') : t('board.mute', 'Mute')}
-                      </button>
-                    </span>
-                  )}
-                </div>
-                <div
-                  className={`px-3.5 py-2 rounded-2xl text-sm whitespace-pre-wrap break-words [overflow-wrap:anywhere] ${
-                    mine
-                      ? 'bg-blue-500 text-white rounded-br-sm'
-                      : isHost
-                        ? 'bg-amber-50 dark:bg-amber-900/25 text-gray-900 dark:text-amber-50 border border-amber-300 dark:border-amber-600/70 ring-1 ring-amber-300/60 dark:ring-amber-500/30 shadow-sm rounded-bl-sm'
-                        : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700 rounded-bl-sm'
-                  }`}
-                >
-                  {m.content}
                 </div>
               </div>
             </div>
@@ -504,15 +608,42 @@ const BoardPage: React.FC = () => {
                 {t('board.endedAdminNotice', 'This session has ended or hasn’t started yet — your message will be posted as an official announcement.')}
               </p>
             )}
-            <div className="flex items-center justify-between mb-2">
-              <NicknameEditor />
+            {/* Setlist promoted out of the modal — requesting a song is the
+                thing an audience actually came to do. */}
+            <div className="flex items-center gap-2 mb-2 overflow-x-auto">
+              <button
+                onClick={() => setSongsOpen(true)}
+                className="shrink-0 inline-flex items-center gap-1.5 min-h-[38px] px-3.5 py-2 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-300 bg-blue-50 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-500/40 hover:bg-blue-100 dark:hover:bg-blue-500/25 transition-colors"
+              >
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M18 3a1 1 0 00-1.196-.98l-8 1.6A1 1 0 008 4.6v7.07A3.5 3.5 0 109 14.5V8.82l7-1.4v3.25a3.5 3.5 0 101 2.45V3z" />
+                </svg>
+                {t('board.setlist', 'Setlist')}
+                {songs.length > 0 && <span className="tabular-nums">· {songs.length}</span>}
+              </button>
+
+              {/* One-tap reactions. They post as ordinary messages, so everyone
+                  sees them and the mute/ended rules apply unchanged — no typing
+                  needed to join in mid-song. */}
+              {QUICK_REACTIONS.map((emoji) => (
+                <button
+                  key={emoji}
+                  onClick={() => send(emoji)}
+                  disabled={posting}
+                  className="shrink-0 min-w-[44px] min-h-[38px] inline-flex items-center justify-center text-lg leading-none rounded-full border border-gray-200 dark:border-gray-600 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 active:scale-90 disabled:opacity-40 transition-all"
+                  aria-label={t('board.sendReaction', 'Send {e}').replace('{e}', emoji)}
+                >
+                  {emoji}
+                </button>
+              ))}
               {isAdmin && !endedAdmin && (
                 <button
                   onClick={() => setOfficialMode((v) => !v)}
-                  className={`text-[11px] font-semibold px-2 py-1 rounded-lg transition-colors ${
+                  aria-pressed={officialMode}
+                  className={`shrink-0 min-h-[38px] text-xs font-semibold px-3.5 py-2 rounded-full border transition-colors ${
                     officialMode
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300'
+                      ? 'bg-amber-500 border-amber-500 text-amber-950'
+                      : 'bg-transparent border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-300'
                   }`}
                 >
                   {t('board.officialMode', 'Official')}
@@ -521,25 +652,36 @@ const BoardPage: React.FC = () => {
             </div>
             {error && <p className="text-xs text-red-500 mb-1.5">{error}</p>}
             <div className="flex items-end gap-2">
+              {/* readOnly rather than disabled while sending: `disabled` blurs
+                  the field, which drops the iOS keyboard and reopens it a beat
+                  later. readOnly locks the text just as firmly and keeps focus. */}
               <textarea
-                value={draft}
-                onChange={(e) => setDraft(e.target.value.slice(0, MAX_LEN))}
+                {...draft.bind}
                 onKeyDown={onKeyDown}
                 rows={1}
+                readOnly={posting}
+                enterKeyHint="send"
+                autoCapitalize="sentences"
+                autoCorrect="off"
                 placeholder={
                   isAdmin && (officialMode || endedAdmin)
                     ? t('board.officialPlaceholder', 'Post an official message…')
                     : t('board.placeholder', 'Say something…')
                 }
-                className="flex-1 resize-none max-h-32 px-3.5 py-2 rounded-2xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`flex-1 resize-none max-h-32 px-3.5 py-2.5 rounded-2xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 text-base transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  posting ? 'opacity-50' : ''
+                }`}
               />
               <button
-                onClick={send}
-                disabled={!draft.trim() || posting}
-                className="shrink-0 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 text-white font-semibold px-4 py-2 rounded-2xl transition-colors text-sm"
+                onClick={() => send()}
+                disabled={!draft.value.trim() || posting}
+                className="shrink-0 min-w-[44px] min-h-[44px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 text-white font-semibold px-4 rounded-2xl transition-colors text-sm"
               >
                 {posting ? '…' : t('board.send', 'Send')}
               </button>
+            </div>
+            <div className="mt-2">
+              <NicknameEditor />
             </div>
           </>
         )}
@@ -581,6 +723,62 @@ const BoardPage: React.FC = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Host moderation sheet — replaces the hover-revealed inline buttons */}
+      {modTarget && (
+        <div
+          className="fixed inset-0 z-[70] flex items-end justify-center bg-black/50"
+          onClick={() => setModTarget(null)}
+        >
+          <div
+            className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-t-3xl shadow-2xl px-4 pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))] animate-sheet-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600 mx-auto my-2" />
+            <p className="px-3 pt-1 pb-2 text-sm font-bold text-gray-900 dark:text-gray-100 truncate">
+              {modTarget.authorName}
+            </p>
+
+            <button
+              onClick={() => { askMute(modTarget.authorUserId, modTarget.authorName); setModTarget(null); }}
+              className="flex items-center gap-3 w-full px-3 py-3.5 rounded-xl text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+            >
+              <svg className="w-[17px] h-[17px] text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                {!mutedIds.has(modTarget.authorUserId) && (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l4-4m0 4l-4-4" />
+                )}
+              </svg>
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
+                {mutedIds.has(modTarget.authorUserId) ? t('board.unmute', 'Unmute') : t('board.mute', 'Mute')}
+              </span>
+            </button>
+
+            <button
+              onClick={() => { askDelete(modTarget.id); setModTarget(null); }}
+              className="flex items-center gap-3 w-full px-3 py-3.5 rounded-xl text-left hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+            >
+              <svg className="w-[17px] h-[17px] text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              <span className="text-sm font-medium text-red-500">{t('board.delete', 'Delete')}</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Deferred guest naming — asked at the first post, not on arrival */}
+      {namePrompt && (
+        <BoardGuestNamePrompt
+          onDone={(name) => {
+            setNamePrompt(false);
+            const p = pending;
+            setPending(null);
+            if (p) postNow(p.content, p.fromDraft, name);
+          }}
+          onCancel={() => { setNamePrompt(false); setPending(null); }}
+        />
       )}
     </div>
   );

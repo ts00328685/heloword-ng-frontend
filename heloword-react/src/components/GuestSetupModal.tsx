@@ -1,26 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { useSocial } from '../contexts/SocialContext';
+import { useImeText } from '../hooks/useImeText';
 import { changeLanguage, Language, LANGUAGES } from '../i18n';
 
 const MAX_LENGTH = 16;
+
+/**
+ * Board visitors arrive from a QR code mid-gig — they get to read first and are
+ * asked for a name only when they try to post (see BoardGuestNamePrompt).
+ */
+const isBoardRoute = (path: string) => path.startsWith('/board/') || path === '/live';
 
 const GuestSetupModal: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { isLoggedIn, hasCheckedLoginStatus } = useAuth();
   const { setGuestName } = useSocial();
+  const location = useLocation();
 
   const [visible, setVisible] = useState(false);
-  const [nickname, setNickname] = useState('');
+  const nick = useImeText(MAX_LENGTH);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!hasCheckedLoginStatus || isLoggedIn) return;
+    if (isBoardRoute(location.pathname)) {
+      setVisible(false);
+      return;
+    }
     if (!localStorage.getItem('hw-guest-name')) {
       setVisible(true);
     }
-  }, [hasCheckedLoginStatus, isLoggedIn]);
+  }, [hasCheckedLoginStatus, isLoggedIn, location.pathname]);
 
   useEffect(() => {
     if (visible) {
@@ -31,7 +44,7 @@ const GuestSetupModal: React.FC = () => {
 
   if (!visible) return null;
 
-  const trimmed = nickname.trim();
+  const trimmed = nick.value.trim();
   const displayName = trimmed ? `Guest-${trimmed}` : '';
 
   const handleConfirm = () => {
@@ -49,6 +62,8 @@ const GuestSetupModal: React.FC = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // An Enter that confirms an IME candidate must not submit the form.
+    if (nick.isImeKey(e)) return;
     if (e.key === 'Enter') handleConfirm();
     if (e.key === 'Escape') handleSkip();
   };
@@ -102,11 +117,13 @@ const GuestSetupModal: React.FC = () => {
           <input
             ref={inputRef}
             type="text"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value.slice(0, MAX_LENGTH))}
+            {...nick.bind}
             onKeyDown={handleKeyDown}
+            enterKeyHint="done"
+            autoCapitalize="off"
+            autoCorrect="off"
             placeholder={t('guestSetup.placeholder')}
-            className="w-full pl-[4.5rem] pr-3 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-[4.5rem] pr-3 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
