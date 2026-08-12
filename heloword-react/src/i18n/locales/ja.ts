@@ -15,6 +15,8 @@ const ja = {
     copied: 'コピーしました！',
     cancel: 'キャンセル',
     save: '保存',
+    more: 'その他',
+    language: '言語',
   },
   nav: {
     quiz: 'クイズ',
@@ -931,6 +933,16 @@ const ja = {
     confirmDelete: 'このメッセージを削除しますか？',
     confirmMute: '{name} をミュートしますか？投稿できなくなります。',
     confirmDeleteSong: 'この曲を削除しますか？',
+    justNow: 'たった今',
+    toggleTime: '正確な時刻を表示',
+    messageActions: 'メッセージ操作',
+    moreAnnouncements: '他 {n} 件のお知らせ',
+    hideAnnouncements: 'お知らせを折りたたむ',
+    nameTitle: 'お名前を教えてください',
+    nameSubtitle: 'メッセージの横に表示される名前です。',
+    nameConfirm: 'この名前で投稿',
+    nameKeep: '{name} のままにする',
+    sendReaction: '{e} を送る',
   },
 } as const;
 

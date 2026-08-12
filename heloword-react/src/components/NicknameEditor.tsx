@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { useSocial } from '../contexts/SocialContext';
+import { useImeText } from '../hooks/useImeText';
 import { doPut } from '../services/api.service';
 
 const MAX_NICK = 20;
@@ -48,19 +49,19 @@ const NicknameEditor: React.FC<{ onSaved?: () => void }> = ({ onSaved }) => {
   const currentLabel = isLoggedIn ? user.nickname || user.fullname || 'Hw' : myDisplayName || 'Guest';
 
   const [editing, setEditing] = useState(false);
-  const [draft, setDraft] = useState('');
+  const draft = useImeText(MAX_NICK);
   const [saving, setSaving] = useState(false);
 
   const open = () => {
-    setDraft(isLoggedIn ? user.nickname || user.fullname || '' : (myDisplayName || '').replace(/^Guest-/, ''));
+    draft.set(isLoggedIn ? user.nickname || user.fullname || '' : (myDisplayName || '').replace(/^Guest-/, ''));
     setEditing(true);
   };
 
   const save = async () => {
-    if (!draft.trim()) return;
+    if (!draft.value.trim()) return;
     setSaving(true);
     try {
-      const ok = await saveNickname(draft);
+      const ok = await saveNickname(draft.value);
       if (ok) {
         setEditing(false);
         onSaved?.();
@@ -98,27 +99,29 @@ const NicknameEditor: React.FC<{ onSaved?: () => void }> = ({ onSaved }) => {
         <input
           autoFocus
           type="text"
-          value={draft}
-          onChange={(e) => setDraft(e.target.value.slice(0, MAX_NICK))}
+          {...draft.bind}
           onKeyDown={(e) => {
-            if (e.nativeEvent.isComposing || (e.nativeEvent as KeyboardEvent).keyCode === 229) return;
+            if (draft.isImeKey(e)) return;
             if (e.key === 'Enter') save();
             if (e.key === 'Escape') setEditing(false);
           }}
+          enterKeyHint="done"
+          autoCapitalize="off"
+          autoCorrect="off"
           placeholder={isLoggedIn ? t('common.nicknamePlaceholder', 'Your nickname…') : t('guestSetup.placeholder', 'Your name')}
-          className={`w-full ${!isLoggedIn ? 'pl-[3.6rem]' : 'pl-2.5'} pr-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500`}
+          className={`w-full ${!isLoggedIn ? 'pl-[3.6rem]' : 'pl-2.5'} pr-2 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-blue-500`}
         />
       </div>
       <button
         onClick={save}
-        disabled={!draft.trim() || saving}
-        className="bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white font-semibold px-3 py-1.5 rounded-lg transition-colors text-xs"
+        disabled={!draft.value.trim() || saving}
+        className="shrink-0 min-h-[38px] bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white font-semibold px-3 py-2 rounded-lg transition-colors text-xs"
       >
         {saving ? '…' : t('social.save', 'Save')}
       </button>
       <button
         onClick={() => setEditing(false)}
-        className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 px-1"
+        className="shrink-0 min-h-[38px] text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 px-2"
       >
         {t('common.cancel', 'Cancel')}
       </button>

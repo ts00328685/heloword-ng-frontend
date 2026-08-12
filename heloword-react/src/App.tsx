@@ -25,6 +25,7 @@ import InAppBrowserGate from './components/InAppBrowserGate';
 // Eagerly loaded — first pages users land on
 import HomePage from './pages/Home/HomePage';
 import LoginPage from './pages/Login/LoginPage';
+import LiveBoardRedirect from './pages/Board/LiveBoardRedirect';
 // Lazy loaded — split into separate chunks to reduce initial bundle
 const VocabularyPage      = React.lazy(() => import('./pages/Vocabulary/VocabularyPage'));
 const VocabularyListPage  = React.lazy(() => import('./pages/Vocabulary/VocabularyListPage'));
@@ -104,6 +105,8 @@ const AppLayout: React.FC = () => {
           <Route path="/en-articles" element={<ENArticleListPage />} />
           <Route path="/en-articles/:id" element={<ENArticleDetailPage />} />
           <Route path="/board/:sessionId" element={<BoardPage />} />
+          {/* Stable QR-friendly entry: forwards to the live board, else home */}
+          <Route path="/live" element={<LiveBoardRedirect />} />
           <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
           {/* Catch-all */}
           <Route path="*" element={<Navigate to="/home" replace />} />
@@ -151,6 +154,7 @@ const ChatBotWrapper: React.FC = () => {
   return (
     <Routes>
       <Route path="/board/:sessionId" element={null} />
+      <Route path="/live" element={null} />
       <Route path="*" element={<ChatBot />} />
     </Routes>
   );
@@ -167,6 +171,7 @@ const BottomTabsWrapper: React.FC = () => {
       <Route path="/vocabulary/quiz" element={null} />
       <Route path="/login" element={null} />
       <Route path="/board/:sessionId" element={null} />
+      <Route path="/live" element={null} />
       <Route path="*" element={<BottomTabs />} />
     </Routes>
   );

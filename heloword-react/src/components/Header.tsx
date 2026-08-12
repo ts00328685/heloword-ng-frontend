@@ -20,12 +20,20 @@ import {
 interface HeaderProps {
   title: string;
   showBack?: boolean;
+  /** Overrides the default history-pop, for pages reachable by direct link. */
+  onBack?: () => void;
+  /**
+   * Collapses language, theme and sign-in into a single overflow menu. For pages
+   * a stranger can land on cold (the live board via its QR link), where seven
+   * controls in a 56px bar is noise rather than navigation.
+   */
+  minimal?: boolean;
   rightContent?: React.ReactNode;
 }
 
 const MAX_NICK = 20;
 
-const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }) => {
+const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minimal = false, rightContent }) => {
   const navigate = useNavigate();
   const { user, isLoggedIn, logout, hasAnyRole } = useAuth();
   const { isDark, toggle } = useTheme();
@@ -42,6 +50,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
   const currentLang = i18n.language as Language;
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const [overflowOpen, setOverflowOpen] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [draft, setDraft] = useState('');
   const [saving, setSaving] = useState(false);
@@ -171,7 +180,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
           <div className="flex items-center gap-2 min-w-[40px]">
             {showBack ? (
               <button
-                onClick={() => navigate(-1)}
+                onClick={onBack ?? (() => navigate(-1))}
                 className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 transition-colors"
                 aria-label={t('common.back', 'Go back')}
               >
@@ -202,6 +211,20 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
 
           {/* Right: language switcher + dark mode + user */}
           <div className="flex items-center gap-1 min-w-[40px] justify-end">
+            {minimal ? (
+              <button
+                onClick={() => setOverflowOpen(true)}
+                className="p-2 -mr-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 transition-colors"
+                aria-label={t('common.more', 'More')}
+              >
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <circle cx="10" cy="4" r="1.7" />
+                  <circle cx="10" cy="10" r="1.7" />
+                  <circle cx="10" cy="16" r="1.7" />
+                </svg>
+              </button>
+            ) : (
+              <>
             {/* Language switcher */}
             <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5 mr-1">
               {LANGUAGES.map(({ code, label }) => (
@@ -262,9 +285,85 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, rightContent }
                 </button>
               )
             )}
+              </>
+            )}
           </div>
         </div>
       </header>
+
+      {/* Overflow sheet — holds what `minimal` takes out of the bar */}
+      {overflowOpen && createPortal(
+        <div
+          className="fixed inset-0 z-[65] flex items-end justify-center bg-black/50"
+          onClick={() => setOverflowOpen(false)}
+        >
+          <div
+            className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-t-3xl shadow-2xl px-4 pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))] animate-sheet-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600 mx-auto my-2" />
+
+            {/* Language */}
+            <div className="flex items-center gap-3 px-3 py-3">
+              <svg className="w-[18px] h-[18px] text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M21 21l-3.5-7-3.5 7M9 19l-3-6" />
+              </svg>
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
+                {t('common.language', 'Language')}
+              </span>
+              <div className="ml-auto flex gap-1.5">
+                {LANGUAGES.map(({ code, label }) => (
+                  <button
+                    key={code}
+                    onClick={() => changeLanguage(code)}
+                    className={`px-3 py-2 text-xs font-semibold rounded-lg transition-colors ${
+                      currentLang === code
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Dark mode */}
+            <button
+              onClick={toggle}
+              className="flex items-center gap-3 w-full px-3 py-3.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+            >
+              <svg className="w-[18px] h-[18px] text-gray-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+              </svg>
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
+                {t('common.toggleDark', 'Toggle dark mode')}
+              </span>
+              <span className={`ml-auto relative inline-flex h-6 w-11 shrink-0 rounded-full transition-colors ${isDark ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'}`}>
+                <span className={`inline-block h-5 w-5 mt-0.5 rounded-full bg-white shadow transition-transform ${isDark ? 'translate-x-[1.375rem]' : 'translate-x-0.5'}`} />
+              </span>
+            </button>
+
+            {/* Sign in / out */}
+            <button
+              onClick={() => { setOverflowOpen(false); if (isLoggedIn) logout(); else navigate('/login'); }}
+              className="flex items-center gap-3 w-full px-3 py-3.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+            >
+              <svg className="w-[18px] h-[18px] text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
+                {isLoggedIn ? t('common.logout') : t('common.login')}
+              </span>
+              {!isLoggedIn && (
+                <span className="ml-auto text-[11px] text-blue-500 font-medium">
+                  {t('board.registerCta', 'Log in for more features')}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      , document.body)}
 
       {/* Left slide-in menu panel */}
       {menuOpen && createPortal(

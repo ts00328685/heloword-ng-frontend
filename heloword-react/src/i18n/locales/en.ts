@@ -15,6 +15,8 @@ const en = {
     copied: 'Copied!',
     cancel: 'Cancel',
     save: 'Save',
+    more: 'More',
+    language: 'Language',
   },
   nav: {
     quiz: 'Quiz',
@@ -932,6 +934,16 @@ const en = {
     confirmDelete: 'Delete this message?',
     confirmMute: 'Mute {name}? They will no longer be able to post.',
     confirmDeleteSong: 'Delete this song?',
+    justNow: 'just now',
+    toggleTime: 'Show exact time',
+    messageActions: 'Message actions',
+    moreAnnouncements: '{n} more announcements',
+    hideAnnouncements: 'Collapse announcements',
+    nameTitle: 'What should we call you?',
+    nameSubtitle: 'This is the name shown next to your message.',
+    nameConfirm: 'Post as this name',
+    nameKeep: 'Keep {name}',
+    sendReaction: 'Send {e}',
   },
 } as const;
 

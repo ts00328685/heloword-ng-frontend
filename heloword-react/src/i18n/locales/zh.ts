@@ -15,6 +15,8 @@ const zh = {
     copied: '已複製！',
     cancel: '取消',
     save: '儲存',
+    more: '更多',
+    language: '語言',
   },
   nav: {
     quiz: '測驗',
@@ -932,6 +934,16 @@ const zh = {
     confirmDelete: '確定要刪除這則訊息嗎？',
     confirmMute: '確定要禁言 {name}？對方將無法再發言。',
     confirmDeleteSong: '確定要刪除這首歌嗎？',
+    justNow: '剛剛',
+    toggleTime: '顯示完整時間',
+    messageActions: '訊息操作',
+    moreAnnouncements: '還有 {n} 則公告',
+    hideAnnouncements: '收合公告',
+    nameTitle: '要怎麼稱呼你？',
+    nameSubtitle: '這個名字會顯示在你的留言旁邊。',
+    nameConfirm: '用這個名字留言',
+    nameKeep: '就用 {name}',
+    sendReaction: '送出 {e}',
   },
 } as const;
 
