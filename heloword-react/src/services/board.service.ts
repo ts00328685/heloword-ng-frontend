@@ -34,6 +34,12 @@ export interface LiveBoardSong {
   performing: boolean;
   requestCount: number;
   sortOrder: number;
+  /**
+   * Host-private note. The server strips it from every audience-facing payload —
+   * including the /songs broadcast — so it is only ever populated on an admin's
+   * own snapshot or setlist-mutation response.
+   */
+  note?: string | null;
 }
 
 export interface LiveBoardSnapshot {
@@ -159,4 +165,36 @@ export async function addBoardSong(id: number, title: string): Promise<LiveBoard
 export async function deleteBoardSong(id: number, songId: number): Promise<LiveBoardSong[]> {
   const res = await doDelete<LiveBoardSong[]>(`${BASE}/sessions/${id}/songs/${songId}`);
   return res.code === '0000' ? (res.data ?? []) : [];
+}
+
+/** Full setlist including host-private notes (admin only). */
+export async function fetchBoardSongs(id: number): Promise<LiveBoardSong[]> {
+  const res = await doGet<LiveBoardSong[]>(`${BASE}/sessions/${id}/songs`);
+  return res.code === '0000' ? (res.data ?? []) : [];
+}
+
+export async function updateBoardSongNote(
+  id: number,
+  songId: number,
+  note: string
+): Promise<LiveBoardSong[]> {
+  const res = await doPost<LiveBoardSong[]>(`${BASE}/sessions/${id}/songs/${songId}/note`, { note });
+  return res.code === '0000' ? (res.data ?? []) : [];
+}
+
+/** Persist a new running order. `songIds` is the full list, top to bottom. */
+export async function reorderBoardSongs(id: number, songIds: number[]): Promise<LiveBoardSong[]> {
+  const res = await doPost<LiveBoardSong[]>(`${BASE}/sessions/${id}/songs/reorder`, songIds);
+  return res.code === '0000' ? (res.data ?? []) : [];
+}
+
+/** Append another board's setlist to this one as fresh, unsung rows. */
+export async function copyBoardSongs(
+  id: number,
+  sourceSessionId: number
+): Promise<BoardResult<LiveBoardSong[]>> {
+  const res = await doPost<LiveBoardSong[]>(
+    `${BASE}/sessions/${id}/songs/copy?sourceSessionId=${sourceSessionId}`
+  );
+  return { ok: res.code === '0000', message: res.message ?? '', data: res.data };
 }
