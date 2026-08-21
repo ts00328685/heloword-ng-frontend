@@ -30,8 +30,8 @@ import {
 const MAX_LEN = 1000;
 /** Announcements kept pinned above the chat; older ones collapse behind a toggle. */
 const PINNED_OFFICIALS = 1;
-/** One-tap reactions beside the setlist chip — applause, laughter, love. */
-const QUICK_REACTIONS = ['👏', '😂', '❤️'];
+/** One-tap reactions beside the setlist chip — applause, laughter, love, burger. */
+const QUICK_REACTIONS = ['👏', '😂', '❤️', '🍔'];
 
 /** Absolute timestamp in Taipei time (GMT+8): "MM/DD HH:mm". Shown on tap. */
 const formatTime = (iso: string): string => {
@@ -63,6 +63,17 @@ const formatAgo = (iso: string, t: (k: string, d: string) => string): string => 
   const hours = Math.floor(mins / 60);
   if (hours < 24) return `${hours}h`;
   return formatTime(iso);
+};
+
+/**
+ * The /songs broadcast is public, so the server strips the host-private notes
+ * from it — applying one straight would blank out the notes an admin is reading.
+ * Carry the known notes across; the admin's own actions and the snapshot bring
+ * authoritative ones back over HTTP.
+ */
+const mergeSongNotes = (prev: LiveBoardSong[], incoming: LiveBoardSong[]): LiveBoardSong[] => {
+  const notes = new Map(prev.filter((s) => s.note).map((s) => [s.id, s.note]));
+  return incoming.map((s) => (s.note ? s : { ...s, note: notes.get(s.id) ?? null }));
 };
 
 const BoardPage: React.FC = () => {
@@ -97,6 +108,8 @@ const BoardPage: React.FC = () => {
   const [namePrompt, setNamePrompt] = useState(false);
   /** What that guest was trying to say, replayed once they have a name. */
   const [pending, setPending] = useState<{ content: string; fromDraft: boolean } | null>(null);
+  /** Messages that landed while the reader was scrolled up. Drives the jump button. */
+  const [unread, setUnread] = useState(0);
 
   // Back target. A visitor who landed here from /live or by pasting the URL has
   // nothing of ours behind them in the stack, so popping history would throw
@@ -118,6 +131,8 @@ const BoardPage: React.FC = () => {
   const postingRef = useRef(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const atBottomRef = useRef(true);
+  /** Comment count already accounted for — the baseline the unread delta is measured from. */
+  const seenCountRef = useRef(0);
 
   const active = session?.boardState === 'ACTIVE';
   // After a session ends the audience can only read, but the admin can still
@@ -213,7 +228,10 @@ const BoardPage: React.FC = () => {
           try { onEvent(JSON.parse(frame.body)); } catch { /* ignore */ }
         });
         client.subscribe(`/topic/board/${id}/songs`, (frame) => {
-          try { setSongs(JSON.parse(frame.body) || []); } catch { /* ignore */ }
+          try {
+            const incoming: LiveBoardSong[] = JSON.parse(frame.body) || [];
+            setSongs((prev) => mergeSongNotes(prev, incoming));
+          } catch { /* ignore */ }
         });
         client.subscribe('/topic/board/active', (frame) => {
           try { applyActiveBroadcast(JSON.parse(frame.body)); } catch { /* ignore */ }
@@ -234,17 +252,40 @@ const BoardPage: React.FC = () => {
     return () => clearInterval(timer);
   }, [id, myUserId, active]);
 
-  // ── Auto-scroll to newest unless the user scrolled up ────────────────────────
+  // ── Scroll ───────────────────────────────────────────────────────────────--
+
+  /** Jump to the newest message and re-arm auto-follow. */
+  const scrollToBottom = useCallback((behavior: ScrollBehavior = 'auto') => {
+    atBottomRef.current = true;
+    setUnread(0);
+    const el = scrollRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior });
+  }, []);
+
+  // Follow the conversation only while the reader is already at the bottom.
+  // Yanking the view down mid-scroll would lose whatever they went back to read,
+  // so anything that arrives while they are up there becomes an unread count on
+  // the jump button instead.
   useEffect(() => {
-    if (atBottomRef.current && scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    const delta = comments.length - seenCountRef.current;
+    seenCountRef.current = comments.length;
+    if (delta === 0) return;
+    if (delta < 0) {
+      // A deletion, not an arrival — keep the badge honest, don't offer a jump.
+      setUnread((n) => Math.max(0, n + delta));
+      return;
     }
-  }, [comments.length]);
+    if (atBottomRef.current) scrollToBottom('auto');
+    else setUnread((n) => n + delta);
+  }, [comments.length, scrollToBottom]);
 
   const onScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
-    atBottomRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+    const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+    atBottomRef.current = atBottom;
+    // Scrolling down to the newest message is the same as tapping the button.
+    if (atBottom) setUnread(0);
   };
 
   // ── Actions ──────────────────────────────────────────────────────────────--
@@ -267,11 +308,17 @@ const BoardPage: React.FC = () => {
         const msg = await postOfficialMessage(id, content);
         if (msg) setMessages((prev) => (prev.some((m) => m.id === msg.id) ? prev : [...prev, msg]));
         if (fromDraft) draft.reset();
+        scrollToBottom();
       } else {
         const res = await postBoardMessage(id, content, myUserId, authorName ?? myDisplayName);
         if (res.ok) {
           if (res.data) setMessages((prev) => (prev.some((m) => m.id === res.data!.id) ? prev : [...prev, res.data!]));
           if (fromDraft) draft.reset();
+          // Saying something is an implicit "I'm caught up" — go to your own
+          // message even if you were reading back through the thread. Called
+          // outright rather than left to the effect above, because the socket
+          // may have delivered this same message a beat earlier.
+          scrollToBottom();
         } else {
           setError(res.message || t('board.postFailed', 'Could not post your message.'));
         }
@@ -418,30 +465,9 @@ const BoardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Now-performing banner + pinned official messages */}
-      {(performingSong || officials.length > 0) && (
+      {/* Pinned official messages */}
+      {officials.length > 0 && (
         <div className="px-4 pt-3 space-y-2 max-w-2xl mx-auto w-full">
-          {performingSong && (
-            <div className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1.5 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
-              <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M18 3a1 1 0 00-1.196-.98l-8 1.6A1 1 0 008 4.6v7.07A3.5 3.5 0 109 14.5V8.82l7-1.4v3.25a3.5 3.5 0 101 2.45V3z" />
-              </svg>
-              <span className="text-[10px] font-bold uppercase tracking-wide shrink-0">{t('board.nowPlaying', 'Now')}</span>
-              <span className="text-xs font-semibold truncate min-w-0">{performingSong.title}</span>
-              <a
-                href={`https://www.google.com/search?q=${encodeURIComponent(performingSong.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-auto shrink-0 inline-flex items-center gap-1 text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2 py-0.5 rounded-full transition-colors"
-              >
-                {t('board.googleIt', 'Google it')}
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-            </div>
-          )}
           {(annOpen ? officialsNewestFirst : pinnedOfficials).map((m) => (
             <div
               key={m.id}
@@ -497,99 +523,147 @@ const BoardPage: React.FC = () => {
       )}
 
       {/* Message list */}
-      <div
-        ref={scrollRef}
-        onScroll={onScroll}
-        className="flex-1 overflow-y-auto px-4 py-3 space-y-2 max-w-2xl mx-auto w-full"
-      >
-        {comments.length === 0 && (
-          <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-10">
-            {t('board.beFirst', 'No messages yet — be the first to say hi! 👋')}
-          </p>
-        )}
-        {comments.map((m) => {
-          const mine = m.authorUserId === myUserId;
-          const isHost = !!session?.createdByUserId && m.authorUserId === session.createdByUserId;
-          return (
-            <div key={m.id} className={`flex ${mine ? 'justify-end' : 'justify-start'}`}>
-              <div className="max-w-[84%]">
-                {/* Name, elapsed time and like share one line above the bubble. */}
-                <div className={`flex items-center gap-1.5 mb-1 ${mine ? 'justify-end' : ''}`}>
-                  {isHost && !mine && (
-                    <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-1.5 py-0.5 rounded-full shrink-0">
-                      <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2.5 6.5l3 2.5 4.5-5.5 4.5 5.5 3-2.5-1.2 8.5H3.7L2.5 6.5z" />
-                      </svg>
-                      {t('board.host', 'Host')}
+      <div className="relative flex-1 min-h-0 flex max-w-2xl mx-auto w-full">
+        <div
+          ref={scrollRef}
+          onScroll={onScroll}
+          className="flex-1 overflow-y-auto px-4 py-3 space-y-2"
+        >
+          {comments.length === 0 && (
+            <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-10">
+              {t('board.beFirst', 'No messages yet — be the first to say hi! 👋')}
+            </p>
+          )}
+          {comments.map((m) => {
+            const mine = m.authorUserId === myUserId;
+            const isHost = !!session?.createdByUserId && m.authorUserId === session.createdByUserId;
+            return (
+              <div key={m.id} className={`flex ${mine ? 'justify-end' : 'justify-start'}`}>
+                <div className="max-w-[84%]">
+                  {/* Name, elapsed time and like share one line above the bubble. */}
+                  <div className={`flex items-center gap-1.5 mb-1 ${mine ? 'justify-end' : ''}`}>
+                    {isHost && !mine && (
+                      <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-1.5 py-0.5 rounded-full shrink-0">
+                        <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M2.5 6.5l3 2.5 4.5-5.5 4.5 5.5 3-2.5-1.2 8.5H3.7L2.5 6.5z" />
+                        </svg>
+                        {t('board.host', 'Host')}
+                      </span>
+                    )}
+                    <span className={`text-[11px] font-semibold truncate max-w-[140px] ${isHost && !mine ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                      {mine ? t('board.you', 'You') : m.authorName}
                     </span>
-                  )}
-                  <span className={`text-[11px] font-semibold truncate max-w-[140px] ${isHost && !mine ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-gray-400'}`}>
-                    {mine ? t('board.you', 'You') : m.authorName}
-                  </span>
-                  {/* Host moderation: an explicit, always-visible control. A
-                      hover-revealed one is invisible yet still tappable on a
-                      touch screen, which makes destructive actions a mis-tap. */}
-                  {isAdmin && !mine && (
+                    {/* Host moderation: an explicit, always-visible control. A
+                        hover-revealed one is invisible yet still tappable on a
+                        touch screen, which makes destructive actions a mis-tap. */}
+                    {isAdmin && !mine && (
+                      <button
+                        onClick={() => setModTarget(m)}
+                        className="shrink-0 -my-1 p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                        aria-label={t('board.messageActions', 'Message actions')}
+                      >
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <circle cx="10" cy="4" r="1.7" />
+                          <circle cx="10" cy="10" r="1.7" />
+                          <circle cx="10" cy="16" r="1.7" />
+                        </svg>
+                      </button>
+                    )}
+
+                    {/* Elapsed time stays on the name line — it's identity/metadata,
+                        not an action. */}
                     <button
-                      onClick={() => setModTarget(m)}
-                      className="shrink-0 -my-1 p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                      aria-label={t('board.messageActions', 'Message actions')}
+                      onClick={() => setShowAbsTime((v) => !v)}
+                      className="shrink-0 -my-2 px-1 py-2 text-[10px] leading-none text-gray-400 dark:text-gray-500 tabular-nums whitespace-nowrap"
+                      aria-label={t('board.toggleTime', 'Show exact time')}
                     >
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <circle cx="10" cy="4" r="1.7" />
-                        <circle cx="10" cy="10" r="1.7" />
-                        <circle cx="10" cy="16" r="1.7" />
-                      </svg>
+                      {showAbsTime ? formatTime(m.createDate) : formatAgo(m.createDate, t)}
                     </button>
-                  )}
-
-                  {/* Elapsed time stays on the name line — it's identity/metadata,
-                      not an action. */}
-                  <button
-                    onClick={() => setShowAbsTime((v) => !v)}
-                    className="shrink-0 -my-2 px-1 py-2 text-[10px] leading-none text-gray-400 dark:text-gray-500 tabular-nums whitespace-nowrap"
-                    aria-label={t('board.toggleTime', 'Show exact time')}
-                  >
-                    {showAbsTime ? formatTime(m.createDate) : formatAgo(m.createDate, t)}
-                  </button>
-                </div>
-
-                <div className={`flex items-center gap-1 ${mine ? 'flex-row-reverse' : ''}`}>
-                  <div
-                    className={`px-3.5 py-2 rounded-2xl text-sm whitespace-pre-wrap break-words [overflow-wrap:anywhere] ${
-                      mine
-                        ? 'bg-blue-500 text-white rounded-br-sm'
-                        : isHost
-                          ? 'bg-amber-50 dark:bg-amber-900/25 text-gray-900 dark:text-amber-50 border border-amber-300 dark:border-amber-600/70 ring-1 ring-amber-300/60 dark:ring-amber-500/30 shadow-sm rounded-bl-sm'
-                          : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700 rounded-bl-sm'
-                    }`}
-                  >
-                    {m.content}
                   </div>
 
-                  {/* Centred against the bubble it belongs to. `-my-3` keeps the
-                      44px tap target from making this row taller than the
-                      bubble — that overhang is what opened a gap under the name
-                      when the like sat here before. */}
-                  <button
-                    onClick={() => toggleLike(m)}
-                    aria-pressed={likedIds.has(m.id)}
-                    className={`shrink-0 -my-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center gap-0.5 rounded-xl transition-colors active:scale-90 ${
-                      likedIds.has(m.id) ? 'text-pink-500' : 'text-gray-400 hover:text-pink-500'
-                    }`}
-                    aria-label={t('board.like', 'Like')}
-                  >
-                    <svg className="w-4 h-4" fill={likedIds.has(m.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                    {m.likeCount > 0 && <span className="text-[10px] font-bold leading-none tabular-nums">{m.likeCount}</span>}
-                  </button>
+                  <div className={`flex items-center gap-1 ${mine ? 'flex-row-reverse' : ''}`}>
+                    <div
+                      className={`px-3.5 py-2 rounded-2xl text-sm whitespace-pre-wrap break-words [overflow-wrap:anywhere] ${
+                        mine
+                          ? 'bg-blue-500 text-white rounded-br-sm'
+                          : isHost
+                            ? 'bg-amber-50 dark:bg-amber-900/25 text-gray-900 dark:text-amber-50 border border-amber-300 dark:border-amber-600/70 ring-1 ring-amber-300/60 dark:ring-amber-500/30 shadow-sm rounded-bl-sm'
+                            : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700 rounded-bl-sm'
+                      }`}
+                    >
+                      {m.content}
+                    </div>
+
+                    {/* Centred against the bubble it belongs to. `-my-3` keeps the
+                        44px tap target from making this row taller than the
+                        bubble — that overhang is what opened a gap under the name
+                        when the like sat here before. */}
+                    <button
+                      onClick={() => toggleLike(m)}
+                      aria-pressed={likedIds.has(m.id)}
+                      className={`shrink-0 -my-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center gap-0.5 rounded-xl transition-colors active:scale-90 ${
+                        likedIds.has(m.id) ? 'text-pink-500' : 'text-gray-400 hover:text-pink-500'
+                      }`}
+                      aria-label={t('board.like', 'Like')}
+                    >
+                      <svg className="w-4 h-4" fill={likedIds.has(m.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                      {m.likeCount > 0 && <span className="text-[10px] font-bold leading-none tabular-nums">{m.likeCount}</span>}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+
+        {/* Jump to newest. Only appears once something has actually arrived that
+            the reader hasn't seen — a permanently parked button is furniture, and
+            the count is the part that tells them whether it's worth the tap. */}
+        {unread > 0 && (
+          <button
+            onClick={() => scrollToBottom('smooth')}
+            className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 inline-flex items-center gap-1.5 pl-2.5 pr-3.5 py-2 rounded-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-xs font-semibold shadow-lg shadow-blue-500/30 active:scale-95 transition-all animate-fade-in"
+            aria-label={t('board.jumpToNewest', 'Jump to newest message')}
+          >
+            <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+            <span className="tabular-nums">
+              {t('board.newMessages', '{n} new').replace('{n}', String(unread))}
+            </span>
+          </button>
+        )}
       </div>
+
+      {/* Now-performing banner. It sits against the composer rather than at the
+          top because that is where the eye already is — you read the song you
+          are hearing in the same glance as the box you are about to type in,
+          and it can't be pushed off-screen by a run of announcements. */}
+      {performingSong && (
+        <div className="px-4 pb-2 max-w-2xl mx-auto w-full">
+          <div className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1.5 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+            <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M18 3a1 1 0 00-1.196-.98l-8 1.6A1 1 0 008 4.6v7.07A3.5 3.5 0 109 14.5V8.82l7-1.4v3.25a3.5 3.5 0 101 2.45V3z" />
+            </svg>
+            <span className="text-[11px] font-bold tracking-wide shrink-0">{t('board.nowSinging', '現在唱的是 →')}</span>
+            <span className="text-xs font-semibold truncate min-w-0">{performingSong.title}</span>
+            <a
+              href={`https://www.google.com/search?q=${encodeURIComponent(performingSong.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto shrink-0 inline-flex items-center gap-1 text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2 py-0.5 rounded-full transition-colors"
+            >
+              {t('board.googleIt', 'Google it')}
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Composer / ended notice */}
       <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom))] max-w-2xl mx-auto w-full">
@@ -693,6 +767,7 @@ const BoardPage: React.FC = () => {
           songs={songs}
           isAdmin={isAdmin}
           active={active}
+          onSongsChange={setSongs}
           onClose={() => setSongsOpen(false)}
         />
       )}
