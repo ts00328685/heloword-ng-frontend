@@ -10,7 +10,7 @@ import {
   deleteBoardSong,
   reorderBoardSongs,
   toggleBoardSong,
-  updateBoardSongNote,
+  updateBoardSong,
 } from '../services/board.service';
 
 /** Reorder taps are batched — a run of arrow presses saves once, not per tap. */
@@ -46,8 +46,6 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
   const [copyOpen, setCopyOpen] = useState(false);
   /** Optimistic running order held while the debounced save is in flight. */
   const [pendingOrder, setPendingOrder] = useState<number[] | null>(null);
-  /** Note text being typed, keyed by song id; absent means "showing the saved value". */
-  const [noteDrafts, setNoteDrafts] = useState<Record<number, string>>({});
 
   const saveTimer = useRef<number | null>(null);
   const flushReorder = useRef<(() => void) | null>(null);
@@ -117,25 +115,30 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
     saveTimer.current = window.setTimeout(save, REORDER_SAVE_MS);
   };
 
-  const clearDraft = (songId: number) => setNoteDrafts((prev) => {
-    const next = { ...prev };
-    delete next[songId];
-    return next;
-  });
-
-  const saveNote = (song: LiveBoardSong) => {
-    const draft = noteDrafts[song.id];
-    if (draft === undefined) return;
-    if (draft.trim() === (song.note ?? '').trim()) {
-      clearDraft(song.id);
-      return;
-    }
-    // The draft stays on screen until the saved list comes back — dropping it on
-    // send would flash the previous note for as long as the round trip takes.
-    updateBoardSongNote(sessionId, song.id, draft.trim())
+  /**
+   * Commits a row edit. Title and note travel together because the row always
+   * knows both, which keeps this to one endpoint and one round trip.
+   *
+   * The inputs are uncontrolled on purpose: song titles and cue notes get typed
+   * in Chinese, and rewriting a controlled value mid-composition is exactly what
+   * drops IME candidates on iOS (the same trap `useImeText` exists to avoid —
+   * but that hook is per-field and can't be called once per row).
+   */
+  const saveSong = (song: LiveBoardSong, edited: { title?: string; note?: string }) => {
+    const title = (edited.title ?? song.title).trim().slice(0, 200);
+    const note = (edited.note ?? song.note ?? '').trim().slice(0, 500);
+    if (!title || (title === song.title && note === (song.note ?? '').trim())) return;
+    updateBoardSong(sessionId, song.id, title, note)
       .then((list) => { if (list.length) onSongsChange(list); })
-      .catch(() => {})
-      .finally(() => clearDraft(song.id));
+      .catch(() => {});
+  };
+
+  /** Enter commits, except the Enter that is confirming an IME candidate. */
+  const commitOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter') return;
+    const native = e.nativeEvent as KeyboardEvent;
+    if (native.isComposing || native.keyCode === 229) return;
+    e.currentTarget.blur();
   };
 
   const copy = async (sourceSessionId: number): Promise<string> => {
@@ -249,21 +252,35 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                     </button>
                   </div>
 
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-gray-800 dark:text-gray-100 break-words [overflow-wrap:anywhere]">
-                      {song.title}
-                    </p>
+                  <div className="flex-1 min-w-0 space-y-1">
                     <input
                       type="text"
-                      value={noteDrafts[song.id] ?? song.note ?? ''}
-                      onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [song.id]: e.target.value }))}
-                      onBlur={() => saveNote(song)}
-                      onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur(); }}
-                      maxLength={500}
+                      defaultValue={song.title}
+                      onBlur={(e) => {
+                        // Blanking a title would leave an unidentifiable row, so
+                        // an empty field reverts rather than saving.
+                        if (!e.target.value.trim()) {
+                          e.target.value = song.title;
+                          return;
+                        }
+                        saveSong(song, { title: e.target.value });
+                      }}
+                      onKeyDown={commitOnEnter}
                       enterKeyHint="done"
                       autoCorrect="off"
+                      aria-label={t('board.songTitle', 'Song name')}
+                      className="w-full px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <input
+                      type="text"
+                      defaultValue={song.note ?? ''}
+                      onBlur={(e) => saveSong(song, { note: e.target.value })}
+                      onKeyDown={commitOnEnter}
+                      enterKeyHint="done"
+                      autoCorrect="off"
+                      aria-label={t('board.note', 'Private note')}
                       placeholder={t('board.notePlaceholder', 'Private note (key, capo, cue…)')}
-                      className="mt-1 w-full px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
 
