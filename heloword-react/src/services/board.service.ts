@@ -173,12 +173,14 @@ export async function fetchBoardSongs(id: number): Promise<LiveBoardSong[]> {
   return res.code === '0000' ? (res.data ?? []) : [];
 }
 
-export async function updateBoardSongNote(
+/** Rename a song and/or set its host-private note. Both are sent together. */
+export async function updateBoardSong(
   id: number,
   songId: number,
+  title: string,
   note: string
 ): Promise<LiveBoardSong[]> {
-  const res = await doPost<LiveBoardSong[]>(`${BASE}/sessions/${id}/songs/${songId}/note`, { note });
+  const res = await doPost<LiveBoardSong[]>(`${BASE}/sessions/${id}/songs/${songId}`, { title, note });
   return res.code === '0000' ? (res.data ?? []) : [];
 }
 
