@@ -439,6 +439,24 @@ const BoardPage: React.FC = () => {
     );
   }
 
+  /**
+   * Setlist entry point. Shared by the composer and the ended-session notice —
+   * the set is worth reading after the show too, even by someone who can no
+   * longer post, so it must not live only inside the composer.
+   */
+  const setlistButton = (
+    <button
+      onClick={() => setSongsOpen(true)}
+      className="shrink-0 inline-flex items-center gap-1.5 min-h-[38px] px-3.5 py-2 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-300 bg-blue-50 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-500/40 hover:bg-blue-100 dark:hover:bg-blue-500/25 transition-colors"
+    >
+      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M18 3a1 1 0 00-1.196-.98l-8 1.6A1 1 0 008 4.6v7.07A3.5 3.5 0 109 14.5V8.82l7-1.4v3.25a3.5 3.5 0 101 2.45V3z" />
+      </svg>
+      {t('board.setlist', 'Setlist')}
+      {songs.length > 0 && <span className="tabular-nums">· {songs.length}</span>}
+    </button>
+  );
+
   return (
     <div className="flex flex-col h-screen [height:var(--vvh,100dvh)] bg-gray-50 dark:bg-gray-900">
       <Header title={session.name} showBack onBack={handleBack} minimal />
@@ -667,9 +685,14 @@ const BoardPage: React.FC = () => {
       {/* Composer / ended notice */}
       <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom))] max-w-2xl mx-auto w-full">
         {!active && !isAdmin ? (
-          <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-2">
-            {t('board.endedNotice', 'This session has ended or hasn’t started yet. You can read the messages but can no longer post.')}
-          </p>
+          <div className="flex flex-col items-center gap-2 py-2">
+            <p className="text-center text-sm text-gray-400 dark:text-gray-500">
+              {t('board.endedNotice', 'This session has ended or hasn’t started yet. You can read the messages but can no longer post.')}
+            </p>
+            {/* Read-only: the modal already refuses requests and marking while
+                the session is inactive, so it needs no closed-session variant. */}
+            {songs.length > 0 && setlistButton}
+          </div>
         ) : iAmMuted ? (
           <p className="text-center text-sm text-amber-500 py-2">
             {t('board.mutedNotice', 'You have been muted by the host.')}
@@ -684,16 +707,7 @@ const BoardPage: React.FC = () => {
             {/* Setlist promoted out of the modal — requesting a song is the
                 thing an audience actually came to do. */}
             <div className="flex items-center gap-2 mb-2 overflow-x-auto">
-              <button
-                onClick={() => setSongsOpen(true)}
-                className="shrink-0 inline-flex items-center gap-1.5 min-h-[38px] px-3.5 py-2 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-300 bg-blue-50 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-500/40 hover:bg-blue-100 dark:hover:bg-blue-500/25 transition-colors"
-              >
-                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M18 3a1 1 0 00-1.196-.98l-8 1.6A1 1 0 008 4.6v7.07A3.5 3.5 0 109 14.5V8.82l7-1.4v3.25a3.5 3.5 0 101 2.45V3z" />
-                </svg>
-                {t('board.setlist', 'Setlist')}
-                {songs.length > 0 && <span className="tabular-nums">· {songs.length}</span>}
-              </button>
+              {setlistButton}
 
               {/* Emoji shortcuts. They append to the composer rather than
                   posting on their own, so a tap can be stacked, mixed with
