@@ -943,7 +943,8 @@ const zh = {
     nameSubtitle: '這個名字會顯示在你的留言旁邊。',
     nameConfirm: '用這個名字留言',
     nameKeep: '就用 {name}',
-    sendReaction: '送出 {e}',
+    addReaction: '加入 {e}',
+    copySongName: '複製歌名',
   },
 } as const;
 
