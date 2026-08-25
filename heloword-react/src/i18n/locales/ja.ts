@@ -942,7 +942,8 @@ const ja = {
     nameSubtitle: 'メッセージの横に表示される名前です。',
     nameConfirm: 'この名前で投稿',
     nameKeep: '{name} のままにする',
-    sendReaction: '{e} を送る',
+    addReaction: '{e} を追加',
+    copySongName: '曲名をコピー',
   },
 } as const;
 

@@ -943,7 +943,8 @@ const en = {
     nameSubtitle: 'This is the name shown next to your message.',
     nameConfirm: 'Post as this name',
     nameKeep: 'Keep {name}',
-    sendReaction: 'Send {e}',
+    addReaction: 'Add {e}',
+    copySongName: 'Copy song name',
   },
 } as const;
 

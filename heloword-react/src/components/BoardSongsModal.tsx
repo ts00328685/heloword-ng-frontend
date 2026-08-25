@@ -16,6 +16,9 @@ import {
 /** Reorder taps are batched — a run of arrow presses saves once, not per tap. */
 const REORDER_SAVE_MS = 500;
 
+/** How long the copy button stays a tick after a successful copy. */
+const COPIED_FEEDBACK_MS = 1500;
+
 interface Props {
   sessionId: number;
   songs: LiveBoardSong[];
@@ -44,15 +47,42 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [copyOpen, setCopyOpen] = useState(false);
+  /** Song whose title was just copied — drives the tick shown in its place. */
+  const [copiedId, setCopiedId] = useState<number | null>(null);
   /** Optimistic running order held while the debounced save is in flight. */
   const [pendingOrder, setPendingOrder] = useState<number[] | null>(null);
 
   const saveTimer = useRef<number | null>(null);
   const flushReorder = useRef<(() => void) | null>(null);
+  const copiedTimer = useRef<number | null>(null);
 
   // A reorder still sitting in the debounce window when the modal closes would
   // otherwise be dropped — send it on the way out.
-  useEffect(() => () => { flushReorder.current?.(); }, []);
+  useEffect(() => () => {
+    flushReorder.current?.();
+    if (copiedTimer.current) window.clearTimeout(copiedTimer.current);
+  }, []);
+
+  /**
+   * Copies a song title to the clipboard. The async Clipboard API is unavailable
+   * on plain HTTP and in some in-app browsers — exactly where a busking audience
+   * tends to land — so a hidden textarea + execCommand stands in for those.
+   */
+  const copyTitle = async (song: LiveBoardSong) => {
+    try {
+      await navigator.clipboard.writeText(song.title);
+    } catch {
+      const el = document.createElement('textarea');
+      el.value = song.title;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
+    setCopiedId(song.id);
+    if (copiedTimer.current) window.clearTimeout(copiedTimer.current);
+    copiedTimer.current = window.setTimeout(() => setCopiedId(null), COPIED_FEEDBACK_MS);
+  };
 
   const ordered = useMemo(() => {
     if (!pendingOrder) return songs;
@@ -314,18 +344,29 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                       )}
                     </button>
                   ) : (
-                    <span
-                      className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center ${
-                        song.sung ? 'bg-green-500 border-green-500' : 'border-gray-300 dark:border-gray-500'
+                    /* The audience can't mark anything sung, so that slot is
+                       better spent on the one thing they do want off a setlist:
+                       the song's name, ready to paste into a search or a chat. */
+                    <button
+                      onClick={() => copyTitle(song)}
+                      className={`shrink-0 w-5 h-5 flex items-center justify-center transition-colors ${
+                        copiedId === song.id
+                          ? 'text-green-500'
+                          : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
                       }`}
-                      aria-hidden="true"
+                      aria-label={t('board.copySongName', 'Copy song name')}
+                      title={copiedId === song.id ? t('common.copied', 'Copied!') : t('board.copySongName', 'Copy song name')}
                     >
-                      {song.sung && (
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      {copiedId === song.id ? (
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      ) : (
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
                       )}
-                    </span>
+                    </button>
                   )}
 
                   {/* Performing-now checkbox (admin only) */}

@@ -107,7 +107,7 @@ const BoardPage: React.FC = () => {
   /** Set when a guest tries to post before choosing a name (deferred naming). */
   const [namePrompt, setNamePrompt] = useState(false);
   /** What that guest was trying to say, replayed once they have a name. */
-  const [pending, setPending] = useState<{ content: string; fromDraft: boolean } | null>(null);
+  const [pending, setPending] = useState<string | null>(null);
   /** Messages that landed while the reader was scrolled up. Drives the jump button. */
   const [unread, setUnread] = useState(0);
 
@@ -296,7 +296,7 @@ const BoardPage: React.FC = () => {
    * the new name in context yet on this tick — reading it from state here would
    * post their first message under the auto-assigned handle.
    */
-  const postNow = async (content: string, fromDraft: boolean, authorName?: string) => {
+  const postNow = async (content: string, authorName?: string) => {
     // Ref, not the `posting` state: two Enters in the same tick both read the
     // pre-update state value and both get through. This flips synchronously.
     if (postingRef.current) return;
@@ -307,13 +307,13 @@ const BoardPage: React.FC = () => {
       if (isAdmin && (officialMode || endedAdmin)) {
         const msg = await postOfficialMessage(id, content);
         if (msg) setMessages((prev) => (prev.some((m) => m.id === msg.id) ? prev : [...prev, msg]));
-        if (fromDraft) draft.reset();
+        draft.reset();
         scrollToBottom();
       } else {
         const res = await postBoardMessage(id, content, myUserId, authorName ?? myDisplayName);
         if (res.ok) {
           if (res.data) setMessages((prev) => (prev.some((m) => m.id === res.data!.id) ? prev : [...prev, res.data!]));
-          if (fromDraft) draft.reset();
+          draft.reset();
           // Saying something is an implicit "I'm caught up" — go to your own
           // message even if you were reading back through the thread. Called
           // outright rather than left to the effect above, because the socket
@@ -329,19 +329,18 @@ const BoardPage: React.FC = () => {
     }
   };
 
-  /** Send the composer's text, or `override` for a one-tap reaction. */
-  const send = (override?: string) => {
-    const fromDraft = override === undefined;
-    const content = (fromDraft ? draft.value : override).trim();
+  /** Send whatever is in the composer. */
+  const send = () => {
+    const content = draft.value.trim();
     if (!content || postingRef.current) return;
     // Guests read the board without being asked for anything; the name is only
     // needed at the moment they first speak, where the reason is self-evident.
     if (!isLoggedIn && !localStorage.getItem('hw-guest-name')) {
-      setPending({ content, fromDraft });
+      setPending(content);
       setNamePrompt(true);
       return;
     }
-    postNow(content, fromDraft);
+    postNow(content);
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -696,16 +695,16 @@ const BoardPage: React.FC = () => {
                 {songs.length > 0 && <span className="tabular-nums">· {songs.length}</span>}
               </button>
 
-              {/* One-tap reactions. They post as ordinary messages, so everyone
-                  sees them and the mute/ended rules apply unchanged — no typing
-                  needed to join in mid-song. */}
+              {/* Emoji shortcuts. They append to the composer rather than
+                  posting on their own, so a tap can be stacked, mixed with
+                  typed text, and undone before anyone else sees it. */}
               {QUICK_REACTIONS.map((emoji) => (
                 <button
                   key={emoji}
-                  onClick={() => send(emoji)}
+                  onClick={() => draft.set(draft.value + emoji)}
                   disabled={posting}
                   className="shrink-0 min-w-[44px] min-h-[38px] inline-flex items-center justify-center text-lg leading-none rounded-full border border-gray-200 dark:border-gray-600 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 active:scale-90 disabled:opacity-40 transition-all"
-                  aria-label={t('board.sendReaction', 'Send {e}').replace('{e}', emoji)}
+                  aria-label={t('board.addReaction', 'Add {e}').replace('{e}', emoji)}
                 >
                   {emoji}
                 </button>
@@ -850,7 +849,7 @@ const BoardPage: React.FC = () => {
             setNamePrompt(false);
             const p = pending;
             setPending(null);
-            if (p) postNow(p.content, p.fromDraft, name);
+            if (p) postNow(p, name);
           }}
           onCancel={() => { setNamePrompt(false); setPending(null); }}
         />
