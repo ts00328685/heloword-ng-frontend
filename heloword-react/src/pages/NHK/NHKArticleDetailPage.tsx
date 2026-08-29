@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
-import { speakSentence, cancelPronouncing } from '../../services/tts.service';
-import { LangKey, ParagraphCard } from './ArticleShared';
+import { LangKey, ParagraphCard, useArticleSpeech } from './ArticleShared';
 import { trackContentView } from '../../services/analytics.service';
 
 function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
@@ -43,34 +42,6 @@ const NHKArticleDetailPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [activeLang, setActiveLang] = useState<LangKey>('zh');
-  const [speakingKey, setSpeakingKey] = useState<string | null>(null);
-  const speakingKeyRef = useRef<string | null>(null);
-
-  useEffect(() => () => { cancelPronouncing(); }, []);
-
-  useEffect(() => {
-    cancelPronouncing();
-    speakingKeyRef.current = null;
-    setSpeakingKey(null);
-  }, [activeLang]);
-
-  const triggerSpeak = useCallback((key: string, text: string, langCode: string) => {
-    if (speakingKeyRef.current === key) {
-      cancelPronouncing();
-      speakingKeyRef.current = null;
-      setSpeakingKey(null);
-      return;
-    }
-    speakingKeyRef.current = key;
-    setSpeakingKey(key);
-    cancelPronouncing();
-    speakSentence(text, langCode, {}, () => {
-      if (speakingKeyRef.current === key) {
-        speakingKeyRef.current = null;
-        setSpeakingKey(null);
-      }
-    });
-  }, []);
 
   useEffect(() => {
     if (!id) return;
@@ -92,6 +63,8 @@ const NHKArticleDetailPage: React.FC = () => {
     if (article) return buildParagraphsFromContent(article);
     return [];
   }, [article]);
+
+  const { speakingKey, triggerSpeak } = useArticleSpeech({ paragraphs, activeLang });
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
