@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NHKParagraph } from '../../services/nhkArticle.service';
-import { cleanSentenceForTTS, cleanWordText } from '../../services/tts.service';
+import { cancelPronouncing, cleanSentenceForTTS, cleanWordText, speakSentence } from '../../services/tts.service';
 
 export type LangKey = 'original' | 'zh' | 'en' | 'ja';
 
@@ -11,6 +11,114 @@ const TRANSLATION_TTS: Record<LangKey, string> = {
   zh: 'zh-TW',
   ja: 'ja-JP',
 };
+
+type SpeechItem = { key: string; text: string; langCode: string };
+
+/**
+ * Article playback: clicking a paragraph speaker starts a continuous run that
+ * keeps going through the following paragraphs (same track — original or
+ * translation) until the user presses stop on the paragraph being spoken,
+ * starts another one, switches language, or leaves the page.
+ * Vocabulary words stay one-shot.
+ */
+export function useArticleSpeech({
+  paragraphs,
+  activeLang,
+  originalTtsCode = 'ja-JP',
+  originalCleanLang = 'ja',
+}: {
+  paragraphs: NHKParagraph[];
+  activeLang: LangKey;
+  originalTtsCode?: string;
+  originalCleanLang?: string;
+}) {
+  const [speakingKey, setSpeakingKey] = useState<string | null>(null);
+  const speakingKeyRef = useRef<string | null>(null);
+  // Bumped whenever playback should abandon whatever it was doing; callbacks
+  // from cancelled utterances compare against it and bail out.
+  const runIdRef = useRef(0);
+
+  const paragraphsRef = useRef(paragraphs);
+  paragraphsRef.current = paragraphs;
+  const activeLangRef = useRef(activeLang);
+  activeLangRef.current = activeLang;
+
+  const stop = useCallback(() => {
+    runIdRef.current += 1;
+    cancelPronouncing();
+    speakingKeyRef.current = null;
+    setSpeakingKey(null);
+  }, []);
+
+  useEffect(() => () => { stop(); }, [stop]);
+  useEffect(() => { stop(); }, [activeLang, stop]);
+
+  const buildQueue = useCallback(
+    (key: string, text: string, langCode: string): SpeechItem[] => {
+      const match = /^(\d+)-(original|translation)$/.exec(key);
+      if (!match) return [{ key, text, langCode }];
+
+      const start = Number(match[1]);
+      const track = match[2];
+      const lang = activeLangRef.current;
+      const items: SpeechItem[] = [];
+
+      for (let i = start; i < paragraphsRef.current.length; i++) {
+        const p = paragraphsRef.current[i];
+        const raw = track === 'original' ? p.original : lang === 'original' ? '' : p[lang];
+        if (!raw?.trim()) continue;
+        items.push(
+          track === 'original'
+            ? {
+                key: `${i}-original`,
+                text: cleanSentenceForTTS(raw, originalCleanLang),
+                langCode: originalTtsCode,
+              }
+            : {
+                key: `${i}-translation`,
+                text: cleanSentenceForTTS(raw, lang),
+                langCode: TRANSLATION_TTS[lang],
+              },
+        );
+      }
+
+      return items.length > 0 ? items : [{ key, text, langCode }];
+    },
+    [originalCleanLang, originalTtsCode],
+  );
+
+  const playFrom = useCallback((items: SpeechItem[], index: number, runId: number) => {
+    if (runId !== runIdRef.current) return;
+    if (index >= items.length) {
+      speakingKeyRef.current = null;
+      setSpeakingKey(null);
+      return;
+    }
+    const item = items[index];
+    speakingKeyRef.current = item.key;
+    setSpeakingKey(item.key);
+    speakSentence(item.text, item.langCode, {}, () => {
+      if (runId !== runIdRef.current) return;
+      playFrom(items, index + 1, runId);
+    });
+  }, []);
+
+  const triggerSpeak = useCallback(
+    (key: string, text: string, langCode: string) => {
+      if (speakingKeyRef.current === key) {
+        stop();
+        return;
+      }
+      runIdRef.current += 1;
+      const runId = runIdRef.current;
+      cancelPronouncing();
+      playFrom(buildQueue(key, text, langCode), 0, runId);
+    },
+    [buildQueue, playFrom, stop],
+  );
+
+  return { speakingKey, triggerSpeak, stopSpeaking: stop };
+}
 
 export const SpeakerButton: React.FC<{
   onClick: (e: React.MouseEvent) => void;
@@ -63,13 +171,26 @@ export const ParagraphCard: React.FC<{
   const [vocabOpen, setVocabOpen] = useState(false);
   const translation = activeLang === 'original' ? null : paragraph[activeLang];
 
+  const cardRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => { setTranslationOpen(false); }, [activeLang]);
 
   const originalKey = `${index}-original`;
   const translationKey = `${index}-translation`;
+  const isSpeaking = speakingKey === originalKey || speakingKey === translationKey;
+
+  // Continuous playback walks into cards the user never touched: reveal the
+  // translation being read and bring the card (and its stop button) on screen.
+  useEffect(() => {
+    if (speakingKey === translationKey) setTranslationOpen(true);
+  }, [speakingKey, translationKey]);
+
+  useEffect(() => {
+    if (isSpeaking) cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [isSpeaking]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+    <div ref={cardRef} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
       <div className="p-4">
         <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-2">#{index + 1}</p>
         <div className="flex items-start gap-1">
