@@ -65,7 +65,7 @@ const ENArticleDetailPage: React.FC = () => {
     return buildParagraphsFromContent(article);
   }, [article]);
 
-  const { speakingKey, speakingMode, triggerSpeak } = useArticleSpeech({
+  const { speakingKey, speakingMode, spokenRange, triggerSpeak } = useArticleSpeech({
     paragraphs,
     activeLang,
     originalTtsCode: 'en-US',
@@ -162,6 +162,7 @@ const ENArticleDetailPage: React.FC = () => {
                     index={i}
                     speakingKey={speakingKey}
                     speakingMode={speakingMode}
+                    spokenRange={spokenRange}
                     onSpeak={triggerSpeak}
                     originalTtsCode="en-US"
                     originalCleanLang="en"

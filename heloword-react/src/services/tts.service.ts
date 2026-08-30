@@ -54,39 +54,179 @@ export function cleanWordText(text: string): string {
     .trim();
 }
 
+/** A character of the source text that survived cleaning, with where it came from. */
+interface SrcChar {
+  c: string;
+  /** Index in the source string (UTF-16 code units). */
+  i: number;
+}
+
+/** Cleaned TTS text plus, per character, the index it came from in the source. */
+export interface MappedText {
+  text: string;
+  /** map[i] is the source index of text[i]; strictly increasing. */
+  map: number[];
+}
+
+/** Ruby/bracket annotations and HTML tags, all stripped before speaking. */
+const ANNOTATION_PATTERNS = [/\[.*?\]/g, /（.*?）/g, /\(.*?\)/g, /【.*?】/g, /<[^>]*>/g];
+
+const HAS_KANA = /[ぁ-ゖ゠-ヿ]/;
+
+const toText = (chars: SrcChar[]): string => chars.map((ch) => ch.c).join('');
+
+const trimChars = (chars: SrcChar[]): SrcChar[] => {
+  let start = 0;
+  let end = chars.length;
+  while (start < end && /\s/.test(chars[start].c)) start++;
+  while (end > start && /\s/.test(chars[end - 1].c)) end--;
+  return chars.slice(start, end);
+};
+
+/** Split on '\n', keeping each line's terminating newline so it can be re-joined. */
+function splitLines(chars: SrcChar[]): { chars: SrcChar[]; sep: SrcChar | null }[] {
+  const lines: { chars: SrcChar[]; sep: SrcChar | null }[] = [];
+  let current: SrcChar[] = [];
+  for (const ch of chars) {
+    if (ch.c === '\n') {
+      lines.push({ chars: current, sep: ch });
+      current = [];
+    } else {
+      current.push(ch);
+    }
+  }
+  lines.push({ chars: current, sep: null });
+  return lines;
+}
+
+/** Split after every '。', matching `String.split(/(?<=。)/)` (no empty trailing part). */
+function splitAfterPeriod(chars: SrcChar[]): SrcChar[][] {
+  const parts: SrcChar[][] = [];
+  let current: SrcChar[] = [];
+  for (const ch of chars) {
+    current.push(ch);
+    if (ch.c === '。') {
+      parts.push(current);
+      current = [];
+    }
+  }
+  if (current.length > 0) parts.push(current);
+  return parts.length > 0 ? parts : [[]];
+}
+
 /**
- * Prepare sentence text for TTS.
+ * Prepare sentence text for TTS while remembering where every spoken character
+ * came from, so word-boundary events can be mapped back onto the displayed text.
+ *
  * Strips bracket annotations and, for Japanese, discards any trailing
  * Chinese/English translation lines that lack hiragana/katakana characters.
  */
-export function cleanSentenceForTTS(text: string, lang: string): string {
-  let cleaned = text
-    .replace(/\[.*?\]/g, '')
-    .replace(/（.*?）/g, '')
-    .replace(/\(.*?\)/g, '')
-    .replace(/【.*?】/g, '')
-    .replace(/<[^>]*>/g, '')
-    .replace(/ {2,}/g, ' ')
-    .trim();
+export function cleanSentenceForTTSMapped(text: string, lang: string): MappedText {
+  const removed = new Array<boolean>(text.length).fill(false);
+  for (const pattern of ANNOTATION_PATTERNS) {
+    pattern.lastIndex = 0;
+    let match: RegExpExecArray | null;
+    while ((match = pattern.exec(text)) !== null) {
+      for (let i = match.index; i < match.index + match[0].length; i++) removed[i] = true;
+      if (match[0].length === 0) pattern.lastIndex++;
+    }
+  }
+
+  const kept: SrcChar[] = [];
+  for (let i = 0; i < text.length; i++) if (!removed[i]) kept.push({ c: text[i], i });
+
+  // Collapse runs of spaces (the `/ {2,}/g → ' '` step), then trim.
+  let chars = kept.filter((ch, idx) => !(ch.c === ' ' && kept[idx - 1]?.c === ' '));
+  chars = trimChars(chars);
 
   if (lang === 'jp' || lang === 'ja') {
-    const hasKana = /[ぁ-ゖ゠-ヿ]/;
-    // If multi-line, keep only lines containing hiragana/katakana
-    const lines = cleaned.split('\n');
+    const lines = splitLines(chars);
     if (lines.length > 1) {
-      const jpLines = lines.filter(l => hasKana.test(l));
-      if (jpLines.length > 0) cleaned = jpLines.join('\n').trim();
+      const jpLines = lines.filter((line) => HAS_KANA.test(toText(line.chars)));
+      if (jpLines.length > 0) {
+        const joined: SrcChar[] = [];
+        jpLines.forEach((line, idx) => {
+          if (idx > 0) {
+            const sep = jpLines[idx - 1].sep;
+            if (sep) joined.push(sep);
+          }
+          joined.push(...line.chars);
+        });
+        chars = trimChars(joined);
+      }
     } else {
       // Single line: strip segments after 。 that contain no kana
-      const parts = cleaned.split(/(?<=。)/);
-      const jpParts = parts.filter(p => !p.trim() || hasKana.test(p));
+      const parts = splitAfterPeriod(chars);
+      const jpParts = parts.filter((part) => {
+        const s = toText(part);
+        return !s.trim() || HAS_KANA.test(s);
+      });
       if (jpParts.length > 0 && jpParts.length < parts.length) {
-        cleaned = jpParts.join('').trim();
+        chars = trimChars(jpParts.flat());
       }
     }
   }
 
-  return cleaned;
+  return { text: toText(chars), map: chars.map((ch) => ch.i) };
+}
+
+/** Prepare sentence text for TTS. See `cleanSentenceForTTSMapped`. */
+export function cleanSentenceForTTS(text: string, lang: string): string {
+  return cleanSentenceForTTSMapped(text, lang).text;
+}
+
+/** A half-open range of character offsets. */
+export interface TextRange {
+  start: number;
+  end: number;
+}
+
+/** Characters that end a readable phrase (the highlight advances at these). */
+const PHRASE_BREAK = /[。．.！!？?、，,；;：:…\n]/;
+/** Closing marks that belong to the phrase they follow. */
+const PHRASE_TAIL = /[\s」』）)】｝}"'”’]/;
+
+/**
+ * Split text into phrase-sized chunks for highlighting: break at punctuation,
+ * cap the length (at a space where the script has them), and merge fragments
+ * too short to be worth showing on their own.
+ *
+ * Highlighting a phrase rather than a single word keeps the marker readable —
+ * word boundaries fire far too quickly to follow, and engines report a length
+ * of one character for scripts that do not use spaces.
+ */
+export function splitPhrases(text: string, maxLength = 36, minLength = 8): TextRange[] {
+  const ranges: TextRange[] = [];
+  let start = 0;
+  let i = 0;
+
+  while (i < text.length) {
+    const overLong = i - start + 1 >= maxLength;
+    if (!PHRASE_BREAK.test(text[i]) && !overLong && i < text.length - 1) {
+      i++;
+      continue;
+    }
+
+    let end = i + 1;
+    if (overLong && !PHRASE_BREAK.test(text[i])) {
+      const lastSpace = text.lastIndexOf(' ', end - 1);
+      if (lastSpace > start) end = lastSpace + 1;
+    }
+    while (end < text.length && PHRASE_TAIL.test(text[end])) end++;
+    ranges.push({ start, end });
+    start = end;
+    i = end;
+  }
+  if (start < text.length) ranges.push({ start, end: text.length });
+
+  // Fold stubs ("はい、") into the phrase that follows them.
+  const merged: TextRange[] = [];
+  for (const range of ranges) {
+    const previous = merged[merged.length - 1];
+    if (previous && previous.end - previous.start < minLength) previous.end = range.end;
+    else merged.push({ ...range });
+  }
+  return merged;
 }
 
 export interface SpeakOptions {
@@ -135,12 +275,17 @@ export function pronounceWord(word: string, lang: string, options: SpeakOptions 
 /**
  * Speak a sentence in the given BCP-47 lang code, then call onDone.
  * Handles async voice loading on mobile Chrome automatically.
+ *
+ * `onBoundary` reports the word about to be spoken as an offset into `text`.
+ * Not every engine emits boundary events (notably Android's Google TTS), so
+ * callers must treat it as an enhancement, not a guarantee.
  */
 export function speakSentence(
   text: string,
   langCode: string,
   options: SpeakOptions = {},
   onDone: () => void = () => {},
+  onBoundary?: (charIndex: number, charLength: number) => void,
 ): void {
   if (!('speechSynthesis' in window)) { onDone(); return; }
   const s = getTTSSettings();
@@ -155,6 +300,19 @@ export function speakSentence(
     utt.voice = findVoice(langCode);
     utt.onend = onDone;
     utt.onerror = onDone;
+    if (onBoundary) {
+      utt.onboundary = (e) => {
+        if (e.name && e.name !== 'word') return;
+        // charLength is optional in the spec; fall back to the next whitespace,
+        // and to a single character for scripts that do not use spaces.
+        let length = e.charLength ?? 0;
+        if (!length) {
+          const next = text.slice(e.charIndex).search(/\s/);
+          length = next > 0 ? next : 1;
+        }
+        onBoundary(e.charIndex, length);
+      };
+    }
     window.speechSynthesis.speak(utt);
   };
 
