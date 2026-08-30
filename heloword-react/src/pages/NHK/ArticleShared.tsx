@@ -19,22 +19,15 @@ const TRANSLATION_TTS: Record<LangKey, string> = {
   ja: 'ja-JP',
 };
 
-/**
- * One utterance: a single phrase of a paragraph. Paragraphs are spoken one
- * phrase at a time so the highlight can follow real speech events — WebKit and
- * Android's TTS never report word boundaries, but they do start and end each
- * utterance, and a phrase-sized utterance is a phrase-sized highlight.
- */
 type SpeechItem = {
-  /** Paragraph this phrase belongs to; drives the playing/stop button state. */
   key: string;
   /** Text handed to the speech engine (annotations stripped). */
   text: string;
   langCode: string;
   /** map[i] = index of text[i] in the displayed text; absent for single words. */
   map?: number[];
-  /** Bounds of this phrase in the displayed text. */
-  range?: TextRange;
+  /** Phrase chunks over `text`, used to keep the highlight readable. */
+  phrases?: TextRange[];
 };
 
 /** What a speaker button asks for. `cleanLang` marks it as a sentence: it gets
@@ -114,38 +107,17 @@ export function useArticleSpeech({
 
   const buildQueue = useCallback(
     ({ key, raw, langCode, mode, cleanLang }: SpeakRequest): SpeechItem[] => {
-      /** Split a paragraph into one utterance per phrase, each mapped back to
-       *  its place in the displayed text. */
-      const phrasesOf = (
-        itemKey: string,
-        source: string,
-        code: string,
-        lang: string,
-      ): SpeechItem[] => {
-        const { text, map } = cleanSentenceForTTSMapped(source, lang);
-        if (!text.trim()) return [];
-        return splitPhrases(text)
-          .map(({ start, end }) => {
-            const chunk = map.slice(start, end);
-            return {
-              key: itemKey,
-              text: text.slice(start, end),
-              langCode: code,
-              map: chunk,
-              range: chunk.length
-                ? { start: chunk[0], end: chunk[chunk.length - 1] + 1 }
-                : undefined,
-            };
-          })
-          .filter((item) => item.text.trim().length > 0);
+      const sentence = (itemKey: string, source: string, code: string, lang: string): SpeechItem => {
+        const cleaned = cleanSentenceForTTSMapped(source, lang);
+        return { key: itemKey, langCode: code, ...cleaned, phrases: splitPhrases(cleaned.text) };
       };
 
-      const self: SpeechItem[] = cleanLang
-        ? phrasesOf(key, raw, langCode, cleanLang)
-        : [{ key, langCode, text: cleanWordText(raw) }];
+      const self: SpeechItem = cleanLang
+        ? sentence(key, raw, langCode, cleanLang)
+        : { key, langCode, text: cleanWordText(raw) };
 
       const match = /^(\d+)-(original|translation)$/.exec(key);
-      if (mode !== 'sequence' || !match) return self;
+      if (mode !== 'sequence' || !match) return [self];
 
       const start = Number(match[1]);
       const track = match[2];
@@ -157,13 +129,13 @@ export function useArticleSpeech({
         const text = track === 'original' ? p.original : lang === 'original' ? '' : p[lang];
         if (!text?.trim()) continue;
         items.push(
-          ...(track === 'original'
-            ? phrasesOf(`${i}-original`, text, originalTtsCode, originalCleanLang)
-            : phrasesOf(`${i}-translation`, text, TRANSLATION_TTS[lang], lang)),
+          track === 'original'
+            ? sentence(`${i}-original`, text, originalTtsCode, originalCleanLang)
+            : sentence(`${i}-translation`, text, TRANSLATION_TTS[lang], lang),
         );
       }
 
-      return items.length > 0 ? items : self;
+      return items.length > 0 ? items : [self];
     },
     [originalCleanLang, originalTtsCode],
   );
@@ -187,27 +159,12 @@ export function useArticleSpeech({
         setSpokenRange(null);
         return;
       }
-
       const item = items[index];
       speakingKeyRef.current = item.key;
       speakingModeRef.current = mode;
       setSpeakingKey(item.key);
       setSpeakingMode(mode);
-      // The phrase is highlighted for exactly as long as its own utterance
-      // speaks — no timing estimate involved.
-      setSpokenRange(
-        item.range
-          ? {
-              key: item.key,
-              start: item.range.start,
-              end: item.range.end,
-              wordStart: item.range.start,
-              wordEnd: item.range.start,
-            }
-          : null,
-      );
-
-      const map = item.map;
+      setSpokenRange(null);
       speakSentence(
         item.text,
         item.langCode,
@@ -216,26 +173,34 @@ export function useArticleSpeech({
           if (runId !== runIdRef.current) return;
           playFrom(items, index + 1, runId, mode);
         },
-        {
-          // Where the engine does report word boundaries (Chromium on desktop),
-          // add the word marker inside the phrase.
-          onBoundary:
-            map && item.range
-              ? (charIndex, charLength) => {
-                  if (runId !== runIdRef.current) return;
-                  const from = Math.min(charIndex, map.length - 1);
-                  const to = Math.min(charIndex + charLength, map.length) - 1;
-                  if (from < 0 || to < from) return;
-                  setSpokenRange({
-                    key: item.key,
-                    start: item.range!.start,
-                    end: item.range!.end,
-                    wordStart: map[from],
-                    wordEnd: map[to] + 1,
-                  });
-                }
-              : undefined,
-        },
+        item.map
+          ? (charIndex, charLength) => {
+              if (runId !== runIdRef.current) return;
+              const map = item.map!;
+              // Cleaned-text offsets → offsets in the text on screen. A range
+              // that spans a stripped annotation keeps it inside, which reads
+              // better than a highlight broken into pieces.
+              const toDisplay = ({ start, end }: TextRange): TextRange | null => {
+                const from = Math.min(start, map.length - 1);
+                const to = Math.min(end, map.length) - 1;
+                return from < 0 || to < from ? null : { start: map[from], end: map[to] + 1 };
+              };
+
+              const word = toDisplay({ start: charIndex, end: charIndex + charLength });
+              if (!word) return;
+              const phraseSource =
+                item.phrases?.find((p) => charIndex >= p.start && charIndex < p.end) ??
+                { start: 0, end: map.length };
+              const phrase = toDisplay(phraseSource) ?? word;
+              setSpokenRange({
+                key: item.key,
+                start: Math.min(phrase.start, word.start),
+                end: Math.max(phrase.end, word.end),
+                wordStart: word.start,
+                wordEnd: word.end,
+              });
+            }
+          : undefined,
       );
     },
     [],

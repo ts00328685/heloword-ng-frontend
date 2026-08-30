@@ -272,26 +272,20 @@ export function pronounceWord(word: string, lang: string, options: SpeakOptions 
   }
 }
 
-/** Optional progress reporting for a spoken utterance. */
-export interface SpeechProgress {
-  /**
-   * The word about to be spoken, as an offset into `text`. Only Chromium on
-   * desktop reports these: WebKit (all iOS browsers) and Android's Google TTS
-   * never do, so callers must have a fallback rather than depend on it.
-   */
-  onBoundary?: (charIndex: number, charLength: number) => void;
-}
-
 /**
  * Speak a sentence in the given BCP-47 lang code, then call onDone.
  * Handles async voice loading on mobile Chrome automatically.
+ *
+ * `onBoundary` reports the word about to be spoken as an offset into `text`.
+ * Not every engine emits boundary events (notably Android's Google TTS), so
+ * callers must treat it as an enhancement, not a guarantee.
  */
 export function speakSentence(
   text: string,
   langCode: string,
   options: SpeakOptions = {},
   onDone: () => void = () => {},
-  progress: SpeechProgress = {},
+  onBoundary?: (charIndex: number, charLength: number) => void,
 ): void {
   if (!('speechSynthesis' in window)) { onDone(); return; }
   const s = getTTSSettings();
@@ -306,7 +300,7 @@ export function speakSentence(
     utt.voice = findVoice(langCode);
     utt.onend = onDone;
     utt.onerror = onDone;
-    if (progress.onBoundary) {
+    if (onBoundary) {
       utt.onboundary = (e) => {
         if (e.name && e.name !== 'word') return;
         // charLength is optional in the spec; fall back to the next whitespace,
@@ -316,7 +310,7 @@ export function speakSentence(
           const next = text.slice(e.charIndex).search(/\s/);
           length = next > 0 ? next : 1;
         }
-        progress.onBoundary!(e.charIndex, length);
+        onBoundary(e.charIndex, length);
       };
     }
     window.speechSynthesis.speak(utt);
