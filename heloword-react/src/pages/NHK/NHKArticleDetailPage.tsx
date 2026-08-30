@@ -64,7 +64,7 @@ const NHKArticleDetailPage: React.FC = () => {
     return [];
   }, [article]);
 
-  const { speakingKey, triggerSpeak } = useArticleSpeech({ paragraphs, activeLang });
+  const { speakingKey, speakingMode, triggerSpeak } = useArticleSpeech({ paragraphs, activeLang });
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
@@ -155,6 +155,7 @@ const NHKArticleDetailPage: React.FC = () => {
                     activeLang={activeLang}
                     index={i}
                     speakingKey={speakingKey}
+                    speakingMode={speakingMode}
                     onSpeak={triggerSpeak}
                   />
                 ))

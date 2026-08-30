@@ -56,6 +56,10 @@ const zh = {
     reading: '讀音',
     source: '原始連結',
     noParagraphs: '無段落資料',
+    playSequence: '從這段連續播放到最後',
+    playOnce: '只播放這一段',
+    playRepeat: '重複播放這一段',
+    stopPlaying: '停止播放',
   },
   login: {
     welcome: '歡迎回來',
