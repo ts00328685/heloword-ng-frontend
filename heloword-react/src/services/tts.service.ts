@@ -272,27 +272,8 @@ export function pronounceWord(word: string, lang: string, options: SpeakOptions 
   }
 }
 
-/**
- * Rough characters per second each language is spoken at, at rate 1.0.
- * Used to advance the highlight on engines that never report word boundaries.
- */
-const BASE_CHARS_PER_SECOND: Record<string, number> = {
-  ja: 7.5,
-  zh: 5.5,
-  ko: 6.5,
-  en: 15,
-  de: 14,
-};
-
-/** Starting estimate of speaking pace, in characters per second at rate 1.0. */
-export function baseCharsPerSecond(langCode: string): number {
-  return BASE_CHARS_PER_SECOND[langCode.split('-')[0]] ?? 13;
-}
-
 /** Optional progress reporting for a spoken utterance. */
 export interface SpeechProgress {
-  /** The engine has begun speaking (not all engines fire this promptly). */
-  onStart?: () => void;
   /**
    * The word about to be spoken, as an offset into `text`. Only Chromium on
    * desktop reports these: WebKit (all iOS browsers) and Android's Google TTS
@@ -325,7 +306,6 @@ export function speakSentence(
     utt.voice = findVoice(langCode);
     utt.onend = onDone;
     utt.onerror = onDone;
-    if (progress.onStart) utt.onstart = () => progress.onStart!();
     if (progress.onBoundary) {
       utt.onboundary = (e) => {
         if (e.name && e.name !== 'word') return;
