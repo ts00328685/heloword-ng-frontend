@@ -31,11 +31,11 @@ export function toLangCode(lang: string): string {
 export function findVoice(langCode: string): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
   if (langCode === 'en-US') {
-    const samantha = voices.find((v) => v.name === 'Samantha' && v.lang === 'en-US');
+    const samantha = voices.find((v) => (v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('samantha') || v.name.toLowerCase().includes('premium') || v.name.toLowerCase().includes('enhanced')) && v.lang === 'en-US');
     if (samantha) return samantha;
   }
   if (langCode === 'ja-JP') {
-    const kyoko = voices.find((v) => v.name === 'Kyoko' && v.lang === 'ja-JP');
+    const kyoko = voices.find((v) => (v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('kyoko') || v.name.toLowerCase().includes('premium') || v.name.toLowerCase().includes('enhanced')) && v.lang === 'ja-JP');
     if (kyoko) return kyoko;
   }
   const prefix = langCode.split('-')[0]; // e.g. 'ja' from 'ja-JP'
