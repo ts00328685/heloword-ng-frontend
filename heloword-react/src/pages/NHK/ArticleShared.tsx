@@ -15,11 +15,16 @@ const TRANSLATION_TTS: Record<LangKey, string> = {
 type SpeechItem = { key: string; text: string; langCode: string };
 
 /**
- * Article playback: clicking a paragraph speaker starts a continuous run that
- * keeps going through the following paragraphs (same track — original or
- * translation) until the user presses stop on the paragraph being spoken,
- * starts another one, switches language, or leaves the page.
- * Vocabulary words stay one-shot.
+ * sequence — read this paragraph, then keep going through the rest of the article.
+ * once     — read this paragraph and stop.
+ * repeat   — read this paragraph over and over until stopped.
+ */
+export type SpeakMode = 'sequence' | 'once' | 'repeat';
+
+/**
+ * Article playback in three modes (see SpeakMode). A run ends when the user
+ * presses stop on the button that is playing, starts another one, switches
+ * language, or leaves the page. Vocabulary words are always one-shot.
  */
 export function useArticleSpeech({
   paragraphs,
@@ -33,7 +38,9 @@ export function useArticleSpeech({
   originalCleanLang?: string;
 }) {
   const [speakingKey, setSpeakingKey] = useState<string | null>(null);
+  const [speakingMode, setSpeakingMode] = useState<SpeakMode | null>(null);
   const speakingKeyRef = useRef<string | null>(null);
+  const speakingModeRef = useRef<SpeakMode | null>(null);
   // Bumped whenever playback should abandon whatever it was doing; callbacks
   // from cancelled utterances compare against it and bail out.
   const runIdRef = useRef(0);
@@ -47,16 +54,18 @@ export function useArticleSpeech({
     runIdRef.current += 1;
     cancelPronouncing();
     speakingKeyRef.current = null;
+    speakingModeRef.current = null;
     setSpeakingKey(null);
+    setSpeakingMode(null);
   }, []);
 
   useEffect(() => () => { stop(); }, [stop]);
   useEffect(() => { stop(); }, [activeLang, stop]);
 
   const buildQueue = useCallback(
-    (key: string, text: string, langCode: string): SpeechItem[] => {
+    (key: string, text: string, langCode: string, mode: SpeakMode): SpeechItem[] => {
       const match = /^(\d+)-(original|translation)$/.exec(key);
-      if (!match) return [{ key, text, langCode }];
+      if (mode !== 'sequence' || !match) return [{ key, text, langCode }];
 
       const start = Number(match[1]);
       const track = match[2];
@@ -87,63 +96,141 @@ export function useArticleSpeech({
     [originalCleanLang, originalTtsCode],
   );
 
-  const playFrom = useCallback((items: SpeechItem[], index: number, runId: number) => {
-    if (runId !== runIdRef.current) return;
-    if (index >= items.length) {
-      speakingKeyRef.current = null;
-      setSpeakingKey(null);
-      return;
-    }
-    const item = items[index];
-    speakingKeyRef.current = item.key;
-    setSpeakingKey(item.key);
-    speakSentence(item.text, item.langCode, {}, () => {
+  const playFrom = useCallback(
+    (items: SpeechItem[], index: number, runId: number, mode: SpeakMode) => {
       if (runId !== runIdRef.current) return;
-      playFrom(items, index + 1, runId);
-    });
-  }, []);
+      if (index >= items.length) {
+        if (mode === 'repeat') {
+          // Short breath between repeats; also keeps an empty/failing utterance
+          // from turning the loop into a tight recursion.
+          window.setTimeout(() => {
+            if (runId === runIdRef.current) playFrom(items, 0, runId, mode);
+          }, 500);
+          return;
+        }
+        speakingKeyRef.current = null;
+        speakingModeRef.current = null;
+        setSpeakingKey(null);
+        setSpeakingMode(null);
+        return;
+      }
+      const item = items[index];
+      speakingKeyRef.current = item.key;
+      speakingModeRef.current = mode;
+      setSpeakingKey(item.key);
+      setSpeakingMode(mode);
+      speakSentence(item.text, item.langCode, {}, () => {
+        if (runId !== runIdRef.current) return;
+        playFrom(items, index + 1, runId, mode);
+      });
+    },
+    [],
+  );
 
   const triggerSpeak = useCallback(
-    (key: string, text: string, langCode: string) => {
-      if (speakingKeyRef.current === key) {
+    (key: string, text: string, langCode: string, mode: SpeakMode = 'once') => {
+      if (speakingKeyRef.current === key && speakingModeRef.current === mode) {
         stop();
         return;
       }
       runIdRef.current += 1;
       const runId = runIdRef.current;
       cancelPronouncing();
-      playFrom(buildQueue(key, text, langCode), 0, runId);
+      playFrom(buildQueue(key, text, langCode, mode), 0, runId, mode);
     },
     [buildQueue, playFrom, stop],
   );
 
-  return { speakingKey, triggerSpeak, stopSpeaking: stop };
+  return { speakingKey, speakingMode, triggerSpeak, stopSpeaking: stop };
 }
+
+const MODE_ICON: Record<SpeakMode, (cls: string) => React.ReactElement> = {
+  // Play-through: a playlist with a play head.
+  sequence: (cls) => (
+    <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h12M4 11h9M4 16h6" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 13l7 4-7 4v-8z" />
+    </svg>
+  ),
+  // Single read: plain speaker.
+  once: (cls) => (
+    <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 5.05a9 9 0 010 12.728M9 9H5a2 2 0 00-2 2v2a2 2 0 002 2h4l5 5V4L9 9z" />
+    </svg>
+  ),
+  // Loop the same paragraph.
+  repeat: (cls) => (
+    <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+      />
+    </svg>
+  ),
+};
+
+const MODE_LABEL: Record<SpeakMode, string> = {
+  sequence: 'nhk.playSequence',
+  once: 'nhk.playOnce',
+  repeat: 'nhk.playRepeat',
+};
+
+const SPEAK_MODES: SpeakMode[] = ['sequence', 'once', 'repeat'];
 
 export const SpeakerButton: React.FC<{
   onClick: (e: React.MouseEvent) => void;
   isPlaying?: boolean;
   small?: boolean;
-}> = ({ onClick, isPlaying, small }) => (
-  <button
-    onClick={onClick}
-    className={`${small ? 'p-0.5' : 'p-1'} rounded-md transition-colors shrink-0 ${
-      isPlaying
-        ? 'text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300'
-        : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
-    }`}
-    aria-label={isPlaying ? 'Stop' : 'Speak'}
-  >
-    {isPlaying ? (
-      <svg className={small ? 'w-3.5 h-3.5' : 'w-4 h-4'} viewBox="0 0 24 24" fill="currentColor">
-        <rect x="6" y="6" width="12" height="12" rx="1" />
-      </svg>
-    ) : (
-      <svg className={small ? 'w-3.5 h-3.5' : 'w-4 h-4'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M17.95 5.05a9 9 0 010 12.728M9 9H5a2 2 0 00-2 2v2a2 2 0 002 2h4l5 5V4L9 9z" />
-      </svg>
-    )}
-  </button>
+  mode?: SpeakMode;
+}> = ({ onClick, isPlaying, small, mode = 'once' }) => {
+  const { t } = useTranslation();
+  const label = isPlaying ? t('nhk.stopPlaying') : t(MODE_LABEL[mode]);
+  return (
+    <button
+      onClick={onClick}
+      title={label}
+      className={`${small ? 'p-0.5' : 'p-1'} rounded-md transition-colors shrink-0 ${
+        isPlaying
+          ? 'text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300'
+          : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+      }`}
+      aria-label={label}
+    >
+      {isPlaying ? (
+        <svg className={small ? 'w-3.5 h-3.5' : 'w-4 h-4'} viewBox="0 0 24 24" fill="currentColor">
+          <rect x="6" y="6" width="12" height="12" rx="1" />
+        </svg>
+      ) : (
+        MODE_ICON[mode](small ? 'w-3.5 h-3.5' : 'w-4 h-4')
+      )}
+    </button>
+  );
+};
+
+/** The three playback modes, stacked one per line beside a paragraph. */
+export const SpeakerControls: React.FC<{
+  speakKey: string;
+  text: string;
+  langCode: string;
+  speakingKey: string | null;
+  speakingMode: SpeakMode | null;
+  onSpeak: (key: string, text: string, langCode: string, mode: SpeakMode) => void;
+}> = ({ speakKey, text, langCode, speakingKey, speakingMode, onSpeak }) => (
+  <div className="flex flex-col items-center gap-0.5 shrink-0">
+    {SPEAK_MODES.map((mode) => (
+      <SpeakerButton
+        key={mode}
+        mode={mode}
+        isPlaying={speakingKey === speakKey && speakingMode === mode}
+        onClick={(e) => {
+          e.stopPropagation();
+          onSpeak(speakKey, text, langCode, mode);
+        }}
+      />
+    ))}
+  </div>
 );
 
 export const ParagraphCard: React.FC<{
@@ -151,7 +238,8 @@ export const ParagraphCard: React.FC<{
   activeLang: LangKey;
   index: number;
   speakingKey: string | null;
-  onSpeak: (key: string, text: string, langCode: string) => void;
+  speakingMode: SpeakMode | null;
+  onSpeak: (key: string, text: string, langCode: string, mode: SpeakMode) => void;
   originalTtsCode?: string;
   originalCleanLang?: string;
   vocabTtsCode?: string;
@@ -160,6 +248,7 @@ export const ParagraphCard: React.FC<{
   activeLang,
   index,
   speakingKey,
+  speakingMode,
   onSpeak,
   originalTtsCode = 'ja-JP',
   originalCleanLang = 'ja',
@@ -195,12 +284,13 @@ export const ParagraphCard: React.FC<{
         <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-2">#{index + 1}</p>
         <div className="flex items-start gap-1">
           <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed flex-1">{paragraph.original}</p>
-          <SpeakerButton
-            isPlaying={speakingKey === originalKey}
-            onClick={(e) => {
-              e.stopPropagation();
-              onSpeak(originalKey, cleanSentenceForTTS(paragraph.original, originalCleanLang), originalTtsCode);
-            }}
+          <SpeakerControls
+            speakKey={originalKey}
+            text={cleanSentenceForTTS(paragraph.original, originalCleanLang)}
+            langCode={originalTtsCode}
+            speakingKey={speakingKey}
+            speakingMode={speakingMode}
+            onSpeak={onSpeak}
           />
         </div>
       </div>
@@ -226,12 +316,13 @@ export const ParagraphCard: React.FC<{
           {translationOpen && (
             <div className="flex items-start gap-1 px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
               <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">{translation}</p>
-              <SpeakerButton
-                isPlaying={speakingKey === translationKey}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onSpeak(translationKey, cleanSentenceForTTS(translation, activeLang), TRANSLATION_TTS[activeLang]);
-                }}
+              <SpeakerControls
+                speakKey={translationKey}
+                text={cleanSentenceForTTS(translation, activeLang)}
+                langCode={TRANSLATION_TTS[activeLang]}
+                speakingKey={speakingKey}
+                speakingMode={speakingMode}
+                onSpeak={onSpeak}
               />
             </div>
           )}
@@ -304,7 +395,7 @@ export const ParagraphCard: React.FC<{
                               isPlaying={speakingKey === vocabKey}
                               onClick={(e) => {
                                 e.stopPropagation();
-                                onSpeak(vocabKey, cleanWordText(v.word), vocabTtsCode);
+                                onSpeak(vocabKey, cleanWordText(v.word), vocabTtsCode, 'once');
                               }}
                             />
                           </div>

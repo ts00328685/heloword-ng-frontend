@@ -56,6 +56,10 @@ const ja = {
     reading: '読み方',
     source: '元の記事',
     noParagraphs: '段落データなし',
+    playSequence: 'ここから最後まで連続再生',
+    playOnce: 'この段落を1回だけ再生',
+    playRepeat: 'この段落を繰り返し再生',
+    stopPlaying: '停止',
   },
   login: {
     welcome: 'おかえりなさい',

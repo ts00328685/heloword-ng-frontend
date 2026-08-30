@@ -56,6 +56,10 @@ const en = {
     reading: 'Reading',
     source: 'Source',
     noParagraphs: 'No paragraph data',
+    playSequence: 'Play from here to the end',
+    playOnce: 'Play this paragraph once',
+    playRepeat: 'Repeat this paragraph',
+    stopPlaying: 'Stop',
   },
   login: {
     welcome: 'Welcome Back',
