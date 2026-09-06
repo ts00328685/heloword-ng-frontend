@@ -573,3 +573,63 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+/* ── Quiz board modes (連連看 / 消消樂) ───────────────────────────────────── */
+
+/* Connector line draw-on. Relies on pathLength="1" so one keyframe fits any length. */
+@keyframes quiz-line-draw {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+.quiz-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: quiz-line-draw 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Wrong answer — horizontal shake */
+@keyframes quiz-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+.animate-quiz-shake {
+  animation: quiz-shake 0.36s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Correct tile clearing — pop out */
+@keyframes quiz-burst {
+  0%   { transform: scale(1);    opacity: 1; }
+  45%  { transform: scale(1.18); opacity: 1; }
+  100% { transform: scale(0.4);  opacity: 0; }
+}
+.animate-quiz-burst {
+  animation: quiz-burst 0.34s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+}
+
+/* Combo counter kick */
+@keyframes quiz-combo-pop {
+  0%   { transform: scale(0.7); opacity: 0.4; }
+  55%  { transform: scale(1.22); opacity: 1; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+.animate-quiz-combo {
+  animation: quiz-combo-pop 0.3s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+/* Set-cleared banner */
+@keyframes quiz-clear-in {
+  from { opacity: 0; transform: scale(0.86) translateY(6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-quiz-clear {
+  animation: quiz-clear-in 0.28s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-line { animation: none; stroke-dashoffset: 0; }
+  .animate-quiz-shake, .animate-quiz-combo, .animate-quiz-clear { animation: none; }
+  .animate-quiz-burst { animation: quiz-burst 0.12s linear forwards; }
+}

@@ -8,7 +8,8 @@ import OnboardingModal from '../../components/OnboardingModal';
 const REVIEW_ONBOARDING_KEY = 'onboarding:review_card';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
-import { DueGroup, QuizSetting, Sentence, TYPE_TO_TABLE_MAP } from '../../models';
+import { DueGroup, QuizMode, QuizSetting, Sentence, TYPE_TO_TABLE_MAP } from '../../models';
+import QuizModeModal from '../../components/QuizModeModal';
 import { doPost } from '../../services/api.service';
 import { useNotifications } from '../../contexts/NotificationContext';
 import {
@@ -68,6 +69,8 @@ const ReviewPage: React.FC = () => {
   const [levelFilter, setLevelFilter] = useState<number | 'ALL'>('ALL');
   const [sortKey, setSortKey] = useState<SortKey>('recent');
   const [showFilterPanel, setShowFilterPanel] = useState(false);
+
+  const [modePicker, setModePicker] = useState<{ wordCount: number; run: (mode: QuizMode) => void } | null>(null);
 
   // Selection mode
   const [previewLoadingKey, setPreviewLoadingKey] = useState<string | null>(null);
@@ -401,7 +404,7 @@ const ReviewPage: React.FC = () => {
     }
   };
 
-  const handleCardClick = async (group: QuizGroup, forceNewSession = false) => {
+  const handleCardClick = async (group: QuizGroup, forceNewSession = false, quizMode: QuizMode = 'spelling') => {
     const state = resolveGroupState(group.records);
     const isDue = state && (state.status === 'DUE' || state.status === 'FRESH');
     const isCustomGroup = group.records.some(
@@ -418,13 +421,13 @@ const ReviewPage: React.FC = () => {
         try {
           const customWordArrays = await Promise.all(group.records.map((r) => loadCustomGroupWords(r.type)));
           const preloadedWords = customWordArrays.flat();
-          navigate('/vocabulary/quiz', { state: { quizSettings, preloadedWords } });
+          navigate('/vocabulary/quiz', { state: { quizSettings, preloadedWords, quizMode } });
         } finally {
           hideLoading();
         }
         return;
       }
-      navigate('/vocabulary/quiz', { state: { quizSettings } });
+      navigate('/vocabulary/quiz', { state: { quizSettings, quizMode } });
       return;
     }
 
@@ -440,13 +443,13 @@ const ReviewPage: React.FC = () => {
         quizSettings[s.type] = { ...s, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
       });
       const preloadedWords = isCustomGroup ? customWordArrays.flat() : undefined;
-      navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap: response.data, ...(preloadedWords ? { preloadedWords } : {}) } });
+      navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap: response.data, ...(preloadedWords ? { preloadedWords } : {}), quizMode } });
     } finally {
       hideLoading();
     }
   };
 
-  const handleGuestCardClick = (group: QuizGroup, forceNewSession = false) => {
+  const handleGuestCardClick = (group: QuizGroup, forceNewSession = false, quizMode: QuizMode = 'spelling') => {
     const state = resolveGroupState(group.records);
     const isDue = state && (state.status === 'DUE' || state.status === 'FRESH');
 
@@ -455,7 +458,7 @@ const ReviewPage: React.FC = () => {
       group.records.forEach((s: any) => {
         quizSettings[s.type] = { ...s, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
       });
-      navigate('/vocabulary/quiz', { state: { quizSettings } });
+      navigate('/vocabulary/quiz', { state: { quizSettings, quizMode } });
       return;
     }
 
@@ -465,7 +468,7 @@ const ReviewPage: React.FC = () => {
       quizSettings[s.type] = { ...s, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
       if (s._guestId) finishedIdMap[s._guestId] = getFinishedIdsBySetting(s._guestId);
     });
-    navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap } });
+    navigate('/vocabulary/quiz', { state: { quizSettings, finishedIdMap, quizMode } });
   };
 
   const handleDueReviewClick = async () => {
@@ -531,8 +534,16 @@ const ReviewPage: React.FC = () => {
     }
   };
 
+  // Every launch goes through the mode picker; the chosen mode is threaded into
+  // the quiz page's navigation state.
   const onCardClick = (group: QuizGroup, forceNewSession?: boolean) =>
-    isLoggedIn ? handleCardClick(group, forceNewSession) : handleGuestCardClick(group, forceNewSession);
+    setModePicker({
+      wordCount: group.total,
+      run: (mode) =>
+        isLoggedIn
+          ? handleCardClick(group, forceNewSession, mode)
+          : handleGuestCardClick(group, forceNewSession, mode),
+    });
 
   const handleTagClick = (g: DueGroup) => {
     const match = groups.find((grp) =>
@@ -1282,6 +1293,18 @@ const ReviewPage: React.FC = () => {
         };
         return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
       })()}
+
+      {modePicker && (
+        <QuizModeModal
+          wordCount={modePicker.wordCount}
+          onSelect={(mode) => {
+            const { run } = modePicker;
+            setModePicker(null);
+            run(mode);
+          }}
+          onClose={() => setModePicker(null)}
+        />
+      )}
     </div>
   );
 };

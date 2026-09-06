@@ -11,6 +11,8 @@ import ShareVocabGroupModal from '../../components/ShareVocabGroupModal';
 import OnboardingModal from '../../components/OnboardingModal';
 import ImportVocabModal from '../../components/ImportVocabModal';
 import PhotoParseModal from '../../components/PhotoParseModal';
+import QuizModeModal from '../../components/QuizModeModal';
+import { QuizMode } from '../../models';
 import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight, getWordComparison } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
@@ -297,6 +299,8 @@ const UserVocabGroupPage: React.FC = () => {
     });
   };
 
+  const [modePicker, setModePicker] = useState<{ wordCount: number; state: Record<string, unknown> } | null>(null);
+
   const handleUpdateGroup = async (name: string, description: string, language: string, tags: string) => {
     const updated = await updateCustomGroup(id, name, description, language, tags);
     setGroup(updated);
@@ -332,11 +336,10 @@ const UserVocabGroupPage: React.FC = () => {
         timestamp: new Date(),
       };
 
-      navigate('/vocabulary/quiz', {
-        state: {
-          quizSettings: { [quizType]: quizSetting },
-          preloadedWords,
-        },
+      // Pick the play mode before launching.
+      setModePicker({
+        wordCount: preloadedWords.length,
+        state: { quizSettings: { [quizType]: quizSetting }, preloadedWords },
       });
     } finally {
       setQuizLoading(false);
@@ -1104,6 +1107,18 @@ const UserVocabGroupPage: React.FC = () => {
           </div>
         </div>,
         document.body
+      )}
+
+      {modePicker && (
+        <QuizModeModal
+          wordCount={modePicker.wordCount}
+          onSelect={(quizMode: QuizMode) => {
+            const { state } = modePicker;
+            setModePicker(null);
+            navigate('/vocabulary/quiz', { state: { ...state, quizMode } });
+          }}
+          onClose={() => setModePicker(null)}
+        />
       )}
     </div>
   );
