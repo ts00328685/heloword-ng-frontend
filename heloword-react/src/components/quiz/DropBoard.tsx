@@ -35,6 +35,7 @@ const BOUNCE_VY = -140;    // knock-back after a wrong word
 const MAX_HP = 5;
 const STEER_TAU = 0.055;   // horizontal easing time constant
 const ANCHOR_RATIO = 0.42; // screen height the camera holds the player at while falling
+const LABEL_PAD = 22;      // horizontal breathing room around a word label
 
 type PlatKind = 'word' | 'normal' | 'conveyor' | 'crumble' | 'spring';
 
@@ -108,6 +109,20 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
   });
 
   const byKeyRef = useRef(new Map<string, Sentence>());
+  // Word platforms are sized to their label. The width also *is* the hitbox, so
+  // it has to be measured rather than left to CSS auto — otherwise the collision
+  // box and the thing the player can see would drift apart.
+  const measureRef = useRef<CanvasRenderingContext2D | null>(null);
+
+  const wordPlatWidth = useCallback((text: string) => {
+    const g = gRef.current;
+    const min = 42;
+    const max = Math.min(g.W * 0.72, 190);
+    const ctx = measureRef.current;
+    // Rough per-character fallback if the 2D context is unavailable.
+    const textW = ctx ? ctx.measureText(text).width : text.length * 7;
+    return clamp(Math.ceil(textW) + LABEL_PAD, min, max);
+  }, []);
   const distractorsRef = useRef<Sentence[]>([]);
 
   const finish = useCallback(() => {
@@ -126,7 +141,6 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
 
   const spawnBand = useCallback((atWorldY: number) => {
     const g = gRef.current;
-    const wordW = clamp(g.W * 0.36, 96, 152);
     const plainW = clamp(g.W * 0.24, 64, 104);
 
     const count = 1 + (Math.random() < 0.5 ? 1 : 0) + (Math.random() < 0.16 ? 1 : 0);
@@ -141,11 +155,12 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
     const kinds: Plat[] = [];
     for (let i = 0; i < count; i++) {
       if (i === correctSlot) {
-        kinds.push({ id: 0, x: 0, wy: atWorldY, w: wordW, kind: 'word', word: byKeyRef.current.get(promptKey) });
+        const cw = byKeyRef.current.get(promptKey);
+        kinds.push({ id: 0, x: 0, wy: atWorldY, w: wordPlatWidth(cw ? promptText(cw) : ''), kind: 'word', word: cw });
       } else if (Math.random() < 0.42) {
         const others = distractorsRef.current.filter((w) => wordKey(w) !== promptKey);
         const w = others[Math.floor(Math.random() * others.length)];
-        kinds.push({ id: 0, x: 0, wy: atWorldY, w: wordW, kind: 'word', word: w });
+        kinds.push({ id: 0, x: 0, wy: atWorldY, w: wordPlatWidth(promptText(w)), kind: 'word', word: w });
       } else {
         const roll = Math.random();
         const kind: PlatKind = roll < 0.4 ? 'normal' : roll < 0.66 ? 'crumble' : roll < 0.87 ? 'conveyor' : 'spring';
@@ -153,10 +168,18 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
       }
     }
 
+    // A row of long words can now overflow the shaft, so shed platforms until
+    // the band fits — never the correct one, which must stay reachable.
+    const fits = () => kinds.reduce((sum, p) => sum + p.w, 0) + (kinds.length + 1) * 6 <= g.W;
+    while (!fits() && kinds.length > 1) {
+      const victim = kinds.findIndex((p) => p.word !== byKeyRef.current.get(promptKey));
+      kinds.splice(victim >= 0 ? victim : kinds.length - 1, 1);
+    }
+
     // Lay the row out left to right with the slack distributed randomly, so
     // platforms never overlap but the spacing still looks irregular.
     const total = kinds.reduce((s, p) => s + p.w, 0);
-    let slack = Math.max(0, g.W - total);
+    const slack = Math.max(0, g.W - total);
     const gaps: number[] = [];
     for (let i = 0; i <= kinds.length; i++) gaps.push(Math.random());
     const gapSum = gaps.reduce((a, b) => a + b, 0) || 1;
@@ -173,7 +196,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
 
     platsRef.current.push(...shuffle(kinds));
     setVersion((v) => v + 1);
-  }, []);
+  }, [wordPlatWidth]);
 
   // ── Setup ─────────────────────────────────────────────────────────────────
 
@@ -201,6 +224,14 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
     g.invulnUntil = 0;
     g.last = 0;
     g.running = true;
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      // Match the label's rendered type so measurements line up with the DOM.
+      ctx.font = `700 11px ${getComputedStyle(area).fontFamily}`;
+      measureRef.current = ctx;
+    }
 
     byKeyRef.current = new Map(words.map((w) => [wordKey(w), w]));
     distractorsRef.current = [...words, ...pickDecoys(pool, words, 6)];
@@ -505,7 +536,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
           <div
             key={p.id}
             ref={registerNode(p)}
-            className={`absolute top-0 left-0 will-change-transform rounded-lg flex items-center justify-center px-1.5 text-[11px] font-bold whitespace-nowrap overflow-hidden ${
+            className={`absolute top-0 left-0 will-change-transform rounded-lg flex items-center justify-center px-2 text-[11px] font-bold whitespace-nowrap overflow-hidden ${
               p.kind === 'word'
                 ? 'bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-500 text-gray-800 dark:text-gray-100 shadow-sm'
                 : p.kind === 'spring'
