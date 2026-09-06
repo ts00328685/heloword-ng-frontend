@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { QuizSetting } from '../models';
+import { QuizMode, QuizSetting } from '../models';
+import QuizModeModal from './QuizModeModal';
 import { useData } from '../contexts/DataContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useUI } from '../contexts/UIContext';
@@ -363,6 +364,8 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
 
   const selectedCount = settings.filter((s) => s.isSelected).length;
 
+  const [modePicker, setModePicker] = useState<{ wordCount: number; quizSettings: Record<string, QuizSetting> } | null>(null);
+
   const handleChange = (index: number, updated: QuizSetting) => {
     setSettings((prev) => prev.map((s, i) => (i === index ? updated : s)));
   };
@@ -392,11 +395,23 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
     }
     const timestamp = new Date();
     const quizSettings: Record<string, QuizSetting> = {};
+    let wordCount = 0;
     selected.forEach((s) => {
-      quizSettings[s.type] = { ...s, timestamp, min: s.min ?? 1, max: s.max ?? s.total };
+      const min = s.min ?? 1;
+      const max = s.max ?? s.total;
+      quizSettings[s.type] = { ...s, timestamp, min, max };
+      wordCount += Math.max(0, max - min + 1);
     });
+    // Pick the play mode before leaving the setup sheet.
+    setModePicker({ wordCount, quizSettings });
+  };
+
+  const launch = (quizMode: QuizMode) => {
+    const picker = modePicker;
+    if (!picker) return;
+    setModePicker(null);
     onClose();
-    navigate('/vocabulary/quiz', { state: { quizSettings } });
+    navigate('/vocabulary/quiz', { state: { quizSettings: picker.quizSettings, quizMode } });
   };
 
   return ReactDOM.createPortal(
@@ -557,6 +572,14 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         };
         return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
       })()}
+
+      {modePicker && (
+        <QuizModeModal
+          wordCount={modePicker.wordCount}
+          onSelect={launch}
+          onClose={() => setModePicker(null)}
+        />
+      )}
     </div>,
     document.body
   );

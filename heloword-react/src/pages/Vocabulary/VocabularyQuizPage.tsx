@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useData } from '../../contexts/DataContext';
 import { useUI } from '../../contexts/UIContext';
 import { useNotifications } from '../../contexts/NotificationContext';
-import { DueWord, QuizSetting, Sentence, SentenceStore, WordStore } from '../../models';
+import { DueWord, QuizMode, QuizSetting, Sentence, SentenceStore, WordStore } from '../../models';
 import { doPost } from '../../services/api.service';
 import {
   generateId,
@@ -19,6 +19,10 @@ import { useAiInsight } from '../../hooks/useAiInsight';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { pronounceWord, cancelPronouncing } from '../../services/tts.service';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
+import MatchingBoard from '../../components/quiz/MatchingBoard';
+import BlastBoard from '../../components/quiz/BlastBoard';
+import DropBoard from '../../components/quiz/DropBoard';
+import { wordKey } from '../../components/quiz/boardUtils';
 
 const normalizeGerman = (s: string) =>
   s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'b');
@@ -64,6 +68,13 @@ const splitKanaGroups = (kana: string): string[] => {
 };
 
 
+/** Words shown per round in each board mode. Sized to fit a phone without scrolling. */
+const BOARD_SET_SIZE: Record<Exclude<QuizMode, 'spelling'>, number> = {
+  matching: 6,
+  blast: 9,
+  drop: 10,
+};
+
 const VocabularyQuizPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -76,6 +87,16 @@ const VocabularyQuizPage: React.FC = () => {
   const { incrementProgress } = useDailyGoal();
   const inputRef = useRef<HTMLInputElement>(null);
   const startTimeRef = useRef<Date>(new Date());
+
+  // Chosen in QuizModeModal before navigating here; older entry points omit it.
+  const quizMode: QuizMode = location.state?.quizMode ?? 'spelling';
+  const isBoardMode = quizMode !== 'spelling';
+  // Full initial list, kept only so board modes can borrow decoys for short rounds.
+  const poolRef = useRef<Sentence[]>([]);
+  // Bumped on every committed round. Part of the board's React key so a round
+  // whose words repeat verbatim (a short group where everything was missed)
+  // still remounts with a fresh board instead of staying on the cleared one.
+  const [boardRound, setBoardRound] = useState(0);
 
   const [wordList, setWordList] = useState<Sentence[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -95,6 +116,8 @@ const VocabularyQuizPage: React.FC = () => {
   // all mistakes made on a word, not just the last (successful) attempt.
   const wrongAccumRef = useRef<Map<string, number>>(new Map());
 
+  // Board modes stay silent unless the learner turns this on.
+  const [boardPronounce, setBoardPronounce] = useState(false);
   const [autoPronounce, setAutoPronounce] = useState(false);
   const [autoPronounceEn, setAutoPronounceEn] = useState(false);
   const [autoPronounceCh, setAutoPronounceCh] = useState(false);
@@ -147,7 +170,7 @@ const VocabularyQuizPage: React.FC = () => {
     }
 
     quizSettingsRef.current = quizSettings;
-    showAlert(t('quiz.retestNote'));
+    if (!isBoardMode) showAlert(t('quiz.retestNote'));
     // Only run once — Strict Mode fires this effect twice; the null guard prevents a
     // second saveQuizSettings call and a duplicate initWordList call.
     // initWordList is called AFTER saveQuizSettings resolves so that settingIdMapRef
@@ -342,6 +365,7 @@ const VocabularyQuizPage: React.FC = () => {
       });
     }
 
+    poolRef.current = list;
     setWordList(list);
     setTotalLength(list.length);
     setCurrentIndex(0);
@@ -496,6 +520,62 @@ const VocabularyQuizPage: React.FC = () => {
     ]
   );
 
+  // ── Board modes (連連看 / 消消樂) ─────────────────────────────────────────
+  // The words currently on the board. wordList is only mutated when a round is
+  // committed, so a plain slice stays stable for the whole round.
+  const boardSize = isBoardMode ? BOARD_SET_SIZE[quizMode as Exclude<QuizMode, 'spelling'>] : 0;
+  const boardSet = isBoardMode ? wordList.slice(0, Math.min(boardSize, wordList.length)) : [];
+
+  /**
+   * Commit one board round. A word counts as reviewed only if it was never
+   * answered wrong during the round; anything else is requeued at the end of the
+   * list, exactly like a failed word in spelling mode.
+   */
+  const commitBoardRound = useCallback(
+    async (batch: Sentence[], failed: Map<string, number>) => {
+      cancelPronouncing();
+
+      const retry: Sentence[] = [];
+      let passedCount = 0;
+
+      batch.forEach((word) => {
+        const key = wordKey(word);
+        const wrong = failed.get(key) ?? 0;
+        const accumulated = (wrongAccumRef.current.get(key) ?? 0) + wrong;
+        if (wrong === 0) {
+          saveSingleRecord(word, accumulated);
+          wrongAccumRef.current.delete(key);
+          if (word.language === 'jp' || word.language === 'en') {
+            incrementProgress(word.language === 'jp' ? 'japanese' : 'english', 'quizWords');
+          }
+          passedCount++;
+        } else {
+          wrongAccumRef.current.set(key, accumulated);
+          // Clone so recordSaved resets and the board treats it as a fresh card.
+          retry.push({ ...word });
+        }
+      });
+
+      const nextIndex = currentIndex + passedCount;
+      setBoardRound((r) => r + 1);
+      setCurrentIndex(nextIndex);
+      setWordList((prev) => [...prev.slice(batch.length), ...retry]);
+      startTimeRef.current = new Date();
+
+      if (retry.length === 0 && nextIndex >= totalLength) {
+        await Promise.all(pendingSavesRef.current);
+        showToast(t('quiz.finished'));
+        if (!isLoggedIn) refreshGuest();
+        navigate('/review', { replace: true });
+      }
+    },
+    [currentIndex, totalLength, saveSingleRecord, incrementProgress, showToast, t, isLoggedIn, refreshGuest, navigate],
+  );
+
+  const handleBoardPronounce = useCallback((word: Sentence) => {
+    pronounceWord(word.word || word.sentence || '', word.language);
+  }, []);
+
   const handleKanaClick = useCallback((idx: number) => {
     const word = wordList[0];
     if (!word || jpSuccessFiredRef.current) return;
@@ -646,9 +726,9 @@ const VocabularyQuizPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header
-        title={`${currentIndex + 1} / ${totalLength}`}
+        title={isBoardMode ? `${currentIndex} / ${totalLength}` : `${currentIndex + 1} / ${totalLength}`}
         showBack
-        rightContent={
+        rightContent={(
           <button
             onClick={() => setShowSettings((v) => !v)}
             className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -659,7 +739,7 @@ const VocabularyQuizPage: React.FC = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
           </button>
-        }
+        )}
       />
 
       {/* Progress bar */}
@@ -676,7 +756,9 @@ const VocabularyQuizPage: React.FC = () => {
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
             <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">{t('quiz.options')}</h3>
             <div className="grid grid-cols-2 gap-2">
-              {[
+              {(isBoardMode ? [
+                { label: t('quizMode.pronounceOnTap'), val: boardPronounce, set: setBoardPronounce },
+              ] : [
                 { label: t('quiz.autoPronounce'), val: autoPronounce, set: setAutoPronounce },
                 { label: t('quiz.pronounceEn'), val: autoPronounceEn, set: setAutoPronounceEn },
                 { label: t('quiz.pronounceCh'), val: autoPronounceCh, set: setAutoPronounceCh },
@@ -685,7 +767,7 @@ const VocabularyQuizPage: React.FC = () => {
                 { label: t('quiz.japaneseMode'), val: japaneseMode, set: setJapaneseMode },
                 { label: t('quiz.jpButtonInput'), val: jpButtonMode, set: setJpButtonMode },
                 { label: t('quiz.failWithoutMask'), val: failWhenMaskOff, set: setFailWhenMaskOff },
-              ].map(({ label, val, set }) => (
+              ]).map(({ label, val, set }) => (
                 <button
                   key={label}
                   onClick={() => set(!val)}
@@ -703,6 +785,40 @@ const VocabularyQuizPage: React.FC = () => {
           </div>
         )}
 
+        {isBoardMode ? (
+          quizMode === 'matching' ? (
+            <MatchingBoard
+              key={`${boardRound}-${boardSet.map(wordKey).join('|')}`}
+              words={boardSet}
+              pool={poolRef.current}
+              onComplete={(failed) => commitBoardRound(boardSet, failed)}
+              setIndex={Math.floor(currentIndex / boardSize) + 1}
+              setTotal={Math.max(1, Math.ceil(totalLength / boardSize))}
+              onPronounce={boardPronounce ? handleBoardPronounce : undefined}
+            />
+          ) : quizMode === 'blast' ? (
+            <BlastBoard
+              key={`${boardRound}-${boardSet.map(wordKey).join('|')}`}
+              words={boardSet}
+              pool={poolRef.current}
+              onComplete={(failed) => commitBoardRound(boardSet, failed)}
+              setIndex={Math.floor(currentIndex / boardSize) + 1}
+              setTotal={Math.max(1, Math.ceil(totalLength / boardSize))}
+              onPronounce={boardPronounce ? handleBoardPronounce : undefined}
+            />
+          ) : (
+            <DropBoard
+              key={`${boardRound}-${boardSet.map(wordKey).join('|')}`}
+              words={boardSet}
+              pool={poolRef.current}
+              onComplete={(failed) => commitBoardRound(boardSet, failed)}
+              setIndex={Math.floor(currentIndex / boardSize) + 1}
+              setTotal={Math.max(1, Math.ceil(totalLength / boardSize))}
+              onPronounce={boardPronounce ? handleBoardPronounce : undefined}
+            />
+          )
+        ) : (
+          <>
         {/* Word card */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 mb-4 shadow-sm">
           <div className="flex items-center justify-between mb-3">
@@ -933,6 +1049,8 @@ const VocabularyQuizPage: React.FC = () => {
             {t('quiz.skip')}
           </button>
         </div>
+          </>
+        )}
       </main>
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
 

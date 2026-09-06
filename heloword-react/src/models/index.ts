@@ -44,6 +44,17 @@ export interface Sentence extends Word {
   sentences?: Sentence[];
 }
 
+/** Review quiz play modes. `spelling` is the original type-the-answer flow. */
+export type QuizMode = 'spelling' | 'matching' | 'blast' | 'drop';
+
+/** Minimum words a group needs before a board mode is offered. */
+export const QUIZ_MODE_MIN_WORDS: Record<QuizMode, number> = {
+  spelling: 1,
+  matching: 5,
+  blast: 6,
+  drop: 8,
+};
+
 export interface QuizSetting {
   id?: number;
   timestamp: Date;
