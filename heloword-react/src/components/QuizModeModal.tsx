@@ -5,19 +5,31 @@ import { QuizMode, QUIZ_MODE_MIN_WORDS } from '../models';
 
 const LAST_MODE_KEY = 'hw-quiz-mode';
 
-export const getLastQuizMode = (): QuizMode => {
-  const v = localStorage.getItem(LAST_MODE_KEY);
-  return v === 'matching' || v === 'blast' || v === 'drop' ? v : 'spelling';
-};
+/** Modes offered by the spaced-repetition review flow. */
+export const REVIEW_MODES: QuizMode[] = ['spelling', 'matching', 'blast', 'drop'];
+/** Modes offered by the free-play challenge flow (no spelling, plus 4-choice). */
+export const CHALLENGE_MODES: QuizMode[] = ['choice', 'matching', 'blast', 'drop'];
 
 interface Props {
   /** Words available in the group — decides which board modes are offered. */
   wordCount: number;
   onSelect: (mode: QuizMode) => void;
   onClose: () => void;
+  /** Which modes to offer. Defaults to the review set. */
+  modes?: QuizMode[];
+  /** localStorage key for remembering the last pick, so separate flows don't
+   *  hand each other a mode they don't offer. */
+  storageKey?: string;
 }
 
 const MODES: { mode: QuizMode; icon: React.ReactNode; accent: string }[] = [
+  {
+    mode: 'choice',
+    accent: 'teal',
+    icon: (
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+    ),
+  },
   {
     mode: 'spelling',
     accent: 'blue',
@@ -53,21 +65,28 @@ const ACCENT: Record<string, { ring: string; bg: string; text: string; dot: stri
   purple: { ring: 'border-purple-400 dark:border-purple-500', bg: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-500 dark:text-purple-400', dot: 'bg-purple-500' },
   orange: { ring: 'border-orange-400 dark:border-orange-500', bg: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-500 dark:text-orange-400', dot: 'bg-orange-500' },
   rose:   { ring: 'border-rose-400 dark:border-rose-500',     bg: 'bg-rose-50 dark:bg-rose-900/20',     text: 'text-rose-500 dark:text-rose-400',     dot: 'bg-rose-500' },
+  teal:   { ring: 'border-teal-400 dark:border-teal-500',     bg: 'bg-teal-50 dark:bg-teal-900/20',     text: 'text-teal-500 dark:text-teal-400',     dot: 'bg-teal-500' },
 };
 
-const QuizModeModal: React.FC<Props> = ({ wordCount, onSelect, onClose }) => {
+const QuizModeModal: React.FC<Props> = ({
+  wordCount, onSelect, onClose, modes = REVIEW_MODES, storageKey = LAST_MODE_KEY,
+}) => {
   const { t } = useTranslation();
 
   const isLocked = (mode: QuizMode) => wordCount < QUIZ_MODE_MIN_WORDS[mode];
+  const offered = MODES.filter((m) => modes.includes(m.mode));
 
   const [selected, setSelected] = useState<QuizMode>(() => {
-    const last = getLastQuizMode();
-    return isLocked(last) ? 'spelling' : last;
+    // A remembered mode from another flow may not be on offer here, so fall
+    // back to the first unlocked option rather than starting an unlisted mode.
+    const last = localStorage.getItem(storageKey) as QuizMode | null;
+    if (last && modes.includes(last) && !isLocked(last)) return last;
+    return (offered.find((m) => !isLocked(m.mode)) ?? offered[0]).mode;
   });
 
   const handleStart = () => {
     if (isLocked(selected)) return;
-    localStorage.setItem(LAST_MODE_KEY, selected);
+    localStorage.setItem(storageKey, selected);
     onSelect(selected);
   };
 
@@ -101,7 +120,7 @@ const QuizModeModal: React.FC<Props> = ({ wordCount, onSelect, onClose }) => {
         </div>
 
         <div className="px-5 pb-4 space-y-2.5 overflow-y-auto">
-          {MODES.map(({ mode, icon, accent }) => {
+          {offered.map(({ mode, icon, accent }) => {
             const locked = isLocked(mode);
             const active = selected === mode && !locked;
             const a = ACCENT[accent];

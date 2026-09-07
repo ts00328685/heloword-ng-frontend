@@ -69,7 +69,7 @@ const splitKanaGroups = (kana: string): string[] => {
 
 
 /** Words shown per round in each board mode. Sized to fit a phone without scrolling. */
-const BOARD_SET_SIZE: Record<Exclude<QuizMode, 'spelling'>, number> = {
+const BOARD_SET_SIZE: Record<Exclude<QuizMode, 'spelling' | 'choice'>, number> = {
   matching: 6,
   blast: 9,
   drop: 10,
@@ -523,7 +523,7 @@ const VocabularyQuizPage: React.FC = () => {
   // ── Board modes (連連看 / 消消樂) ─────────────────────────────────────────
   // The words currently on the board. wordList is only mutated when a round is
   // committed, so a plain slice stays stable for the whole round.
-  const boardSize = isBoardMode ? BOARD_SET_SIZE[quizMode as Exclude<QuizMode, 'spelling'>] : 0;
+  const boardSize = isBoardMode ? (BOARD_SET_SIZE[quizMode as Exclude<QuizMode, 'spelling' | 'choice'>] ?? 10) : 0;
   const boardSet = isBoardMode ? wordList.slice(0, Math.min(boardSize, wordList.length)) : [];
 
   /**
