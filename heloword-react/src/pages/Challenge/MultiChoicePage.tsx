@@ -6,8 +6,13 @@ import Header from '../../components/Header';
 import { useData } from '../../contexts/DataContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
-import { Word, Sentence } from '../../models';
+import { QuizMode, Word, Sentence } from '../../models';
 import AddToGroupModal from '../../components/AddToGroupModal';
+import QuizModeModal, { CHALLENGE_MODES } from '../../components/QuizModeModal';
+import MatchingBoard from '../../components/quiz/MatchingBoard';
+import BlastBoard from '../../components/quiz/BlastBoard';
+import DropBoard from '../../components/quiz/DropBoard';
+import { wordKey } from '../../components/quiz/boardUtils';
 import { pronounceWord } from '../../services/tts.service';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -114,6 +119,40 @@ const LevelPickerModal: React.FC<{
   );
 };
 
+// ── Board-mode host ────────────────────────────────────────────────────────
+
+type BoardMode = 'matching' | 'blast' | 'drop';
+
+/** Words on the board per round. The level pool itself is never chunked — each
+ *  round draws a fresh random sample from the whole level, so play is endless
+ *  like the four-choice mode rather than walking a fixed set. */
+const BOARD_ROUND_SIZE: Record<BoardMode, number> = { matching: 6, blast: 9, drop: 10 };
+
+const ChallengeBoardHost: React.FC<{
+  mode: BoardMode;
+  pool: Sentence[];
+  onRoundResult: (cleared: number, size: number) => void;
+}> = ({ mode, pool, onRoundResult }) => {
+  const size = Math.min(BOARD_ROUND_SIZE[mode], pool.length);
+  const [round, setRound] = useState(1);
+  const [words, setWords] = useState<Sentence[]>(() => pickRandom(pool, size));
+  // Carried across rounds so a hot streak survives the round boundary.
+  const [combo, setCombo] = useState(0);
+
+  // Memoised: DropBoard's game loop must not see a new callback identity while
+  // a round is in flight.
+  const handleComplete = useCallback((failed: Map<string, number>) => {
+    onRoundResult(words.filter((w) => !failed.has(wordKey(w))).length, words.length);
+    setWords(pickRandom(pool, size));
+    setRound((r) => r + 1);
+  }, [words, pool, size, onRoundResult]);
+
+  const common = { key: round, words, pool, onComplete: handleComplete, setIndex: round };
+  if (mode === 'matching') return <MatchingBoard {...common} />;
+  if (mode === 'blast') return <BlastBoard {...common} />;
+  return <DropBoard {...common} autoAdvanceOnClear initialCombo={combo} onComboChange={setCombo} />;
+};
+
 // ── Main page ──────────────────────────────────────────────────────────────
 
 const MultiChoicePage: React.FC = () => {
@@ -131,7 +170,7 @@ const MultiChoicePage: React.FC = () => {
   const gameType: GameType = (location.state as { gameType?: GameType } | null)?.gameType ?? 'en';
 
   const [selectedLevel, setSelectedLevel] = useState<LevelDef | null>(null);
-  const [pool, setPool] = useState<Word[]>([]);
+  const [pool, setPool] = useState<Sentence[]>([]);
   const [correct, setCorrect] = useState<Word | null>(null);
   const [choices, setChoices] = useState<Word[]>([]);
   const [answerState, setAnswerState] = useState<AnswerState>('idle');
@@ -140,19 +179,21 @@ const MultiChoicePage: React.FC = () => {
   const [streak, setStreak] = useState(0);
   const [total, setTotal] = useState(0);
   const [showLevelPicker, setShowLevelPicker] = useState(true);
+  const [playMode, setPlayMode] = useState<QuizMode | null>(null);
+  const [showModePicker, setShowModePicker] = useState(false);
 
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ── Build pool from wordStore ────────────────────────────────────────────
 
-  const buildPool = useCallback((level: LevelDef): Word[] => {
-    let list: Word[];
+  const buildPool = useCallback((level: LevelDef): Sentence[] => {
+    let list: Sentence[];
     if (gameType === 'en') {
-      list = wordStore.wordEnglishList as Word[];
+      list = wordStore.wordEnglishList;
     } else if (level.key === 'verbs') {
-      list = wordStore.wordJapaneseVerbList as Word[];
+      list = wordStore.wordJapaneseVerbList;
     } else {
-      list = wordStore.wordJapaneseList as Word[];
+      list = wordStore.wordJapaneseList;
     }
     if (level.max === -1) return list;
     return list.slice(level.min, Math.min(level.max, list.length));
@@ -180,8 +221,29 @@ const MultiChoicePage: React.FC = () => {
     setStreak(0);
     setTotal(0);
     setShowLevelPicker(false);
-    nextQuestion(p);
+    setShowModePicker(true);
   };
+
+  const handleModeSelect = (mode: QuizMode) => {
+    setShowModePicker(false);
+    setPlayMode(mode);
+    if (mode === 'choice') nextQuestion(pool);
+  };
+
+  const backToLevels = () => {
+    setShowLevelPicker(true);
+    setShowModePicker(false);
+    setSelectedLevel(null);
+    setPlayMode(null);
+    setCorrect(null);
+  };
+
+  /** Board rounds score in bulk: one point per word cleared without a mistake. */
+  const handleBoardRound = useCallback((cleared: number, size: number) => {
+    setScore((s) => s + cleared);
+    setTotal((n) => n + size);
+    setStreak((s) => (cleared === size ? s + 1 : 0));
+  }, []);
 
   // ── Handle answer selection ──────────────────────────────────────────────
 
@@ -293,7 +355,7 @@ const MultiChoicePage: React.FC = () => {
               </span>
               <span className="text-sm font-bold text-blue-500">{score} pts</span>
               <button
-                onClick={() => { setShowLevelPicker(true); setSelectedLevel(null); }}
+                onClick={backToLevels}
                 className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 underline"
               >
                 {t('multiChoice.changeLevel')}
@@ -303,7 +365,7 @@ const MultiChoicePage: React.FC = () => {
         )}
 
         {/* Clue card */}
-        {correct && (
+        {playMode === 'choice' && correct && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm space-y-2">
             <div className="flex items-start justify-between gap-2">
               <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
@@ -331,7 +393,7 @@ const MultiChoicePage: React.FC = () => {
         )}
 
         {/* 4-row choice list */}
-        {correct && (
+        {playMode === 'choice' && correct && (
           <div className="flex flex-col gap-3">
             {choices.map(word => (
               <button
@@ -349,6 +411,7 @@ const MultiChoicePage: React.FC = () => {
         )}
 
         {/* Long-press mode toggle */}
+        {playMode === 'choice' && (
         <button
           onClick={() => setLongPressMode(m => m === 'speak' ? 'copy' : 'speak')}
           title={longPressMode === 'copy' ? t('scramble.longPressCopyTooltip') : t('scramble.longPressSpeakTooltip')}
@@ -363,9 +426,10 @@ const MultiChoicePage: React.FC = () => {
             {longPressMode === 'copy' ? t('scramble.longPressCopy') : t('scramble.longPressSpeak')}
           </span>
         </button>
+        )}
 
         {/* Feedback message */}
-        {answerState !== 'idle' && correct && (
+        {playMode === 'choice' && answerState !== 'idle' && correct && (
           <div className={`rounded-2xl px-4 py-3 text-sm font-medium text-center ${
             answerState === 'correct'
               ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400'
@@ -377,7 +441,27 @@ const MultiChoicePage: React.FC = () => {
           </div>
         )}
 
+        {/* Board modes — endless rounds sampled from the whole level pool */}
+        {playMode && playMode !== 'choice' && pool.length > 0 && (
+          <ChallengeBoardHost
+            mode={playMode as BoardMode}
+            pool={pool}
+            onRoundResult={handleBoardRound}
+          />
+        )}
+
       </main>
+
+      {/* Mode picker modal */}
+      {showModePicker && (
+        <QuizModeModal
+          wordCount={pool.length}
+          modes={CHALLENGE_MODES}
+          storageKey="hw-challenge-mode"
+          onSelect={handleModeSelect}
+          onClose={backToLevels}
+        />
+      )}
 
       {/* Level picker modal */}
       {showLevelPicker && (

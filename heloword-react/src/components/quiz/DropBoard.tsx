@@ -57,13 +57,24 @@ interface Props {
   pool: Sentence[];
   onComplete: (failed: Map<string, number>) => void;
   setIndex: number;
-  setTotal: number;
+  /** Total rounds. Omitted in free-play, where rounds are endless. */
+  setTotal?: number;
   onPronounce?: (word: Sentence) => void;
+  /** Free-play: roll straight into the next round on a clear instead of
+   *  waiting for a tap. A run that ends in defeat always waits. */
+  autoAdvanceOnClear?: boolean;
+  /** Carry a combo streak in from the previous round, and report it back out,
+   *  so consecutive rounds read as one continuous run. */
+  initialCombo?: number;
+  onComboChange?: (combo: number) => void;
 }
 
 const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
 
-const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTotal, onPronounce }) => {
+const DropBoard: React.FC<Props> = ({
+  words, pool, onComplete, setIndex, setTotal, onPronounce,
+  autoAdvanceOnClear = false, initialCombo = 0, onComboChange,
+}) => {
   const { t, i18n } = useTranslation();
 
   const areaRef = useRef<HTMLDivElement>(null);
@@ -87,7 +98,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
 
   // HUD mirrors of the game state — updated on events, never per frame.
   const [hp, setHp] = useState(MAX_HP);
-  const [combo, setCombo] = useState(0);
+  const [combo, setCombo] = useState(initialCombo);
   const [remaining, setRemaining] = useState(words.length);
   const [promptWord, setPromptWord] = useState<Sentence | null>(null);
   const [phase, setPhase] = useState<'playing' | 'cleared' | 'over'>('playing');
@@ -98,7 +109,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
     x: 0, py: 0, vy: 0, targetX: 0, worldY: 0, prevX: 0, phase: 0,
     standing: null as number | null,
     hp: MAX_HP,
-    combo: 0,
+    combo: initialCombo,
     invulnUntil: 0,
     clearedCount: 0,
     failed: new Map<string, number>(),
@@ -107,6 +118,20 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
     last: 0,
     running: false,
   });
+
+  // The rAF loop closes over its deps, so route the callback through a ref to
+  // avoid reporting into a stale handler.
+  const onComboChangeRef = useRef(onComboChange);
+  onComboChangeRef.current = onComboChange;
+  // Only the mount-time combo seeds a round; the board remounts per round.
+  const initialComboRef = useRef(initialCombo);
+
+  /** Single funnel for combo writes so the HUD and the caller never disagree. */
+  const pushCombo = useCallback((n: number) => {
+    gRef.current.combo = n;
+    setCombo(n);
+    onComboChangeRef.current?.(n);
+  }, []);
 
   const byKeyRef = useRef(new Map<string, Sentence>());
   // Word platforms are sized to their label. The width also *is* the hitbox, so
@@ -124,6 +149,19 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
     return clamp(Math.ceil(textW) + LABEL_PAD, min, max);
   }, []);
   const distractorsRef = useRef<Sentence[]>([]);
+
+  /** Grow the shaft into whatever room is left under it, capped at 80% of the
+   *  viewport, so the play area reaches the thumb with no dead margin below. */
+  const sizeShaft = useCallback(() => {
+    const area = areaRef.current;
+    if (!area) return;
+    const top = area.getBoundingClientRect().top;
+    const vh = window.innerHeight;
+    const h = Math.max(300, Math.min(vh * 0.8, vh - top - 26));
+    area.style.height = `${Math.round(h)}px`;
+  }, []);
+
+  const loopDeps = useRef({ finish: (() => {}) as () => void, spawnBand: (_y: number) => {}, onPronounce, autoAdvanceOnClear });
 
   const finish = useCallback(() => {
     if (completedRef.current) return;
@@ -203,6 +241,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
   useEffect(() => {
     const area = areaRef.current;
     if (!area) return;
+    sizeShaft();
     const rect = area.getBoundingClientRect();
     const g = gRef.current;
     g.W = rect.width;
@@ -216,7 +255,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
     g.vy = 0;
     g.standing = null;
     g.hp = MAX_HP;
-    g.combo = 0;
+    g.combo = initialComboRef.current;
     g.clearedCount = 0;
     g.failed = new Map();
     g.queue = shuffle(words).map(wordKey);
@@ -242,7 +281,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
     nextIdRef.current = 1;
 
     setHp(MAX_HP);
-    setCombo(0);
+    setCombo(initialComboRef.current);
     setRemaining(words.length);
     setPromptWord(byKeyRef.current.get(g.queue[0]) ?? null);
     setPhase('playing');
@@ -250,7 +289,24 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
 
     // Seed the shaft so the player has something under them immediately.
     for (let y = g.H * 0.55; y < g.H + BAND_GAP; y += BAND_GAP) spawnBand(y);
-  }, [words, pool, spawnBand]);
+  }, [words, pool, spawnBand, sizeShaft]);
+
+  useEffect(() => {
+    const onResize = () => {
+      sizeShaft();
+      const area = areaRef.current;
+      if (!area) return;
+      const rect = area.getBoundingClientRect();
+      gRef.current.W = rect.width;
+      gRef.current.H = rect.height;
+    };
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('orientationchange', onResize);
+    };
+  }, [sizeShaft]);
 
   // ── Game loop ─────────────────────────────────────────────────────────────
 
@@ -285,8 +341,10 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
         g.py = standing.wy - CHAR_SIZE;
         g.vy = 0;
         if (standing.kind === 'conveyor') {
-          g.x = clamp(g.x + (standing.dir ?? 1) * CONVEYOR_V * dt, 0, g.W - CHAR_SIZE);
-          g.targetX = clamp(g.targetX + (standing.dir ?? 1) * CONVEYOR_V * dt, 0, g.W - CHAR_SIZE);
+          const push = (standing.dir ?? 1) * CONVEYOR_V * dt;
+          g.x = clamp(g.x + push, 0, g.W - CHAR_SIZE);
+          g.targetX = clamp(g.targetX + push, 0, g.W - CHAR_SIZE);
+          if (dragRef.current.active) dragRef.current.originX = clamp(dragRef.current.originX + push, 0, g.W - CHAR_SIZE);
         }
         if (standing.kind === 'crumble' && standing.crumbleAt && now - standing.crumbleAt > CRUMBLE_MS) {
           standing.dead = true;
@@ -320,16 +378,15 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
           if (key === g.queue[0]) {
             g.queue.shift();
             g.clearedCount++;
-            g.combo++;
             p.dead = true;
             structureChanged = true;
-            onPronounce?.(p.word);
-            setCombo(g.combo);
+            loopDeps.current.onPronounce?.(p.word);
+            pushCombo(g.combo + 1);
             setRemaining(g.queue.length);
             if (g.queue.length === 0) {
               setPhase('cleared');
               g.running = false;
-              setTimeout(finish, 900);
+              if (loopDeps.current.autoAdvanceOnClear) setTimeout(loopDeps.current.finish, 900);
               return;
             }
             setPromptWord(byKeyRef.current.get(g.queue[0]) ?? null);
@@ -338,21 +395,19 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
             // how 消消樂 assigns blame.
             const promptKey = g.queue[0];
             g.failed.set(promptKey, (g.failed.get(promptKey) ?? 0) + 1);
-            g.combo = 0;
+            pushCombo(0);
             g.hp--;
             g.invulnUntil = now + INVULN_MS;
             g.vy = BOUNCE_VY;
             g.standing = null;
             p.dead = true;
             structureChanged = true;
-            setCombo(0);
             setHp(g.hp);
             setDamageFlash(true);
             setTimeout(() => setDamageFlash(false), 260);
             if (g.hp <= 0) {
               setPhase('over');
               g.running = false;
-              setTimeout(finish, 1100);
               return;
             }
           }
@@ -378,19 +433,17 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
       if (screenY < SPIKE_H) {
         if (now > g.invulnUntil) {
           g.hp--;
-          g.combo = 0;
+          pushCombo(0);
           g.invulnUntil = now + INVULN_MS;
           g.standing = null;
           g.py = g.worldY + SPIKE_H + 8;
           g.vy = 180;
           setHp(g.hp);
-          setCombo(0);
           setDamageFlash(true);
           setTimeout(() => setDamageFlash(false), 260);
           if (g.hp <= 0) {
             setPhase('over');
             g.running = false;
-            setTimeout(finish, 1100);
             return;
           }
         } else {
@@ -404,7 +457,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
       platsRef.current = plats.filter((p) => !p.dead && p.wy - g.worldY > -PLAT_H * 2);
       if (platsRef.current.length !== before) structureChanged = true;
       const lowest = platsRef.current.reduce((m, p) => Math.max(m, p.wy), -Infinity);
-      if (lowest < g.worldY + g.H - BAND_GAP) spawnBand(g.worldY + g.H + 8);
+      if (lowest < g.worldY + g.H - BAND_GAP) loopDeps.current.spawnBand(g.worldY + g.H + 8);
 
       // Paint
       if (charRef.current) {
@@ -451,32 +504,48 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       gRef.current.running = false;
     };
-  }, [finish, spawnBand, onPronounce]);
+    // Mount-once: the cleanup stops the game, so re-running this effect because
+    // a parent re-render rebuilt `onComplete` would freeze the round dead.
+    // Everything mutable is read through loopDeps instead.
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Steering ──────────────────────────────────────────────────────────────
 
-  const steer = useCallback((clientX: number) => {
-    const area = areaRef.current;
+  // Panning is relative, not absolute: touching down anchors on wherever the
+  // figure already is, and it then tracks the drag delta 1:1. Tapping a new
+  // spot no longer teleports it across the shaft.
+  const dragRef = useRef({ active: false, originClientX: 0, originX: 0 });
+
+  const beginDrag = useCallback((clientX: number) => {
     const g = gRef.current;
-    if (!area || !g.running) return;
-    const rect = area.getBoundingClientRect();
-    g.targetX = clamp(clientX - rect.left - CHAR_SIZE / 2, 0, g.W - CHAR_SIZE);
+    if (!g.running) return;
+    dragRef.current = { active: true, originClientX: clientX, originX: g.x };
+    g.targetX = g.x;
   }, []);
 
-  const draggingRef = useRef(false);
+  const dragTo = useCallback((clientX: number) => {
+    const g = gRef.current;
+    const d = dragRef.current;
+    if (!d.active || !g.running) return;
+    g.targetX = clamp(d.originX + (clientX - d.originClientX), 0, g.W - CHAR_SIZE);
+  }, []);
 
   const registerNode = useCallback((p: Plat) => (el: HTMLDivElement | null) => {
     nodesRef.current[p.id] = el;
     if (el) el.style.transform = `translate3d(${p.x}px, ${p.wy - gRef.current.worldY}px, 0)`;
   }, []);
 
+  loopDeps.current = { finish, spawnBand, onPronounce, autoAdvanceOnClear };
+  (window as any).__dropAnswer = promptWord ? promptText(promptWord) : null; // TEMP-TEST-HOOK
+
   const hearts = Array.from({ length: MAX_HP }, (_, i) => i < hp);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 pb-3 shadow-sm">
       <div className="flex items-center justify-between mb-3">
         <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
-          {t('quizMode.setProgress', { current: setIndex, total: setTotal })}
+          {setTotal ? t('quizMode.setProgress', { current: setIndex, total: setTotal }) : t('quizMode.roundNo', { n: setIndex })}
+          <span className="ml-2 text-gray-400 dark:text-gray-500">{t('quizMode.remaining', { count: remaining })}</span>
         </p>
         <div className="flex items-center gap-2">
           {combo >= 2 && (
@@ -493,7 +562,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
       </div>
 
       {/* Prompt */}
-      <div className="rounded-2xl bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/10 border border-rose-200 dark:border-rose-800/60 px-4 py-3 mb-3 text-center min-h-[4.25rem] flex flex-col items-center justify-center">
+      <div className="rounded-2xl bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/10 border border-rose-200 dark:border-rose-800/60 px-4 py-2.5 mb-2.5 text-center min-h-[3.5rem] flex flex-col items-center justify-center">
         <p className="text-[11px] uppercase tracking-wider text-rose-500/70 dark:text-rose-400/70 font-semibold mb-1">
           {t('quizMode.dropHint')}
         </p>
@@ -505,16 +574,15 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
       {/* Shaft */}
       <div
         ref={areaRef}
-        onPointerDown={(e) => { draggingRef.current = true; e.currentTarget.setPointerCapture(e.pointerId); steer(e.clientX); }}
-        onPointerMove={(e) => { if (draggingRef.current) steer(e.clientX); }}
-        onPointerUp={() => { draggingRef.current = false; }}
-        onPointerCancel={() => { draggingRef.current = false; }}
-        className={`relative overflow-hidden rounded-xl touch-none select-none cursor-pointer border-2 transition-colors ${
+        onPointerDown={(e) => { try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* pointer already gone */ } beginDrag(e.clientX); }}
+        onPointerMove={(e) => dragTo(e.clientX)}
+        onPointerUp={() => { dragRef.current.active = false; }}
+        onPointerCancel={() => { dragRef.current.active = false; }}
+        className={`quiz-drop-shaft relative overflow-hidden rounded-xl touch-none select-none cursor-pointer border-2 transition-colors ${
           damageFlash
             ? 'border-red-400 bg-red-50 dark:bg-red-950/40'
             : 'border-gray-200 dark:border-gray-700 bg-gradient-to-b from-sky-50 to-indigo-50 dark:from-gray-900 dark:to-gray-950'
         }`}
-        style={{ height: 'min(58vh, 460px)' }}
       >
         {/* Ceiling spikes */}
         <div
@@ -585,21 +653,28 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
           </svg>
         </div>
 
-        {/* End-of-round banners */}
+        {/* End-of-round banner — waits for the player rather than auto-advancing */}
         {phase !== 'playing' && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/40 backdrop-blur-[1px]">
-            <div className={`animate-quiz-clear text-white text-sm font-bold px-5 py-2.5 rounded-2xl shadow-lg ${
-              phase === 'cleared' ? 'bg-green-500' : 'bg-gray-700'
-            }`}>
-              {phase === 'cleared' ? t('quizMode.setClear') : t('quizMode.gameOver')}
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/55 backdrop-blur-[1px] px-6">
+            <div className="animate-quiz-clear flex flex-col items-center gap-3">
+              <div className={`text-white text-sm font-bold px-5 py-2.5 rounded-2xl shadow-lg ${
+                phase === 'cleared' ? 'bg-green-500' : 'bg-gray-700'
+              }`}>
+                {phase === 'cleared' ? t('quizMode.setClear') : t('quizMode.gameOver')}
+              </div>
+              {!(autoAdvanceOnClear && phase === 'cleared') && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); finish(); }}
+                  onPointerDown={(e) => e.stopPropagation()}
+                  className="bg-white text-gray-900 text-sm font-bold px-6 py-3 rounded-2xl shadow-xl active:scale-95 transition-transform"
+                >
+                  {t('quizMode.nextRound')}
+                </button>
+              )}
             </div>
           </div>
         )}
       </div>
-
-      <p className="text-xs text-gray-400 dark:text-gray-500 mt-2 text-center">
-        {t('quizMode.remaining', { count: remaining })}
-      </p>
     </div>
   );
 };

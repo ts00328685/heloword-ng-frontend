@@ -69,7 +69,7 @@ const splitKanaGroups = (kana: string): string[] => {
 
 
 /** Words shown per round in each board mode. Sized to fit a phone without scrolling. */
-const BOARD_SET_SIZE: Record<Exclude<QuizMode, 'spelling'>, number> = {
+const BOARD_SET_SIZE: Record<Exclude<QuizMode, 'spelling' | 'choice'>, number> = {
   matching: 6,
   blast: 9,
   drop: 10,
@@ -523,7 +523,7 @@ const VocabularyQuizPage: React.FC = () => {
   // ── Board modes (連連看 / 消消樂) ─────────────────────────────────────────
   // The words currently on the board. wordList is only mutated when a round is
   // committed, so a plain slice stays stable for the whole round.
-  const boardSize = isBoardMode ? BOARD_SET_SIZE[quizMode as Exclude<QuizMode, 'spelling'>] : 0;
+  const boardSize = isBoardMode ? (BOARD_SET_SIZE[quizMode as Exclude<QuizMode, 'spelling' | 'choice'>] ?? 10) : 0;
   const boardSet = isBoardMode ? wordList.slice(0, Math.min(boardSize, wordList.length)) : [];
 
   /**
@@ -750,7 +750,7 @@ const VocabularyQuizPage: React.FC = () => {
         />
       </div>
 
-      <main className="flex-1 pb-6 px-4 pt-4 max-w-2xl mx-auto w-full overflow-y-auto">
+      <main className={`flex-1 px-4 pt-4 max-w-2xl mx-auto w-full overflow-y-auto ${isBoardMode ? 'pb-2' : 'pb-6'}`}>
         {/* Settings panel */}
         {showSettings && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">

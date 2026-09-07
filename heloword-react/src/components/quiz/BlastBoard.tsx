@@ -11,7 +11,8 @@ interface Props {
   /** Fired once every word is cleared. `failed` maps wordKey → number of wrong taps. */
   onComplete: (failed: Map<string, number>) => void;
   setIndex: number;
-  setTotal: number;
+  /** Total rounds. Omitted in free-play, where rounds are endless. */
+  setTotal?: number;
   onPronounce?: (word: Sentence) => void;
 }
 
@@ -110,7 +111,7 @@ const BlastBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTot
     <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
       <div className="flex items-center justify-between mb-3">
         <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
-          {t('quizMode.setProgress', { current: setIndex, total: setTotal })}
+          {setTotal ? t('quizMode.setProgress', { current: setIndex, total: setTotal }) : t('quizMode.roundNo', { n: setIndex })}
         </p>
         {combo >= 2 ? (
           <span key={combo} className="animate-quiz-combo text-xs font-bold text-orange-500 dark:text-orange-400">

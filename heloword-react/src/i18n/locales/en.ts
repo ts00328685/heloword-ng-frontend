@@ -137,6 +137,10 @@ const en = {
     dropDesc: 'Fall down the tower and steer into the word that matches. Mind the ceiling spikes and the trap platforms.',
     dropHint: 'Drag to steer',
     gameOver: 'Out of hearts',
+    nextRound: 'Next round →',
+    roundNo: 'Round {{n}}',
+    choice: 'Four Choices',
+    choiceDesc: 'Read the meaning, pick the right word from four options. Quick and forgiving.',
   },
   quizModal: {
     title: 'Configure Quiz',
@@ -607,8 +611,8 @@ const en = {
   multiChoice: {
     titleEn: '🔤 English Word Quiz',
     titleJp: '🈶 Japanese Word Quiz',
-    descEn: 'Pick the right English word from 4 choices',
-    descJp: 'Pick the right Japanese word from 4 choices',
+    descEn: '4 Choices · Match · Blast · Drop',
+    descJp: '4 Choices · Match · Blast · Drop',
     selectLevel: 'Select a level',
     easy: 'Easy',
     medium: 'Medium',

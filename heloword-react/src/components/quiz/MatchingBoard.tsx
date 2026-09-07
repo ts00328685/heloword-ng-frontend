@@ -12,7 +12,8 @@ interface Props {
   onComplete: (failed: Map<string, number>) => void;
   /** 1-based index of this set and the total number of sets, for the header. */
   setIndex: number;
-  setTotal: number;
+  /** Total rounds. Omitted in free-play, where rounds are endless. */
+  setTotal?: number;
   onPronounce?: (word: Sentence) => void;
 }
 
@@ -163,7 +164,7 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
     <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
       <div className="flex items-center justify-between mb-3">
         <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
-          {t('quizMode.setProgress', { current: setIndex, total: setTotal })}
+          {setTotal ? t('quizMode.setProgress', { current: setIndex, total: setTotal }) : t('quizMode.roundNo', { n: setIndex })}
         </p>
         <p className={`text-xs font-semibold ${resetting ? 'text-red-500' : 'text-gray-400 dark:text-gray-500'}`}>
           {resetting ? t('quizMode.wrongReset') : t('quizMode.remaining', { count: remaining })}

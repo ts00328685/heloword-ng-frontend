@@ -137,6 +137,10 @@ const ja = {
     dropDesc: '落ちながら意味に合う単語の足場に飛び込もう。天井のトゲと仕掛け足場に注意。',
     dropHint: 'ドラッグで左右に移動',
     gameOver: '体力ぎれ',
+    nextRound: '次のセットへ →',
+    roundNo: '{{n}} ラウンド目',
+    choice: '4択',
+    choiceDesc: '意味を見て、4つの選択肢から正しい単語を選びます。手軽で気楽。',
   },
   quizModal: {
     title: 'クイズを設定',
@@ -607,8 +611,8 @@ const ja = {
   multiChoice: {
     titleEn: '🔤 英単語クイズ',
     titleJp: '🈶 日本語単語クイズ',
-    descEn: '4択から正しい英単語を選んでください',
-    descJp: '4択から正しい日本語の単語を選んでください',
+    descEn: '4択・線つなぎ・ブラスト・ドロップ',
+    descJp: '4択・線つなぎ・ブラスト・ドロップ',
     selectLevel: 'レベルを選択',
     easy: '初級',
     medium: '中級',
