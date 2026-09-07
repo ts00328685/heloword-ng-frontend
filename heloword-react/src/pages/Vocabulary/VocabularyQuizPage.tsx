@@ -750,7 +750,7 @@ const VocabularyQuizPage: React.FC = () => {
         />
       </div>
 
-      <main className="flex-1 pb-6 px-4 pt-4 max-w-2xl mx-auto w-full overflow-y-auto">
+      <main className={`flex-1 px-4 pt-4 max-w-2xl mx-auto w-full overflow-y-auto ${isBoardMode ? 'pb-2' : 'pb-6'}`}>
         {/* Settings panel */}
         {showSettings && (
           <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">

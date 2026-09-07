@@ -137,6 +137,7 @@ const en = {
     dropDesc: 'Fall down the tower and steer into the word that matches. Mind the ceiling spikes and the trap platforms.',
     dropHint: 'Drag to steer',
     gameOver: 'Out of hearts',
+    nextRound: 'Next round →',
   },
   quizModal: {
     title: 'Configure Quiz',

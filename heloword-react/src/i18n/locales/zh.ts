@@ -137,6 +137,7 @@ const zh = {
     dropDesc: '一邊往下掉一邊撞對應的單字平台，小心天花板尖刺和陷阱平台。',
     dropHint: '拖曳畫面控制左右',
     gameOver: '血量歸零',
+    nextRound: '下一組 →',
   },
   quizModal: {
     title: '設定測驗',

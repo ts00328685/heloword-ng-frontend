@@ -125,6 +125,17 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
   }, []);
   const distractorsRef = useRef<Sentence[]>([]);
 
+  /** Grow the shaft into whatever room is left under it, capped at 80% of the
+   *  viewport, so the play area reaches the thumb with no dead margin below. */
+  const sizeShaft = useCallback(() => {
+    const area = areaRef.current;
+    if (!area) return;
+    const top = area.getBoundingClientRect().top;
+    const vh = window.innerHeight;
+    const h = Math.max(300, Math.min(vh * 0.8, vh - top - 26));
+    area.style.height = `${Math.round(h)}px`;
+  }, []);
+
   const finish = useCallback(() => {
     if (completedRef.current) return;
     completedRef.current = true;
@@ -203,6 +214,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
   useEffect(() => {
     const area = areaRef.current;
     if (!area) return;
+    sizeShaft();
     const rect = area.getBoundingClientRect();
     const g = gRef.current;
     g.W = rect.width;
@@ -250,7 +262,24 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
 
     // Seed the shaft so the player has something under them immediately.
     for (let y = g.H * 0.55; y < g.H + BAND_GAP; y += BAND_GAP) spawnBand(y);
-  }, [words, pool, spawnBand]);
+  }, [words, pool, spawnBand, sizeShaft]);
+
+  useEffect(() => {
+    const onResize = () => {
+      sizeShaft();
+      const area = areaRef.current;
+      if (!area) return;
+      const rect = area.getBoundingClientRect();
+      gRef.current.W = rect.width;
+      gRef.current.H = rect.height;
+    };
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('orientationchange', onResize);
+    };
+  }, [sizeShaft]);
 
   // ── Game loop ─────────────────────────────────────────────────────────────
 
@@ -285,8 +314,10 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
         g.py = standing.wy - CHAR_SIZE;
         g.vy = 0;
         if (standing.kind === 'conveyor') {
-          g.x = clamp(g.x + (standing.dir ?? 1) * CONVEYOR_V * dt, 0, g.W - CHAR_SIZE);
-          g.targetX = clamp(g.targetX + (standing.dir ?? 1) * CONVEYOR_V * dt, 0, g.W - CHAR_SIZE);
+          const push = (standing.dir ?? 1) * CONVEYOR_V * dt;
+          g.x = clamp(g.x + push, 0, g.W - CHAR_SIZE);
+          g.targetX = clamp(g.targetX + push, 0, g.W - CHAR_SIZE);
+          if (dragRef.current.active) dragRef.current.originX = clamp(dragRef.current.originX + push, 0, g.W - CHAR_SIZE);
         }
         if (standing.kind === 'crumble' && standing.crumbleAt && now - standing.crumbleAt > CRUMBLE_MS) {
           standing.dead = true;
@@ -329,7 +360,6 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
             if (g.queue.length === 0) {
               setPhase('cleared');
               g.running = false;
-              setTimeout(finish, 900);
               return;
             }
             setPromptWord(byKeyRef.current.get(g.queue[0]) ?? null);
@@ -352,7 +382,6 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
             if (g.hp <= 0) {
               setPhase('over');
               g.running = false;
-              setTimeout(finish, 1100);
               return;
             }
           }
@@ -390,7 +419,6 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
           if (g.hp <= 0) {
             setPhase('over');
             g.running = false;
-            setTimeout(finish, 1100);
             return;
           }
         } else {
@@ -455,15 +483,24 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
 
   // ── Steering ──────────────────────────────────────────────────────────────
 
-  const steer = useCallback((clientX: number) => {
-    const area = areaRef.current;
+  // Panning is relative, not absolute: touching down anchors on wherever the
+  // figure already is, and it then tracks the drag delta 1:1. Tapping a new
+  // spot no longer teleports it across the shaft.
+  const dragRef = useRef({ active: false, originClientX: 0, originX: 0 });
+
+  const beginDrag = useCallback((clientX: number) => {
     const g = gRef.current;
-    if (!area || !g.running) return;
-    const rect = area.getBoundingClientRect();
-    g.targetX = clamp(clientX - rect.left - CHAR_SIZE / 2, 0, g.W - CHAR_SIZE);
+    if (!g.running) return;
+    dragRef.current = { active: true, originClientX: clientX, originX: g.x };
+    g.targetX = g.x;
   }, []);
 
-  const draggingRef = useRef(false);
+  const dragTo = useCallback((clientX: number) => {
+    const g = gRef.current;
+    const d = dragRef.current;
+    if (!d.active || !g.running) return;
+    g.targetX = clamp(d.originX + (clientX - d.originClientX), 0, g.W - CHAR_SIZE);
+  }, []);
 
   const registerNode = useCallback((p: Plat) => (el: HTMLDivElement | null) => {
     nodesRef.current[p.id] = el;
@@ -473,10 +510,11 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
   const hearts = Array.from({ length: MAX_HP }, (_, i) => i < hp);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 pb-3 shadow-sm">
       <div className="flex items-center justify-between mb-3">
         <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
           {t('quizMode.setProgress', { current: setIndex, total: setTotal })}
+          <span className="ml-2 text-gray-400 dark:text-gray-500">{t('quizMode.remaining', { count: remaining })}</span>
         </p>
         <div className="flex items-center gap-2">
           {combo >= 2 && (
@@ -493,7 +531,7 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
       </div>
 
       {/* Prompt */}
-      <div className="rounded-2xl bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/10 border border-rose-200 dark:border-rose-800/60 px-4 py-3 mb-3 text-center min-h-[4.25rem] flex flex-col items-center justify-center">
+      <div className="rounded-2xl bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/10 border border-rose-200 dark:border-rose-800/60 px-4 py-2.5 mb-2.5 text-center min-h-[3.5rem] flex flex-col items-center justify-center">
         <p className="text-[11px] uppercase tracking-wider text-rose-500/70 dark:text-rose-400/70 font-semibold mb-1">
           {t('quizMode.dropHint')}
         </p>
@@ -505,16 +543,15 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
       {/* Shaft */}
       <div
         ref={areaRef}
-        onPointerDown={(e) => { draggingRef.current = true; e.currentTarget.setPointerCapture(e.pointerId); steer(e.clientX); }}
-        onPointerMove={(e) => { if (draggingRef.current) steer(e.clientX); }}
-        onPointerUp={() => { draggingRef.current = false; }}
-        onPointerCancel={() => { draggingRef.current = false; }}
-        className={`relative overflow-hidden rounded-xl touch-none select-none cursor-pointer border-2 transition-colors ${
+        onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); beginDrag(e.clientX); }}
+        onPointerMove={(e) => dragTo(e.clientX)}
+        onPointerUp={() => { dragRef.current.active = false; }}
+        onPointerCancel={() => { dragRef.current.active = false; }}
+        className={`quiz-drop-shaft relative overflow-hidden rounded-xl touch-none select-none cursor-pointer border-2 transition-colors ${
           damageFlash
             ? 'border-red-400 bg-red-50 dark:bg-red-950/40'
             : 'border-gray-200 dark:border-gray-700 bg-gradient-to-b from-sky-50 to-indigo-50 dark:from-gray-900 dark:to-gray-950'
         }`}
-        style={{ height: 'min(58vh, 460px)' }}
       >
         {/* Ceiling spikes */}
         <div
@@ -585,21 +622,26 @@ const DropBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTota
           </svg>
         </div>
 
-        {/* End-of-round banners */}
+        {/* End-of-round banner — waits for the player rather than auto-advancing */}
         {phase !== 'playing' && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/40 backdrop-blur-[1px]">
-            <div className={`animate-quiz-clear text-white text-sm font-bold px-5 py-2.5 rounded-2xl shadow-lg ${
-              phase === 'cleared' ? 'bg-green-500' : 'bg-gray-700'
-            }`}>
-              {phase === 'cleared' ? t('quizMode.setClear') : t('quizMode.gameOver')}
+          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/55 backdrop-blur-[1px] px-6">
+            <div className="animate-quiz-clear flex flex-col items-center gap-3">
+              <div className={`text-white text-sm font-bold px-5 py-2.5 rounded-2xl shadow-lg ${
+                phase === 'cleared' ? 'bg-green-500' : 'bg-gray-700'
+              }`}>
+                {phase === 'cleared' ? t('quizMode.setClear') : t('quizMode.gameOver')}
+              </div>
+              <button
+                onClick={(e) => { e.stopPropagation(); finish(); }}
+                onPointerDown={(e) => e.stopPropagation()}
+                className="bg-white text-gray-900 text-sm font-bold px-6 py-3 rounded-2xl shadow-xl active:scale-95 transition-transform"
+              >
+                {t('quizMode.nextRound')}
+              </button>
             </div>
           </div>
         )}
       </div>
-
-      <p className="text-xs text-gray-400 dark:text-gray-500 mt-2 text-center">
-        {t('quizMode.remaining', { count: remaining })}
-      </p>
     </div>
   );
 };

@@ -633,3 +633,15 @@ input[type='number'] {
   .animate-quiz-shake, .animate-quiz-combo, .animate-quiz-clear { animation: none; }
   .animate-quiz-burst { animation: quiz-burst 0.12s linear forwards; }
 }
+
+/* 單字下樓梯 play area. This is only the pre-JS height so the card doesn't
+   jump on mount — DropBoard measures the room actually left below the shaft
+   and sets the real height (capped at 80% of the viewport) on mount/resize. */
+.quiz-drop-shaft {
+  height: min(80vh, calc(100vh - 16rem));
+}
+@supports (height: 100dvh) {
+  .quiz-drop-shaft {
+    height: min(80dvh, calc(100dvh - 16rem));
+  }
+}

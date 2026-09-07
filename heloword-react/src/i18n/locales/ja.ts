@@ -137,6 +137,7 @@ const ja = {
     dropDesc: '落ちながら意味に合う単語の足場に飛び込もう。天井のトゲと仕掛け足場に注意。',
     dropHint: 'ドラッグで左右に移動',
     gameOver: '体力ぎれ',
+    nextRound: '次のセットへ →',
   },
   quizModal: {
     title: 'クイズを設定',
