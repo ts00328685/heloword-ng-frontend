@@ -536,7 +536,6 @@ const DropBoard: React.FC<Props> = ({
   }, []);
 
   loopDeps.current = { finish, spawnBand, onPronounce, autoAdvanceOnClear };
-  (window as any).__dropAnswer = promptWord ? promptText(promptWord) : null; // TEMP-TEST-HOOK
 
   const hearts = Array.from({ length: MAX_HP }, (_, i) => i < hp);
 
