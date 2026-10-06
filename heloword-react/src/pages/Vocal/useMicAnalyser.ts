@@ -53,8 +53,9 @@ export const useMicAnalyser = () => {
     setNote(null);
   }, []);
 
-  const start = useCallback(async () => {
-    if (ctxRef.current) return;
+  /** Opens the mic (no-op if already open) and resolves to its stream, or null on failure. */
+  const start = useCallback(async (): Promise<MediaStream | null> => {
+    if (ctxRef.current) return streamRef.current;
     setError(null);
     try {
       // Turn off voice-call processing — it flattens dynamics and smears pitch.
@@ -128,9 +129,11 @@ export const useMicAnalyser = () => {
         rafRef.current = requestAnimationFrame(tick);
       };
       rafRef.current = requestAnimationFrame(tick);
+      return stream;
     } catch (e) {
       stop();
       setError(e instanceof Error ? e.message : String(e));
+      return null;
     }
   }, [stop]);
 

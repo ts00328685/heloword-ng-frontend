@@ -22,6 +22,11 @@ export const useCanvasLoop = (draw: DrawFn) => {
       const dpr = window.devicePixelRatio || 1;
       const w = canvas.clientWidth;
       const h = canvas.clientHeight;
+      // Inside a collapsed panel — nothing to draw.
+      if (!w || !h) {
+        raf = requestAnimationFrame(loop);
+        return;
+      }
       if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) {
         canvas.width = Math.round(w * dpr);
         canvas.height = Math.round(h * dpr);
