@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { freqToNote, isSharp, midiToFreq, midiToNoteName } from './pitch';
-import { BUFFER_SECONDS, MicData, NOW_POSITION } from './useMicAnalyser';
+import { BUFFER_SECONDS, fmtTakeTime, indexAtTime, MicData, NOW_POSITION } from './useMicAnalyser';
 import { useCanvasLoop } from './useCanvasLoop';
 import { usePersistedState } from './usePersistedState';
 
@@ -57,14 +57,14 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
   };
 
   const canvasRef = useCanvasLoop((ctx, w, h) => {
-    const { pitch, now } = dataRef.current;
+    const { pitch, now, replay } = dataRef.current;
     const plotW = w - GUTTER;
     const plotH = h - AXIS_H;
     plotHRef.current = plotH;
 
-    // Follow the voice
+    // Follow the voice (a replayed take also has samples after `now` — ignore those)
     let latest: number | null = null;
-    for (let i = pitch.length - 1; i >= 0 && now - pitch[i].t < 0.3; i--) {
+    for (let i = indexAtTime(pitch, now + 1e-6) - 1; i >= 0 && now - pitch[i].t < 0.3; i--) {
       if (pitch[i].midi !== null) { latest = pitch[i].midi; break; }
     }
     if (follow && latest !== null) {
@@ -120,7 +120,8 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
       ctx.fillRect(Math.round(x), 0, 1, plotH);
       ctx.fillStyle = c.label;
       ctx.textAlign = 'center';
-      ctx.fillText(s === 0 ? 'now' : `-${s}s`, x, plotH + 4);
+      const label = replay ? (now - s >= 0 ? fmtTakeTime(now - s) : '') : s === 0 ? 'now' : `-${s}s`;
+      ctx.fillText(label, x, plotH + 4);
     }
     ctx.textAlign = 'left';
 
@@ -135,7 +136,10 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
     ctx.lineCap = 'round';
     ctx.beginPath();
     let prev: { t: number; midi: number } | null = null;
-    for (const p of pitch) {
+    // Only the visible slice — a replayed take can hold minutes of samples.
+    const i1 = indexAtTime(pitch, now + (BUFFER_SECONDS * (1 - NOW_POSITION)) / NOW_POSITION + 0.5);
+    for (let i = indexAtTime(pitch, now - BUFFER_SECONDS - 0.5); i < i1; i++) {
+      const p = pitch[i];
       if (p.midi === null) { prev = null; continue; }
       const x = xOf(p.t);
       const y = yOf(p.midi);
@@ -144,6 +148,11 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
       prev = { t: p.t, midi: p.midi };
     }
     ctx.stroke();
+    if (replay) {
+      // Dim what's still to come in the take
+      ctx.fillStyle = isDark ? 'rgba(17,24,39,0.55)' : 'rgba(255,255,255,0.6)';
+      ctx.fillRect(nowX, 0, GUTTER + plotW - nowX, plotH);
+    }
     if (latest !== null) {
       ctx.fillStyle = c.line;
       ctx.beginPath();
@@ -155,11 +164,13 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
     // Hover readout
     const hx = hoverXRef.current;
     if (hx !== null && hx >= GUTTER && hx <= GUTTER + plotW) {
-      // Past the "now" line there's no data yet — snap to the newest sample.
-      const tHover = now - (Math.max(0, nowX - hx) / histW) * BUFFER_SECONDS;
+      // Live: past the "now" line there's no data yet — snap to the newest sample.
+      const tHover = now - ((replay ? nowX - hx : Math.max(0, nowX - hx)) / histW) * BUFFER_SECONDS;
       let best: { t: number; midi: number } | null = null;
-      for (const p of pitch) {
-        if (p.midi === null || Math.abs(p.t - tHover) > HOVER_SNAP_S) continue;
+      const j1 = indexAtTime(pitch, tHover + HOVER_SNAP_S);
+      for (let j = indexAtTime(pitch, tHover - HOVER_SNAP_S); j < j1; j++) {
+        const p = pitch[j];
+        if (p.midi === null) continue;
         if (!best || Math.abs(p.t - tHover) < Math.abs(best.t - tHover)) best = { t: p.t, midi: p.midi };
       }
 
@@ -181,7 +192,7 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
         ctx.stroke();
 
         const title = n.name + offDir;
-        const detail = `${n.cents > 0 ? '+' : ''}${n.cents}¢ · ${midiToFreq(best.midi).toFixed(1)} Hz · -${(now - best.t).toFixed(1)}s`;
+        const detail = `${n.cents > 0 ? '+' : ''}${n.cents}¢ · ${midiToFreq(best.midi).toFixed(1)} Hz · ${replay ? `@ ${fmtTakeTime(best.t)}` : `-${(now - best.t).toFixed(1)}s`}`;
         ctx.font = 'bold 13px ui-sans-serif, system-ui, sans-serif';
         const tw = ctx.measureText(title).width;
         ctx.font = '11px ui-sans-serif, system-ui, sans-serif';

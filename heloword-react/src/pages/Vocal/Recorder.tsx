@@ -1,18 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Panel, { LiveDot } from './Panel';
+import { TakeMeters } from './useMicAnalyser';
 
 interface Props {
   /** Opens the mic if needed and returns its stream (null if denied). */
   getStream: () => Promise<MediaStream | null>;
+  /** Start/stop copying pitch & waveform frames for the take being recorded. */
+  beginCapture: () => void;
+  endCapture: () => TakeMeters;
+  /** Take currently shown in the Pitch/Waveform panels, if any. */
+  replayingId: number | null;
+  /** Show a take in the meters, synced to its audio element. */
+  onReplay: (take: Take, audio: HTMLAudioElement) => void;
+  onRemove: (id: number) => void;
 }
 
-interface Take {
+export interface Take {
   id: number;
   name: string;
   url: string;
   ext: string;
   seconds: number;
   createdAt: Date;
+  meters: TakeMeters;
 }
 
 /** First format the browser can record: Chrome/Firefox → webm/ogg, Safari → mp4. */
@@ -38,23 +48,43 @@ const safeFileName = (s: string) => s.trim().replace(/[\\/:*?"<>|]+/g, '_') || '
  * unseekable "Infinity" bar until played through. Seeking far past the end
  * forces the browser to compute the real duration.
  */
-const TakePlayer: React.FC<{ src: string }> = ({ src }) => {
-  const ref = useRef<HTMLAudioElement>(null);
+const TakePlayer: React.FC<{
+  src: string;
+  audioRef: (el: HTMLAudioElement | null) => void;
+  /** Play or a user seek — the page switches the meters to this take. */
+  onActivate: (audio: HTMLAudioElement) => void;
+}> = ({ src, audioRef, onActivate }) => {
+  const ref = useRef<HTMLAudioElement | null>(null);
+  /** True while the duration workaround is seeking, so it isn't mistaken for the user. */
+  const fixingRef = useRef(false);
   const onLoaded = () => {
     const a = ref.current;
     if (!a || Number.isFinite(a.duration)) return;
+    fixingRef.current = true;
     const reset = () => {
       a.removeEventListener('timeupdate', reset);
       a.currentTime = 0;
+      a.addEventListener('seeked', () => { fixingRef.current = false; }, { once: true });
     };
     a.addEventListener('timeupdate', reset);
     a.currentTime = 1e101;
   };
-  return <audio ref={ref} src={src} controls preload="metadata" onLoadedMetadata={onLoaded} className="w-full h-10" />;
+  return (
+    <audio
+      ref={(el) => { ref.current = el; audioRef(el); }}
+      src={src}
+      controls
+      preload="metadata"
+      onLoadedMetadata={onLoaded}
+      onPlay={(e) => onActivate(e.currentTarget)}
+      onSeeked={(e) => { if (!fixingRef.current) onActivate(e.currentTarget); }}
+      className="w-full h-10"
+    />
+  );
 };
 
 /** Records takes from the shared mic stream; replay inline or download. Takes live in memory only. */
-const Recorder: React.FC<Props> = ({ getStream }) => {
+const Recorder: React.FC<Props> = ({ getStream, beginCapture, endCapture, replayingId, onReplay, onRemove }) => {
   const [recording, setRecording] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [takes, setTakes] = useState<Take[]>([]);
@@ -65,6 +95,7 @@ const Recorder: React.FC<Props> = ({ getStream }) => {
   const nextIdRef = useRef(1);
   const takesRef = useRef(takes);
   takesRef.current = takes;
+  const audioEls = useRef(new Map<number, HTMLAudioElement>());
 
   useEffect(() => () => {
     clearInterval(timerRef.current);
@@ -91,16 +122,19 @@ const Recorder: React.FC<Props> = ({ getStream }) => {
     const chunks: Blob[] = [];
     const startedAt = performance.now();
     rec.ondataavailable = (e) => { if (e.data.size) chunks.push(e.data); };
+    // Meters start when audio actually starts, so their timeline matches the file.
+    rec.onstart = beginCapture;
     // Also fires if the mic is switched off mid-take, so nothing is lost.
     rec.onstop = () => {
       clearInterval(timerRef.current);
       setRecording(false);
       recorderRef.current = null;
+      const meters = endCapture();
       if (!chunks.length) return;
       const id = nextIdRef.current++;
       const blob = new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' });
       setTakes((ts) => [
-        { id, name: `Take ${id}`, url: URL.createObjectURL(blob), ext, seconds: (performance.now() - startedAt) / 1000, createdAt: new Date() },
+        { id, name: `Take ${id}`, url: URL.createObjectURL(blob), ext, seconds: (performance.now() - startedAt) / 1000, createdAt: new Date(), meters },
         ...ts,
       ]);
     };
@@ -120,6 +154,7 @@ const Recorder: React.FC<Props> = ({ getStream }) => {
       if (t) URL.revokeObjectURL(t.url);
       return ts.filter((x) => x.id !== id);
     });
+    onRemove(id);
   };
 
   const rename = (id: number, name: string) =>
@@ -166,7 +201,12 @@ const Recorder: React.FC<Props> = ({ getStream }) => {
       ) : (
         <ul className="mt-4 space-y-3">
           {takes.map((t) => (
-            <li key={t.id} className="rounded-xl border border-gray-100 dark:border-gray-700 p-3">
+            <li
+              key={t.id}
+              className={`rounded-xl border p-3 transition-colors ${
+                replayingId === t.id ? 'border-blue-400 bg-blue-50/50 dark:bg-blue-900/10' : 'border-gray-100 dark:border-gray-700'
+              }`}
+            >
               <div className="flex items-center gap-2 mb-2">
                 <input
                   value={t.name}
@@ -178,8 +218,24 @@ const Recorder: React.FC<Props> = ({ getStream }) => {
                   {fmtTime(t.seconds)} · {t.createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
-              <TakePlayer src={t.url} />
-              <div className="flex justify-end gap-2 mt-2">
+              <TakePlayer
+                src={t.url}
+                audioRef={(el) => { if (el) audioEls.current.set(t.id, el); else audioEls.current.delete(t.id); }}
+                onActivate={(audio) => onReplay(t, audio)}
+              />
+              <div className="flex items-center justify-end gap-2 mt-2">
+                {replayingId === t.id ? (
+                  <span className="mr-auto text-[11px] font-semibold text-blue-500">Showing in meters</span>
+                ) : (
+                  <button
+                    onClick={() => { const a = audioEls.current.get(t.id); if (a) onReplay(t, a); }}
+                    className="mr-auto px-3 py-1.5 rounded-lg text-xs font-semibold text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                    disabled={!t.meters.pitch.length}
+                    title={t.meters.pitch.length ? 'Show this take in the Pitch and Waveform panels' : 'No meter data for this take'}
+                  >
+                    Show meters
+                  </button>
+                )}
                 <a
                   href={t.url}
                   download={`${safeFileName(t.name)}.${t.ext}`}
