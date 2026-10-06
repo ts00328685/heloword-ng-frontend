@@ -4,7 +4,8 @@ import { usePersistedState } from './usePersistedState';
 
 const MIN_BPM = 30;
 const MAX_BPM = 240;
-const BEAT_OPTIONS = [2, 3, 4, 5, 6, 7];
+/** Common bar lengths: simple (2–5), odd (5, 7), compound (6, 9, 12) and 8 / 16 for subdivision practice. */
+const BEAT_OPTIONS = [2, 3, 4, 5, 6, 7, 8, 9, 12, 16];
 /** Look-ahead scheduler (Chris Wilson, "A Tale of Two Clocks"). */
 const LOOKAHEAD_MS = 25;
 const SCHEDULE_AHEAD_S = 0.1;
@@ -131,7 +132,11 @@ const Metronome: React.FC = () => {
     >
       <div className="space-y-5">
         {/* Beat dots */}
-        <div className="flex justify-center gap-3 pt-1">
+        {/* Long bars split into two rows (12 → 6+6, 16 → 8+8) so they fit on a phone */}
+        <div
+          className="grid justify-center gap-3 pt-1"
+          style={{ gridTemplateColumns: `repeat(${beats > 9 ? Math.ceil(beats / 2) : beats}, auto)` }}
+        >
           {Array.from({ length: beats }, (_, i) => (
             <span
               key={i}
@@ -180,12 +185,12 @@ const Metronome: React.FC = () => {
         {/* Beats per bar */}
         <div>
           <p className="text-xs text-gray-600 dark:text-gray-300 mb-2">Beats per bar</p>
-          <div className="flex justify-between gap-2">
+          <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
             {BEAT_OPTIONS.map((n) => (
               <button
                 key={n}
                 onClick={() => setBeats(n)}
-                className={`flex-1 h-9 rounded-full text-sm font-semibold transition-colors ${
+                className={`h-9 rounded-full text-sm font-semibold transition-colors ${
                   beats === n ? 'bg-green-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
