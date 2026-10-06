@@ -979,6 +979,9 @@ const zh = {
     addReaction: '加入 {e}',
     copySongName: '複製歌名',
   },
+  vocal: {
+    title: '歌唱練習',
+  },
 } as const;
 
 export default zh;

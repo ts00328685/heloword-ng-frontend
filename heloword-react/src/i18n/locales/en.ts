@@ -979,6 +979,9 @@ const en = {
     addReaction: 'Add {e}',
     copySongName: 'Copy song name',
   },
+  vocal: {
+    title: 'Vocal Trainer',
+  },
 } as const;
 
 export default en;

@@ -52,6 +52,7 @@ const ENArticleListPage       = React.lazy(() => import('./pages/EN/ENArticleLis
 const ENArticleDetailPage     = React.lazy(() => import('./pages/EN/ENArticleDetailPage'));
 const BoardPage               = React.lazy(() => import('./pages/Board/BoardPage'));
 const AdminAnalyticsPage      = React.lazy(() => import('./pages/Admin/AdminAnalyticsPage'));
+const VocalTrainerPage        = React.lazy(() => import('./pages/Vocal/VocalTrainerPage'));
 
 // Pages where we don't show the bottom tabs
 const NO_TABS_PATHS = ['/vocabulary/quiz', '/login', '/board/'];
@@ -108,6 +109,7 @@ const AppLayout: React.FC = () => {
           {/* Stable QR-friendly entry: forwards to the live board, else home */}
           <Route path="/live" element={<LiveBoardRedirect />} />
           <Route path="/admin/analytics" element={<AdminAnalyticsPage />} />
+          <Route path="/vocal" element={<VocalTrainerPage />} />
           {/* Catch-all */}
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
@@ -149,12 +151,13 @@ const RouteAnalytics: React.FC = () => {
   return null;
 };
 
-/** Renders the floating chatbot assistant everywhere except the live board page. */
+/** Renders the floating chatbot assistant everywhere except the live board and vocal trainer pages. */
 const ChatBotWrapper: React.FC = () => {
   return (
     <Routes>
       <Route path="/board/:sessionId" element={null} />
       <Route path="/live" element={null} />
+      <Route path="/vocal" element={null} />
       <Route path="*" element={<ChatBot />} />
     </Routes>
   );
