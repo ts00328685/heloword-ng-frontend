@@ -526,6 +526,19 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
               )}
             </div>
 
+            {/* Vocal trainer (pitch meter, waveform, metronome) */}
+            <div className="border-b border-gray-100 dark:border-gray-800">
+              <button
+                onClick={() => { closeMenu(); navigate('/vocal'); }}
+                className="flex items-center justify-between w-full px-4 py-3 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+              >
+                <span>{t('vocal.title', 'Vocal Trainer')}</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
             {/* Row 4: Live Board (admin only) */}
             {isAdmin && (
               <div className="border-b border-gray-100 dark:border-gray-800">

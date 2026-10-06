@@ -978,6 +978,9 @@ const ja = {
     addReaction: '{e} を追加',
     copySongName: '曲名をコピー',
   },
+  vocal: {
+    title: 'ボーカル練習',
+  },
 } as const;
 
 export default ja;
