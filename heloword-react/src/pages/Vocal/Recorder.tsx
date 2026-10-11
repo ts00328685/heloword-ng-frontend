@@ -1,9 +1,10 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Panel, { LiveDot } from './Panel';
 import { KeySig } from './music';
 import { analyseAudio } from './analyseAudio';
 import TakeCard, { downloadBlob, fmtClock, safeFileName } from './TakeCard';
-import { deleteTake, exportTake, loadTakes, parseExport, requestPersistence, saveTake, StoredTake, Take } from './takeStore';
+import { deleteTake, exportTake, loadTakes, parseExport, requestPersistence, saveTake, StoredTake, Take, TakeFileError } from './takeStore';
 import { TakeMeters } from './useMicAnalyser';
 
 interface Props {
@@ -49,6 +50,7 @@ const strip = ({ url: _url, ...t }: Take): StoredTake => t;
 const Recorder = forwardRef<RecorderHandle, Props>(({
   getStream, beginCapture, endCapture, keySig, replayingId, onReplay, onLoopChange, onRemove, onGainChange,
 }, ref) => {
+  const { t } = useTranslation();
   const [recording, setRecording] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [takes, setTakes] = useState<Take[]>([]);
@@ -72,20 +74,20 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     loadTakes()
       .then((stored) => {
         const loaded = stored.sort((x, y) => y.createdAt - x.createdAt).map(withUrl);
-        lastIdRef.current = Math.max(0, ...loaded.map((t) => t.id));
+        lastIdRef.current = Math.max(0, ...loaded.map((take) => take.id));
         // Keep anything recorded while loading.
-        setTakes((current) => [...current, ...loaded.filter((t) => !current.some((c) => c.id === t.id))]);
+        setTakes((current) => [...current, ...loaded.filter((take) => !current.some((c) => c.id === take.id))]);
       })
       .catch(() => setCanPersist(false));
     return () => {
       clearInterval(timerRef.current);
       if (recorderRef.current?.state === 'recording') recorderRef.current.stop();
-      takesRef.current.forEach((t) => URL.revokeObjectURL(t.url));
+      takesRef.current.forEach((take) => URL.revokeObjectURL(take.url));
     };
   }, []);
 
-  const persist = (t: Take) => {
-    saveTake(strip(t))
+  const persist = (take: Take) => {
+    saveTake(strip(take))
       .then(() => requestPersistence())
       .catch(() => setCanPersist(false));
   };
@@ -100,7 +102,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     setError(null);
     const stream = await getStream();
     if (!stream) {
-      setError('Microphone unavailable.');
+      setError(t('vocal.mic.unavailableShort'));
       return;
     }
     const [mime, ext] = pickFormat();
@@ -126,7 +128,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       if (!chunks.length) return;
       addTake({
         id: nextId(),
-        name: `Take ${takesRef.current.length + 1}`,
+        name: t('vocal.recorder.defaultName', { n: takesRef.current.length + 1 }),
         blob: new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' }),
         ext,
         seconds: (performance.now() - startedAt) / 1000,
@@ -147,37 +149,37 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
   useImperativeHandle(ref, () => ({ toggleRecording }));
 
   const remove = (id: number) => {
-    const t = takesRef.current.find((x) => x.id === id);
-    if (t) URL.revokeObjectURL(t.url);
+    const take = takesRef.current.find((x) => x.id === id);
+    if (take) URL.revokeObjectURL(take.url);
     setTakes((ts) => ts.filter((x) => x.id !== id));
     deleteTake(id).catch(() => {});
     onRemove(id);
   };
 
   const rename = (id: number, name: string) =>
-    setTakes((ts) => ts.map((t) => (t.id === id ? { ...t, name } : t)));
+    setTakes((ts) => ts.map((take) => (take.id === id ? { ...take, name } : take)));
 
   const setGain = (id: number, gain: number) => {
-    setTakes((ts) => ts.map((t) => (t.id === id ? { ...t, gain } : t)));
+    setTakes((ts) => ts.map((take) => (take.id === id ? { ...take, gain } : take)));
     onGainChange(id, gain);
     // Save once the slider settles rather than on every step of a drag.
     clearTimeout(gainSaveTimers.current.get(id));
     gainSaveTimers.current.set(id, window.setTimeout(() => {
-      const t = takesRef.current.find((x) => x.id === id);
-      if (t) persist(t);
+      const take = takesRef.current.find((x) => x.id === id);
+      if (take) persist(take);
     }, 400));
   };
 
   const commitRename = (id: number) => {
-    const t = takesRef.current.find((x) => x.id === id);
-    if (t) persist(t);
+    const take = takesRef.current.find((x) => x.id === id);
+    if (take) persist(take);
   };
 
-  const exportOne = async (t: Take) => {
+  const exportOne = async (take: Take) => {
     try {
-      downloadBlob(await exportTake(strip(t)), `${safeFileName(t.name)}.vocal.json`);
+      downloadBlob(await exportTake(strip(take)), `${safeFileName(take.name)}.vocal.json`);
     } catch (e) {
-      setError(`Export failed: ${e instanceof Error ? e.message : String(e)}`);
+      setError(t('vocal.recorder.exportFailed', { error: e instanceof Error ? e.message : String(e) }));
     }
   };
 
@@ -194,7 +196,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
           const { meters, seconds } = await analyseAudio(file, (progress) => setImporting({ name: file.name, progress }));
           addTake({
             id: nextId(),
-            name: base.slice(0, 60) || 'Imported audio',
+            name: base.slice(0, 60) || t('vocal.recorder.importedName'),
             blob: file,
             ext: file.name.split('.').pop()?.toLowerCase() || 'audio',
             seconds,
@@ -203,7 +205,8 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
           });
         }
       } catch (e) {
-        setError(`Couldn't import ${file.name}: ${e instanceof Error ? e.message : String(e)}`);
+        const reason = e instanceof TakeFileError ? t(`vocal.recorder.${e.code}`) : e instanceof Error ? e.message : String(e);
+        setError(t('vocal.recorder.importFailed', { name: file.name, error: reason }));
       } finally {
         setImporting(null);
       }
@@ -214,9 +217,9 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
   return (
     <Panel
       id="recorder"
-      title="Recorder"
+      title={t('vocal.panel.recorder')}
       indicator={recording && <LiveDot color="bg-red-500" />}
-      summary={recording ? `REC ${fmtClock(elapsed)}` : `${takes.length} take${takes.length === 1 ? '' : 's'}`}
+      summary={recording ? t('vocal.recorder.rec', { time: fmtClock(elapsed) }) : t('vocal.recorder.takes', { count: takes.length })}
     >
       <div className="flex flex-wrap items-center gap-3">
         <button
@@ -226,12 +229,12 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
               ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-700 dark:hover:bg-white'
               : 'bg-red-500 hover:bg-red-600 text-white'
           }`}
-          title="Record (R)"
+          title={t('vocal.recorder.recordTitle')}
         >
           {recording ? (
-            <><span className="w-2.5 h-2.5 rounded-sm bg-current" />Stop</>
+            <><span className="w-2.5 h-2.5 rounded-sm bg-current" />{t('vocal.recorder.stop')}</>
           ) : (
-            <><span className="w-2.5 h-2.5 rounded-full bg-white" />Record</>
+            <><span className="w-2.5 h-2.5 rounded-full bg-white" />{t('vocal.recorder.record')}</>
           )}
         </button>
         {recording && (
@@ -244,9 +247,9 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
           onClick={() => fileInputRef.current?.click()}
           disabled={!!importing}
           className="ml-auto px-3 py-2 rounded-xl text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors disabled:opacity-50"
-          title="Import an audio file (it's analysed for pitch) or a .vocal.json export"
+          title={t('vocal.recorder.importTitle')}
         >
-          Import…
+          {t('vocal.recorder.import')}
         </button>
         <input
           ref={fileInputRef}
@@ -261,7 +264,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       {importing && (
         <div className="mt-3">
           <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 truncate">
-            Analysing {importing.name}… {Math.round(importing.progress * 100)}%
+            {t('vocal.recorder.analysing', { name: importing.name, pct: Math.round(importing.progress * 100) })}
           </p>
           <div className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
             <div className="h-full bg-blue-500 transition-[width]" style={{ width: `${importing.progress * 100}%` }} />
@@ -273,25 +276,25 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
 
       <p className="mt-3 text-[11px] text-gray-400 dark:text-gray-500">
         {canPersist
-          ? 'Takes are saved in this browser. Use Export to keep a copy (audio + meters) elsewhere.'
-          : "This browser isn't letting the page save takes (private mode?). They'll be lost on refresh — export the ones you want."}
+          ? t('vocal.recorder.saved')
+          : t('vocal.recorder.notSaved')}
       </p>
 
       {takes.length > 0 && (
         <ul className="mt-3 space-y-3">
-          {takes.map((t) => (
+          {takes.map((take) => (
             <TakeCard
-              key={t.id}
-              take={t}
+              key={take.id}
+              take={take}
               keySig={keySig}
-              active={replayingId === t.id}
-              onActivate={(audio) => onReplay(t, audio)}
-              onLoopChange={(loop) => onLoopChange(t.id, loop)}
-              onRename={(name) => rename(t.id, name)}
-              onRenameCommit={() => commitRename(t.id)}
-              onExport={() => exportOne(t)}
-              onDelete={() => remove(t.id)}
-              onGainChange={(gain) => setGain(t.id, gain)}
+              active={replayingId === take.id}
+              onActivate={(audio) => onReplay(take, audio)}
+              onLoopChange={(loop) => onLoopChange(take.id, loop)}
+              onRename={(name) => rename(take.id, name)}
+              onRenameCommit={() => commitRename(take.id)}
+              onExport={() => exportOne(take)}
+              onDelete={() => remove(take.id)}
+              onGainChange={(gain) => setGain(take.id, gain)}
             />
           ))}
         </ul>

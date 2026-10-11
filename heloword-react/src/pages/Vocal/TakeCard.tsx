@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { convertToMp3 } from './encodeMp3';
 import { KeySig, spellNote } from './music';
 import { peakLevel, takeStats } from './stats';
@@ -55,6 +56,9 @@ const idle = 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hove
 
 /** One recorded or imported take: player, stats, practice-loop controls and actions. */
 const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopChange, onRename, onRenameCommit, onExport, onDelete, onGainChange }) => {
+  const { t, i18n } = useTranslation();
+  /** Dates follow the app language (Traditional Chinese for zh). */
+  const dateLocale = i18n.language === 'zh' ? 'zh-TW' : i18n.language;
   const audioRef = useRef<HTMLAudioElement | null>(null);
   /** True while the duration workaround is seeking, so it isn't mistaken for the user. */
   const fixingRef = useRef(false);
@@ -174,7 +178,7 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
     try {
       downloadBlob(await convertToMp3(take.blob, setMp3Progress, gain), filename);
     } catch (e) {
-      setMp3Error(`MP3 conversion failed: ${e instanceof Error ? e.message : String(e)}`);
+      setMp3Error(t('vocal.take.mp3Failed', { error: e instanceof Error ? e.message : String(e) }));
     } finally {
       setMp3Progress(null);
     }
@@ -193,10 +197,10 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
           onBlur={onRenameCommit}
           onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur(); }}
           className="flex-1 min-w-0 bg-transparent text-sm font-semibold text-gray-800 dark:text-gray-100 rounded-md px-1 -mx-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          aria-label="Take name"
+          aria-label={t('vocal.take.name')}
         />
         <span className="text-[11px] font-mono text-gray-400 dark:text-gray-500 shrink-0">
-          {fmtClock(take.seconds)} · {new Date(take.createdAt).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+          {fmtClock(take.seconds)} · {new Date(take.createdAt).toLocaleString(dateLocale, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
         </span>
       </div>
 
@@ -218,40 +222,40 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
       {/* Stats */}
       {stats ? (
         <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 text-[11px] text-gray-500 dark:text-gray-400 tabular-nums">
-          <span>Low <b className="text-gray-700 dark:text-gray-200">{spellNote(stats.low, keySig)}</b></span>
-          <span>High <b className="text-gray-700 dark:text-gray-200">{spellNote(stats.high, keySig)}</b></span>
-          <span>Range <b className="text-gray-700 dark:text-gray-200">{stats.range} st</b></span>
-          <span title="Share of sung time within ±10¢ of a note">In tune <b className="text-gray-700 dark:text-gray-200">{Math.round(stats.inTune * 100)}%</b></span>
-          <span title="Average distance from the nearest note">Avg <b className="text-gray-700 dark:text-gray-200">±{Math.round(stats.avgCents)}¢</b></span>
+          <span>{t('vocal.take.low')} <b className="text-gray-700 dark:text-gray-200">{spellNote(stats.low, keySig)}</b></span>
+          <span>{t('vocal.take.high')} <b className="text-gray-700 dark:text-gray-200">{spellNote(stats.high, keySig)}</b></span>
+          <span>{t('vocal.take.range')} <b className="text-gray-700 dark:text-gray-200">{t('vocal.take.semitones', { n: stats.range })}</b></span>
+          <span title={t('vocal.take.inTuneTitle')}>{t('vocal.take.inTune')} <b className="text-gray-700 dark:text-gray-200">{Math.round(stats.inTune * 100)}%</b></span>
+          <span title={t('vocal.take.avgTitle')}>{t('vocal.take.avg')} <b className="text-gray-700 dark:text-gray-200">±{Math.round(stats.avgCents)}¢</b></span>
         </div>
       ) : (
-        <p className="mt-2 text-[11px] text-gray-400 dark:text-gray-500">{hasMeters ? 'No singing detected in this take.' : 'No meter data.'}</p>
+        <p className="mt-2 text-[11px] text-gray-400 dark:text-gray-500">{hasMeters ? t('vocal.take.noSinging') : t('vocal.take.noMeters')}</p>
       )}
 
       {/* Volume — applied to playback and the saved MP3 */}
       <div className="flex flex-wrap items-center gap-2 mt-2">
-        <span className="text-[11px] text-gray-500 dark:text-gray-400">Vol</span>
+        <span className="text-[11px] text-gray-500 dark:text-gray-400">{t('vocal.take.vol')}</span>
         <input
           type="range" min={0} max={MAX_GAIN} step={0.05}
           value={gain}
           onChange={(e) => onGainChange(parseFloat(e.target.value))}
           onDoubleClick={() => onGainChange(1)}
           className="w-32 accent-blue-500"
-          aria-label="Take volume"
-          title="Double-click to reset to 100%"
+          aria-label={t('vocal.take.volume')}
+          title={t('vocal.take.volumeResetTitle')}
         />
         <span className="text-[11px] font-mono text-gray-600 dark:text-gray-300 tabular-nums">
           {Math.round(gain * 100)}% <span className="text-gray-400">({toDb(gain)})</span>
         </span>
-        <button onClick={normalize} disabled={peak <= 0} className={`${btn} ${idle} disabled:opacity-40`} title="Make the loudest moment just below full scale">
-          Normalize
+        <button onClick={normalize} disabled={peak <= 0} className={`${btn} ${idle} disabled:opacity-40`} title={t('vocal.take.normalizeTitle')}>
+          {t('vocal.take.normalize')}
         </button>
         {gain !== 1 && (
-          <button onClick={() => onGainChange(1)} className="text-[11px] text-blue-500 hover:underline">Reset</button>
+          <button onClick={() => onGainChange(1)} className="text-[11px] text-blue-500 hover:underline">{t('vocal.take.reset')}</button>
         )}
         {clips && (
-          <span className="text-[11px] font-semibold text-red-500" title="The loudest parts will be cut off (distorted) at this volume">
-            ⚠ clips
+          <span className="text-[11px] font-semibold text-red-500" title={t('vocal.take.clipsTitle')}>
+            {t('vocal.take.clips')}
           </span>
         )}
       </div>
@@ -259,26 +263,26 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
       {/* Practice: speed + A–B loop */}
       <div className="flex flex-wrap items-center gap-1.5 mt-2">
         {SPEEDS.map((s) => (
-          <button key={s} onClick={() => setRate(s)} className={`${btn} ${rate === s ? 'bg-blue-500 text-white' : idle}`} title="Playback speed (pitch is kept)">
+          <button key={s} onClick={() => setRate(s)} className={`${btn} ${rate === s ? 'bg-blue-500 text-white' : idle}`} title={t('vocal.take.speedTitle')}>
             {s}×
           </button>
         ))}
         <span className="w-px h-5 bg-gray-200 dark:bg-gray-700 mx-1" />
-        <button onClick={markA} className={`${btn} ${idle}`} title="Set loop start at the current position">A</button>
-        <button onClick={markB} className={`${btn} ${idle}`} title="Set loop end at the current position">B</button>
+        <button onClick={markA} className={`${btn} ${idle}`} title={t('vocal.take.setA')}>A</button>
+        <button onClick={markB} className={`${btn} ${idle}`} title={t('vocal.take.setB')}>B</button>
         <button
           onClick={() => setLooping((l) => !l)}
           disabled={!loopRange}
           className={`${btn} ${looping && loopRange ? 'bg-emerald-500 text-white' : idle} disabled:opacity-40`}
         >
-          Loop
+          {t('vocal.take.loop')}
         </button>
         {(a !== null || b !== null) && (
           <>
             <span className="text-[11px] font-mono text-gray-500 dark:text-gray-400">
               {a !== null ? fmtTakeTime(a) : '–'} → {b !== null ? fmtTakeTime(b) : '–'}
             </span>
-            <button onClick={clearLoop} className="text-[11px] text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 px-1" aria-label="Clear loop">✕</button>
+            <button onClick={clearLoop} className="text-[11px] text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 px-1" aria-label={t('vocal.take.clearLoop')}>✕</button>
           </>
         )}
       </div>
@@ -286,40 +290,40 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
       {/* Actions */}
       <div className="flex flex-wrap items-center justify-end gap-2 mt-2">
         {active ? (
-          <span className="mr-auto text-[11px] font-semibold text-blue-500">Showing in meters</span>
+          <span className="mr-auto text-[11px] font-semibold text-blue-500">{t('vocal.take.showing')}</span>
         ) : (
           <button
             onClick={() => { if (audioRef.current) onActivate(audioRef.current); }}
             className="mr-auto px-3 py-1.5 rounded-lg text-xs font-semibold text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors disabled:opacity-40"
             disabled={!hasMeters}
-            title={hasMeters ? 'Show this take in the Pitch and Waveform panels' : 'No meter data for this take'}
+            title={hasMeters ? t('vocal.take.showMetersTitle') : t('vocal.take.noMetersTitle')}
           >
-            Show meters
+            {t('vocal.take.showMeters')}
           </button>
         )}
         <button
           onClick={saveMp3}
           disabled={mp3Progress !== null}
           className={`${btn} bg-blue-500 hover:bg-blue-600 text-white disabled:opacity-70 tabular-nums`}
-          title="Convert to MP3 (128 kbps) at this take's volume and download"
+          title={t('vocal.take.saveMp3Title')}
         >
-          {mp3Progress !== null ? `Converting… ${Math.round(mp3Progress * 100)}%` : 'Save MP3'}
+          {mp3Progress !== null ? t('vocal.take.converting', { pct: Math.round(mp3Progress * 100) }) : t('vocal.take.saveMp3')}
         </button>
         {take.ext !== 'mp3' && (
           <a
             href={take.url}
             download={`${safeFileName(take.name)}.${take.ext}`}
             className={`${btn} ${idle}`}
-            title={`Download the original recording (.${take.ext}) — as recorded, without the volume change`}
+            title={t('vocal.take.originalTitle', { ext: take.ext })}
           >
-            Original
+            {t('vocal.take.original')}
           </a>
         )}
-        <button onClick={onExport} className={`${btn} ${idle}`} title="Download audio + meters as one file you can import later">
-          Export
+        <button onClick={onExport} className={`${btn} ${idle}`} title={t('vocal.take.exportTitle')}>
+          {t('vocal.take.export')}
         </button>
         <button onClick={onDelete} className={`${btn} ${idle}`}>
-          Delete
+          {t('vocal.take.delete')}
         </button>
       </div>
       {mp3Error && <p className="mt-2 text-[11px] text-red-500">{mp3Error}</p>}

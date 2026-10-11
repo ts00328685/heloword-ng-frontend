@@ -20,17 +20,18 @@ import Panel, { LiveDot } from './Panel';
 
 type Loop = { a: number; b: number } | null;
 
+/** Key caps and their i18n keys under `vocal.shortcuts`. */
 const SHORTCUTS: [key: string, action: string][] = [
-  ['Space', 'freeze / play-pause take'],
+  ['Space', 'space'],
   ['R', 'record'],
   ['M', 'mic'],
-  ['↑ ↓', 'scroll notes (⇧ octave)'],
+  ['↑ ↓', 'scroll'],
   ['+ −', 'zoom'],
   ['F', 'fit'],
-  ['T', 'play target'],
+  ['T', 'target'],
   ['K', 'metronome'],
-  ['H', 'monitor (hear yourself)'],
-  ['Esc', 'back to live'],
+  ['H', 'monitor'],
+  ['Esc', 'live'],
 ];
 
 /**
@@ -219,30 +220,30 @@ const VocalTrainerPage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
-      <Header title={t('vocal.title', 'Vocal Trainer')} showBack />
+      <Header title={t('vocal.title')} showBack />
 
       {/* Extra bottom padding leaves room for the metronome dock */}
       <main className="flex-1 pb-40 px-4 pt-6 max-w-3xl mx-auto w-full space-y-4">
         <Panel
           id="pitch"
-          title={replay ? `Pitch · ${replay.take.name}` : 'Pitch'}
+          title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.pitch'), take: replay.take.name }) : t('vocal.panel.pitch')}
           indicator={running && <LiveDot color="bg-blue-500" />}
-          summary={note ? `${noteName}${noteAlt ? `/${noteAlt}` : ''} ${cents > 0 ? '+' : ''}${cents}¢` : running || replay ? '--' : 'mic off'}
+          summary={note ? `${noteName}${noteAlt ? `/${noteAlt}` : ''} ${cents > 0 ? '+' : ''}${cents}¢` : running || replay ? '--' : t('vocal.mic.off')}
         >
           {replay && (
             <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-xs text-blue-700 dark:text-blue-300">
               <span className="min-w-0 truncate">
-                ▶ Replaying <b>{replay.take.name}</b> — meters follow the audio player
+                ▶ {t('vocal.replay.replaying')} <b>{replay.take.name}</b> — {t('vocal.replay.followHint')}
               </span>
               <button onClick={exitReplay} className="shrink-0 font-semibold hover:underline">
-                Back to live
+                {t('vocal.replay.backToLive')}
               </button>
             </div>
           )}
           <div className="flex items-center justify-between gap-3 mb-4">
             <div
               className={`flex items-center gap-3 min-w-0 transition-opacity ${note && !noteVoiced ? 'opacity-50' : ''}`}
-              title={note && !noteVoiced ? 'Last note detected' : undefined}
+              title={note && !noteVoiced ? t('vocal.lastNote') : undefined}
             >
               <div className="w-24 flex flex-col">
                 <span className={`text-4xl font-bold tabular-nums leading-none ${note ? 'text-gray-900 dark:text-gray-100' : 'text-gray-300 dark:text-gray-600'}`}>
@@ -275,10 +276,10 @@ const VocalTrainerPage: React.FC = () => {
               className={`shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition-colors ${
                 running ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
               }`}
-              title="Microphone (M)"
+              title={t('vocal.mic.title')}
             >
               <span className={`w-2 h-2 rounded-full ${running ? 'bg-white animate-pulse' : 'bg-white/70'}`} />
-              {running ? 'Stop mic' : 'Start mic'}
+              {running ? t('vocal.mic.stop') : t('vocal.mic.start')}
             </button>
           </div>
 
@@ -291,10 +292,10 @@ const VocalTrainerPage: React.FC = () => {
                   ? 'bg-violet-500 text-white'
                   : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
               }`}
-              title="Hear your microphone live (H). Headphones only. Not recorded."
+              title={t('vocal.monitor.title')}
               aria-pressed={monitorOn}
             >
-              🎧 Monitor {monitorOn ? 'on' : 'off'}
+              {monitorOn ? t('vocal.monitor.on') : t('vocal.monitor.off')}
             </button>
             {monitorOn && (
               <>
@@ -303,29 +304,29 @@ const VocalTrainerPage: React.FC = () => {
                   value={monitorVolume}
                   onChange={(e) => setMonitorVolume(parseFloat(e.target.value))}
                   className="w-24 accent-violet-500"
-                  aria-label="Monitor volume"
+                  aria-label={t('vocal.monitor.volume')}
                 />
                 <span className="font-mono text-gray-500 dark:text-gray-400 tabular-nums">{Math.round(monitorVolume * 100)}%</span>
                 {monitorLatencyMs !== null && (
-                  <span className="text-gray-400 dark:text-gray-500" title="Output delay reported by the browser; the real mic-to-ear delay is a little higher">
-                    ~{monitorLatencyMs} ms delay
+                  <span className="text-gray-400 dark:text-gray-500" title={t('vocal.monitor.delayTitle')}>
+                    {t('vocal.monitor.delay', { ms: monitorLatencyMs })}
                   </span>
                 )}
-                <span className="text-amber-600 dark:text-amber-400">Headphones only</span>
+                <span className="text-amber-600 dark:text-amber-400">{t('vocal.monitor.headphonesOnly')}</span>
               </>
             )}
             {askMonitorAck && (
               <span className="flex flex-wrap items-center gap-2 px-2 py-1 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300">
-                Use headphones. Through speakers the mic hears itself and howls.
-                <button onClick={() => { setMonitorAck(true); enableMonitor(); }} className="font-semibold underline">I'm on headphones</button>
-                <button onClick={() => setAskMonitorAck(false)} className="text-gray-500 dark:text-gray-400 hover:underline">Cancel</button>
+                {t('vocal.monitor.ack')}
+                <button onClick={() => { setMonitorAck(true); enableMonitor(); }} className="font-semibold underline">{t('vocal.monitor.ackConfirm')}</button>
+                <button onClick={() => setAskMonitorAck(false)} className="text-gray-500 dark:text-gray-400 hover:underline">{t('vocal.monitor.cancel')}</button>
               </span>
             )}
           </div>
 
           {error && (
             <p className="mb-3 text-xs text-red-500">
-              Microphone unavailable: {error}
+              {t('vocal.mic.unavailable', { error })}
             </p>
           )}
 
@@ -366,18 +367,18 @@ const VocalTrainerPage: React.FC = () => {
               className="flex items-center justify-between w-full text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500"
               aria-expanded={tipsOpen}
             >
-              Tips &amp; shortcuts
+              {t('vocal.tips.title')}
               <svg className={`w-4 h-4 transition-transform duration-200 ${tipsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             {tipsOpen && (
               <div className="mt-2 space-y-2 text-[11px] text-gray-400 dark:text-gray-500">
-                <p>Drag up/down to scroll notes · hover to inspect · click a note name to hear it and set it as the target.</p>
+                <p>{t('vocal.tips.gestures')}</p>
                 <p className="hidden sm:flex flex-wrap gap-x-3 gap-y-1">
                   {SHORTCUTS.map(([key, action]) => (
                     <span key={key}>
-                      <kbd className="px-1 py-0.5 rounded border border-gray-200 dark:border-gray-600 font-mono text-[10px]">{key}</kbd> {action}
+                      <kbd className="px-1 py-0.5 rounded border border-gray-200 dark:border-gray-600 font-mono text-[10px]">{key}</kbd> {t(`vocal.shortcuts.${action}`)}
                     </span>
                   ))}
                 </p>
@@ -386,7 +387,7 @@ const VocalTrainerPage: React.FC = () => {
           </div>
         </Panel>
 
-        <Panel id="waveform" title={replay ? `Waveform · ${replay.take.name}` : 'Waveform'}>
+        <Panel id="waveform" title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.waveform'), take: replay.take.name }) : t('vocal.panel.waveform')}>
           <WaveformView dataRef={source} isDark={isDark} />
         </Panel>
 
@@ -414,7 +415,7 @@ const VocalTrainerPage: React.FC = () => {
         <Metronome m={metronome} onVisibleChange={setMetronomeVisible} />
 
         <p className="text-center text-[11px] text-gray-400 dark:text-gray-500">
-          Audio stays in your browser — nothing is uploaded. Headphones keep the metronome and drone out of the pitch trace.
+          {t('vocal.footer')}
         </p>
       </main>
 

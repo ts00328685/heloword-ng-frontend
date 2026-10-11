@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { clampBpm, MetronomeApi } from './useMetronome';
 import { usePersistedState } from './usePersistedState';
 
@@ -8,6 +9,7 @@ import { usePersistedState } from './usePersistedState';
  * panel is on screen.
  */
 const MetronomeDock: React.FC<{ m: MetronomeApi }> = ({ m }) => {
+  const { t } = useTranslation();
   const [minimized, setMinimized] = usePersistedState('metronome-dock-min', false);
   const { bpm, setBpm, beats, playing, currentBeat, toggle } = m;
 
@@ -17,8 +19,8 @@ const MetronomeDock: React.FC<{ m: MetronomeApi }> = ({ m }) => {
       className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-white transition-colors ${
         playing ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'
       }`}
-      aria-label={playing ? 'Stop metronome' : 'Start metronome'}
-      title="Metronome (K)"
+      aria-label={playing ? t('vocal.metronome.stopAria') : t('vocal.metronome.startAria')}
+      title={t('vocal.metronome.dockTitle')}
     >
       {playing ? <span className="w-3 h-3 rounded-sm bg-white" /> : <span className="ml-0.5 w-0 h-0 border-y-[6px] border-y-transparent border-l-[10px] border-l-white" />}
     </button>
@@ -39,7 +41,7 @@ const MetronomeDock: React.FC<{ m: MetronomeApi }> = ({ m }) => {
               currentBeat === -1 ? 'bg-gray-200 dark:bg-gray-700' : currentBeat === 0 ? 'bg-green-500' : 'bg-blue-500'
             }`} />
             <span className="text-xs font-mono text-gray-600 dark:text-gray-300 tabular-nums">{bpm}</span>
-            <button onClick={() => setMinimized(false)} className={step} aria-label="Expand metronome">▴</button>
+            <button onClick={() => setMinimized(false)} className={step} aria-label={t('vocal.metronome.expand')}>▴</button>
           </div>
         ) : (
           <div className={`${shell} w-full gap-2 sm:gap-3 px-2 py-1.5`}>
@@ -56,13 +58,13 @@ const MetronomeDock: React.FC<{ m: MetronomeApi }> = ({ m }) => {
               ))}
             </div>
             <div className="flex items-center shrink-0">
-              <button className={step} onClick={() => setBpm((b) => clampBpm(b - 1))} aria-label="Decrease BPM">−</button>
+              <button className={step} onClick={() => setBpm((b) => clampBpm(b - 1))} aria-label={t('vocal.metronome.decrease')}>−</button>
               <span className="w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-200 tabular-nums">
                 {bpm}<span className="ml-0.5 text-[10px] font-normal text-gray-400">BPM</span>
               </span>
-              <button className={step} onClick={() => setBpm((b) => clampBpm(b + 1))} aria-label="Increase BPM">+</button>
+              <button className={step} onClick={() => setBpm((b) => clampBpm(b + 1))} aria-label={t('vocal.metronome.increase')}>+</button>
             </div>
-            <button onClick={() => setMinimized(true)} className={step} aria-label="Minimise metronome">▾</button>
+            <button onClick={() => setMinimized(true)} className={step} aria-label={t('vocal.metronome.minimise')}>▾</button>
           </div>
         )}
       </div>

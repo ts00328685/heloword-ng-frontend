@@ -111,16 +111,23 @@ export const exportTake = async (take: StoredTake): Promise<Blob> => {
   return new Blob([JSON.stringify(file)], { type: 'application/json' });
 };
 
-/** Parses a `.vocal.json` export; throws with a readable message if it isn't one. */
+/** Why a file couldn't be imported — the UI maps the code to a translated message. */
+export class TakeFileError extends Error {
+  constructor(public code: 'invalidFile' | 'notTakeFile') {
+    super(code);
+  }
+}
+
+/** Parses a `.vocal.json` export; throws TakeFileError if it isn't one. */
 export const parseExport = async (file: Blob): Promise<Omit<StoredTake, 'id'>> => {
   let data: Partial<ExportFile>;
   try {
     data = JSON.parse(await file.text());
   } catch {
-    throw new Error('Not a valid take file.');
+    throw new TakeFileError('invalidFile');
   }
   if (data.format !== FORMAT || !data.audio || !Array.isArray(data.pitch) || !Array.isArray(data.wave)) {
-    throw new Error('Not a Vocal Trainer take file.');
+    throw new TakeFileError('notTakeFile');
   }
   return {
     name: String(data.name ?? 'Imported take').slice(0, 60),

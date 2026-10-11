@@ -30,7 +30,7 @@ describe('take export / import', () => {
   });
 
   it('rejects other JSON files', async () => {
-    await expect(parseExport(new Blob(['{"hello":1}']))).rejects.toThrow('Not a Vocal Trainer take file.');
-    await expect(parseExport(new Blob(['not json']))).rejects.toThrow('Not a valid take file.');
+    await expect(parseExport(new Blob(['{"hello":1}']))).rejects.toMatchObject({ code: 'notTakeFile' });
+    await expect(parseExport(new Blob(['not json']))).rejects.toMatchObject({ code: 'invalidFile' });
   });
 });

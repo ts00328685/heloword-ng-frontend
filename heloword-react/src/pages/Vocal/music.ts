@@ -5,7 +5,8 @@
 import { FLAT_NAMES, midiToAxisLabel, midiToFullName, midiToNoteName, NOTE_NAMES } from './pitch';
 
 export interface Scale {
-  label: string;
+  /** i18n key under `vocal.scales`. */
+  id: 'major' | 'minor' | 'harmonicMinor' | 'majorPentatonic' | 'minorPentatonic' | 'blues';
   /** Semitones above the root. */
   steps: number[];
   /** Spelled from the relative major (root + 3), e.g. A minor → C major. */
@@ -15,12 +16,12 @@ export interface Scale {
 /** Index 0 means "no key" so the persisted setting can be a plain number. */
 export const SCALES: (Scale | null)[] = [
   null,
-  { label: 'Major', steps: [0, 2, 4, 5, 7, 9, 11], minor: false },
-  { label: 'Minor', steps: [0, 2, 3, 5, 7, 8, 10], minor: true },
-  { label: 'Harmonic minor', steps: [0, 2, 3, 5, 7, 8, 11], minor: true },
-  { label: 'Major pentatonic', steps: [0, 2, 4, 7, 9], minor: false },
-  { label: 'Minor pentatonic', steps: [0, 3, 5, 7, 10], minor: true },
-  { label: 'Blues', steps: [0, 3, 5, 6, 7, 10], minor: true },
+  { id: 'major', steps: [0, 2, 4, 5, 7, 9, 11], minor: false },
+  { id: 'minor', steps: [0, 2, 3, 5, 7, 8, 10], minor: true },
+  { id: 'harmonicMinor', steps: [0, 2, 3, 5, 7, 8, 11], minor: true },
+  { id: 'majorPentatonic', steps: [0, 2, 4, 7, 9], minor: false },
+  { id: 'minorPentatonic', steps: [0, 3, 5, 7, 10], minor: true },
+  { id: 'blues', steps: [0, 3, 5, 6, 7, 10], minor: true },
 ];
 
 /** Root names for the key picker. */

@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { freqToNote, isSharp, midiToFreq } from './pitch';
 import { axisLabel, fullName, inScale, isTonic, KeySig } from './music';
 import { isOnTarget } from './stats';
@@ -44,8 +45,6 @@ const MIDI_MIN = 21;
 const MIDI_MAX = 108;
 const FONT = 'ui-sans-serif, system-ui, sans-serif';
 
-const spanLabel = (semis: number) => (semis % 12 === 0 ? `${semis / 12} oct` : `${semis} st`);
-
 const LIGHT = {
   natural: '#ffffff', sharp: '#f3f4f6', cLine: '#d1d5db', label: '#9ca3af', labelDim: '#d1d5db', cLabel: '#374151',
   line: '#3b82f6', grid: '#e5e7eb', hl: 'rgba(59,130,246,0.12)', cursor: 'rgba(55,65,81,0.4)',
@@ -72,6 +71,12 @@ const DARK: typeof LIGHT = {
 const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
   dataRef, isDark, keySig, target, toleranceCents, onNoteClick, frozen, onToggleFreeze,
 }, ref) => {
+  const { t } = useTranslation();
+  const spanLabel = (semis: number) =>
+    semis % 12 === 0 ? t('vocal.graph.octaves', { n: semis / 12 }) : t('vocal.graph.semitones', { n: semis });
+  const nowLabel = t('vocal.graph.now');
+  const frozenLabel = t('vocal.graph.frozen');
+  const pausedLabel = t('vocal.graph.paused');
   const [span, setSpan] = usePersistedState('pitch-span', 24, (v) => SPANS.includes(v));
   const [follow, setFollow] = useState(true);
   const [lineWidth, setLineWidth] = usePersistedState('pitch-line-width', 2.5, (v) => v >= 1 && v <= 8);
@@ -196,7 +201,7 @@ const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
       ctx.fillRect(Math.round(x), 0, 1, plotH);
       ctx.fillStyle = c.label;
       ctx.textAlign = 'center';
-      const label = replay ? (now - s >= 0 ? fmtTakeTime(now - s) : '') : s === 0 ? 'now' : `-${s}s`;
+      const label = replay ? (now - s >= 0 ? fmtTakeTime(now - s) : '') : s === 0 ? nowLabel : `-${s}s`;
       ctx.fillText(label, x, plotH + 4);
     }
     ctx.textAlign = 'left';
@@ -317,7 +322,7 @@ const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
 
     const { running, paused, frozen: isFrozen } = dataRef.current;
     if (running && (paused || isFrozen)) {
-      const label = isFrozen ? 'Frozen' : 'Paused';
+      const label = isFrozen ? frozenLabel : pausedLabel;
       ctx.font = `bold 11px ${FONT}`;
       const bw = ctx.measureText(label).width + 22;
       const bx = w - bw - 6;
@@ -440,38 +445,38 @@ const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
           <button
             onClick={toggleFollow}
             className={`${chip} ${follow ? 'bg-blue-500 text-white' : idle}`}
-            title="Keep the view on your current note"
+            title={t('vocal.graph.followTitle')}
           >
-            Follow
+            {t('vocal.graph.follow')}
           </button>
-          <button onClick={fit} className={`${chip} ${idle}`} title="Show everything sung (F)">
-            Fit
+          <button onClick={fit} className={`${chip} ${idle}`} title={t('vocal.graph.fitTitle')}>
+            {t('vocal.graph.fit')}
           </button>
           {onToggleFreeze && (
             <button
               onClick={onToggleFreeze}
               className={`${chip} ${frozen ? 'bg-sky-500 text-white' : idle}`}
-              title="Freeze the chart to inspect it (Space)"
+              title={t('vocal.graph.freezeTitle')}
             >
-              {frozen ? 'Frozen' : 'Freeze'}
+              {frozen ? t('vocal.graph.frozen') : t('vocal.graph.freeze')}
             </button>
           )}
         </div>
 
         <div className="flex items-center gap-1.5">
-          <button onClick={() => zoom(-1)} disabled={span === SPANS[0]} className={`${chip} ${idle} w-7 px-0 text-sm disabled:opacity-40`} aria-label="Zoom in">+</button>
-          <span className="w-12 text-center text-[11px] font-mono text-gray-500 dark:text-gray-400">{spanLabel(span)}</span>
-          <button onClick={() => zoom(1)} disabled={span === SPANS[SPANS.length - 1]} className={`${chip} ${idle} w-7 px-0 text-sm disabled:opacity-40`} aria-label="Zoom out">−</button>
+          <button onClick={() => zoom(-1)} disabled={span === SPANS[0]} className={`${chip} ${idle} w-7 px-0 text-sm disabled:opacity-40`} aria-label={t('vocal.graph.zoomIn')}>+</button>
+          <span className="min-w-[3rem] px-1 text-center whitespace-nowrap text-[11px] font-mono text-gray-500 dark:text-gray-400">{spanLabel(span)}</span>
+          <button onClick={() => zoom(1)} disabled={span === SPANS[SPANS.length - 1]} className={`${chip} ${idle} w-7 px-0 text-sm disabled:opacity-40`} aria-label={t('vocal.graph.zoomOut')}>−</button>
         </div>
 
         <label className="flex items-center gap-2 text-[11px] text-gray-500 dark:text-gray-400">
-          Line
+          {t('vocal.graph.line')}
           <input
             type="range" min={1} max={8} step={0.5}
             value={lineWidth}
             onChange={(e) => setLineWidth(parseFloat(e.target.value))}
             className="w-24 accent-blue-500"
-            aria-label="Line thickness"
+            aria-label={t('vocal.graph.lineThickness')}
           />
           <span className="w-8 font-mono">{lineWidth}px</span>
         </label>

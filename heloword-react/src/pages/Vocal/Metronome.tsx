@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import Panel, { LiveDot } from './Panel';
 import { BEAT_OPTIONS, clampBpm, MAX_BPM, MetronomeApi, MIN_BPM } from './useMetronome';
 
@@ -10,6 +11,7 @@ interface Props {
 
 /** Collapsible metronome panel; state and audio live in useMetronome. */
 const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
+  const { t } = useTranslation();
   const { bpm, setBpm, volume, setVolume, beats, setBeats, playing, currentBeat, start, stop, tap } = m;
   const bodyRef = useRef<HTMLDivElement>(null);
 
@@ -27,9 +29,9 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
   return (
     <Panel
       id="metronome"
-      title="Metronome"
+      title={t('vocal.panel.metronome')}
       indicator={playing && <LiveDot color="bg-green-500" />}
-      summary={`${bpm} BPM · ${beats} beats`}
+      summary={t('vocal.metronome.summary', { bpm, beats })}
     >
       <div ref={bodyRef} className="space-y-5">
         {/* Beat dots */}
@@ -56,7 +58,7 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
             {bpm} <span className="text-base text-gray-400">BPM</span>
           </p>
           <div className="flex items-center gap-3">
-            <button className={roundBtn} onClick={() => setBpm((b) => clampBpm(b - 1))} aria-label="Decrease BPM">−</button>
+            <button className={roundBtn} onClick={() => setBpm((b) => clampBpm(b - 1))} aria-label={t('vocal.metronome.decrease')}>−</button>
             <input
               type="range" min={MIN_BPM} max={MAX_BPM} step={1}
               value={bpm}
@@ -64,14 +66,14 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
               className="flex-1 accent-blue-500"
               aria-label="BPM"
             />
-            <button className={roundBtn} onClick={() => setBpm((b) => clampBpm(b + 1))} aria-label="Increase BPM">+</button>
+            <button className={roundBtn} onClick={() => setBpm((b) => clampBpm(b + 1))} aria-label={t('vocal.metronome.increase')}>+</button>
           </div>
         </div>
 
         {/* Volume */}
         <div>
           <div className="flex justify-between mb-1">
-            <span className="text-xs text-gray-600 dark:text-gray-300">Volume</span>
+            <span className="text-xs text-gray-600 dark:text-gray-300">{t('vocal.metronome.volume')}</span>
             <span className="text-xs font-mono text-blue-500">{Math.round(volume * 100)}%</span>
           </div>
           <input
@@ -79,13 +81,13 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
             value={volume}
             onChange={(e) => setVolume(parseFloat(e.target.value))}
             className="w-full accent-blue-500"
-            aria-label="Metronome volume"
+            aria-label={t('vocal.metronome.volumeAria')}
           />
         </div>
 
         {/* Beats per bar */}
         <div>
-          <p className="text-xs text-gray-600 dark:text-gray-300 mb-2">Beats per bar</p>
+          <p className="text-xs text-gray-600 dark:text-gray-300 mb-2">{t('vocal.metronome.beatsPerBar')}</p>
           <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
             {BEAT_OPTIONS.map((n) => (
               <button
@@ -109,13 +111,13 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
               playing ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
             }`}
           >
-            {playing ? 'Stop' : 'Start'}
+            {playing ? t('vocal.metronome.stop') : t('vocal.metronome.start')}
           </button>
           <button
             onClick={tap}
             className="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           >
-            Tap tempo
+            {t('vocal.metronome.tapTempo')}
           </button>
         </div>
       </div>
