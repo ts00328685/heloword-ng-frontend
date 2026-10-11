@@ -54,6 +54,19 @@ export const useMicAnalyser = () => {
   const rafRef = useRef<number>(0);
   const captureRef = useRef<(TakeMeters & { start: number }) | null>(null);
   /** Called for every frame added to the live view (not while paused/frozen). */
+  /** Monitor (hear yourself) level; 0 = off. Kept in a ref so it applies when the mic starts. */
+  const monitorLevelRef = useRef(0);
+  const monitorGainRef = useRef<GainNode | null>(null);
+  /** Rough mic-to-ear delay of the monitor path, once the mic is open. */
+  const [monitorLatencyMs, setMonitorLatencyMs] = useState<number | null>(null);
+
+  /** Route the mic to the speakers/headphones at `level` (0 turns monitoring off). */
+  const setMonitorLevel = useCallback((level: number) => {
+    monitorLevelRef.current = level;
+    const g = monitorGainRef.current;
+    if (g) g.gain.setTargetAtTime(level, g.context.currentTime, 0.02);
+  }, []);
+
   const frameListenerRef = useRef<((t: number, midi: number | null) => void) | null>(null);
 
   /** Start copying every analysed frame into a take (call when recording starts). */
@@ -73,6 +86,8 @@ export const useMicAnalyser = () => {
     streamRef.current = null;
     ctxRef.current?.close().catch(() => {});
     ctxRef.current = null;
+    monitorGainRef.current = null;
+    setMonitorLatencyMs(null);
     dataRef.current.running = false;
     setRunning(false);
     setVoiced(false);
@@ -87,11 +102,18 @@ export const useMicAnalyser = () => {
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false },
       });
-      const ctx = new AudioContext();
+      // "interactive" asks for the smallest output buffer — matters for monitoring.
+      const ctx = new AudioContext({ latencyHint: 'interactive' });
       const analyser = ctx.createAnalyser();
       analyser.fftSize = FFT_SIZE;
-      // Not connected to destination — we never want to hear the mic back.
-      ctx.createMediaStreamSource(stream).connect(analyser);
+      const source = ctx.createMediaStreamSource(stream);
+      source.connect(analyser);
+      // Monitor path: silent unless switched on. Never touches the recording (MediaRecorder reads the raw stream).
+      const monitor = ctx.createGain();
+      monitor.gain.value = monitorLevelRef.current;
+      source.connect(monitor).connect(ctx.destination);
+      monitorGainRef.current = monitor;
+      setMonitorLatencyMs(Math.round(((ctx.baseLatency ?? 0) + (ctx.outputLatency ?? 0)) * 1000) || null);
 
       streamRef.current = stream;
       ctxRef.current = ctx;
@@ -176,7 +198,10 @@ export const useMicAnalyser = () => {
 
   useEffect(() => stop, [stop]);
 
-  return { dataRef, running, error, note, voiced, start, stop, beginCapture, endCapture, frameListenerRef };
+  return {
+    dataRef, running, error, note, voiced, start, stop, beginCapture, endCapture, frameListenerRef,
+    setMonitorLevel, monitorLatencyMs,
+  };
 };
 
 /** First index whose `t` is ≥ `t` (points are time-sorted) — lets graphs skip off-screen samples of long takes. */

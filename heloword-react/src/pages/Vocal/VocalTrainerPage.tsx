@@ -29,6 +29,7 @@ const SHORTCUTS: [key: string, action: string][] = [
   ['F', 'fit'],
   ['T', 'play target'],
   ['K', 'metronome'],
+  ['H', 'monitor (hear yourself)'],
   ['Esc', 'back to live'],
 ];
 
@@ -44,8 +45,15 @@ const VocalTrainerPage: React.FC = () => {
   const { isDark } = useTheme();
   const {
     dataRef, running, error, note: liveNote, voiced: liveVoiced,
-    start, stop, beginCapture, endCapture, frameListenerRef,
+    start, stop, beginCapture, endCapture, frameListenerRef, setMonitorLevel, monitorLatencyMs,
   } = useMicAnalyser();
+
+  // ── Monitoring (hear yourself) — always starts off; headphones reminder until acknowledged ──
+  const [monitorOn, setMonitorOn] = useState(false);
+  const [monitorVolume, setMonitorVolume] = usePersistedState('monitor-volume', 0.8, (v) => v >= 0 && v <= 1.5);
+  const [monitorAck, setMonitorAck] = usePersistedState('monitor-headphones-ok', false);
+  const [askMonitorAck, setAskMonitorAck] = useState(false);
+  useEffect(() => { setMonitorLevel(monitorOn ? monitorVolume : 0); }, [monitorOn, monitorVolume, setMonitorLevel]);
 
   const metronome = useMetronome();
   /** The full Metronome panel's controls are on screen — hide the dock then. */
@@ -159,6 +167,17 @@ const VocalTrainerPage: React.FC = () => {
   };
   const playTarget = () => { if (target !== null) play(target); };
 
+  const enableMonitor = () => {
+    setAskMonitorAck(false);
+    setMonitorOn(true);
+    if (!running) { exitReplay(); start(); }
+  };
+  const toggleMonitor = () => {
+    if (monitorOn) setMonitorOn(false);
+    else if (monitorAck) enableMonitor();
+    else setAskMonitorAck(true);
+  };
+
   // ── Keyboard shortcuts ──
   const shortcutRef = useRef<(e: KeyboardEvent) => void>(() => {});
   shortcutRef.current = (e) => {
@@ -185,6 +204,7 @@ const VocalTrainerPage: React.FC = () => {
       case 'f': case 'F': handled(); graphRef.current?.fit(); break;
       case 't': case 'T': handled(); playTarget(); break;
       case 'k': case 'K': handled(); metronome.toggle(); break;
+      case 'h': case 'H': handled(); toggleMonitor(); break;
       case 'Escape':
         if (replay) { handled(); exitReplay(); }
         else if (frozen) { handled(); setFrozen(false); }
@@ -260,6 +280,47 @@ const VocalTrainerPage: React.FC = () => {
               <span className={`w-2 h-2 rounded-full ${running ? 'bg-white animate-pulse' : 'bg-white/70'}`} />
               {running ? 'Stop mic' : 'Start mic'}
             </button>
+          </div>
+
+          {/* Monitor: hear your mic live through headphones */}
+          <div className="flex flex-wrap items-center gap-2 mb-3 text-[11px]">
+            <button
+              onClick={toggleMonitor}
+              className={`h-7 px-2.5 rounded-lg font-semibold transition-colors ${
+                monitorOn
+                  ? 'bg-violet-500 text-white'
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+              }`}
+              title="Hear your microphone live (H). Headphones only. Not recorded."
+              aria-pressed={monitorOn}
+            >
+              🎧 Monitor {monitorOn ? 'on' : 'off'}
+            </button>
+            {monitorOn && (
+              <>
+                <input
+                  type="range" min={0} max={1.5} step={0.05}
+                  value={monitorVolume}
+                  onChange={(e) => setMonitorVolume(parseFloat(e.target.value))}
+                  className="w-24 accent-violet-500"
+                  aria-label="Monitor volume"
+                />
+                <span className="font-mono text-gray-500 dark:text-gray-400 tabular-nums">{Math.round(monitorVolume * 100)}%</span>
+                {monitorLatencyMs !== null && (
+                  <span className="text-gray-400 dark:text-gray-500" title="Output delay reported by the browser; the real mic-to-ear delay is a little higher">
+                    ~{monitorLatencyMs} ms delay
+                  </span>
+                )}
+                <span className="text-amber-600 dark:text-amber-400">Headphones only</span>
+              </>
+            )}
+            {askMonitorAck && (
+              <span className="flex flex-wrap items-center gap-2 px-2 py-1 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300">
+                Use headphones. Through speakers the mic hears itself and howls.
+                <button onClick={() => { setMonitorAck(true); enableMonitor(); }} className="font-semibold underline">I'm on headphones</button>
+                <button onClick={() => setAskMonitorAck(false)} className="text-gray-500 dark:text-gray-400 hover:underline">Cancel</button>
+              </span>
+            )}
           </div>
 
           {error && (
