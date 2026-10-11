@@ -14,14 +14,16 @@ const TICKS = [1, 0.5, 0, -0.5, -1];
 /** Audacity-style min/max envelope of the mic signal over the last 20 s. */
 const WaveformView: React.FC<Props> = ({ dataRef, isDark }) => {
   const canvasRef = useCanvasLoop((ctx, w, h) => {
-    const { wave, now, replay } = dataRef.current;
+    const { wave, now, replay, loop } = dataRef.current;
+    // A replayed take is drawn at its playback / MP3 volume
+    const g = replay ? dataRef.current.gain ?? 1 : 1;
     const plotW = w - GUTTER;
     const pad = 6;
     const yOf = (v: number) => pad + ((1 - v) / 2) * (h - pad * 2);
 
     const c = isDark
-      ? { bg: '#111827', grid: '#374151', label: '#9ca3af', wave: '#818cf8', zero: '#6b7280' }
-      : { bg: '#f8fafc', grid: '#e5e7eb', label: '#6b7280', wave: '#6366f1', zero: '#9ca3af' };
+      ? { bg: '#111827', grid: '#374151', label: '#9ca3af', wave: '#818cf8', zero: '#6b7280', clip: '#f87171' }
+      : { bg: '#f8fafc', grid: '#e5e7eb', label: '#6b7280', wave: '#6366f1', zero: '#9ca3af', clip: '#ef4444' };
 
     ctx.fillStyle = c.bg;
     ctx.fillRect(GUTTER, 0, plotW, h);
@@ -58,11 +60,31 @@ const WaveformView: React.FC<Props> = ({ dataRef, isDark }) => {
     for (let i = 0; i < cols; i++) {
       if (!has[i]) continue;
       ctx.globalAlpha = replay && i >= nowCol ? 0.35 : 1; // upcoming part of a take, dimmed
-      const yTop = yOf(maxs[i]);
-      const yBot = yOf(mins[i]);
+      const hi = maxs[i] * g;
+      const lo = mins[i] * g;
+      const clipped = hi > 1 || lo < -1;
+      if (clipped) ctx.fillStyle = c.clip;
+      const yTop = yOf(Math.min(1, hi));
+      const yBot = yOf(Math.max(-1, lo));
       ctx.fillRect(GUTTER + i, yTop, 1, Math.max(1, yBot - yTop));
+      if (clipped) ctx.fillStyle = c.wave;
     }
     ctx.globalAlpha = 1;
+
+    // A–B loop of a replayed take
+    if (replay && loop) {
+      const xOf = (t: number) => GUTTER + nowCol + (t - now) / secPerCol;
+      const xa = Math.max(GUTTER, xOf(loop.a));
+      const xb = Math.min(GUTTER + plotW, xOf(loop.b));
+      if (xb > xa) {
+        ctx.fillStyle = isDark ? 'rgba(52,211,153,0.10)' : 'rgba(16,185,129,0.10)';
+        ctx.fillRect(xa, 0, xb - xa, h);
+      }
+      ctx.fillStyle = isDark ? '#34d399' : '#10b981';
+      for (const x of [xOf(loop.a), xOf(loop.b)]) {
+        if (x >= GUTTER && x <= GUTTER + plotW) ctx.fillRect(Math.round(x), 0, 1.5, h);
+      }
+    }
 
     // "Now" marker — same position as on the pitch graph
     ctx.fillStyle = c.zero;
