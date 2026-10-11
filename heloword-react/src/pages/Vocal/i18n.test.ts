@@ -43,8 +43,9 @@ describe('Vocal Trainer i18n', () => {
     const page = sources.find((s) => s.file === 'VocalTrainerPage.tsx')!.code;
     const shortcutKeys = [...page.matchAll(/\[\s*'[^']+',\s*'(\w+)'\s*\]/g)].map((m) => `vocal.shortcuts.${m[1]}`);
     const errorKeys = ['invalidFile', 'notTakeFile'].map((c) => `vocal.recorder.${c}`);
+    const zoneKeys = (['breathy', 'balanced', 'firm'] as const).map((z) => `vocal.quality.zone.${z}`);
     expect(shortcutKeys.length).toBeGreaterThan(5);
-    expect([...scaleKeys, ...shortcutKeys, ...errorKeys].filter((k) => !exists(k))).toEqual([]);
+    expect([...scaleKeys, ...shortcutKeys, ...errorKeys, ...zoneKeys].filter((k) => !exists(k))).toEqual([]);
   });
 
   it('has no hard-coded English in title / aria-label attributes', () => {

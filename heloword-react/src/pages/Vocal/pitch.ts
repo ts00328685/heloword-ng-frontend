@@ -65,6 +65,16 @@ export const rms = (buf: Float32Array): number => {
   return Math.sqrt(sum / buf.length);
 };
 
+export interface PitchResult {
+  hz: number;
+  /**
+   * YIN's normalised difference at the detected period (0 = perfectly
+   * periodic). It approximates the aperiodic share of the signal's energy,
+   * which is what HNR measures.
+   */
+  aperiodicity: number;
+}
+
 /**
  * YIN fundamental-frequency estimator (de Cheveigné & Kawahara, 2002).
  * Returns Hz, or null when the frame is unvoiced / too quiet / out of range.
@@ -72,8 +82,15 @@ export const rms = (buf: Float32Array): number => {
 export const detectPitch = (
   buf: Float32Array,
   sampleRate: number,
+  opts?: { threshold?: number; minRms?: number },
+): number | null => analysePitch(buf, sampleRate, opts)?.hz ?? null;
+
+/** YIN with its periodicity measure — see {@link PitchResult}. */
+export const analysePitch = (
+  buf: Float32Array,
+  sampleRate: number,
   { threshold = 0.15, minRms = 0.01 }: { threshold?: number; minRms?: number } = {},
-): number | null => {
+): PitchResult | null => {
   if (rms(buf) < minRms) return null;
 
   const tauMin = Math.floor(sampleRate / MAX_FREQ);
@@ -120,7 +137,7 @@ export const detectPitch = (
   const better = denom !== 0 ? tauEst + (x0 - x2) / (2 * denom) : tauEst;
 
   const freq = sampleRate / better;
-  return freq >= MIN_FREQ && freq <= MAX_FREQ ? freq : null;
+  return freq >= MIN_FREQ && freq <= MAX_FREQ ? { hz: freq, aperiodicity: Math.max(0, x1) } : null;
 };
 
 const median = (xs: number[]) => {
