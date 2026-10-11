@@ -1100,6 +1100,7 @@ const ja = {
     },
     take: {
       name: 'テイク名',
+      rename: '名前を変更',
       low: '最低',
       high: '最高',
       range: '音域',

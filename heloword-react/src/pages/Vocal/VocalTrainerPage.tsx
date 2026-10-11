@@ -128,6 +128,13 @@ const VocalTrainerPage: React.FC = () => {
     return () => cancelAnimationFrame(raf);
   }, [replay, dataRef, target, tolerance]);
 
+  /**
+   * Names changed after a take started replaying, for the panel titles. Kept
+   * apart from `replay` so renaming doesn't restart the replay effect.
+   */
+  const [renamedTakes, setRenamedTakes] = useState<Record<number, string>>({});
+  const replayName = replay ? renamedTakes[replay.take.id] ?? replay.take.name : '';
+
   const exitReplay = () => {
     setReplay(null);
     setReplayNote(null);
@@ -226,14 +233,14 @@ const VocalTrainerPage: React.FC = () => {
       <main className="flex-1 pb-40 px-4 pt-6 max-w-3xl mx-auto w-full space-y-4">
         <Panel
           id="pitch"
-          title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.pitch'), take: replay.take.name }) : t('vocal.panel.pitch')}
+          title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.pitch'), take: replayName }) : t('vocal.panel.pitch')}
           indicator={running && <LiveDot color="bg-blue-500" />}
           summary={note ? `${noteName}${noteAlt ? `/${noteAlt}` : ''} ${cents > 0 ? '+' : ''}${cents}¢` : running || replay ? '--' : t('vocal.mic.off')}
         >
           {replay && (
             <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-xs text-blue-700 dark:text-blue-300">
               <span className="min-w-0 truncate">
-                ▶ {t('vocal.replay.replaying')} <b>{replay.take.name}</b> — {t('vocal.replay.followHint')}
+                ▶ {t('vocal.replay.replaying')} <b>{replayName}</b> — {t('vocal.replay.followHint')}
               </span>
               <button onClick={exitReplay} className="shrink-0 font-semibold hover:underline">
                 {t('vocal.replay.backToLive')}
@@ -387,7 +394,7 @@ const VocalTrainerPage: React.FC = () => {
           </div>
         </Panel>
 
-        <Panel id="waveform" title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.waveform'), take: replay.take.name }) : t('vocal.panel.waveform')}>
+        <Panel id="waveform" title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.waveform'), take: replayName }) : t('vocal.panel.waveform')}>
           <WaveformView dataRef={source} isDark={isDark} />
         </Panel>
 
@@ -403,6 +410,7 @@ const VocalTrainerPage: React.FC = () => {
             loopsRef.current.set(id, loop);
             if (replayIdRef.current === id) replayRef.current.loop = loop;
           }}
+          onRenamed={(id, name) => setRenamedTakes((m) => ({ ...m, [id]: name }))}
           onGainChange={(id, gain) => {
             if (replayIdRef.current === id) replayRef.current.gain = gain;
           }}

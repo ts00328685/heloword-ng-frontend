@@ -30,9 +30,8 @@ interface Props {
   onActivate: (audio: HTMLAudioElement) => void;
   /** A–B markers changed (null when unset). */
   onLoopChange: (loop: { a: number; b: number } | null) => void;
+  /** A finished rename (already trimmed, never empty). */
   onRename: (name: string) => void;
-  /** Name edit finished — persist it. */
-  onRenameCommit: () => void;
   onExport: () => void;
   onDelete: () => void;
   /** Volume changed — used for playback and for the saved MP3. */
@@ -55,7 +54,7 @@ const btn = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors';
 const idle = 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
 
 /** One recorded or imported take: player, stats, practice-loop controls and actions. */
-const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopChange, onRename, onRenameCommit, onExport, onDelete, onGainChange }) => {
+const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopChange, onRename, onExport, onDelete, onGainChange }) => {
   const { t, i18n } = useTranslation();
   /** Dates follow the app language (Traditional Chinese for zh). */
   const dateLocale = i18n.language === 'zh' ? 'zh-TW' : i18n.language;
@@ -66,6 +65,29 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
   const [a, setA] = useState<number | null>(null);
   const [b, setB] = useState<number | null>(null);
   const [looping, setLooping] = useState(false);
+  /** Name being edited, or null when showing the name. */
+  const [draftName, setDraftName] = useState<string | null>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  /** Set by Escape so a blur fired while the input unmounts doesn't save. */
+  const cancelNameRef = useRef(false);
+
+  useEffect(() => {
+    if (draftName !== null) nameInputRef.current?.select();
+    // Only when entering edit mode, not on every keystroke
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [draftName !== null]);
+
+  const startRename = () => {
+    cancelNameRef.current = false;
+    setDraftName(take.name);
+  };
+
+  const commitName = () => {
+    if (cancelNameRef.current) return;
+    const name = (draftName ?? '').trim().slice(0, 60);
+    setDraftName(null);
+    if (name && name !== take.name) onRename(name);
+  };
   /** MP3 conversion progress (0…1), or null when idle. */
   const [mp3Progress, setMp3Progress] = useState<number | null>(null);
   const [mp3Error, setMp3Error] = useState<string | null>(null);
@@ -191,14 +213,35 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
       }`}
     >
       <div className="flex items-center gap-2 mb-2">
-        <input
-          value={take.name}
-          onChange={(e) => onRename(e.target.value.slice(0, 60))}
-          onBlur={onRenameCommit}
-          onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur(); }}
-          className="flex-1 min-w-0 bg-transparent text-sm font-semibold text-gray-800 dark:text-gray-100 rounded-md px-1 -mx-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          aria-label={t('vocal.take.name')}
-        />
+        {draftName !== null ? (
+          <input
+            ref={nameInputRef}
+            value={draftName}
+            maxLength={60}
+            onChange={(e) => setDraftName(e.target.value)}
+            onBlur={commitName}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') e.currentTarget.blur();
+              if (e.key === 'Escape') {
+                cancelNameRef.current = true;
+                setDraftName(null);
+              }
+            }}
+            className="flex-1 min-w-0 px-2 py-1 -my-1 rounded-md border border-blue-400 bg-white dark:bg-gray-800 text-sm font-semibold text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label={t('vocal.take.name')}
+          />
+        ) : (
+          <button
+            onClick={startRename}
+            className="group flex-1 min-w-0 flex items-center gap-1.5 text-left rounded-md px-1 -mx-1 hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors"
+            title={t('vocal.take.rename')}
+          >
+            <span className="truncate text-sm font-semibold text-gray-800 dark:text-gray-100">{take.name}</span>
+            <svg className="w-3.5 h-3.5 shrink-0 text-gray-400 group-hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536M4 20h4l10.5-10.5a2.5 2.5 0 00-3.536-3.536L4.5 16.5V20z" />
+            </svg>
+          </button>
+        )}
         <span className="text-[11px] font-mono text-gray-400 dark:text-gray-500 shrink-0">
           {fmtClock(take.seconds)} · {new Date(take.createdAt).toLocaleString(dateLocale, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
         </span>
