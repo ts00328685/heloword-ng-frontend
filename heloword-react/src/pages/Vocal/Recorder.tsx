@@ -21,6 +21,8 @@ interface Props {
   /** A take's A–B loop markers changed. */
   onLoopChange: (id: number, loop: { a: number; b: number } | null) => void;
   onRemove: (id: number) => void;
+  /** A take was renamed. */
+  onRenamed: (id: number, name: string) => void;
   /** A take's volume changed. */
   onGainChange: (id: number, gain: number) => void;
 }
@@ -48,7 +50,7 @@ const strip = ({ url: _url, ...t }: Take): StoredTake => t;
  * files (or exports) can be imported — plain audio is analysed on import.
  */
 const Recorder = forwardRef<RecorderHandle, Props>(({
-  getStream, beginCapture, endCapture, keySig, replayingId, onReplay, onLoopChange, onRemove, onGainChange,
+  getStream, beginCapture, endCapture, keySig, replayingId, onReplay, onLoopChange, onRemove, onGainChange, onRenamed,
 }, ref) => {
   const { t } = useTranslation();
   const [recording, setRecording] = useState(false);
@@ -156,8 +158,13 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     onRemove(id);
   };
 
-  const rename = (id: number, name: string) =>
+  const rename = (id: number, name: string) => {
     setTakes((ts) => ts.map((take) => (take.id === id ? { ...take, name } : take)));
+    // Persist the new name directly — takesRef won't reflect it until the next render.
+    const take = takesRef.current.find((x) => x.id === id);
+    if (take) persist({ ...take, name });
+    onRenamed(id, name);
+  };
 
   const setGain = (id: number, gain: number) => {
     setTakes((ts) => ts.map((take) => (take.id === id ? { ...take, gain } : take)));
@@ -168,11 +175,6 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       const take = takesRef.current.find((x) => x.id === id);
       if (take) persist(take);
     }, 400));
-  };
-
-  const commitRename = (id: number) => {
-    const take = takesRef.current.find((x) => x.id === id);
-    if (take) persist(take);
   };
 
   const exportOne = async (take: Take) => {
@@ -291,7 +293,6 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
               onActivate={(audio) => onReplay(take, audio)}
               onLoopChange={(loop) => onLoopChange(take.id, loop)}
               onRename={(name) => rename(take.id, name)}
-              onRenameCommit={() => commitRename(take.id)}
               onExport={() => exportOne(take)}
               onDelete={() => remove(take.id)}
               onGainChange={(gain) => setGain(take.id, gain)}

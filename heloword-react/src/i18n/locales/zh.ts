@@ -1101,6 +1101,7 @@ const zh = {
     },
     take: {
       name: '錄音名稱',
+      rename: '重新命名',
       low: '最低',
       high: '最高',
       range: '音域',

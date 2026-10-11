@@ -1102,6 +1102,7 @@ const en = {
     },
     take: {
       name: 'Take name',
+      rename: 'Rename',
       low: 'Low',
       high: 'High',
       range: 'Range',
