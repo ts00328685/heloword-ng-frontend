@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { detectPitch, freqToNote, midiToAxisLabel, midiToFlatName, midiToFullName, midiToNoteName } from './pitch';
+import { createPitchSmoother, detectPitch, freqToNote, midiToAxisLabel, midiToFlatName, midiToFullName, midiToNoteName } from './pitch';
 
 const SR = 48000;
 const tone = (hz: number, amp = 0.5, n = 2048) =>
@@ -42,5 +42,26 @@ describe('detectPitch', () => {
     expect(detectPitch(new Float32Array(2048), SR)).toBeNull();
     const noise = Float32Array.from({ length: 2048 }, () => Math.random() * 0.6 - 0.3);
     expect(detectPitch(noise, SR)).toBeNull();
+  });
+});
+
+describe('detectPitch at 16 kHz (file analysis rate)', () => {
+  it.each([82.41, 220, 440, 987.77])('detects %s Hz within 1%%', (hz) => {
+    const n = 683;
+    const buf = Float32Array.from({ length: n }, (_, i) => 0.5 * Math.sin((2 * Math.PI * hz * i) / 16000));
+    const got = detectPitch(buf, 16000);
+    expect(got).not.toBeNull();
+    expect(Math.abs(got! - hz) / hz).toBeLessThan(0.01);
+  });
+});
+
+describe('createPitchSmoother', () => {
+  it('needs a few voiced frames, then rejects a one-frame octave jump', () => {
+    const s = createPitchSmoother();
+    expect(s.push(440)).toBeNull();
+    expect(s.push(440)).toBeNull();
+    expect(Math.round(s.push(440)!)).toBe(69);
+    expect(Math.round(s.push(880)!)).toBe(69);
+    expect(s.push(null)).toBeNull();
   });
 });

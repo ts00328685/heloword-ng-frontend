@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { detectPitch, freqToMidi, freqToNote, midiToFreq, NoteInfo } from './pitch';
+import { createPitchSmoother, detectPitch, freqToNote, midiToFreq, NoteInfo } from './pitch';
 
 /** How much history the graphs keep, in seconds. */
 export const BUFFER_SECONDS = 20;
@@ -17,8 +17,14 @@ export interface MicData {
   running: boolean;
   /** Set by the pitch graph while hovered — sampling halts so the view holds still. */
   paused: boolean;
+  /** Freeze button / Space — like `paused`, but stays on until toggled off. */
+  frozen?: boolean;
   /** Replaying a take: data exists after `now` and times are seconds into the take. */
   replay?: boolean;
+  /** A–B loop of the replayed take, in take seconds. */
+  loop?: { a: number; b: number } | null;
+  /** Replayed take's volume — the waveform is drawn at the level that will be heard / saved. */
+  gain?: number;
 }
 
 /** Meter data captured alongside a recording; `t` is seconds from the start of the take. */
@@ -28,12 +34,6 @@ export interface TakeMeters {
 }
 
 const FFT_SIZE = 2048;
-const SMOOTH_WINDOW = 5;
-
-const median = (xs: number[]) => {
-  const s = [...xs].sort((a, b) => a - b);
-  return s[Math.floor(s.length / 2)];
-};
 
 /**
  * Opens the microphone and samples it every animation frame into rolling
@@ -53,6 +53,8 @@ export const useMicAnalyser = () => {
   const streamRef = useRef<MediaStream | null>(null);
   const rafRef = useRef<number>(0);
   const captureRef = useRef<(TakeMeters & { start: number }) | null>(null);
+  /** Called for every frame added to the live view (not while paused/frozen). */
+  const frameListenerRef = useRef<((t: number, midi: number | null) => void) | null>(null);
 
   /** Start copying every analysed frame into a take (call when recording starts). */
   const beginCapture = useCallback(() => {
@@ -95,7 +97,7 @@ export const useMicAnalyser = () => {
       ctxRef.current = ctx;
 
       const buf = new Float32Array(FFT_SIZE);
-      const recent: (number | null)[] = [];
+      const smoother = createPitchSmoother();
       let lastNoteUpdate = 0;
       let pausedAt: number | null = null;
       const data = dataRef.current;
@@ -109,7 +111,8 @@ export const useMicAnalyser = () => {
         const t = performance.now() / 1000;
         const capture = captureRef.current;
 
-        if (data.paused) {
+        const halted = data.paused || !!data.frozen;
+        if (halted) {
           if (pausedAt === null) pausedAt = t;
           // Hovering freezes the view, but a take being recorded must keep its meters in sync with the audio.
           if (!capture) {
@@ -121,7 +124,7 @@ export const useMicAnalyser = () => {
           const shift = t - pausedAt;
           for (const p of data.wave) p.t += shift;
           for (const p of data.pitch) p.t += shift;
-          if (!capture) recent.length = 0;
+          if (!capture) smoother.reset();
           pausedAt = null;
         }
 
@@ -134,25 +137,21 @@ export const useMicAnalyser = () => {
           else if (buf[i] > max) max = buf[i];
         }
 
-        // Median over the last few frames kills single-frame octave glitches.
-        const hz = detectPitch(buf, ctx.sampleRate);
-        recent.push(hz === null ? null : freqToMidi(hz));
-        if (recent.length > SMOOTH_WINDOW) recent.shift();
-        const voiced = recent.filter((m): m is number => m !== null);
-        const midi = hz !== null && voiced.length >= 3 ? median(voiced) : null;
+        const midi = smoother.push(detectPitch(buf, ctx.sampleRate));
 
         if (capture) {
           const ct = t - capture.start;
           capture.wave.push({ t: ct, min, max });
           capture.pitch.push({ t: ct, midi });
         }
-        if (data.paused) {
+        if (halted) {
           rafRef.current = requestAnimationFrame(tick);
           return;
         }
 
         data.wave.push({ t, min, max });
         data.pitch.push({ t, midi });
+        frameListenerRef.current?.(t, midi);
 
         const cutoff = t - BUFFER_SECONDS - 1;
         while (data.wave.length && data.wave[0].t < cutoff) data.wave.shift();
@@ -177,7 +176,7 @@ export const useMicAnalyser = () => {
 
   useEffect(() => stop, [stop]);
 
-  return { dataRef, running, error, note, voiced, start, stop, beginCapture, endCapture };
+  return { dataRef, running, error, note, voiced, start, stop, beginCapture, endCapture, frameListenerRef };
 };
 
 /** First index whose `t` is ≥ `t` (points are time-sorted) — lets graphs skip off-screen samples of long takes. */

@@ -122,3 +122,29 @@ export const detectPitch = (
   const freq = sampleRate / better;
   return freq >= MIN_FREQ && freq <= MAX_FREQ ? freq : null;
 };
+
+const median = (xs: number[]) => {
+  const s = [...xs].sort((a, b) => a - b);
+  return s[Math.floor(s.length / 2)];
+};
+
+/**
+ * Per-stream pitch smoother: median over the last few frames kills
+ * single-frame octave glitches. Shared by live capture and file analysis so
+ * both draw the same line.
+ */
+export const createPitchSmoother = (window = 5) => {
+  const recent: (number | null)[] = [];
+  return {
+    /** Feed one frame's raw Hz (or null); returns the smoothed MIDI value or null. */
+    push(hz: number | null): number | null {
+      recent.push(hz === null ? null : freqToMidi(hz));
+      if (recent.length > window) recent.shift();
+      const voiced = recent.filter((m): m is number => m !== null);
+      return hz !== null && voiced.length >= 3 ? median(voiced) : null;
+    },
+    reset() {
+      recent.length = 0;
+    },
+  };
+};
