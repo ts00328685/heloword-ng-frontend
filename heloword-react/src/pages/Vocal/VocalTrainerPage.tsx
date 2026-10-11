@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { useTheme } from '../../contexts/ThemeContext';
-import { freqToNote, midiToFreq, NoteInfo } from './pitch';
+import { freqToNote, midiToFlatName, midiToFreq, NoteInfo } from './pitch';
 import { indexAtTime, MicData, useMicAnalyser } from './useMicAnalyser';
 import PitchGraph from './PitchGraph';
 import WaveformView from './WaveformView';
@@ -20,10 +20,11 @@ import Panel, { LiveDot } from './Panel';
 const VocalTrainerPage: React.FC = () => {
   const { t } = useTranslation();
   const { isDark } = useTheme();
-  const { dataRef, running, error, note: liveNote, start, stop, beginCapture, endCapture } = useMicAnalyser();
+  const { dataRef, running, error, note: liveNote, voiced: liveVoiced, start, stop, beginCapture, endCapture } = useMicAnalyser();
 
   const [replay, setReplay] = useState<{ take: Take; audio: HTMLAudioElement } | null>(null);
   const [replayNote, setReplayNote] = useState<NoteInfo | null>(null);
+  const [replayVoiced, setReplayVoiced] = useState(false);
   const replayRef = useRef<MicData>({ pitch: [], wave: [], now: 0, running: false, paused: false, replay: true });
 
   // Drive the replay view from the audio element's playhead.
@@ -38,13 +39,16 @@ const VocalTrainerPage: React.FC = () => {
     let lastKey = '';
     const loop = () => {
       d.now = replay.audio.currentTime;
-      const i = indexAtTime(d.pitch, d.now) - 1;
-      const p = i >= 0 && d.now - d.pitch[i].t < 0.1 ? d.pitch[i] : null;
-      const n = p?.midi != null ? freqToNote(midiToFreq(p.midi)) : null;
-      const key = n ? `${n.name}${n.cents}` : '';
+      // Last note sung at or before the playhead (held through silences, like live)
+      let i = indexAtTime(d.pitch, d.now) - 1;
+      const voicedNow = i >= 0 && d.now - d.pitch[i].t < 0.1 && d.pitch[i].midi !== null;
+      while (i >= 0 && d.pitch[i].midi === null) i--;
+      const n = i >= 0 ? freqToNote(midiToFreq(d.pitch[i].midi as number)) : null;
+      const key = n ? `${n.name}${n.cents}${voicedNow}` : '';
       if (key !== lastKey) {
         lastKey = key;
         setReplayNote(n);
+        setReplayVoiced(voicedNow);
       }
       raf = requestAnimationFrame(loop);
     };
@@ -55,9 +59,12 @@ const VocalTrainerPage: React.FC = () => {
   const exitReplay = () => {
     setReplay(null);
     setReplayNote(null);
+    setReplayVoiced(false);
   };
   const source = replay ? replayRef : dataRef;
   const note = replay ? replayNote : liveNote;
+  /** False when `note` is held from earlier — shown dimmed. */
+  const noteVoiced = replay ? replayVoiced : liveVoiced;
 
   const cents = note?.cents ?? 0;
   const inTune = note !== null && Math.abs(cents) <= 10;
@@ -71,7 +78,7 @@ const VocalTrainerPage: React.FC = () => {
           id="pitch"
           title={replay ? `Pitch · ${replay.take.name}` : 'Pitch'}
           indicator={running && <LiveDot color="bg-blue-500" />}
-          summary={note ? `${note.name} ${cents > 0 ? '+' : ''}${cents}¢` : running || replay ? '--' : 'mic off'}
+          summary={note ? `${note.name}${midiToFlatName(note.midi) !== note.name ? `/${midiToFlatName(note.midi)}` : ''} ${cents > 0 ? '+' : ''}${cents}¢` : running || replay ? '--' : 'mic off'}
         >
           {replay && (
             <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-xs text-blue-700 dark:text-blue-300">
@@ -84,10 +91,19 @@ const VocalTrainerPage: React.FC = () => {
             </div>
           )}
           <div className="flex items-center justify-between gap-3 mb-4">
-            <div className="flex items-baseline gap-3 min-w-0">
-              <span className={`text-4xl font-bold tabular-nums w-20 ${note ? 'text-gray-900 dark:text-gray-100' : 'text-gray-300 dark:text-gray-600'}`}>
-                {note?.name ?? '--'}
-              </span>
+            <div
+              className={`flex items-center gap-3 min-w-0 transition-opacity ${note && !noteVoiced ? 'opacity-50' : ''}`}
+              title={note && !noteVoiced ? 'Last note detected' : undefined}
+            >
+              <div className="w-24 flex flex-col">
+                <span className={`text-4xl font-bold tabular-nums leading-none ${note ? 'text-gray-900 dark:text-gray-100' : 'text-gray-300 dark:text-gray-600'}`}>
+                  {note?.name ?? '--'}
+                </span>
+                {/* Flat spelling of black keys, e.g. C#4 → D♭4 */}
+                <span className="h-4 mt-1 text-xs font-semibold text-gray-400 dark:text-gray-500">
+                  {note && midiToFlatName(note.midi) !== note.name ? midiToFlatName(note.midi) : ''}
+                </span>
+              </div>
               <div className="flex flex-col gap-1">
                 <span className="text-xs font-mono text-gray-400 dark:text-gray-500">
                   {note ? `${midiToFreq(note.midi + cents / 100).toFixed(1)} Hz` : '— Hz'}

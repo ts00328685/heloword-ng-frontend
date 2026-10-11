@@ -44,7 +44,10 @@ export const useMicAnalyser = () => {
   const dataRef = useRef<MicData>({ pitch: [], wave: [], now: performance.now() / 1000, running: false, paused: false });
   const [running, setRunning] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  /** Last note detected — held through silences (and after the mic stops). */
   const [note, setNote] = useState<NoteInfo | null>(null);
+  /** Whether `note` is being sung right now, or is held from earlier. */
+  const [voiced, setVoiced] = useState(false);
 
   const ctxRef = useRef<AudioContext | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -70,7 +73,7 @@ export const useMicAnalyser = () => {
     ctxRef.current = null;
     dataRef.current.running = false;
     setRunning(false);
-    setNote(null);
+    setVoiced(false);
   }, []);
 
   /** Opens the mic (no-op if already open) and resolves to its stream, or null on failure. */
@@ -158,7 +161,8 @@ export const useMicAnalyser = () => {
 
         if (t - lastNoteUpdate > 0.08) {
           lastNoteUpdate = t;
-          setNote(midi === null ? null : freqToNote(midiToFreq(midi)));
+          if (midi !== null) setNote(freqToNote(midiToFreq(midi)));
+          setVoiced(midi !== null);
         }
         rafRef.current = requestAnimationFrame(tick);
       };
@@ -173,7 +177,7 @@ export const useMicAnalyser = () => {
 
   useEffect(() => stop, [stop]);
 
-  return { dataRef, running, error, note, start, stop, beginCapture, endCapture };
+  return { dataRef, running, error, note, voiced, start, stop, beginCapture, endCapture };
 };
 
 /** First index whose `t` is ≥ `t` (points are time-sorted) — lets graphs skip off-screen samples of long takes. */

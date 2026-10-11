@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { detectPitch, freqToNote, midiToNoteName } from './pitch';
+import { detectPitch, freqToNote, midiToAxisLabel, midiToFlatName, midiToFullName, midiToNoteName } from './pitch';
 
 const SR = 48000;
 const tone = (hz: number, amp = 0.5, n = 2048) =>
@@ -10,6 +10,14 @@ describe('note helpers', () => {
     expect(midiToNoteName(69)).toBe('A4');
     expect(midiToNoteName(60)).toBe('C4');
     expect(midiToNoteName(61)).toBe('C#4');
+  });
+  it('spells black keys with flats too', () => {
+    expect(midiToFlatName(61)).toBe('D♭4');
+    expect(midiToFlatName(70)).toBe('B♭4');
+    expect(midiToFullName(61)).toBe('C#4 / D♭4');
+    expect(midiToFullName(60)).toBe('C4');
+    expect(midiToAxisLabel(63)).toBe('D#/E♭4');
+    expect(midiToAxisLabel(64)).toBe('E4');
   });
   it('measures cents off the nearest note', () => {
     expect(freqToNote(440)).toEqual({ name: 'A4', midi: 69, cents: 0 });

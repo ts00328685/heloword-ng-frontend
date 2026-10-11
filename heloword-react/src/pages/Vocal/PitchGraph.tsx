@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { freqToNote, isSharp, midiToFreq, midiToNoteName } from './pitch';
+import { freqToNote, isSharp, midiToAxisLabel, midiToFreq, midiToFullName } from './pitch';
 import { BUFFER_SECONDS, fmtTakeTime, indexAtTime, MicData, NOW_POSITION } from './useMicAnalyser';
 import { useCanvasLoop } from './useCanvasLoop';
 import { usePersistedState } from './usePersistedState';
@@ -9,7 +9,8 @@ interface Props {
   isDark: boolean;
 }
 
-const GUTTER = 36;
+/** Wide enough for black-key labels like "D#/E♭4". Keep in sync with WaveformView so the "now" lines align. */
+const GUTTER = 52;
 const AXIS_H = 18;
 /** Recenter when the voice gets this close (semitones) to the top/bottom edge. */
 const EDGE_MARGIN = 3;
@@ -82,8 +83,8 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
     const xOf = (t: number) => nowX - ((now - t) / BUFFER_SECONDS) * histW;
 
     const c = isDark
-      ? { natural: '#1f2937', sharp: '#111827', cLine: '#4b5563', label: '#9ca3af', cLabel: '#e5e7eb', line: '#60a5fa', grid: '#374151', hl: 'rgba(96,165,250,0.18)', cursor: 'rgba(229,231,235,0.5)', tipBg: 'rgba(243,244,246,0.95)', tipText: '#111827', tipSub: '#4b5563' }
-      : { natural: '#ffffff', sharp: '#f3f4f6', cLine: '#d1d5db', label: '#9ca3af', cLabel: '#374151', line: '#3b82f6', grid: '#e5e7eb', hl: 'rgba(59,130,246,0.12)', cursor: 'rgba(55,65,81,0.4)', tipBg: 'rgba(17,24,39,0.9)', tipText: '#f9fafb', tipSub: '#d1d5db' };
+      ? { natural: '#1f2937', sharp: '#111827', cLine: '#4b5563', label: '#9ca3af', cLabel: '#e5e7eb', line: '#60a5fa', grid: '#374151', hl: 'rgba(96,165,250,0.18)', cursor: 'rgba(229,231,235,0.5)', tipBg: 'rgba(243,244,246,0.95)', tipText: '#111827', tipSub: '#4b5563', dash: '#4b5563' }
+      : { natural: '#ffffff', sharp: '#f3f4f6', cLine: '#d1d5db', label: '#9ca3af', cLabel: '#374151', line: '#3b82f6', grid: '#e5e7eb', hl: 'rgba(59,130,246,0.12)', cursor: 'rgba(55,65,81,0.4)', tipBg: 'rgba(17,24,39,0.9)', tipText: '#f9fafb', tipSub: '#d1d5db', dash: '#cbd5e1' };
 
     // Semitone bands + labels
     ctx.font = '10px ui-sans-serif, system-ui, sans-serif';
@@ -101,12 +102,23 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
         ctx.fillStyle = c.cLine;
         ctx.fillRect(GUTTER, Math.round(yOf(m - 0.5)), plotW, 1);
       }
-      if (!isSharp(m) && rowH >= 7) {
+      // White keys are labelled when rows are ≥7px; black keys too once there's room (≥11px).
+      if (rowH >= (isSharp(m) ? 11 : 7)) {
         const y = yOf(m);
         if (y > 4 && y < plotH - 2) {
           ctx.fillStyle = isC ? c.cLabel : c.label;
           ctx.font = `${isC ? 'bold ' : ''}10px ui-sans-serif, system-ui, sans-serif`;
-          ctx.fillText(midiToNoteName(m), 4, y);
+          ctx.fillText(midiToAxisLabel(m), 4, y);
+          // Dashed guide through the middle of each labelled note
+          ctx.save();
+          ctx.strokeStyle = c.dash;
+          ctx.lineWidth = 1;
+          ctx.setLineDash([3, 4]);
+          ctx.beginPath();
+          ctx.moveTo(GUTTER, Math.round(y) + 0.5);
+          ctx.lineTo(GUTTER + plotW, Math.round(y) + 0.5);
+          ctx.stroke();
+          ctx.restore();
         }
       }
     }
@@ -191,7 +203,7 @@ const PitchGraph: React.FC<Props> = ({ dataRef, isDark }) => {
         ctx.fill();
         ctx.stroke();
 
-        const title = n.name + offDir;
+        const title = midiToFullName(n.midi) + offDir;
         const detail = `${n.cents > 0 ? '+' : ''}${n.cents}¢ · ${midiToFreq(best.midi).toFixed(1)} Hz · ${replay ? `@ ${fmtTakeTime(best.t)}` : `-${(now - best.t).toFixed(1)}s`}`;
         ctx.font = 'bold 13px ui-sans-serif, system-ui, sans-serif';
         const tw = ctx.measureText(title).width;

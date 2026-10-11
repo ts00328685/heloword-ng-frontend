@@ -4,6 +4,8 @@
  */
 
 export const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+/** Same pitch classes spelled with flats — sharps and flats name the same black key. */
+export const FLAT_NAMES = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭', 'A', 'B♭', 'B'];
 
 /** Human voice range we bother searching (≈ D2 … C6). */
 export const MIN_FREQ = 70;
@@ -18,6 +20,27 @@ export const midiToFreq = (midi: number): number => 440 * Math.pow(2, (midi - 69
 export const midiToNoteName = (midi: number): string => {
   const m = Math.round(midi);
   return `${NOTE_NAMES[((m % 12) + 12) % 12]}${Math.floor(m / 12) - 1}`;
+};
+
+/** "D♭4" for MIDI 61 — the flat spelling (naturals are unchanged). */
+export const midiToFlatName = (midi: number): string => {
+  const m = Math.round(midi);
+  return `${FLAT_NAMES[((m % 12) + 12) % 12]}${Math.floor(m / 12) - 1}`;
+};
+
+/** "C#4 / D♭4" for black keys, "C4" for white keys. */
+export const midiToFullName = (midi: number): string => {
+  const sharp = midiToNoteName(midi);
+  const flat = midiToFlatName(midi);
+  return sharp === flat ? sharp : `${sharp} / ${flat}`;
+};
+
+/** Compact axis label: "C#/D♭4" for black keys, "C4" for white keys. */
+export const midiToAxisLabel = (midi: number): string => {
+  const m = Math.round(midi);
+  const pc = ((m % 12) + 12) % 12;
+  const octave = Math.floor(m / 12) - 1;
+  return NOTE_NAMES[pc] === FLAT_NAMES[pc] ? `${NOTE_NAMES[pc]}${octave}` : `${NOTE_NAMES[pc]}/${FLAT_NAMES[pc]}${octave}`;
 };
 
 export const isSharp = (midi: number): boolean => NOTE_NAMES[((Math.round(midi) % 12) + 12) % 12].includes('#');
