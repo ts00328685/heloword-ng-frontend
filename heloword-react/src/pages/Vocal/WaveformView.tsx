@@ -7,7 +7,8 @@ interface Props {
   isDark: boolean;
 }
 
-const GUTTER = 36;
+/** Same as PitchGraph so both charts' "now" lines align. */
+const GUTTER = 52;
 const TICKS = [1, 0.5, 0, -0.5, -1];
 
 /** Audacity-style min/max envelope of the mic signal over the last 20 s. */
