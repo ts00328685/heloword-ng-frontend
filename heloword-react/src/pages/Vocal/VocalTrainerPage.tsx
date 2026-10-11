@@ -17,6 +17,8 @@ import MetronomeDock from './MetronomeDock';
 import { useMetronome } from './useMetronome';
 import Recorder, { RecorderHandle } from './Recorder';
 import Panel, { LiveDot } from './Panel';
+import VoiceQualityPanel from './VoiceQualityPanel';
+import { useCalibration } from './useCalibration';
 
 type Loop = { a: number; b: number } | null;
 
@@ -46,7 +48,7 @@ const VocalTrainerPage: React.FC = () => {
   const { isDark } = useTheme();
   const {
     dataRef, running, error, note: liveNote, voiced: liveVoiced,
-    start, stop, beginCapture, endCapture, frameListenerRef, setMonitorLevel, monitorLatencyMs,
+    start, stop, beginCapture, endCapture, addFrameListener, setMonitorLevel, monitorLatencyMs,
   } = useMicAnalyser();
 
   // ── Monitoring (hear yourself) — always starts off; headphones reminder until acknowledged ──
@@ -85,7 +87,8 @@ const VocalTrainerPage: React.FC = () => {
   const [replayNote, setReplayNote] = useState<NoteInfo | null>(null);
   const [replayVoiced, setReplayVoiced] = useState(false);
   const [replayTally, setReplayTally] = useState<TargetTally | null>(null);
-  const replayRef = useRef<MicData>({ pitch: [], wave: [], now: 0, running: false, paused: false, replay: true, loop: null });
+  const replayRef = useRef<MicData>({ pitch: [], wave: [], quality: [], now: 0, running: false, paused: false, replay: true, loop: null });
+  const { calibration, isCustom: isCustomCalibration, save: saveCalibration } = useCalibration();
   /** A–B loop markers per take, so switching takes shows the right loop. */
   const loopsRef = useRef(new Map<number, Loop>());
   const replayIdRef = useRef<number | null>(null);
@@ -99,6 +102,7 @@ const VocalTrainerPage: React.FC = () => {
     const d = replayRef.current;
     d.pitch = replay.take.meters.pitch;
     d.wave = replay.take.meters.wave;
+    d.quality = replay.take.meters.quality ?? [];
     d.loop = loopsRef.current.get(replay.take.id) ?? null;
     d.gain = replay.take.gain ?? 1;
     let raf = 0;
@@ -151,14 +155,14 @@ const VocalTrainerPage: React.FC = () => {
   };
   useEffect(() => {
     resetLiveTally();
-    frameListenerRef.current = (time, midi) => meterRef.current?.push(time, midi);
+    const unsubscribe = addFrameListener((time, midi) => meterRef.current?.push(time, midi));
     const id = window.setInterval(() => { if (meterRef.current) setLiveTally(meterRef.current.tally()); }, 100);
     return () => {
       clearInterval(id);
-      frameListenerRef.current = null;
+      unsubscribe();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- restart only when the target changes
-  }, [target, tolerance, frameListenerRef]);
+  }, [target, tolerance, addFrameListener]);
 
   const source = replay ? replayRef : dataRef;
   const note = replay ? replayNote : liveNote;
@@ -394,6 +398,17 @@ const VocalTrainerPage: React.FC = () => {
           </div>
         </Panel>
 
+        <VoiceQualityPanel
+          dataRef={source}
+          isDark={isDark}
+          replay={!!replay}
+          calibration={calibration}
+          isCustomCalibration={isCustomCalibration}
+          onCalibration={saveCalibration}
+          addFrameListener={addFrameListener}
+          ensureMic={() => { if (replay) exitReplay(); return start(); }}
+        />
+
         <Panel id="waveform" title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.waveform'), take: replayName }) : t('vocal.panel.waveform')}>
           <WaveformView dataRef={source} isDark={isDark} />
         </Panel>
@@ -404,6 +419,7 @@ const VocalTrainerPage: React.FC = () => {
           beginCapture={beginCapture}
           endCapture={endCapture}
           keySig={keySig}
+          calibration={calibration}
           replayingId={replay?.take.id ?? null}
           onReplay={(take, audio) => { if (take.meters.pitch.length) setReplay({ take, audio }); }}
           onLoopChange={(id, loop) => {

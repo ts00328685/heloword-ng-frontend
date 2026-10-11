@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { convertToMp3 } from './encodeMp3';
 import { KeySig, spellNote } from './music';
 import { peakLevel, takeStats } from './stats';
+import { QualityCalibration, summariseQuality, zoneOf } from './voiceQuality';
+import { ZONE_COLORS } from './ClosureTrace';
 import { Take } from './takeStore';
 import { fmtTakeTime } from './useMicAnalyser';
 
@@ -24,6 +26,7 @@ const getPlaybackCtx = () => (playbackCtx ??= new AudioContext());
 interface Props {
   take: Take;
   keySig: KeySig | null;
+  calibration: QualityCalibration;
   /** This take is the one shown in the Pitch/Waveform panels. */
   active: boolean;
   /** Play, seek or "Show meters" — show this take in the meters. */
@@ -54,7 +57,7 @@ const btn = 'px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors';
 const idle = 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
 
 /** One recorded or imported take: player, stats, practice-loop controls and actions. */
-const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopChange, onRename, onExport, onDelete, onGainChange }) => {
+const TakeCard: React.FC<Props> = ({ take, keySig, calibration, active, onActivate, onLoopChange, onRename, onExport, onDelete, onGainChange }) => {
   const { t, i18n } = useTranslation();
   /** Dates follow the app language (Traditional Chinese for zh). */
   const dateLocale = i18n.language === 'zh' ? 'zh-TW' : i18n.language;
@@ -93,6 +96,10 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
   const [mp3Error, setMp3Error] = useState<string | null>(null);
 
   const stats = useMemo(() => takeStats(take.meters.pitch), [take.meters.pitch]);
+  const quality = useMemo(
+    () => (take.meters.quality ? summariseQuality(take.meters.quality, calibration) : null),
+    [take.meters.quality, calibration],
+  );
   const hasMeters = take.meters.pitch.length > 0;
 
   // ── Volume ──
@@ -270,6 +277,19 @@ const TakeCard: React.FC<Props> = ({ take, keySig, active, onActivate, onLoopCha
           <span>{t('vocal.take.range')} <b className="text-gray-700 dark:text-gray-200">{t('vocal.take.semitones', { n: stats.range })}</b></span>
           <span title={t('vocal.take.inTuneTitle')}>{t('vocal.take.inTune')} <b className="text-gray-700 dark:text-gray-200">{Math.round(stats.inTune * 100)}%</b></span>
           <span title={t('vocal.take.avgTitle')}>{t('vocal.take.avg')} <b className="text-gray-700 dark:text-gray-200">±{Math.round(stats.avgCents)}¢</b></span>
+          {quality?.index != null && (
+            <span
+              title={t('vocal.take.closureTitle', {
+                h1h2: quality.h1h2 !== null ? quality.h1h2.toFixed(1) : '—',
+                hnr: quality.hnr.toFixed(0),
+              })}
+            >
+              {t('vocal.take.closure')}{' '}
+              <b style={{ color: ZONE_COLORS[zoneOf(quality.index)].solid }}>
+                {quality.index} · {t(`vocal.quality.zone.${zoneOf(quality.index)}`)}
+              </b>
+            </span>
+          )}
         </div>
       ) : (
         <p className="mt-2 text-[11px] text-gray-400 dark:text-gray-500">{hasMeters ? t('vocal.take.noSinging') : t('vocal.take.noMeters')}</p>

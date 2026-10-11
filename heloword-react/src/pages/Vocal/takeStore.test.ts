@@ -15,6 +15,7 @@ describe('take export / import', () => {
       meters: {
         pitch: [{ t: 0.01666, midi: 69.12345 }, { t: 0.0333, midi: null }],
         wave: [{ t: 0.01666, min: -0.25, max: 0.31234 }],
+        quality: [{ t: 0.01666, h1h2: 5.12345, hnr: 18.5, tilt: -20.25 }, { t: 0.0333, h1h2: null, hnr: 12, tilt: -30 }],
       },
     });
     const back = await parseExport(blob);
@@ -27,6 +28,10 @@ describe('take export / import', () => {
     expect(new Uint8Array(await back.blob.arrayBuffer())).toEqual(audio);
     expect(back.blob.type).toBe('audio/webm');
     expect(back.gain).toBe(1.5);
+    expect(back.meters.quality).toEqual([
+      { t: 0.017, h1h2: 5.123, hnr: 18.5, tilt: -20.25 },
+      { t: 0.033, h1h2: null, hnr: 12, tilt: -30 },
+    ]);
   });
 
   it('rejects other JSON files', async () => {

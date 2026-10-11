@@ -6,6 +6,7 @@ import { analyseAudio } from './analyseAudio';
 import TakeCard, { downloadBlob, fmtClock, safeFileName } from './TakeCard';
 import { deleteTake, exportTake, loadTakes, parseExport, requestPersistence, saveTake, StoredTake, Take, TakeFileError } from './takeStore';
 import { TakeMeters } from './useMicAnalyser';
+import { QualityCalibration } from './voiceQuality';
 
 interface Props {
   /** Opens the mic if needed and returns its stream (null if denied). */
@@ -14,6 +15,8 @@ interface Props {
   beginCapture: () => void;
   endCapture: () => TakeMeters;
   keySig: KeySig | null;
+  /** For the per-take closure summary. */
+  calibration: QualityCalibration;
   /** Take currently shown in the Pitch/Waveform panels, if any. */
   replayingId: number | null;
   /** Show a take in the meters, synced to its audio element. */
@@ -50,7 +53,7 @@ const strip = ({ url: _url, ...t }: Take): StoredTake => t;
  * files (or exports) can be imported — plain audio is analysed on import.
  */
 const Recorder = forwardRef<RecorderHandle, Props>(({
-  getStream, beginCapture, endCapture, keySig, replayingId, onReplay, onLoopChange, onRemove, onGainChange, onRenamed,
+  getStream, beginCapture, endCapture, keySig, calibration, replayingId, onReplay, onLoopChange, onRemove, onGainChange, onRenamed,
 }, ref) => {
   const { t } = useTranslation();
   const [recording, setRecording] = useState(false);
@@ -289,6 +292,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
               key={take.id}
               take={take}
               keySig={keySig}
+              calibration={calibration}
               active={replayingId === take.id}
               onActivate={(audio) => onReplay(take, audio)}
               onLoopChange={(loop) => onLoopChange(take.id, loop)}

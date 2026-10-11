@@ -72,9 +72,11 @@ interface ExportFile {
   gain?: number;
   /** Base64 audio. */
   audio: string;
-  /** Compact meters: pitch [t, midi|null], wave [t, min, max]. */
+  /** Compact meters: pitch [t, midi|null], wave [t, min, max], quality [t, h1h2|null, hnr, tilt]. */
   pitch: [number, number | null][];
   wave: [number, number, number][];
+  /** Optional — files exported before voice-quality analysis don't have it. */
+  quality?: [number, number | null, number, number][];
 }
 
 const r3 = (n: number) => Math.round(n * 1000) / 1000;
@@ -107,6 +109,7 @@ export const exportTake = async (take: StoredTake): Promise<Blob> => {
     audio: await blobToBase64(take.blob),
     pitch: take.meters.pitch.map((p) => [r3(p.t), p.midi === null ? null : r3(p.midi)]),
     wave: take.meters.wave.map((p) => [r3(p.t), r3(p.min), r3(p.max)]),
+    quality: take.meters.quality?.map((q) => [r3(q.t), q.h1h2 === null ? null : r3(q.h1h2), r3(q.hnr), r3(q.tilt)]),
   };
   return new Blob([JSON.stringify(file)], { type: 'application/json' });
 };
@@ -139,6 +142,7 @@ export const parseExport = async (file: Blob): Promise<Omit<StoredTake, 'id'>> =
     meters: {
       pitch: data.pitch.map(([t, midi]) => ({ t, midi })),
       wave: data.wave.map(([t, min, max]) => ({ t, min, max })),
+      quality: Array.isArray(data.quality) ? data.quality.map(([t, h1h2, hnr, tilt]) => ({ t, h1h2, hnr, tilt })) : undefined,
     },
   };
 };
