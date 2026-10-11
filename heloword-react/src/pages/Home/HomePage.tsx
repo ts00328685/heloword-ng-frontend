@@ -24,15 +24,13 @@ import SentenceRenderer from '../../components/SentenceRenderer';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { useBoard } from '../../contexts/BoardContext';
 
-import { pronounceWord, speakSentence, cancelPronouncing } from '../../services/tts.service';
+import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight, getWordComparison } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
-import { FunArticle, fetchAllFunArticles } from '../../services/funArticle.service';
 import NHKSection from '../../components/NHKSection';
 import ENSection from '../../components/ENSection';
-import ReactMarkdown from 'react-markdown';
-import { latexToUnicode } from '../../utils/latexToUnicode';
+import QuickPracticeSection from '../../components/QuickPracticeSection';
 
 const VOCAB_ONBOARDING_KEY = 'onboarding:my_vocab';
 const SHARED_VOCAB_ONBOARDING_KEY = 'onboarding:shared_vocab';
@@ -342,245 +340,6 @@ const AuthorNoteModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   );
 };
 
-const PREVIEW_LENGTH = 180;
-
-function stripWordHeading(word: string, content: string): string {
-  // Remove leading markdown heading/bold/plain line that matches the word
-  return content
-    .replace(new RegExp(`^#{1,6}\\s*\\*{0,2}${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\*{0,2}\\s*\\n+`, 'i'), '')
-    .replace(new RegExp(`^\\*{1,2}${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\*{1,2}\\s*\\n+`, 'i'), '')
-    .replace(new RegExp(`^${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*\\n+`, 'i'), '')
-    .trimStart();
-}
-
-/** Strip markdown syntax so TTS doesn't read asterisks, hashes, etc. */
-function stripMarkdownForTTS(text: string, langCode?: string): string {
-  let result = text
-    .replace(/#{1,6}\s+/g, '')
-    .replace(/\*\*(.*?)\*\*/gs, '$1')
-    .replace(/\*(.*?)\*/gs, '$1')
-    .replace(/`(.*?)`/g, '$1')
-    .replace(/\[(.*?)\]\(.*?\)/g, '$1')
-    .replace(/^\s*[-*+]\s+/gm, '')
-    .replace(/^\s*\d+\.\s+/gm, '')
-    .replace(/\n{3,}/g, '\n\n');
-  // For Japanese, strip furigana annotations like 探偵(たんてい) — kana in parens repeat the kanji
-  if (langCode === 'ja-JP') {
-    result = result.replace(/\([^)]*[\u3040-\u30FF][^)]*\)/g, '');
-  }
-  return result.trim();
-}
-
-/** Split article content into per-language sections. */
-function parseArticleSections(content: string): { en: string; zh?: string; ja?: string } {
-  const zhIdx = content.search(/繁體中文翻譯/);
-  const jaIdx = content.search(/日本語訳/);
-  const en = zhIdx > -1 ? content.slice(0, zhIdx) : jaIdx > -1 ? content.slice(0, jaIdx) : content;
-  const zh = zhIdx > -1 ? (jaIdx > -1 ? content.slice(zhIdx, jaIdx) : content.slice(zhIdx)) : undefined;
-  const ja = jaIdx > -1 ? content.slice(jaIdx) : undefined;
-  return { en: en.trim(), zh: zh?.trim(), ja: ja?.trim() };
-}
-
-const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
-  <ReactMarkdown
-    components={{
-      p: ({ children }) => <p className="leading-relaxed">{children}</p>,
-      h1: ({ children }) => <p className="text-base font-bold text-gray-900 dark:text-gray-100 mt-3">{children}</p>,
-      h2: ({ children }) => <p className="text-sm font-bold text-gray-800 dark:text-gray-100 mt-2">{children}</p>,
-      h3: ({ children }) => <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-2">{children}</p>,
-      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-      ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{children}</ul>,
-      ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{children}</ol>,
-      li: ({ children }) => <li>{children}</li>,
-    }}
-  >
-    {latexToUnicode(text)}
-  </ReactMarkdown>
-);
-
-const ArticleItem: React.FC<{ article: FunArticle; index: number }> = ({ article, index }) => {
-  const [activeLang, setActiveLang] = React.useState<string | null>(null);
-
-  const sections = React.useMemo(
-    () => parseArticleSections(stripWordHeading(article.word, article.content)),
-    [article],
-  );
-
-  const speakSection = (text: string, langCode: string, langKey: string) => {
-    cancelPronouncing();
-    if (activeLang === langKey) {
-      setActiveLang(null);
-      return;
-    }
-    setActiveLang(langKey);
-    speakSentence(stripMarkdownForTTS(text, langCode), langCode, {}, () => setActiveLang(null));
-  };
-
-  const speakWord = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    pronounceWord(article.word, 'en');
-  };
-
-  const langBtn = (label: string, text: string, langCode: string, langKey: string) => (
-    <button
-      onClick={() => speakSection(text, langCode, langKey)}
-      className={`text-xs px-2.5 py-1 rounded-full font-medium transition-colors flex items-center gap-1 ${
-        activeLang === langKey
-          ? 'bg-sky-500 text-white'
-          : 'bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-300 hover:bg-sky-100 dark:hover:bg-sky-900/40'
-      }`}
-    >
-      <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5L6 9H2v6h4l5 4V5zm4.54 3.46a5 5 0 010 7.07" />
-      </svg>
-      {label}
-    </button>
-  );
-
-  return (
-    <div className="rounded-2xl overflow-hidden shadow-sm">
-      <div className="bg-gradient-to-r from-sky-400 to-blue-500 dark:from-sky-600 dark:to-blue-700 px-4 py-2.5 flex items-center gap-2.5">
-        <span className="text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full bg-white/20 text-white shrink-0">
-          {index + 1}
-        </span>
-        <span className="text-base font-bold text-white tracking-wide flex-1">{article.word}</span>
-        <button
-          onClick={speakWord}
-          title="Pronounce word"
-          className="text-white/80 hover:text-white transition-colors p-1 rounded-full hover:bg-white/20"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5L6 9H2v6h4l5 4V5zm4.54 3.46a5 5 0 010 7.07" />
-          </svg>
-        </button>
-      </div>
-      <div className="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
-        <div className="flex flex-wrap gap-2 pb-2 border-b border-gray-200 dark:border-gray-600">
-          {langBtn('EN', sections.en, 'en-US', 'en')}
-          {sections.zh && langBtn('中', sections.zh, 'zh-TW', 'zh')}
-          {sections.ja && langBtn('日', sections.ja, 'ja-JP', 'ja')}
-        </div>
-        <AiMarkdown text={stripWordHeading(article.word, article.content)} />
-      </div>
-    </div>
-  );
-};
-
-const FunArticlesModal: React.FC<{ articles: FunArticle[]; onClose: () => void }> = ({ articles, onClose }) => {
-  const { t } = useTranslation();
-
-  React.useEffect(() => () => { cancelPronouncing(); }, []);
-
-  return ReactDOM.createPortal(
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
-      <div
-        className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-lg animate-fade-in flex flex-col max-h-[85vh]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex justify-center pt-3 pb-1 sm:hidden shrink-0">
-          <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
-        </div>
-        <div className="px-5 pt-4 pb-3 flex items-center justify-between shrink-0 border-b border-gray-100 dark:border-gray-700">
-          <div className="flex items-center gap-2">
-            <span className="text-lg">📚</span>
-            <h2 className="text-base font-bold text-gray-900 dark:text-gray-100">{t('home.funArticleTitle')}</h2>
-          </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 p-1">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <div className="overflow-y-auto px-5 py-4 space-y-5">
-          {articles.map((a, i) => (
-            <ArticleItem key={i} article={a} index={i} />
-          ))}
-        </div>
-      </div>
-    </div>,
-    document.body
-  );
-};
-
-const FunArticlesSection: React.FC = () => {
-  const { t } = useTranslation();
-  const [allArticles, setAllArticles] = React.useState<FunArticle[]>([]);
-  const [showModal, setShowModal] = React.useState(false);
-  const [refreshing, setRefreshing] = React.useState(false);
-
-  const loadArticles = React.useCallback(() => {
-    fetchAllFunArticles().then(setAllArticles).catch(() => {});
-  }, []);
-
-  React.useEffect(() => { loadArticles(); }, [loadArticles]);
-
-  const handleRefresh = async () => {
-    setRefreshing(true);
-    try {
-      const articles = await fetchAllFunArticles();
-      setAllArticles(articles);
-    } finally {
-      setRefreshing(false);
-    }
-  };
-
-  const handleViewAll = () => setShowModal(true);
-
-  const preview = allArticles[0] ?? null;
-  if (!preview) return null;
-
-  const cleanContent = stripWordHeading(preview.word, preview.content);
-  const truncated = cleanContent.length > PREVIEW_LENGTH
-    ? cleanContent.slice(0, PREVIEW_LENGTH).trimEnd() + '…'
-    : cleanContent;
-
-  return (
-    <section className="mb-6">
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-1.5">
-          <h2 className="text-base font-bold text-gray-800 dark:text-gray-100">{t('home.funArticleTitle')}</h2>
-          <button
-            onClick={handleRefresh}
-            disabled={refreshing}
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 disabled:opacity-40 transition-colors"
-            aria-label="Refresh"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 2v6h-6" /><path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
-              <path d="M3 22v-6h6" /><path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <button
-        onClick={handleViewAll}
-        className="w-full text-left rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group"
-      >
-        {/* Gradient header with word */}
-        <div className="bg-gradient-to-r from-sky-400 to-blue-500 dark:from-sky-600 dark:to-blue-700 px-4 pt-3.5 pb-3 flex items-center justify-between">
-          <div>
-            <p className="text-[9px] font-bold uppercase tracking-[0.22em] mb-1 text-white/50">Featured Word</p>
-            <h3 className="text-white text-xl font-bold tracking-wide">{preview.word}</h3>
-          </div>
-          <div className="flex flex-col items-center opacity-75 group-hover:opacity-100 group-hover:scale-110 transition-all select-none leading-none">
-            <span className="text-white font-bold" style={{ fontFamily: 'serif', fontSize: '1.35rem', lineHeight: 1 }}>文</span>
-            <div className="w-5 border-t border-white/60 my-0.5" />
-            <span className="text-white/90 font-semibold tracking-widest" style={{ fontSize: '0.6rem', letterSpacing: '0.18em' }}>EN</span>
-          </div>
-        </div>
-        {/* Article preview */}
-        <div className="bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm border border-t-0 border-sky-100 dark:border-sky-900/40 px-4 py-3 rounded-b-2xl">
-          <div className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">
-            <AiMarkdown text={truncated} />
-          </div>
-          <p className="mt-2 text-xs text-sky-400 font-medium">{t('home.tapToReadMore')}</p>
-        </div>
-      </button>
-      {showModal && <FunArticlesModal articles={allArticles} onClose={() => setShowModal(false)} />}
-    </section>
-  );
-};
-
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -810,7 +569,7 @@ const HomePage: React.FC = () => {
           </div>
         )}
 
-        <FunArticlesSection />
+        <QuickPracticeSection />
         <NHKSection />
         <ENSection />
 
