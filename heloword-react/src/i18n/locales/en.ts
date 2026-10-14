@@ -591,8 +591,6 @@ const en = {
     aiGrammar: 'Grammar Breakdown',
     aiThinking: 'Teacher is thinking… 💭',
     aiError: 'Sorry, failed to get the explanation.',
-    aiLoginHint: 'Log in to unlock AI grammar explanations.',
-    loginRequired: 'login required',
     autoPronounce: 'Auto Pronounce',
     pronounceOn: 'ON',
     pronounceOff: 'OFF',
@@ -640,7 +638,6 @@ const en = {
     compare: 'Compare Answer',
     aiAnalyze: 'AI評比',
     aiAnalysis: 'AI Feedback',
-    aiLoginHint: 'Log in to unlock AI translation analysis.',
     aiError: 'Sorry, failed to get the AI analysis.',
     correctAnswer: 'Correct Answer',
     scoreExcellent: 'Excellent! Almost perfect.',
@@ -762,11 +759,11 @@ const en = {
     stepOf: '{{current}} / {{total}}',
     home: {
       title: 'Home',
-      desc: 'Browse today\'s word preview cards. Tap ✨ AI Insight on any word for an instant AI-powered definition and example sentence. Log in to unlock all AI features.',
+      desc: 'Browse today\'s word preview cards. Tap ✨ AI Insight on any word for an instant AI-powered definition and example sentence. Guests get 10 free AI uses a day; log in for more.',
     },
     quiz: {
       title: 'Quiz',
-      desc: 'Test yourself with typed answers. Logged-in users can tap ✨ Insight or 💬 Example on any word to get an AI explanation and a fresh sample sentence on demand.',
+      desc: 'Test yourself with typed answers. Tap ✨ Insight or 💬 Example on any word to get an AI explanation and a fresh sample sentence on demand.',
     },
     review: {
       title: 'Review',

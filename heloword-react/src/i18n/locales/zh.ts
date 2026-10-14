@@ -591,8 +591,6 @@ const zh = {
     aiGrammar: '文法重點',
     aiThinking: '老師正在思考中… 💭',
     aiError: '抱歉，獲取解釋時發生錯誤。',
-    aiLoginHint: '登入後即可使用 AI 文法解析功能。',
-    loginRequired: '需要登入',
     autoPronounce: '自動發音',
     pronounceOn: '開',
     pronounceOff: '關',
@@ -640,7 +638,6 @@ const zh = {
     compare: '比對答案',
     aiAnalyze: 'AI評比',
     aiAnalysis: 'AI 回饋',
-    aiLoginHint: '登入後即可使用 AI 翻譯分析功能。',
     aiError: '抱歉，AI 分析失敗。',
     correctAnswer: '正確答案',
     scoreExcellent: '太棒了！幾乎完美。',
@@ -762,11 +759,11 @@ const zh = {
     stepOf: '{{current}} / {{total}}',
     home: {
       title: '首頁',
-      desc: '瀏覽今日單字預覽卡片。點擊任意單字上的 ✨ AI 解析，即可獲得 AI 生成的釋義與例句。登入後解鎖全部 AI 功能。',
+      desc: '瀏覽今日單字預覽卡片。點擊任意單字上的 ✨ AI 解析，即可獲得 AI 生成的釋義與例句。未登入每天可免費使用 AI 10 次，登入後次數更多。',
     },
     quiz: {
       title: '測驗',
-      desc: '以輸入答案方式進行詞彙測驗。登入後可點擊 ✨ 解析 或 💬 例句，隨時為當前單字獲取 AI 說明與全新例句。',
+      desc: '以輸入答案方式進行詞彙測驗。可點擊 ✨ 解析 或 💬 例句，隨時為當前單字獲取 AI 說明與全新例句。',
     },
     review: {
       title: '複習',

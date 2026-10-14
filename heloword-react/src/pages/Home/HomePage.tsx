@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'; // useRef kept for hasFetched
+import React, { useMemo, useEffect, useRef, useState } from 'react'; // useRef kept for hasFetched
 import ReactDOM from 'react-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -42,10 +42,9 @@ const WordSection: React.FC<{
   onViewAll: () => void;
   isLoggedIn: boolean;
   lang: string;
-  onLoginRequired: () => void;
   onHeartWord?: (word: Sentence) => void;
   sectionKey: string;
-}> = ({ title, list, onViewAll, isLoggedIn, lang, onLoginRequired, onHeartWord, sectionKey }) => {
+}> = ({ title, list, onViewAll, isLoggedIn, lang, onHeartWord, sectionKey }) => {
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
@@ -347,6 +346,11 @@ const HomePage: React.FC = () => {
   const [showAuthor, setShowAuthor] = useState(false);
   const [customGroups, setCustomGroups] = useState<CustomGroup[]>([]);
   const [sharedGroups, setSharedGroups] = useState<SharedVocabGroup[]>([]);
+  /** Newest shared groups first; the home page only shows the top 4. */
+  const sortedSharedGroups = useMemo(
+    () => [...sharedGroups].sort((a, b) => (new Date(b.createDate).getTime() || 0) - (new Date(a.createDate).getTime() || 0)),
+    [sharedGroups],
+  );
   const [pendingRequests, setPendingRequests] = useState<SharedGroupRequest[]>([]);
   const [adminActionLoading, setAdminActionLoading] = useState<number | null>(null);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
@@ -727,7 +731,7 @@ const HomePage: React.FC = () => {
           {/* Approved shared groups grid */}
           {sharedGroups.length > 0 ? (
             <div className="grid grid-cols-2 gap-2">
-              {sharedGroups.slice(0, 4).map((sg) => (
+              {sortedSharedGroups.slice(0, 4).map((sg) => (
                 <div
                   key={sg.id}
                   className="relative bg-white dark:bg-white/[0.05] dark:backdrop-blur-sm rounded-xl border border-gray-200 dark:border-white/[0.14] shadow-sm dark:shadow-[0_2px_12px_rgba(0,0,0,0.55)] p-3 text-left hover:shadow-lg dark:hover:shadow-[0_4px_20px_rgba(255,255,255,0.04)] hover:-translate-y-0.5 transition-all cursor-pointer"
@@ -760,6 +764,9 @@ const HomePage: React.FC = () => {
                   <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 line-clamp-1">{sg.name}</p>
                   <p className="text-[10px] text-blue-400 dark:text-blue-500 mt-0.5 truncate">
                     {t('sharedVocab.sharedBy', { name: sg.sharerDisplayName })}
+                    {sg.createDate && (
+                      <span className="text-gray-400 dark:text-gray-500"> · {new Date(sg.createDate).toLocaleDateString('zh-TW')}</span>
+                    )}
                   </p>
                   {sg.tags && (
                     <div className="flex gap-1 mt-1.5 overflow-x-auto scrollbar-hide">
@@ -789,7 +796,6 @@ const HomePage: React.FC = () => {
             onViewAll={() => handleViewAll(key, list)}
             isLoggedIn={isLoggedIn}
             lang={i18n.language}
-            onLoginRequired={() => showAlert(t('llm.loginRequired'))}
             onHeartWord={isLoggedIn ? setHeartWord : undefined}
           />
         ))}
