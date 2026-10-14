@@ -182,7 +182,6 @@ const SentenceScramblePage: React.FC = () => {
   const [aiResult, setAiResult] = useState('');
   const [aiLoading, setAiLoading] = useState(false);
   const [showAiPanel, setShowAiPanel] = useState(false);
-  const [showLoginHint, setShowLoginHint] = useState(false);
 
   // Pronunciation toggle
   const [autoPronounce, setAutoPronounce] = useState(false);
@@ -212,7 +211,6 @@ const SentenceScramblePage: React.FC = () => {
     setShowTranslation(false);
     setAiResult('');
     setShowAiPanel(false);
-    setShowLoginHint(false);
 
     if (lang === 'jp') {
       if (!jpDataRef.current) {
@@ -308,7 +306,6 @@ const SentenceScramblePage: React.FC = () => {
     setAnswerChunks([]);
     setAiResult('');
     setShowAiPanel(false);
-    setShowLoginHint(false);
   };
 
   const showAnswer = () => {
@@ -324,7 +321,6 @@ const SentenceScramblePage: React.FC = () => {
     if (!sentence) return;
 
     setShowAiPanel(true);
-    setShowLoginHint(false);
     setAiLoading(true);
     setAiResult('');
     try {
@@ -663,7 +659,6 @@ const SentenceScramblePage: React.FC = () => {
         >
           <span>✨</span>
           <span>{t('scramble.aiExplain')}</span>
-          {!isLoggedIn && <span className="text-xs opacity-75">({t('scramble.loginRequired')})</span>}
         </button>
 
         {/* AI panel */}
@@ -672,14 +667,7 @@ const SentenceScramblePage: React.FC = () => {
             <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-2">
               ✨ {t('scramble.aiGrammar')}
             </p>
-            {showLoginHint ? (
-              <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
-                <p>{t('scramble.aiLoginHint')}</p>
-                <a href="/login" className="text-blue-500 underline text-xs">
-                  {t('common.login')} →
-                </a>
-              </div>
-            ) : aiLoading ? (
+            {aiLoading ? (
               <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">
                 {t('scramble.aiThinking')}
               </p>

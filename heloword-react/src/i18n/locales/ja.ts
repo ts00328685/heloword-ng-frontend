@@ -591,8 +591,6 @@ const ja = {
     aiGrammar: '文法のポイント',
     aiThinking: '先生が考え中… 💭',
     aiError: '申し訳ありません、解説の取得中にエラーが発生しました。',
-    aiLoginHint: 'AI文法解説を使うにはログインしてください。',
-    loginRequired: 'ログイン必要',
     autoPronounce: '自動読み上げ',
     pronounceOn: 'ON',
     pronounceOff: 'OFF',
@@ -640,7 +638,6 @@ const ja = {
     compare: '答えを比べる',
     aiAnalyze: 'AI評比',
     aiAnalysis: 'AIフィードバック',
-    aiLoginHint: 'AI翻訳分析を使うにはログインしてください。',
     aiError: 'AI分析に失敗しました。',
     correctAnswer: '正解',
     scoreExcellent: '素晴らしい！ほぼ完璧です。',
@@ -762,11 +759,11 @@ const ja = {
     stepOf: '{{current}} / {{total}}',
     home: {
       title: 'ホーム',
-      desc: '今日の単語プレビューカードを確認できます。✨ AI解説をタップすると、AIによる語義と例文を即座に表示します。全AI機能はログイン後に利用できます。',
+      desc: '今日の単語プレビューカードを確認できます。✨ AI解説をタップすると、AIによる語義と例文を即座に表示します。ログインなしでも1日10回までAIを無料で使えます。ログインすると回数が増えます。',
     },
     quiz: {
       title: '小テスト',
-      desc: '入力形式で語彙テストを受けられます。ログイン後は ✨ 解説 や 💬 例文 ボタンで、各単語のAI説明とその場で生成した例文をいつでも確認できます。',
+      desc: '入力形式で語彙テストを受けられます。✨ 解説 や 💬 例文 ボタンで、各単語のAI説明とその場で生成した例文をいつでも確認できます。',
     },
     review: {
       title: '復習',

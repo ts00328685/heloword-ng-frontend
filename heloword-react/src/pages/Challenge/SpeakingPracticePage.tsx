@@ -165,7 +165,6 @@ const SpeakingPracticePage: React.FC = () => {
   const [aiResult, setAiResult] = useState('');
   const [aiLoading, setAiLoading] = useState(false);
   const [showAiPanel, setShowAiPanel] = useState(false);
-  const [showLoginHint, setShowLoginHint] = useState(false);
 
   // Intro modal — shown once on entry
   const [showIntro, setShowIntro] = useState(true);
@@ -291,7 +290,6 @@ const SpeakingPracticePage: React.FC = () => {
   const handleAiExplain = async () => {
     if (!currentSentence) return;
     setShowAiPanel(true);
-    setShowLoginHint(false);
     setAiLoading(true);
     setAiResult('');
     try {
@@ -319,7 +317,6 @@ const SpeakingPracticePage: React.FC = () => {
     setRecError(null);
     setAiResult('');
     setShowAiPanel(false);
-    setShowLoginHint(false);
     setCurrentIndex(prev => (prev + 1) % sentences.length);
     setGameState('ready');
   }, [sentences.length]);
@@ -633,7 +630,6 @@ const SpeakingPracticePage: React.FC = () => {
         >
           <span>✨</span>
           <span>{t('scramble.aiExplain')}</span>
-          {!isLoggedIn && <span className="text-xs opacity-75">({t('scramble.loginRequired')})</span>}
         </button>
 
         {/* AI panel */}
@@ -642,14 +638,7 @@ const SpeakingPracticePage: React.FC = () => {
             <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-2">
               ✨ {t('scramble.aiGrammar')}
             </p>
-            {showLoginHint ? (
-              <div className="text-sm text-gray-500 dark:text-gray-400 space-y-1">
-                <p>{t('scramble.aiLoginHint')}</p>
-                <a href="/login" className="text-blue-500 underline text-xs">
-                  {t('common.login')} →
-                </a>
-              </div>
-            ) : aiLoading ? (
+            {aiLoading ? (
               <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">
                 {t('scramble.aiThinking')}
               </p>
