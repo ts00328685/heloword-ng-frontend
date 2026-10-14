@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { CustomWord } from '../services/customVocab.service';
 import { getWordFill } from '../services/llm.service';
+import { aiErrorMessage } from '../utils/aiError';
 import { Sentence } from '../models';
 
 interface WordFormData {
@@ -11,6 +12,8 @@ interface WordFormData {
   translateCh: string;
   sentence: string;
   phonetics: string;
+  /** JLPT / CEFR tag from AI fill; '' when unknown (the page tags it in the background) */
+  level: string;
   sourceWordId?: number;
   sourceTableName?: string;
 }
@@ -20,10 +23,11 @@ interface BulkRow {
   translateEn: string;
   translateCh: string;
   sentence: string;
+  level: string;
   aiLoading: boolean;
 }
 
-const EMPTY_ROW = (): BulkRow => ({ word: '', translateEn: '', translateCh: '', sentence: '', aiLoading: false });
+const EMPTY_ROW = (): BulkRow => ({ word: '', translateEn: '', translateCh: '', sentence: '', level: '', aiLoading: false });
 const DEFAULT_BULK_COUNT = 10;
 
 interface Props {
@@ -50,11 +54,14 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
   const [translateCh, setTranslateCh] = useState(initial?.translateCh ?? '');
   const [sentence, setSentence] = useState(initial?.sentence ?? '');
   const [phonetics, setPhonetics] = useState(initial?.phonetics ?? '');
+  const [level, setLevel] = useState(initial?.level ?? '');
   const [sourceWordId, setSourceWordId] = useState(initial?.sourceWordId);
   const [sourceTableName, setSourceTableName] = useState(initial?.sourceTableName);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [aiLoading, setAiLoading] = useState(false);
+  /** Word text the current `level` belongs to */
+  const [levelFor, setLevelFor] = useState(initial?.word ?? '');
   const [showSystemSearch, setShowSystemSearch] = useState(false);
   const [systemQuery, setSystemQuery] = useState('');
 
@@ -73,7 +80,9 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
     setSaving(true);
     setError('');
     try {
-      await onSave({ word: word.trim(), translateEn: translateEn.trim(), translateCh: translateCh.trim(), sentence: sentence.trim(), phonetics: phonetics.trim(), sourceWordId, sourceTableName });
+      // A changed word invalidates its old level; the page re-tags it after saving
+      const keptLevel = word.trim() === levelFor.trim() ? level : '';
+      await onSave({ word: word.trim(), translateEn: translateEn.trim(), translateCh: translateCh.trim(), sentence: sentence.trim(), phonetics: phonetics.trim(), level: keptLevel, sourceWordId, sourceTableName });
       onClose();
     } catch (e: any) {
       const msg = e?.message === 'WORD_LIMIT_EXCEEDED' ? t('userVocab.wordLimitReached') : (e?.message || 'Error');
@@ -94,8 +103,9 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
       if (!translateEn.trim()) setTranslateEn(result.translateEn);
       if (!translateCh.trim()) setTranslateCh(result.translateCh);
       if (!sentence.trim()) setSentence(result.sentence);
+      if (result.level) { setLevel(result.level); setLevelFor(word.trim()); }
     } catch (e: any) {
-      setError(t('llm.error'));
+      setError(aiErrorMessage(e, true));
     } finally {
       setAiLoading(false);
     }
@@ -149,6 +159,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
           translateEn: r.translateEn.trim() || result.translateEn,
           translateCh: r.translateCh.trim() || result.translateCh,
           sentence: r.sentence.trim() || result.sentence,
+          level: result.level || r.level,
           aiLoading: false,
         };
       }));
@@ -183,6 +194,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
         translateCh: r.translateCh.trim(),
         sentence: r.sentence.trim(),
         phonetics: '',
+        level: r.level,
       })));
       onClose();
     } catch (e: any) {

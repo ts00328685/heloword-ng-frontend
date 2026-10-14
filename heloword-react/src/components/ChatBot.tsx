@@ -2,7 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
-import { quickTranslate, QuickTranslateResult, getSampleSentence, getVerbConjugation, getWordInsight, getWordComparison } from '../services/llm.service';
+import {
+  quickTranslate, QuickTranslateResult, getSampleSentence, getVerbConjugation, getWordInsight, getWordComparison,
+  getPoliteness, PolitenessResult, getAiQuota, AiQuota, AI_USED_EVENT,
+} from '../services/llm.service';
+import AiWordTools from './AiWordTools';
+import { aiErrorMessage } from '../utils/aiError';
 import { useAiInsight } from '../hooks/useAiInsight';
 import { pronounceWord, cleanSentenceForTTS, toLangCode } from '../services/tts.service';
 import AddToGroupModal from './AddToGroupModal';
@@ -13,13 +18,14 @@ const HISTORY_KEY = 'hw-chatbot-history';
 
 interface ChatEntry {
   id: string;
-  type: 'translate' | 'sentence' | 'conjugation';
+  type: 'translate' | 'sentence' | 'conjugation' | 'politeness';
   input: string;
   word: string;
   translateEn: string;
   translateCh: string;
   sentence?: string;
   conjugations?: string;
+  politeness?: PolitenessResult;
   wordLang: string;
   timestamp: number;
 }
@@ -110,9 +116,8 @@ const WordCard: React.FC<{
   entry: ChatEntry;
   onSpeak: (text: string, lang: string) => void;
   onHeart: (entry: ChatEntry) => void;
-  isLoggedIn: boolean;
   lang: string;
-}> = ({ entry, onSpeak, onHeart, isLoggedIn, lang }) => {
+}> = ({ entry, onSpeak, onHeart, lang }) => {
   const { t } = useTranslation();
   const [insightOpen, setInsightOpen] = useState(false);
   const [compareOpen, setCompareOpen] = useState(false);
@@ -124,7 +129,6 @@ const WordCard: React.FC<{
     setInsightOpen(true);
     setCompareOpen(false);
     compare.clear();
-    if (!isLoggedIn) return;
     insight.run(entry.id, () => getWordInsight(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang));
   };
 
@@ -133,7 +137,6 @@ const WordCard: React.FC<{
     setCompareOpen(true);
     setInsightOpen(false);
     insight.clear();
-    if (!isLoggedIn) return;
     compare.run(entry.id, () => getWordComparison(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang));
   };
 
@@ -185,12 +188,24 @@ const WordCard: React.FC<{
           })}
         </div>
       )}
+      {entry.politeness && (
+        <div className="mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700 space-y-1">
+          {([['llm.casual', entry.politeness.casual], ['llm.polite', entry.politeness.polite], ['llm.keigo', entry.politeness.keigo]] as const).map(([label, value]) => (
+            <div key={label} className="flex items-baseline gap-1.5 text-xs leading-5">
+              <span className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[56px]">{t(label)}</span>
+              <span className="text-gray-800 dark:text-gray-200 font-medium flex-1">{value}</span>
+              {value && <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(value, 'jp'), 'jp')} label={t('chatbot.pronounce')} small />}
+            </div>
+          ))}
+        </div>
+      )}
       <p className="text-[10px] text-gray-300 dark:text-gray-600 mt-1.5 text-right">
         {new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
       </p>
     </div>
-    {/* AI insight / compare buttons */}
-    <div className="px-3 pb-2.5 flex items-center gap-1.5">
+    {/* AI insight / compare buttons — word entries only */}
+    {entry.type !== 'politeness' && (
+    <div className="px-3 pb-2.5 flex flex-wrap items-center gap-1.5">
       <button
         onClick={handleInsight}
         className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
@@ -214,12 +229,22 @@ const WordCard: React.FC<{
         {compareOpen ? `${t('llm.compare')} ▲` : t('llm.compare')}
       </button>
     </div>
+    )}
+    {entry.type !== 'politeness' && (
+      <div className="px-3 pb-2.5 -mt-1">
+        <AiWordTools
+          cacheKey={entry.id}
+          word={entry.word}
+          wordLang={entry.wordLang}
+          meaningZh={entry.translateCh}
+          onOpen={() => { setInsightOpen(false); setCompareOpen(false); insight.clear(); compare.clear(); }}
+        />
+      </div>
+    )}
     {insightOpen && (
       <div className="px-3 pb-3 animate-slide-down">
         <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
-          {!isLoggedIn ? (
-            <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-          ) : insight.loading ? (
+          {insight.loading ? (
             <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
           ) : insight.error ? (
             <div className="flex items-center gap-2">
@@ -235,9 +260,7 @@ const WordCard: React.FC<{
     {compareOpen && (
       <div className="px-3 pb-3 animate-slide-down">
         <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
-          {!isLoggedIn ? (
-            <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-          ) : compare.loading ? (
+          {compare.loading ? (
             <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
           ) : compare.error ? (
             <div className="flex items-center gap-2">
@@ -264,7 +287,6 @@ const ChatBot: React.FC = () => {
   const [isIdle, setIsIdle] = useState(false);
   const [wink, setWink] = useState<WinkEye>('none');
   const winkSideRef = useRef<'left' | 'right'>('left');
-  const [showLoginHint, setShowLoginHint] = useState(false);
   const [history, setHistory] = useState<ChatEntry[]>(() => {
     try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch { return []; }
   });
@@ -272,6 +294,7 @@ const ChatBot: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [heartEntry, setHeartEntry] = useState<ChatEntry | null>(null);
+  const [quota, setQuota] = useState<AiQuota | null>(null);
 
   const idleTimer = useRef<number | undefined>(undefined);
   const lastCopied = useRef('');
@@ -360,6 +383,15 @@ const ChatBot: React.FC = () => {
     return () => window.removeEventListener('hw-chatbot-word-copied', onProgrammaticCopy);
   }, [isOpen, isLoggedIn]);
 
+  // Guests see how many free AI calls are left; refresh on open and after every AI call
+  useEffect(() => {
+    if (isLoggedIn || !isOpen) return;
+    const refresh = () => { getAiQuota().then(setQuota).catch(() => {}); };
+    refresh();
+    window.addEventListener(AI_USED_EVENT, refresh);
+    return () => window.removeEventListener(AI_USED_EVENT, refresh);
+  }, [isLoggedIn, isOpen]);
+
   // Listen for clear-chat from Header
   useEffect(() => {
     const onClear = () => {
@@ -373,11 +405,6 @@ const ChatBot: React.FC = () => {
 
   const handleIconClick = () => {
     resetIdle();
-    if (!isLoggedIn) {
-      setShowLoginHint(true);
-      setTimeout(() => setShowLoginHint(false), 2000);
-      return;
-    }
     if (!isOpen) {
       track('FEATURE', 'chatbot_open');
       // Auto-paste last copied text
@@ -391,13 +418,33 @@ const ChatBot: React.FC = () => {
     }
   };
 
-  const handleAction = async (type: 'translate' | 'sentence' | 'conjugation') => {
+  const handleAction = async (type: ChatEntry['type']) => {
     const text = input.trim();
     if (!text || loading) return;
     setError('');
     setLoading(true);
     resetIdle();
     try {
+      if (type === 'politeness') {
+        if (!/[ぁ-ゖ゠-ヿ一-龯]/.test(text)) {
+          setError(t('llm.politenessJapaneseOnly'));
+          return;
+        }
+        const politeness = await getPoliteness(text);
+        setHistory(prev => [...prev, {
+          id: (crypto.randomUUID?.() || Date.now().toString()),
+          type: 'politeness',
+          input: text,
+          word: text,
+          translateEn: '',
+          translateCh: '',
+          wordLang: 'jp',
+          politeness,
+          timestamp: Date.now(),
+        }]);
+        setInput('');
+        return;
+      }
       if (type === 'conjugation') {
         const result = await getVerbConjugation(text);
         const entry: ChatEntry = {
@@ -442,7 +489,7 @@ const ChatBot: React.FC = () => {
       if (msg.includes('NOT_A_VERB')) {
         setError(t('chatbot.notAVerb'));
       } else {
-        setError(msg || t('chatbot.error'));
+        setError(aiErrorMessage(e, isLoggedIn));
       }
     } finally {
       setLoading(false);
@@ -471,7 +518,7 @@ const ChatBot: React.FC = () => {
       }
     : null;
 
-  const modal = isOpen && isLoggedIn && (
+  const modal = isOpen && (
     <div className="fixed inset-0 z-50 pointer-events-none">
       {/* Backdrop */}
       <div
@@ -493,6 +540,11 @@ const ChatBot: React.FC = () => {
           <div className="flex items-center gap-2">
             <KittenSVG wink={wink} size={28} />
             <span className="font-semibold text-sm text-gray-800 dark:text-gray-100">{t('chatbot.title')}</span>
+            {!isLoggedIn && quota && (
+              <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${quota.remaining > 0 ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-500' : 'bg-red-50 dark:bg-red-900/30 text-red-400'}`}>
+                {t('llm.remaining', { remaining: quota.remaining, limit: quota.limit })}
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-1">
             <button
@@ -530,7 +582,6 @@ const ChatBot: React.FC = () => {
               entry={entry}
               onSpeak={handleSpeak}
               onHeart={handleHeart}
-              isLoggedIn={isLoggedIn}
               lang={i18n.language}
             />
           ))}
@@ -569,6 +620,13 @@ const ChatBot: React.FC = () => {
           >
             {t('chatbot.verbConjugation')}
           </button>
+          <button
+            onClick={() => handleAction('politeness')}
+            disabled={!input.trim() || loading}
+            className="flex-1 py-2 rounded-xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-100 dark:hover:bg-amber-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            {t('llm.politeness')}
+          </button>
         </div>
 
         {/* Input */}
@@ -577,7 +635,7 @@ const ChatBot: React.FC = () => {
             <textarea
               ref={inputRef}
               value={input}
-              maxLength={30}
+              maxLength={60}
               onChange={e => { setInput(e.target.value); resetIdle(); }}
               onKeyDown={e => {
                 if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
@@ -622,13 +680,6 @@ const ChatBot: React.FC = () => {
               transformOrigin: 'bottom right',
             }}
           >
-            {/* Login hint tooltip */}
-            {showLoginHint && (
-              <div className="chatbot-login-hint bg-gray-800 dark:bg-gray-700 text-white text-xs px-3 py-1.5 rounded-xl shadow-lg whitespace-nowrap">
-                {t('chatbot.loginRequired')}
-              </div>
-            )}
-
             <button
               onClick={handleIconClick}
               className="rounded-full shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"

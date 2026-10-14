@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
 import { aiExplainScramble } from '../../services/scramble.service';
+import { aiErrorMessage } from '../../utils/aiError';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
 import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
@@ -318,11 +319,6 @@ const SentenceScramblePage: React.FC = () => {
   };
 
   const handleAiExplain = async () => {
-    if (!isLoggedIn) {
-      setShowLoginHint(true);
-      setShowAiPanel(true);
-      return;
-    }
     const sentence = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
     const translation = lang === 'jp' ? currentJp?.translation : currentEn?.translate_ch;
     if (!sentence) return;
@@ -334,8 +330,8 @@ const SentenceScramblePage: React.FC = () => {
     try {
       const result = await aiExplainScramble({ lang, sentence, translation: translation ?? '' });
       setAiResult(result);
-    } catch {
-      setAiResult(t('scramble.aiError'));
+    } catch (e) {
+      setAiResult((e as Error)?.message?.startsWith('AI_') ? aiErrorMessage(e, isLoggedIn) : t('scramble.aiError'));
     } finally {
       setAiLoading(false);
     }

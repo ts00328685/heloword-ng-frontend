@@ -14,6 +14,8 @@ import BlastBoard from '../../components/quiz/BlastBoard';
 import DropBoard from '../../components/quiz/DropBoard';
 import { wordKey } from '../../components/quiz/boardUtils';
 import { pronounceWord } from '../../services/tts.service';
+import { explainWrongAnswer } from '../../services/llm.service';
+import { useAiInsight } from '../../hooks/useAiInsight';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -183,6 +185,8 @@ const MultiChoicePage: React.FC = () => {
   const [showModePicker, setShowModePicker] = useState(false);
 
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const why = useAiInsight('mc:why');
+  const [whyOpen, setWhyOpen] = useState(false);
 
   // ── Build pool from wordStore ────────────────────────────────────────────
 
@@ -209,7 +213,9 @@ const MultiChoicePage: React.FC = () => {
     setChoices(shuffle([correctWord, ...distractors]));
     setAnswerState('idle');
     setPickedId(null);
-  }, []);
+    setWhyOpen(false);
+    why.clear();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Handle level selection ───────────────────────────────────────────────
 
@@ -262,6 +268,18 @@ const MultiChoicePage: React.FC = () => {
       setStreak(0);
       advanceTimer.current = setTimeout(() => nextQuestion(pool), 1200);
     }
+  };
+
+  /** Pause on a wrong answer and ask the AI why the pick was wrong. */
+  const handleWhy = () => {
+    const picked = choices.find(c => c.id === pickedId);
+    if (!correct || !picked) return;
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    setWhyOpen(true);
+    why.run(
+      `${gameType}:${correct.id}:${picked.id}`,
+      () => explainWrongAnswer((correct.translateCh || correct.translateEn || '').slice(0, 60), gameType === 'en' ? 'en' : 'jp', picked.word, correct.word),
+    );
   };
 
   // Cleanup timer on unmount
@@ -438,6 +456,28 @@ const MultiChoicePage: React.FC = () => {
             {answerState === 'correct'
               ? `✅ ${t('multiChoice.correct')}  +1`
               : `❌ ${t('multiChoice.wrong')}  ${t('multiChoice.answer')}: ${correct.word}`}
+            {answerState === 'wrong' && !whyOpen && (
+              <button
+                onClick={handleWhy}
+                className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium ring-1 ring-inset ring-red-200 dark:ring-red-800 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors"
+              >
+                <svg className="w-2.5 h-2.5" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                {t('llm.explainWrong')}
+              </button>
+            )}
+            {whyOpen && (
+              <div className="mt-2 text-left font-normal">
+                <p className={`text-xs leading-relaxed whitespace-pre-wrap text-gray-700 dark:text-gray-200 ${why.loading ? 'animate-pulse' : ''}`}>
+                  {why.loading ? t('llm.thinking') : why.error ? t('llm.error') : why.text}
+                </p>
+                <button
+                  onClick={() => nextQuestion(pool)}
+                  className="mt-2 w-full py-1.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-xs font-semibold transition-colors"
+                >
+                  {t('scramble.next')}
+                </button>
+              </div>
+            )}
           </div>
         )}
 

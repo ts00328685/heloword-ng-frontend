@@ -1,4 +1,5 @@
 import { doPost } from './api.service';
+import { unwrapAi } from './llm.service';
 
 export interface ScrambleAiRequest {
   lang: 'jp' | 'en';
@@ -12,8 +13,7 @@ export interface ScrambleAiRequest {
  */
 export async function aiExplainScramble(request: ScrambleAiRequest): Promise<string> {
   const res = await doPost<string>('/frontend-api/api/fe/scramble/ai-explain', request);
-  if (res.code === '0000' && res.data) return res.data;
-  throw new Error(res.message || 'AI explain failed');
+  return unwrapAi(res, 'AI explain failed');
 }
 
 export interface TranslationAnalyzeRequest {
@@ -29,6 +29,5 @@ export interface TranslationAnalyzeRequest {
  */
 export async function aiAnalyzeTranslation(request: TranslationAnalyzeRequest): Promise<string> {
   const res = await doPost<string>('/frontend-api/api/fe/translation/ai-analyze', request);
-  if (res.code === '0000' && res.data) return res.data;
-  throw new Error(res.message || 'AI analyze failed');
+  return unwrapAi(res, 'AI analyze failed');
 }

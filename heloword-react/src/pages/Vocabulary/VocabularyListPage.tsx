@@ -91,7 +91,6 @@ const VocabularyListPage: React.FC = () => {
       return;
     }
     setSelectedWordId(word.id);
-    if (!isLoggedIn) return; // guest — panel shows login prompt, no fetch
     insight.run(
       `${word.language || 'en'}:${word.id}`,
       () => getWordInsight(
@@ -111,7 +110,6 @@ const VocabularyListPage: React.FC = () => {
       return;
     }
     setSelectedCompareId(word.id);
-    if (!isLoggedIn) return;
     compare.run(
       `${word.language || 'en'}:${word.id}`,
       () => getWordComparison(
@@ -389,9 +387,7 @@ const VocabularyListPage: React.FC = () => {
               {isSelected && (
                 <div className="px-3 pb-3 pt-0">
                   <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-                    {!isLoggedIn ? (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                    ) : insight.loading ? (
+                    {insight.loading ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                     ) : insight.error ? (
                       <div className="flex items-center gap-2">
@@ -413,9 +409,7 @@ const VocabularyListPage: React.FC = () => {
               {isCompareSelected && (
                 <div className="px-3 pb-3 pt-0">
                   <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-                    {!isLoggedIn ? (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                    ) : compare.loading ? (
+                    {compare.loading ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                     ) : compare.error ? (
                       <div className="flex items-center gap-2">

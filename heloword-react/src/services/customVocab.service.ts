@@ -18,6 +18,8 @@ export interface CustomWord {
   translateCh?: string;
   sentence?: string;
   phonetics?: string;
+  /** JLPT N5–N1 or CEFR A1–C2, tagged by AI */
+  level?: string;
   sourceWordId?: number;
   sourceTableName?: string;
   /** Fixed — used by quiz polymorphic record saving */

@@ -1,10 +1,18 @@
 import { useCallback, useRef, useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { aiErrorMessage, isAiLimitError } from '../utils/aiError';
 
 interface AiInsightState {
   text: string;
   loading: boolean;
   error: boolean;
 }
+
+/**
+ * Quota / busy / invalid-input failures are shown as the panel's text (not cached), so every
+ * existing AI panel explains the limit without per-page changes. Only network/model failures
+ * set `error`, which panels render with a retry button.
+ */
 
 interface UseAiInsightReturn extends AiInsightState {
   /** Fetch insight for the given key. Checks memory cache then sessionStorage before calling fetcher. */
@@ -26,6 +34,7 @@ interface UseAiInsightReturn extends AiInsightState {
  * @param namespace  Unique prefix for sessionStorage keys, e.g. "vocab:insight"
  */
 export function useAiInsight(namespace: string): UseAiInsightReturn {
+  const { isLoggedIn } = useAuth();
   const [state, setState] = useState<AiInsightState>({
     text: '',
     loading: false,
@@ -66,12 +75,16 @@ export function useAiInsight(namespace: string): UseAiInsightReturn {
         memCache.current.set(key, result);
         try { sessionStorage.setItem(sessionKey(key), result); } catch { /* ignore quota errors */ }
         setState({ text: result, loading: false, error: false });
-      } catch {
+      } catch (e) {
         if (activeKeyRef.current !== key) return;
-        setState({ text: '', loading: false, error: true });
+        if (isAiLimitError(e) || (e as Error)?.message === 'AI_BUSY') {
+          setState({ text: `⚠️ ${aiErrorMessage(e, isLoggedIn)}`, loading: false, error: false });
+        } else {
+          setState({ text: '', loading: false, error: true });
+        }
       }
     },
-    [namespace], // eslint-disable-line react-hooks/exhaustive-deps
+    [namespace, isLoggedIn], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   const retry = useCallback(

@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
+import { aiErrorMessage } from '../../utils/aiError';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
 import { latexToUnicode } from '../../utils/latexToUnicode';
@@ -288,11 +289,6 @@ const SpeakingPracticePage: React.FC = () => {
   // ── Navigation ────────────────────────────────────────────────────────────
 
   const handleAiExplain = async () => {
-    if (!isLoggedIn) {
-      setShowLoginHint(true);
-      setShowAiPanel(true);
-      return;
-    }
     if (!currentSentence) return;
     setShowAiPanel(true);
     setShowLoginHint(false);
@@ -301,8 +297,8 @@ const SpeakingPracticePage: React.FC = () => {
     try {
       const result = await aiExplainScramble({ lang: 'en', sentence: currentSentence.sentence, translation: currentSentence.translate_ch });
       setAiResult(result);
-    } catch {
-      setAiResult(t('scramble.aiError'));
+    } catch (e) {
+      setAiResult((e as Error)?.message?.startsWith('AI_') ? aiErrorMessage(e, isLoggedIn) : t('scramble.aiError'));
     } finally {
       setAiLoading(false);
     }

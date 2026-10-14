@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiAnalyzeTranslation } from '../../services/scramble.service';
+import { aiErrorMessage } from '../../utils/aiError';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
 import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
@@ -207,8 +208,8 @@ const WrittenTranslationPage: React.FC = () => {
       const result = await aiAnalyzeTranslation({ lang, answer, userInput, translation: translation ?? '' });
       setAiResult(result);
       setSubmitState('ai-done');
-    } catch {
-      setAiResult(t('writtenTranslation.aiError'));
+    } catch (e) {
+      setAiResult((e as Error)?.message?.startsWith('AI_') ? aiErrorMessage(e, isLoggedIn) : t('writtenTranslation.aiError'));
       setSubmitState('ai-error');
     }
   };
@@ -357,16 +358,13 @@ const WrittenTranslationPage: React.FC = () => {
             📊 {t('writtenTranslation.compare')}
           </button>
           <button
-            onClick={isLoggedIn ? handleAiAnalyze : () => navigate('/login')}
+            onClick={handleAiAnalyze}
             disabled={submitState === 'ai-loading' || !userInput.trim() || dataLoading}
             className="w-full py-3 rounded-2xl text-sm font-semibold transition-colors disabled:opacity-40 flex items-center justify-center gap-1.5 text-white"
             style={{ background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' }}
           >
             <span>✨</span>
             <span>{t('writtenTranslation.aiAnalyze')}</span>
-            {!isLoggedIn && (
-              <span className="text-[10px] opacity-75 hidden sm:inline">({t('scramble.loginRequired')})</span>
-            )}
           </button>
         </div>
 
@@ -386,14 +384,6 @@ const WrittenTranslationPage: React.FC = () => {
             ⏭ {t('scramble.next')}
           </button>
         </div>
-
-        {/* Not logged in hint for AI button */}
-        {!isLoggedIn && (
-          <p className="text-xs text-center text-gray-400 dark:text-gray-500">
-            ✨ {t('writtenTranslation.aiLoginHint')}{' '}
-            <a href="/login" className="text-blue-500 underline">{t('common.login')}</a>
-          </p>
-        )}
 
         {/* Result panel */}
         {(showAnswer || submitState !== 'idle') && (

@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiExplainScramble } from '../../services/scramble.service';
+import { aiErrorMessage } from '../../utils/aiError';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
@@ -284,11 +285,6 @@ const SpeakingPracticeJpPage: React.FC = () => {
   // ── Navigation ────────────────────────────────────────────────────────────
 
   const handleAiExplain = async () => {
-    if (!isLoggedIn) {
-      setShowLoginHint(true);
-      setShowAiPanel(true);
-      return;
-    }
     if (!currentSentence) return;
     setShowAiPanel(true);
     setShowLoginHint(false);
@@ -297,8 +293,8 @@ const SpeakingPracticeJpPage: React.FC = () => {
     try {
       const result = await aiExplainScramble({ lang: 'jp', sentence: currentSentence.japanese, translation: currentSentence.translation });
       setAiResult(result);
-    } catch {
-      setAiResult(t('scramble.aiError'));
+    } catch (e) {
+      setAiResult((e as Error)?.message?.startsWith('AI_') ? aiErrorMessage(e, isLoggedIn) : t('scramble.aiError'));
     } finally {
       setAiLoading(false);
     }

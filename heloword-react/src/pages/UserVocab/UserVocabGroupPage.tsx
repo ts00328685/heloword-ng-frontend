@@ -14,7 +14,7 @@ import PhotoParseModal from '../../components/PhotoParseModal';
 import QuizModeModal from '../../components/QuizModeModal';
 import { QuizMode } from '../../models';
 import { pronounceWord } from '../../services/tts.service';
-import { getWordInsight, getWordComparison } from '../../services/llm.service';
+import { getWordInsight, getWordComparison, getWordLevel } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import { useProgressiveList } from '../../hooks/useProgressiveList';
 import ProgressiveListSentinel from '../../components/ProgressiveListSentinel';
@@ -235,10 +235,22 @@ const UserVocabGroupPage: React.FC = () => {
     return { transform: 'translateX(0) rotate(0deg)', transition: 'transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.32s ease', opacity: 1 };
   };
 
+  /** Tags a saved word with its JLPT/CEFR level in the background; failures are silent. */
+  const tagLevel = (w: CustomWord) => {
+    if (w.level) return;
+    getWordLevel(w.word, wordLang)
+      .then((level) => level
+        ? updateCustomWord(w.id, { word: w.word, translateEn: w.translateEn, translateCh: w.translateCh, sentence: w.sentence, phonetics: w.phonetics, level })
+        : null)
+      .then((updated) => { if (updated) setWords((prev) => prev.map((x) => (x.id === updated.id ? updated : x))); })
+      .catch(() => {});
+  };
+
   const handleAddWord = async (data: any) => {
     const created = await addCustomWord(id, data);
     setWords((prev) => [...prev, created]);
     setGroup((g) => ({ ...g, wordCount: g.wordCount + 1 }));
+    tagLevel(created);
   };
 
   const handleBatchAddWord = async (dataList: any[]) => {
@@ -257,6 +269,7 @@ const UserVocabGroupPage: React.FC = () => {
     if (!editingWord) return;
     const updated = await updateCustomWord(editingWord.id, data);
     setWords((prev) => prev.map((w) => (w.id === updated.id ? updated : w)));
+    tagLevel(updated);
   };
 
   const handleDeleteWord = async () => {
@@ -833,6 +846,9 @@ const UserVocabGroupPage: React.FC = () => {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5">
                         <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
+                        {word.level && (
+                          <span className="shrink-0 px-1.5 py-px rounded text-[10px] font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-500 dark:text-indigo-300">{word.level}</span>
+                        )}
                         <button
                           onClick={() => pronounceWord(word.word, wordLang)}
                           className="shrink-0 p-0.5 rounded text-gray-300 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"

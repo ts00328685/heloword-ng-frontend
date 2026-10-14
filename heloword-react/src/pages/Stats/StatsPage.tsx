@@ -19,6 +19,7 @@ import { useTheme } from '../../contexts/ThemeContext';
 import { doPost } from '../../services/api.service';
 import { DailyStat } from '../../models';
 import { getStudyCoach } from '../../services/llm.service';
+import WeeklyStoryCard from '../../components/WeeklyStoryCard';
 
 type Range = 7 | 30 | 0;
 
@@ -206,6 +207,8 @@ const StatsPage: React.FC = () => {
             )}
           </div>
         )}
+
+        {isLoggedIn && totalReviewed > 0 && <WeeklyStoryCard />}
 
         {error && (
           <p className="text-center text-sm text-red-400 mb-4">{t('stats.errorLoading')}</p>

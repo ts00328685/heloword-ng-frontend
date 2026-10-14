@@ -66,7 +66,6 @@ const WordSection: React.FC<{
       return;
     }
     setSelectedId(word.id);
-    if (!isLoggedIn) { onLoginRequired(); return; }
     insight.run(
       String(word.id),
       () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en'),
@@ -80,7 +79,6 @@ const WordSection: React.FC<{
       return;
     }
     setSelectedCompareId(word.id);
-    if (!isLoggedIn) { onLoginRequired(); return; }
     compare.run(
       String(word.id),
       () => getWordComparison(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en'),
@@ -222,9 +220,7 @@ const WordSection: React.FC<{
               {isSelected && (
                 <div className="px-3 pb-3 animate-slide-down">
                   <div className="bg-gray-50 dark:bg-white/[0.04] dark:backdrop-blur-sm rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
-                    {!isLoggedIn ? (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                    ) : insight.loading ? (
+                    {insight.loading ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                     ) : insight.error ? (
                       <div className="flex items-center gap-2">
@@ -245,9 +241,7 @@ const WordSection: React.FC<{
               {isCompareSelected && (
                 <div className="px-3 pb-3 animate-slide-down">
                   <div className="bg-gray-50 dark:bg-white/[0.04] dark:backdrop-blur-sm rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
-                    {!isLoggedIn ? (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                    ) : compare.loading ? (
+                    {compare.loading ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                     ) : compare.error ? (
                       <div className="flex items-center gap-2">
