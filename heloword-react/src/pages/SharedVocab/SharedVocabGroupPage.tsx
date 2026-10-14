@@ -96,7 +96,6 @@ const SharedVocabGroupPage: React.FC = () => {
   const handleWordTap = (word: CustomWord) => {
     if (selectedWordId === word.id) { clearInsight(); return; }
     setSelectedWordId(word.id);
-    if (!isLoggedIn) return;
     insight.run(
       String(word.id),
       () => getWordInsight(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang),
@@ -110,7 +109,6 @@ const SharedVocabGroupPage: React.FC = () => {
       return;
     }
     setSelectedCompareId(word.id);
-    if (!isLoggedIn) return;
     compare.run(
       String(word.id),
       () => getWordComparison(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang),
@@ -469,9 +467,7 @@ const SharedVocabGroupPage: React.FC = () => {
                   {flashInsightOpen && (
                     <div className="w-full max-w-sm mt-4 animate-fade-in">
                       <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-                        {!isLoggedIn ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                        ) : insight.loading ? (
+                        {insight.loading ? (
                           <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                         ) : insight.error ? (
                           <div className="flex items-center gap-2">
@@ -488,9 +484,7 @@ const SharedVocabGroupPage: React.FC = () => {
                   {flashCompareOpen && (
                     <div className="w-full max-w-sm mt-4 animate-fade-in">
                       <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-                        {!isLoggedIn ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                        ) : compare.loading ? (
+                        {compare.loading ? (
                           <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                         ) : compare.error ? (
                           <div className="flex items-center gap-2">
@@ -657,9 +651,7 @@ const SharedVocabGroupPage: React.FC = () => {
                       {isSelected && (
                         <div className="px-3 pb-3 pt-0 animate-slide-down">
                           <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-                            {!isLoggedIn ? (
-                              <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                            ) : insight.loading ? (
+                            {insight.loading ? (
                               <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                             ) : insight.error ? (
                               <div className="flex items-center gap-2">
@@ -679,9 +671,7 @@ const SharedVocabGroupPage: React.FC = () => {
                       {isCompareSelected && (
                         <div className="px-3 pb-3 pt-0 animate-slide-down">
                           <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-                            {!isLoggedIn ? (
-                              <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                            ) : compare.loading ? (
+                            {compare.loading ? (
                               <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                             ) : compare.error ? (
                               <div className="flex items-center gap-2">

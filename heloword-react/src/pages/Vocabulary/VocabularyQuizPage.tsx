@@ -668,7 +668,6 @@ const VocabularyQuizPage: React.FC = () => {
 
   const handleAiInsight = () => {
     if (!current) return;
-    if (!isLoggedIn) { showAlert(t('llm.loginRequired')); return; }
     wrongCountRef.current++;
     aiInsight.run(
       String(current.id),
@@ -678,7 +677,6 @@ const VocabularyQuizPage: React.FC = () => {
 
   const handleAiSample = () => {
     if (!current) return;
-    if (!isLoggedIn) { showAlert(t('llm.loginRequired')); return; }
     wrongCountRef.current++;
     aiSample.run(
       String(current.id),
@@ -688,7 +686,6 @@ const VocabularyQuizPage: React.FC = () => {
 
   const handleAiCompare = () => {
     if (!current) return;
-    if (!isLoggedIn) { showAlert(t('llm.loginRequired')); return; }
     aiCompare.run(
       String(current.id),
       () => getWordComparison(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'),

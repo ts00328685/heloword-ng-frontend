@@ -20,19 +20,15 @@ interface PreviewState {
 
 /* Reusable insight panel rendered below a card */
 const InsightPanel: React.FC<{
-  isLoggedIn: boolean;
   loading: boolean;
   error: boolean;
   text: string;
-  noLoginLabel: string;
   thinkingLabel: string;
   errorLabel: string;
   onRetry: () => void;
-}> = ({ isLoggedIn, loading, error, text, noLoginLabel, thinkingLabel, errorLabel, onRetry }) => (
+}> = ({ loading, error, text, thinkingLabel, errorLabel, onRetry }) => (
   <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-    {!isLoggedIn ? (
-      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{noLoginLabel}</p>
-    ) : loading ? (
+    {loading ? (
       <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{thinkingLabel}</p>
     ) : error ? (
       <div className="flex items-center gap-2">
@@ -191,7 +187,6 @@ const WordPreviewPage: React.FC = () => {
       return;
     }
     setSelectedWordId(word.id);
-    if (!isLoggedIn) return;
     insight.run(
       String(word.id),
       () => getWordInsight(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)),
@@ -205,7 +200,6 @@ const WordPreviewPage: React.FC = () => {
       return;
     }
     setSelectedCompareId(word.id);
-    if (!isLoggedIn) return;
     compare.run(
       String(word.id),
       () => getWordComparison(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)),
@@ -551,11 +545,9 @@ const WordPreviewPage: React.FC = () => {
               {flashInsightOpen && (
                 <div className="w-full max-w-sm mt-4 animate-slide-down">
                   <InsightPanel
-                    isLoggedIn={isLoggedIn}
                     loading={insight.loading}
                     error={insight.error}
                     text={insight.text}
-                    noLoginLabel={t('llm.loginRequired')}
                     thinkingLabel={t('llm.thinking')}
                     errorLabel={t('llm.error')}
                     onRetry={() => insight.retry(String(currentWord.id), () => getWordInsight(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))}
@@ -566,9 +558,7 @@ const WordPreviewPage: React.FC = () => {
               {flashCompareOpen && (
                 <div className="w-full max-w-sm mt-4 animate-slide-down">
                   <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-                    {!isLoggedIn ? (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                    ) : compare.loading ? (
+                    {compare.loading ? (
                       <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                     ) : compare.error ? (
                       <div className="flex items-center gap-2">
@@ -739,11 +729,9 @@ const WordPreviewPage: React.FC = () => {
                 {isInsightOpen && (
                   <div className="px-4 pb-3 pt-0 animate-slide-down">
                     <InsightPanel
-                      isLoggedIn={isLoggedIn}
                       loading={insight.loading}
                       error={insight.error}
                       text={insight.text}
-                      noLoginLabel={t('llm.loginRequired')}
                       thinkingLabel={t('llm.thinking')}
                       errorLabel={t('llm.error')}
                       onRetry={() => insight.retry(String(word.id), () => getWordInsight(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)))}
@@ -754,9 +742,7 @@ const WordPreviewPage: React.FC = () => {
                 {isCompareOpen && (
                   <div className="px-4 pb-3 pt-0 animate-slide-down">
                     <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
-                      {!isLoggedIn ? (
-                        <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
-                      ) : compare.loading ? (
+                      {compare.loading ? (
                         <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
                       ) : compare.error ? (
                         <div className="flex items-center gap-2">
