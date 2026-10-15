@@ -33,7 +33,7 @@ const InsightPanel: React.FC<{
     ) : error ? (
       <div className="flex items-center gap-2">
         <p className="text-xs text-red-400">{errorLabel}</p>
-        <button onClick={onRetry} className="text-xs text-blue-400 underline">↺</button>
+        <button data-analytics="ai.insight.retry" onClick={onRetry} className="text-xs text-blue-400 underline">↺</button>
       </div>
     ) : (
       <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{text}</p>
@@ -47,8 +47,11 @@ const InsightButton: React.FC<{
   label: string;
   onClick: (e: React.MouseEvent) => void;
   onPointerDown?: (e: React.PointerEvent) => void;
-}> = ({ active, label, onClick, onPointerDown }) => (
+  /** Stable analytics name (labels are localized) */
+  analytics?: string;
+}> = ({ active, label, onClick, onPointerDown, analytics }) => (
   <button
+    data-analytics={analytics}
     onClick={onClick}
     onPointerDown={onPointerDown}
     className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
@@ -474,13 +477,13 @@ const WordPreviewPage: React.FC = () => {
                             {t('review.flashcardTap')}
                           </p>
                           <div className="flex items-center gap-2">
-                            <InsightButton
+                            <InsightButton analytics="ai.insight"
                               active={flashInsightOpen}
                               label={t('llm.insight')}
                               onPointerDown={(e) => e.stopPropagation()}
                               onClick={(e) => { e.stopPropagation(); runInsight(currentWord); }}
                             />
-                            <InsightButton
+                            <InsightButton analytics="ai.compare"
                               active={flashCompareOpen}
                               label={t('llm.compare')}
                               onPointerDown={(e) => e.stopPropagation()}
@@ -563,7 +566,7 @@ const WordPreviewPage: React.FC = () => {
                     ) : compare.error ? (
                       <div className="flex items-center gap-2">
                         <p className="text-xs text-red-400">{t('llm.error')}</p>
-                        <button onClick={() => compare.retry(String(currentWord.id), () => getWordComparison(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))} className="text-xs text-blue-400 underline">↺</button>
+                        <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(currentWord.id), () => getWordComparison(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))} className="text-xs text-blue-400 underline">↺</button>
                       </div>
                     ) : (
                       <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
@@ -663,12 +666,12 @@ const WordPreviewPage: React.FC = () => {
                     )}
                     {/* AI Insight / Compare buttons */}
                     <div className="mt-1.5 flex items-center gap-1.5">
-                      <InsightButton
+                      <InsightButton analytics="ai.insight"
                         active={isInsightOpen}
                         label={t('llm.insight')}
                         onClick={() => runInsight(word)}
                       />
-                      <InsightButton
+                      <InsightButton analytics="ai.compare"
                         active={isCompareOpen}
                         label={t('llm.compare')}
                         onClick={() => runCompare(word)}
@@ -747,7 +750,7 @@ const WordPreviewPage: React.FC = () => {
                       ) : compare.error ? (
                         <div className="flex items-center gap-2">
                           <p className="text-xs text-red-400">{t('llm.error')}</p>
-                          <button onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)))} className="text-xs text-blue-400 underline">↺</button>
+                          <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)))} className="text-xs text-blue-400 underline">↺</button>
                         </div>
                       ) : (
                         <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>

@@ -182,7 +182,7 @@ const StatsPage: React.FC = () => {
         {totalReviewed > 0 && (
           <div className="mb-5">
             <div className="flex justify-center">
-              <button
+              <button data-analytics="ai.study_coach"
                 onClick={handleStudyCoach}
                 disabled={coachLoading}
                 className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide ring-1 ring-inset ring-gray-300 dark:ring-gray-600 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-900 hover:ring-gray-500 dark:hover:ring-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
@@ -198,7 +198,7 @@ const StatsPage: React.FC = () => {
                 {coachError ? (
                   <div className="flex items-center gap-2">
                     <p className="text-sm text-red-400 flex-1">{t('llm.error')}</p>
-                    <button onClick={handleStudyCoach} className="text-xs text-blue-400 underline">↺</button>
+                    <button data-analytics="ai.study_coach" onClick={handleStudyCoach} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
                   <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{coachText}</p>

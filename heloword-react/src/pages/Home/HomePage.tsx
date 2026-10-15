@@ -182,7 +182,7 @@ const WordSection: React.FC<{
                 )}
               </div>
               <div className="mx-3 mb-2.5 flex items-center gap-1.5">
-                <button
+                <button data-analytics="ai.insight"
                   onClick={() => handleInsight(word)}
                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                     isSelected
@@ -193,7 +193,7 @@ const WordSection: React.FC<{
                   <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                   {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
                 </button>
-                <button
+                <button data-analytics="ai.compare"
                   onClick={() => handleCompare(word)}
                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                     isCompareSelected
@@ -224,7 +224,7 @@ const WordSection: React.FC<{
                     ) : insight.error ? (
                       <div className="flex items-center gap-2">
                         <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-                        <button
+                        <button data-analytics="ai.insight.retry"
                           onClick={() => insight.retry(String(word.id), () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en'))}
                           className="text-xs text-blue-400 underline"
                         >↺</button>
@@ -245,7 +245,7 @@ const WordSection: React.FC<{
                     ) : compare.error ? (
                       <div className="flex items-center gap-2">
                         <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-                        <button
+                        <button data-analytics="ai.compare.retry"
                           onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en'))}
                           className="text-xs text-blue-400 underline"
                         >↺</button>

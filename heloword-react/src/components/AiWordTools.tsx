@@ -111,7 +111,7 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
     <>
       <div className="flex flex-wrap items-center gap-1.5">
         {(['hook', 'colloc', 'cloze', 'check'] as Tool[]).map(tool => (
-          <button key={tool} onClick={() => toggle(tool)} className={pillClass(open === tool)}>
+          <button key={tool} data-analytics={`ai.tools.${tool}`} onClick={() => toggle(tool)} className={pillClass(open === tool)}>
             <Spark />
             {t({ hook: 'llm.memoryHook', colloc: 'llm.collocations', cloze: 'llm.cloze', check: 'llm.checkSentence' }[tool])}
             {open === tool && ' ▲'}
@@ -141,8 +141,8 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
                       placeholder={t('llm.clozePlaceholder')}
                       className="flex-1 min-w-0 px-2 py-1 text-xs rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-400"
                     />
-                    <button onClick={submitCloze} className="px-2 py-1 text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600">{t('llm.clozeCheck')}</button>
-                    <button onClick={() => setClozeResult('revealed')} className="px-2 py-1 text-xs rounded-lg text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700">{t('llm.clozeReveal')}</button>
+                    <button data-analytics="ai.tools.cloze.check" onClick={submitCloze} className="px-2 py-1 text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600">{t('llm.clozeCheck')}</button>
+                    <button data-analytics="ai.tools.cloze.reveal" onClick={() => setClozeResult('revealed')} className="px-2 py-1 text-xs rounded-lg text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700">{t('llm.clozeReveal')}</button>
                   </div>
                   {clozeResult === 'correct' && <p className="text-xs text-green-600 dark:text-green-400">{t('llm.clozeCorrect')}</p>}
                   {clozeResult === 'wrong' && <p className="text-xs text-red-400">{t('llm.clozeWrong')}</p>}
@@ -163,6 +163,7 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
                     className="flex-1 min-w-0 px-2 py-1 text-xs rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 resize-none focus:outline-none focus:ring-1 focus:ring-blue-400"
                   />
                   <button
+                    data-analytics="ai.tools.check.submit"
                     onClick={submitCheck}
                     disabled={!sentence.trim() || busy}
                     className="px-2 py-1 text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-40"

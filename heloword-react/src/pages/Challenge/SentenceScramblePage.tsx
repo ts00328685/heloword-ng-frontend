@@ -651,7 +651,7 @@ const SentenceScramblePage: React.FC = () => {
         </div>
 
         {/* AI Grammar button */}
-        <button
+        <button data-analytics="ai.scramble_explain"
           onClick={handleAiExplain}
           disabled={aiLoading}
           className="w-full py-2.5 rounded-2xl text-sm font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2"

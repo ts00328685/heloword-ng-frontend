@@ -365,7 +365,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                 />
               </div>
 
-              <button
+              <button data-analytics="ai.word_fill"
                 onClick={handleAiFill}
                 disabled={aiLoading || !word.trim()}
                 className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-purple-200 dark:border-purple-700 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 text-sm font-medium hover:bg-purple-100 dark:hover:bg-purple-900/40 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
@@ -410,7 +410,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                   <div className="flex items-center justify-between mb-0.5">
                     <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">#{idx + 1}</span>
                     <div className="flex items-center gap-1">
-                      <button
+                      <button data-analytics="ai.word_fill.row"
                         onClick={() => handleBulkAiFillRow(idx)}
                         disabled={!row.word.trim() || row.aiLoading}
                         title={t('userVocab.fillAI')}
@@ -488,7 +488,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
             {/* Footer */}
             <div className="px-4 pb-6 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2">
               {/* AI Fill All */}
-              <button
+              <button data-analytics="ai.word_fill.all"
                 onClick={handleBulkAiFillAll}
                 disabled={bulkAiAllLoading || anyBulkRowAiLoading || unfilledWords === 0}
                 className="w-full flex items-center justify-center gap-2 py-2 rounded-xl border border-purple-200 dark:border-purple-700 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 text-sm font-medium hover:bg-purple-100 dark:hover:bg-purple-900/40 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
