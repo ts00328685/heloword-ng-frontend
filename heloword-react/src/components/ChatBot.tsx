@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import TapToLookup from './TapToLookup';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -171,7 +172,7 @@ const WordCard: React.FC<{
       {entry.sentence && (
         <div className="flex items-start gap-1 mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700">
           <p className="text-xs text-gray-700 dark:text-gray-300 italic leading-relaxed flex-1 whitespace-pre-wrap">
-            {normalizeSentenceDisplay(entry.sentence)}
+            <TapToLookup>{normalizeSentenceDisplay(entry.sentence)}</TapToLookup>
           </p>
           <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(entry.sentence!, entry.wordLang), entry.wordLang)} label={t('chatbot.pronounce')} small />
         </div>
@@ -197,7 +198,7 @@ const WordCard: React.FC<{
           {([['llm.casual', entry.politeness.casual], ['llm.polite', entry.politeness.polite], ['llm.keigo', entry.politeness.keigo]] as const).map(([label, value]) => (
             <div key={label} className="flex items-baseline gap-1.5 text-xs leading-5">
               <span className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[56px]">{t(label)}</span>
-              <span className="text-gray-800 dark:text-gray-200 font-medium flex-1">{value}</span>
+              <span className="text-gray-800 dark:text-gray-200 font-medium flex-1"><TapToLookup>{value}</TapToLookup></span>
               {value && <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(value, 'jp'), 'jp')} label={t('chatbot.pronounce')} small />}
             </div>
           ))}
@@ -256,7 +257,7 @@ const WordCard: React.FC<{
               <button data-analytics="ai.insight.retry" onClick={() => insight.retry(entry.id, () => getWordInsight(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
             </div>
           ) : (
-            <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{insight.text}</p>
+            <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
           )}
         </div>
       </div>
@@ -272,7 +273,7 @@ const WordCard: React.FC<{
               <button data-analytics="ai.compare.retry" onClick={() => compare.retry(entry.id, () => getWordComparison(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
             </div>
           ) : (
-            <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
+            <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
           )}
         </div>
       </div>

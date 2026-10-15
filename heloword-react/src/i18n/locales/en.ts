@@ -179,6 +179,15 @@ const en = {
     errorEndLessThanStart: 'End number cannot be less than the start number.',
     errorEndExceedsTotal: 'End number cannot exceed the total ({{total}}).',
   },
+  wordLookup: {
+    tapHint: 'Tap any word in the original text to look it up',
+    fromArticle: 'Article word list',
+    fromAi: 'AI, in context',
+    sentence: 'Sentence',
+    saveLoginHint: 'Log in to save words to your lists',
+    save: 'Save to my words',
+    close: 'Close',
+  },
   llm: {
     insight: 'Explain',
     compare: 'Compare',

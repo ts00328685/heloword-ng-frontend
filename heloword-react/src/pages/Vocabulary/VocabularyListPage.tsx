@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import TapToLookup from '../../components/TapToLookup';
 import ReactDOM from 'react-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import AddToGroupModal from '../../components/AddToGroupModal';
@@ -399,7 +400,7 @@ const VocabularyListPage: React.FC = () => {
                       </div>
                     ) : (
                       <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
-                        {insight.text}
+                        <TapToLookup>{insight.text}</TapToLookup>
                       </p>
                     )}
                   </div>
@@ -421,7 +422,7 @@ const VocabularyListPage: React.FC = () => {
                       </div>
                     ) : (
                       <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
-                        {compare.text}
+                        <TapToLookup>{compare.text}</TapToLookup>
                       </p>
                     )}
                   </div>

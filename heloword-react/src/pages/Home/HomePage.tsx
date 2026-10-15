@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect, useRef, useState } from 'react'; // useRef kept for hasFetched
+import TapToLookup from '../../components/TapToLookup';
 import ReactDOM from 'react-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -231,7 +232,7 @@ const WordSection: React.FC<{
                       </div>
                     ) : (
                       <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
-                        {insight.text}
+                        <TapToLookup>{insight.text}</TapToLookup>
                       </p>
                     )}
                   </div>
@@ -252,7 +253,7 @@ const WordSection: React.FC<{
                       </div>
                     ) : (
                       <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
-                        {compare.text}
+                        <TapToLookup>{compare.text}</TapToLookup>
                       </p>
                     )}
                   </div>

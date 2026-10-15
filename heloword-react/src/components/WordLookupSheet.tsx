@@ -1,0 +1,190 @@
+import React, { useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { useTranslation } from 'react-i18next';
+import { useAuth } from '../contexts/AuthContext';
+import { lookupWord, LookupResult } from '../services/llm.service';
+import { pronounceWord } from '../services/tts.service';
+import { track } from '../services/analytics.service';
+import { aiErrorMessage } from '../utils/aiError';
+import { LookupLang, stripReadings, TappedWord } from '../utils/wordLookup';
+import { Sentence } from '../models';
+import AddToGroupModal from './AddToGroupModal';
+import FuriganaText from './FuriganaText';
+
+type Source = 'article' | 'ai';
+
+const SESSION_PREFIX = 'ai:lookup:';
+
+/** Same tap twice in a session (or across re-renders) never calls the server again. */
+function readCache(key: string): LookupResult | null {
+  try {
+    const raw = sessionStorage.getItem(SESSION_PREFIX + key);
+    return raw ? (JSON.parse(raw) as LookupResult) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeCache(key: string, value: LookupResult): void {
+  try { sessionStorage.setItem(SESSION_PREFIX + key, JSON.stringify(value)); } catch { /* quota/private mode */ }
+}
+
+/**
+ * Bottom sheet for a word tapped while reading. Article vocabulary answers instantly and
+ * free; anything else is explained by the AI in the context of its sentence.
+ */
+const WordLookupSheet: React.FC<{
+  tapped: TappedWord;
+  lang: LookupLang;
+  onClose: () => void;
+  /** Where the tap happened, for analytics: 'article' or 'ai_text'. */
+  context?: string;
+}> = ({ tapped, lang, onClose, context = 'article' }) => {
+  const { t } = useTranslation();
+  const { isLoggedIn } = useAuth();
+  const [result, setResult] = useState<LookupResult | null>(null);
+  const [source, setSource] = useState<Source>('ai');
+  const [error, setError] = useState('');
+  const [saving, setSaving] = useState(false);
+  const latest = useRef(tapped);
+  latest.current = tapped;
+
+  useEffect(() => {
+    setError('');
+    if (tapped.vocab) {
+      setSource('article');
+      setResult({ word: tapped.vocab.word, meaningZh: tapped.vocab.meaning_zh, meaningEn: tapped.vocab.meaning_en });
+      track('FEATURE', `${context}.word_tap`, { label: 'article' });
+      return;
+    }
+    setSource('ai');
+    const key = `${lang}|${tapped.word}|${tapped.sentenceText}`;
+    const cached = readCache(key);
+    track('FEATURE', `${context}.word_tap`, { label: cached ? 'cache' : 'ai' });
+    if (cached) { setResult(cached); return; }
+
+    setResult(null);
+    lookupWord(tapped.word, tapped.sentenceText, lang)
+      .then((r) => {
+        writeCache(key, r);
+        if (latest.current === tapped) setResult(r);
+      })
+      .catch((e) => {
+        if (latest.current === tapped) setError(aiErrorMessage(e, isLoggedIn));
+      });
+  }, [tapped, lang, isLoggedIn, context]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  const plainWord = result ? stripReadings(result.word).text : tapped.word;
+
+  const asSentence: Sentence | null = result
+    ? {
+        id: 0,
+        status: 1,
+        word: result.word,
+        translateEn: result.meaningEn,
+        translateCh: result.meaningZh,
+        sentence: tapped.sentence,
+        language: lang === 'ja' ? 'jp' : 'en',
+        tableName: undefined,
+      }
+    : null;
+
+  return ReactDOM.createPortal(
+    <>
+      {/* Hidden while the save modal (z-50) is open so it isn't covered; closing the modal brings it back. */}
+      {!saving && (<>
+      <div className="fixed inset-0 z-[55]" onClick={onClose} data-no-analytics />
+      <div
+        role="dialog"
+        aria-label={tapped.word}
+        className="fixed inset-x-0 bottom-0 z-[56] flex justify-center pointer-events-none"
+      >
+        <div className="pointer-events-auto w-full max-w-2xl mx-auto mb-[64px] px-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 animate-chatbot-slide-up">
+            <div className="flex items-start justify-between gap-2">
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <FuriganaText text={result?.word ?? tapped.word} className="text-lg font-bold text-gray-900 dark:text-gray-100 leading-relaxed" />
+                  <button
+                    data-analytics="article.lookup.pronounce"
+                    onClick={() => pronounceWord(plainWord, lang === 'ja' ? 'jp' : 'en')}
+                    className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    aria-label={t('chatbot.pronounce')}
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6v12m0 0l-3-3m3 3l3-3M9 9H5a2 2 0 00-2 2v2a2 2 0 002 2h4l5 5V4L9 9z" />
+                    </svg>
+                  </button>
+                </div>
+                {result && (
+                  <span className="text-[10px] text-gray-400 dark:text-gray-500">
+                    {source === 'article' ? t('wordLookup.fromArticle') : t('wordLookup.fromAi')}
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-1 shrink-0">
+                {isLoggedIn && asSentence && (
+                  <button
+                    data-analytics="article.lookup.save"
+                    onClick={() => setSaving(true)}
+                    className="p-1.5 rounded-lg hover:bg-pink-50 dark:hover:bg-pink-900/30 text-pink-400"
+                    aria-label={t('wordLookup.save')}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </button>
+                )}
+                <button
+                  data-analytics="article.lookup.close"
+                  onClick={onClose}
+                  className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  aria-label={t('wordLookup.close')}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-2 min-h-[2.5rem]">
+              {error ? (
+                <p className="text-sm text-red-400">{error}</p>
+              ) : result ? (
+                <>
+                  {result.meaningZh && <p className="text-sm text-gray-800 dark:text-gray-100">{result.meaningZh}</p>}
+                  {result.meaningEn && <p className="text-xs text-blue-600 dark:text-blue-400 mt-0.5">{result.meaningEn}</p>}
+                </>
+              ) : (
+                <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+              )}
+            </div>
+
+            <div className="mt-3 pt-2 border-t border-gray-100 dark:border-gray-700">
+              <p className="text-[10px] text-gray-400 dark:text-gray-500 mb-0.5">{t('wordLookup.sentence')}</p>
+              <FuriganaText text={tapped.sentence} className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed" />
+            </div>
+
+            {!isLoggedIn && result && (
+              <a href="/login" data-analytics="article.lookup.login" className="block mt-2 text-xs text-blue-500 underline">
+                {t('wordLookup.saveLoginHint')}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+      </>)}
+      {saving && asSentence && <AddToGroupModal word={asSentence} onClose={() => setSaving(false)} />}
+    </>,
+    document.body,
+  );
+};
+
+export default WordLookupSheet;

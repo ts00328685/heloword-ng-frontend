@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import TapToLookup from '../../components/TapToLookup';
 import ReactDOM from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
@@ -644,7 +645,7 @@ const SpeakingPracticePage: React.FC = () => {
               </p>
             ) : (
               <div className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
-                <AiMarkdown text={aiResult} />
+                <TapToLookup as="div"><AiMarkdown text={aiResult} /></TapToLookup>
               </div>
             )}
           </div>

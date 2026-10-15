@@ -1,4 +1,5 @@
 import React, { useRef, useState, useMemo, useEffect } from 'react';
+import TapToLookup from '../../components/TapToLookup';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -36,7 +37,7 @@ const InsightPanel: React.FC<{
         <button data-analytics="ai.insight.retry" onClick={onRetry} className="text-xs text-blue-400 underline">↺</button>
       </div>
     ) : (
-      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{text}</p>
+      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{text}</TapToLookup></p>
     )}
   </div>
 );
@@ -569,7 +570,7 @@ const WordPreviewPage: React.FC = () => {
                         <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(currentWord.id), () => getWordComparison(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))} className="text-xs text-blue-400 underline">↺</button>
                       </div>
                     ) : (
-                      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
+                      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                     )}
                   </div>
                 </div>
@@ -753,7 +754,7 @@ const WordPreviewPage: React.FC = () => {
                           <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)))} className="text-xs text-blue-400 underline">↺</button>
                         </div>
                       ) : (
-                        <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
+                        <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                       )}
                     </div>
                   </div>
