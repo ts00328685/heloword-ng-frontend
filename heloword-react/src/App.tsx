@@ -19,6 +19,7 @@ import { ChallengeProvider } from './contexts/ChallengeContext';
 import { DailyGoalProvider } from './contexts/DailyGoalContext';
 import GuestSetupModal from './components/GuestSetupModal';
 import ChatBot from './components/ChatBot';
+import { hasBottomTabs } from './utils/layout';
 import WalkthroughOverlay from './components/WalkthroughOverlay';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import InAppBrowserGate from './components/InAppBrowserGate';
@@ -54,14 +55,7 @@ const BoardPage               = React.lazy(() => import('./pages/Board/BoardPage
 const AdminAnalyticsPage      = React.lazy(() => import('./pages/Admin/AdminAnalyticsPage'));
 const VocalTrainerPage        = React.lazy(() => import('./pages/Vocal/VocalTrainerPage'));
 
-// Pages where we don't show the bottom tabs
-const NO_TABS_PATHS = ['/vocabulary/quiz', '/login', '/board/'];
-
 const AppLayout: React.FC = () => {
-  const showTabs = !NO_TABS_PATHS.some((p) =>
-    window.location.pathname.startsWith(p)
-  );
-
   return (
     <AppInitializer>
       {/* Fire-and-forget page-view analytics on every route change */}
@@ -163,21 +157,10 @@ const ChatBotWrapper: React.FC = () => {
   );
 };
 
-/**
- * Renders bottom tabs except on quiz and login pages.
- * Uses a small component so it can re-read location from React Router context.
- */
+/** Renders bottom tabs except on quiz, login and live-board pages (see hasBottomTabs). */
 const BottomTabsWrapper: React.FC = () => {
-  // We use a simple check via Routes to conditionally render
-  return (
-    <Routes>
-      <Route path="/vocabulary/quiz" element={null} />
-      <Route path="/login" element={null} />
-      <Route path="/board/:sessionId" element={null} />
-      <Route path="/live" element={null} />
-      <Route path="*" element={<BottomTabs />} />
-    </Routes>
-  );
+  const { pathname } = useLocation();
+  return hasBottomTabs(pathname) ? <BottomTabs /> : null;
 };
 
 const App: React.FC = () => {

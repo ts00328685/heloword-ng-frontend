@@ -650,3 +650,15 @@ input[type='number'] {
 ::highlight(word-lookup) {
   background-color: rgb(252 211 77 / 0.55);
 }
+
+/*
+ * Bottom clearance for the floating chat bot button (body.hw-chatbot is set while it is
+ * shown): scrolling pages get extra room at the end so their last buttons can scroll out
+ * from under it. Centered layouts are skipped — a spacer would push them off-centre.
+ */
+body.hw-chatbot main:not(.justify-center)::after {
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  height: 3.5rem;
+}
