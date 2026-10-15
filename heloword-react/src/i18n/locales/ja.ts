@@ -224,6 +224,12 @@ const ja = {
     weeklyStoryGenerate: 'ストーリーを作る',
     weeklyStoryWords: 'よく間違えた単語：',
     showTranslation: '中国語訳を見る',
+    natural: '自然な言い方',
+    naturalOriginal: '教科書',
+    naturalNatural: '自然',
+    naturalCasual: 'カジュアル',
+    naturalLangOnly: '自然な言い方は英語か日本語の文のみ対応しています',
+    remainingShort: '本日 {{remaining}}/{{limit}}',
   },
   onboarding: {
     quiz: [

@@ -224,6 +224,12 @@ const zh = {
     weeklyStoryGenerate: '產生故事',
     weeklyStoryWords: '本週最常錯：',
     showTranslation: '看中文翻譯',
+    natural: '道地說法',
+    naturalOriginal: '課本',
+    naturalNatural: '自然',
+    naturalCasual: '口語',
+    naturalLangOnly: '道地說法只支援英文或日文句子',
+    remainingShort: '今日 {{remaining}}/{{limit}}',
   },
   onboarding: {
     quiz: [

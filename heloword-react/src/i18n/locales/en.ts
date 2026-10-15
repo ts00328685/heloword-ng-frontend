@@ -224,6 +224,12 @@ const en = {
     weeklyStoryGenerate: 'Create story',
     weeklyStoryWords: 'Most missed: ',
     showTranslation: 'Show Chinese',
+    natural: 'Natural',
+    naturalOriginal: 'Textbook',
+    naturalNatural: 'Natural',
+    naturalCasual: 'Casual',
+    naturalLangOnly: 'Natural phrasing works with English or Japanese only',
+    remainingShort: 'Free {{remaining}}/{{limit}}',
   },
   onboarding: {
     quiz: [

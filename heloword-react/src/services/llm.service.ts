@@ -250,3 +250,16 @@ export interface LookupResult {
 export async function lookupWord(word: string, sentence: string, wordLang: string): Promise<LookupResult> {
   return aiPost<LookupResult>('ai/lookup', { word, sentence, wordLang }, 'Lookup failed');
 }
+
+export interface NaturalResult {
+  lang: 'jp' | 'en';
+  natural: string;
+  casual: string;
+  /** Traditional Chinese: when the original, natural and casual versions fit */
+  note: string;
+}
+
+/** How natives actually say a textbook phrase. English or Japanese only; cached answers are free. */
+export async function getNatural(phrase: string): Promise<NaturalResult> {
+  return aiPost<NaturalResult>('ai/natural', { phrase }, 'Natural phrasing failed');
+}
