@@ -645,3 +645,8 @@ input[type='number'] {
     height: min(80dvh, calc(100dvh - 16rem));
   }
 }
+
+/* Word tapped inside AI text (CSS Custom Highlight API, see TapToLookup) */
+::highlight(word-lookup) {
+  background-color: rgb(252 211 77 / 0.55);
+}

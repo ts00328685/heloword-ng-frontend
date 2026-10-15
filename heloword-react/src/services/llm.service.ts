@@ -238,3 +238,15 @@ export interface WeeklyStory {
 export async function getWeeklyStory(): Promise<WeeklyStory> {
   return aiPost<WeeklyStory>('ai/weekly-story', {}, 'Weekly story failed');
 }
+
+export interface LookupResult {
+  /** Dictionary form; Japanese carries 漢字[かな] readings */
+  word: string;
+  meaningZh: string;
+  meaningEn: string;
+}
+
+/** Meaning of a tapped word as used in its sentence. Already-cached answers cost no quota. */
+export async function lookupWord(word: string, sentence: string, wordLang: string): Promise<LookupResult> {
+  return aiPost<LookupResult>('ai/lookup', { word, sentence, wordLang }, 'Lookup failed');
+}

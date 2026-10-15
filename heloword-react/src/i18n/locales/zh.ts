@@ -179,6 +179,15 @@ const zh = {
     errorEndLessThanStart: '結束數字不能小於開始數字。',
     errorEndExceedsTotal: '結束數字不能超過總數（{{total}}）。',
   },
+  wordLookup: {
+    tapHint: '點原文裡的單字就能查意思',
+    fromArticle: '文章單字表',
+    fromAi: 'AI 依句子解釋',
+    sentence: '原句',
+    saveLoginHint: '登入後可以收藏到單字本',
+    save: '收藏到單字本',
+    close: '關閉',
+  },
   llm: {
     insight: '解析',
     compare: '比較',

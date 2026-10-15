@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import TapToLookup from '../../components/TapToLookup';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -469,7 +470,7 @@ const MultiChoicePage: React.FC = () => {
             {whyOpen && (
               <div className="mt-2 text-left font-normal">
                 <p className={`text-xs leading-relaxed whitespace-pre-wrap text-gray-700 dark:text-gray-200 ${why.loading ? 'animate-pulse' : ''}`}>
-                  {why.loading ? t('llm.thinking') : why.error ? t('llm.error') : why.text}
+                  {why.loading ? t('llm.thinking') : why.error ? t('llm.error') : <TapToLookup>{why.text}</TapToLookup>}
                 </p>
                 <button
                   data-analytics="multichoice.why_next"

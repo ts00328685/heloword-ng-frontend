@@ -40,7 +40,8 @@ const AddToGroupModal: React.FC<Props> = ({ word, onClose }) => {
         translateCh: word.translateCh || '',
         sentence: word.sentence && word.word ? word.sentence : '',
         phonetics: '',
-        sourceWordId: word.id,
+        // 0 means "not from the system word list" (chat bot, article lookups)
+        sourceWordId: word.id || undefined,
         sourceTableName: word.tableName || undefined,
       });
       setSaved(group.id);

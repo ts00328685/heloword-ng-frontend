@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
-import { LangKey, ParagraphCard, useArticleSpeech } from '../NHK/ArticleShared';
+import { LangKey, ParagraphCard, useArticleSpeech, useWordLookup } from '../NHK/ArticleShared';
+import WordLookupSheet from '../../components/WordLookupSheet';
 import { trackContentView } from '../../services/analytics.service';
 
 function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
@@ -65,6 +66,7 @@ const ENArticleDetailPage: React.FC = () => {
     return buildParagraphsFromContent(article);
   }, [article]);
 
+  const lookup = useWordLookup();
   const { speakingKey, speakingMode, spokenRange, triggerSpeak } = useArticleSpeech({
     paragraphs,
     activeLang,
@@ -152,6 +154,9 @@ const ENArticleDetailPage: React.FC = () => {
               ))}
             </div>
 
+            {paragraphs.length > 0 && (
+              <p className="text-xs text-gray-400 dark:text-gray-500 mb-2">{t('wordLookup.tapHint')}</p>
+            )}
             <div className="space-y-3 mb-5">
               {paragraphs.length > 0 ? (
                 paragraphs.map((p, i) => (
@@ -164,6 +169,9 @@ const ENArticleDetailPage: React.FC = () => {
                     speakingMode={speakingMode}
                     spokenRange={spokenRange}
                     onSpeak={triggerSpeak}
+                    lookupLang="en"
+                    selectedWord={lookup.tap?.index === i ? lookup.tap.word : null}
+                    onWordTap={(word) => lookup.setTap({ index: i, word })}
                     originalTtsCode="en-US"
                     originalCleanLang="en"
                     vocabTtsCode="en-US"
@@ -178,6 +186,7 @@ const ENArticleDetailPage: React.FC = () => {
           </>
         )}
       </main>
+      {lookup.tap && <WordLookupSheet tapped={lookup.tap.word} lang="en" onClose={lookup.close} />}
     </div>
   );
 };

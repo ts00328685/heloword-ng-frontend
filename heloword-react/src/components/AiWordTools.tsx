@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TapToLookup from './TapToLookup';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { useAiInsight } from '../hooks/useAiInsight';
@@ -104,7 +105,7 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
     ) : state.error ? (
       <p className="text-xs text-red-400">{t('llm.error')}</p>
     ) : (
-      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{state.text}</p>
+      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{state.text}</TapToLookup></p>
     );
 
   return (
@@ -174,7 +175,7 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
                 {check && (
                   check.ok
                     ? <p className="text-xs text-green-600 dark:text-green-400">{t('llm.sentenceCorrect')}</p>
-                    : <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{check.fix}</p>
+                    : <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{check.fix}</TapToLookup></p>
                 )}
               </>
             )}

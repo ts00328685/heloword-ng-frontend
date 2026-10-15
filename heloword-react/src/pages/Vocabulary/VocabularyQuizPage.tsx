@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import TapToLookup from '../../components/TapToLookup';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
@@ -906,7 +907,7 @@ const VocabularyQuizPage: React.FC = () => {
                     <button data-analytics="ai.insight.retry" onClick={() => aiInsight.retry(String(current.id), () => getWordInsight(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{aiInsight.text}</p>
+                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiInsight.text}</TapToLookup></p>
                 )}
               </div>
             )}
@@ -919,7 +920,7 @@ const VocabularyQuizPage: React.FC = () => {
                     <button data-analytics="ai.sample.retry" onClick={() => aiSample.retry(String(current.id), () => getSampleSentence(current.word || current.sentence || '', current.translateEn || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{aiSample.text}</p>
+                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiSample.text}</TapToLookup></p>
                 )}
               </div>
             )}
@@ -932,7 +933,7 @@ const VocabularyQuizPage: React.FC = () => {
                     <button data-analytics="ai.compare.retry" onClick={() => aiCompare.retry(String(current.id), () => getWordComparison(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{aiCompare.text}</p>
+                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiCompare.text}</TapToLookup></p>
                 )}
               </div>
             )}

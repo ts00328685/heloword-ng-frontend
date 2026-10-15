@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import TapToLookup from '../../components/TapToLookup';
 import ReactMarkdown from 'react-markdown';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 import { useTranslation } from 'react-i18next';
@@ -435,7 +436,7 @@ const WrittenTranslationPage: React.FC = () => {
                   </p>
                 ) : (
                   <div className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
-                    <AiMarkdown text={aiResult} />
+                    <TapToLookup as="div"><AiMarkdown text={aiResult} /></TapToLookup>
                   </div>
                 )}
               </div>

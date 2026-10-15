@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import TapToLookup from '../../components/TapToLookup';
 import MultiChoicePanel from '../../components/MultiChoicePanel';
 import ReactDOM from 'react-dom';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -742,7 +743,7 @@ const UserVocabGroupPage: React.FC = () => {
                             <button data-analytics="ai.insight.retry" onClick={() => insight.retry(String(cur.id), () => getWordInsight(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
                           </div>
                         ) : (
-                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{insight.text}</p>
+                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
                         )}
                       </div>
                     </div>
@@ -761,7 +762,7 @@ const UserVocabGroupPage: React.FC = () => {
                             <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(cur.id), () => getWordComparison(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
                           </div>
                         ) : (
-                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
+                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                         )}
                       </div>
                     </div>
@@ -955,7 +956,7 @@ const UserVocabGroupPage: React.FC = () => {
                           </div>
                         ) : (
                           <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
-                            {insight.text}
+                            <TapToLookup>{insight.text}</TapToLookup>
                           </p>
                         )}
                       </div>
@@ -978,7 +979,7 @@ const UserVocabGroupPage: React.FC = () => {
                           </div>
                         ) : (
                           <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
-                            {compare.text}
+                            <TapToLookup>{compare.text}</TapToLookup>
                           </p>
                         )}
                       </div>

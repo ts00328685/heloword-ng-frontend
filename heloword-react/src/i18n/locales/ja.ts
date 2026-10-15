@@ -179,6 +179,15 @@ const ja = {
     errorEndLessThanStart: '終了番号は開始番号より小さくできません。',
     errorEndExceedsTotal: '終了番号は合計数（{{total}}）を超えられません。',
   },
+  wordLookup: {
+    tapHint: '原文の単語をタップすると意味を調べられます',
+    fromArticle: '記事の単語リスト',
+    fromAi: 'AI（文脈に合わせて）',
+    sentence: '例文',
+    saveLoginHint: 'ログインすると単語帳に保存できます',
+    save: '単語帳に保存',
+    close: '閉じる',
+  },
   llm: {
     insight: '解説',
     compare: '比較',

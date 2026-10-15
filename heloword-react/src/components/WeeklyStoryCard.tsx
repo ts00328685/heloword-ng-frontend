@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TapToLookup from './TapToLookup';
 import { useTranslation } from 'react-i18next';
 import { getWeeklyStory, WeeklyStory } from '../services/llm.service';
 import { aiErrorMessage } from '../utils/aiError';
@@ -55,7 +56,7 @@ const WeeklyStoryCard: React.FC = () => {
           <p className="text-xs text-gray-400 dark:text-gray-500">
             {t('llm.weeklyStoryWords')}{story.words.join('、')}
           </p>
-          <p className="text-sm text-gray-800 dark:text-gray-100 leading-relaxed whitespace-pre-wrap">{story.story}</p>
+          <p className="text-sm text-gray-800 dark:text-gray-100 leading-relaxed whitespace-pre-wrap"><TapToLookup>{story.story}</TapToLookup></p>
           {story.translation && (
             showTranslation
               ? <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed whitespace-pre-wrap">{story.translation}</p>

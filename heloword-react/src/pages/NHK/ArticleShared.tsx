@@ -9,6 +9,7 @@ import {
   splitPhrases,
   TextRange,
 } from '../../services/tts.service';
+import { findTappedWord, LookupLang, TappedWord, textOffsetFromPoint } from '../../utils/wordLookup';
 
 export type LangKey = 'original' | 'zh' | 'en' | 'ja';
 
@@ -223,6 +224,13 @@ export function useArticleSpeech({
   return { speakingKey, speakingMode, spokenRange, triggerSpeak, stopSpeaking: stop };
 }
 
+/** Which paragraph's word is open in the lookup sheet (one at a time per page). */
+export function useWordLookup() {
+  const [tap, setTap] = useState<{ index: number; word: TappedWord } | null>(null);
+  const close = useCallback(() => setTap(null), []);
+  return { tap, setTap, close };
+}
+
 const MODE_ICON: Record<SpeakMode, (cls: string) => React.ReactElement> = {
   // Play-through: a playlist with a play head.
   sequence: (cls) => (
@@ -318,7 +326,16 @@ export const SpeakerControls: React.FC<{
  * inside it. The phrase band moves a clause at a time — slow enough to follow,
  * and it shows the next few words before they are spoken.
  */
-const SpokenText: React.FC<{ text: string; range: SpokenRange | null }> = ({ text, range }) => {
+const SpokenText: React.FC<{ text: string; range: SpokenRange | null; selected?: { start: number; end: number } | null }> = ({ text, range, selected }) => {
+  if (!range && selected && selected.end > selected.start) {
+    return (
+      <>
+        {text.slice(0, selected.start)}
+        <mark className="rounded-sm bg-amber-200/70 dark:bg-amber-400/30 text-inherit">{text.slice(selected.start, selected.end)}</mark>
+        {text.slice(selected.end)}
+      </>
+    );
+  }
   if (!range) return <>{text}</>;
 
   const clamp = (n: number) => Math.max(0, Math.min(n, text.length));
@@ -357,6 +374,11 @@ export const ParagraphCard: React.FC<{
   originalTtsCode?: string;
   originalCleanLang?: string;
   vocabTtsCode?: string;
+  /** Enables tap-to-look-up on the original text, in this language. */
+  lookupLang?: LookupLang;
+  /** The word currently open in the lookup sheet, if it is in this paragraph. */
+  selectedWord?: TappedWord | null;
+  onWordTap?: (word: TappedWord) => void;
 }> = ({
   paragraph,
   activeLang,
@@ -368,6 +390,9 @@ export const ParagraphCard: React.FC<{
   originalTtsCode = 'ja-JP',
   originalCleanLang = 'ja',
   vocabTtsCode = 'ja-JP',
+  lookupLang,
+  selectedWord,
+  onWordTap,
 }) => {
   const { t } = useTranslation();
   const [translationOpen, setTranslationOpen] = useState(false);
@@ -376,6 +401,17 @@ export const ParagraphCard: React.FC<{
   const translation = activeLang === 'original' ? null : paragraph[activeLang];
 
   const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleOriginalTap = (e: React.MouseEvent<HTMLParagraphElement>) => {
+    if (!lookupLang || !onWordTap) return;
+    // A drag-selection (e.g. to copy) is not a lookup.
+    const selection = window.getSelection();
+    if (selection && !selection.isCollapsed) return;
+    const offset = textOffsetFromPoint(e.currentTarget, e.clientX, e.clientY);
+    if (offset === null) return;
+    const word = findTappedWord(paragraph.original, offset, lookupLang, paragraph.vocabulary ?? []);
+    if (word) onWordTap(word);
+  };
 
   useEffect(() => { setTranslationOpen(false); }, [activeLang]);
 
@@ -398,10 +434,15 @@ export const ParagraphCard: React.FC<{
       <div className="p-4">
         <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-2">#{index + 1}</p>
         <div className="flex items-start gap-1">
-          <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed flex-1">
+          <p
+            className={`text-sm text-gray-700 dark:text-gray-200 leading-relaxed flex-1 ${lookupLang ? 'cursor-pointer' : ''}`}
+            onClick={lookupLang ? handleOriginalTap : undefined}
+            data-no-analytics
+          >
             <SpokenText
               text={paragraph.original}
               range={spokenRange?.key === originalKey ? spokenRange : null}
+              selected={selectedWord}
             />
           </p>
           <SpeakerControls
