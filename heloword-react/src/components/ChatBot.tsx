@@ -115,7 +115,8 @@ const SpeakerIcon: React.FC<{ onClick: () => void; label: string; small?: boolea
 const WordCard: React.FC<{
   entry: ChatEntry;
   onSpeak: (text: string, lang: string) => void;
-  onHeart: (entry: ChatEntry) => void;
+  /** Save to a custom group — members only; the heart is hidden when omitted. */
+  onHeart?: (entry: ChatEntry) => void;
   lang: string;
 }> = ({ entry, onSpeak, onHeart, lang }) => {
   const { t } = useTranslation();
@@ -148,6 +149,7 @@ const WordCard: React.FC<{
           <span className="font-bold text-gray-900 dark:text-gray-100 text-base leading-tight truncate">{entry.word}</span>
           <SpeakerIcon onClick={() => onSpeak(entry.word, entry.wordLang)} label={t('chatbot.pronounce')} />
         </div>
+        {onHeart && (
         <button
           onClick={() => onHeart(entry)}
           className="p-1.5 rounded-lg hover:bg-pink-50 dark:hover:bg-pink-900/30 text-pink-400 transition-colors shrink-0"
@@ -157,6 +159,7 @@ const WordCard: React.FC<{
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         </button>
+        )}
       </div>
       {entry.translateEn && (
         <p className="text-xs text-blue-600 dark:text-blue-400 mb-0.5">{entry.translateEn}</p>
@@ -581,7 +584,7 @@ const ChatBot: React.FC = () => {
               key={entry.id}
               entry={entry}
               onSpeak={handleSpeak}
-              onHeart={handleHeart}
+              onHeart={isLoggedIn ? handleHeart : undefined}
               lang={i18n.language}
             />
           ))}
@@ -696,7 +699,7 @@ const ChatBot: React.FC = () => {
       {ReactDOM.createPortal(modal, document.body)}
 
       {/* Add to group modal */}
-      {heartAsSentence && (
+      {isLoggedIn && heartAsSentence && (
         <AddToGroupModal
           word={heartAsSentence}
           onClose={() => setHeartEntry(null)}
