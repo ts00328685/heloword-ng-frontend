@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import {
   quickTranslate, QuickTranslateResult, getSampleSentence, getVerbConjugation, getWordInsight, getWordComparison,
-  getPoliteness, PolitenessResult, getAiQuota, AiQuota, AI_USED_EVENT,
+  getPoliteness, PolitenessResult, getNatural, NaturalResult, getAiQuota, AiQuota, AI_USED_EVENT, AI_INVALID_INPUT,
 } from '../services/llm.service';
 import AiWordTools from './AiWordTools';
 import { aiErrorMessage } from '../utils/aiError';
@@ -21,7 +21,7 @@ const HISTORY_KEY = 'hw-chatbot-history';
 
 interface ChatEntry {
   id: string;
-  type: 'translate' | 'sentence' | 'conjugation' | 'politeness';
+  type: 'translate' | 'sentence' | 'conjugation' | 'politeness' | 'natural';
   input: string;
   word: string;
   translateEn: string;
@@ -29,6 +29,7 @@ interface ChatEntry {
   sentence?: string;
   conjugations?: string;
   politeness?: PolitenessResult;
+  natural?: NaturalResult;
   wordLang: string;
   timestamp: number;
 }
@@ -206,12 +207,26 @@ const WordCard: React.FC<{
           ))}
         </div>
       )}
+      {entry.natural && (
+        <div className="mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700 space-y-1">
+          {([['llm.naturalOriginal', entry.input, true], ['llm.naturalNatural', entry.natural.natural, false], ['llm.naturalCasual', entry.natural.casual, false]] as const).map(([label, value, muted]) => (
+            <div key={label} className="flex items-baseline gap-1.5 text-xs leading-5">
+              <span className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[56px]">{t(label)}</span>
+              <span className={`flex-1 ${muted ? 'text-gray-400 dark:text-gray-500' : 'text-gray-800 dark:text-gray-200 font-medium'}`}>
+                <TapToLookup>{value}</TapToLookup>
+              </span>
+              {value && <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(value, entry.wordLang), entry.wordLang)} label={t('chatbot.pronounce')} small />}
+            </div>
+          ))}
+          {entry.natural.note && <p className="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed pt-0.5">{entry.natural.note}</p>}
+        </div>
+      )}
       <p className="text-[10px] text-gray-300 dark:text-gray-600 mt-1.5 text-right">
         {new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
       </p>
     </div>
     {/* AI insight / compare buttons — word entries only */}
-    {entry.type !== 'politeness' && (
+    {entry.type !== 'politeness' && entry.type !== 'natural' && (
     <div className="px-3 pb-2.5 flex flex-wrap items-center gap-1.5">
       <button data-analytics="ai.insight"
         onClick={handleInsight}
@@ -237,7 +252,7 @@ const WordCard: React.FC<{
       </button>
     </div>
     )}
-    {entry.type !== 'politeness' && (
+    {entry.type !== 'politeness' && entry.type !== 'natural' && (
       <div className="px-3 pb-2.5 -mt-1">
         <AiWordTools
           cacheKey={entry.id}
@@ -463,6 +478,27 @@ const ChatBot: React.FC = () => {
         setInput('');
         return;
       }
+      if (type === 'natural') {
+        // Same rule as the backend: English or Japanese only (Chinese would get nonsense back).
+        if (!/[A-Za-zぁ-ゖ゠-ヿ]/.test(text)) {
+          setError(t('llm.naturalLangOnly'));
+          return;
+        }
+        const natural = await getNatural(text);
+        setHistory(prev => [...prev, {
+          id: (crypto.randomUUID?.() || Date.now().toString()),
+          type: 'natural',
+          input: text,
+          word: text,
+          translateEn: '',
+          translateCh: '',
+          wordLang: natural.lang,
+          natural,
+          timestamp: Date.now(),
+        }]);
+        setInput('');
+        return;
+      }
       if (type === 'conjugation') {
         const result = await getVerbConjugation(text);
         const entry: ChatEntry = {
@@ -506,6 +542,8 @@ const ChatBot: React.FC = () => {
       const msg = e?.message || '';
       if (msg.includes('NOT_A_VERB')) {
         setError(t('chatbot.notAVerb'));
+      } else if (type === 'natural' && msg === AI_INVALID_INPUT) {
+        setError(t('llm.naturalLangOnly'));
       } else {
         setError(aiErrorMessage(e, isLoggedIn));
       }
@@ -558,12 +596,15 @@ const ChatBot: React.FC = () => {
           >
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800 shrink-0">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <KittenSVG wink={wink} size={28} />
-            <span className="font-semibold text-sm text-gray-800 dark:text-gray-100">{t('chatbot.title')}</span>
+            <span className="font-semibold text-sm text-gray-800 dark:text-gray-100 truncate">{t('chatbot.title')}</span>
             {!isLoggedIn && quota && (
-              <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${quota.remaining > 0 ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-500' : 'bg-red-50 dark:bg-red-900/30 text-red-400'}`}>
-                {t('llm.remaining', { remaining: quota.remaining, limit: quota.limit })}
+              <span
+                title={t('llm.remaining', { remaining: quota.remaining, limit: quota.limit })}
+                className={`shrink-0 whitespace-nowrap text-[10px] px-1.5 py-0.5 rounded-full ${quota.remaining > 0 ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-500' : 'bg-red-50 dark:bg-red-900/30 text-red-400'}`}
+              >
+                {t('llm.remainingShort', { remaining: quota.remaining, limit: quota.limit })}
               </span>
             )}
           </div>
@@ -621,12 +662,12 @@ const ChatBot: React.FC = () => {
         </div>
 
         {/* Action buttons */}
-        <div className="px-3 pt-2 pb-1 flex gap-2 shrink-0 border-t border-gray-100 dark:border-gray-800">
+        <div className="px-3 pt-2 pb-1 grid grid-cols-3 gap-2 shrink-0 border-t border-gray-100 dark:border-gray-800">
           <button
             data-analytics="chatbot.translate"
             onClick={() => handleAction('translate')}
             disabled={!input.trim() || loading}
-            className="flex-1 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('chatbot.quickTranslate')}
           </button>
@@ -634,7 +675,7 @@ const ChatBot: React.FC = () => {
             data-analytics="chatbot.sentence"
             onClick={() => handleAction('sentence')}
             disabled={!input.trim() || loading}
-            className="flex-1 py-2 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('chatbot.exampleSentence')}
           </button>
@@ -642,7 +683,7 @@ const ChatBot: React.FC = () => {
             data-analytics="chatbot.conjugation"
             onClick={() => handleAction('conjugation')}
             disabled={!input.trim() || loading}
-            className="flex-1 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('chatbot.verbConjugation')}
           </button>
@@ -650,9 +691,17 @@ const ChatBot: React.FC = () => {
             data-analytics="chatbot.politeness"
             onClick={() => handleAction('politeness')}
             disabled={!input.trim() || loading}
-            className="flex-1 py-2 rounded-xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-100 dark:hover:bg-amber-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-100 dark:hover:bg-amber-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('llm.politeness')}
+          </button>
+          <button
+            data-analytics="chatbot.natural"
+            onClick={() => handleAction('natural')}
+            disabled={!input.trim() || loading}
+            className="py-2 rounded-xl whitespace-nowrap bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 text-xs font-semibold hover:bg-rose-100 dark:hover:bg-rose-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            {t('llm.natural')}
           </button>
         </div>
 
