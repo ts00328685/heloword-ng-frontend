@@ -32,6 +32,7 @@ const WeeklyStoryCard: React.FC = () => {
         <p className="text-xs font-semibold text-gray-500 dark:text-gray-400">📖 {t('llm.weeklyStory')}</p>
         {!story && (
           <button
+            data-analytics="ai.weekly_story"
             onClick={load}
             disabled={loading}
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ring-1 ring-inset ring-gray-300 dark:ring-gray-600 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-900 hover:ring-gray-500 disabled:opacity-40 transition-all"
@@ -58,7 +59,7 @@ const WeeklyStoryCard: React.FC = () => {
           {story.translation && (
             showTranslation
               ? <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed whitespace-pre-wrap">{story.translation}</p>
-              : <button onClick={() => setShowTranslation(true)} className="text-xs text-blue-400 underline">{t('llm.showTranslation')}</button>
+              : <button data-analytics="ai.weekly_story.translation" onClick={() => setShowTranslation(true)} className="text-xs text-blue-400 underline">{t('llm.showTranslation')}</button>
           )}
         </div>
       )}

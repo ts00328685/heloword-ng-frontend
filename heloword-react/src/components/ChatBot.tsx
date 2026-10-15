@@ -151,6 +151,7 @@ const WordCard: React.FC<{
         </div>
         {onHeart && (
         <button
+          data-analytics="chatbot.save_to_group"
           onClick={() => onHeart(entry)}
           className="p-1.5 rounded-lg hover:bg-pink-50 dark:hover:bg-pink-900/30 text-pink-400 transition-colors shrink-0"
           aria-label={t('chatbot.saveToGroup')}
@@ -209,7 +210,7 @@ const WordCard: React.FC<{
     {/* AI insight / compare buttons — word entries only */}
     {entry.type !== 'politeness' && (
     <div className="px-3 pb-2.5 flex flex-wrap items-center gap-1.5">
-      <button
+      <button data-analytics="ai.insight"
         onClick={handleInsight}
         className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
           insightOpen
@@ -220,7 +221,7 @@ const WordCard: React.FC<{
         <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
         {insightOpen ? `${t('llm.insight')} ▲` : t('llm.insight')}
       </button>
-      <button
+      <button data-analytics="ai.compare"
         onClick={handleCompare}
         className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
           compareOpen
@@ -252,7 +253,7 @@ const WordCard: React.FC<{
           ) : insight.error ? (
             <div className="flex items-center gap-2">
               <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-              <button onClick={() => insight.retry(entry.id, () => getWordInsight(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
+              <button data-analytics="ai.insight.retry" onClick={() => insight.retry(entry.id, () => getWordInsight(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
             </div>
           ) : (
             <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{insight.text}</p>
@@ -268,7 +269,7 @@ const WordCard: React.FC<{
           ) : compare.error ? (
             <div className="flex items-center gap-2">
               <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-              <button onClick={() => compare.retry(entry.id, () => getWordComparison(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
+              <button data-analytics="ai.compare.retry" onClick={() => compare.retry(entry.id, () => getWordComparison(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
             </div>
           ) : (
             <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
@@ -551,6 +552,7 @@ const ChatBot: React.FC = () => {
           </div>
           <div className="flex items-center gap-1">
             <button
+              data-analytics="chatbot.clear_history"
               onClick={() => { setHistory([]); localStorage.removeItem(HISTORY_KEY); }}
               className="p-1.5 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
               aria-label={t('chatbot.clearHistory')}
@@ -561,6 +563,7 @@ const ChatBot: React.FC = () => {
               </svg>
             </button>
             <button
+              data-analytics="chatbot.close"
               onClick={() => closeChat()}
               className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 transition-colors"
             >
@@ -603,6 +606,7 @@ const ChatBot: React.FC = () => {
         {/* Action buttons */}
         <div className="px-3 pt-2 pb-1 flex gap-2 shrink-0 border-t border-gray-100 dark:border-gray-800">
           <button
+            data-analytics="chatbot.translate"
             onClick={() => handleAction('translate')}
             disabled={!input.trim() || loading}
             className="flex-1 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
@@ -610,6 +614,7 @@ const ChatBot: React.FC = () => {
             {t('chatbot.quickTranslate')}
           </button>
           <button
+            data-analytics="chatbot.sentence"
             onClick={() => handleAction('sentence')}
             disabled={!input.trim() || loading}
             className="flex-1 py-2 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
@@ -617,6 +622,7 @@ const ChatBot: React.FC = () => {
             {t('chatbot.exampleSentence')}
           </button>
           <button
+            data-analytics="chatbot.conjugation"
             onClick={() => handleAction('conjugation')}
             disabled={!input.trim() || loading}
             className="flex-1 py-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
@@ -624,6 +630,7 @@ const ChatBot: React.FC = () => {
             {t('chatbot.verbConjugation')}
           </button>
           <button
+            data-analytics="chatbot.politeness"
             onClick={() => handleAction('politeness')}
             disabled={!input.trim() || loading}
             className="flex-1 py-2 rounded-xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-100 dark:hover:bg-amber-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
@@ -653,6 +660,7 @@ const ChatBot: React.FC = () => {
             />
             {input && (
               <button
+                data-analytics="chatbot.clear_input"
                 onClick={() => setInput('')}
                 className="text-gray-300 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-400 transition-colors shrink-0"
               >
@@ -684,6 +692,7 @@ const ChatBot: React.FC = () => {
             }}
           >
             <button
+              data-analytics="chatbot.toggle"
               onClick={handleIconClick}
               className="rounded-full shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               aria-label={t('chatbot.title')}

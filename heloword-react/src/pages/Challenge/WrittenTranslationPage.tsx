@@ -350,14 +350,14 @@ const WrittenTranslationPage: React.FC = () => {
 
         {/* Submit buttons */}
         <div className="grid grid-cols-2 gap-2">
-          <button
+          <button data-analytics="translation.compare"
             onClick={handleCompare}
             disabled={!userInput.trim() || dataLoading}
             className="py-3 rounded-2xl text-sm font-semibold bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white transition-colors"
           >
             📊 {t('writtenTranslation.compare')}
           </button>
-          <button
+          <button data-analytics="ai.translation_analyze"
             onClick={handleAiAnalyze}
             disabled={submitState === 'ai-loading' || !userInput.trim() || dataLoading}
             className="w-full py-3 rounded-2xl text-sm font-semibold transition-colors disabled:opacity-40 flex items-center justify-center gap-1.5 text-white"

@@ -880,7 +880,7 @@ const VocabularyQuizPage: React.FC = () => {
           {/* Explain / Example / Compare buttons */}
           <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
             <div className="flex gap-2 mb-2 flex-wrap">
-              <button
+              <button data-analytics="ai.insight"
                 onClick={handleAiInsight}
                 disabled={aiInsight.loading}
                 className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
@@ -888,7 +888,7 @@ const VocabularyQuizPage: React.FC = () => {
                 <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 {aiInsight.loading ? t('llm.thinking') : t('llm.insight')}
               </button>
-<button
+<button data-analytics="ai.compare"
                 onClick={handleAiCompare}
                 disabled={aiCompare.loading}
                 className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
@@ -903,7 +903,7 @@ const VocabularyQuizPage: React.FC = () => {
                 {aiInsight.error ? (
                   <div className="flex items-center gap-2">
                     <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-                    <button onClick={() => aiInsight.retry(String(current.id), () => getWordInsight(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
+                    <button data-analytics="ai.insight.retry" onClick={() => aiInsight.retry(String(current.id), () => getWordInsight(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
                   <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{aiInsight.text}</p>
@@ -916,7 +916,7 @@ const VocabularyQuizPage: React.FC = () => {
                 {aiSample.error ? (
                   <div className="flex items-center gap-2">
                     <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-                    <button onClick={() => aiSample.retry(String(current.id), () => getSampleSentence(current.word || current.sentence || '', current.translateEn || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
+                    <button data-analytics="ai.sample.retry" onClick={() => aiSample.retry(String(current.id), () => getSampleSentence(current.word || current.sentence || '', current.translateEn || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
                   <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{aiSample.text}</p>
@@ -929,7 +929,7 @@ const VocabularyQuizPage: React.FC = () => {
                 {aiCompare.error ? (
                   <div className="flex items-center gap-2">
                     <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-                    <button onClick={() => aiCompare.retry(String(current.id), () => getWordComparison(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
+                    <button data-analytics="ai.compare.retry" onClick={() => aiCompare.retry(String(current.id), () => getWordComparison(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
                   </div>
                 ) : (
                   <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{aiCompare.text}</p>

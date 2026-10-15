@@ -685,7 +685,7 @@ const UserVocabGroupPage: React.FC = () => {
                                   </svg>
                                 </button>
                                 {/* AI insight button */}
-                                <button
+                                <button data-analytics="ai.insight"
                                   onPointerDown={(e) => e.stopPropagation()}
                                   onClick={(e) => { e.stopPropagation(); handleWordTap(cur); }}
                                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
@@ -698,7 +698,7 @@ const UserVocabGroupPage: React.FC = () => {
                                   {flashInsightOpen ? `${t('llm.insight')} ▲` : t('llm.insight')}
                                 </button>
                                 {/* AI compare button */}
-                                <button
+                                <button data-analytics="ai.compare"
                                   onPointerDown={(e) => e.stopPropagation()}
                                   onClick={(e) => { e.stopPropagation(); handleCompareTap(cur); }}
                                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
@@ -739,7 +739,7 @@ const UserVocabGroupPage: React.FC = () => {
                         ) : insight.error ? (
                           <div className="flex items-center gap-2">
                             <p className="text-xs text-red-400">{t('llm.error')}</p>
-                            <button onClick={() => insight.retry(String(cur.id), () => getWordInsight(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
+                            <button data-analytics="ai.insight.retry" onClick={() => insight.retry(String(cur.id), () => getWordInsight(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
                           </div>
                         ) : (
                           <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{insight.text}</p>
@@ -758,7 +758,7 @@ const UserVocabGroupPage: React.FC = () => {
                         ) : compare.error ? (
                           <div className="flex items-center gap-2">
                             <p className="text-xs text-red-400">{t('llm.error')}</p>
-                            <button onClick={() => compare.retry(String(cur.id), () => getWordComparison(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
+                            <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(cur.id), () => getWordComparison(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
                           </div>
                         ) : (
                           <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{compare.text}</p>
@@ -873,7 +873,7 @@ const UserVocabGroupPage: React.FC = () => {
                       )}
                       {/* AI Insight / Compare buttons */}
                       <div className="mt-1.5 flex items-center gap-1.5">
-                        <button
+                        <button data-analytics="ai.insight"
                           onClick={() => handleWordTap(word)}
                           className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                             isSelected
@@ -884,7 +884,7 @@ const UserVocabGroupPage: React.FC = () => {
                           <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                           {isSelected ? `${t('llm.insight')} ▲` : t('llm.insight')}
                         </button>
-                        <button
+                        <button data-analytics="ai.compare"
                           onClick={() => handleCompareTap(word)}
                           className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                             isCompareSelected
@@ -948,7 +948,7 @@ const UserVocabGroupPage: React.FC = () => {
                         ) : insight.error ? (
                           <div className="flex items-center gap-2">
                             <p className="text-xs text-red-400">{t('llm.error')}</p>
-                            <button
+                            <button data-analytics="ai.insight.retry"
                               onClick={() => insight.retry(String(word.id), () => getWordInsight(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang))}
                               className="text-xs text-blue-400 underline"
                             >↺</button>
@@ -971,7 +971,7 @@ const UserVocabGroupPage: React.FC = () => {
                         ) : compare.error ? (
                           <div className="flex items-center gap-2">
                             <p className="text-xs text-red-400">{t('llm.error')}</p>
-                            <button
+                            <button data-analytics="ai.compare.retry"
                               onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang))}
                               className="text-xs text-blue-400 underline"
                             >↺</button>

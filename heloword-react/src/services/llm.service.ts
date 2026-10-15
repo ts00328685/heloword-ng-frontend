@@ -1,5 +1,6 @@
 import { doPost } from './api.service';
 import { CommonResponse } from '../models';
+import { track } from './analytics.service';
 
 /** Backend AI error codes → stable Error messages the UI can switch on. */
 export const AI_QUOTA_EXCEEDED = 'AI_QUOTA_EXCEEDED';
@@ -8,6 +9,18 @@ export const AI_INVALID_INPUT = 'AI_INVALID_INPUT';
 
 /** Fired after every AI call so quota badges can refresh. */
 export const AI_USED_EVENT = 'hw:ai-used';
+
+/** Outcome label recorded with each AI call, so quota hits (a sign-up opportunity) are visible. */
+function aiOutcome(code: string): string {
+  switch (code) {
+    case '0000': return 'ok';
+    case '4004': return 'quota';
+    case '4005': return 'busy';
+    case '9996': return 'invalid';
+    case '4003': return 'not_a_verb';
+    default: return 'error';
+  }
+}
 
 export function unwrapAi<T>(res: CommonResponse<T>, fallback: string): T {
   window.dispatchEvent(new CustomEvent(AI_USED_EVENT));
@@ -19,6 +32,17 @@ export function unwrapAi<T>(res: CommonResponse<T>, fallback: string): T {
   throw new Error(res.message || fallback);
 }
 
+/**
+ * POST to an AI endpoint (`path` is relative to /fe/, e.g. "ai/word-insight") and record one
+ * FEATURE analytics event per call — this also covers calls not started by a click (Enter key,
+ * chained calls), which click autocapture can't see.
+ */
+export async function aiPost<T>(path: string, body: unknown, fallback: string): Promise<T> {
+  const res = await doPost<T>(`/frontend-api/api/fe/${path}`, body);
+  track('FEATURE', path.replace(/\//g, '.').replace(/-/g, '_'), { label: aiOutcome(res.code) });
+  return unwrapAi(res, fallback);
+}
+
 export interface QuickTranslateResult {
   word: string;
   wordLang: string;
@@ -28,8 +52,7 @@ export interface QuickTranslateResult {
 
 /** Auto-detect language and translate a word/phrase. Ultra-slim prompt, fast. */
 export async function quickTranslate(text: string): Promise<QuickTranslateResult> {
-  const res = await doPost<QuickTranslateResult>('/frontend-api/api/fe/ai/quick-translate', { text });
-  return unwrapAi(res, 'Quick translate failed');
+  return aiPost<QuickTranslateResult>('ai/quick-translate', { text }, 'Quick translate failed');
 }
 
 /**
@@ -50,8 +73,7 @@ export interface WordFillResult {
 
 /** Structured AI fill for the custom vocab form — language-aware, no label parsing needed. */
 export async function getWordFill(word: string, wordLang: string): Promise<WordFillResult> {
-  const res = await doPost<WordFillResult>('/frontend-api/api/fe/ai/word-fill', { word, wordLang });
-  return unwrapAi(res, 'AI fill failed');
+  return aiPost<WordFillResult>('ai/word-fill', { word, wordLang }, 'AI fill failed');
 }
 
 /** Definition + example sentence for a vocabulary word. */
@@ -62,14 +84,13 @@ export async function getWordInsight(
   lang: string,
   wordLang: string,
 ): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/ai/word-insight', {
+  return aiPost<string>('ai/word-insight', {
     word,
     translateEn,
     translateCh,
     lang,
     wordLang,
-  });
-  return unwrapAi(res, 'AI insight failed');
+  }, 'AI insight failed');
 }
 
 /** One freshly generated example sentence for a word. */
@@ -79,13 +100,12 @@ export async function getSampleSentence(
   lang: string,
   wordLang: string,
 ): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/ai/sample-sentence', {
+  return aiPost<string>('ai/sample-sentence', {
     word,
     translateEn,
     lang,
     wordLang,
-  });
-  return unwrapAi(res, 'AI sample sentence failed');
+  }, 'AI sample sentence failed');
 }
 
 /** Synonyms / similar words and guidance on when to use each. */
@@ -96,14 +116,13 @@ export async function getWordComparison(
   lang: string,
   wordLang: string,
 ): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/ai/word-compare', {
+  return aiPost<string>('ai/word-compare', {
     word,
     translateEn,
     translateCh,
     lang,
     wordLang,
-  });
-  return unwrapAi(res, 'AI word comparison failed');
+  }, 'AI word comparison failed');
 }
 
 export interface VerbConjugationResult {
@@ -116,8 +135,7 @@ export interface VerbConjugationResult {
 
 /** Verb conjugation table for English or Japanese verbs. Throws if not a verb. */
 export async function getVerbConjugation(word: string): Promise<VerbConjugationResult> {
-  const res = await doPost<VerbConjugationResult>('/frontend-api/api/fe/ai/verb-conjugation', { word });
-  return unwrapAi(res, 'Verb conjugation failed');
+  return aiPost<VerbConjugationResult>('ai/verb-conjugation', { word }, 'Verb conjugation failed');
 }
 
 /** Personalised study tip based on recent performance. */
@@ -126,12 +144,11 @@ export async function getStudyCoach(
   wrongCount: number,
   lang: string,
 ): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/ai/study-coach', {
+  return aiPost<string>('ai/study-coach', {
     accuracyPct,
     wrongCount,
     lang,
-  });
-  return unwrapAi(res, 'AI study coach failed');
+  }, 'AI study coach failed');
 }
 
 // ── Quota ────────────────────────────────────────────────────────────────────
@@ -157,20 +174,17 @@ export interface CheckSentenceResult {
 
 /** Checks a sentence the learner wrote with `word`. */
 export async function checkSentence(word: string, wordLang: string, sentence: string): Promise<CheckSentenceResult> {
-  const res = await doPost<CheckSentenceResult>('/frontend-api/api/fe/ai/check-sentence', { word, wordLang, sentence });
-  return unwrapAi(res, 'Check sentence failed');
+  return aiPost<CheckSentenceResult>('ai/check-sentence', { word, wordLang, sentence }, 'Check sentence failed');
 }
 
 /** One-line mnemonic for the word. */
 export async function getMemoryHook(word: string, wordLang: string, meaningZh: string): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/ai/memory-hook', { word, wordLang, meaningZh });
-  return unwrapAi(res, 'Memory hook failed');
+  return aiPost<string>('ai/memory-hook', { word, wordLang, meaningZh }, 'Memory hook failed');
 }
 
 /** Why the picked multiple-choice answer is wrong. */
 export async function explainWrongAnswer(word: string, wordLang: string, picked: string, answer: string): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/ai/explain-wrong', { word, wordLang, picked, answer });
-  return unwrapAi(res, 'Explain failed');
+  return aiPost<string>('ai/explain-wrong', { word, wordLang, picked, answer }, 'Explain failed');
 }
 
 export interface ClozeResult {
@@ -183,8 +197,7 @@ export interface ClozeResult {
 
 /** Fill-in-the-blank sentence for the word. */
 export async function getCloze(word: string, wordLang: string): Promise<ClozeResult> {
-  const res = await doPost<ClozeResult>('/frontend-api/api/fe/ai/cloze', { word, wordLang });
-  return unwrapAi(res, 'Cloze failed');
+  return aiPost<ClozeResult>('ai/cloze', { word, wordLang }, 'Cloze failed');
 }
 
 export interface PolitenessResult {
@@ -195,8 +208,7 @@ export interface PolitenessResult {
 
 /** Rewrites a Japanese sentence as casual / polite / keigo. */
 export async function getPoliteness(sentence: string): Promise<PolitenessResult> {
-  const res = await doPost<PolitenessResult>('/frontend-api/api/fe/ai/politeness', { sentence });
-  return unwrapAi(res, 'Politeness failed');
+  return aiPost<PolitenessResult>('ai/politeness', { sentence }, 'Politeness failed');
 }
 
 export interface Collocation {
@@ -206,14 +218,12 @@ export interface Collocation {
 
 /** Three common pairings for the word. */
 export async function getCollocations(word: string, wordLang: string): Promise<Collocation[]> {
-  const res = await doPost<Collocation[]>('/frontend-api/api/fe/ai/collocations', { word, wordLang });
-  return unwrapAi(res, 'Collocations failed');
+  return aiPost<Collocation[]>('ai/collocations', { word, wordLang }, 'Collocations failed');
 }
 
 /** JLPT / CEFR level tag (members only). Returns '' when unknown. */
 export async function getWordLevel(word: string, wordLang: string): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/ai/word-level', { word, wordLang });
-  return unwrapAi(res, 'Word level failed');
+  return aiPost<string>('ai/word-level', { word, wordLang }, 'Word level failed');
 }
 
 export interface WeeklyStory {
@@ -226,6 +236,5 @@ export interface WeeklyStory {
 
 /** This week's story from the member's most-missed words (generated once per week). */
 export async function getWeeklyStory(): Promise<WeeklyStory> {
-  const res = await doPost<WeeklyStory>('/frontend-api/api/fe/ai/weekly-story', {});
-  return unwrapAi(res, 'Weekly story failed');
+  return aiPost<WeeklyStory>('ai/weekly-story', {}, 'Weekly story failed');
 }

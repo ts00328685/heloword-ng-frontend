@@ -1,5 +1,4 @@
-import { doPost } from './api.service';
-import { unwrapAi } from './llm.service';
+import { aiPost } from './llm.service';
 
 export interface ScrambleAiRequest {
   lang: 'jp' | 'en';
@@ -12,8 +11,7 @@ export interface ScrambleAiRequest {
  * Returns the plain text explanation string.
  */
 export async function aiExplainScramble(request: ScrambleAiRequest): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/scramble/ai-explain', request);
-  return unwrapAi(res, 'AI explain failed');
+  return aiPost<string>('scramble/ai-explain', request, 'AI explain failed');
 }
 
 export interface TranslationAnalyzeRequest {
@@ -28,6 +26,5 @@ export interface TranslationAnalyzeRequest {
  * Returns succinct feedback (≤7 sentences) on errors and corrections.
  */
 export async function aiAnalyzeTranslation(request: TranslationAnalyzeRequest): Promise<string> {
-  const res = await doPost<string>('/frontend-api/api/fe/translation/ai-analyze', request);
-  return unwrapAi(res, 'AI analyze failed');
+  return aiPost<string>('translation/ai-analyze', request, 'AI analyze failed');
 }

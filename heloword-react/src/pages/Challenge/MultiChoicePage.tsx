@@ -458,6 +458,7 @@ const MultiChoicePage: React.FC = () => {
               : `❌ ${t('multiChoice.wrong')}  ${t('multiChoice.answer')}: ${correct.word}`}
             {answerState === 'wrong' && !whyOpen && (
               <button
+                data-analytics="ai.explain_wrong"
                 onClick={handleWhy}
                 className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium ring-1 ring-inset ring-red-200 dark:ring-red-800 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors"
               >
@@ -471,6 +472,7 @@ const MultiChoicePage: React.FC = () => {
                   {why.loading ? t('llm.thinking') : why.error ? t('llm.error') : why.text}
                 </p>
                 <button
+                  data-analytics="multichoice.why_next"
                   onClick={() => nextQuestion(pool)}
                   className="mt-2 w-full py-1.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-xs font-semibold transition-colors"
                 >
