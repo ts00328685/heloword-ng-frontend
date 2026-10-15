@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from './TapToLookup';
 import ReactDOM from 'react-dom';
+import { useLocation } from 'react-router-dom';
+import { hasBottomTabs } from '../utils/layout';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import {
@@ -287,6 +289,10 @@ const WordCard: React.FC<{
 const ChatBot: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { t, i18n } = useTranslation();
+  const { pathname } = useLocation();
+  // Sit just above the tab bar; on pages without one, drop to the corner instead of
+  // floating over the page's own bottom controls.
+  const bottomOffset = hasBottomTabs(pathname) ? 80 : 16;
 
   const [isOpen, setIsOpen] = useState(false);
   const [isIdle, setIsIdle] = useState(false);
@@ -320,6 +326,13 @@ const ChatBot: React.FC = () => {
     setInput('');
     lastCopied.current = '';
   };
+
+  // Lets index.css give scrolling pages bottom clearance so their last buttons can scroll
+  // out from under the floating button.
+  useEffect(() => {
+    document.body.classList.add('hw-chatbot');
+    return () => document.body.classList.remove('hw-chatbot');
+  }, []);
 
   // Persist history
   useEffect(() => {
@@ -536,8 +549,11 @@ const ChatBot: React.FC = () => {
         <div className="w-full max-w-2xl mx-auto px-4 flex justify-end">
           {/* Chat panel */}
           <div
-            className="pointer-events-auto mb-[76px] w-[340px] max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden animate-chatbot-slide-up"
-            style={{ maxHeight: 'min(540px, calc(100vh - 120px))' }}
+            className="pointer-events-auto w-[340px] max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden animate-chatbot-slide-up"
+            style={{
+              maxHeight: 'min(540px, calc(100vh - 120px))',
+              marginBottom: `calc(${bottomOffset - 4}px + env(safe-area-inset-bottom, 0px))`,
+            }}
             onClick={e => e.stopPropagation()}
           >
         {/* Header */}
@@ -681,7 +697,11 @@ const ChatBot: React.FC = () => {
   return (
     <>
       {/* Floating button — pinned to the right edge of the max-w-2xl content container */}
-      <div className="fixed bottom-20 left-0 right-0 z-50 pointer-events-none">
+      {/* z-40: below every modal, sheet and toast (z-45+), above page content */}
+      <div
+        className="fixed left-0 right-0 z-40 pointer-events-none"
+        style={{ bottom: `calc(${bottomOffset}px + env(safe-area-inset-bottom, 0px))` }}
+      >
         <div className="max-w-2xl mx-auto px-4 flex justify-end">
           <div
             className="pointer-events-auto flex flex-col items-end gap-1.5 select-none"
