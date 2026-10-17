@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "translate_ch": "該黨領袖敦促這家足球俱樂部放棄為主場球場改名的計劃。",
+        "translate_ch": "該黨黨魁敦促這家足球俱樂部，放棄把主場球場改名的計畫。",
         "sentence": "The party leader urged the football club to abandon plans to rename its stadium."
     },
     {
@@ -11,42 +11,42 @@
     },
     {
         "id": 3,
-        "translate_ch": "受公共記錄法約束的公共機構顯然無法遵守此類條款。",
+        "translate_ch": "受《公共紀錄法》規範的公共機構，顯然沒辦法遵守這類條款。",
         "sentence": "Public institutions covered by public records laws are clearly unable to abide by such terms."
     },
     {
         "id": 4,
-        "translate_ch": "我資歷尚淺並未以任何方式阻礙我的溝通能力。",
+        "translate_ch": "我資歷還很淺，但這完全沒有影響到我的溝通能力。",
         "sentence": "My lack of seniority has not impeded my ability to communicate in any way."
     },
     {
         "id": 5,
-        "translate_ch": "該聯盟希望有能力反對任何違背我們利益的手段。",
+        "translate_ch": "這個聯盟希望有能力反制任何損害我們利益的操作。",
         "sentence": "The alliance wants to be able to oppose any maneuver that goes against our interests."
     },
     {
         "id": 6,
-        "translate_ch": "動靜脈瘻是動脈和靜脈之間的異常連接。",
+        "translate_ch": "動靜脈瘻管是動脈和靜脈之間一種不正常的連接。",
         "sentence": "An arteriovenous fistula is an abnormal connection between an artery and a vein."
     },
     {
         "id": 7,
-        "translate_ch": "他當時在一架觀測機上，位於領航轟炸機後方，而不在轟炸機本身上。",
+        "translate_ch": "他當時人在一架觀測機上，跟在領航轟炸機後面，而不是在轟炸機上。",
         "sentence": "He was aboard an observation plane behind the lead bomber, not on board the bomber itself."
     },
     {
         "id": 8,
-        "translate_ch": "一個人權組織對裁決表示歡迎，並呼籲奈及利亞政府廢除死刑。",
+        "translate_ch": "一個人權組織對這項判決表示歡迎，並呼籲奈及利亞政府廢除死刑。",
         "sentence": "A human rights organization welcomed the ruling and called for the Nigerian government to abolish the death penalty."
     },
     {
         "id": 9,
-        "translate_ch": "關於它像棋手般策略性地圍捕獵物，以及其卓越隱蔽能力的傳聞比比皆是。",
+        "translate_ch": "關於牠像棋手一樣有策略地圍捕獵物、還有超強隱蔽能力的傳聞，多到數不清。",
         "sentence": "Stories abound of its strategic, chess-player maneuvering of prey and of its extraordinary stealth."
     },
     {
         "id": 10,
-        "translate_ch": "與一群想成為摔跤手的人一起訓練，他看起來精疲力竭且真心感到恐懼。",
+        "translate_ch": "跟一群想當摔角手的人一起訓練，他看起來累到不行，而且是真的很害怕。",
         "sentence": "Training with a group of wannabe wrestlers he looked about fit to drop and genuinely scared."
     },
     {
@@ -56,52 +56,52 @@
     },
     {
         "id": 12,
-        "translate_ch": "除其他事項外，該部門還負責在國外銷售日本技術（包括核技術）。",
+        "translate_ch": "除了其他業務之外，這個部門還負責把日本的技術（包括核能技術）賣到國外。",
         "sentence": "That ministry is charged, among other things, with selling Japanese technology (including nuclear technology) abroad."
     },
     {
         "id": 13,
-        "translate_ch": "大多數分析師預計中國將實現「軟著陸」，並避免突然的經濟衰退。",
+        "translate_ch": "多數分析師預期中國會達成「軟著陸」，避免經濟突然衰退。",
         "sentence": "Most analysts expect China to achieve a \"soft landing\" and avoid an abrupt downturn."
     },
     {
         "id": 14,
-        "translate_ch": "但即便是在其缺席的情況下，第二項條件也開始在美國生效。",
+        "translate_ch": "但就算少了它，第二個條件也開始在美國成立了。",
         "sentence": "But even in its absence, condition number two is beginning to obtain in the United States."
     },
     {
         "id": 15,
-        "translate_ch": "你認為唱片公司為什麼在這場辯論中如此沉默、置身事外？",
+        "translate_ch": "你覺得唱片公司為什麼在這場辯論裡這麼沉默、完全置身事外？",
         "sentence": "Why do you think the record companies are so silent and absent from this debate?"
     },
     {
         "id": 16,
-        "translate_ch": "這名官員將這起墜機事故形容為「慘不忍睹」，並說這令人非常難過。",
+        "translate_ch": "這名官員把這起墜機形容成「慘不忍睹」，還說真的很讓人難過。",
         "sentence": "The official has described the crash as \"absolute carnage\" and said it was very distressing."
     },
     {
         "id": 17,
-        "translate_ch": "這會導致腸道發炎，並使人無法從食物中吸收充足的營養。",
+        "translate_ch": "這會造成腸道發炎，讓人沒辦法從食物裡吸收到足夠的營養。",
         "sentence": "This leads to inflammation of the gut, and an inability to absorb adequate nutrition from food."
     },
     {
         "id": 18,
-        "translate_ch": "當抽象理論與一線實踐發生碰撞時，勝負往往立見分曉。",
+        "translate_ch": "當抽象的理論碰上第一線的實務，勝負往往一下子就分曉了。",
         "sentence": "When abstract knowledge and the smell of the coal face collide, there's often no contest."
     },
     {
         "id": 19,
-        "translate_ch": "但對我們來說，認為我們處於危險之中的說法完全是荒謬的。",
+        "translate_ch": "但對我們來說，說我們有什麼危險，根本就很荒謬。",
         "sentence": "But to us, the suggestion that we were in any danger was completely absurd."
     },
     {
         "id": 20,
-        "translate_ch": "新加坡東部這個安靜的社區擁有眾多優秀的餐廳，供應道地的當地美食。",
+        "translate_ch": "新加坡東部這個安靜的社區有很多很棒的餐廳，供應道地的當地美食。",
         "sentence": "The quiet neighbourhood in east Singapore has an abundance of excellent restaurants serving authentic local cuisine."
     },
     {
         "id": 21,
-        "translate_ch": "山坡上生長著大量的野花、翠綠的蕨類植物、柔軟的苔蘚和地衣。",
+        "translate_ch": "山坡上長滿了野花、翠綠的蕨類、柔軟的苔蘚和地衣。",
         "sentence": "The slopes are abundant with wild flowers and lizard green ferns, with soft moss and lichens."
     },
     {
@@ -131,17 +131,17 @@
     },
     {
         "id": 27,
-        "translate_ch": "他只收我極少的錢就賣給我一袋堅果，並且拒絕接受小費。",
+        "translate_ch": "他只收我一點點錢就賣給我一袋堅果，還不肯收小費。",
         "sentence": "He sells me a bag of nuts for a pittance and refuses to accept a tip."
     },
     {
         "id": 28,
-        "translate_ch": "他說我們仍在與歧視作鬥爭，但如今感染愛滋病毒的人比以前獲得了更多接納。",
+        "translate_ch": "他說我們還在跟歧視對抗，但現在感染愛滋病毒的人，比以前更能被大家接受了。",
         "sentence": "He said we still battle discrimination, but people with HIV now find more acceptance than before."
     },
     {
         "id": 29,
-        "translate_ch": "沿海地帶仍有五十萬人無法取得自來水。",
+        "translate_ch": "沿海地帶還有五十萬人沒有自來水可用。",
         "sentence": "Half a million people in the coastal strip still do not have access to running water."
     },
     {
@@ -151,12 +151,12 @@
     },
     {
         "id": 31,
-        "translate_ch": "斯蒂芬的病情是在因持續咳嗽就醫後，偶然被診斷出來的。",
+        "translate_ch": "史蒂芬的病，是他因為一直咳嗽去看醫生時，意外被診斷出來的。",
         "sentence": "Stephen's condition was diagnosed by accident, after going to the doctor with a persistent cough."
     },
     {
         "id": 32,
-        "translate_ch": "服用長效糖尿病藥物後，因意外中毒導致的人院率和受傷率最高。",
+        "translate_ch": "服用長效型糖尿病藥物後，因為意外中毒而住院和受傷的比率最高。",
         "sentence": "The rate of hospital admission and injury after accidental poisoning was highest for long-acting diabetes drugs."
     },
     {
@@ -166,7 +166,7 @@
     },
     {
         "id": 34,
-        "translate_ch": "最後，我建議需要重寫第 1201(f) 條，以適應數據互操作性。",
+        "translate_ch": "最後，我建議第 1201(f) 條需要重寫，以配合資料的互通性。",
         "sentence": "In the end, I suggest that section 1201(f) needs to be rewritten to accommodate data interoperability."
     },
     {
@@ -176,7 +176,7 @@
     },
     {
         "id": 36,
-        "translate_ch": "他原定於下個月隨第 14 批空間站人員一同飛行。",
+        "translate_ch": "他原本預定下個月，跟第 14 批太空站的組員一起執行飛行任務。",
         "sentence": "He was due to accompany the 14th space station crew on a flight next month."
     },
     {
@@ -191,7 +191,7 @@
     },
     {
         "id": 39,
-        "translate_ch": "我們正在考慮這個聯盟是否應根據該國際組織的規定承擔更廣泛的責任。",
+        "translate_ch": "我們正在考慮，這個聯盟是否該依照那個國際組織的規範，承擔起更廣泛的責任。",
         "sentence": "We are considering whether the alliance should take on the broader responsibility in accordance with the international body."
     },
     {
@@ -201,7 +201,7 @@
     },
     {
         "id": 41,
-        "translate_ch": "根據這家零售商股價的波動，各種程式與電路也會相應受到控制。",
+        "translate_ch": "隨著這家零售商股價的波動，各種程式和電路也會跟著被調控。",
         "sentence": "From the fluctuations in the retailer's stock, various programs and circuitry are controlled accordingly."
     },
     {
@@ -216,27 +216,27 @@
     },
     {
         "id": 44,
-        "translate_ch": "你打算如何利用那種方法發展成功的業務並累積財富？",
+        "translate_ch": "你打算怎麼用那種方法把生意做起來、還累積財富？",
         "sentence": "How are you going to grow a successful business and accumulate wealth using that method?"
     },
     {
         "id": 45,
-        "translate_ch": "當你強迫四分衛在口袋區移動時，他都會失去一定的精準度。",
+        "translate_ch": "只要你逼四分衛在口袋區裡移動，他的準度多少都會掉一些。",
         "sentence": "Any quarterback loses a certain amount of accuracy when you make him move in the pocket."
     },
     {
         "id": 46,
-        "translate_ch": "提前幾天計算出的預測通常在幾分鐘內是準確的。",
+        "translate_ch": "提前幾天算出來的預測，通常誤差都在幾分鐘之內。",
         "sentence": "Predictions computed a few days ahead of time are usually accurate within a few minutes."
     },
     {
         "id": 47,
-        "translate_ch": "國會議員指責政府將貿易（傳說中超過十億的消費者）置於原則（保護人權）之上。",
+        "translate_ch": "國會議員指責政府把貿易（那傳說中十幾億的消費者）看得比原則（保護人權）還重。",
         "sentence": "Congressmen accuse the administration of putting trade (the fabled billion-plus consumers) before principles (protecting human rights)."
     },
     {
         "id": 48,
-        "translate_ch": "一位專家提醒人們，不要對百歲人瑞變得太過習以為常，並說他們仍然值得受到關注。",
+        "translate_ch": "有位專家提醒大家，別把百歲人瑞看得太理所當然，他說這些人還是很值得被重視。",
         "sentence": "One expert cautioned against growing too accustomed to centenarians, saying they still deserve to be recognized."
     },
     {
@@ -246,17 +246,17 @@
     },
     {
         "id": 50,
-        "translate_ch": "戰後，我們兩國都為了實現自由的全面福祉而奮鬥。",
+        "translate_ch": "戰後，我們兩國都努力想讓自由的種種美好徹底實現。",
         "sentence": "And after the war, both of our nations struggled to achieve the full blessings of liberty."
     },
     {
         "id": 51,
-        "translate_ch": "由於這些測試是檢查胃酸的存在，因此它們對於診斷胃食道逆流非常有用。",
+        "translate_ch": "因為這些檢查是要看有沒有胃酸，所以拿來診斷胃食道逆流很有用。",
         "sentence": "Because these tests look for the presence of acid, they're useful for diagnosing acid reflux."
     },
     {
         "id": 52,
-        "translate_ch": "當然，也要重新熟悉一些我們從未真正傾聽過的最熟悉的音樂！",
+        "translate_ch": "當然，也要重新去熟悉那些我們最熟、卻其實從沒好好聽過的音樂！",
         "sentence": "And of course re-acquaint ourselves with some of the most familiar music we've never listened to!"
     },
     {
@@ -271,17 +271,17 @@
     },
     {
         "id": 55,
-        "translate_ch": "這筆意外之財使他能夠多購買六艘船——他正步向成功。",
+        "translate_ch": "這筆意外之財讓他又多買了六艘船——他正一步步邁向成功。",
         "sentence": "The windfall allowed him to acquire six more ships - and he was on his way."
     },
     {
         "id": 56,
-        "translate_ch": "梅耶爾女士表示，她於今年三月開始與他們洽談收購事宜。",
+        "translate_ch": "梅耶爾女士說，她今年三月開始跟他們洽談收購的事。",
         "sentence": "Ms. Mayer said she began speaking to them about an acquisition in March of this year."
     },
     {
         "id": 57,
-        "translate_ch": "它們採用一種常見的文件格式，需要使用其免費的閱讀軟體才能開啟。",
+        "translate_ch": "它們用的是一種常見的文件格式，要用它免費的閱讀軟體才打得開。",
         "sentence": "They are in a common document format, which requires its free reader software to use."
     },
     {
@@ -296,7 +296,7 @@
     },
     {
         "id": 60,
-        "translate_ch": "應用程序安裝完成後，用戶可以註銷並單擊圖標來啟動它們。",
+        "translate_ch": "應用程式安裝好之後，使用者可以登出，然後點一下圖示就能啟動它們。",
         "sentence": "Once the applications install, users can log off and click on an icon to activate them."
     },
     {
@@ -306,7 +306,7 @@
     },
     {
         "id": 62,
-        "translate_ch": "他說，在訪問猶太教堂之前，他需要先與那位演員談談。",
+        "translate_ch": "他說，在去猶太教堂之前，他得先跟那位演員談一談。",
         "sentence": "And he said he would need to speak with the actor before he visited the synagogue."
     },
     {
@@ -316,7 +316,7 @@
     },
     {
         "id": 64,
-        "translate_ch": "該計劃雄心勃勃，其籌款目標超過了其他活躍於政治的商業團體。",
+        "translate_ch": "這項計畫野心勃勃，募款目標超過了其他活躍於政治的商業團體。",
         "sentence": "The plan is ambitious, with its fundraising goals exceeding those of other politically active business groups."
     },
     {
@@ -326,17 +326,17 @@
     },
     {
         "id": 66,
-        "translate_ch": "該服務自 2007 年以來就不僅僅是一個傳言，而是一個實際的產品。",
+        "translate_ch": "這項服務從 2007 年開始就不只是傳言，而是真的有這個產品了。",
         "sentence": "The service has not just been a rumor, but an actual product since 2007."
     },
     {
         "id": 67,
-        "translate_ch": "內西爾基重申，無論身在何處，都需要加大對處於極度困境的人群的援助。",
+        "translate_ch": "內西爾基重申，不管在哪裡，都需要加強對處境極度艱困的民眾的援助。",
         "sentence": "Nesirky reiterated the need to increase assistance to populations in acute distress, wherever they are."
     },
     {
         "id": 68,
-        "translate_ch": "而且，如果該秩序要生存，甚至繁榮，那麼它就必須適應環境。",
+        "translate_ch": "而且，這個秩序如果想生存、甚至壯大，就必須去適應環境。",
         "sentence": "And that, if the order is to survive, even thrive, then it must adapt."
     },
     {
@@ -346,7 +346,7 @@
     },
     {
         "id": 70,
-        "translate_ch": "移動公司不僅僅提供接聽機會，還希望增加更多功能。",
+        "translate_ch": "手機業者不只是提供收聽的機會，還想加入更多功能。",
         "sentence": "But instead of just offering the chance to listen in, mobile firms want to add more."
     },
     {
@@ -361,27 +361,27 @@
     },
     {
         "id": 73,
-        "translate_ch": "截至2005年，已有超過400個美國城市在地方層面支持並遵守這項氣候條約。",
+        "translate_ch": "到 2005 年為止，已經有超過 400 個美國城市在地方上支持並遵守這項氣候條約。",
         "sentence": "And more than 400 U.S. cities locally support and adhere to the climate treaty as of 2005."
     },
     {
         "id": 74,
-        "translate_ch": "這棟仍用於家庭聚會的房子，緊鄰著這座博物館的場址。",
+        "translate_ch": "這棟到現在還用來辦家庭聚會的房子，就緊鄰著博物館的用地。",
         "sentence": "The house, which is still used for family functions, is adjacent to the museum site."
     },
     {
         "id": 75,
-        "translate_ch": "這是因為該病毒會自動從激活者的通訊錄中獲取姓名。",
+        "translate_ch": "這是因為這個病毒會自動從啟動它的人的通訊錄裡抓取名字。",
         "sentence": "That's because the virus automatically grabs names from the address book of whoever activates it."
     },
     {
         "id": 76,
-        "translate_ch": "他那簡約、充滿威脅性沈默的風格，促成了「品特式」（Pinteresque）這個形容詞的誕生。",
+        "translate_ch": "他那簡練、充滿威脅性沉默的風格，催生了「品特式」（Pinteresque）這個形容詞。",
         "sentence": "His spare style, full of threatening silences, has given rise to the adjective \"Pinteresque\"."
     },
     {
         "id": 77,
-        "translate_ch": "他們無法提供原計劃與這個擁有一萬個全座位球場相鄰的社區設施。",
+        "translate_ch": "他們沒辦法蓋出原本計畫要蓋在這座一萬個座位球場旁邊的社區設施。",
         "sentence": "They were unable to provide the community facilities planned to adjoin the 10, 000 all-seater ground."
     },
     {
@@ -396,7 +396,7 @@
     },
     {
         "id": 80,
-        "translate_ch": "該政府談判促成利比亞大規模殺傷性武器計劃的終止，這是其標誌性成就之一。",
+        "translate_ch": "這屆政府透過談判，讓利比亞的大規模毀滅性武器計畫喊停，這是它最具代表性的成就之一。",
         "sentence": "The administration negotiated an end to the Libyan WMD programme, one of its signature achievements."
     },
     {
@@ -421,12 +421,12 @@
     },
     {
         "id": 85,
-        "translate_ch": "預計還將通過一項關於索馬里沿海海盜活動的決議。",
+        "translate_ch": "預計也會通過一項關於索馬利亞外海海盜活動的決議。",
         "sentence": "It is also expected to adopt a resolution on piracy off the coast of Somalia."
     },
     {
         "id": 86,
-        "translate_ch": "絕對喜歡它——擁有大約一年來沒有出現過一次小故障。",
+        "translate_ch": "超愛這台的——用了大概一年，一次小故障都沒出過。",
         "sentence": "Absolutely adore it - hasn't had a single glitch in about a year of owning it."
     },
     {
@@ -436,12 +436,12 @@
     },
     {
         "id": 88,
-        "translate_ch": "法國隊在落後一球的情況下以 2-1 擊敗克羅地亞隊，晉級週五的決賽。",
+        "translate_ch": "法國隊一度落後一球，最後以 2-1 逆轉擊敗克羅埃西亞，晉級週五的決賽。",
         "sentence": "France also advanced to Friday's final after coming from a goal down to beat Croatia 2-1."
     },
     {
         "id": 89,
-        "translate_ch": "在那裡，他們仍然可以利用廉價勞動力，而無需應對遠洋運輸問題。",
+        "translate_ch": "在那裡，他們一樣能利用便宜的勞動力，又不用處理跨海運輸的問題。",
         "sentence": "There, they could still take advantage of cheap labor without having to contend with ocean crossings."
     },
     {
@@ -461,27 +461,27 @@
     },
     {
         "id": 93,
-        "translate_ch": "財政部長表示，該立法可能對經濟造成「嚴重的負面影響」。",
+        "translate_ch": "財政部長表示，這項法案可能對經濟造成「嚴重的負面衝擊」。",
         "sentence": "The treasury secretary said the legislation could have a \"severe adverse impact\" on the economy."
     },
     {
         "id": 94,
-        "translate_ch": "醫生們被敦促通過在候診室牆上張貼海報來為該網站做廣告。",
+        "translate_ch": "有人呼籲醫生在候診室的牆上貼海報，幫這個網站打廣告。",
         "sentence": "Doctors are being urged to advertise the site with posters on their waiting room walls."
     },
     {
         "id": 95,
-        "translate_ch": "該主管機關不一定要採納其專家小組的建議，儘管它通常會這麼做。",
+        "translate_ch": "這個主管機關不一定要採納旗下專家小組的建議，不過通常都會採納。",
         "sentence": "The agency is not required to follow the advice of its panel, though it often does."
     },
     {
         "id": 96,
-        "translate_ch": "《暴君》（Tyrants）大約八分鐘的長度讓人感到每一秒都很漫長，所以這種做法並不智。",
+        "translate_ch": "《暴君》大概八分鐘的片長，就已經讓人覺得每一秒都很漫長了，所以這麼做並不明智。",
         "sentence": "Tyrants already feels every second of its roughly eight minutes, so this wouldn't have been advisable."
     },
     {
         "id": 97,
-        "translate_ch": "管理顧問在為其他公司提供如何提高經營效率建議的事務所工作。",
+        "translate_ch": "管理顧問任職的公司，專門建議別家公司怎麼把生意經營得更有效率。",
         "sentence": "Management consultants work for firms that advise other companies how to run their businesses more efficiently."
     },
     {
@@ -491,7 +491,7 @@
     },
     {
         "id": 99,
-        "translate_ch": "該報告還描述了對該地區平民區的空襲。",
+        "translate_ch": "這份報告也描述了這個地區平民區遭到的空襲。",
         "sentence": "The report also describes aerial bombardments on civilian areas in the region."
     },
     {
@@ -516,7 +516,7 @@
     },
     {
         "id": 104,
-        "translate_ch": "一家當地的聯播台週五試圖聯繫該公司，但其辦公大樓已關閉。",
+        "translate_ch": "一家當地的加盟電視台星期五想聯絡這家公司，但公司大樓已經關了。",
         "sentence": "A local affiliate tried to contact the business Friday, but its building was closed."
     },
     {
@@ -566,12 +566,12 @@
     },
     {
         "id": 114,
-        "translate_ch": "該機構表示，新標準也將適用於煤層氣鑽探產生的廢水。",
+        "translate_ch": "這個機構表示，新標準也會適用於開採煤層氣時產生的廢水。",
         "sentence": "The new standards would also apply to wastewater produced by coalbed methane drilling, the agency said."
     },
     {
         "id": 115,
-        "translate_ch": "我認為假裝我們試圖設定議程是錯誤的。",
+        "translate_ch": "我認為，假裝我們是在試圖設定議程，這樣是不對的。",
         "sentence": "And I think it is wrong to pretend that we are trying to set an agenda."
     },
     {
@@ -581,17 +581,17 @@
     },
     {
         "id": 117,
-        "translate_ch": "至關重要的是，歐元區最大經濟體的疲軟可能會加劇該集團的債務危機。",
+        "translate_ch": "關鍵在於，歐元區最大經濟體一旦走弱，可能會讓整個區域的債務危機更加惡化。",
         "sentence": "Crucially, weakness in the euro zone's biggest economy is likely to aggravate the bloc's debt crisis."
     },
     {
         "id": 118,
-        "translate_ch": "但他加快了球速，他的反彈球很有威脅，而且他打得很具侵略性。",
+        "translate_ch": "但他把球速加快了，他的彈跳球很有威脅性，而且打得很有攻擊性。",
         "sentence": "But he has put some pace on, he has a nasty bouncer and he is aggressive."
     },
     {
         "id": 119,
-        "translate_ch": "的確，最活躍群組中的留言揭示了有強大的網絡噴子勢力企圖煽動抗議者。",
+        "translate_ch": "的確，最活躍的群組裡的留言顯示，有一股強大的網軍勢力想煽動抗議者。",
         "sentence": "True, wall posts in the most active group reveal a strong troll element attempting to agitate protesters."
     },
     {
@@ -616,12 +616,12 @@
     },
     {
         "id": 124,
-        "translate_ch": "這件事已經討論過了，但尚未形成結構性方案，也未達成任何協議。",
+        "translate_ch": "這件事討論過了，但還沒有具體的規劃，也沒有達成任何共識。",
         "sentence": "It's been discussed, but nothing has been structured or no agreement has been reached on that."
     },
     {
         "id": 125,
-        "translate_ch": "這位新部長自近期被任命為農業部長以來，首次出席質詢時間。",
+        "translate_ch": "這位新任農業部長自近期上任以來，首次出席質詢。",
         "sentence": "The new minister appeared for the first question time since her recent appointment as agriculture minister."
     },
     {
@@ -631,12 +631,12 @@
     },
     {
         "id": 127,
-        "translate_ch": "研究人員表示，他們的目的並不是要嚇唬女性或阻止她們服用激素避孕藥。",
+        "translate_ch": "研究人員表示，他們的目的並不是要嚇唬女性或阻止她們服用荷爾蒙避孕藥。",
         "sentence": "Researchers say their aim isn't to scare or stop women from taking hormonal contraceptives."
     },
     {
         "id": 128,
-        "translate_ch": "他們利用通過數據中心引流的室外空氣來降溫，而不是使用昂貴的空調設備。",
+        "translate_ch": "他們靠著透過資料中心引導進來的室外空氣來降溫，而不是用昂貴的冷氣。",
         "sentence": "They keep cool using outside air funneled through a data center instead of pricey air-conditioning units."
     },
     {
@@ -646,17 +646,17 @@
     },
     {
         "id": 130,
-        "translate_ch": "為了最大限度地減少不適感，每個帳篷都配備了空調和私人浴室。",
+        "translate_ch": "為了盡量減少不適，每頂帳篷都配備了冷氣和獨立衛浴。",
         "sentence": "To minimize discomfort, each tent is equipped with air conditioning and a private bathroom."
     },
     {
         "id": 131,
-        "translate_ch": "還有令人擔憂的跡象表明，全球經濟衰退可能會威脅到整體的援助水平。",
+        "translate_ch": "也有令人擔憂的跡象顯示，全球經濟衰退可能會威脅到整體的援助規模。",
         "sentence": "There are also worrying signs that the global economic downturn may threaten all aid levels."
     },
     {
         "id": 132,
-        "translate_ch": "為什麼航空公司拒絕，這仍然是個謎，我已要求他們對此進行調查。",
+        "translate_ch": "航空公司為什麼拒絕仍然是個謎，我已經要求他們去查清楚。",
         "sentence": "Why the airline refused is a mystery, and one that I asked it to look into."
     },
     {
@@ -671,7 +671,7 @@
     },
     {
         "id": 135,
-        "translate_ch": "在好幾週沒見到這對夫婦後，鄰居們發出了警報。",
+        "translate_ch": "這對夫婦好幾週沒露面後，鄰居們報了警。",
         "sentence": "Neighbours raised the alarm after the couple had not been seen for several weeks."
     },
     {
@@ -681,22 +681,22 @@
     },
     {
         "id": 137,
-        "translate_ch": "應瑞典的要求，國際刑警機構於週三對一名通緝犯發布了高度警戒。",
+        "translate_ch": "應瑞典的要求，國際刑警組織週三對一名通緝犯發布了高度警戒。",
         "sentence": "The international police agency issued a high alert for a wanted man on Wednesday at the request of Sweden."
     },
     {
         "id": 138,
-        "translate_ch": "據系外行星追蹤者稱，第 500 個外星世界似乎已被發現。",
+        "translate_ch": "根據系外行星觀測者的說法，第 500 顆系外行星似乎已經被發現。",
         "sentence": "The 500th alien world appears to have been discovered, according to extrasolar planet trackers."
     },
     {
         "id": 139,
-        "translate_ch": "厄瓜多爾政府表示，該省的醫生上週二開始發現酒精中毒病例。",
+        "translate_ch": "厄瓜多政府表示，該省的醫生從上週二開始出現酒精中毒的病例。",
         "sentence": "Doctors in the province first began seeing cases of alcohol poisoning last Tuesday, Ecuador's government said."
     },
     {
         "id": 140,
-        "translate_ch": "對黑客和非黑客來說，這在我看來都像是 DVD 自動點唱機的寶藏。",
+        "translate_ch": "不管是駭客還是一般人，這在我看來都像是 DVD 點唱機的寶藏。",
         "sentence": "For hackers and non-hackers alike, this all looks like DVD jukebox gold to me."
     },
     {
@@ -706,32 +706,32 @@
     },
     {
         "id": 142,
-        "translate_ch": "其次，由於其專注於臨時流動，它可以減輕接收國對移民的恐懼。",
+        "translate_ch": "其次，因為它著重在短期的人口流動，可以減輕移入國對移民的擔憂。",
         "sentence": "Second, because of its focus on temporary movement, it can alleviate immigration-related fears in receiving countries."
     },
     {
         "id": 143,
-        "translate_ch": "國際檢察官指控政府軍在今年早些時候的反格達費街頭示威活動中向平民抗議者開火。",
+        "translate_ch": "國際檢察官指控政府軍在今年稍早的反格達費街頭示威中，向平民抗議者開火。",
         "sentence": "International prosecutors allege government troops fired on civilian protesters during anti-Gadhafi street demonstrations earlier this year."
     },
     {
         "id": 144,
-        "translate_ch": "2001年11月13日，受西方支持的聯盟幾乎未遇抵抗便橫掃進入阿富汗首都。",
+        "translate_ch": "2001年11月13日，西方支持的聯盟幾乎沒遇到抵抗，就長驅直入阿富汗首都。",
         "sentence": "On 13 November 2001 the western-backed alliance swept into the Afghan capital virtually unopposed."
     },
     {
         "id": 145,
-        "translate_ch": "一旦決定下來，政府將制定全國性計劃並撥款。",
+        "translate_ch": "一旦決定下來，政府就會制定全國性的計畫並撥款。",
         "sentence": "Once that is decided, the government will draw up a national plan and allocate funds."
     },
     {
         "id": 146,
-        "translate_ch": "你可以對 WiFi 連接進行 WEP 加密，或僅允許選定的用戶訪問。",
+        "translate_ch": "你可以幫 WiFi 連線加上 WEP 加密，或只允許特定使用者連線。",
         "sentence": "You can WEP encrypt the wifi connection, or allow access to only selected users."
     },
     {
         "id": 147,
-        "translate_ch": "法國與西班牙達成配額交換協議，使其獲得 1,000 噸的配額。",
+        "translate_ch": "法國和西班牙達成配額交換協議，讓法國拿到 1,000 噸的配額。",
         "sentence": "France concluded a quota swap deal with Spain to allow it a 1,000 tonne allowance."
     },
     {
@@ -756,7 +756,7 @@
     },
     {
         "id": 152,
-        "translate_ch": "有個人選擇不灰心喪氣，而他和同事相處得並不融洽。",
+        "translate_ch": "有一個人選擇不灰心喪志，不過他跟同事處得並不好。",
         "sentence": "One man chose not to be disillusioned, and he and his colleague did not get along."
     },
     {
@@ -766,7 +766,7 @@
     },
     {
         "id": 154,
-        "translate_ch": "當她在證人席上大聲朗讀時，她看起來快要流下淚來。",
+        "translate_ch": "當她在證人席上大聲朗讀時，看起來快哭出來了。",
         "sentence": "As she read it aloud on the stand, she appeared near the verge of tears."
     },
     {
@@ -776,22 +776,22 @@
     },
     {
         "id": 156,
-        "translate_ch": "1992 年，土庫曼斯坦宣佈將把西里爾字母改為拉丁基底的土耳其字母。",
+        "translate_ch": "1992 年，土庫曼宣布要把西里爾字母改成以拉丁字母為基礎的土耳其字母。",
         "sentence": "In 1992, Turkmenistan announced it would switch to a Latin-based Turkish alphabet from the Cyrillic script."
     },
     {
         "id": 157,
-        "translate_ch": "會議評估了已在討論中的緊縮方案以及爆炸的影響。",
+        "translate_ch": "會議評估了已經在討論的緊縮方案，以及這起爆炸的影響。",
         "sentence": "The meeting assessed an austerity package already under discussion, and the impact of the blast."
     },
     {
         "id": 158,
-        "translate_ch": "委員會還指責這家放貸機構的經理隱瞞成員有關高風險放貸的情況。",
+        "translate_ch": "委員會還指責這家放貸機構的經理，對成員隱瞞高風險放貸的狀況。",
         "sentence": "The committee also accused the lender's managers of keeping its members in the dark about risky lending."
     },
     {
         "id": 159,
-        "translate_ch": "世界人民已經認識到科技可以改變並改善他們的生活。",
+        "translate_ch": "全世界的人都已經體認到，科技可以改變並改善他們的生活。",
         "sentence": "The people of the world have recognized that technology can alter and improve their lives."
     },
     {
@@ -816,12 +816,12 @@
     },
     {
         "id": 164,
-        "translate_ch": "這些問題委員會的其他幾位董事也同時在五或六個委員會中任職。",
+        "translate_ch": "這幾個問題重重的董事會裡，還有幾位董事同時身兼五、六個董事會的職務。",
         "sentence": "Several other directors from these troubled boards also sat on either five or six boards altogether."
     },
     {
         "id": 165,
-        "translate_ch": "混合媒材，鋼、有機玻璃、鑄造塑料和鋁，汽車底漆與透明漆饰面，貼花為紙上噴墨印刷。",
+        "translate_ch": "混合媒材：鋼、壓克力、鑄造塑膠與鋁，汽車底漆加透明漆塗裝，貼花為紙上噴墨印刷。",
         "sentence": "Mixed media, steel, plexiglass, cast-plastic, and aluminum, automotive basecoat-clearcoat finish, decals are inkjet on paper."
     },
     {
@@ -846,7 +846,7 @@
     },
     {
         "id": 170,
-        "translate_ch": "事實上，該組織所擁有的，只是一名對含糊問題給出狹隘回答的證人。",
+        "translate_ch": "事實上，這個組織手上有的，不過就是一名對含糊的問題只給了狹隘回答的證人。",
         "sentence": "In fact, all the organization has is a witness who gave narrow answers to ambiguous questions."
     },
     {
@@ -861,7 +861,7 @@
     },
     {
         "id": 173,
-        "translate_ch": "國家救護服務機構已就緊急電話回應延遲一事展開調查。",
+        "translate_ch": "全國救護服務單位已針對緊急電話延遲回應一事展開調查。",
         "sentence": "The national ambulance service has launched an inquiry into the delayed response to the emergency call."
     },
     {
@@ -871,7 +871,7 @@
     },
     {
         "id": 175,
-        "translate_ch": "房間周圍的牆上掛著馬的繪畫，客人們在那裡隨意地與和藹可親的調酒師聊天。",
+        "translate_ch": "房間四周的牆上掛著馬的畫作，客人們在這裡輕鬆地跟親切的調酒師聊天。",
         "sentence": "Paintings of horses hang along the walls surrounding the room, where guests casually chat with amiable bartenders."
     },
     {
@@ -881,12 +881,12 @@
     },
     {
         "id": 177,
-        "translate_ch": "武裝部隊是社會中受到一項強制性緊縮計劃影響的眾多群體之一。",
+        "translate_ch": "軍方是社會上受到這項強制緊縮計畫影響的眾多群體之一。",
         "sentence": "The armed forces are among many groups in society affected by a mandated austerity programme plan."
     },
     {
         "id": 178,
-        "translate_ch": "他表示，他對那些回覆的審查並未發現對那名男子有「過度的敵意」。",
+        "translate_ch": "他說，他檢視那些回覆之後，並沒有發現對那名男子有「過度的敵意」。",
         "sentence": "He said his review of those responses found no \"undue amount of animus\" toward the man."
     },
     {
@@ -901,7 +901,7 @@
     },
     {
         "id": 181,
-        "translate_ch": "由於主權評級是反應性的而非預防性的，它們會放大新興市場貸款中的繁榮與蕭條週期。",
+        "translate_ch": "由於主權評級是事後反應、而非事前預防，因此會放大新興市場借貸的繁榮與蕭條循環。",
         "sentence": "As they are reactive rather than preventive, sovereign ratings amplify boom-bust cycles in emerging-market lending."
     },
     {
@@ -911,7 +911,7 @@
     },
     {
         "id": 183,
-        "translate_ch": "模擬電視觀眾也收到了螢幕字幕提醒，告知他們需要進行數字轉換。",
+        "translate_ch": "使用類比訊號的觀眾也透過螢幕字幕收到提醒，告知他們必須轉換成數位訊號。",
         "sentence": "Analogue viewers have also been reminded with on-screen captions about the need to convert."
     },
     {
@@ -926,17 +926,17 @@
     },
     {
         "id": 186,
-        "translate_ch": "黑色電影（Noir）是美國調查式、分析式和文學式衝動的體現之一。",
+        "translate_ch": "黑色電影是美國那股調查、分析與文學衝動的其中一個出口。",
         "sentence": "Noir is one of the places that the investigative, analytic, literary impulse went in America."
     },
     {
         "id": 187,
-        "translate_ch": "更確切地說，法律分析得到了強化，以反映出其中涉及的極高法律門檻。",
+        "translate_ch": "更確切地說，是強化了法律分析，以反映其中涉及的極高法律門檻。",
         "sentence": "Rather, the legal analysis was strengthened to reflect the extremely high legal thresholds involved."
     },
     {
         "id": 188,
-        "translate_ch": "其他基因相似性表明，他們在大約 300 年前都有一個單一的共同祖先。",
+        "translate_ch": "其他的基因相似之處顯示，他們大約在 300 年前有一個共同的祖先。",
         "sentence": "Other genetic similarities suggested they all had a single, common ancestor about 300 years ago."
     },
     {
@@ -946,17 +946,17 @@
     },
     {
         "id": 190,
-        "translate_ch": "世界各地的天體物理學家正在完善並提高他們研究遙遠古老光芒的能力。",
+        "translate_ch": "世界各地的天體物理學家正在精進研究遙遠古老光線的能力。",
         "sentence": "Astrophysicists around the world are refining and improving their ability to study distant and ancient light."
     },
     {
         "id": 191,
-        "translate_ch": "他分享了一個極具啟發性的軼事：有一次一個種族主義理髮師拒絕為他理髮。",
+        "translate_ch": "他分享了一則很有意思的軼事：曾經有個有種族歧視的理髮師拒絕幫他剪頭髮。",
         "sentence": "He shares a telling anecdote of the time a racist barber refused to cut his hair."
     },
     {
         "id": 192,
-        "translate_ch": "她小時候接種過疫苗，但現在更相信整體和天然的育兒方式。",
+        "translate_ch": "她小時候有打過疫苗，但現在比較相信整體療法和天然的育兒方式。",
         "sentence": "She was inoculated as a child, but now believes in holistic and natural childcare."
     },
     {
@@ -966,7 +966,7 @@
     },
     {
         "id": 194,
-        "translate_ch": "人群掀翻了一輛新聞採訪車，並因這位教練的離職而憤怒地譴責媒體。",
+        "translate_ch": "群眾掀翻了一輛新聞採訪車，還因為這位教練離職而憤怒地譴責媒體。",
         "sentence": "The crowd tipped over a news van and decried the media in anger over the coach's departure."
     },
     {
@@ -981,7 +981,7 @@
     },
     {
         "id": 197,
-        "translate_ch": "因此，我開始動筆，以此宣洩這些痛苦和悲慘觀察中所產生的哀傷。",
+        "translate_ch": "於是我開始動筆，藉此抒發這些痛苦又悲慘的見聞所帶來的哀傷。",
         "sentence": "So I started to write out of the anguish born of these painful and tragic observations."
     },
     {
@@ -1001,12 +1001,12 @@
     },
     {
         "id": 201,
-        "translate_ch": "他表示將很快宣佈委員會成員名單，並為其提出建議設定截止日期。",
+        "translate_ch": "他表示很快就會公布委員會的成員名單，並為他們提出建議的期限設下截止日。",
         "sentence": "He says he will soon announce commission members and set a deadline for their recommendations."
     },
     {
         "id": 202,
-        "translate_ch": "在社交媒體上發文的食客有時會惹惱廚師，後者擔心閃爍的智慧型手機會搶走食物的風頭。",
+        "translate_ch": "在社群媒體上打卡發文的食客，有時會惹惱廚師，因為他們擔心閃個不停的手機會搶走食物的風采。",
         "sentence": "Tweeting diners can sometimes annoy chefs who worry that flashing smartphones will upstage their food."
     },
     {
@@ -1016,7 +1016,7 @@
     },
     {
         "id": 204,
-        "translate_ch": "我們的旅程跌跌撞撞地啟動了，感覺不再像是緩慢地經過那些不知名的植被。",
+        "translate_ch": "我們的旅程顛簸地展開，不再感覺像是慢吞吞地經過一片片叫不出名字的草木。",
         "sentence": "Our journey lurches into gear, no longer feeling like we're sluggishly passing anonymous vegetation."
     },
     {
@@ -1026,17 +1026,17 @@
     },
     {
         "id": 206,
-        "translate_ch": "這個答案的重要性，不僅僅在於增加一個需要記住的統計數據。",
+        "translate_ch": "這個答案的意義，不只是多一個要記的統計數字而已。",
         "sentence": "And there is more riding on the answer than just another statistic to remember."
     },
     {
         "id": 207,
-        "translate_ch": "它會在播放器下方延伸的播放清單托盤中「自動神奇地」生成一份播放清單。",
+        "translate_ch": "它會在播放器下方展開的播放清單列中，像變魔術一樣自動生成一份播放清單。",
         "sentence": "It will automagically generate a playlist in the playlist tray that extends underneath the viewer."
     },
     {
         "id": 208,
-        "translate_ch": "在今天的太空漫步中，這兩名太空人將完成天線系統尚未完成的工作。",
+        "translate_ch": "在今天的太空漫步中，這兩名太空人將接手天線系統還沒做完的工作。",
         "sentence": "For today's spacewalk, the two astronauts will complete the unfinished work on the antenna system."
     },
     {
@@ -1051,22 +1051,22 @@
     },
     {
         "id": 211,
-        "translate_ch": "總統認為，這是目前國內存在的經濟焦慮的一部分。",
+        "translate_ch": "總統認為，這是目前國內瀰漫的經濟焦慮的一部分。",
         "sentence": "And the president believes that's part of the economic anxiety that's taking place in this country."
     },
     {
         "id": 212,
-        "translate_ch": "對德國總理來說，不祥的是，感到厭倦和焦慮的不僅僅是富有外國人。",
+        "translate_ch": "讓德國總理感到不妙的是，覺得厭煩又焦慮的並不只有有錢的外國人。",
         "sentence": "Ominously for the chancellor, it is not just rich foreigners who are fed up and anxious."
     },
     {
         "id": 213,
-        "translate_ch": "對於任何國家來說，參加世界盃都是一件關乎深刻民族自豪感的事情。",
+        "translate_ch": "對任何國家來說，能踢進世界盃都攸關深刻的民族自豪感。",
         "sentence": "For any country, playing in the World Cup is a matter of profound national pride."
     },
     {
         "id": 214,
-        "translate_ch": "儘管如此，12,000 英尺高度那緩慢且不確定的進展正在逐漸侵蝕大眾的支持率。",
+        "translate_ch": "不過，從 12,000 英尺高空傳來的那種緩慢又不確定的進展，還是漸漸侵蝕了民眾的支持。",
         "sentence": "But the slow and uncertain progress from 12, 000 ft. is eating away at popular approval anyhow."
     },
     {
@@ -1076,12 +1076,12 @@
     },
     {
         "id": 216,
-        "translate_ch": "無論如何，多年來大部分情況一直以不平衡的方式發生著。",
+        "translate_ch": "反正這種情況多年來大多都是不均勻地在發生。",
         "sentence": "Most of it has been happening in an unevenly distributed way for years anyway."
     },
     {
         "id": 217,
-        "translate_ch": "這名醫生一直堅決否認他開過或施用過任何可能致使病人死亡的藥物。",
+        "translate_ch": "這名醫生始終堅決否認，自己開過或用過任何可能導致病人死亡的藥物。",
         "sentence": "The doctor has consistently denied he prescribed or administered anything that could have killed the patient."
     },
     {
@@ -1101,7 +1101,7 @@
     },
     {
         "id": 221,
-        "translate_ch": "你應該道歉，並告訴觀眾你稍後會嘗試為他們帶來這篇報導。",
+        "translate_ch": "你應該道歉，並告訴觀眾你稍後會盡量把這則新聞帶給他們。",
         "sentence": "You should apologise and tell the audience you will try to bring them the story later."
     },
     {
@@ -1116,7 +1116,7 @@
     },
     {
         "id": 224,
-        "translate_ch": "其他照片似乎顯示了死去的年輕男性，其中兩個人躺在坑中。",
+        "translate_ch": "其他照片似乎拍到了死去的年輕男子，其中兩人躺在坑裡。",
         "sentence": "Other photos appear to show dead young men, two of whom lie in pits."
     },
     {
@@ -1126,17 +1126,17 @@
     },
     {
         "id": 226,
-        "translate_ch": "她出現在表演名單上，是在提醒人們爵士樂表達的完整領域。",
+        "translate_ch": "她出現在演出名單上，提醒了大家爵士樂表現的完整面貌。",
         "sentence": "Her appearance on the bill is a reminder of the total realm of jazz expression."
     },
     {
         "id": 227,
-        "translate_ch": "如果你真的把相機和儀器伸進去，你可能在抓取闌尾時會遇到困難。",
+        "translate_ch": "如果你真的把相機和器械伸進去，抓取闌尾時可能會遇到困難。",
         "sentence": "If you do get your camera and instruments inside, you may have trouble grasping the appendix."
     },
     {
         "id": 228,
-        "translate_ch": "對於許多懷揣北極夢想的資源公司來說，這樣的交易代價可能太高，難以消化。",
+        "translate_ch": "對許多懷抱北極夢想的資源公司來說，這種交易的代價可能太高，難以承受。",
         "sentence": "Such deals may be too steep for the appetite of many resource companies with Arctic dreams."
     },
     {
@@ -1146,7 +1146,7 @@
     },
     {
         "id": 230,
-        "translate_ch": "正在紐約開會的大英國協外長們在聽到無罪釋放的消息時，自發性地爆發出了掌聲。",
+        "translate_ch": "正在紐約開會的大英國協外長們，一聽到無罪釋放的消息，便自發地鼓起掌來。",
         "sentence": "Commonwealth foreign ministers, meeting in New York, greeted news of the acquittal with spontaneous applause."
     },
     {
@@ -1156,27 +1156,27 @@
     },
     {
         "id": 232,
-        "translate_ch": "平台是有意義的，而為了某種單一應用設備而危害平台，從來都不是一個明智的提議。",
+        "translate_ch": "平台才是王道，為了一個單一用途的裝置而拿平台冒險，從來就不是明智的做法。",
         "sentence": "Platforms make sense, and jeopardizing platforms for an appliance was never a sensible proposition."
     },
     {
         "id": 233,
-        "translate_ch": "如果改變生活方式或使用藥物（在適用的情況下）無效，女性可能會被建議接受手術。",
+        "translate_ch": "如果改變生活方式或用藥（在適用的情況下）都沒效，可能會建議女性接受手術。",
         "sentence": "If lifestyle measures or medication -where applicable - do not work, women may be offered surgery."
     },
     {
         "id": 234,
-        "translate_ch": "或者想想那些光遺傳學基因，它們可以透過施加光照來改善情緒。",
+        "translate_ch": "或者想想那些光遺傳學基因，只要照光就能改善情緒。",
         "sentence": "Or think about those optogenetic genes that can lighten a mood with the application of light."
     },
     {
         "id": 235,
-        "translate_ch": "埃里克森週五表示，他將任命一名倫理官員，直接向他匯報工作。",
+        "translate_ch": "埃里克森週五表示，他將任命一名倫理官員，直接向他報告。",
         "sentence": "Erickson said Friday that he'll appoint an ethics officer to report directly to him."
     },
     {
         "id": 236,
-        "translate_ch": "將引入一項評估制度，為表現優異的教師提供 10% 的加薪。",
+        "translate_ch": "將導入一套考核制度，為表現優異的教師加薪 10%。",
         "sentence": "An appraisal system will be introduced which will offer high-achieving teachers a 10% increase."
     },
     {
@@ -1206,7 +1206,7 @@
     },
     {
         "id": 242,
-        "translate_ch": "這些藥物的大約費用是多少，大多數保險計劃是否涵蓋這些費用？",
+        "translate_ch": "這些藥物大概要多少錢？大多數的保險方案有涵蓋嗎？",
         "sentence": "What are the approximate costs of the medicines, and do most insurance plans cover these?"
     },
     {
@@ -1221,7 +1221,7 @@
     },
     {
         "id": 245,
-        "translate_ch": "會向一個與這個家族的死對頭關係如此密切的人發出這樣的邀請嗎？",
+        "translate_ch": "這樣的邀請，會發給一個跟這個家族的死對頭關係如此密切的人嗎？",
         "sentence": "Would such an invitation be extended to a man so intimately associated with the family's arch-enemy?"
     },
     {
@@ -1231,17 +1231,17 @@
     },
     {
         "id": 247,
-        "translate_ch": "它由一位著名建築師設計，這位建築師因在巴塞隆納設計的許多建築而聞名。",
+        "translate_ch": "它出自一位知名建築師之手，這位建築師以他在巴塞隆納設計的眾多建築聞名。",
         "sentence": "It was designed by a famous architect, well-known for many buildings he designed in Barcelona."
     },
     {
         "id": 248,
-        "translate_ch": "研究發現，這座城市的優勢包括其品牌、娛樂和夜生活、購物、建築以及友好度。",
+        "translate_ch": "研究發現，這座城市的優勢包括它的品牌、娛樂與夜生活、購物、建築，還有居民的友善。",
         "sentence": "It found the city's strengths included its brand, entertainment and nightlife, shopping, architecture and friendliness."
     },
     {
         "id": 249,
-        "translate_ch": "如果不是，請舉出一個你認為以色列的行動違背美國利益的領域。",
+        "translate_ch": "如果不是，那就舉一個你認為以色列的行動違背美國利益的例子吧。",
         "sentence": "If not, name one area where you believe Israeli actions are contrary to US interests."
     },
     {
@@ -1271,22 +1271,22 @@
     },
     {
         "id": 255,
-        "translate_ch": "兩位客戶報告牙齒斷裂或碎裂，另有兩位報告肘部或手臂骨折。",
+        "translate_ch": "有兩位顧客反映牙齒斷裂或缺角，另外兩位反映手肘或手臂骨折。",
         "sentence": "Two customers reported broken or chipped teeth, and two reported a broken elbow or arm."
     },
     {
         "id": 256,
-        "translate_ch": "臨時定居點在城市周圍興起，隨後隨著城市的擴張而擴大。",
+        "translate_ch": "臨時的聚落在城市周圍冒了出來，之後隨著城市擴張而變大。",
         "sentence": "Ad hoc settlements sprung up around the city, then expanded as the city ballooned."
     },
     {
         "id": 257,
-        "translate_ch": "他說：「在 20 世紀 30 年代，發生了兩件事引起了西方人的迷戀。」",
+        "translate_ch": "他說：「在 1930 年代，發生了兩件讓西方人著迷的事。」",
         "sentence": "In the 1930s, two things happened to arouse fascination of people in the West, he says."
     },
     {
         "id": 258,
-        "translate_ch": "實際上，任何聲樂團體都可以將自己編排成覆蓋整個音譜的主旋律和對位旋律。",
+        "translate_ch": "其實，任何一個聲樂團體都能把自己編排出涵蓋整個音域的主旋律和對位旋律。",
         "sentence": "Practically any vocal group can arrange itself into melodies and countermelodies that cover the sonic spectrum."
     },
     {
@@ -1296,12 +1296,12 @@
     },
     {
         "id": 260,
-        "translate_ch": "阿普代克在被捕後在監獄中待了一晚，目前已保釋出獄。",
+        "translate_ch": "阿普代克被捕後在牢裡待了一晚，目前已交保出獄。",
         "sentence": "Updyke, who spent a night in jail after his arrest, is free on bond."
     },
     {
         "id": 261,
-        "translate_ch": "他發出一聲宣布抵達和炫耀的叫喊，孩子們也發出了真誠驚訝的噓聲。",
+        "translate_ch": "他發出一聲既是宣告抵達、又帶著炫耀的呼喊，孩子們則發出由衷驚嘆的呼聲。",
         "sentence": "He gave a cry of arrival and display, and the boys hooted with true astonishment."
     },
     {
@@ -1311,12 +1311,12 @@
     },
     {
         "id": 263,
-        "translate_ch": "一位官員補充說，任何達不到這個標準的行為，看起來都是傲慢、非法或推諉的。",
+        "translate_ch": "一位官員補充說，任何達不到這個標準的做法，看起來都顯得傲慢、違法或是在推託。",
         "sentence": "Anything short of that appears to be arrogant, unlawful or evasive, added one official."
     },
     {
         "id": 264,
-        "translate_ch": "我們的任務是持續像霓虹箭頭一樣，指向科技這一尚未被充分利用的工具。",
+        "translate_ch": "我們的工作，就是不斷像個大大的霓虹箭頭一樣，指向科技這個還沒被充分利用的工具。",
         "sentence": "Our job is to keep pointing a big neon arrow towards technology as an underutilized tool."
     },
     {
@@ -1341,7 +1341,7 @@
     },
     {
         "id": 269,
-        "translate_ch": "嘿，用這種方式來開頭一篇商業雜誌的文章會很有趣，不是嗎？",
+        "translate_ch": "嘿，用這種方式來當商業雜誌文章的開頭，應該會很有趣吧？",
         "sentence": "Hey, this would be a funny way to start an article in a business magazine, wouldn't it?"
     },
     {
@@ -1376,7 +1376,7 @@
     },
     {
         "id": 276,
-        "translate_ch": "一位管理員表示，上午的問答環節實行「隨意提問」的政策。",
+        "translate_ch": "一位管理員表示，上午的問答時間採取「想問就問」的原則。",
         "sentence": "The morning question-and-answer sessions have a \"freedom to ask\" policy, an administrator said."
     },
     {
@@ -1386,7 +1386,7 @@
     },
     {
         "id": 278,
-        "translate_ch": "當然，MacBook 獲得了巨大的升級，撇開價格不談，這是一個很棒的演進。",
+        "translate_ch": "當然啦，MacBook 這次大升級，撇開價格不談，是個很棒的進化。",
         "sentence": "Sure the macbook got a great upgrade and price aside it is a great evolution."
     },
     {
@@ -1401,7 +1401,7 @@
     },
     {
         "id": 281,
-        "translate_ch": "一位發言人表示，政府稱聯盟企圖暗殺的這位領導人目前安然無恙。",
+        "translate_ch": "一位發言人表示，這位據政府所說遭聯盟試圖暗殺的領導人，目前安然無恙。",
         "sentence": "The leader, who the government says the alliance is trying to assassinate, was alive and well, a spokesman said."
     },
     {
@@ -1426,17 +1426,17 @@
     },
     {
         "id": 286,
-        "translate_ch": "這些數據將在各監管機構中使用，以評估金融市場的風險。",
+        "translate_ch": "這些數據將被各監管機構用來評估金融市場的風險。",
         "sentence": "This data will be used across regulatory agencies to assess risk in the financial markets."
     },
     {
         "id": 287,
-        "translate_ch": "由於羈押著如此寶貴的資產，當局採取了非常措施，對這名嫌犯的被捕保密。",
+        "translate_ch": "手上握著這麼寶貴的資產，當局採取了非常手段，對這名嫌犯落網的消息保密。",
         "sentence": "With such a prized asset in custody, authorities took extraordinary measures to keep the suspect's arrest secret."
     },
     {
         "id": 288,
-        "translate_ch": "另一種預測市場的方法是為每個市場板塊分配一個價值。",
+        "translate_ch": "另一種預測市場的方法，是為每個市場區塊設定一個價值。",
         "sentence": "Another way of projecting the market is to assign a value for each market sector."
     },
     {
@@ -1446,7 +1446,7 @@
     },
     {
         "id": 290,
-        "translate_ch": "他們借鑒了這些概念，因為他們已經處於領先地位，且無法互相同化。",
+        "translate_ch": "他們借鏡了這些概念，因為他們早已居於領先地位，又無法彼此同化。",
         "sentence": "They borrowed these concepts because they were already on top and couldn't assimilate each other."
     },
     {
@@ -1456,7 +1456,7 @@
     },
     {
         "id": 292,
-        "translate_ch": "一位官員表示，秘書長在峰會上呼籲加大對利比亞的人道救援。",
+        "translate_ch": "一位官員表示，秘書長在高峰會上呼籲加強對利比亞的人道救援。",
         "sentence": "An official said that at the summit, the secretary-general called for increased humanitarian assistance in Libya."
     },
     {
@@ -1466,12 +1466,12 @@
     },
     {
         "id": 294,
-        "translate_ch": "談到陸上管道時，許多人會自動將它與一家知名的管道公司聯想在一起。",
+        "translate_ch": "一提到陸上管線，許多人就會自動聯想到一家知名的管線公司。",
         "sentence": "When talking about the overland pipeline, many automatically associate it with a well-known pipeline company."
     },
     {
         "id": 295,
-        "translate_ch": "滑雪者可以在一個滑雪歷史協會的網站上進一步鑽研滑雪歷史。",
+        "translate_ch": "滑雪愛好者可以到某個滑雪歷史協會的網站，進一步深入了解這段歷史。",
         "sentence": "Skiers can delve further into ski history at a ski history association's website."
     },
     {
@@ -1481,12 +1481,12 @@
     },
     {
         "id": 297,
-        "translate_ch": "這是一種禮貌性的鼓勵，背後卻隱含著他無法再次成功的假定。",
+        "translate_ch": "這是一種禮貌性的鼓勵，背後卻暗藏著認定他無法再次成功的假設。",
         "sentence": "It's a polite pat on the head and an assumption he can't do it again."
     },
     {
         "id": 298,
-        "translate_ch": "她在稀有的幾次公開露面中犯的錯越多，她就越失去自信。",
+        "translate_ch": "她難得幾次公開露面時犯的錯越多，就越沒自信。",
         "sentence": "And the more mistakes she makes on her scarce public outings, the more self-assurance she loses."
     },
     {
@@ -1511,7 +1511,7 @@
     },
     {
         "id": 303,
-        "translate_ch": "如果運動員想要挑戰那一點，那沒問題，我們將接受最終的結果。",
+        "translate_ch": "如果運動員想對此提出異議，沒問題，我們會接受最後的結果。",
         "sentence": "If an athlete wants to challenge that, that's okay, and we'll live by the result."
     },
     {
@@ -1531,7 +1531,7 @@
     },
     {
         "id": 307,
-        "translate_ch": "這正是讓政府當局在科索沃力求勝利時感到困擾的問題。",
+        "translate_ch": "這正是政府當局在科索沃力求勝利時，始終揮之不去的難題。",
         "sentence": "That's what haunts the administration as it struggles to attain victory in Kosovo."
     },
     {
@@ -1541,22 +1541,22 @@
     },
     {
         "id": 309,
-        "translate_ch": "另一場由區域聯盟主導、旨在斡旋這位領導人與反抗軍之間和平的嘗試，於四月宣告失敗。",
+        "translate_ch": "另一場由區域聯盟主導、試圖為這位領導人與反抗軍斡旋和平的努力，也在四月宣告失敗。",
         "sentence": "Another attempt led by a regional bloc to broker peace between the leader and the rebels fell through in April."
     },
     {
         "id": 310,
-        "translate_ch": "此外，大約四分之一很少或從不去教堂的人選擇了特創論的觀點。",
+        "translate_ch": "另外，在很少或從不上教堂的人當中，大約有四分之一選擇了創造論的觀點。",
         "sentence": "Also, about a fourth of those who seldom or never attend church choose the creationist view."
     },
     {
         "id": 311,
-        "translate_ch": "相關機構表示，學校出席率低會影響孩子的社交技巧及教育。",
+        "translate_ch": "相關單位表示，孩子在校出席率低，會影響他的社交能力和學習。",
         "sentence": "The authority said poor school attendance affected a child's social skills as well as its education."
     },
     {
         "id": 312,
-        "translate_ch": "他向一位隨從（一名新公民）展示了紀念碑周圍刻有的銘文。",
+        "translate_ch": "他向一位服務人員（一名剛入籍的公民）展示了紀念碑周圍刻著的銘文。",
         "sentence": "He showed an attendant, a recent citizen, the engraved inscriptions that surround the monument."
     },
     {
@@ -1566,7 +1566,7 @@
     },
     {
         "id": 314,
-        "translate_ch": "在招募的各個階段，應徵者對「多元化態度」都將受到持續的審查。",
+        "translate_ch": "在招募的每個階段，應徵者「對多元的態度」都會不斷被檢視。",
         "sentence": "And throughout all stages of recruitment, candidates will have their \"attitude towards diversity\" scrutinised constantly."
     },
     {
@@ -1576,7 +1576,7 @@
     },
     {
         "id": 316,
-        "translate_ch": "我們還知道，有些植物物種可以模擬腐肉來吸引蒼蠅。",
+        "translate_ch": "我們也知道，有些植物能模仿腐肉的樣子來吸引蒼蠅。",
         "sentence": "We also know that some plant species can mimic carrion to attract flies."
     },
     {
@@ -1586,22 +1586,22 @@
     },
     {
         "id": 318,
-        "translate_ch": "你有證據顯示這家公司持有這種你所歸咎於他們的輕蔑式「享受」嗎？",
+        "translate_ch": "你有證據證明，這家公司真的有你所指控的那種帶有貶意的「享受」心態嗎？",
         "sentence": "Do you have evidence that the company has this type of perjorative \"enjoyment\" you attribute to them?"
     },
     {
         "id": 319,
-        "translate_ch": "這家拍賣行正在起訴那家提供偽造物品給它的公司。",
+        "translate_ch": "這家拍賣行正在控告那家賣給他們偽造物品的公司。",
         "sentence": "The auction house is suing the company that provided it with the phony items."
     },
     {
         "id": 320,
-        "translate_ch": "此外，隨著觀眾開始接受英語電影，馬來電影的受眾變得越來越小。",
+        "translate_ch": "此外，隨著觀眾開始擁抱英語電影，馬來語電影的觀眾也越來越少。",
         "sentence": "Furthermore, the Malay film audience became smaller as viewers began to embrace English-language films."
     },
     {
         "id": 321,
-        "translate_ch": "航空主管機關計劃於週四發布該事件的音訊及詳細資訊。",
+        "translate_ch": "航空主管機關計畫於週四公布這起事件的音訊和詳細資訊。",
         "sentence": "The aviation authority plans to release audio and details of the event on Thursday."
     },
     {
@@ -1611,7 +1611,7 @@
     },
     {
         "id": 323,
-        "translate_ch": "一位官員在對坐滿民權律師的禮堂演講中讚揚了一位同僚。",
+        "translate_ch": "一位官員在對著坐滿民權律師的禮堂發表演說時，讚揚了一位同僚。",
         "sentence": "An official praised a colleague in her address to the packed auditorium of civil rights lawyers."
     },
     {
@@ -1626,17 +1626,17 @@
     },
     {
         "id": 326,
-        "translate_ch": "這位年輕女演員帶有她姑姑那種純真，她將角色詮釋為一個善良單純的人。",
+        "translate_ch": "這位年輕女演員身上有幾分她阿姨那種天真，把角色演成了一個善良單純的人。",
         "sentence": "The young actress, who has something of her aunt's guilelessness, plays her as a good-hearted innocent."
     },
     {
         "id": 327,
-        "translate_ch": "有些人可能會喜歡這種聽覺回饋，儘管我們可能更偏好更安靜一些的東西。",
+        "translate_ch": "雖然有些人可能會喜歡這種聽覺回饋，但我們大概會比較想要安靜一點的。",
         "sentence": "Some might like the aural feedback, though we might have preferred something a bit quieter."
     },
     {
         "id": 328,
-        "translate_ch": "那裡價格實惠且道地，所以別指望在那裡會聽到一句英語。",
+        "translate_ch": "那裡價格實惠又道地，所以別指望能聽到半句英語。",
         "sentence": "It is affordable and authentic so do not expect to hear a word of English there."
     },
     {
@@ -1646,12 +1646,12 @@
     },
     {
         "id": 330,
-        "translate_ch": "當局表示，中央政府撥款的減少已迫使其考慮重大變革。",
+        "translate_ch": "當局表示，中央政府撥款減少，已迫使他們考慮做出重大改變。",
         "sentence": "The authority said a fall in central government grants had forced it to consider major changes."
     },
     {
         "id": 331,
-        "translate_ch": "因此，汽車與科技公司與災區供應商的聯繫被切斷了。",
+        "translate_ch": "因此，汽車和科技公司都跟災區的供應商斷了聯繫。",
         "sentence": "So auto and technology companies are cut off from suppliers in the disaster zone."
     },
     {
@@ -1686,27 +1686,27 @@
     },
     {
         "id": 338,
-        "translate_ch": "直接透過他們自家的網站預訂，您便能確保獲得網路上最低的客房房價。",
+        "translate_ch": "只要直接透過他們自家的網站預訂，就能確保拿到網路上最低的房價。",
         "sentence": "Book directly through their own sites and you're assured the lowest rates for rooms available online."
     },
     {
         "id": 339,
-        "translate_ch": "一場徒步導覽，或在當地一家知名漢堡店與大道上的嘻哈博物館用午餐。",
+        "translate_ch": "來趟徒步導覽，或是在當地一家知名漢堡店用午餐，再逛逛大道上的嘻哈博物館。",
         "sentence": "A walking tour or lunch at a famous local burger spot and a hip-hop museum on the avenue."
     },
     {
         "id": 340,
-        "translate_ch": "從 1983 年到 2007 年，平均每年約售出 60 萬套新房。",
+        "translate_ch": "從 1983 年到 2007 年，平均每年約賣出 60 萬棟新屋。",
         "sentence": "From 1983 through 2007, about 600, 000 new homes were sold in an average year."
     },
     {
         "id": 341,
-        "translate_ch": "諷刺的是，這場醜陋的騷亂幫助避開了本會延長政治危機的攤牌局面。",
+        "translate_ch": "諷刺的是，這場難看的騷亂反而避免了一場原本會延長政治危機的攤牌。",
         "sentence": "Ironically, the ugly fracas helped avert a showdown that would have prolonged the political crisis."
     },
     {
         "id": 342,
-        "translate_ch": "最終，你是在試圖發現讓客戶徹夜難眠的問題——這就是「可貨幣化的痛點」。",
+        "translate_ch": "說到底，你是在找出讓客戶徹夜難眠的問題——這就是所謂「能變現的痛點」。",
         "sentence": "Ultimately you are trying to discover what keeps customers awake at night—that is a monetizable pain."
     },
     {
@@ -1721,12 +1721,12 @@
     },
     {
         "id": 345,
-        "translate_ch": "結果發現，處理您申訴的部門並未獲得授權來獎勵飛行常客里程。",
+        "translate_ch": "結果發現，處理你申訴的部門根本沒被授權可以給飛行常客哩程。",
         "sentence": "Turns out the department that handled your grievance was not authorized to award frequent flier miles."
     },
     {
         "id": 346,
-        "translate_ch": "雖然意識到其好處，但這個小國仍擔心這會助長成癮與犯罪。",
+        "translate_ch": "雖然清楚這麼做的好處，但這個小國仍擔心會助長成癮和犯罪。",
         "sentence": "While aware of the benefits, the small country is fearful of encouraging addiction and crime."
     },
     {
@@ -1741,12 +1741,12 @@
     },
     {
         "id": 349,
-        "translate_ch": "他們對自已婚姻常態的感激，幾乎演變成一種笨拙的渴望。",
+        "translate_ch": "他們對於自己婚姻那份平淡如常的感激，幾乎變成一種難以言喻的渴望。",
         "sentence": "Their gratitude for the normalcy of their own marriages was almost like an awkward lust."
     },
     {
         "id": 350,
-        "translate_ch": "這家航空公司將部分機師安置在成本較低的英國和澳洲，但除此之外並未進行大裁員。",
+        "translate_ch": "這家航空公司把部分機師安置在成本較低的英國和澳洲，但除此之外並沒有大舉裁員。",
         "sentence": "The airline based some pilots in lower-cost Britain and Australia, but otherwise stayed the axe."
     },
     {
@@ -1771,12 +1771,12 @@
     },
     {
         "id": 355,
-        "translate_ch": "還有一種有些人稱之為「not golf」倒著拼的運動，我曾在二月寫過關於它的文章。",
+        "translate_ch": "還有一種有些人稱為「not golf」倒著拼的運動，我二月時寫過一篇相關文章。",
         "sentence": "Then there's a sport some call \"not golf\" spelled backward, which I wrote about in February."
     },
     {
         "id": 356,
-        "translate_ch": "她喜歡炸雞、培根起司堡和巧克力棒，有時缺乏意志力。",
+        "translate_ch": "她愛吃炸雞、培根起司堡和巧克力棒，有時候就是缺乏意志力。",
         "sentence": "She has a taste for fried chicken, bacon cheeseburgers and chocolate bars, and sometimes little willpower."
     },
     {
@@ -1801,37 +1801,37 @@
     },
     {
         "id": 361,
-        "translate_ch": "這些多重交通模式的選擇對於攜帶重型行李或行程緊湊的旅客來說非常吃力。",
+        "translate_ch": "對於帶著沉重行李、或行程緊湊的旅客來說，這種多種交通工具轉乘的方式非常吃力。",
         "sentence": "These multi-modal options are tough on travellers burdened with heavy baggage or tight schedules."
     },
     {
         "id": 362,
-        "translate_ch": "如果行李被爆裂物探測系統（EDS）標記，則會透過追蹤探測進行篩查。",
+        "translate_ch": "如果行李被爆裂物偵測系統（EDS）標記出來，就會用微量偵測進一步檢查。",
         "sentence": "If a bag is flagged by the EDS machine, it would be screened by trace detection."
     },
     {
         "id": 363,
-        "translate_ch": "這看起來應該是獎項和觀眾都會青睞的題材，但它們卻有點失敗，到底是怎麼回事？",
+        "translate_ch": "這看起來應該是既能拿獎、又能討好觀眾的題材，結果卻有點慘，到底是怎麼回事？",
         "sentence": "It seems like it should be awards-bait and audience-bait, and they're kind of flopping, what gives?"
     },
     {
         "id": 364,
-        "translate_ch": "每天凌晨 4:30，穿著粉色洋裝、戴著軟帽的女性就會進來烘焙派。",
+        "translate_ch": "每天凌晨 4:30，穿著粉色洋裝、戴著布帽的女性就會進來烤派。",
         "sentence": "Bonneted women in pastel dresses come in at 4:30 am daily to bake the pies."
     },
     {
         "id": 365,
-        "translate_ch": "一位教練說：「我們有一群相當懂行的觀眾，他們知道球員也會有表現糟糕的比賽。」",
+        "translate_ch": "一位教練說：「我們的觀眾相當內行，他們知道球員也會有打得很糟的時候。」",
         "sentence": "We have a pretty knowledgeable crowd who know that people have bad games, said one coach."
     },
     {
         "id": 366,
-        "translate_ch": "該青年從二樓陽台跳到窗台上逃脫。",
+        "translate_ch": "這名年輕人從二樓陽台跳到窗台上逃走。",
         "sentence": "The youth jumped from the the second floor balcony on to a ledge to escape."
     },
     {
         "id": 367,
-        "translate_ch": "在 2013 年，您是否準備好實施更深層次的國防削減以平衡預算？",
+        "translate_ch": "到了 2013 年，你是否準備好進一步刪減國防預算，來平衡收支？",
         "sentence": "In 2013, are you prepared to enact deeper defence cuts to balance the budget?"
     },
     {
@@ -1841,7 +1841,7 @@
     },
     {
         "id": 369,
-        "translate_ch": "在以 35-28 領先時，主隊在比賽還剩 5 分 37 秒時於自家 32 碼處獲得球權。",
+        "translate_ch": "主隊以 35-28 領先，在比賽還剩 5 分 37 秒時，於自家 32 碼線取得球權。",
         "sentence": "Leading 35-28, the home team got the ball at their own 32 with 5:37 remaining."
     },
     {
@@ -1856,17 +1856,17 @@
     },
     {
         "id": 372,
-        "translate_ch": "該組織表示將針對罷工行動進行投票，除非公司排除強制裁員的可能性。",
+        "translate_ch": "這個組織表示，除非公司排除強制裁員的可能，否則將就罷工行動進行表決。",
         "sentence": "It said it would ballot for industrial action unless the firm ruled out compulsory redundancies."
     },
     {
         "id": 373,
-        "translate_ch": "一名女子正在抗爭政府機關與學校的穆斯林頭巾禁令。",
+        "translate_ch": "一名女子正在抗議政府機關和學校的穆斯林頭巾禁令。",
         "sentence": "One woman is fighting the ban on the Muslim headscarf in government offices and schools."
     },
     {
         "id": 374,
-        "translate_ch": "這一觀點得到了該貿易組織的支持，該組織已宣佈香蕉關稅為非法。",
+        "translate_ch": "這個觀點獲得該貿易組織的支持，該組織已裁定香蕉關稅為違法。",
         "sentence": "This view has been supported by the trade body, which has declared the banana tariffs illegal."
     },
     {
@@ -1876,12 +1876,12 @@
     },
     {
         "id": 376,
-        "translate_ch": "他們包紮了您右手中指的指關節，並警告要防止感染。",
+        "translate_ch": "他們幫你右手中指的指關節包紮，並提醒要小心別感染。",
         "sentence": "They bandage the knuckle of your right middle finger and warn against getting it infected."
     },
     {
         "id": 377,
-        "translate_ch": "這間網咖為像他這樣的高級玩家提供免費交通等優惠。",
+        "translate_ch": "這間網咖為像他這樣的高手玩家提供免費接送等優惠。",
         "sentence": "The internet cafe offers skilled game players like him perks such as free transportation."
     },
     {
@@ -1901,12 +1901,12 @@
     },
     {
         "id": 381,
-        "translate_ch": "這位候選人用免費的冰淇淋甜點和燒烤三明治來爭取支持者。",
+        "translate_ch": "這位候選人靠免費的冰淇淋和烤肉三明治來拉攏支持者。",
         "sentence": "The candidate wooed activists with free ice cream treats and barbecue sandwiches."
     },
     {
         "id": 382,
-        "translate_ch": "警方突襲了隔壁的理髮店，搜查了洗髮精後便離開了。",
+        "translate_ch": "警方突襲了隔壁的理髮店，翻找了那些洗髮精後就離開了。",
         "sentence": "Once police raided the barber shop next door, searched through the shampoos and left."
     },
     {
@@ -1936,17 +1936,17 @@
     },
     {
         "id": 388,
-        "translate_ch": "另一起是發生在附近一座村莊裡一所馬術學校的穀倉火災。",
+        "translate_ch": "另一起則是附近村莊一所馬術學校發生的穀倉火災。",
         "sentence": "The other was a barn fire at a riding school in a nearby village."
     },
     {
         "id": 389,
-        "translate_ch": "滿是焦樹的山坡營造出的景象就像一個荒蕪的冬天，地上覆蓋著灰色的灰燼而非白雪。",
+        "translate_ch": "焦黑樹木遍布的山坡，看起來就像一個荒蕪的冬天，地上覆蓋的不是白雪，而是灰色的灰燼。",
         "sentence": "Slopes of charred trees created landscapes resembling a barren winter with gray ash instead of snow."
     },
     {
         "id": 390,
-        "translate_ch": "場景是一個堆滿木桶的濱水區，與拼圖遊戲有著一種詭異的相似感。",
+        "translate_ch": "畫面是一片堆滿木桶的濱水區，詭異地神似一幅拼圖。",
         "sentence": "The scene is a barrel-strewn waterfront that bears an eerie resemblance to a jigsaw puzzle."
     },
     {
@@ -1966,12 +1966,12 @@
     },
     {
         "id": 394,
-        "translate_ch": "然而，它未能推選出一位領導人或制定出一套方案來激發其基層活力。",
+        "translate_ch": "然而，它始終沒能推出一位領導人、或一套能激勵基本盤的方案。",
         "sentence": "However, it has failed to come up with a leader and program to energize its base."
     },
     {
         "id": 395,
-        "translate_ch": "東南亞和恆河盆地不正是南北對話（獨白）的反向版本嗎？",
+        "translate_ch": "東南亞和恆河流域，不正是南北獨白的反向版本嗎？",
         "sentence": "Is not Southeast Asia and the Ganges basin a reverse version of the North-South monologue?"
     },
     {
@@ -1996,12 +1996,12 @@
     },
     {
         "id": 400,
-        "translate_ch": "很大程度上取決於新晉的一批執行長，以及他們所出身的中層階級。",
+        "translate_ch": "很大一部分取決於新上任的這批執行長，以及他們所出身的中階層級。",
         "sentence": "Much depends on the fresh batch of CEOs and the middle ranks from which they sprang."
     },
     {
         "id": 401,
-        "translate_ch": "這位34歲、正處於榮譽年的球員，從一支對手球隊轉投現在的球隊，並出場266次。",
+        "translate_ch": "這名34歲、正處於表彰年的球員，當年從敵對球隊轉投現在的球隊，累計出賽266場。",
         "sentence": "The 34-year-old, who is in his testimonial year, joined his club from a rival side and made 266 appearances."
     },
     {
@@ -2021,27 +2021,27 @@
     },
     {
         "id": 405,
-        "translate_ch": "這家度假村擁有既廣闊又親切的氛圍，讓你沉浸在夢寐以求的奢華之中。",
+        "translate_ch": "這家度假村散發著一種既遼闊又親切的氛圍，讓你沉浸在夢寐以求的奢華裡。",
         "sentence": "With its sprawling-yet-intimate vibe, the resort envelopes you in the luxury you've been dreaming about."
     },
     {
         "id": 406,
-        "translate_ch": "他堅持要用砍自那座山的樹木生起木火來煮飯。",
+        "translate_ch": "他堅持一定要用那座山上砍來的木柴生火煮飯。",
         "sentence": "He insists that his rice be cooked over a wood fire using trees cut from the mountain."
     },
     {
         "id": 407,
-        "translate_ch": "盟軍在諾曼第登陸日對納粹佔領下的法國發起的進攻，差點在奧馬哈海灘的沙灘上受阻。",
+        "translate_ch": "盟軍在諾曼第登陸日對納粹佔領的法國發動進攻，差點就在奧馬哈海灘的沙地上受阻。",
         "sentence": "The Allied invasion of Nazi-occupied France on D-Day nearly stalled on the sands of Omaha beach."
     },
     {
         "id": 408,
-        "translate_ch": "賓恩希望他的作品能激發人們對太空探索的興趣，特別是在年輕人中間。",
+        "translate_ch": "賓恩希望他的作品能激發人們對太空探索的興趣，尤其是年輕人。",
         "sentence": "Bean's hope is that his work will inspire interest in space exploration, particularly among young people."
     },
     {
         "id": 409,
-        "translate_ch": "他像雷射光束一樣，精準鎖定這家公司，專注於少數幾個極其成功的項目上。",
+        "translate_ch": "他像雷射光束一樣，讓這家公司精準鎖定少數幾個極為成功的專案。",
         "sentence": "He has targeted the company like a laser beam on a few brilliantly successful projects."
     },
     {
@@ -2061,7 +2061,7 @@
     },
     {
         "id": 413,
-        "translate_ch": "在 20 世紀 80 年代初期，每 1000 名適齡生育女性中約有 29 例流產。",
+        "translate_ch": "在 1980 年代初期，每 1000 名育齡女性中約有 29 例墮胎。",
         "sentence": "In the early 1980s, there were some 29 abortions per 1, 000 women of child-bearing age."
     },
     {
@@ -2071,7 +2071,7 @@
     },
     {
         "id": 415,
-        "translate_ch": "讓島嶼周圍清澈、溫暖海水呈現出的驚人美景將您包圍。",
+        "translate_ch": "讓島嶼四周那清澈溫暖的海水所展現的驚人美景，將你團團包圍。",
         "sentence": "Let the stunning beauty of the clear, warm waters surrounding the island envelope you."
     },
     {
@@ -2081,7 +2081,7 @@
     },
     {
         "id": 417,
-        "translate_ch": "在出門遊泳前，在特大號床上美美地睡個午覺吧。",
+        "translate_ch": "出門戲水前，先在特大號床上美美地睡個午覺吧。",
         "sentence": "Take a luxurious snooze on your king-size bed before heading out for a dip."
     },
     {
@@ -2091,7 +2091,7 @@
     },
     {
         "id": 419,
-        "translate_ch": "你真的認為你能說服生活在韓國的人購買更多的美國牛肉嗎？",
+        "translate_ch": "你真的覺得你能說服住在韓國的人多買一些美國牛肉嗎？",
         "sentence": "Do you really think you can convince people living in Korea to buy more American beef?"
     },
     {
@@ -2106,12 +2106,12 @@
     },
     {
         "id": 422,
-        "translate_ch": "他說：「當他們揭開那位著名戰時領袖的雕像時，之前沒有人見過它。」",
+        "translate_ch": "他說：「那座著名戰時領袖的雕像揭幕時，先前根本沒有人看過。」",
         "sentence": "When they unveiled the statue of a famous wartime leader, no one had seen it beforehand, he said."
     },
     {
         "id": 423,
-        "translate_ch": "這位領導人說：「我想為你們那些從未實現的夢想請求你們的原諒。」",
+        "translate_ch": "這位領導人說：「我想為你們那些從未實現的夢想，向你們道歉。」",
         "sentence": "I want to beg your forgiveness for your dreams that never came true, the leader said."
     },
     {
@@ -2121,7 +2121,7 @@
     },
     {
         "id": 425,
-        "translate_ch": "社區正聯合起來，從一開始就幫助我們的年輕人過上更健康的生活。",
+        "translate_ch": "各社區正團結起來，從一開始就幫助我們的年輕人過更健康的生活。",
         "sentence": "Communities are coming together to help our young people lead healthier lives right from the beginning."
     },
     {
@@ -2131,7 +2131,7 @@
     },
     {
         "id": 427,
-        "translate_ch": "研究人員目前正致力於開發特性相似的新材料，用於熱量檢測。",
+        "translate_ch": "研究人員目前正致力於開發特性相似的新材料，用來偵測熱。",
         "sentence": "Researchers are now working on developing new materials that behave similarly to use for detecting heat."
     },
     {
@@ -2156,17 +2156,17 @@
     },
     {
         "id": 432,
-        "translate_ch": "一家預計在週三收盤後公佈財報的咖啡公司，週二上漲了 1.8%。",
+        "translate_ch": "一家預計在週三收盤後公布財報的咖啡公司，週二股價上漲了 1.8%。",
         "sentence": "One coffee company, due to report earnings after the closing bell Wednesday, was up 1.8% Tuesday."
     },
     {
         "id": 433,
-        "translate_ch": "事實是，華盛頓已經接管了並不真正屬於它的職能。",
+        "translate_ch": "事實是，華盛頓接管了一些本來不該歸它管的職能。",
         "sentence": "The truth is, Washington has taken over functions that don't truly belong to it."
     },
     {
         "id": 434,
-        "translate_ch": "按照這個模式，以下這些受人喜愛的主題樂園景點正處於（或可能處於）被整改的風口浪尖。",
+        "translate_ch": "照這個模式來看，以下這些大受歡迎的主題樂園設施，正（或可能）成為被開刀的對象。",
         "sentence": "Following that pattern, the following beloved theme park attractions are, or might be, in the crosshairs."
     },
     {
@@ -2176,17 +2176,17 @@
     },
     {
         "id": 436,
-        "translate_ch": "但隨後一位工程師突發奇想——把網路建在葉片線以下。",
+        "translate_ch": "但後來有位工程師靈機一動——把網路建在樹葉線以下。",
         "sentence": "But then one engineer had had a brainstorm -- build the network below the leaf line."
     },
     {
         "id": 437,
-        "translate_ch": "中西部是派餅達到驚人分量的地方，鬆開腰帶成為了一種必然。",
+        "translate_ch": "在中西部，派的份量大得驚人，鬆開腰帶成了必然。",
         "sentence": "The Midwest is where pie reaches epic proportions and belt loosening becomes a necessity."
     },
     {
         "id": 438,
-        "translate_ch": "但本賽季經常坐在替補席上的一名球員，躍起以頭槌攻入了制勝一球。",
+        "translate_ch": "但這名本球季經常坐冷板凳的球員，躍起用頭槌攻進了致勝一球。",
         "sentence": "But one player, so often left on the bench this season, rose to head the winner."
     },
     {
@@ -2201,22 +2201,22 @@
     },
     {
         "id": 441,
-        "translate_ch": "日本首相表示，其目標是促進與中國「互利共贏」的關係。",
+        "translate_ch": "日本首相表示，目標是要促進與中國之間「互利雙贏」的關係。",
         "sentence": "The Japanese prime minister said the aim was to promote \"mutually beneficial\" ties with China."
     },
     {
         "id": 442,
-        "translate_ch": "一個好處是成本極低，對於資金短缺的州政府來說幾乎不需要花錢。",
+        "translate_ch": "一個好處是成本極低，對於財政吃緊的州政府來說幾乎不用花什麼錢。",
         "sentence": "One benefit is the cost, which amounts to virtually nothing for cash-strapped state governments."
     },
     {
         "id": 443,
-        "translate_ch": "它們是良性的，通常因美觀原因或因受摩擦刺激而被移除。",
+        "translate_ch": "它們是良性的，通常是為了美觀、或因為受到摩擦刺激而被切除。",
         "sentence": "They are benign and are removed for cosmetic reasons or if they become irritated."
     },
     {
         "id": 444,
-        "translate_ch": "一位來自小鎮的退休醫療技術員身旁放著一盒衛生紙坐著。",
+        "translate_ch": "一位來自小鎮的退休醫檢師坐著，身旁放著一盒面紙。",
         "sentence": "With a box of tissues beside him sat a retired medical technologist from a small town."
     },
     {
@@ -2231,12 +2231,12 @@
     },
     {
         "id": 447,
-        "translate_ch": "這個人不只是戰士，更是具有美國優秀傳統的外交官。",
+        "translate_ch": "這個人不只是戰士，更是承襲美國優良傳統的外交官。",
         "sentence": "This man is not only a warrior, but a diplomat in the best American tradition."
     },
     {
         "id": 448,
-        "translate_ch": "他的撒謊能力顯著下降，但這名審訊者並未在臉上流露出勝利的神情。",
+        "translate_ch": "他說謊的本事明顯變差了，但這名審訊者臉上並沒有流露出勝利的神情。",
         "sentence": "His ability to lie was significantly diminished, but the interrogator didn't betray the victory on his face."
     },
     {
@@ -2251,7 +2251,7 @@
     },
     {
         "id": 451,
-        "translate_ch": "這是希臘應警惕那些敦促其違約的蠱惑之聲的另一個原因。",
+        "translate_ch": "這是希臘應該提防那些慫恿它違約的蠱惑之聲的另一個原因。",
         "sentence": "That's another reason for Greece to beware the siren voices that urge it to default."
     },
     {
@@ -2271,7 +2271,7 @@
     },
     {
         "id": 455,
-        "translate_ch": "採用「開放技術方法」來鼓勵潛在的網路服務提供商公平公正地提供接入服務。",
+        "translate_ch": "採用「開放技術方法」，鼓勵潛在的網路服務供應商公平公正地提供連線服務。",
         "sentence": "Employ \"open technology approaches\" to encourage potential Internet providers to provide access without bias."
     },
     {
@@ -2291,12 +2291,12 @@
     },
     {
         "id": 459,
-        "translate_ch": "這座擁有8.2萬人口的城市正雜亂無章地迅速擴張，並已申辦於2020年主辦一場大型世界博覽會。",
+        "translate_ch": "這座擁有 8 萬 2 千人口的城市正雜亂無章地迅速擴張，並已申辦 2020 年的大型世界博覽會。",
         "sentence": "The city of 82,000 people is mushrooming helter-skelter and has bid to host a major world's fair in 2020."
     },
     {
         "id": 460,
-        "translate_ch": "如果受限於著色器性能，我會發現進一步降低解析度會帶來巨大的提升。",
+        "translate_ch": "如果是受限於著色器效能，我就會發現進一步降低解析度會帶來很大的提升。",
         "sentence": "If it was shader limited, I would see big gains in lowering the resolution further."
     },
     {
@@ -2306,17 +2306,17 @@
     },
     {
         "id": 462,
-        "translate_ch": "該法案不太可能在下議院獲得通過，因為反對派領袖反對它。",
+        "translate_ch": "這項法案不太可能在下議院通過，因為反對黨領袖都反對。",
         "sentence": "The bill is unlikely to pass the lower house, where opposition leaders oppose it."
     },
     {
         "id": 463,
-        "translate_ch": "一位分析人士說：「對抗這個恐怖組織的問題在於，它不斷地演變。」",
+        "translate_ch": "一位分析師說：「對抗這個恐怖組織的問題在於，它不斷地演變。」",
         "sentence": "The problem of countering the terror network is that it mutates continuously, an analyst said."
     },
     {
         "id": 464,
-        "translate_ch": "乾旱情況也讓附近一座擁有3.2萬人口的城市陷入困境。",
+        "translate_ch": "乾旱也讓附近一座 3 萬 2 千人口的城市陷入困境。",
         "sentence": "The dry conditions also put a nearby city of 32,000 in a bind."
     },
     {
@@ -2331,22 +2331,22 @@
     },
     {
         "id": 467,
-        "translate_ch": "的確，我們開創了一個人與人關係的全新概念。",
+        "translate_ch": "的確，我們開創了一種人與人之間關係的全新概念。",
         "sentence": "Indeed, we gave birth to an entirely new concept in man's relation to man."
     },
     {
         "id": 468,
-        "translate_ch": "在首席部長質詢時間的交鋒中，首席部長表示反對黨的指控簡直「太離譜了」。",
+        "translate_ch": "在首席部長質詢時間的交鋒中，他表示反對黨的指控簡直「太離譜了」。",
         "sentence": "During exchanges at the first minister's questions, the first minister said the opposition party's accusation \"takes the biscuit\"."
     },
     {
         "id": 469,
-        "translate_ch": "報告指出，在草原地帶，集約化的農業操作損害了鳥類的生存。",
+        "translate_ch": "報告指出，在草原地帶，集約化的農耕方式危害了鳥類的生存。",
         "sentence": "In the grasslands, intensified agricultural practices have hurt bird populations, according to the report."
     },
     {
         "id": 470,
-        "translate_ch": "還有他那怪異的要求，即他在擔任駐莫斯科大使時索取自殺藥丸。",
+        "translate_ch": "還有他那個怪異的要求——他在擔任駐莫斯科大使時，曾索討自殺藥丸。",
         "sentence": "There is also his bizarre request for suicide pills, made when he was ambassador in Moscow."
     },
     {
@@ -2361,7 +2361,7 @@
     },
     {
         "id": 473,
-        "translate_ch": "其他須申報的罪行——包括欺詐和偽造、勒索、毒品犯罪和危險駕駛。",
+        "translate_ch": "其他須申報的罪行——包括詐欺與偽造、勒索、毒品犯罪和危險駕駛。",
         "sentence": "Other notifiable offences - includes fraud and forgery, blackmail, drug offences, and dangerous driving."
     },
     {
@@ -2386,7 +2386,7 @@
     },
     {
         "id": 478,
-        "translate_ch": "愛爾蘭教練似乎免除了一名球員對那場糟糕表現的任何責任。",
+        "translate_ch": "愛爾蘭教練似乎認為那場糟糕的表現，那名球員完全沒有責任。",
         "sentence": "The Irish coach appeared to absolve one player of any blame for the misfiring performance."
     },
     {
@@ -2401,7 +2401,7 @@
     },
     {
         "id": 481,
-        "translate_ch": "這為新啟動的這一回合全球貿易談判蒙上了一層暗淡的陰影。",
+        "translate_ch": "這為新啟動的這一輪全球貿易談判蒙上了一層陰影。",
         "sentence": "This forms a bleak backdrop for the newly-launched round of global trade negotiations."
     },
     {
@@ -2436,7 +2436,7 @@
     },
     {
         "id": 488,
-        "translate_ch": "多年來，一名女子以盲人女性的身份在紐約穿行，她不僅活了下來，甚至還生活得很精彩。",
+        "translate_ch": "多年來，一名女子以盲人的身分在紐約闖蕩，不僅活了下來，甚至活得很精彩。",
         "sentence": "For years, one woman survived -- even thrived -- as a blind woman navigating New York City."
     },
     {
@@ -2451,12 +2451,12 @@
     },
     {
         "id": 491,
-        "translate_ch": "我看過很多與憂鬱症作鬥爭的優秀孩子，在服用抗憂鬱藥後重新煥發了生機。",
+        "translate_ch": "我看過很多跟憂鬱症搏鬥的優秀孩子，在服用抗憂鬱藥後重新綻放光彩。",
         "sentence": "I've seen so many great kids who were struggling with depression bloom after getting an antidepressant."
     },
     {
         "id": 492,
-        "translate_ch": "科伯恩是參與兩黨關於削減赤字藍圖談判的六名參議員之一。",
+        "translate_ch": "科伯恩是參與兩黨赤字削減藍圖談判的六名參議員之一。",
         "sentence": "Coburn is one of six senators taking part in bipartisan talks on a deficit reduction blueprint."
     },
     {
@@ -2471,7 +2471,7 @@
     },
     {
         "id": 495,
-        "translate_ch": "他在過去的十年裡一直文思枯竭，最近這些日子只能反覆使用舊的素材。",
+        "translate_ch": "他過去這十年一直文思枯竭，最近這些日子只能一再地炒冷飯。",
         "sentence": "He has writer's block for the past ten years and recycles old fortunes these days."
     },
     {
@@ -2481,17 +2481,17 @@
     },
     {
         "id": 497,
-        "translate_ch": "那時我總是會叫他停下來，他開始讓我臉紅了。",
+        "translate_ch": "那時我總是會叫他別鬧了，因為他開始讓我臉紅了。",
         "sentence": "I'd always tell him to stop then, he was starting to make me blush."
     },
     {
         "id": 498,
-        "translate_ch": "在眼花繚亂的酒吧、商店和餐館中穿梭，會讓你度過超強感官刺激的一天。",
+        "translate_ch": "在讓人眼花撩亂的酒吧、商店和餐廳之間穿梭，會讓你度過感官大受刺激的一天。",
         "sentence": "Keeping pace through a blur of bars, shops and restaurants makes for a super-stimulating day."
     },
     {
         "id": 499,
-        "translate_ch": "25年後，當今最紅的流行巨星能否誇口取得接近一位知名媒體大亨那樣的成就？",
+        "translate_ch": "25 年後，現在最紅的流行巨星，有辦法誇口說自己的成就接近某位知名媒體大亨嗎？",
         "sentence": "In 25 years will today's biggest pop star be able to boast anything close to what a famous media mogul has achieved?"
     },
     {
@@ -2521,17 +2521,17 @@
     },
     {
         "id": 505,
-        "translate_ch": "生活在隨時可能爆發的火山陰影下，這位地中海巨人在宿命論的節拍中跳動。",
+        "translate_ch": "生活在這座隨時可能爆發的火山陰影下，這座地中海巨島隨著宿命般的節奏脈動。",
         "sentence": "Living in the shadow of a time-bomb volcano, this Mediterranean giant thumps to a fatalistic beat."
     },
     {
         "id": 506,
-        "translate_ch": "《雷霆戰狗》（Bolt）在風格上並未開拓巨大的新領域，但它仍是一部製作精良的作品。",
+        "translate_ch": "《雷霆戰狗》（Bolt）在風格上並未開拓什麼新領域，但它仍是一部紮實的佳作。",
         "sentence": "Bolt breaks no great new stylistic ground -- and yet it's a sturdy beaut."
     },
     {
         "id": 507,
-        "translate_ch": "一個評論網站上的一位評論者說，這列火車還有另一個額外的好處。",
+        "translate_ch": "某個評論網站上的一位評論者說，這班火車還有另一個額外的好處。",
         "sentence": "One reviewer on a review website said there's another bonus to the train."
     },
     {
@@ -2551,7 +2551,7 @@
     },
     {
         "id": 511,
-        "translate_ch": "然後他笑著展示給他身後的那個人以及展位上的其他女孩看。",
+        "translate_ch": "然後他笑著把它秀給身後的那個人、還有攤位上的其他女生看。",
         "sentence": "Then he laughed and showed the guy behind him and the other girls at the booth."
     },
     {
@@ -2566,7 +2566,7 @@
     },
     {
         "id": 514,
-        "translate_ch": "鑽井隨後變成了不宜獲取飲用水的區域，並可能攜帶水傳播疾病。",
+        "translate_ch": "這些水井後來變得不適合取用飲用水，還可能帶有透過水傳播的疾病。",
         "sentence": "Bore wells then become improper areas to obtain drinking water and may carry water borne diseases."
     },
     {
@@ -2581,17 +2581,17 @@
     },
     {
         "id": 517,
-        "translate_ch": "還有人想知道起伏的胸部是否能從緊身胸衣中挺立出來。",
+        "translate_ch": "還有人好奇，那起伏的胸脯能不能從緊身束腹中托起來。",
         "sentence": "Someone else wondered whether a heaving bosom could be lifted out of the corset."
     },
     {
         "id": 518,
-        "translate_ch": "如果你費心去讀一下我在數位服務新聞中的貼文，你就會注意到這一點。",
+        "translate_ch": "如果你願意花點心思讀一下我在數位服務新聞裡的貼文，就會注意到這一點。",
         "sentence": "If you bother to read my posts in news about digital services you would notice that."
     },
     {
         "id": 519,
-        "translate_ch": "相反，他們面臨著在老闆讀完幻燈片之前先讀完的壓力。",
+        "translate_ch": "相反地，他們反而備感壓力，得趕在老闆之前把投影片看完。",
         "sentence": "Instead, they are under pressure to finish reading the slides before the boss apparently does."
     },
     {
@@ -2611,7 +2611,7 @@
     },
     {
         "id": 523,
-        "translate_ch": "這名醫生案件中所出現的越界行為是如此惡劣，簡直令人難以置信。",
+        "translate_ch": "這名醫生案子裡出現的踰矩行為惡劣到令人匪夷所思。",
         "sentence": "The boundary violations seen in the doctor's case are so egregious that it boggles the mind."
     },
     {
@@ -2621,27 +2621,27 @@
     },
     {
         "id": 525,
-        "translate_ch": "一些照片顯然顯示了被捆綁並矇住眼睛的年輕人血跡斑斑的屍體。",
+        "translate_ch": "有些照片顯然拍到了被綁住、矇住眼睛的年輕人血跡斑斑的屍體。",
         "sentence": "Some of the pictures apparently show the bloodstained bodies of bound and blindfolded young people."
     },
     {
         "id": 526,
-        "translate_ch": "市中心是適合全家歡樂的熱點，有溜冰、保齡球和攀岩牆。",
+        "translate_ch": "市中心是適合全家同樂的熱門地點，有溜冰、保齡球和攀岩牆。",
         "sentence": "The city centre is a hotspot of family-friendly fun, with ice skating, bowling and wall climbing."
     },
     {
         "id": 527,
-        "translate_ch": "所有參觀者都被要求在那些巨大的青銅足前獻花並鞠躬。",
+        "translate_ch": "所有參觀者都要在那對巨大的青銅腳前獻花、鞠躬。",
         "sentence": "All visitors are expected to lay flowers and bow at those big bronze feet."
     },
     {
         "id": 528,
-        "translate_ch": "有些品牌回歸了，例如某家零食公司，該公司上一次在超級盃做廣告是在2007年。",
+        "translate_ch": "有些品牌回歸了，例如某家零食公司，他們上一次在超級盃打廣告是2007年。",
         "sentence": "Some return, like one snack company, which last advertised in the Super Bowl in 2007."
     },
     {
         "id": 529,
-        "translate_ch": "作為一名 50 年代末期的美國男孩，他非常像一個空洞的容器。",
+        "translate_ch": "身為一個 1950 年代末期的美國男孩，他就像一個空洞的容器。",
         "sentence": "An American boy of the late fifties, he is very much an empty vessel."
     },
     {
@@ -2651,7 +2651,7 @@
     },
     {
         "id": 531,
-        "translate_ch": "卡里女士隨後拿走了箱子並將其存放在家裡的床下。",
+        "translate_ch": "卡里女士隨後拿走了那個箱子，把它藏在家裡的床底下。",
         "sentence": "Ms. Currie then took the box and stored it under her bed at home."
     },
     {
@@ -2661,12 +2661,12 @@
     },
     {
         "id": 533,
-        "translate_ch": "當他們把你固定在教練身上時，你的腦海中會閃過許多想法。",
+        "translate_ch": "當他們把你跟教練綁在一起時，你腦海中會閃過許多念頭。",
         "sentence": "Many thoughts start going through your brain as they strap you to your instructor."
     },
     {
         "id": 534,
-        "translate_ch": "她說：「這轉化為需求下降，從而對價格起到了抑制作用。」",
+        "translate_ch": "她說：「這會導致需求下降，進而壓抑了價格。」",
         "sentence": "This translates into falling demand, which acts as a brake on prices,  she said."
     },
     {
@@ -2676,7 +2676,7 @@
     },
     {
         "id": 536,
-        "translate_ch": "N.W.A 展現了其獨特的硬核饒舌風格——既無政治立場也無歉意。",
+        "translate_ch": "N.W.A 展現了他們獨特的硬派饒舌風格——既不談政治，也毫不客氣。",
         "sentence": "W.A put up its own brand of hardcore rap — devoid of both politics and apologetics."
     },
     {
@@ -2686,7 +2686,7 @@
     },
     {
         "id": 538,
-        "translate_ch": "紐約的教育工作者和市政府官員應做好充分準備以應對這一衝擊。",
+        "translate_ch": "紐約的教育工作者和市府官員，應該做好萬全準備來因應這波衝擊。",
         "sentence": "Educators and city officials in New York should fully brace themselves for the onslaught."
     },
     {
@@ -2716,12 +2716,12 @@
     },
     {
         "id": 544,
-        "translate_ch": "他告訴陪審團，他在婚姻結束並精神崩潰後待在那裡。",
+        "translate_ch": "他告訴陪審團，他是在婚姻結束、精神崩潰之後才住到那裡的。",
         "sentence": "He told the jury he was there after his marriage ended and he had a breakdown."
     },
     {
         "id": 545,
-        "translate_ch": "紐約市一家癌症醫院的大型乳房中心，於2009年開業。",
+        "translate_ch": "紐約市一家癌症醫院的大型乳房醫學中心，於2009年開幕。",
         "sentence": "A major breast center at a cancer hospital in New York City, which opened in 2009."
     },
     {
@@ -2731,7 +2731,7 @@
     },
     {
         "id": 547,
-        "translate_ch": "關於今天——史無前例的 90 年代，九年間未曾受到經濟衰退的絲毫侵擾。",
+        "translate_ch": "談到今天——史無前例的 1990 年代，那九年間未曾受到經濟衰退的絲毫侵擾。",
         "sentence": "About today - the unprecedented nine years of the 90s without an invading breath of recession."
     },
     {
@@ -2741,12 +2741,12 @@
     },
     {
         "id": 549,
-        "translate_ch": "當處於邊界地帶的蟾蜍交配時，其後代會繼承這些更長、更強壯的肢體。",
+        "translate_ch": "當處於邊界地帶的蟾蜍交配時，其後代會遺傳到這些更長、更強壯的四肢。",
         "sentence": "And when toads at the frontiers breed, their offspring inherit these longer, stronger limbs."
     },
     {
         "id": 550,
-        "translate_ch": "我們最後進了屋，在那裡蒼蠅們完全無視了那股幸運穿堂而過的涼風。",
+        "translate_ch": "我們最後進了屋裡，屋內的蒼蠅對那陣難得的穿堂涼風完全無動於衷。",
         "sentence": "We wind up inside the house where the flies are ignoring the merciful cross breeze."
     },
     {
@@ -2771,12 +2771,12 @@
     },
     {
         "id": 555,
-        "translate_ch": "把它放在你的背包、手提包或公事包裡，或者放在旁邊的車座上。",
+        "translate_ch": "把它放在你的背包、手提包或公事包裡，或是放在你旁邊的座位上。",
         "sentence": "Keep it in your pack, purse or briefcase, or on the car seat next to you."
     },
     {
         "id": 556,
-        "translate_ch": "這位特使週四回到紐約後，將直接向秘書長匯報情況。",
+        "translate_ch": "這位特使週四回到紐約後，將直接向秘書長報告情況。",
         "sentence": "The envoy will brief the secretary-general directly upon his return to New York on Thursday."
     },
     {
@@ -2786,7 +2786,7 @@
     },
     {
         "id": 558,
-        "translate_ch": "有一本書是出自一家設計公司那些天才大腦之手的優秀攝影小集。",
+        "translate_ch": "有一本很棒的小攝影集，出自一家設計公司那群天才之手。",
         "sentence": "One book is an excellent little photo book from the brilliant minds at a design firm."
     },
     {
@@ -2796,7 +2796,7 @@
     },
     {
         "id": 560,
-        "translate_ch": "這是一本輕快且通常幽默的指南，充滿了果斷的判斷，而且判斷越快越好。",
+        "translate_ch": "這是一本節奏明快、又常常很幽默的指南，處處是果決的判斷，而且越快下判斷越好。",
         "sentence": "This is a brisk and often funny guide, bristling with snap judgments, the snappier the better."
     },
     {
@@ -27498,5 +27498,1805 @@
         "id": 5500,
         "translate_ch": "自信不是確定你會贏，而是默默地知道：就算輸了，你也會沒事。",
         "sentence": "Confidence isn't being sure you'll win; it's quietly knowing you'll be okay even if you lose."
+    },
+    {
+        "id": 5501,
+        "translate_ch": "美好人生的大部分，默默地藏在那些沒人會發到網路上的小習慣裡。",
+        "sentence": "Most of a good life is quietly hidden inside the small habits nobody ever posts about online."
+    },
+    {
+        "id": 5502,
+        "translate_ch": "你怎麼度過平凡的星期二，默默地，到頭來就是你怎麼度過你唯一的一生。",
+        "sentence": "How you spend your ordinary Tuesday is quietly, in the end, how you spend your one and only life."
+    },
+    {
+        "id": 5503,
+        "translate_ch": "一份工作付你的帳單；對的工作，則默默償還你真正是誰的一部分。",
+        "sentence": "A job pays your bills; the right job quietly pays back a piece of who you actually are."
+    },
+    {
+        "id": 5504,
+        "translate_ch": "當你開始默默用你還不會拼的字做夢時，你就知道自己正在學會一門語言了。",
+        "sentence": "You know you're learning a language when you quietly start dreaming in words you can't yet spell."
+    },
+    {
+        "id": 5505,
+        "translate_ch": "一部好電影不會在字幕升起時結束；它會默默跟你回家，住上一陣子。",
+        "sentence": "A great movie doesn't end when the credits roll; it quietly follows you home and moves in for a while."
+    },
+    {
+        "id": 5506,
+        "translate_ch": "每個工具都默默地重塑握著它的那隻手，遠在任何人察覺自己變了之前。",
+        "sentence": "Every tool quietly reshapes the hand that holds it, long before anyone notices they've changed."
+    },
+    {
+        "id": 5507,
+        "translate_ch": "你不會升到你的目標，你默默地會跌到你在沒人看時建起的系統的水平。",
+        "sentence": "You don't rise to your goals; you quietly fall to the level of the systems you built when nobody watched."
+    },
+    {
+        "id": 5508,
+        "translate_ch": "你想成為的那個版本的你，默默地就是在你最想跳過的那一小時裡建起來的。",
+        "sentence": "The version of you that you want to be is quietly built in the hour you'd most like to skip."
+    },
+    {
+        "id": 5509,
+        "translate_ch": "無聊的例行公事，默默地是一種自由：它把你最好的精力，交給真正重要的事。",
+        "sentence": "A boring routine is quietly a form of freedom: it hands your best energy to the things that actually matter."
+    },
+    {
+        "id": 5510,
+        "translate_ch": "一間只追逐這一季的企業，默默地在向一個它可能活不到的未來借貸。",
+        "sentence": "A business that only chases this quarter quietly borrows from a future it may not live long enough to see."
+    },
+    {
+        "id": 5511,
+        "translate_ch": "學文法教你規則；跟真人說話，則默默教你哪些規則該打破。",
+        "sentence": "Studying grammar teaches you the rules; talking to real people quietly teaches you which ones to break."
+    },
+    {
+        "id": 5512,
+        "translate_ch": "電影是唯一一種默默偷走你兩小時人生、卻讓你因這場竊案而覺得更富有的藝術。",
+        "sentence": "Film is the only art that quietly steals two hours of your life and leaves you feeling richer for the theft."
+    },
+    {
+        "id": 5513,
+        "translate_ch": "科學不是一堆事實；它默默地是一種方法，讓你在答案不如你所願時，仍保持誠實。",
+        "sentence": "Science isn't a pile of facts; it's quietly a method for staying honest when the answer isn't what you hoped."
+    },
+    {
+        "id": 5514,
+        "translate_ch": "願意說出「我錯了」，默默地就是推動科學前進數百年的整台引擎。",
+        "sentence": "Being willing to say 'I was wrong' is quietly the entire engine that has moved science forward for centuries."
+    },
+    {
+        "id": 5515,
+        "translate_ch": "你默默對自己講述的「糟糕一天」的故事，遠比那個糟糕的一天本身還沉重。",
+        "sentence": "The story you quietly tell yourself about a bad day is far heavier than the bad day itself ever was."
+    },
+    {
+        "id": 5516,
+        "translate_ch": "沒有任何事會變簡單；你只是默默變得更難被擊倒，那是另一回事，而且更好。",
+        "sentence": "Nothing gets easier; you quietly just get harder to knock down, which is a different and better thing."
+    },
+    {
+        "id": 5517,
+        "translate_ch": "家人，是那群默默看過你最糟章節、卻不知怎地還是繼續讀下去的少數人。",
+        "sentence": "Family is the small crowd that quietly saw your worst chapters and somehow kept reading anyway."
+    },
+    {
+        "id": 5518,
+        "translate_ch": "你花整個童年想離開家，然後花餘生默默地想再蓋出一個家。",
+        "sentence": "You spend your childhood wanting to leave home and the rest of your life quietly trying to build one again."
+    },
+    {
+        "id": 5519,
+        "translate_ch": "財富不是帳戶裡的數字，而是默默地，你能按自己選擇度過的早晨的數量。",
+        "sentence": "Wealth isn't the number in the account; it's quietly the number of mornings you get to spend as you choose."
+    },
+    {
+        "id": 5520,
+        "translate_ch": "儲蓄不是為了小氣，而是默默地為一個你還沒見過的未來的自己，買下選擇權。",
+        "sentence": "Saving isn't about being cheap; it's quietly buying options for a future self you haven't met yet."
+    },
+    {
+        "id": 5521,
+        "translate_ch": "大多數爭吵跟主題無關；它們默默地是兩個人，都在乞求哪怕一次覺得被聽見。",
+        "sentence": "Most arguments aren't about the topic; they're quietly two people both begging to feel heard for once."
+    },
+    {
+        "id": 5522,
+        "translate_ch": "為了理解、而不是為了回話而傾聽，默默地是一個人能給的最稀有、最慷慨的東西。",
+        "sentence": "Listening to understand instead of to reply is quietly the rarest and most generous thing one human can offer."
+    },
+    {
+        "id": 5523,
+        "translate_ch": "一首你十七歲時愛的歌，默默地為你餘生保存了那整個人的一份副本。",
+        "sentence": "A song you loved at seventeen quietly keeps a copy of that whole person safe for the rest of your life."
+    },
+    {
+        "id": 5524,
+        "translate_ch": "音符之間的靜默，默默地就是整首音樂的情感，真正得以棲居的地方。",
+        "sentence": "Silence between the notes is quietly where the whole feeling of the music actually gets to live."
+    },
+    {
+        "id": 5525,
+        "translate_ch": "世界一年比一年感覺更小，但默默地，我們也從沒需要同時理解這麼多陌生人過。",
+        "sentence": "The world feels smaller every year, yet quietly we've never had to understand so many strangers at once."
+    },
+    {
+        "id": 5526,
+        "translate_ch": "情緒不是事實，但默默地忽視它們夠久，就是它們最後學會大吼大叫的方式。",
+        "sentence": "Feelings aren't facts, but quietly ignoring them long enough is how they finally learn to shout."
+    },
+    {
+        "id": 5527,
+        "translate_ch": "把情緒大聲說出名字，它就默默縮小；讓它無名，它就悄悄掌控整個家。",
+        "sentence": "Name the feeling out loud and it quietly shrinks; keep it nameless and it silently runs the whole house."
+    },
+    {
+        "id": 5528,
+        "translate_ch": "真正的朋友，是那個在你生活其他一切都變了時，默默保持一模一樣的人。",
+        "sentence": "A real friend is someone who quietly stays exactly the same when everything else in your life has changed."
+    },
+    {
+        "id": 5529,
+        "translate_ch": "值得留住的朋友，默默地就是那些把你的勝利當成自己的來慶祝的人。",
+        "sentence": "The friends worth keeping are quietly the ones who celebrate your wins as if they were their own."
+    },
+    {
+        "id": 5530,
+        "translate_ch": "經濟只是幾百萬人默默地押注在彼此的承諾上，然後大多只是期盼一切順利。",
+        "sentence": "An economy is just millions of people quietly betting on each other's promises and mostly hoping for the best."
+    },
+    {
+        "id": 5531,
+        "translate_ch": "一場好的對話不是比誰對；它默默地是兩顆心，互相借給對方新的窗戶。",
+        "sentence": "A good conversation isn't a contest of who's right; it's quietly two minds lending each other new windows."
+    },
+    {
+        "id": 5532,
+        "translate_ch": "最好的傾聽者，會在你說完後默默留下一小段靜默，以防你其實還沒把真心話說完。",
+        "sentence": "The best listeners quietly leave a small silence after you finish, in case you weren't quite done being honest."
+    },
+    {
+        "id": 5533,
+        "translate_ch": "時尚默默地大聲說出，在你還沒開口之前，你希望世界對你的假設。",
+        "sentence": "Fashion quietly shouts what you want the world to assume before you've even opened your mouth."
+    },
+    {
+        "id": 5534,
+        "translate_ch": "地圖上的邊界，默默地只是一些線，有人願意為它而死，有人願意把它抹去。",
+        "sentence": "Borders on a map are quietly just lines that some people are willing to die for and others to erase."
+    },
+    {
+        "id": 5535,
+        "translate_ch": "你無法用思考走出一種情緒；你只能默默地用感受，一路穿到另一頭。",
+        "sentence": "You can't think your way out of a feeling; you quietly have to feel your way through to the other side."
+    },
+    {
+        "id": 5536,
+        "translate_ch": "一種你拒絕命名的情緒不會消失；它只是默默地變成一種你無法解釋的心情。",
+        "sentence": "A feeling you refuse to name doesn't disappear; it quietly just changes into a mood you can't explain."
+    },
+    {
+        "id": 5537,
+        "translate_ch": "友誼不是在盛大時刻裡建成的；它是默默地用一千個小小的「你還好嗎？」縫起來的。",
+        "sentence": "Friendship isn't built in the grand moments; it's quietly stitched together from a thousand tiny 'you okay?'s."
+    },
+    {
+        "id": 5538,
+        "translate_ch": "老朋友，默默地是唯一能對你說真話、卻不讓你覺得像被攻擊的人。",
+        "sentence": "Old friends are quietly the only people who can tell you the truth without it feeling like an attack."
+    },
+    {
+        "id": 5539,
+        "translate_ch": "每個行業，都默默地靠著那些太過熱愛一個無聊問題、捨不得放手的人在運轉。",
+        "sentence": "Every industry quietly runs on people who love a boring problem far too much to ever let it go."
+    },
+    {
+        "id": 5540,
+        "translate_ch": "慣用語默默地是一個文化最古老的笑話，在大家忘了笑點的由來幾世紀後，仍然好笑。",
+        "sentence": "Idioms are quietly a culture's oldest jokes, still landing centuries after everyone forgot the punchline's origin."
+    },
+    {
+        "id": 5541,
+        "translate_ch": "藝術不一定要被理解；它默默地只需要讓一個孤單的人，覺得沒那麼孤單。",
+        "sentence": "Art doesn't have to be understood; it quietly just has to make one lonely person feel a little less alone."
+    },
+    {
+        "id": 5542,
+        "translate_ch": "每個藝術家，都默默地只是想把那種他們沒法用話說出口的確切感受，交到你手上。",
+        "sentence": "Every artist is quietly just trying to hand you the exact feeling they couldn't say out loud in words."
+    },
+    {
+        "id": 5543,
+        "translate_ch": "政治默默地是一門藝術：一起決定，誰的問題能算作是大家的問題。",
+        "sentence": "Politics is quietly the art of deciding, together, whose problems get to count as everyone's problems."
+    },
+    {
+        "id": 5544,
+        "translate_ch": "焦慮默默地只是無處安放的愛，繞著那些你最害怕失去的東西打轉。",
+        "sentence": "Anxiety is quietly just love with nowhere safe to land, circling the things you're most afraid to lose."
+    },
+    {
+        "id": 5545,
+        "translate_ch": "我們焦慮地預演的大多數事情，默默地從沒發生，但我們還是照樣提前付了它的全額。",
+        "sentence": "Most of what we anxiously rehearse quietly never happens, yet we pay the full price of it in advance anyway."
+    },
+    {
+        "id": 5546,
+        "translate_ch": "一個社區的凝聚，默默地靠的不是圍籬，而是那些還沒認識你就先揮手的人。",
+        "sentence": "A neighborhood is quietly held together less by fences than by the people who wave before they know your name."
+    },
+    {
+        "id": 5547,
+        "translate_ch": "好的管理不是控制人；它默默地是把路清乾淨，讓好的人能做出他們最好的工作。",
+        "sentence": "Good management isn't controlling people; it's quietly clearing the road so good people can do their best work."
+    },
+    {
+        "id": 5548,
+        "translate_ch": "人們離開的不是爛公司；他們默默離開的，是那個從沒讓他們覺得被看見的主管。",
+        "sentence": "People don't quit bad companies; they quietly quit the manager who never once made them feel seen."
+    },
+    {
+        "id": 5549,
+        "translate_ch": "俚語默默地在一個世代周圍畫出一條線，讓他們能當著所有人的面自由交談。",
+        "sentence": "Slang quietly draws a line around a generation, letting them talk freely right in front of everyone else."
+    },
+    {
+        "id": 5550,
+        "translate_ch": "每個新玩意兒都默默地承諾要簡化你的生活，然後跟你要一條充電線、一個帳號，還有你的注意力。",
+        "sentence": "Every new gadget quietly promises to simplify your life and then asks for a charger, an account, and your attention."
+    },
+    {
+        "id": 5551,
+        "translate_ch": "法律默默地畫出我們對待彼此的地板；善良，則是我們選擇在其上建起的東西。",
+        "sentence": "The law quietly draws the floor of how we treat each other; kindness is what we choose to build above it."
+    },
+    {
+        "id": 5552,
+        "translate_ch": "沒有方向的野心，默默地只是焦慮穿上更體面的西裝，管自己叫「計畫」。",
+        "sentence": "Ambition without direction is quietly just anxiety wearing a nicer suit and calling itself a plan."
+    },
+    {
+        "id": 5553,
+        "translate_ch": "想要更多不是問題；默默地忘了去享受「更多」本該為你換來的東西，才是。",
+        "sentence": "Wanting more isn't the problem; quietly forgetting to enjoy what 'more' was supposed to buy you is."
+    },
+    {
+        "id": 5554,
+        "translate_ch": "家不是一個你找到的地方；它默默地是一種感覺，你慢慢學會在你落腳的任何地方把它建起來。",
+        "sentence": "Home isn't a place you find; it's quietly a feeling you slowly learn how to build wherever you land."
+    },
+    {
+        "id": 5555,
+        "translate_ch": "你從不真正珍惜家，直到你默默地想念一個已經不存在的版本的它。",
+        "sentence": "You never really appreciate home until you're quietly homesick for a version of it that no longer exists."
+    },
+    {
+        "id": 5556,
+        "translate_ch": "創業，默默地就是報名去解決你還看不見的問題，用你還沒有的錢。",
+        "sentence": "Starting a business is quietly signing up to solve problems you can't yet see with money you don't yet have."
+    },
+    {
+        "id": 5557,
+        "translate_ch": "對的時刻說對的話，默默地能做到一千句錯的時刻說對的話永遠做不到的事。",
+        "sentence": "The right words at the right moment can quietly do what a thousand right words at the wrong one never could."
+    },
+    {
+        "id": 5558,
+        "translate_ch": "有時候，你這輩子說過最勇敢的一句話，默默地是以「我覺得」這兩個字開頭的。",
+        "sentence": "Sometimes the bravest sentence you'll ever say quietly begins with the two words 'I feel'."
+    },
+    {
+        "id": 5559,
+        "translate_ch": "一款好遊戲默默地教你開心地失敗，一次又一次，直到失敗不再感覺像是終點。",
+        "sentence": "A good game quietly teaches you to fail cheerfully, again and again, until failing stops feeling like the end."
+    },
+    {
+        "id": 5560,
+        "translate_ch": "最好的遊戲不是你贏的那些；它們默默地是那些你等不及明天再輸一次的。",
+        "sentence": "The best games aren't the ones you win; they're quietly the ones you can't wait to lose again tomorrow."
+    },
+    {
+        "id": 5561,
+        "translate_ch": "好的治理是刻意地、默默地無聊；那種刺激的治理，通常代表某人的日子剛剛變糟很多。",
+        "sentence": "Good governance is quietly boring on purpose; the exciting kind usually means someone's life just got much worse."
+    },
+    {
+        "id": 5562,
+        "translate_ch": "我們渴望的東西有一半，默默地是向一些我們從沒見過、卻暗自想討好的人借來的。",
+        "sentence": "Half of what we desire is quietly borrowed from people we've never even met and secretly want to impress."
+    },
+    {
+        "id": 5563,
+        "translate_ch": "在你剛好得到你想要的東西那一刻，一個更安靜、更飢渴的渴望，通常早已默默搬進了隔壁。",
+        "sentence": "The moment you get exactly what you wanted, a quieter, hungrier want has usually already moved in next door."
+    },
+    {
+        "id": 5564,
+        "translate_ch": "你的家鄉默默地保存了一份「從前的你」，好讓你隨時能對照自己究竟走了多遠。",
+        "sentence": "Your hometown quietly keeps a copy of who you were, so you can always check how far you've actually come."
+    },
+    {
+        "id": 5565,
+        "translate_ch": "找工作默默地教你：被拒絕一百次，只是通往一個「好」的路上要繳的過路費。",
+        "sentence": "Job hunting quietly teaches you that being told 'no' a hundred times is just the toll on the road to one 'yes'."
+    },
+    {
+        "id": 5566,
+        "translate_ch": "如果你沒辦法簡單地解釋它，就默默代表你還沒理解得夠深，還不配走那條捷徑。",
+        "sentence": "If you can't explain it simply, you quietly haven't understood it deeply enough to have earned the shortcut."
+    },
+    {
+        "id": 5567,
+        "translate_ch": "娛樂默默地不向你要求任何東西，這正是為什麼太多娛樂，會讓你覺得如此空虛。",
+        "sentence": "Entertainment quietly asks for nothing from you, which is exactly why too much of it leaves you feeling so empty."
+    },
+    {
+        "id": 5568,
+        "translate_ch": "道德默默地就是：當房間裡唯一剩下的見證者，是你不得不成為的那個人時，你會怎麼做。",
+        "sentence": "Ethics is quietly what you do when the only witness left in the room is the person you have to become."
+    },
+    {
+        "id": 5569,
+        "translate_ch": "小小的不誠實在當下感覺免費，但你默默地用自己的一片信任，為每一個都付了帳。",
+        "sentence": "Small dishonesties feel free at the time, but quietly you pay for every one of them with a piece of your own trust."
+    },
+    {
+        "id": 5570,
+        "translate_ch": "決心不是一聲響亮的怒吼；它是在興奮早在幾個月前就消退的灰色日子裡，默默地出現。",
+        "sentence": "Determination isn't a loud roar; it's quietly showing up on the grey day when the excitement wore off months ago."
+    },
+    {
+        "id": 5571,
+        "translate_ch": "動力默默地讓你開始，但只有紀律，會在動力忘了設鬧鐘的那些早晨出現。",
+        "sentence": "Motivation quietly gets you started, but only discipline shows up on the mornings motivation forgot to set an alarm."
+    },
+    {
+        "id": 5572,
+        "translate_ch": "社群默默地就是一群人，決定你的問題有趣到值得把它變成自己的。",
+        "sentence": "A community is quietly just a group of people who decided your problem was interesting enough to make it theirs."
+    },
+    {
+        "id": 5573,
+        "translate_ch": "你不真正認識一個社群，直到你默默地需要過它，然後發現究竟有沒有人真的來了。",
+        "sentence": "You don't really know a community until you've quietly needed it and found out whether anybody actually came."
+    },
+    {
+        "id": 5574,
+        "translate_ch": "職場默默地獎勵那個把難事做得看似輕鬆的人，然後納悶為什麼沒人承認那其實很難。",
+        "sentence": "The workplace quietly rewards whoever makes the hard thing look easy, then wonders why nobody admits it was hard."
+    },
+    {
+        "id": 5575,
+        "translate_ch": "任何場合裡最有價值的人，默默地就是那個讓身邊每個人都變得稍微勇敢一點的人。",
+        "sentence": "The most valuable person in any room is quietly the one who makes everyone around them a little braver."
+    },
+    {
+        "id": 5576,
+        "translate_ch": "最好的說明默默地假設你聰明但陌生，而不是假設你遲鈍、早就該懂了。",
+        "sentence": "The best instructions quietly assume you're smart but new, never that you're slow and should already know."
+    },
+    {
+        "id": 5577,
+        "translate_ch": "嗜好默默地是僅存的一個地方，讓你能在一件你熱愛的事上，堂堂正正、毫無用處地爛著。",
+        "sentence": "A hobby is quietly the one place left where you're allowed to be gloriously, uselessly bad at something you love."
+    },
+    {
+        "id": 5578,
+        "translate_ch": "哲學不會給你答案；它默默地教你問出銳利到能劃穿自己藉口的問題。",
+        "sentence": "Philosophy doesn't hand you answers; it quietly teaches you to ask questions sharp enough to cut through your own excuses."
+    },
+    {
+        "id": 5579,
+        "translate_ch": "未經審視的人生飛逝得如此之快，默默地，有一天，你想不起來那些年究竟都跑去哪了。",
+        "sentence": "The unexamined life races by so fast that quietly, one day, you can't remember where any of the years actually went."
+    },
+    {
+        "id": 5580,
+        "translate_ch": "希望不是相信一切都會順利；它默默地是一個決定：無論如何都繼續播種。",
+        "sentence": "Hope isn't the belief that it'll all work out; it's quietly the decision to keep planting anyway."
+    },
+    {
+        "id": 5581,
+        "translate_ch": "希望默默地是那條倔強的小肌肉，在一切都給了你停下來的理由的隔天，仍繼續運作。",
+        "sentence": "Hope is quietly the stubborn little muscle that keeps working the day after everything gave you a reason to stop."
+    },
+    {
+        "id": 5582,
+        "translate_ch": "你的生活方式默默地只是你答應的一切的總和，減去所有你累到無力拒絕的東西。",
+        "sentence": "Your lifestyle is quietly just the sum of what you say yes to, minus everything you were too tired to refuse."
+    },
+    {
+        "id": 5583,
+        "translate_ch": "簡化你的生活默默地無關於擁有更少，而是為那幾件你會拚命想留住的東西騰出空間。",
+        "sentence": "Simplifying your life quietly isn't about owning less; it's about making room for the few things you'd fight to keep."
+    },
+    {
+        "id": 5584,
+        "translate_ch": "健康的職場文化默默地用你完成了什麼來衡量你，而不是你設法讓自己看起來多明顯地累。",
+        "sentence": "A healthy work culture quietly measures you by what you finished, not by how visibly exhausted you managed to look."
+    },
+    {
+        "id": 5585,
+        "translate_ch": "好的老師默默地努力讓自己變得不再必要；差的老師則努力讓自己永遠被需要。",
+        "sentence": "A great teacher quietly works to become unnecessary; a poor one works to stay forever needed."
+    },
+    {
+        "id": 5586,
+        "translate_ch": "你永遠不會忘記那個在你還沒資格相信自己之前，就默默地稍稍相信你的老師。",
+        "sentence": "You never forget the teacher who quietly believed in you slightly before you'd earned the right to believe in yourself."
+    },
+    {
+        "id": 5587,
+        "translate_ch": "嗜好的重點默默地不是要變厲害，而是要記得，純粹為了快樂做一件事是什麼感覺。",
+        "sentence": "The point of a hobby quietly isn't to get good at it; it's to remember what doing something for pure joy feels like."
+    },
+    {
+        "id": 5588,
+        "translate_ch": "氣候不談判；它默默地留著所有收據，最終把帳單寄給我們每一個人。",
+        "sentence": "The climate doesn't negotiate; it quietly keeps the receipts and eventually sends every last one of us the bill."
+    },
+    {
+        "id": 5589,
+        "translate_ch": "幸福不是一個你終於抵達的地方；它默默地是你學會穿越平凡的方式。",
+        "sentence": "Happiness isn't a place you finally arrive; it's quietly the way you learn to travel through the ordinary."
+    },
+    {
+        "id": 5590,
+        "translate_ch": "直接追逐幸福，默默地會把它嚇跑；它只在你忙著在乎別的東西時才現身。",
+        "sentence": "Chasing happiness directly quietly scares it off; it only shows up while you're busy caring about something else."
+    },
+    {
+        "id": 5591,
+        "translate_ch": "一個家靠一千件看不見的雜事在運轉，而它們只有在某人默默停手的那一刻才會被注意到。",
+        "sentence": "A household runs on a thousand invisible tasks that only ever get noticed the moment somebody quietly stops doing them."
+    },
+    {
+        "id": 5592,
+        "translate_ch": "那個默默注意到垃圾桶滿了的人，為這個家做的，比那個把家事掛在嘴上的人還多。",
+        "sentence": "The person who quietly notices the bin is full is doing more for the home than the one who talks about chores."
+    },
+    {
+        "id": 5593,
+        "translate_ch": "工作量不會一次把你壓垮；它默默地一次加一個「小忙」，直到你喘不過氣。",
+        "sentence": "A workload doesn't crush you all at once; it quietly adds one 'quick favour' at a time until you can't breathe."
+    },
+    {
+        "id": 5594,
+        "translate_ch": "學習默默地重寫的是你這個人，而不只是你知道的東西，遠在你忘了那些事實之後。",
+        "sentence": "Studying quietly rewires who you are, not just what you know, long after you've forgotten the actual facts."
+    },
+    {
+        "id": 5595,
+        "translate_ch": "學習的目標不是填滿你的腦袋，而是默默地打造一顆懂得如何把事情弄明白的心智。",
+        "sentence": "The goal of studying isn't to fill your head; it's quietly to build a mind that knows how to find things out."
+    },
+    {
+        "id": 5596,
+        "translate_ch": "好的設計默默地隱形；你只有在某人做得很糟、浪費你一整天時，才會注意到它。",
+        "sentence": "Good design is quietly invisible; you only ever notice it the moment somebody does it badly and wastes your day."
+    },
+    {
+        "id": 5597,
+        "translate_ch": "環境不需要我們去拯救它；它默默地只需要我們，別再當那個正在傷害它的東西。",
+        "sentence": "The environment doesn't need us to save it; it quietly needs us to stop being the specific thing hurting it."
+    },
+    {
+        "id": 5598,
+        "translate_ch": "動力是個善變的客人；它默默地在有趣的部分現身，然後在真正的工作開始時消失。",
+        "sentence": "Motivation is a fickle guest; it quietly shows up for the fun part and vanishes right when the real work begins."
+    },
+    {
+        "id": 5599,
+        "translate_ch": "等著感覺有動力，默默地就是大多數夢想在候診室裡禮貌地餓死的方式。",
+        "sentence": "Waiting to feel motivated is quietly how most dreams politely starve to death in the waiting room."
+    },
+    {
+        "id": 5600,
+        "translate_ch": "打掃一個房間，也默默地清理了你腦袋裡的某個東西，這正是為什麼我們在一切都不對勁時最愛打掃。",
+        "sentence": "Cleaning a room quietly cleans something in your head too, which is why we do it most when everything feels wrong."
+    },
+    {
+        "id": 5601,
+        "translate_ch": "遠距工作默默地把通勤時間還給你，然後問你：你到底有沒有真正懂得怎麼停下來。",
+        "sentence": "Remote work quietly gives you back the commute and then asks whether you ever really knew how to just stop."
+    },
+    {
+        "id": 5602,
+        "translate_ch": "在家工作默默地模糊了工作和生活的界線，直到兩者都得不到你完整的注意力。",
+        "sentence": "Working from home quietly blurs the line between your job and your life until neither one gets your full attention."
+    },
+    {
+        "id": 5603,
+        "translate_ch": "最好的讀書習慣默默地很無聊：同一張桌子、同一個時間、同一小步，重複到不再需要意志力。",
+        "sentence": "The best study habit is quietly boring: same desk, same time, same small step, repeated until it stops needing willpower."
+    },
+    {
+        "id": 5604,
+        "translate_ch": "你穿什麼，默默地會先改變你怎麼行動，然後才改變別人決定怎麼對待你。",
+        "sentence": "What you wear quietly changes how you move before it ever changes how anybody else decides to treat you."
+    },
+    {
+        "id": 5605,
+        "translate_ch": "一場災難能在一小時內默默揭露，一個社會花了幾十年假裝早已修好的東西。",
+        "sentence": "A disaster quietly reveals in one hour the things a society spent decades pretending it had already fixed."
+    },
+    {
+        "id": 5606,
+        "translate_ch": "我們大多數的行為，默默地是一套舊的生存策略，仍忠實地在解一個我們早已沒有的問題。",
+        "sentence": "Most of our behaviour is quietly an old survival strategy, still faithfully solving a problem we no longer have."
+    },
+    {
+        "id": 5607,
+        "translate_ch": "我們用意圖評判自己，用行為評判所有其他人，然後默默地管這叫公平。",
+        "sentence": "We judge ourselves by our intentions and everyone else by their actions, and quietly call that being fair."
+    },
+    {
+        "id": 5608,
+        "translate_ch": "一套建立在厭惡自己身體上的飲食法會默默失敗；一套建立在尊重它上的，往往會默默維持一輩子。",
+        "sentence": "A diet built on hating your body quietly fails; one built on respecting it tends to quietly last a lifetime."
+    },
+    {
+        "id": 5609,
+        "translate_ch": "最好的飲食法，默默地是那個你一年後還在遵守的，而不是那個承諾週五前見奇蹟的。",
+        "sentence": "The best diet is quietly the one you'll still be following in a year, not the one that promises miracles by Friday."
+    },
+    {
+        "id": 5610,
+        "translate_ch": "金融科技默默地讓花錢變得毫無阻力，然後又裝作驚訝：為什麼大家都變得更難存錢了。",
+        "sentence": "Fintech quietly made money frictionless to spend, then acted surprised that everyone found it so much harder to save."
+    },
+    {
+        "id": 5611,
+        "translate_ch": "考自己感覺比重讀還痛苦，卻默默地有效十倍，這正是為什麼幾乎沒人這麼做。",
+        "sentence": "Testing yourself feels worse than re-reading and quietly works ten times better, which is why almost nobody does it."
+    },
+    {
+        "id": 5612,
+        "translate_ch": "我們留著不再合身的衣服，是因為默默地，我們留著的是它們還合身時的那個自己。",
+        "sentence": "We keep the clothes that no longer fit because quietly, we're keeping the person we were when they did."
+    },
+    {
+        "id": 5613,
+        "translate_ch": "永續不是你做出的犧牲；它默默地只是學會去想要那些真正能持久的東西。",
+        "sentence": "Sustainability isn't a sacrifice you make; it's quietly just learning to want what actually lasts."
+    },
+    {
+        "id": 5614,
+        "translate_ch": "你擁有最環保的東西，默默地就是那個你早就有、又決定好好繼續用下去的。",
+        "sentence": "The greenest thing you own is quietly the one you already have and simply decide to keep using well."
+    },
+    {
+        "id": 5615,
+        "translate_ch": "感恩默默地重新接線，讓那雙原本只看見缺失的眼睛，突然注意到一直都在的東西。",
+        "sentence": "Gratitude quietly rewires the same eyes that saw only what was missing to suddenly notice what was there all along."
+    },
+    {
+        "id": 5616,
+        "translate_ch": "你沒辦法在同一口氣裡，默默地既感恩又怨恨；兩者總有一個最後會離開房間。",
+        "sentence": "You can't be quietly grateful and bitter in the same breath; one of them always ends up leaving the room."
+    },
+    {
+        "id": 5617,
+        "translate_ch": "一頓共享的飯，默默地是我們最古老的科技，用來把陌生人變成有點像家人的東西。",
+        "sentence": "A shared meal is quietly the oldest technology we have for turning strangers into something a little like family."
+    },
+    {
+        "id": 5618,
+        "translate_ch": "一個人吃，你餵飽的是身體；一起吃，你默默餵飽的，是住在身體裡那個更飢餓的東西。",
+        "sentence": "Eat alone and you feed the body; eat together and you quietly feed the far hungrier thing that lives inside it."
+    },
+    {
+        "id": 5619,
+        "translate_ch": "最好的投資默默地無聊、有耐心、又緩慢，這正是為什麼它從不流行、也很少被拿來炫耀。",
+        "sentence": "The best investment is quietly boring, patient, and slow, which is exactly why it never trends and rarely gets bragged about."
+    },
+    {
+        "id": 5620,
+        "translate_ch": "待在市場裡的時間，默默地勝過抓市場的時機，但耐心在派對上是個很無聊的故事。",
+        "sentence": "Time in the market quietly beats timing the market, but patience makes for a very boring story to tell at parties."
+    },
+    {
+        "id": 5621,
+        "translate_ch": "最好卻沒人採用的讀書訣竅默默地是這個：把它教給一個想像中的初學者，看著自己的漏洞浮現。",
+        "sentence": "The best study tip nobody follows is quietly this: teach it to an imaginary beginner and watch your own gaps appear."
+    },
+    {
+        "id": 5622,
+        "translate_ch": "甜點默默地證明了，人生中最美好的東西，本來就不是為了成為必需品而存在的。",
+        "sentence": "Dessert quietly proves that the best things in life were never meant to be strictly necessary in the first place."
+    },
+    {
+        "id": 5623,
+        "translate_ch": "每一套交通系統都默默地形塑它周圍的城市，替一整個世紀決定誰能住在誰的附近。",
+        "sentence": "Every transport system quietly shapes the city around it, deciding for a century who gets to live near whom."
+    },
+    {
+        "id": 5624,
+        "translate_ch": "記憶不是一段錄影；它默默地是一個故事，每次你敢回頭看時，都被你稍微改寫一點。",
+        "sentence": "Memory isn't a recording; it's quietly a story you rewrite a little every single time you dare to look back."
+    },
+    {
+        "id": 5625,
+        "translate_ch": "心智默默地留住它感受過的，遠在它失去它看見過的之後，這正是為什麼老歌那麼傷人。",
+        "sentence": "The mind quietly keeps what it felt long after it loses what it saw, which is why old songs hurt so much."
+    },
+    {
+        "id": 5626,
+        "translate_ch": "餐桌默默地是一個家庭，把所有重要的事都說出來、卻從不真正化成言語的地方。",
+        "sentence": "The dinner table is quietly where a family says everything that matters without ever putting it into actual words."
+    },
+    {
+        "id": 5627,
+        "translate_ch": "錢默默地放大你本來就是的那個人；它讓慷慨的人更自由，讓恐懼的人更害怕。",
+        "sentence": "Money quietly amplifies whoever you already were; it makes the generous freer and the fearful far more afraid."
+    },
+    {
+        "id": 5628,
+        "translate_ch": "在你每天用的東西上花錢，在你很少碰的東西上省，錢就默默地不再是罪惡感的來源。",
+        "sentence": "Spend on what you use daily and save on what you'll rarely touch, and money quietly stops being a source of guilt."
+    },
+    {
+        "id": 5629,
+        "translate_ch": "閱讀默默地讓你活過一百種人生，好讓你不必在自己的人生裡犯下每一個錯。",
+        "sentence": "Reading quietly lets you live a hundred lives, so you don't have to make every single mistake in your own."
+    },
+    {
+        "id": 5630,
+        "translate_ch": "一本你在錯的時間讀的書，會默默地等上好幾年，然後說出你終於需要聽見的話。",
+        "sentence": "A book you read at the wrong time will quietly wait for years and then say exactly what you finally needed to hear."
+    },
+    {
+        "id": 5631,
+        "translate_ch": "為某人下廚，默默地是我們找到過最樸素的方式，來說「我希望你活著、待在我身邊」。",
+        "sentence": "Cooking for someone is quietly the plainest way we've ever found to say 'I'd like you to stay alive and near me'."
+    },
+    {
+        "id": 5632,
+        "translate_ch": "一份傳下來的食譜，默默地承載著一位祖母的整個下午，隱形地摺進每一個步驟裡。",
+        "sentence": "A recipe handed down quietly carries a grandmother's whole afternoon in it, folded invisibly into every single step."
+    },
+    {
+        "id": 5633,
+        "translate_ch": "開車默默地揭露一個人真正的性格，因為沒有什麼比匿名又有點遲到更能暴露我們。",
+        "sentence": "Driving quietly reveals people's true character, because nothing exposes us like being anonymous and slightly late."
+    },
+    {
+        "id": 5634,
+        "translate_ch": "我們記得的不是日子，而是默默記得的片刻，而那些片刻幾乎從不在我們計畫的時候發生。",
+        "sentence": "We don't remember days; we quietly remember moments, and the moments almost never happen when we planned them to."
+    },
+    {
+        "id": 5635,
+        "translate_ch": "一台裝滿的購物車，默默地訴說你這週最誠實的故事，那是你字斟句酌的計畫永遠不會說的。",
+        "sentence": "A full grocery cart quietly tells the honest story of your week that your carefully worded plans never will."
+    },
+    {
+        "id": 5636,
+        "translate_ch": "預算不是關於限制；它默默地是你告訴你的錢該去哪，而不是納悶它到底跑去哪了。",
+        "sentence": "A budget isn't about restriction; it's quietly you telling your money where to go instead of wondering where it went."
+    },
+    {
+        "id": 5637,
+        "translate_ch": "預算的目標默默地不是花更少，而是能毫無罪惡感地，把錢花在你真正熱愛的少數事物上。",
+        "sentence": "The goal of a budget quietly isn't to spend less; it's to spend guiltlessly on the few things you truly love."
+    },
+    {
+        "id": 5638,
+        "translate_ch": "寫作默默地逼你搞清楚你真正在想什麼，而那通常比你希望的還要混亂。",
+        "sentence": "Writing quietly forces you to find out what you actually think, which is usually messier than you'd hoped."
+    },
+    {
+        "id": 5639,
+        "translate_ch": "空白的頁面默默地只問一個誠實的問題，而那也正是你整個人生一直在問的同一個。",
+        "sentence": "The blank page quietly asks only one honest question, and it's the same one your whole life keeps asking too."
+    },
+    {
+        "id": 5640,
+        "translate_ch": "觀光默默地賣給你一個地方的照片；旅行則讓你坐得夠久，去掙得真正的它。",
+        "sentence": "Tourism quietly sells you a photograph of a place; travel makes you sit long enough to earn the real thing."
+    },
+    {
+        "id": 5641,
+        "translate_ch": "城市生活默默地用鄉間深沉的寂靜，換來一種從不真正孤單的、奇異的安慰。",
+        "sentence": "City life quietly trades the deep silence of the countryside for the strange comfort of never being truly alone."
+    },
+    {
+        "id": 5642,
+        "translate_ch": "在大城市裡，你默默地既從不寂寞、又從不真正獨處，而這兩者不知怎地是兩種完全不同的痛。",
+        "sentence": "In a big city you're quietly never lonely and never quite alone, which are somehow two completely different aches."
+    },
+    {
+        "id": 5643,
+        "translate_ch": "性格默默地只是一套你重複到大家開始管它叫「你」的習慣。",
+        "sentence": "Personality is quietly just the set of habits you've repeated so often that everyone started calling it 'you'."
+    },
+    {
+        "id": 5644,
+        "translate_ch": "我們花了半個青春，藏起那些默默地最後證明是我們最棒之處的特質。",
+        "sentence": "We spend half our youth hiding the very traits that quietly turn out to be the best things about us."
+    },
+    {
+        "id": 5645,
+        "translate_ch": "真正的好客，默默地讓客人感覺不像訪客，而更像是純粹回到了家。",
+        "sentence": "True hospitality quietly makes a guest feel less like a visitor and more like they'd simply come back home."
+    },
+    {
+        "id": 5646,
+        "translate_ch": "付款默默地變得越容易，花錢就越不真實，一個月的錢也就花得越快。",
+        "sentence": "The easier a payment quietly becomes, the less the spending feels real, and the faster the month runs out of money."
+    },
+    {
+        "id": 5647,
+        "translate_ch": "一個堅定卻鬆握著的意見，默默地是一個會思考的人能學會攜帶的、最稀有又最有用的東西。",
+        "sentence": "A strong opinion loosely held is quietly the rarest and most useful thing a thinking person can learn to carry."
+    },
+    {
+        "id": 5648,
+        "translate_ch": "當事實改變時改變你的想法，默默地不是軟弱；它是思考從頭到尾唯一誠實的用途。",
+        "sentence": "Changing your mind when the facts change quietly isn't weakness; it's the only honest thing thinking was ever for."
+    },
+    {
+        "id": 5649,
+        "translate_ch": "旅行默默地毀了你安於原地的能力，然後遞給你一個只有從很遠的地方才能真正看清的家。",
+        "sentence": "Travel quietly ruins you for staying still, then hands you a home you can only truly see from very far away."
+    },
+    {
+        "id": 5650,
+        "translate_ch": "旅行的重點默默地不是蒐集國家，而是回家時，變成一個稍微更難被騙的人。",
+        "sentence": "The point of travel quietly isn't to collect countries; it's to come home a slightly harder person to fool."
+    },
+    {
+        "id": 5651,
+        "translate_ch": "一座只為車設計的城市，默默地忘了它本該是為坐在車裡的人設計的。",
+        "sentence": "A city planned only for cars quietly forgets that it was supposed to be planned for the people inside them."
+    },
+    {
+        "id": 5652,
+        "translate_ch": "一個沒有期限的目標，默默地只是一個願望，讓你能一直對它感覺良好，卻從不真正去追。",
+        "sentence": "A goal without a deadline is quietly just a wish you get to keep feeling good about while never actually chasing."
+    },
+    {
+        "id": 5653,
+        "translate_ch": "設一個小到近乎可笑的目標，你就默默地移除了你唯一真正有過的藉口。",
+        "sentence": "Set a goal so small it feels almost silly, and quietly you remove the only excuse you ever really had."
+    },
+    {
+        "id": 5654,
+        "translate_ch": "洗手默默地是有史以來最強大的藥，而幾乎沒人把它當成藥。",
+        "sentence": "Washing your hands is quietly the most powerful medicine ever invented, and almost nobody thinks of it as medicine."
+    },
+    {
+        "id": 5655,
+        "translate_ch": "特價默默地說服你，你在那些你本來根本不會買的東西上省了錢。",
+        "sentence": "A sale quietly convinces you that you're saving money on the very things you were never going to buy anyway."
+    },
+    {
+        "id": 5656,
+        "translate_ch": "強烈的意見既廉價又容易；默默地同時抱著兩個對立的想法而不慌張，才是真正的本事。",
+        "sentence": "Strong opinions are cheap and easy; quietly holding two opposing ideas without panicking is the actual skill."
+    },
+    {
+        "id": 5657,
+        "translate_ch": "最快分享意見的人，默默地通常是想得最少的，反之亦然。",
+        "sentence": "The people quickest to share an opinion have quietly usually thought about it the least, and vice versa."
+    },
+    {
+        "id": 5658,
+        "translate_ch": "最好的風景默默地不向你要求任何東西；它就坐在那裡，本身就已足夠，這正是為什麼它那麼療癒。",
+        "sentence": "The best scenery quietly asks nothing of you; it just sits there being enough, which is why it heals so well."
+    },
+    {
+        "id": 5659,
+        "translate_ch": "一扇有好風景的窗，默默地比一間更大的房間還值錢，儘管沒有任何標價肯承認。",
+        "sentence": "A window with a good view is quietly worth more than a bigger room, though no price tag ever admits it."
+    },
+    {
+        "id": 5660,
+        "translate_ch": "現代社會默默地給了我們一千種連結的方式，卻不知怎地，讓我們比之前任何一個世代都更孤單。",
+        "sentence": "Modern society quietly gave us a thousand ways to connect and somehow left us lonelier than any generation before."
+    },
+    {
+        "id": 5661,
+        "translate_ch": "我們造機器來省時間，然後默默地把省下的時間，填滿更多向我們索取注意力的機器。",
+        "sentence": "We built machines to save time and then quietly filled the saved time with more machines asking for our attention."
+    },
+    {
+        "id": 5662,
+        "translate_ch": "你擁有最私人的東西，默默地不是你的臉或名字，而是你留意事物的那種獨特方式。",
+        "sentence": "The most personal thing you own quietly isn't your face or your name; it's the particular way you pay attention."
+    },
+    {
+        "id": 5663,
+        "translate_ch": "睡眠默默地是我們最先取消、卻後悔最久的約，彷彿休息是獎勵、而不是地基。",
+        "sentence": "Sleep is quietly the appointment we cancel first and regret longest, as if rest were a reward instead of a foundation."
+    },
+    {
+        "id": 5664,
+        "translate_ch": "一個糟糕的夜晚默默地向明天借貸；一百個，則默默地向你餘生借貸。",
+        "sentence": "A single bad night quietly borrows from tomorrow; a hundred of them quietly borrow from the rest of your life."
+    },
+    {
+        "id": 5665,
+        "translate_ch": "身為消費者，你默默地用每一次購買投票，而你得到的世界，就是那些小小選票的總和。",
+        "sentence": "As a consumer you quietly vote with every purchase, and the world you get is simply the sum of those small ballots."
+    },
+    {
+        "id": 5666,
+        "translate_ch": "最便宜的選項，在你算進你不得不換它的那三次後，默默地花掉最多。",
+        "sentence": "The cheapest option quietly costs the most when you count the three times you had to replace it."
+    },
+    {
+        "id": 5667,
+        "translate_ch": "我們選的字，默默地蓋出聽者必須站進去的房間，所以挑那些有窗戶的，而不只是牆的。",
+        "sentence": "The words we choose quietly build the room our listener has to stand in, so pick ones with windows, not just walls."
+    },
+    {
+        "id": 5668,
+        "translate_ch": "一張照片默默地保存了一個瞬間的光，卻從不保存它的重量，這正是為什麼回頭看會如此心痛。",
+        "sentence": "A photo quietly preserves the light of a moment but never the weight of it, which is why it can ache to look back."
+    },
+    {
+        "id": 5669,
+        "translate_ch": "全球化默默地讓全世界成了你的鄰居，然後又忘了教任何人，怎麼真正當一個鄰居。",
+        "sentence": "Globalization quietly made the whole world your neighbour and then forgot to teach anyone how to actually be one."
+    },
+    {
+        "id": 5670,
+        "translate_ch": "一道來自地球另一端的菜，默默地來到你的餐桌上，帶著一個你永遠聽不到的故事。",
+        "sentence": "A dish from the other side of the planet quietly arrives on your table, carrying a story you'll never get to hear."
+    },
+    {
+        "id": 5671,
+        "translate_ch": "你每天的小習慣，默默地每個小時都在為你正慢慢成為的那種人投票。",
+        "sentence": "Your small daily habits quietly cast a vote every hour for the type of person you are slowly becoming."
+    },
+    {
+        "id": 5672,
+        "translate_ch": "你今天不必很厲害；你默默地只需要別弄斷你一直在建的那條小小鎖鏈。",
+        "sentence": "You don't have to be great today; you quietly just have to not break the small chain you've been building."
+    },
+    {
+        "id": 5673,
+        "translate_ch": "例行公事默默地藉由提前決定小事來解放心智，好讓你最好的精力，用在重要的事上。",
+        "sentence": "A routine quietly frees the mind by deciding the small things in advance, so your best energy goes to what matters."
+    },
+    {
+        "id": 5674,
+        "translate_ch": "消費主義默默地賣給你一劑解藥，去治療一種正是同一套販售費盡心力製造出來的不滿。",
+        "sentence": "Consumerism quietly sells you the cure for a discontent that the very same selling worked so hard to create."
+    },
+    {
+        "id": 5675,
+        "translate_ch": "觀眾默默地希望你成功，遠比你害怕的、他們希望你失敗還多；緊張只是對這件事撒謊。",
+        "sentence": "The audience quietly wants you to succeed far more than you fear they want you to fail; nerves just lie about that."
+    },
+    {
+        "id": 5676,
+        "translate_ch": "沒人記得你顫抖的開場；他們默默記得的，是你看起來有沒有真的在乎他們。",
+        "sentence": "Nobody remembers your shaky opening; they quietly remember whether you seemed to actually care about them."
+    },
+    {
+        "id": 5677,
+        "translate_ch": "相機默默地教你「看見」，因為你拍不好一個你從沒真正費心去看的東西。",
+        "sentence": "A camera quietly teaches you to see, because you can't photograph well what you never truly bothered to look at."
+    },
+    {
+        "id": 5678,
+        "translate_ch": "每個世代都默默地發誓，是自己發明了辛苦，然後長大後告訴下一代，他們過得很輕鬆。",
+        "sentence": "Every generation quietly swears it invented struggle, then grows up to tell the next one they had it easy."
+    },
+    {
+        "id": 5679,
+        "translate_ch": "反思默默地把一個錯誤變成一堂課；沒有它，同樣的錯誤只會耐心地等著被重複。",
+        "sentence": "Reflection quietly turns a mistake into a lesson; without it, the same mistake just patiently waits to be repeated."
+    },
+    {
+        "id": 5680,
+        "translate_ch": "十分鐘安靜地誠實回顧你的一天，默默地能教你的，比十本新書還多。",
+        "sentence": "Ten quiet minutes looking honestly back at your day will quietly teach you more than ten new books ever could."
+    },
+    {
+        "id": 5681,
+        "translate_ch": "我們被形塑，默默地取決於我們最快回訊息的那三四個人，而不是我們加入的那些人群。",
+        "sentence": "We are quietly shaped less by the crowds we join than by the three or four people we text back the fastest."
+    },
+    {
+        "id": 5682,
+        "translate_ch": "好的客戶服務默默地無關於從不犯錯，而是關於你多優雅地修好你犯的那一個。",
+        "sentence": "Good customer service quietly isn't about never making mistakes; it's about how gracefully you fix the one you made."
+    },
+    {
+        "id": 5683,
+        "translate_ch": "知識默默地告訴你番茄是水果；智慧則是默默地知道別把它放進水果沙拉裡。",
+        "sentence": "Knowledge quietly tells you a tomato is a fruit; wisdom is quietly knowing not to put it in the fruit salad."
+    },
+    {
+        "id": 5684,
+        "translate_ch": "傳統默默地只是一個好點子，有人愛它愛到不斷重複，直到它活得比那人還久。",
+        "sentence": "A tradition is quietly just a good idea that someone loved enough to keep repeating until it outlived them."
+    },
+    {
+        "id": 5685,
+        "translate_ch": "每個複雜的問題，都默默地有一個簡單、乾淨、又完全錯誤的答案，等著被人相信。",
+        "sentence": "Every complex problem quietly has a simple, clean, and completely wrong answer waiting to be believed."
+    },
+    {
+        "id": 5686,
+        "translate_ch": "安靜地與自己的念頭相處，是一項我們幾乎失去的技能，也默默地是我們最需要找回來的。",
+        "sentence": "Sitting quietly with your own thoughts is a skill we've almost lost, and quietly the one we most need back."
+    },
+    {
+        "id": 5687,
+        "translate_ch": "孩子默默地不會照你叫他們做的做；他們會慢慢長大，去做他們看著你實際在做的事。",
+        "sentence": "Children quietly don't do what you tell them to do; they slowly grow up to do what they watched you actually do."
+    },
+    {
+        "id": 5688,
+        "translate_ch": "你默默地會原諒一家公司的高價，卻永遠無法完全原諒那家讓你覺得自己很蠢的。",
+        "sentence": "You quietly forgive a company its high prices, but you never quite forgive the one that made you feel stupid."
+    },
+    {
+        "id": 5689,
+        "translate_ch": "學任何東西最快的方法，默默地是謙虛到願意在你還很爛的時候顯得很蠢。",
+        "sentence": "The fastest way to learn anything is quietly to be humble enough to look foolish while you're still bad at it."
+    },
+    {
+        "id": 5690,
+        "translate_ch": "真正的學習，默默地感覺不像裝滿一個桶子，而更像慢慢點燃一把不是你起的火。",
+        "sentence": "Real learning quietly feels less like filling a bucket and more like slowly lighting a fire you didn't start."
+    },
+    {
+        "id": 5691,
+        "translate_ch": "一個文化默默地存活在它每天的小小舉止裡，遠在它宏偉的紀念碑碎成塵土之後。",
+        "sentence": "A culture quietly survives in its small daily gestures long after its grand monuments have crumbled to dust."
+    },
+    {
+        "id": 5692,
+        "translate_ch": "策略默默地無關於做更多事，而是決定你要刻意不做什麼的、殘酷的藝術。",
+        "sentence": "Strategy quietly isn't about doing more things; it's the brutal art of deciding what you'll deliberately not do."
+    },
+    {
+        "id": 5693,
+        "translate_ch": "毅力默默地看起來很像固執，一直到它終於開始奏效的那一刻為止。",
+        "sentence": "Perseverance quietly looks a lot like stubbornness, right up until the exact moment it finally starts to work."
+    },
+    {
+        "id": 5694,
+        "translate_ch": "你不必感覺想繼續；你默默地只需要繼續，而那種感覺通常晚一點才會跟上。",
+        "sentence": "You don't have to feel like continuing; you quietly just have to continue, and the feeling usually catches up later."
+    },
+    {
+        "id": 5695,
+        "translate_ch": "童年默默地結束的，不是某個生日，而是你第一次為別人感到有責任的那個平凡日子。",
+        "sentence": "Childhood quietly ends not on a birthday but on the ordinary day you first felt responsible for someone else."
+    },
+    {
+        "id": 5696,
+        "translate_ch": "行銷默默地能讓你想要幾乎任何東西；它就是永遠沒法讓那東西本身真的變好。",
+        "sentence": "Marketing quietly can make you want almost anything; it just can never make the thing itself actually good."
+    },
+    {
+        "id": 5697,
+        "translate_ch": "最好的行銷，默默地只是一個真正好的產品，好到大家忍不住一直跟朋友講。",
+        "sentence": "The best marketing is quietly just a genuinely good product that people can't seem to stop telling their friends about."
+    },
+    {
+        "id": 5698,
+        "translate_ch": "教育默默地無關於你背了什麼，而是關於你在努力去背的過程中，變成了誰。",
+        "sentence": "Education quietly isn't about what you memorise; it's about who you become while you're busy struggling to."
+    },
+    {
+        "id": 5699,
+        "translate_ch": "教育的目標，默默地應該是打造一顆在教室放手很久之後，仍持續成長的心智。",
+        "sentence": "The goal of education quietly should be to build a mind that keeps growing long after the classroom lets it go."
+    },
+    {
+        "id": 5700,
+        "translate_ch": "創造力默默地不是一道閃電；它只是勇氣，加上對顯得有點蠢的極高忍受度。",
+        "sentence": "Creativity quietly isn't a lightning bolt; it's just courage plus a very high tolerance for looking a bit silly."
+    },
+    {
+        "id": 5701,
+        "translate_ch": "每一件創作，默默地都是從一個爛到令人尷尬、你卻勇敢到沒刪掉的東西開始的。",
+        "sentence": "Every creative work quietly begins as something embarrassingly bad that you were brave enough not to delete."
+    },
+    {
+        "id": 5702,
+        "translate_ch": "大多數的決定，默默地不是在對與錯之間，而是在兩個你無法同時擁有的好東西之間。",
+        "sentence": "Most decisions quietly aren't between right and wrong; they're between two goods you can't have at the same time."
+    },
+    {
+        "id": 5703,
+        "translate_ch": "那個你一直默默逃避的決定，通常正是你整個人生禮貌地在等待的那一個。",
+        "sentence": "The decision you keep quietly avoiding is usually the exact one your whole life is politely waiting on."
+    },
+    {
+        "id": 5704,
+        "translate_ch": "韌性默默地不是永不跌倒，而是把「重新站起來」這門無聊的藝術，練得太過熟練。",
+        "sentence": "Resilience quietly isn't never falling down; it's just getting far too good at the boring art of standing back up."
+    },
+    {
+        "id": 5705,
+        "translate_ch": "你認識最堅強的人，默默地只是那些在一個你根本不會知道的日子裡，仍撐下去的人。",
+        "sentence": "The strongest people you know are quietly just the ones who kept going on a day you'd never even have known about."
+    },
+    {
+        "id": 5706,
+        "translate_ch": "變老默默地不是青春的緩慢流失，而是用精力，緩慢又耐心地換取一種更稀有的理解。",
+        "sentence": "Aging quietly isn't the slow loss of youth; it's the slow, patient trade of energy for a rarer kind of understanding."
+    },
+    {
+        "id": 5707,
+        "translate_ch": "沒有人默默地害怕變老；我們真正害怕的，是抵達那裡時，一路上卻沒有真正活過。",
+        "sentence": "Nobody quietly fears growing old; what we actually fear is arriving there without having really lived along the way."
+    },
+    {
+        "id": 5708,
+        "translate_ch": "創新默默地發生在，有人拒絕接受「事情就是一直這樣做的」的時候。",
+        "sentence": "Innovation quietly happens when somebody refuses to accept that 'this is just the way things have always been done'."
+    },
+    {
+        "id": 5709,
+        "translate_ch": "大多數的創新，默默地不是發明新東西，而是注意到一個所有人都不再質疑的舊東西。",
+        "sentence": "Most innovation quietly isn't inventing something new; it's noticing an old thing everyone else stopped questioning."
+    },
+    {
+        "id": 5710,
+        "translate_ch": "真正善於社交的人，默默地不是房間裡最大聲的，而是那個讓安靜的人覺得被歡迎的。",
+        "sentence": "The genuinely social person quietly isn't the loudest in the room; it's the one who makes the quiet ones feel welcome."
+    },
+    {
+        "id": 5711,
+        "translate_ch": "一句厲害的文字，默默地說出那件你一直感覺得到、卻從沒找到對的字去承接的事。",
+        "sentence": "A great line of writing quietly says the thing you'd always felt but never once found the right words to hold."
+    },
+    {
+        "id": 5712,
+        "translate_ch": "創造力默默地無關於有新點子，而是關於別在那些奇怪的點子長大之前就把它們扼殺了。",
+        "sentence": "Creativity quietly isn't about having new ideas; it's about not killing the strange ones before they can grow up."
+    },
+    {
+        "id": 5713,
+        "translate_ch": "最會解決問題的人，默默地愛上的是問題本身，而不是他們對它的第一個閃亮點子。",
+        "sentence": "The best problem-solvers quietly fall in love with the problem itself, not with their first shiny idea about it."
+    },
+    {
+        "id": 5714,
+        "translate_ch": "投入近看默默地毫不起眼：它只是在你最不想的那天，又出現了。",
+        "sentence": "Dedication quietly looks unglamorous up close: it's just showing up again on the day you least feel like it."
+    },
+    {
+        "id": 5715,
+        "translate_ch": "一個高齡化社會默默地發現，它忘了珍惜的長者，撐住的東西比它以為的還多。",
+        "sentence": "An aging society quietly discovers that the elders it forgot to value were holding more of it together than it knew."
+    },
+    {
+        "id": 5716,
+        "translate_ch": "你周圍的一切，都默默地是某個你永遠不會知道名字、永遠無法感謝其用心的人做出來的。",
+        "sentence": "Everything around you was quietly made by someone whose name you'll never know and whose care you'll never thank."
+    },
+    {
+        "id": 5717,
+        "translate_ch": "文學默默地讓一個兩百年前就死去的陌生人，替你說完那句你說不出口的話。",
+        "sentence": "Literature quietly lets a stranger who died two centuries ago finish the exact sentence you couldn't say out loud."
+    },
+    {
+        "id": 5718,
+        "translate_ch": "閒暇默默地不是沒有工作，而是一門稀有的藝術：做一件只用意義來回報你的事。",
+        "sentence": "Leisure quietly isn't the absence of work; it's the rare art of doing something that pays you back in meaning alone."
+    },
+    {
+        "id": 5719,
+        "translate_ch": "我們忘了休息默默地也有生產力，所以現在做那件讓工作變得可能的事時，反而覺得有罪惡感。",
+        "sentence": "We forgot that rest is quietly productive, so now we feel guilty doing the very thing that makes the work possible."
+    },
+    {
+        "id": 5720,
+        "translate_ch": "好的分析默默地始於承認你不知道什麼，而不是急著去捍衛你已經相信的東西。",
+        "sentence": "Good analysis quietly starts by admitting what you don't know, not by rushing to defend what you already believe."
+    },
+    {
+        "id": 5721,
+        "translate_ch": "耐心默默地不是毫無怨言地等待，而是在你沒選擇的那場等待裡，仍保持溫暖與善意。",
+        "sentence": "Patience quietly isn't waiting without complaint; it's staying warm and kind during the wait you didn't choose."
+    },
+    {
+        "id": 5722,
+        "translate_ch": "最慢的結果，默默地就是能持久的那些，因為任何值得留住的東西，都比我們希望的還花時間。",
+        "sentence": "The slowest results are quietly the ones that last, because anything worth keeping takes longer than we'd like."
+    },
+    {
+        "id": 5723,
+        "translate_ch": "一個社會怎麼對待它最健忘、最脆弱的成員，默默地揭露了它真正相信一個人值多少。",
+        "sentence": "How a society treats its most forgetful, fragile members quietly reveals what it truly believes a person is worth."
+    },
+    {
+        "id": 5724,
+        "translate_ch": "有人默默地在沒人會選的天氣裡，天亮前就起床，好讓你那頓平凡的早餐得以存在。",
+        "sentence": "Someone quietly rose before dawn, in weather nobody chooses, so that your ordinary breakfast could simply exist."
+    },
+    {
+        "id": 5725,
+        "translate_ch": "我們默默地記得事實，遠不如我們記得某人把那些事實包裹進去的那個故事。",
+        "sentence": "We quietly don't remember facts nearly as well as we remember the story somebody wrapped those facts inside."
+    },
+    {
+        "id": 5726,
+        "translate_ch": "美默默地不是最後才加上的奢侈品；它是一個安靜的訊號，代表有人在乎到超過必要的程度。",
+        "sentence": "Beauty quietly isn't a luxury added at the end; it's the quiet signal that someone cared past the point of necessity."
+    },
+    {
+        "id": 5727,
+        "translate_ch": "我們默默地淹沒在資訊裡，卻飢渴著那份智慧，去知道其中究竟哪一則才真正重要。",
+        "sentence": "We're quietly drowning in information and starving for the wisdom to know which single piece of it actually matters."
+    },
+    {
+        "id": 5728,
+        "translate_ch": "更多的事實，默默地不會讓一顆混亂的心變清晰；它們只是給它更昂貴的東西去搞錯。",
+        "sentence": "More facts quietly don't make a confused mind clearer; they just give it more expensive things to be wrong about."
+    },
+    {
+        "id": 5729,
+        "translate_ch": "勇氣默默地不是沒有恐懼，而是感受著全部的恐懼，然後默默決定：這件事更重要。",
+        "sentence": "Courage quietly isn't the absence of fear; it's feeling all of it and quietly deciding the thing matters more."
+    },
+    {
+        "id": 5730,
+        "translate_ch": "大多數人默默做過最勇敢的事，就是在一個不斷給他們理由別溫柔的世界裡，仍持續溫柔。",
+        "sentence": "The bravest thing most people ever quietly do is keep being gentle in a world that kept giving them reasons not to."
+    },
+    {
+        "id": 5731,
+        "translate_ch": "你人生中最重要的對話，默默地發生在最隨意、最容易忘記、最不起眼的時刻裡。",
+        "sentence": "The most important conversations of your life quietly happen in the most casual, forgettable, unremarkable moments."
+    },
+    {
+        "id": 5732,
+        "translate_ch": "副業默默地始於一個賺錢的方法，然後慢慢變成一個地方，讓你終於能成為更完整的自己。",
+        "sentence": "A side hustle quietly begins as a way to make money and slowly becomes a place to finally be the fuller you."
+    },
+    {
+        "id": 5733,
+        "translate_ch": "一個好的比喻默默地搭起一座橋，讓一個你從沒見過的想法，直接走進一個你早已熟悉的房間。",
+        "sentence": "A good metaphor quietly builds a bridge, letting an idea you've never met walk straight into a room you already know."
+    },
+    {
+        "id": 5734,
+        "translate_ch": "我們正是在樸素、字面的字詞默默地裝不下那份感受時，才去伸手抓比喻。",
+        "sentence": "We reach for metaphors precisely when the plain, literal words quietly run out of enough room to hold the feeling."
+    },
+    {
+        "id": 5735,
+        "translate_ch": "一本書默默地在架上等著、不會變老，耐心地守著一整個世界，直到你終於翻開它的那天。",
+        "sentence": "A book quietly waits on the shelf without ageing, holding a whole world patiently until the day you finally open it."
+    },
+    {
+        "id": 5736,
+        "translate_ch": "你從不會讀同一本書兩次；字句靜止不動，而默默地，讀它們的那個人不斷在變。",
+        "sentence": "You never read the same book twice; the words hold still while quietly, the person reading them keeps changing."
+    },
+    {
+        "id": 5737,
+        "translate_ch": "偉大的故事默默地不會變老，因為它們所書寫的那顆人心，其實一點都沒真正改變。",
+        "sentence": "Great stories quietly don't age, because the human heart they were written about hasn't really changed in the least."
+    },
+    {
+        "id": 5738,
+        "translate_ch": "創新與創造力，默默地在那些從沒因為問「但為什麼？」而被懲罰得夠狠的人身上，長得最好。",
+        "sentence": "Innovation and creativity quietly grow best in people who were never quite punished enough for asking 'but why?'."
+    },
+    {
+        "id": 5739,
+        "translate_ch": "一個難題最好的解法，默默地往往是那個讓問題本身乾脆不再存在的解法。",
+        "sentence": "The best solution to a hard problem is quietly often the one that makes the problem itself simply stop existing."
+    },
+    {
+        "id": 5740,
+        "translate_ch": "真正的投入默默地不需要觀眾；不管有沒有人在看，它都做著同樣仔細的工作。",
+        "sentence": "Real dedication quietly asks for no audience; it does the same careful work whether or not anyone is ever watching."
+    },
+    {
+        "id": 5741,
+        "translate_ch": "新聞默默地給你看整個燃燒的世界，卻不知怎地，從不給你看你真正住著的那條安靜街道。",
+        "sentence": "The news quietly shows you the whole burning world and somehow never the quiet street where you actually live."
+    },
+    {
+        "id": 5742,
+        "translate_ch": "信念默默地不是確定結果，而是在路仍黑著的時候，選擇踏出下一步。",
+        "sentence": "Faith quietly isn't being certain of the outcome; it's choosing to take the next step while the road stays dark."
+    },
+    {
+        "id": 5743,
+        "translate_ch": "你的習慣默默地每一天都在投票，決定大約五年後醒來時，你會是什麼樣的人。",
+        "sentence": "Your habits quietly vote every single day for the person you'll wake up as roughly five years from right now."
+    },
+    {
+        "id": 5744,
+        "translate_ch": "壞習慣默默地只是一個好解法，去解一個你早就忘了自己曾在解的問題。",
+        "sentence": "A bad habit is quietly just a good solution to a problem you've long since forgotten you were ever solving."
+    },
+    {
+        "id": 5745,
+        "translate_ch": "你的職稱默默地告訴別人你做什麼；它幾乎不說你這個人是不是值得相處。",
+        "sentence": "Your job title quietly tells people what you do; it says almost nothing about whether you're any good to be around."
+    },
+    {
+        "id": 5746,
+        "translate_ch": "那些老話默默地流傳下來，是因為每一句都是一整堂得來不易的課，摺得小到能隨身帶著。",
+        "sentence": "The old sayings survive quietly because each one is a whole hard-won lesson folded down small enough to carry."
+    },
+    {
+        "id": 5747,
+        "translate_ch": "一首歌能默默地重塑一整個世代穿著、說話、以及暗自想像自己未來的方式。",
+        "sentence": "A single song can quietly reshape how a whole generation dresses, speaks, and secretly imagines its own future."
+    },
+    {
+        "id": 5748,
+        "translate_ch": "天氣默默地提醒我們，有些東西就是會到來，對我們如此精心擬定的每一個計畫毫不在意。",
+        "sentence": "The weather quietly reminds us that some things simply arrive, indifferent to every plan we so carefully made."
+    },
+    {
+        "id": 5749,
+        "translate_ch": "直覺默默地只是你的大腦，比你那個緩慢又多話的部分還快地認出了一個模式。",
+        "sentence": "Intuition is quietly just your brain recognising a pattern faster than the slow, talkative part of you can explain."
+    },
+    {
+        "id": 5750,
+        "translate_ch": "學會信任那安靜的預感，但也默默地驗證它，因為直覺是絕佳的僕人、卻是糟糕的主人。",
+        "sentence": "Learn to trust the quiet hunch, but quietly verify it too, because intuition is a brilliant servant and a bad master."
+    },
+    {
+        "id": 5751,
+        "translate_ch": "品味默默地買不到；它是靠留意一千件別人略過的小事，慢慢掙來的。",
+        "sentence": "Taste quietly can't be bought; it's slowly earned by paying attention to a thousand small things that others skip."
+    },
+    {
+        "id": 5752,
+        "translate_ch": "最有人味的時刻，默默地藏在沒人讀的文書裡：一張表格、一個簽名、一段人生默默地易手。",
+        "sentence": "The most human moments quietly hide inside paperwork nobody reads: a form, a signature, a life quietly changing hands."
+    },
+    {
+        "id": 5753,
+        "translate_ch": "有些感受默默地大到樸素的字裝不下，這正是為什麼每種語言都發明了聲音去承接它們。",
+        "sentence": "Some feelings are quietly too big for plain words, which is exactly why every language invented sounds to hold them."
+    },
+    {
+        "id": 5754,
+        "translate_ch": "一場好的展覽默默地不是給你看藝術，而是教你那種藝術一直需要的、耐心的觀看方式。",
+        "sentence": "A great exhibition quietly doesn't show you the art; it teaches you the patient way of looking the art always needed."
+    },
+    {
+        "id": 5755,
+        "translate_ch": "每個季節都默默地到來，教那堂上一季教不了的課，然後在你完全學會之前就離開。",
+        "sentence": "Each season quietly arrives to teach the one lesson the last one couldn't, then leaves before you've fully learned it."
+    },
+    {
+        "id": 5756,
+        "translate_ch": "你無法總是選擇發生什麼，但你對它的態度，默默地是最後一項沒人能奪走的自由。",
+        "sentence": "You can't always choose what happens, but your attitude toward it is quietly the last freedom nobody can take."
+    },
+    {
+        "id": 5757,
+        "translate_ch": "同一場灰濛濛的雨，默默地對一個人是毀掉的一天，對另一個人卻是待在家讀書的完美藉口。",
+        "sentence": "The same grey rain is quietly a ruined day to one person and a perfect excuse to stay in and read to another."
+    },
+    {
+        "id": 5758,
+        "translate_ch": "今天採取的一個小行動，默默地勝過你禮貌地一直存到以後、最美好的那個意圖。",
+        "sentence": "A small action taken today quietly outweighs the most beautiful intention you keep politely saving up for later."
+    },
+    {
+        "id": 5759,
+        "translate_ch": "你默默地永遠無法靠想，想進一個新的人生；你只能靠行動，一次一件小事，走進它。",
+        "sentence": "You'll quietly never think your way into a new life; you can only ever act your way, one small deed at a time, into it."
+    },
+    {
+        "id": 5760,
+        "translate_ch": "選工作，默默地要看它慢慢把你變成什麼樣的人，而不只是看它存進你帳戶的那個數字。",
+        "sentence": "Choose work quietly by the person it slowly turns you into, not merely by the number it deposits in your account."
+    },
+    {
+        "id": 5761,
+        "translate_ch": "禮貌的語言默默地蓋出一個小小的、謹慎的空間，讓兩個人能意見不合、卻沒有一方受傷。",
+        "sentence": "Polite language quietly builds a small, careful space where two people can disagree without either one getting hurt."
+    },
+    {
+        "id": 5762,
+        "translate_ch": "幽默默默地只是痛苦，終於有了足夠的時間冷卻成一個你能安全舉起來的東西。",
+        "sentence": "Humour is quietly just pain that has finally had enough time to cool down into something you can safely hold up."
+    },
+    {
+        "id": 5763,
+        "translate_ch": "能自嘲的能力，默默地是一種安靜的力量，那是再多的自尊都模仿不來的。",
+        "sentence": "The ability to laugh at yourself is quietly a quiet kind of strength that no amount of pride can ever imitate."
+    },
+    {
+        "id": 5764,
+        "translate_ch": "每一個大的社會問題，默默地都是由一百萬個小選擇組成的，而每一個都感覺渺小到不值一提。",
+        "sentence": "Every big social problem is quietly made of a million small choices that each felt far too tiny to really matter."
+    },
+    {
+        "id": 5765,
+        "translate_ch": "我們默默地愛爭論遙遠的大問題，因為那讓我們能逃避那些今天就能修好的、切身的小問題。",
+        "sentence": "We love to argue about huge distant problems quietly because it lets us avoid the small close ones we could fix today."
+    },
+    {
+        "id": 5766,
+        "translate_ch": "你真正的價值觀默默地不是你大聲說出來的，而純粹是你的行事曆和錢包早已顯示的東西。",
+        "sentence": "Your real values quietly aren't what you say out loud; they're simply whatever your calendar and your wallet already show."
+    },
+    {
+        "id": 5767,
+        "translate_ch": "你只有在被迫用一件珍貴的東西去保護另一件的那天，才默默地真正發現自己重視什麼。",
+        "sentence": "You only truly discover what you value quietly on the day you're forced to trade one dear thing to protect another."
+    },
+    {
+        "id": 5768,
+        "translate_ch": "讀新聞默默地讓遙遠的變得靠近，而奇怪的是，讓真正靠近的，開始感覺有點遙遠。",
+        "sentence": "Reading the news quietly makes the far-off feel close and, strangely, the truly close start to feel a little far off."
+    },
+    {
+        "id": 5769,
+        "translate_ch": "信念默默地不是懷疑的相反；它純粹是當懷疑還在時，你決定繼續去做的事。",
+        "sentence": "Faith quietly isn't the opposite of doubt; it's simply what you decide to keep doing while the doubt is still there."
+    },
+    {
+        "id": 5770,
+        "translate_ch": "在恰好對的時刻給出的一句好話，默默地能比一整場沒人記得的演講，還要長久。",
+        "sentence": "A single kind word offered at exactly the right moment can quietly outlast a whole speech nobody ended up remembering."
+    },
+    {
+        "id": 5771,
+        "translate_ch": "真正的冒險默默地不是那個遙遠的地方，而是那個一開始就勇敢到願意訂票的人。",
+        "sentence": "The real adventure quietly isn't the far-off place; it's the person brave enough to book the ticket in the first place."
+    },
+    {
+        "id": 5772,
+        "translate_ch": "一張證書默默地證明你曾經通過一場考試；它從不證明你在關鍵時刻真的做得到那件事。",
+        "sentence": "A certificate quietly proves you once passed a test; it never proves you can actually do the thing when it matters."
+    },
+    {
+        "id": 5773,
+        "translate_ch": "線上學習默默地把整座圖書館交給每個人，然後發現，難的部分從來都不是缺少的書。",
+        "sentence": "Online learning quietly hands the whole library to everyone, then discovers the hard part was never the missing books."
+    },
+    {
+        "id": 5774,
+        "translate_ch": "媒體默默地不告訴你該想什麼；它只是替你決定，你一整天會在想什麼。",
+        "sentence": "The media quietly doesn't tell you what to think; it just decides, on your behalf, what you'll be thinking about all day."
+    },
+    {
+        "id": 5775,
+        "translate_ch": "社會的改變默默地看起來不可能，一直到它發生為止，然後它又看起來像是本來就註定會發生。",
+        "sentence": "Social change quietly looks impossible right up until it happens, and then it looks like it was always going to."
+    },
+    {
+        "id": 5776,
+        "translate_ch": "你終於登頂的那一刻，默默地就是你發現，自己其實愛上的是攀登本身的那一刻。",
+        "sentence": "The moment you finally reach the summit is quietly the moment you realise you'd fallen in love with the climb itself."
+    },
+    {
+        "id": 5777,
+        "translate_ch": "我們默默地為了那種感覺去追逐成就，然後忘了，那種感覺其實從頭到尾一直都在。",
+        "sentence": "We quietly chase the achievement for the feeling, then forget that the feeling was available the whole entire time."
+    },
+    {
+        "id": 5778,
+        "translate_ch": "年齡默默地不是用年來衡量的，而是用你還有多少件、還有點害怕去嘗試的新事物來衡量。",
+        "sentence": "Age quietly isn't measured in years; it's measured in how many new things you're still a little bit afraid to try."
+    },
+    {
+        "id": 5779,
+        "translate_ch": "截止期限默默地不是你的敵人；它是唯一誠實的東西，逼一個好點子終於變成真的。",
+        "sentence": "A deadline quietly isn't your enemy; it's the only honest thing that ever forces a good idea to finally become real."
+    },
+    {
+        "id": 5780,
+        "translate_ch": "工作會默默地膨脹，去填滿你給它的時間，這正是為什麼緊迫的期限，有時感覺竟像一份禮物。",
+        "sentence": "Work expands quietly to fill the time you give it, which is exactly why a tight deadline can feel strangely like a gift."
+    },
+    {
+        "id": 5781,
+        "translate_ch": "沒人記得你的投影片；他們默默記得的，是你有沒有把一件複雜的事，突然變得簡單清楚。",
+        "sentence": "Nobody remembers your slides; they quietly remember whether you made a complicated thing suddenly feel simple and clear."
+    },
+    {
+        "id": 5782,
+        "translate_ch": "懷舊默默地剪掉所有無聊和痛苦的部分，然後把一個其實從不存在的過去，賣回給你。",
+        "sentence": "Nostalgia quietly edits out all the boring and painful parts, then sells you back a past that never actually existed."
+    },
+    {
+        "id": 5783,
+        "translate_ch": "我們默默地想念的不是一個地方，而是曾經住在那裡的、那個特定版本的自己。",
+        "sentence": "We're quietly not homesick for a place; we're homesick for the specific version of ourselves that once lived there."
+    },
+    {
+        "id": 5784,
+        "translate_ch": "沒有任何國家能默默地獨自解決那些、沒有任何國家夠謹慎去避免共同製造出來的問題。",
+        "sentence": "No country can quietly solve alone the problems that no country was ever careful enough to avoid creating together."
+    },
+    {
+        "id": 5785,
+        "translate_ch": "適應默默地不是放棄你是誰，而是學會哪些部分要帶著走、哪些要輕輕地放下。",
+        "sentence": "Adaptation quietly isn't giving up who you are; it's learning which parts to carry and which to gently set down."
+    },
+    {
+        "id": 5786,
+        "translate_ch": "存活下來的物種，默默地不是最強壯的，而純粹是那些最願意變成新東西的。",
+        "sentence": "The species that survive quietly aren't the strongest; they're simply the ones most willing to become something new."
+    },
+    {
+        "id": 5787,
+        "translate_ch": "狗默默地愛你，不是因為你好，而是因為你是牠的，那是一種稀有得多的愛。",
+        "sentence": "A dog quietly loves you not because you're good, but because you're theirs, which is a far rarer kind of love."
+    },
+    {
+        "id": 5788,
+        "translate_ch": "你擁有的每一樣東西，也默默地擁有著你的一小片：你的空間、你的時間，還有一點你的注意力。",
+        "sentence": "Everything you own is quietly also owning a small piece of you: your space, your time, and a little of your attention."
+    },
+    {
+        "id": 5789,
+        "translate_ch": "要讓每個人都喜歡你，默默地需要你變得平淡順從到，裡面幾乎不剩下什麼可以喜歡的人。",
+        "sentence": "Being liked by everyone quietly requires becoming so blandly agreeable that there's barely anyone left in there to like."
+    },
+    {
+        "id": 5790,
+        "translate_ch": "醫學默默地能修復身體，但仍需要一個關懷的人聲，去提醒那副身體，它值得被修復。",
+        "sentence": "Medicine can quietly repair the body, but it still takes a caring human voice to remind that body it's worth repairing."
+    },
+    {
+        "id": 5791,
+        "translate_ch": "最好的建議默默地不告訴你該做什麼；它只是問出那個你一直小心翼翼在逃避的問題。",
+        "sentence": "The best advice quietly doesn't tell you what to do; it just asks the one question you'd been carefully avoiding."
+    },
+    {
+        "id": 5792,
+        "translate_ch": "沒人想要的建議，默默地透露的，是給建議者自己的擔憂，而不是你真正的處境。",
+        "sentence": "Unwanted advice quietly says more about the giver's own worries than it ever says about your actual situation."
+    },
+    {
+        "id": 5793,
+        "translate_ch": "一句真正的道歉，默默地裡面沒有「但是」；那個字一出現，它就不再是道歉，而變成辯解。",
+        "sentence": "A real apology quietly has no 'but' in it; the moment that word appears, it stops being an apology and becomes a defence."
+    },
+    {
+        "id": 5794,
+        "translate_ch": "快點道歉，默默地讓你損失一點自尊；拒絕道歉，則以慢得多的速度，讓你損失整段關係。",
+        "sentence": "Saying sorry quickly quietly costs you a little pride; refusing to say it costs you the whole relationship far more slowly."
+    },
+    {
+        "id": 5795,
+        "translate_ch": "在任何談判裡，默默地最不在乎結果的那個人，握著一種奇異又安靜的力量。",
+        "sentence": "In any negotiation, the person who quietly cares least about the outcome holds a strange and quiet kind of power."
+    },
+    {
+        "id": 5796,
+        "translate_ch": "最好的交易默默地不是你贏的那些，而是雙方都能帶著彼此的尊重離開的那些。",
+        "sentence": "The best deals quietly aren't the ones where you win; they're the ones both sides can walk away from still respecting."
+    },
+    {
+        "id": 5797,
+        "translate_ch": "最有用的評論默默地不是五星狂讚，而是那則誠實的三星評論，告訴你真正的取捨。",
+        "sentence": "The most useful review quietly isn't the five-star rave; it's the honest three-star one that tells you the true trade-offs."
+    },
+    {
+        "id": 5798,
+        "translate_ch": "我們默默地比較信任一個陌生人的網路評論，而不是站在面前的銷售員，而這通常是明智的。",
+        "sentence": "We trust a stranger's online review quietly more than the salesperson standing right in front of us, and it's usually wise."
+    },
+    {
+        "id": 5799,
+        "translate_ch": "線上真正的學習，默默地要求那個沒有平台能給你的東西：持續出現的、倔強的紀律。",
+        "sentence": "Real learning online quietly demands the one thing no platform can hand you: the stubborn discipline to keep showing up."
+    },
+    {
+        "id": 5800,
+        "translate_ch": "一場冒險默默地開始的那一刻，就是你決定「錯過的恐懼」終於勝過了「離開的恐懼」的那一刻。",
+        "sentence": "An adventure quietly begins the exact moment you decide that the fear of missing out finally outweighs the fear of leaving."
+    },
+    {
+        "id": 5801,
+        "translate_ch": "數學默默地根本不是關於數字，而是一門耐心的藝術：對你看不見、摸不著的東西保持確定。",
+        "sentence": "Math quietly isn't about numbers at all; it's the patient art of being certain about things you cannot see or touch."
+    },
+    {
+        "id": 5802,
+        "translate_ch": "一個你從不寫下的抱負，默默地會一直是白日夢；筆，就是一個願望第一次學會長出腿的地方。",
+        "sentence": "An aspiration you never write down quietly stays a daydream; the pen is where a wish first learns to grow legs."
+    },
+    {
+        "id": 5803,
+        "translate_ch": "默默地在乎一個人，就是把一份小小的、永久的傷害你的力量交給他，然後相信他不會用它。",
+        "sentence": "To care about someone quietly is to hand them a small, permanent power to hurt you, and to trust them not to use it."
+    },
+    {
+        "id": 5804,
+        "translate_ch": "網購默默地把「想要」這件事的每一分阻力都移除了，然後又對我們買這麼多裝出一副震驚的樣子。",
+        "sentence": "Online shopping quietly removed every last inch of friction from wanting, and then acted shocked at how much we buy."
+    },
+    {
+        "id": 5805,
+        "translate_ch": "一句好諺語之所以默默流傳，是因為它丟掉了每一個多餘的字，直到只剩下純粹、便於攜帶的真理。",
+        "sentence": "A good proverb quietly survives because it lost every unnecessary word until only the pure, portable truth remained."
+    },
+    {
+        "id": 5806,
+        "translate_ch": "邏輯默默地能把你從一個錯誤的起點，帶到一個推理完美、自信滿滿、卻完全荒謬的地方。",
+        "sentence": "Logic quietly can take you from a wrong starting point to a perfectly reasoned, confident, and completely absurd place."
+    },
+    {
+        "id": 5807,
+        "translate_ch": "我們最大的抱負默默地根本不是關於那座山頂，而是一個藉口，去成為那種爬得上它的人。",
+        "sentence": "Our biggest aspirations quietly aren't about the summit at all; they're an excuse to become the kind who could climb it."
+    },
+    {
+        "id": 5808,
+        "translate_ch": "真正的協作默默地不是每個人都同意，而是大家彼此信任到能大聲地不同意、卻仍然留下。",
+        "sentence": "Real collaboration quietly isn't everyone agreeing; it's people trusting each other enough to disagree out loud and stay."
+    },
+    {
+        "id": 5809,
+        "translate_ch": "升遷默默地獎勵你把上一份工作做得好，方式是塞給你一份你從沒做過、完全不同的工作。",
+        "sentence": "A promotion quietly rewards you for the job you did well by handing you a completely different job you've never tried."
+    },
+    {
+        "id": 5810,
+        "translate_ch": "你這輩子面對過最嚴厲的評論，默默地不是陌生人的，而是你在午夜對自己寫下的那一則安靜的。",
+        "sentence": "The harshest review you'll ever face quietly isn't a stranger's; it's the quiet one you write about yourself at midnight."
+    },
+    {
+        "id": 5811,
+        "translate_ch": "你可以默默地贏了爭論，卻仍然輸掉了那個人，而這筆交易，幾乎沒人發覺自己剛剛做了。",
+        "sentence": "You can quietly win an argument and still lose the person, which is a trade almost nobody notices they just made."
+    },
+    {
+        "id": 5812,
+        "translate_ch": "平衡默默地不是一個你終於抵達、然後安頓下來的地方，而是你從不停歇地做著的一千個微小修正。",
+        "sentence": "Balance quietly isn't a place you finally arrive and settle; it's a thousand tiny corrections you make without ever stopping."
+    },
+    {
+        "id": 5813,
+        "translate_ch": "抱怨默默地往往只是一個穿著盔甲的願望，希望有人夠在乎，去看見底下那個柔軟的東西。",
+        "sentence": "A complaint quietly is often just a wish wearing armour, hoping someone will care enough to see the soft thing underneath."
+    },
+    {
+        "id": 5814,
+        "translate_ch": "在家工作默默地把通勤還給你，而作為交換，它問你：你到底有沒有懂過怎麼把工作拋在腦後。",
+        "sentence": "Working from home quietly gives you back your commute and asks, in return, whether you ever knew how to leave work behind."
+    },
+    {
+        "id": 5815,
+        "translate_ch": "社群媒體默默地給你看每個人的精彩集錦，然後跟你收取「拿它去比你自己的毛片」的代價。",
+        "sentence": "Social media quietly shows you everyone's highlight reel and then charges you the price of comparing it to your own footage."
+    },
+    {
+        "id": 5816,
+        "translate_ch": "理論默默地只是一個關於世界如何運作的好故事，一直被保留著，直到一個更好、更真的故事出現。",
+        "sentence": "A theory quietly is just a good story about how the world works, kept only until a better, truer story comes along."
+    },
+    {
+        "id": 5817,
+        "translate_ch": "一旦你終於理解一個人的行為在暗中保護的恐懼或希望，那行為就默默地變得完全合情合理。",
+        "sentence": "People's behaviour quietly makes perfect sense once you finally understand the fear or the hope it's secretly protecting."
+    },
+    {
+        "id": 5818,
+        "translate_ch": "合作默默地建起了你周圍的一切；就連最猛的孤獨天才，也站在一萬雙他從未感謝過的手上。",
+        "sentence": "Cooperation quietly built everything around you; even the fiercest lone genius stood on ten thousand hands they never thanked."
+    },
+    {
+        "id": 5819,
+        "translate_ch": "最好的服務默默地讓你覺得自己是唯一的顧客，在一家不知怎地暗中服務著幾百萬人的公司裡。",
+        "sentence": "The best service quietly makes you feel like the only customer in a company that is somehow secretly serving millions."
+    },
+    {
+        "id": 5820,
+        "translate_ch": "風格默默地不是跟隨潮流，而是那種安靜的自信：清楚知道該讓哪些潮流，直接從身邊走過去。",
+        "sentence": "Style quietly isn't about following the trend; it's the quiet confidence of knowing exactly which trends to let walk right past."
+    },
+    {
+        "id": 5821,
+        "translate_ch": "你可以默默地背下一千條公式，但數學真正開始的那天，是其中一條終於解釋了你自己的世界。",
+        "sentence": "You can quietly memorise a thousand formulas, but math only truly begins the day one of them finally explains your own world."
+    },
+    {
+        "id": 5822,
+        "translate_ch": "在任何關係裡，默默地最在乎的那個人，握著最少的權力，卻奇妙地，給出了最多的自由。",
+        "sentence": "The person who cares quietly the most in any relationship holds the least power and, strangely, gives away the most freedom."
+    },
+    {
+        "id": 5823,
+        "translate_ch": "風格默默地比時尚老得慢得多，因為它從一開始，就根本不是在努力想變新。",
+        "sentence": "Style quietly ages far more slowly than fashion, because it was never really trying to be new in the first place."
+    },
+    {
+        "id": 5824,
+        "translate_ch": "抱負默默地在前方拉著你，而悔恨從後方推著你，而一個好的人生，需要對兩者都仔細地拿捏分量。",
+        "sentence": "Aspiration quietly pulls you forward while regret pushes from behind, and a good life needs a careful measure of both."
+    },
+    {
+        "id": 5825,
+        "translate_ch": "邏輯默默地是一個很棒的工具，用來捍衛你的心早在你開始思考之前，就暗自決定好的東西。",
+        "sentence": "Logic quietly is a wonderful tool for defending what your heart had already, secretly, decided long before you started thinking."
+    },
+    {
+        "id": 5826,
+        "translate_ch": "一個被默默又迅速解決的抱怨，能把一個憤怒的顧客，變成你意料之外、最忠誠的那一個。",
+        "sentence": "A complaint fixed quietly and fast can turn an angry customer into the most loyal one you will ever, unexpectedly, have."
+    },
+    {
+        "id": 5827,
+        "translate_ch": "偉大的協作默默地讓成品渾然一體，好到沒人分得出，其中任何一部分究竟是誰的點子。",
+        "sentence": "Great collaboration quietly makes the finished thing so seamless that nobody can tell whose idea any single part of it was."
+    },
+    {
+        "id": 5828,
+        "translate_ch": "行為默默地是身體誠實的語言；嘴巴能撒好幾年的謊，但雙手永遠會說真話。",
+        "sentence": "Behaviour quietly is the honest language of the body; the mouth can lie for years, but the hands will always tell the truth."
+    },
+    {
+        "id": 5829,
+        "translate_ch": "真正的服務默默地發生在交易結束後的那一個微小時刻，那時幫你已經不會再讓他們賺到任何東西。",
+        "sentence": "Real service quietly happens in the tiny moment after the transaction ends, when helping you no longer earns them anything."
+    },
+    {
+        "id": 5830,
+        "translate_ch": "一個默默地能解釋一切的理論，最後什麼也解釋不了，因為它再也無法被任何東西證明是錯的。",
+        "sentence": "A theory that quietly explains everything ends up explaining nothing, because it can no longer be proven wrong by anything at all."
+    },
+    {
+        "id": 5831,
+        "translate_ch": "AI 默默地不會取代會思考的人；它只會取代那些默默地不再費心思考的人。",
+        "sentence": "AI quietly won't replace the people who think; it'll only replace the ones who quietly stopped bothering to."
+    },
+    {
+        "id": 5832,
+        "translate_ch": "艱難一年真正的好處，默默地不是最後的勝利，而是你為了熬過它、不得不成為的那個人。",
+        "sentence": "The real benefit of a hard year quietly isn't the win at the end; it's the person you had to become to survive it."
+    },
+    {
+        "id": 5833,
+        "translate_ch": "你怎麼對自己描述你的一天，默默地就變成了你真正記得自己活過的那一天。",
+        "sentence": "How you describe your day to yourself quietly becomes the day you actually remember having lived."
+    },
+    {
+        "id": 5834,
+        "translate_ch": "工作默默地給了你的日子一個形狀，但只有意義，能給那些成形的日子一個值得起床的理由。",
+        "sentence": "Work quietly gives your days a shape, but only meaning can give those shaped days a reason worth waking up for."
+    },
+    {
+        "id": 5835,
+        "translate_ch": "學術界默默地獎勵美麗問題的程度，遠不如安全答案，然後又納悶那份好奇心跑去哪了。",
+        "sentence": "Academia quietly rewards the beautiful question far less than the safe answer, then wonders where the wonder went."
+    },
+    {
+        "id": 5836,
+        "translate_ch": "挑戰默默地不是為了阻擋你，而是為了默默地讓你看見，那份你不知道自己擁有的力量。",
+        "sentence": "A challenge quietly isn't there to stop you; it's there to quietly show you the strength you didn't know you had."
+    },
+    {
+        "id": 5837,
+        "translate_ch": "最好的指路默默地告訴你要找什麼，而不只是往哪轉，這樣你就再也不會真正迷路。",
+        "sentence": "The best directions quietly tell you what to look for, not just where to turn, so you're never truly lost again."
+    },
+    {
+        "id": 5838,
+        "translate_ch": "每個選擇默默地都有一個你看得見的後果，還有另外三個，要等到好幾年後才會默默地遇上。",
+        "sentence": "Every choice quietly has a consequence you can see and three more you won't meet until years quietly later."
+    },
+    {
+        "id": 5839,
+        "translate_ch": "品格默默地就是：當做對的事的獎勵剛好、恰恰是零時，你會怎麼做。",
+        "sentence": "Character quietly is simply what you do when the reward for doing the right thing is precisely, exactly nothing."
+    },
+    {
+        "id": 5840,
+        "translate_ch": "用自己的雙手做出一樣東西，默默地教你一種對創作者的敬意，那是任何店家收據都給不了的。",
+        "sentence": "Building something with your own hands quietly teaches you a respect for makers that no store receipt ever could."
+    },
+    {
+        "id": 5841,
+        "translate_ch": "每一個枯燥的人口數字背後，默默地站著一個真實的人，出生、懷抱希望，最終被某個人哀悼。",
+        "sentence": "Behind every dry demographic number quietly stands a real person, born, hoping, and eventually mourned by someone."
+    },
+    {
+        "id": 5842,
+        "translate_ch": "專注力默默地是我們這個時代最稀有的貨幣，而我們卻免費地，把自己的交給任何好聲好氣開口的人。",
+        "sentence": "Concentration quietly is the rarest currency of our age, and we hand ours away, for free, to anyone who asks nicely."
+    },
+    {
+        "id": 5843,
+        "translate_ch": "好的禮貌默默地幾乎不花你什麼，對一個正過著糟糕一天的陌生人來說，卻幾乎值得一切。",
+        "sentence": "Good manners quietly cost you almost nothing and are worth almost everything to the stranger having a terrible day."
+    },
+    {
+        "id": 5844,
+        "translate_ch": "多元默默地不只是待在同一個房間，而是真正去傾聽那個你確信是錯的人。",
+        "sentence": "Diversity quietly isn't just being in the same room; it's actually listening to the person you were sure was wrong."
+    },
+    {
+        "id": 5845,
+        "translate_ch": "一個艱難的決定之所以默默地感覺難，只是因為兩條路都通往好的地方，只是通往兩種不同的好。",
+        "sentence": "A hard decision quietly only feels hard because both roads lead somewhere good, just to two different kinds of good."
+    },
+    {
+        "id": 5846,
+        "translate_ch": "經驗默默地不是發生在你身上的事，而是你最終決定從中保留下來的那個小小的、得來不易的東西。",
+        "sentence": "Experience quietly isn't what happens to you; it's the small, hard-won thing you finally decide to keep from it."
+    },
+    {
+        "id": 5847,
+        "translate_ch": "考試默默地衡量的，是你在一個緊張的早上表現得多好，從不是你真正會帶著走一輩子的有多少。",
+        "sentence": "An exam quietly measures how well you performed on one nervous morning, never how much you'll actually carry for life."
+    },
+    {
+        "id": 5848,
+        "translate_ch": "大多數決定默默地不像你的恐懼堅稱的那麼永久，而少數真正永久的，值得你完整、緩慢的注意。",
+        "sentence": "Most decisions quietly aren't as permanent as your fear insists, and the few that are deserve your full, slow attention."
+    },
+    {
+        "id": 5849,
+        "translate_ch": "食物默默地從來都不只是食物；它是記憶、是愛、是地理，是被盛在一個小盤子上的一整部家族史。",
+        "sentence": "Food quietly is never just food; it's memory, love, geography, and an entire family history plated on one small dish."
+    },
+    {
+        "id": 5850,
+        "translate_ch": "未來默默地一次一個平凡的星期二地到來，從不帶著我們總以為會聽見的那種戲劇性配樂。",
+        "sentence": "The future quietly arrives one ordinary Tuesday at a time, never with the dramatic music we always expected to hear."
+    },
+    {
+        "id": 5851,
+        "translate_ch": "AI 默默地能在一秒內生成一千個答案，但仍需要一個人，去知道哪個問題才值得問。",
+        "sentence": "AI quietly can generate a thousand answers in a second, but it still takes a human to know which question was worth asking."
+    },
+    {
+        "id": 5852,
+        "translate_ch": "旅行最深的好處默默地不是你看見的地方，而是你終於能從遠方看清楚的那個家。",
+        "sentence": "The deepest benefit of travel quietly isn't the places you see; it's the home you can finally see clearly from afar."
+    },
+    {
+        "id": 5853,
+        "translate_ch": "真正的品格默默地展現的，不是在盛大的危機裡，而是在你多溫柔地對待那個幫不了你任何忙的人。",
+        "sentence": "Real character quietly shows up not in the grand crisis, but in how gently you treat the person who can do nothing for you."
+    },
+    {
+        "id": 5854,
+        "translate_ch": "人生中最難的考試，默默地沒有複習指南、沒有固定日期，事後也沒有人告訴你到底過了沒。",
+        "sentence": "The hardest exams in life quietly come with no study guide, no set date, and no one to tell you afterwards if you passed."
+    },
+    {
+        "id": 5855,
+        "translate_ch": "專注力默默地是愛最實際的一種形式：它就是一次又一次地，選擇完整地待在此地。",
+        "sentence": "Concentration quietly is love in its most practical form: it's simply choosing, again and again, to fully be right here."
+    },
+    {
+        "id": 5856,
+        "translate_ch": "一個社會默默地在它如何對待那些永遠無法回報這份善意的陌生人時，揭露了它真正的品格。",
+        "sentence": "A society quietly reveals its true character in how it treats the strangers who will never be able to repay the kindness."
+    },
+    {
+        "id": 5857,
+        "translate_ch": "多元默默地不是一個要被管理的問題，而正是每一個真正新穎的點子，都必須用來建造的原料。",
+        "sentence": "Diversity quietly isn't a problem to be managed; it's the exact raw material that every truly new idea has to be built from."
+    },
+    {
+        "id": 5858,
+        "translate_ch": "好的禮儀默默地其實只是同理心，被某人費心地，變成了一個小小的、體貼的、日常的舉動。",
+        "sentence": "Good etiquette quietly is really just empathy that someone bothered to make visible in a small, thoughtful, everyday gesture."
+    },
+    {
+        "id": 5859,
+        "translate_ch": "未來默默地與其屬於能預測它的人，不如說屬於那些願意有耐心地、一磚一瓦去建造它的人。",
+        "sentence": "The future quietly belongs less to those who can predict it and more to those willing to patiently build it, brick by brick."
+    },
+    {
+        "id": 5860,
+        "translate_ch": "經驗默默地是唯一一位先給你殘酷考試、很久之後才把真正課程交給你的老師。",
+        "sentence": "Experience quietly is the one teacher that gives you the brutal test first, and only much later hands you the actual lesson."
     }
 ]
