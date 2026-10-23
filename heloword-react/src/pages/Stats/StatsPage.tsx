@@ -20,24 +20,25 @@ import { doPost } from '../../services/api.service';
 import { DailyStat } from '../../models';
 import { getStudyCoach } from '../../services/llm.service';
 import WeeklyStoryCard from '../../components/WeeklyStoryCard';
+import { computeGuestDailyStats } from '../../services/guestStorage.service';
 
 type Range = 7 | 30 | 0;
 
-function formatXLabel(date: string, range: Range): string {
+function formatXLabel(date: string, range: Range, locale: string): string {
   if (range === 0) {
     // date is "yyyy-MM" — show "Jan 26"
     const [year, month] = date.split('-');
     const d = new Date(+year, +month - 1, 1);
-    return d.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+    return d.toLocaleDateString(locale, { month: 'short', year: '2-digit' });
   }
   if (range === 30) {
     // date is "yyyy-MM-dd" — show "Mar 15"
     const d = new Date(date + 'T00:00:00');
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return d.toLocaleDateString(locale, { month: 'short', day: 'numeric' });
   }
   // 7 days — show "Mon"
   const d = new Date(date + 'T00:00:00');
-  return d.toLocaleDateString('en-US', { weekday: 'short' });
+  return d.toLocaleDateString(locale, { weekday: 'short' });
 }
 
 const StatsPage: React.FC = () => {
@@ -62,7 +63,11 @@ const StatsPage: React.FC = () => {
   const fetchedFor = useRef<Range | null>(null);
 
   useEffect(() => {
-    if (!isLoggedIn) return;
+    if (!isLoggedIn) {
+      // Guests: quiz records saved on this device, aggregated like the server does.
+      setStats(computeGuestDailyStats(range));
+      return;
+    }
     if (fetchedFor.current === range) return;
     fetchedFor.current = range;
     fetchStats(range);
@@ -94,7 +99,7 @@ const StatsPage: React.FC = () => {
 
   const chartData = stats.map((s) => ({
     ...s,
-    label: formatXLabel(s.date, range),
+    label: formatXLabel(s.date, range, i18n.language === 'zh' ? 'zh-TW' : i18n.language),
     correctCount: Math.max(0, s.total - s.wrongCount),
     timeSpentMin: +(s.timeSpent / 60).toFixed(1),
   }));
@@ -120,35 +125,29 @@ const StatsPage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
-      <Header title="Statistics" />
+      <Header title={t('nav.stats')} hideLogin />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
 
         {/* Daily Goal Dashboard — visible for all users */}
         <DailyGoalDashboard />
 
-        {/* Not logged in — compact unlock card */}
+        {/* Guests see their own (on-device) stats; logging in syncs them */}
         {!isLoggedIn && (
-          <div className="bg-surface rounded-2xl p-4 shadow-sm border border-line flex items-center gap-3 mb-4">
-            <div className="w-9 h-9 rounded-xl bg-accent-soft flex items-center justify-center flex-shrink-0">
-              <svg className="w-4.5 h-4.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-ink leading-tight">Statistics</p>
-              <p className="text-xs text-ink-faint leading-tight mt-0.5">{t('stats.loginPrompt')}</p>
-            </div>
-            <button
-              onClick={() => navigate('/login')}
-              className="flex-shrink-0 bg-ink text-paper font-semibold text-xs px-4 py-2 rounded-xl hover:bg-ink/85 transition-colors"
-            >
-              Login
-            </button>
-          </div>
+          <button
+            onClick={() => navigate('/login')}
+            className="w-full flex items-center gap-3 rounded-md border border-line bg-surface px-3 py-2.5 mb-5 text-left hover:border-ink/30 transition-colors"
+          >
+            <svg className="w-4 h-4 text-ink-faint shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="flex-1 text-xs text-ink-muted">
+              {t('review.guestBanner')} <span className="text-ink underline underline-offset-2">{t('common.login')}</span>
+            </span>
+          </button>
         )}
 
-        {isLoggedIn && (
+        {(
           <>
         {/* Section label */}
         <p className="text-xs font-semibold text-ink-faint uppercase tracking-wider mb-3">{t('stats.history')}</p>

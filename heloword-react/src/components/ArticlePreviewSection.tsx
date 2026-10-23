@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { SectionHeader } from './ui';
 import { fetchNHKArticles, NHKArticle } from '../services/nhkArticle.service';
 
@@ -22,6 +23,7 @@ const ArticlePreviewSection: React.FC<Props> = ({
   extra,
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [articles, setArticles] = React.useState<NHKArticle[]>([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -47,7 +49,7 @@ const ArticlePreviewSection: React.FC<Props> = ({
           ))}
         </div>
       ) : articles.length === 0 ? (
-        <p className="text-xs text-ink-faint text-center py-8 border-y border-line">—</p>
+        <p className="text-xs text-ink-faint text-center py-8 border-y border-line">{t('home.noArticles')}</p>
       ) : (
         <ul className="border-y border-line divide-y divide-line">
           {articles.map((article) => (

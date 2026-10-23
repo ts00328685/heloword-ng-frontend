@@ -306,7 +306,8 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
   const { wordStore, sentenceStore, isFullyLoaded, loadFullDashboard } = useData();
   const { isLoggedIn } = useAuth();
   const { showAlert } = useUI();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const uiLocale = i18n.language === 'zh' ? 'zh-TW' : i18n.language;
   const navigate = useNavigate();
   const [dataLoading, setDataLoading] = useState(() => !isFullyLoaded);
   const [loadError, setLoadError] = useState(false);
@@ -466,7 +467,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
             <div className="mt-2 flex flex-wrap gap-1">
               {getIntervals().map((ms, i) => (
                 <span key={i} className="text-xs bg-accent-soft text-accent px-1.5 py-0.5 rounded-md font-mono">
-                  {formatInterval(ms)}
+                  {formatInterval(ms, uiLocale)}
                 </span>
               ))}
             </div>

@@ -372,11 +372,24 @@ const ChatBot: React.FC = () => {
     return () => clearInterval(id);
   }, []);
 
-  // Idle shrink after 10s
+  // Tuck the button into the screen edge after a few idle seconds, and while the
+  // page scrolls, so it stops covering text and controls. It stays tappable.
   const resetIdle = useCallback(() => {
     setIsIdle(false);
     window.clearTimeout(idleTimer.current);
-    idleTimer.current = window.setTimeout(() => setIsIdle(true), 10000);
+    idleTimer.current = window.setTimeout(() => setIsIdle(true), 4000);
+  }, []);
+
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimer = useRef<number | undefined>(undefined);
+  useEffect(() => {
+    const onScroll = () => {
+      setIsScrolling(true);
+      window.clearTimeout(scrollTimer.current);
+      scrollTimer.current = window.setTimeout(() => setIsScrolling(false), 900);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); window.clearTimeout(scrollTimer.current); };
   }, []);
 
   useEffect(() => {
@@ -743,6 +756,8 @@ const ChatBot: React.FC = () => {
     </div>
   );
 
+  const docked = !isOpen && (isIdle || isScrolling) && localStorage.getItem('hw-chatbot-idle-shrink') !== 'false';
+
   return (
     <>
       {/* Floating button — pinned to the right edge of the max-w-2xl content container */}
@@ -755,9 +770,10 @@ const ChatBot: React.FC = () => {
           <div
             className="pointer-events-auto flex flex-col items-end gap-1.5 select-none"
             style={{
-              transition: 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease',
-              transform: (isIdle && localStorage.getItem('hw-chatbot-idle-shrink') !== 'false') ? 'scale(0.55)' : 'scale(1)',
-              opacity: (isIdle && localStorage.getItem('hw-chatbot-idle-shrink') !== 'false') ? 0.6 : 1,
+              transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease',
+              // Docked: slide mostly past the right edge, leaving a small tab to tap.
+              transform: docked ? 'translateX(calc(30% + 16px)) scale(0.8)' : 'none',
+              opacity: docked ? 0.75 : 1,
               transformOrigin: 'bottom right',
             }}
           >

@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
-import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useSessionState } from '../../hooks/useSessionState';
-import { OptionRow, PracticeTopBar, SheetSection } from '../../components/ui/practice';
+import { OptionRow, PracticeTopBar, Sheet, SheetSection } from '../../components/ui/practice';
+import { ChevronRight } from '../../components/ui';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useData } from '../../contexts/DataContext';
@@ -51,14 +51,6 @@ const JP_LEVELS: LevelDef[] = [
   { key: 'verbs',        labelKey: 'multiChoice.verbs',        descKey: 'multiChoice.jpVerbsDesc',        min: 0,    max: -1    },
 ];
 
-const LEVEL_COLORS: Record<string, string> = {
-  easy:         'bg-ink hover:bg-ink/85',
-  medium:       'bg-ink hover:bg-ink/85',
-  intermediary: 'bg-ink hover:bg-ink/85',
-  advanced:     'bg-ink hover:bg-ink/85',
-  verbs:        'bg-ink hover:bg-ink/85',
-};
-
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 function pickRandom<T>(arr: T[], count: number, exclude?: T): T[] {
@@ -94,33 +86,25 @@ const LevelPickerModal: React.FC<{
   const { t } = useTranslation();
   const levels = gameType === 'en' ? EN_LEVELS : JP_LEVELS;
 
-  return ReactDOM.createPortal(
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50" onClick={onBack}>
-      <div
-        className="bg-surface rounded-t-2xl sm:rounded-2xl p-5 w-full sm:max-w-sm shadow-xl"
-        onClick={e => e.stopPropagation()}
-      >
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold text-ink">
-            {t('multiChoice.selectLevel')}
-          </h3>
-          <button onClick={onBack} className="text-ink-faint hover:text-ink-muted text-xl leading-none">×</button>
-        </div>
-        <div className="space-y-2">
-          {levels.map(level => (
+  // Same sheet as practice settings: hairline rows, level on the left, word range on the right.
+  return (
+    <Sheet title={t('multiChoice.selectLevel')} open onClose={onBack}>
+      <ul className="-mt-1 border-y border-line divide-y divide-line">
+        {levels.map((level, i) => (
+          <li key={level.key}>
             <button
-              key={level.key}
               onClick={() => onSelect(level)}
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-white font-medium text-sm transition-colors ${LEVEL_COLORS[level.key]}`}
+              className="w-full flex items-center gap-4 py-3.5 text-left group"
             >
-              <span>{t(level.labelKey)}</span>
-              <span className="text-xs opacity-80">{t(level.descKey)}</span>
+              <span className="w-5 text-xs tabular-nums text-ink-faint">{i + 1}</span>
+              <span className="flex-1 text-sm text-ink group-hover:text-accent transition-colors">{t(level.labelKey)}</span>
+              <span className="text-xs tabular-nums text-ink-muted">{t(level.descKey)}</span>
+              <ChevronRight className="w-4 h-4 text-ink-faint" />
             </button>
-          ))}
-        </div>
-      </div>
-    </div>,
-    document.body
+          </li>
+        ))}
+      </ul>
+    </Sheet>
   );
 };
 

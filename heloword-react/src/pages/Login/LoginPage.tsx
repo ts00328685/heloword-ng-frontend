@@ -54,7 +54,7 @@ const LoginPage: React.FC = () => {
   return (
     <GoogleOAuthProvider clientId={environment.googleClientId}>
       <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
-        <Header title="Login" showBack />
+        <Header title={t('common.login')} showBack hideLogin />
 
         <main className="flex-1 flex items-center justify-center px-4 pb-20">
           <div className="w-full max-w-sm">

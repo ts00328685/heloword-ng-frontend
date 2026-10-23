@@ -31,11 +31,13 @@ interface HeaderProps {
    */
   minimal?: boolean;
   rightContent?: React.ReactNode;
+  /** Hide the header's "Log in" link — for pages that already show their own login button. */
+  hideLogin?: boolean;
 }
 
 const MAX_NICK = 20;
 
-const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minimal = false, rightContent }) => {
+const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minimal = false, rightContent, hideLogin = false }) => {
   const navigate = useNavigate();
   const { user, isLoggedIn, logout, hasAnyRole } = useAuth();
   const { isDark, toggle } = useTheme();
@@ -277,7 +279,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
                     {t('common.logout')}
                   </button>
                 </div>
-              ) : (
+              ) : hideLogin ? null : (
                 <button
                   onClick={() => navigate('/login')}
                   className="text-xs text-ink whitespace-nowrap border-b border-ink/30 hover:border-ink transition-colors"
