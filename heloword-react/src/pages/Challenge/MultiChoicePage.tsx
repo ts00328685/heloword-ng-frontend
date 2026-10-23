@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import { OptionRow, PracticeTopBar, SheetSection } from '../../components/ui/practice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useData } from '../../contexts/DataContext';
@@ -50,11 +51,11 @@ const JP_LEVELS: LevelDef[] = [
 ];
 
 const LEVEL_COLORS: Record<string, string> = {
-  easy:         'bg-green-500 hover:bg-green-600',
-  medium:       'bg-blue-500 hover:bg-blue-600',
-  intermediary: 'bg-orange-500 hover:bg-orange-600',
-  advanced:     'bg-red-500 hover:bg-red-600',
-  verbs:        'bg-purple-500 hover:bg-purple-600',
+  easy:         'bg-ink hover:bg-ink/85',
+  medium:       'bg-ink hover:bg-ink/85',
+  intermediary: 'bg-ink hover:bg-ink/85',
+  advanced:     'bg-ink hover:bg-ink/85',
+  verbs:        'bg-ink hover:bg-ink/85',
 };
 
 // ── Helpers ────────────────────────────────────────────────────────────────
@@ -95,14 +96,14 @@ const LevelPickerModal: React.FC<{
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50" onClick={onBack}>
       <div
-        className="bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-2xl p-5 w-full sm:max-w-sm shadow-xl"
+        className="bg-surface rounded-t-2xl sm:rounded-2xl p-5 w-full sm:max-w-sm shadow-xl"
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold text-gray-800 dark:text-gray-100">
+          <h3 className="font-semibold text-ink">
             {t('multiChoice.selectLevel')}
           </h3>
-          <button onClick={onBack} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xl leading-none">×</button>
+          <button onClick={onBack} className="text-ink-faint hover:text-ink-muted text-xl leading-none">×</button>
         </div>
         <div className="space-y-2">
           {levels.map(level => (
@@ -326,74 +327,81 @@ const MultiChoicePage: React.FC = () => {
   const choiceBtnClass = (word: Word): string => {
     const base = 'w-full py-4 px-3 rounded-2xl text-center font-medium text-sm transition-all border-2 active:scale-95';
     if (answerState === 'idle') {
-      return `${base} bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-100 hover:border-blue-400 hover:shadow-md`;
+      return `${base} bg-surface border-line text-ink hover:border-accent hover:shadow-md`;
     }
     if (word.id === correct?.id) {
-      return `${base} bg-green-500 border-green-500 text-white shadow-md`;
+      return `${base} bg-success border-success text-white shadow-md`;
     }
     if (word.id === pickedId && answerState === 'wrong') {
-      return `${base} bg-red-400 border-red-400 text-white`;
+      return `${base} bg-danger border-danger text-white`;
     }
-    return `${base} bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 opacity-50`;
+    return `${base} bg-surface border-line text-ink-faint opacity-50`;
   };
 
   // ── Loading guard ────────────────────────────────────────────────────────
 
   if (!isFullyLoaded) {
     return (
-      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col min-h-screen bg-paper">
         <Header title={t(gameType === 'en' ? 'multiChoice.titleEn' : 'multiChoice.titleJp')} showBack />
         <main className="flex-1 flex flex-col items-center justify-center gap-3">
-          <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm text-gray-400 dark:text-gray-500">{t('common.loading')}</p>
+          <div className="w-8 h-8 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm text-ink-faint">{t('common.loading')}</p>
         </main>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-paper">
       <Header title={t(gameType === 'en' ? 'multiChoice.titleEn' : 'multiChoice.titleJp')} showBack />
 
       <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full space-y-4">
 
-        {/* Score bar */}
         {selectedLevel && (
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className={`text-xs font-bold px-2.5 py-1 rounded-full text-white ${LEVEL_COLORS[selectedLevel.key].split(' ')[0]}`}>
-                {t(selectedLevel.labelKey)}
-              </span>
-              {streak >= 3 && (
-                <span className="text-xs font-semibold text-orange-500">🔥 ×{streak}</span>
-              )}
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-gray-400 dark:text-gray-500">
-                {total > 0 ? `${Math.round((score / total) * 100)}%` : '—'}
-              </span>
-              <span className="text-sm font-bold text-blue-500">{score} pts</span>
-              <button
-                onClick={backToLevels}
-                className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 underline"
-              >
-                {t('multiChoice.changeLevel')}
-              </button>
-            </div>
-          </div>
+          <PracticeTopBar
+            left={
+              <div className="flex items-baseline gap-3 text-xs text-ink-muted">
+                <span className="text-ink">{t(selectedLevel.labelKey)}</span>
+                <span className="tabular-nums">{score} pts</span>
+                <span className="tabular-nums text-ink-faint">{total > 0 ? `${Math.round((score / total) * 100)}%` : '—'}</span>
+                {streak >= 3 && <span className="tabular-nums text-accent">×{streak}</span>}
+              </div>
+            }
+            settings={
+              <SheetSection title={t('common.preferences')}>
+                <OptionRow
+                  label={t('scramble.longPress')}
+                  value={longPressMode}
+                  onChange={setLongPressMode}
+                  options={[
+                    { value: 'speak', label: t('scramble.longPressSpeak') },
+                    { value: 'copy', label: t('scramble.longPressCopy') },
+                  ]}
+                />
+                <button
+                  onClick={backToLevels}
+                  className="w-full flex items-center justify-between py-3 text-sm text-ink hover:text-accent transition-colors"
+                >
+                  {t('multiChoice.changeLevel')}
+                  <svg className="w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </button>
+              </SheetSection>
+            }
+          />
         )}
 
         {/* Clue card */}
         {playMode === 'choice' && correct && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm space-y-2">
+          <div className="bg-surface rounded-2xl border border-line p-5 shadow-sm space-y-2">
             <div className="flex items-start justify-between gap-2">
-              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+              <p className="text-xs font-semibold text-ink-faint uppercase tracking-wide">
                 {t('multiChoice.pickWord')}
               </p>
               {isLoggedIn && (
                 <button
                   onClick={() => setHeartWord({ ...correct, sentence: '' } as Sentence)}
-                  className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors shrink-0"
+                  className="p-1 rounded-lg text-ink-faint hover:text-danger transition-colors shrink-0"
                   aria-label={t('userVocab.addToGroup')}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -402,10 +410,10 @@ const MultiChoicePage: React.FC = () => {
                 </button>
               )}
             </div>
-            <p className="text-lg font-semibold text-gray-800 dark:text-gray-100 leading-snug">
+            <p className="text-lg font-semibold text-ink leading-snug">
               {correct.translateCh}
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 italic">
+            <p className="text-sm text-ink-muted italic">
               {correct.translateEn}
             </p>
           </div>
@@ -429,39 +437,21 @@ const MultiChoicePage: React.FC = () => {
           </div>
         )}
 
-        {/* Long-press mode toggle */}
-        {playMode === 'choice' && (
-        <button
-          onClick={() => setLongPressMode(m => m === 'speak' ? 'copy' : 'speak')}
-          title={longPressMode === 'copy' ? t('scramble.longPressCopyTooltip') : t('scramble.longPressSpeakTooltip')}
-          className={`w-full py-2 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-            longPressMode === 'copy'
-              ? 'bg-amber-500 hover:bg-amber-600 text-white'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-          }`}
-        >
-          {longPressMode === 'copy' ? '📋' : '👆'} {t('scramble.longPress')}
-          <span className={`text-xs font-bold px-1.5 py-0.5 rounded-md ${longPressMode === 'copy' ? 'bg-white/20' : 'bg-gray-300 dark:bg-gray-600'}`}>
-            {longPressMode === 'copy' ? t('scramble.longPressCopy') : t('scramble.longPressSpeak')}
-          </span>
-        </button>
-        )}
-
         {/* Feedback message */}
         {playMode === 'choice' && answerState !== 'idle' && correct && (
           <div className={`rounded-2xl px-4 py-3 text-sm font-medium text-center ${
             answerState === 'correct'
-              ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400'
-              : 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
+              ? 'bg-success-soft text-success '
+              : 'bg-danger-soft text-danger '
           }`}>
             {answerState === 'correct'
-              ? `✅ ${t('multiChoice.correct')}  +1`
-              : `❌ ${t('multiChoice.wrong')}  ${t('multiChoice.answer')}: ${correct.word}`}
+              ? `${t('multiChoice.correct')}  +1`
+              : `${t('multiChoice.wrong')}  ${t('multiChoice.answer')}: ${correct.word}`}
             {answerState === 'wrong' && !whyOpen && (
               <button
                 data-analytics="ai.explain_wrong"
                 onClick={handleWhy}
-                className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium ring-1 ring-inset ring-red-200 dark:ring-red-800 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors"
+                className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium ring-1 ring-inset ring-danger/30 hover:bg-danger-soft transition-colors"
               >
                 <svg className="w-2.5 h-2.5" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 {t('llm.explainWrong')}
@@ -469,13 +459,13 @@ const MultiChoicePage: React.FC = () => {
             )}
             {whyOpen && (
               <div className="mt-2 text-left font-normal">
-                <p className={`text-xs leading-relaxed whitespace-pre-wrap text-gray-700 dark:text-gray-200 ${why.loading ? 'animate-pulse' : ''}`}>
+                <p className={`text-xs leading-relaxed whitespace-pre-wrap text-ink ${why.loading ? 'animate-pulse' : ''}`}>
                   {why.loading ? t('llm.thinking') : why.error ? t('llm.error') : <TapToLookup>{why.text}</TapToLookup>}
                 </p>
                 <button
                   data-analytics="multichoice.why_next"
                   onClick={() => nextQuestion(pool)}
-                  className="mt-2 w-full py-1.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-xs font-semibold transition-colors"
+                  className="mt-3 w-full h-10 rounded-md bg-ink hover:bg-ink/85 text-paper text-sm font-medium transition-colors"
                 >
                   {t('scramble.next')}
                 </button>

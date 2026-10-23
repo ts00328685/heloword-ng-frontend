@@ -30,10 +30,10 @@ interface Props {
   onResetTally?: () => void;
 }
 
-const select = 'h-8 px-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-xs text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500';
+const select = 'h-8 px-2 rounded-lg border border-line bg-surface text-xs text-ink focus:outline-none focus:ring-2 focus:ring-accent';
 const chip = 'h-8 px-2.5 rounded-lg text-[11px] font-semibold transition-colors';
-const idle = 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
-const label = 'min-w-[3rem] shrink-0 text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500';
+const idle = 'bg-ink/5 text-ink-muted hover:bg-ink/10';
+const label = 'min-w-[3rem] shrink-0 text-[11px] font-semibold uppercase tracking-wide text-ink-faint';
 
 const secs = (s: number) => `${s.toFixed(1)}s`;
 
@@ -41,7 +41,7 @@ const secs = (s: number) => `${s.toFixed(1)}s`;
 const HoldBadge: React.FC<{ tally: TargetTally }> = ({ tally }) => {
   const { t } = useTranslation();
   return (
-    <span className={`font-mono tabular-nums ${tally.current > 0 ? 'text-green-600 dark:text-green-400 font-bold' : 'text-gray-400 dark:text-gray-500'}`}>
+    <span className={`font-mono tabular-nums ${tally.current > 0 ? 'text-success font-semibold' : 'text-ink-faint '}`}>
       {tally.current > 0 ? `✓ ${secs(tally.current)}` : '—'} · {t('vocal.practice.best', { time: secs(tally.longest) })}
     </span>
   );
@@ -55,14 +55,14 @@ const PracticeBar: React.FC<Props> = (p) => {
   const targetText = p.target !== null ? `${spellNote(p.target, p.keySig)} ±${p.tolerance}¢` : t('vocal.practice.none');
 
   return (
-    <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+    <div className="mt-3 pt-3 border-t border-line">
       <button
         onClick={() => setOpen((o) => !o)}
         className="flex items-center justify-between gap-3 w-full text-left"
         aria-expanded={open}
       >
-        <span className="text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500">{t('vocal.practice.title')}</span>
-        <span className="flex items-center gap-3 min-w-0 text-[11px] text-gray-500 dark:text-gray-400">
+        <span className="text-[11px] font-semibold uppercase tracking-wide text-ink-faint">{t('vocal.practice.title')}</span>
+        <span className="flex items-center gap-3 min-w-0 text-[11px] text-ink-muted">
           {!open && <span className="truncate">{t('vocal.practice.summary', { key: keyText, target: targetText })}</span>}
           {p.target !== null && p.tally && <HoldBadge tally={p.tally} />}
           <svg className={`w-4 h-4 shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,7 +83,7 @@ const PracticeBar: React.FC<Props> = (p) => {
               {SCALES.map((sc, i) => <option key={i} value={i}>{sc ? t(`vocal.scales.${sc.id}`) : t('vocal.practice.off')}</option>)}
             </select>
             {p.keySig && (
-              <span className="text-[11px] text-gray-400 dark:text-gray-500">
+              <span className="text-[11px] text-ink-faint">
                 {t('vocal.practice.keyHint')}
               </span>
             )}
@@ -107,7 +107,7 @@ const PracticeBar: React.FC<Props> = (p) => {
             <button
               onClick={() => p.onDrone(!p.drone)}
               disabled={p.target === null}
-              className={`${chip} ${p.drone && p.target !== null ? 'bg-amber-500 text-white' : idle} disabled:opacity-40`}
+              className={`${chip} ${p.drone && p.target !== null ? 'bg-ink text-paper' : idle} disabled:opacity-40`}
               title={t('vocal.practice.droneTitle')}
             >
               {t('vocal.practice.drone')}
@@ -117,15 +117,15 @@ const PracticeBar: React.FC<Props> = (p) => {
                 <button
                   key={c}
                   onClick={() => p.onTolerance(c)}
-                  className={`${chip} px-2 ${p.tolerance === c ? 'bg-amber-500 text-white' : idle}`}
+                  className={`${chip} px-2 ${p.tolerance === c ? 'bg-ink text-paper' : idle}`}
                   title={t('vocal.practice.toleranceTitle', { cents: c })}
                 >
                   ±{c}¢
                 </button>
               ))}
             </div>
-            <label className="flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-400" title={t('vocal.practice.toneVolume')}>
-              🔈
+            <label className="flex items-center gap-1.5 text-[11px] text-ink-muted" title={t('vocal.practice.toneVolume')}>
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" /></svg>
               <input
                 type="range" min={0} max={1} step={0.05}
                 value={p.toneVolume}
@@ -139,13 +139,13 @@ const PracticeBar: React.FC<Props> = (p) => {
           {/* Time on target */}
           {p.target !== null && p.tally && (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pl-14">
-              <span className={`text-sm font-bold tabular-nums ${p.tally.current > 0 ? 'text-green-600 dark:text-green-400' : 'text-gray-400 dark:text-gray-500'}`}>
+              <span className={`text-sm font-semibold tabular-nums ${p.tally.current > 0 ? 'text-success ' : 'text-ink-faint '}`}>
                 {p.tally.current > 0 ? t('vocal.practice.holding', { time: secs(p.tally.current) }) : t('vocal.practice.notOnTarget')}
               </span>
-              <span className="text-xs text-gray-500 dark:text-gray-400 tabular-nums">{t('vocal.practice.longest')} <b>{secs(p.tally.longest)}</b></span>
-              <span className="text-xs text-gray-500 dark:text-gray-400 tabular-nums">{t('vocal.practice.total')} <b>{secs(p.tally.total)}</b></span>
+              <span className="text-xs text-ink-muted tabular-nums">{t('vocal.practice.longest')} <b>{secs(p.tally.longest)}</b></span>
+              <span className="text-xs text-ink-muted tabular-nums">{t('vocal.practice.total')} <b>{secs(p.tally.total)}</b></span>
               {p.onResetTally && (
-                <button onClick={p.onResetTally} className="text-[11px] font-semibold text-blue-500 hover:underline">{t('vocal.practice.reset')}</button>
+                <button onClick={p.onResetTally} className="text-[11px] font-semibold text-accent hover:underline">{t('vocal.practice.reset')}</button>
               )}
             </div>
           )}

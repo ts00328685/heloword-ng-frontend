@@ -23,8 +23,8 @@ interface Props {
 const pillClass = (active: boolean) =>
   `inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
     active
-      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-      : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+      ? 'bg-ink text-paper ring-1 ring-ink '
+      : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
   }`;
 
 const Spark = () => (
@@ -101,11 +101,11 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
 
   const textPanel = (state: ReturnType<typeof useAiInsight>) =>
     state.loading ? (
-      <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+      <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
     ) : state.error ? (
-      <p className="text-xs text-red-400">{t('llm.error')}</p>
+      <p className="text-xs text-danger">{t('llm.error')}</p>
     ) : (
-      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{state.text}</TapToLookup></p>
+      <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{state.text}</TapToLookup></p>
     );
 
   return (
@@ -122,17 +122,17 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
 
       {open && (
         <div className="mt-2 animate-slide-down">
-          <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06] space-y-2">
+          <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line space-y-2">
             {open === 'hook' && textPanel(hook)}
             {open === 'colloc' && textPanel(colloc)}
 
             {open === 'cloze' && (
               busy && !cloze ? (
-                <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
               ) : cloze ? (
                 <>
-                  <p className="text-sm text-gray-800 dark:text-gray-100 leading-relaxed">{cloze.sentence}</p>
-                  {cloze.translation && <p className="text-xs text-gray-500 dark:text-gray-400">{cloze.translation}</p>}
+                  <p className="text-sm text-ink leading-relaxed">{cloze.sentence}</p>
+                  {cloze.translation && <p className="text-xs text-ink-muted">{cloze.translation}</p>}
                   <div className="flex gap-1.5">
                     <input
                       value={clozeInput}
@@ -140,14 +140,14 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
                       onChange={e => { setClozeInput(e.target.value); setClozeResult(null); }}
                       onKeyDown={e => { if (e.key === 'Enter' && !e.nativeEvent.isComposing) submitCloze(); }}
                       placeholder={t('llm.clozePlaceholder')}
-                      className="flex-1 min-w-0 px-2 py-1 text-xs rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                      className="flex-1 min-w-0 px-2 py-1 text-xs rounded-lg bg-surface border border-line text-ink focus:outline-none focus:ring-1 focus:ring-accent"
                     />
-                    <button data-analytics="ai.tools.cloze.check" onClick={submitCloze} className="px-2 py-1 text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600">{t('llm.clozeCheck')}</button>
-                    <button data-analytics="ai.tools.cloze.reveal" onClick={() => setClozeResult('revealed')} className="px-2 py-1 text-xs rounded-lg text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700">{t('llm.clozeReveal')}</button>
+                    <button data-analytics="ai.tools.cloze.check" onClick={submitCloze} className="px-2 py-1 text-xs rounded-lg bg-ink text-paper hover:bg-ink/85">{t('llm.clozeCheck')}</button>
+                    <button data-analytics="ai.tools.cloze.reveal" onClick={() => setClozeResult('revealed')} className="px-2 py-1 text-xs rounded-lg text-ink-muted ring-1 ring-inset ring-line">{t('llm.clozeReveal')}</button>
                   </div>
-                  {clozeResult === 'correct' && <p className="text-xs text-green-600 dark:text-green-400">{t('llm.clozeCorrect')}</p>}
-                  {clozeResult === 'wrong' && <p className="text-xs text-red-400">{t('llm.clozeWrong')}</p>}
-                  {clozeResult === 'revealed' && <p className="text-xs text-gray-700 dark:text-gray-200 font-medium">{cloze.answer}</p>}
+                  {clozeResult === 'correct' && <p className="text-xs text-success">{t('llm.clozeCorrect')}</p>}
+                  {clozeResult === 'wrong' && <p className="text-xs text-danger">{t('llm.clozeWrong')}</p>}
+                  {clozeResult === 'revealed' && <p className="text-xs text-ink font-medium">{cloze.answer}</p>}
                 </>
               ) : null
             )}
@@ -161,26 +161,26 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
                     rows={2}
                     onChange={e => { setSentence(e.target.value); setCheck(null); }}
                     placeholder={t('llm.checkPlaceholder')}
-                    className="flex-1 min-w-0 px-2 py-1 text-xs rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 resize-none focus:outline-none focus:ring-1 focus:ring-blue-400"
+                    className="flex-1 min-w-0 px-2 py-1 text-xs rounded-lg bg-surface border border-line text-ink resize-none focus:outline-none focus:ring-1 focus:ring-accent"
                   />
                   <button
                     data-analytics="ai.tools.check.submit"
                     onClick={submitCheck}
                     disabled={!sentence.trim() || busy}
-                    className="px-2 py-1 text-xs rounded-lg bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-40"
+                    className="px-2 py-1 text-xs rounded-lg bg-ink text-paper hover:bg-ink/85 disabled:opacity-40"
                   >
                     {busy ? '…' : t('llm.checkSubmit')}
                   </button>
                 </div>
                 {check && (
                   check.ok
-                    ? <p className="text-xs text-green-600 dark:text-green-400">{t('llm.sentenceCorrect')}</p>
-                    : <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{check.fix}</TapToLookup></p>
+                    ? <p className="text-xs text-success">{t('llm.sentenceCorrect')}</p>
+                    : <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{check.fix}</TapToLookup></p>
                 )}
               </>
             )}
 
-            {error && <p className="text-xs text-red-400">{error}</p>}
+            {error && <p className="text-xs text-danger">{error}</p>}
           </div>
         </div>
       )}

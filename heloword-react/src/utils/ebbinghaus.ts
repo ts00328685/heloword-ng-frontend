@@ -134,50 +134,34 @@ export function computeGroupStates(
   for (const [key, settings] of Object.entries(byKey)) {
     const { type, min, max } = parseGroupKey(key);
 
-    // Apply manual level override if present
-    if (overrides && overrides[key]) {
-      const { level, setAt } = overrides[key];
-      const prevTime = setAt.getTime();
-      const currentInterval = intervals[Math.min(level, intervals.length - 1)];
-      const dueTime = prevTime + currentInterval;
-      const graceEnd = dueTime + currentInterval * 0.5;
-      let status: DueGroup['status'];
-      if (now >= graceEnd) {
-        status = 'FRESH';
-      } else if (now >= dueTime) {
-        status = 'DUE';
-      } else {
-        status = 'SCHEDULED';
-      }
-      result.set(key, {
-        groupKey: key, type, min, max, status,
-        reviewLevel: level,
-        nextReviewTime: new Date(dueTime),
-        lastCompletionTime: setAt,
-      });
-      continue;
-    }
+    // A manual level override acts as a synthetic completion at `setAt` with the
+    // chosen level. Sessions started before it are superseded; sessions after it
+    // are applied on top exactly like normal history. (Previously the override
+    // short-circuited everything, so reviewing an overridden group never changed
+    // its status or progress.)
+    const override = overrides?.[key];
+    const overrideMs = override ? override.setAt.getTime() : -Infinity;
+    const relevant = override
+      ? settings.filter((s) => new Date(s.timestamp).getTime() > overrideMs)
+      : settings;
 
     // Most recent session (by timestamp)
-    const sorted = [...settings].sort(
+    const sorted = [...relevant].sort(
       (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
     );
     const mostRecent = sorted[0];
     // Use the actual quiz range size (max - min + 1) rather than the full list size
     // stored in `total`, so custom-range quizzes (e.g. words 51–100) can complete.
-    const rangeSize = (mostRecent.max ?? mostRecent.total) - (mostRecent.min ?? 1) + 1;
-    const isCurrentlyUnfinished = (mostRecent.finishedCount ?? 0) < rangeSize;
+    const rangeOf = (s: QuizSetting) => (s.max ?? s.total) - (s.min ?? 1) + 1;
+    const isCurrentlyUnfinished = !!mostRecent && (mostRecent.finishedCount ?? 0) < rangeOf(mostRecent);
 
     // All sessions that were fully completed, sorted chronologically
-    const completedTimes = settings
-      .filter((s) => {
-        const size = (s.max ?? s.total) - (s.min ?? 1) + 1;
-        return s.latestFinishedTime && (s.finishedCount ?? 0) >= size;
-      })
+    const completedTimes = relevant
+      .filter((s) => s.latestFinishedTime && (s.finishedCount ?? 0) >= rangeOf(s))
       .map((s) => new Date(s.latestFinishedTime!).getTime())
       .sort((a, b) => a - b);
 
-    if (completedTimes.length === 0) {
+    if (!override && completedTimes.length === 0) {
       result.set(key, { groupKey: key, type, min, max, status: 'UNFINISHED', reviewLevel: 0 });
       continue;
     }
@@ -185,10 +169,10 @@ export function computeGroupStates(
     // Walk the completion sequence to compute effective review level.
     // If a completion falls outside the grace window of the previous level,
     // the streak resets to 0.
-    let level = 0;
-    let prevTime = completedTimes[0];
+    let level = override ? override.level : 0;
+    let prevTime = override ? overrideMs : completedTimes[0];
 
-    for (let i = 1; i < completedTimes.length; i++) {
+    for (let i = override ? 0 : 1; i < completedTimes.length; i++) {
       const interval = intervals[Math.min(level, intervals.length - 1)];
       const graceEnd = prevTime + interval + interval * 0.5; // due + 50% grace
       level = completedTimes[i] <= graceEnd ? Math.min(level + 1, intervals.length - 1) : 0;

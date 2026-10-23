@@ -280,8 +280,8 @@ export const SpeakerButton: React.FC<{
       title={label}
       className={`${small ? 'p-0.5' : 'p-1'} rounded-md transition-colors shrink-0 ${
         isPlaying
-          ? 'text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300'
-          : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+          ? 'text-accent hover:text-accent '
+          : 'hover:bg-ink/5 text-ink-faint hover:text-ink-muted '
       }`}
       aria-label={label}
     >
@@ -331,7 +331,7 @@ const SpokenText: React.FC<{ text: string; range: SpokenRange | null; selected?:
     return (
       <>
         {text.slice(0, selected.start)}
-        <mark className="rounded-sm bg-amber-200/70 dark:bg-amber-400/30 text-inherit">{text.slice(selected.start, selected.end)}</mark>
+        <mark className="rounded-sm bg-accent-soft text-inherit">{text.slice(selected.start, selected.end)}</mark>
         {text.slice(selected.end)}
       </>
     );
@@ -349,10 +349,10 @@ const SpokenText: React.FC<{ text: string; range: SpokenRange | null; selected?:
   return (
     <>
       {text.slice(0, start)}
-      <mark className="-mx-0.5 px-0.5 rounded bg-sky-500/10 dark:bg-sky-400/15 text-inherit">
+      <mark className="-mx-0.5 px-0.5 rounded bg-accent-soft text-inherit">
         {text.slice(start, wordStart)}
         {wordEnd > wordStart && (
-          <mark className="rounded-sm bg-sky-200 dark:bg-sky-400/45 text-sky-900 dark:text-white">
+          <mark className="rounded-sm bg-accent-soft text-accent">
             {text.slice(wordStart, wordEnd)}
           </mark>
         )}
@@ -430,12 +430,12 @@ export const ParagraphCard: React.FC<{
   }, [isSpeaking]);
 
   return (
-    <div ref={cardRef} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+    <div ref={cardRef} className="bg-surface border border-line rounded-xl overflow-hidden">
       <div className="p-4">
-        <p className="text-xs text-gray-400 dark:text-gray-500 font-mono mb-2">#{index + 1}</p>
+        <p className="text-xs text-ink-faint font-mono mb-2">#{index + 1}</p>
         <div className="flex items-start gap-1">
           <p
-            className={`text-sm text-gray-700 dark:text-gray-200 leading-relaxed flex-1 ${lookupLang ? 'cursor-pointer' : ''}`}
+            className={`text-sm text-ink leading-relaxed flex-1 ${lookupLang ? 'cursor-pointer' : ''}`}
             onClick={lookupLang ? handleOriginalTap : undefined}
             data-no-analytics
           >
@@ -461,13 +461,13 @@ export const ParagraphCard: React.FC<{
         <>
           <button
             onClick={() => setTranslationOpen((v) => !v)}
-            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 border-l-2 border-l-sky-400 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-line border-l-2 border-l-accent bg-paper hover:bg-ink/5 transition-colors text-xs font-medium text-ink-muted"
           >
-            <span className="text-sky-600 dark:text-sky-400">
-              💬 {activeLang === 'en' ? 'EN' : activeLang === 'zh' ? '繁中' : '日文'}
+            <span className="text-accent">
+              {activeLang === 'en' ? 'EN' : activeLang === 'zh' ? '繁中' : '日文'}
             </span>
             <svg
-              className={`w-3.5 h-3.5 text-gray-400 transition-transform ${translationOpen ? 'rotate-180' : ''}`}
+              className={`w-3.5 h-3.5 text-ink-faint transition-transform ${translationOpen ? 'rotate-180' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -476,8 +476,8 @@ export const ParagraphCard: React.FC<{
             </svg>
           </button>
           {translationOpen && (
-            <div className="flex items-start gap-1 px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
-              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
+            <div className="flex items-start gap-1 px-4 py-3 border-t border-line bg-surface">
+              <p className="text-sm text-ink-muted leading-relaxed flex-1">
                 <SpokenText
                   text={translation}
                   range={spokenRange?.key === translationKey ? spokenRange : null}
@@ -501,11 +501,11 @@ export const ParagraphCard: React.FC<{
         <>
           <button
             onClick={() => setGrammarOpen((v) => !v)}
-            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 border-l-2 border-l-violet-400 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-line border-l-2 border-l-accent bg-paper hover:bg-ink/5 transition-colors text-xs font-medium text-ink-muted"
           >
-            <span className="text-violet-600 dark:text-violet-400">📝 {t('nhk.grammar')}</span>
+            <span className="text-accent">{t('nhk.grammar')}</span>
             <svg
-              className={`w-3.5 h-3.5 text-gray-400 transition-transform ${grammarOpen ? 'rotate-180' : ''}`}
+              className={`w-3.5 h-3.5 text-ink-faint transition-transform ${grammarOpen ? 'rotate-180' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -514,8 +514,8 @@ export const ParagraphCard: React.FC<{
             </svg>
           </button>
           {grammarOpen && (
-            <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
-              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-line">{paragraph.grammar}</p>
+            <div className="px-4 py-3 border-t border-line bg-surface">
+              <p className="text-sm text-ink-muted leading-relaxed whitespace-pre-line">{paragraph.grammar}</p>
             </div>
           )}
         </>
@@ -525,11 +525,11 @@ export const ParagraphCard: React.FC<{
         <>
           <button
             onClick={() => setVocabOpen((v) => !v)}
-            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-gray-100 dark:border-gray-700 border-l-2 border-l-amber-400 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors text-xs font-medium text-gray-500 dark:text-gray-400"
+            className="w-full flex items-center justify-between px-4 py-2.5 border-t border-line border-l-2 border-l-accent bg-paper hover:bg-ink/5 transition-colors text-xs font-medium text-ink-muted"
           >
-            <span className="text-amber-600 dark:text-amber-400">📚 {t('nhk.vocabulary')} ({paragraph.vocabulary.length})</span>
+            <span className="text-accent">{t('nhk.vocabulary')} ({paragraph.vocabulary.length})</span>
             <svg
-              className={`w-3.5 h-3.5 text-gray-400 transition-transform ${vocabOpen ? 'rotate-180' : ''}`}
+              className={`w-3.5 h-3.5 text-ink-faint transition-transform ${vocabOpen ? 'rotate-180' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -538,13 +538,13 @@ export const ParagraphCard: React.FC<{
             </svg>
           </button>
           {vocabOpen && (
-            <div className="overflow-x-auto border-t border-gray-100 dark:border-gray-700">
+            <div className="overflow-x-auto border-t border-line">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="bg-gray-50 dark:bg-gray-750">
-                    <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">{t('nhk.word')}</th>
-                    <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">中文</th>
-                    <th className="text-left px-4 py-2 text-xs text-gray-500 dark:text-gray-400 font-medium">English</th>
+                  <tr className="bg-paper">
+                    <th className="text-left px-4 py-2 text-xs text-ink-muted font-medium">{t('nhk.word')}</th>
+                    <th className="text-left px-4 py-2 text-xs text-ink-muted font-medium">中文</th>
+                    <th className="text-left px-4 py-2 text-xs text-ink-muted font-medium">English</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -553,11 +553,11 @@ export const ParagraphCard: React.FC<{
                     return (
                       <tr
                         key={i}
-                        className="border-t border-gray-100 dark:border-gray-700 border-l-2 border-l-transparent hover:border-l-amber-400/60 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
+                        className="border-t border-line border-l-2 border-l-transparent hover:border-l-accent hover:bg-paper transition-colors"
                       >
                         <td className="px-4 py-2.5">
                           <div className="flex items-center gap-1">
-                            <span className="font-medium text-amber-600 dark:text-amber-400">{v.word}</span>
+                            <span className="font-medium text-accent">{v.word}</span>
                             <SpeakerButton
                               small
                               isPlaying={speakingKey === vocabKey}
@@ -573,8 +573,8 @@ export const ParagraphCard: React.FC<{
                             />
                           </div>
                         </td>
-                        <td className="px-4 py-2.5 text-gray-700 dark:text-gray-200">{v.meaning_zh}</td>
-                        <td className="px-4 py-2.5 text-gray-500 dark:text-gray-400 text-xs">{v.meaning_en}</td>
+                        <td className="px-4 py-2.5 text-ink">{v.meaning_zh}</td>
+                        <td className="px-4 py-2.5 text-ink-muted text-xs">{v.meaning_en}</td>
                       </tr>
                     );
                   })}

@@ -10,6 +10,7 @@ import { aiAnalyzeTranslation } from '../../services/scramble.service';
 import { aiErrorMessage } from '../../utils/aiError';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
+import { BlockLabel, OptionRow, PracticeActions, PracticeTopBar, Segmented, SheetSection } from '../../components/ui/practice';
 import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -81,9 +82,9 @@ function scoreAnswer(userInput: string, answer: string): number {
 }
 
 function scoreColor(score: number): string {
-  if (score >= 90) return 'text-green-600 dark:text-green-400';
-  if (score >= 60) return 'text-yellow-600 dark:text-yellow-400';
-  return 'text-red-600 dark:text-red-400';
+  if (score >= 90) return 'text-success';
+  if (score >= 60) return 'text-accent';
+  return 'text-danger';
 }
 
 // ── Sub-components ─────────────────────────────────────────────────────────
@@ -92,9 +93,9 @@ const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
   <ReactMarkdown
     components={{
       p: ({ children }) => <p className="leading-relaxed">{children}</p>,
-      h1: ({ children }) => <p className="text-base font-bold text-gray-900 dark:text-gray-100 mt-3">{children}</p>,
-      h2: ({ children }) => <p className="text-sm font-bold text-gray-800 dark:text-gray-100 mt-2">{children}</p>,
-      h3: ({ children }) => <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-2">{children}</p>,
+      h1: ({ children }) => <p className="text-base font-semibold text-ink mt-3">{children}</p>,
+      h2: ({ children }) => <p className="text-sm font-semibold text-ink mt-2">{children}</p>,
+      h3: ({ children }) => <p className="text-sm font-semibold text-ink mt-2">{children}</p>,
       strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
       ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{children}</ul>,
       ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{children}</ol>,
@@ -232,77 +233,64 @@ const WrittenTranslationPage: React.FC = () => {
   const englishMeaning = lang === 'jp' ? currentJp?.english : null;
   const correctAnswer = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
 
-  const difficultyActive = 'bg-blue-500 text-white';
-  const difficultyInactive = 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300';
 
   // ── Render ─────────────────────────────────────────────────────────────
 
+  const answered = showAnswer || submitState !== 'idle';
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-paper">
       <Header title={t('writtenTranslation.title')} showBack />
-      <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full space-y-3">
+      <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full space-y-4">
 
-        {/* Language toggle */}
-        <div className="flex items-center gap-2 flex-wrap">
-          {(['jp', 'en'] as Lang[]).map(l => (
-            <button
-              key={l}
-              onClick={() => setLang(l)}
-              className={`px-4 py-1.5 rounded-xl text-sm font-semibold transition-colors ${
-                lang === l
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300'
-              }`}
-            >
-              {l === 'jp' ? '🇯🇵 Japanese' : '🇬🇧 English'}
-            </button>
-          ))}
-
-          {/* Hint count selector */}
-          <div className="flex items-center gap-1.5 ml-auto">
-            {(['easy', 'medium', 'hard'] as Difficulty[]).map(d => (
-              <button
-                key={d}
-                onClick={() => setDifficulty(d)}
-                className={`px-3 py-1 rounded-xl text-xs font-semibold transition-colors ${
-                  difficulty === d ? difficultyActive : difficultyInactive
-                }`}
-              >
-                {HINT_COUNTS[d]} {t('writtenTranslation.tips')}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* EN difficulty filter */}
-        {lang === 'en' && (
-          <EnDifficultyFilter selected={enDifficulties} onChange={setEnDifficulties} />
-        )}
-
-        {/* JP sentence filters */}
-        {lang === 'jp' && (
-          <JpSentenceFilter
-            selectedDifficulties={filterDifficulties}
-            onDifficultiesChange={setFilterDifficulties}
-            selectedJlpt={selectedJlpt}
-            onJlptChange={setSelectedJlpt}
-            selectedGroups={selectedGroups}
-            onGroupsChange={setSelectedGroups}
-          />
-        )}
+        <PracticeTopBar
+          left={
+            <Segmented
+              value={lang}
+              onChange={setLang}
+              options={[{ value: 'jp', label: '日本語' }, { value: 'en', label: 'English' }]}
+            />
+          }
+          settings={
+            <>
+              <SheetSection title={t('common.filters')}>
+                {lang === 'en' ? (
+                  <EnDifficultyFilter selected={enDifficulties} onChange={setEnDifficulties} />
+                ) : (
+                  <JpSentenceFilter
+                    selectedDifficulties={filterDifficulties}
+                    onDifficultiesChange={setFilterDifficulties}
+                    selectedJlpt={selectedJlpt}
+                    onJlptChange={setSelectedJlpt}
+                    selectedGroups={selectedGroups}
+                    onGroupsChange={setSelectedGroups}
+                  />
+                )}
+              </SheetSection>
+              <SheetSection title={t('common.preferences')}>
+                <OptionRow
+                  label={t('writtenTranslation.hints')}
+                  value={difficulty}
+                  onChange={setDifficulty}
+                  options={(['easy', 'medium', 'hard'] as Difficulty[]).map(d => ({ value: d, label: `${HINT_COUNTS[d]} ${t('writtenTranslation.tips')}` }))}
+                />
+              </SheetSection>
+            </>
+          }
+        />
 
         {/* Question card */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+        <div className="bg-surface rounded-2xl border border-line p-4 shadow-sm">
           {dataLoading ? (
-            <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">{t('common.loading')}</p>
+            <p className="text-sm text-ink-faint animate-pulse">{t('common.loading')}</p>
           ) : (
             <>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mb-1">{t('writtenTranslation.chinesePrompt')}</p>
-              <p className="text-base font-medium text-gray-800 dark:text-gray-100 leading-relaxed">
+              <p className="text-xs text-ink-faint mb-1">{t('writtenTranslation.chinesePrompt')}</p>
+              <p className="text-base font-medium text-ink leading-relaxed">
                 {chineseTranslation ?? '…'}
               </p>
               {englishMeaning && (
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{englishMeaning}</p>
+                <p className="text-sm text-ink-muted mt-1.5">{englishMeaning}</p>
               )}
             </>
           )}
@@ -312,21 +300,21 @@ const WrittenTranslationPage: React.FC = () => {
         {hints.length > 0 && (
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">
+              <p className="text-xs font-semibold text-ink-faint uppercase tracking-wide">
                 {t('writtenTranslation.hints')}
               </p>
               <button
                 onClick={refreshHints}
-                className="text-xs text-blue-400 hover:text-blue-600 transition-colors"
+                className="text-xs text-accent hover:text-accent transition-colors"
               >
-                🔀
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
               </button>
             </div>
             <div className="flex flex-wrap gap-2">
               {hints.map((h, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1 rounded-xl text-sm bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 font-medium"
+                  className="px-3 py-1 rounded-xl text-sm bg-accent-soft text-accent border border-accent/30 font-medium"
                 >
                   {h}
                 </span>
@@ -337,73 +325,34 @@ const WrittenTranslationPage: React.FC = () => {
 
         {/* Input area */}
         <div>
-          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-1.5 px-1">
-            {lang === 'jp' ? t('writtenTranslation.typeJapanese') : t('writtenTranslation.typeEnglish')}
-          </p>
+          <BlockLabel>{lang === 'jp' ? t('writtenTranslation.typeJapanese') : t('writtenTranslation.typeEnglish')}</BlockLabel>
           <textarea
             value={userInput}
             onChange={e => setUserInput(e.target.value)}
             placeholder={lang === 'jp' ? t('writtenTranslation.placeholderJp') : t('writtenTranslation.placeholderEn')}
             rows={3}
-            className="w-full rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-sm px-4 py-3 resize-none focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-colors placeholder-gray-300 dark:placeholder-gray-600"
+            className="w-full rounded-md border border-line bg-surface text-ink text-sm px-4 py-3 resize-none focus:outline-none focus:border-accent transition-colors placeholder-ink-faint"
           />
-        </div>
-
-        {/* Submit buttons */}
-        <div className="grid grid-cols-2 gap-2">
-          <button data-analytics="translation.compare"
-            onClick={handleCompare}
-            disabled={!userInput.trim() || dataLoading}
-            className="py-3 rounded-2xl text-sm font-semibold bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white transition-colors"
-          >
-            📊 {t('writtenTranslation.compare')}
-          </button>
-          <button data-analytics="ai.translation_analyze"
-            onClick={handleAiAnalyze}
-            disabled={submitState === 'ai-loading' || !userInput.trim() || dataLoading}
-            className="w-full py-3 rounded-2xl text-sm font-semibold transition-colors disabled:opacity-40 flex items-center justify-center gap-1.5 text-white"
-            style={{ background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' }}
-          >
-            <span>✨</span>
-            <span>{t('writtenTranslation.aiAnalyze')}</span>
-          </button>
-        </div>
-
-        {/* Show answer / next controls */}
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            onClick={handleShowAnswer}
-            disabled={showAnswer}
-            className="py-2 rounded-xl text-sm font-medium bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-900/50 disabled:opacity-40 transition-colors"
-          >
-            👁 {t('scramble.showAnswer')}
-          </button>
-          <button
-            onClick={loadSentence}
-            className="py-2 rounded-xl text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          >
-            ⏭ {t('scramble.next')}
-          </button>
         </div>
 
         {/* Result panel */}
         {(showAnswer || submitState !== 'idle') && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-4 shadow-sm space-y-3">
+          <div className="bg-surface rounded-2xl border-2 border-line p-4 shadow-sm space-y-3">
 
             {/* Score (compare mode) */}
             {score !== null && (
               <div className="flex items-center gap-3">
-                <div className={`text-3xl font-black ${scoreColor(score)}`}>{score}%</div>
+                <div className={`text-3xl font-semibold ${scoreColor(score)}`}>{score}%</div>
                 <div className="flex-1">
-                  <div className="h-2 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
+                  <div className="h-2 rounded-full bg-ink/5 overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
-                        score >= 90 ? 'bg-green-500' : score >= 60 ? 'bg-yellow-500' : 'bg-red-500'
+                        score >= 90 ? 'bg-success' : score >= 60 ? 'bg-ink' : 'bg-danger'
                       }`}
                       style={{ width: `${score}%` }}
                     />
                   </div>
-                  <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                  <p className="text-xs text-ink-faint mt-1">
                     {score >= 90 ? t('writtenTranslation.scoreExcellent')
                       : score >= 60 ? t('writtenTranslation.scoreGood')
                       : t('writtenTranslation.scoreTryAgain')}
@@ -415,10 +364,10 @@ const WrittenTranslationPage: React.FC = () => {
             {/* Correct answer */}
             {showAnswer && correctAnswer && (
               <div>
-                <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-1">
+                <p className="text-xs font-semibold text-ink-faint uppercase tracking-wide mb-1">
                   {t('writtenTranslation.correctAnswer')}
                 </p>
-                <p className="text-sm font-medium text-gray-800 dark:text-gray-100 leading-relaxed bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl px-3 py-2">
+                <p className="text-sm font-medium text-ink leading-relaxed bg-success-soft border border-success/30 rounded-xl px-3 py-2">
                   {correctAnswer}
                 </p>
               </div>
@@ -427,15 +376,15 @@ const WrittenTranslationPage: React.FC = () => {
             {/* AI analysis */}
             {(submitState === 'ai-loading' || submitState === 'ai-done' || submitState === 'ai-error') && (
               <div>
-                <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-2">
-                  ✨ {t('writtenTranslation.aiAnalysis')}
+                <p className="text-xs font-semibold text-accent mb-2">
+                  {t('writtenTranslation.aiAnalysis')}
                 </p>
                 {submitState === 'ai-loading' ? (
-                  <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">
+                  <p className="text-sm text-ink-faint animate-pulse">
                     {t('scramble.aiThinking')}
                   </p>
                 ) : (
-                  <div className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
+                  <div className="text-sm text-ink leading-relaxed space-y-2">
                     <TapToLookup as="div"><AiMarkdown text={aiResult} /></TapToLookup>
                   </div>
                 )}
@@ -443,6 +392,22 @@ const WrittenTranslationPage: React.FC = () => {
             )}
           </div>
         )}
+
+        <PracticeActions
+          tools={[
+            { label: t('scramble.showAnswer'), onClick: handleShowAnswer, disabled: showAnswer },
+            {
+              label: t('writtenTranslation.aiAnalyze'),
+              onClick: handleAiAnalyze,
+              disabled: submitState === 'ai-loading' || !userInput.trim() || dataLoading,
+              analytics: 'ai.translation_analyze',
+            },
+          ]}
+          secondary={answered ? undefined : { label: t('common.skip'), onClick: loadSentence }}
+          primary={answered
+            ? { label: t('scramble.next'), onClick: loadSentence }
+            : { label: t('writtenTranslation.compare'), onClick: handleCompare, disabled: !userInput.trim() || dataLoading, analytics: 'translation.compare' }}
+        />
 
       </main>
     </div>

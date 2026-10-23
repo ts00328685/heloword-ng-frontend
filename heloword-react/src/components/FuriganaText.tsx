@@ -15,7 +15,7 @@ const FuriganaText: React.FC<{ text: string; className?: string }> = ({ text, cl
     parts.push(
       <ruby key={m.index}>
         {m[1]}
-        <rt className="text-[0.6em] text-gray-400 dark:text-gray-500">{m[2]}</rt>
+        <rt className="text-[0.6em] text-ink-faint">{m[2]}</rt>
       </ruby>,
     );
     last = m.index + m[0].length;

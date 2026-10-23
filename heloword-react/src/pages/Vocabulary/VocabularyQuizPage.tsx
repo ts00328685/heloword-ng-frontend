@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { PracticeActions, Sheet, SheetSection, SwitchRow } from '../../components/ui/practice';
 import Header from '../../components/Header';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useAuth } from '../../contexts/AuthContext';
@@ -709,11 +710,11 @@ const VocabularyQuizPage: React.FC = () => {
 
   if (!current) {
     return (
-      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col min-h-screen bg-paper">
         <Header title="" showBack />
         <div className="flex-1 flex flex-col items-center justify-center">
-          <div className="w-8 h-8 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mb-4" />
-          <p className="text-gray-400 dark:text-gray-500 text-sm">{t('quiz.loading')}</p>
+          <div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mb-4" />
+          <p className="text-ink-faint text-sm">{t('quiz.loading')}</p>
         </div>
       </div>
     );
@@ -722,17 +723,17 @@ const VocabularyQuizPage: React.FC = () => {
   const displaySentence = current.sentence || '';
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-paper">
       <Header
         title={isBoardMode ? `${currentIndex} / ${totalLength}` : `${currentIndex + 1} / ${totalLength}`}
         showBack
         rightContent={(
           <button
-            onClick={() => setShowSettings((v) => !v)}
-            className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Quiz settings"
+            onClick={() => setShowSettings(true)}
+            className="p-2 rounded-xl hover:bg-ink/5 transition-colors"
+            aria-label={t('quiz.options')}
           >
-            <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
@@ -741,47 +742,32 @@ const VocabularyQuizPage: React.FC = () => {
       />
 
       {/* Progress bar */}
-      <div className="h-1 bg-gray-200 dark:bg-gray-700">
+      <div className="h-1 bg-ink/10">
         <div
-          className="h-1 bg-blue-500 transition-all duration-500"
+          className="h-1 bg-ink transition-all duration-500"
           style={{ width: `${(currentIndex / totalLength) * 100}%` }}
         />
       </div>
 
       <main className={`flex-1 px-4 pt-4 max-w-2xl mx-auto w-full overflow-y-auto ${isBoardMode ? 'pb-2' : 'pb-6'}`}>
-        {/* Settings panel */}
-        {showSettings && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
-            <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">{t('quiz.options')}</h3>
-            <div className="grid grid-cols-2 gap-2">
-              {(isBoardMode ? [
-                { label: t('quizMode.pronounceOnTap'), val: boardPronounce, set: setBoardPronounce },
-              ] : [
-                { label: t('quiz.autoPronounce'), val: autoPronounce, set: setAutoPronounce },
-                { label: t('quiz.pronounceEn'), val: autoPronounceEn, set: setAutoPronounceEn },
-                { label: t('quiz.pronounceCh'), val: autoPronounceCh, set: setAutoPronounceCh },
-                { label: t('quiz.pronounceSentence'), val: autoPronounceSentence, set: setAutoPronounceSentence },
-                { label: t('quiz.autoFocus'), val: autoInputFocus, set: setAutoInputFocus },
-                { label: t('quiz.japaneseMode'), val: japaneseMode, set: setJapaneseMode },
-                { label: t('quiz.jpButtonInput'), val: jpButtonMode, set: setJpButtonMode },
-                { label: t('quiz.failWithoutMask'), val: failWhenMaskOff, set: setFailWhenMaskOff },
-              ]).map(({ label, val, set }) => (
-                <button
-                  key={label}
-                  onClick={() => set(!val)}
-                  className={`text-xs px-3 py-2 rounded-lg border font-medium transition-colors ${
-                    val
-                      ? 'bg-blue-500 border-blue-500 text-white'
-                      : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-
-          </div>
-        )}
+        <Sheet title={t('quiz.options')} open={showSettings} onClose={() => setShowSettings(false)}>
+          <SheetSection title={t('common.preferences')}>
+            {(isBoardMode ? [
+              { label: t('quizMode.pronounceOnTap'), val: boardPronounce, set: setBoardPronounce },
+            ] : [
+              { label: t('quiz.autoPronounce'), val: autoPronounce, set: setAutoPronounce },
+              { label: t('quiz.pronounceEn'), val: autoPronounceEn, set: setAutoPronounceEn },
+              { label: t('quiz.pronounceCh'), val: autoPronounceCh, set: setAutoPronounceCh },
+              { label: t('quiz.pronounceSentence'), val: autoPronounceSentence, set: setAutoPronounceSentence },
+              { label: t('quiz.autoFocus'), val: autoInputFocus, set: setAutoInputFocus },
+              { label: t('quiz.japaneseMode'), val: japaneseMode, set: setJapaneseMode },
+              { label: t('quiz.jpButtonInput'), val: jpButtonMode, set: setJpButtonMode },
+              { label: t('quiz.failWithoutMask'), val: failWhenMaskOff, set: setFailWhenMaskOff },
+            ]).map(({ label, val, set }) => (
+              <SwitchRow key={label} label={label} checked={val} onChange={() => set(!val)} />
+            ))}
+          </SheetSection>
+        </Sheet>
 
         {isBoardMode ? (
           quizMode === 'matching' ? (
@@ -818,17 +804,17 @@ const VocabularyQuizPage: React.FC = () => {
         ) : (
           <>
         {/* Word card */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 mb-4 shadow-sm">
+        <div className="bg-surface rounded-2xl border border-line p-5 mb-4 shadow-sm">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono text-gray-300 dark:text-gray-600">{currentIndex + 1}</span>
-              <span className="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium uppercase">
+              <span className="text-xs font-mono text-ink-faint">{currentIndex + 1}</span>
+              <span className="text-xs bg-accent-soft text-accent px-2 py-0.5 rounded-md font-medium uppercase">
                 {current.language}
               </span>
               {isLoggedIn && (
                 <button
                   onClick={() => setHeartWord(current)}
-                  className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                  className="p-1 rounded-lg text-ink-faint hover:text-danger transition-colors"
                   aria-label={t('userVocab.addToGroup')}
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -837,41 +823,41 @@ const VocabularyQuizPage: React.FC = () => {
                 </button>
               )}
             </div>
-            <span className="text-xs text-gray-400 dark:text-gray-500">
+            <span className="text-xs text-ink-faint">
               {t('quiz.wrongPronounce', { wrong: wrongCountRef.current, pronounce: pronounceCountRef.current })}
             </span>
           </div>
 
           <div className="mb-2 min-h-[24px]">
             {enableEnMask ? (
-              <button onClick={handleToggleEnMask} className="text-sm text-gray-400 dark:text-gray-500 italic underline">
+              <button onClick={handleToggleEnMask} className="text-sm text-ink-faint italic underline">
                 {t('quiz.showEnTranslation')}
               </button>
             ) : (
               <div className="flex items-center gap-2">
-                <p className="text-sm text-blue-500 font-medium">{current.translateEn}</p>
-                <button onClick={handleToggleEnMask} className="text-xs text-gray-300 dark:text-gray-600 hover:text-gray-500" title="Mask EN">
-                  👁
+                <p className="text-sm text-accent font-medium">{current.translateEn}</p>
+                <button onClick={handleToggleEnMask} className="text-xs text-ink-faint hover:text-ink-muted" title="Mask EN">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                 </button>
               </div>
             )}
           </div>
 
           {current.translateCh && (
-            <p className="text-sm text-gray-400 dark:text-gray-300 mb-2">{current.translateCh}</p>
+            <p className="text-sm text-ink-faint mb-2">{current.translateCh}</p>
           )}
 
           {displaySentence && current.word && (
             <div className="mt-2 min-h-[20px]">
               {enableSentenceMask ? (
-                <button onClick={handleToggleSentenceMask} className="text-xs text-gray-400 dark:text-gray-500 italic underline">
+                <button onClick={handleToggleSentenceMask} className="text-xs text-ink-faint italic underline">
                   {t('quiz.showSentence')}
                 </button>
               ) : (
                 <div className="flex items-start gap-2">
-                  <SentenceRenderer text={displaySentence} className="text-xs text-gray-500 dark:text-gray-400 italic leading-relaxed flex-1" />
-                  <button onClick={handleToggleSentenceMask} className="text-xs text-gray-300 dark:text-gray-600 hover:text-gray-500 flex-shrink-0" title="Mask sentence">
-                    👁
+                  <SentenceRenderer text={displaySentence} className="text-xs text-ink-muted italic leading-relaxed flex-1" />
+                  <button onClick={handleToggleSentenceMask} className="text-xs text-ink-faint hover:text-ink-muted flex-shrink-0" title="Mask sentence">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                   </button>
                 </div>
               )}
@@ -879,12 +865,12 @@ const VocabularyQuizPage: React.FC = () => {
           )}
 
           {/* Explain / Example / Compare buttons */}
-          <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+          <div className="mt-3 pt-3 border-t border-line">
             <div className="flex gap-2 mb-2 flex-wrap">
               <button data-analytics="ai.insight"
                 onClick={handleAiInsight}
                 disabled={aiInsight.loading}
-                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-line text-ink-muted bg-surface hover:ring-ink/30 hover:text-ink disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
               >
                 <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 {aiInsight.loading ? t('llm.thinking') : t('llm.insight')}
@@ -892,7 +878,7 @@ const VocabularyQuizPage: React.FC = () => {
 <button data-analytics="ai.compare"
                 onClick={handleAiCompare}
                 disabled={aiCompare.loading}
-                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-gray-200 dark:ring-gray-700 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-900 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-line text-ink-muted bg-surface hover:ring-ink/30 hover:text-ink disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
               >
                 <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 {aiCompare.loading ? t('llm.thinking') : t('llm.compare')}
@@ -900,40 +886,40 @@ const VocabularyQuizPage: React.FC = () => {
             </div>
 
             {(aiInsight.text || aiInsight.error) && (
-              <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-2.5 mb-2 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+              <div className="bg-paper rounded-xl p-2.5 mb-2 ring-1 ring-inset ring-line">
                 {aiInsight.error ? (
                   <div className="flex items-center gap-2">
-                    <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-                    <button data-analytics="ai.insight.retry" onClick={() => aiInsight.retry(String(current.id), () => getWordInsight(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
+                    <p className="text-xs text-danger flex-1">{t('llm.error')}</p>
+                    <button data-analytics="ai.insight.retry" onClick={() => aiInsight.retry(String(current.id), () => getWordInsight(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-accent underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiInsight.text}</TapToLookup></p>
+                  <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiInsight.text}</TapToLookup></p>
                 )}
               </div>
             )}
 
             {(aiSample.text || aiSample.error) && (
-              <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-2.5 mb-2 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+              <div className="bg-paper rounded-xl p-2.5 mb-2 ring-1 ring-inset ring-line">
                 {aiSample.error ? (
                   <div className="flex items-center gap-2">
-                    <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-                    <button data-analytics="ai.sample.retry" onClick={() => aiSample.retry(String(current.id), () => getSampleSentence(current.word || current.sentence || '', current.translateEn || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
+                    <p className="text-xs text-danger flex-1">{t('llm.error')}</p>
+                    <button data-analytics="ai.sample.retry" onClick={() => aiSample.retry(String(current.id), () => getSampleSentence(current.word || current.sentence || '', current.translateEn || '', i18n.language, current.language || 'en'))} className="text-xs text-accent underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiSample.text}</TapToLookup></p>
+                  <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiSample.text}</TapToLookup></p>
                 )}
               </div>
             )}
 
             {(aiCompare.text || aiCompare.error) && (
-              <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-2.5 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+              <div className="bg-paper rounded-xl p-2.5 ring-1 ring-inset ring-line">
                 {aiCompare.error ? (
                   <div className="flex items-center gap-2">
-                    <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-                    <button data-analytics="ai.compare.retry" onClick={() => aiCompare.retry(String(current.id), () => getWordComparison(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-blue-400 underline">↺</button>
+                    <p className="text-xs text-danger flex-1">{t('llm.error')}</p>
+                    <button data-analytics="ai.compare.retry" onClick={() => aiCompare.retry(String(current.id), () => getWordComparison(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'))} className="text-xs text-accent underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiCompare.text}</TapToLookup></p>
+                  <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiCompare.text}</TapToLookup></p>
                 )}
               </div>
             )}
@@ -942,7 +928,7 @@ const VocabularyQuizPage: React.FC = () => {
 
         {/* Answer input */}
         {isJpButtonMode ? (
-          <div className="relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
+          <div className="relative bg-surface rounded-2xl border border-line p-4 mb-4 shadow-sm">
             {/* Grid content — always in DOM so height never changes during success flash */}
             <div className={showJpSuccess ? 'invisible' : ''}>
               {/* Built-answer slots */}
@@ -950,10 +936,10 @@ const VocabularyQuizPage: React.FC = () => {
                 {kanaGroups.map((_, i) => (
                   <span
                     key={i}
-                    className={`inline-flex items-center justify-center min-w-[2.25rem] h-9 px-1.5 rounded-lg text-base font-bold border-2 transition-colors ${
+                    className={`inline-flex items-center justify-center min-w-[2.25rem] h-9 px-1.5 rounded-lg text-base font-semibold border-2 transition-colors ${
                       i < builtAnswer.length
-                        ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-200'
-                        : 'border-dashed border-gray-300 dark:border-gray-600 text-transparent select-none'
+                        ? 'border-accent bg-accent-soft text-accent '
+                        : 'border-dashed border-line text-transparent select-none'
                     }`}
                   >
                     {i < builtAnswer.length ? builtAnswer[i] : '　'}
@@ -962,7 +948,7 @@ const VocabularyQuizPage: React.FC = () => {
                 {builtAnswer.length > 0 && (
                   <button
                     onClick={() => { setBuiltAnswer((p) => p.slice(0, -1)); setBuiltAnswerIndices((p) => p.slice(0, -1)); }}
-                    className="h-9 px-2.5 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-gray-400 hover:text-red-400 hover:border-red-300 transition-colors text-sm font-medium"
+                    className="h-9 px-2.5 rounded-lg border-2 border-line text-ink-faint hover:text-danger hover:border-danger/30 transition-colors text-sm font-medium"
                   >⌫</button>
                 )}
               </div>
@@ -978,10 +964,10 @@ const VocabularyQuizPage: React.FC = () => {
                         <button
                           key={i}
                           onClick={() => handleKanaClick(i)}
-                          className="relative flex items-center justify-center h-12 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 active:scale-95 transition-all"
+                          className="relative flex items-center justify-center h-12 rounded-xl border-2 border-line bg-surface hover:border-accent hover:bg-accent-soft active:scale-95 transition-all"
                         >
-                          <span className="absolute top-0.5 left-1.5 text-[10px] font-mono text-gray-400 dark:text-gray-500">{i + 1}</span>
-                          <span className="text-lg font-bold text-gray-800 dark:text-gray-100">{group}</span>
+                          <span className="absolute top-0.5 left-1.5 text-[10px] font-mono text-ink-faint">{i + 1}</span>
+                          <span className="text-lg font-semibold text-ink">{group}</span>
                         </button>
                       )
                     ))}
@@ -991,20 +977,20 @@ const VocabularyQuizPage: React.FC = () => {
             </div>
             {/* 2-second success flash — absolute overlay so container height is unchanged */}
             {showJpSuccess && (
-              <div className="absolute inset-0 rounded-2xl bg-white dark:bg-gray-800 flex flex-col items-center justify-center gap-1 pointer-events-none">
-                <span className="text-green-500 text-xl font-bold">✓</span>
-                <p className="text-2xl font-bold text-gray-800 dark:text-gray-100 tracking-wide">
+              <div className="absolute inset-0 rounded-2xl bg-surface flex flex-col items-center justify-center gap-1 pointer-events-none">
+                <span className="text-success text-xl font-semibold">✓</span>
+                <p className="text-2xl font-semibold text-ink tracking-wide">
                   {(current.word || '').replace(/\[.*?\]/g, '').replace(/\s+/g, '')}
                 </p>
-                <p className="text-sm text-gray-400 dark:text-gray-500 tracking-widest">
+                <p className="text-sm text-ink-faint tracking-widest">
                   {extractKanaAnswer(current.word || '')}
                 </p>
               </div>
             )}
           </div>
         ) : (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
-            <label className="text-xs font-medium text-gray-500 dark:text-gray-400 block mb-2">{t('quiz.yourAnswer')}</label>
+          <div className="bg-surface rounded-2xl border border-line p-4 mb-4 shadow-sm">
+            <label className="text-xs font-medium text-ink-muted block mb-2">{t('quiz.yourAnswer')}</label>
             <input
               ref={inputRef}
               type="text"
@@ -1016,37 +1002,18 @@ const VocabularyQuizPage: React.FC = () => {
               autoCorrect="off"
               autoCapitalize="off"
               spellCheck={false}
-              className="w-full text-base border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-400 rounded-xl px-4 py-3 outline-none transition-colors"
+              className="w-full text-base border-2 border-line bg-surface text-ink placeholder-ink-faint focus:border-accent rounded-xl px-4 py-3 outline-none transition-colors"
             />
           </div>
         )}
 
-        {/* Action buttons */}
-        <div className="grid grid-cols-3 gap-3">
-          <button
-            onClick={handlePronounce}
-            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600 transition-colors shadow-sm flex items-center justify-center gap-1.5"
-          >
-            <svg className="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
-            </svg>
-            {t('quiz.pronounce')}
-          </button>
-
-          <button
-            onClick={handleRevealAnswer}
-            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600 transition-colors shadow-sm"
-          >
-            {t('quiz.reveal')}
-          </button>
-
-          <button
-            onClick={() => goNext(current)}
-            className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-sm font-bold py-3 rounded-xl transition-colors shadow-md"
-          >
-            {t('quiz.skip')}
-          </button>
-        </div>
+        <PracticeActions
+          tools={[
+            { label: t('quiz.pronounce'), onClick: handlePronounce },
+            { label: t('quiz.reveal'), onClick: handleRevealAnswer },
+          ]}
+          primary={{ label: t('quiz.skip'), onClick: () => goNext(current), emphasis: false }}
+        />
           </>
         )}
       </main>
@@ -1054,21 +1021,21 @@ const VocabularyQuizPage: React.FC = () => {
 
       {showIdleModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-sm w-full p-6">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('quiz.idleTitle')}</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
+          <div className="bg-surface rounded-2xl shadow-xl max-w-sm w-full p-6">
+            <h2 className="text-lg font-semibold text-ink mb-2">{t('quiz.idleTitle')}</h2>
+            <p className="text-sm text-ink-muted mb-6">
               {t('quiz.idleMessage')}
             </p>
             <div className="flex gap-3">
               <button
                 onClick={handleIdleLeave}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-lg border border-line text-ink font-medium hover:bg-paper transition-colors"
               >
                 {t('quiz.idleLeave')}
               </button>
               <button
                 onClick={handleIdleContinue}
-                className="flex-1 px-4 py-2.5 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-lg bg-ink hover:bg-ink/85 text-paper font-medium transition-colors"
               >
                 {t('quiz.idleContinue')}
               </button>

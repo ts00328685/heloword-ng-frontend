@@ -509,6 +509,131 @@ describe('computeGroupStates — manual level override', () => {
   });
 });
 
+describe('computeGroupStates — sessions after a manual override', () => {
+  // Regression: an overridden group used to ignore every later quiz session, so
+  // reviewing a FRESH level-7 group never moved it off FRESH / 0 progress.
+
+  it('FRESH overridden group + partial review afterwards → UNFINISHED', () => {
+    const overrideTime = t(-60 * DAY); // level 6 (31d) → grace ends at 46.5d → FRESH
+    const settings = [
+      makeCompleted({ latestFinishedTime: t(-100 * DAY) }),
+      makeUnfinished({ timestamp: t(-5 * MIN), finishedCount: 3 }),
+    ];
+    const g = runAt(BASE, settings, { [KEY]: { level: 6, setAt: overrideTime } }).get(KEY)!;
+    expect(g.status).toBe('UNFINISHED');
+  });
+
+  it('FRESH overridden group fully reviewed late → level resets to 0, SCHEDULED', () => {
+    const overrideTime = t(-60 * DAY);
+    const settings = [
+      makeCompleted({ latestFinishedTime: t(-100 * DAY) }),
+      makeCompleted({ timestamp: t(-10 * MIN), latestFinishedTime: t(-2 * MIN) }),
+    ];
+    const g = runAt(BASE, settings, { [KEY]: { level: 6, setAt: overrideTime } }).get(KEY)!;
+    expect(g.reviewLevel).toBe(0);
+    expect(g.status).toBe('SCHEDULED');
+    expect(g.lastCompletionTime).toEqual(t(-2 * MIN));
+  });
+
+  it('DUE overridden group reviewed on time → level advances from the override', () => {
+    const overrideTime = t(-9 * HOUR); // level 2 = 8h → due, grace until 12h
+    const settings = [makeCompleted({ timestamp: t(-10 * MIN), latestFinishedTime: t(-1 * MIN) })];
+    const g = runAt(BASE, settings, { [KEY]: { level: 2, setAt: overrideTime } }).get(KEY)!;
+    expect(g.reviewLevel).toBe(3);
+    expect(g.status).toBe('SCHEDULED');
+  });
+
+  it('an unfinished session started BEFORE the override is superseded by it', () => {
+    const overrideTime = t(-5 * MIN);
+    const settings = [makeUnfinished({ timestamp: t(-1 * DAY), finishedCount: 10 })];
+    const g = runAt(BASE, settings, { [KEY]: { level: 3, setAt: overrideTime } }).get(KEY)!;
+    expect(g.status).toBe('SCHEDULED');
+    expect(g.reviewLevel).toBe(3);
+  });
+});
+
+describe('computeGroupStates — every level behaves the same (history vs manual override)', () => {
+  const LAST = INT.length - 1;
+
+  /** Settings whose on-time completion chain ends at `lastAt` with review level `level`. */
+  function historyAtLevel(level: number, lastAt: number): QuizSetting[] {
+    const times = [0];
+    for (let i = 1; i <= level; i++) times.push(times[i - 1] + INT[i - 1]); // each exactly on its due time
+    const shift = lastAt - times[times.length - 1];
+    return times.map((ms) => makeCompleted({ latestFinishedTime: new Date(ms + shift) }));
+  }
+
+  /** Build the group at `level`, anchored (last completion / override) at `anchor`. */
+  function setup(mode: 'history' | 'override', level: number, anchor: number) {
+    if (mode === 'history') return { settings: historyAtLevel(level, anchor), overrides: undefined };
+    return {
+      // ancient completed session — superseded by the override
+      settings: [makeCompleted({ latestFinishedTime: new Date(anchor - 400 * DAY) })],
+      overrides: { [KEY]: { level, setAt: new Date(anchor) } } as Record<string, GroupLevelOverride>,
+    };
+  }
+
+  const cases = (['history', 'override'] as const).flatMap((mode) =>
+    INT.map((_, level) => ({ mode, level, label: `${mode} · level ${level + 1}` })),
+  );
+
+  describe.each(cases)('$label', ({ mode, level }) => {
+    const I = INT[level];
+    const A = BASE - 200 * DAY; // anchor far enough back for every interval
+    const next = Math.min(level + 1, LAST);
+
+    it('status boundaries: SCHEDULED → DUE → FRESH', () => {
+      const { settings, overrides } = setup(mode, level, A);
+      expect(runAt(A + I - MIN, settings, overrides).get(KEY)!.status).toBe('SCHEDULED');
+      expect(runAt(A + I + MIN, settings, overrides).get(KEY)!.status).toBe('DUE');
+      expect(runAt(A + 1.5 * I + MIN, settings, overrides).get(KEY)!.status).toBe('FRESH');
+      expect(runAt(A + I + MIN, settings, overrides).get(KEY)!.reviewLevel).toBe(level);
+    });
+
+    it('forgotten, then a partial review → UNFINISHED', () => {
+      const { settings, overrides } = setup(mode, level, A);
+      const start = A + 1.5 * I + 2 * MIN;
+      settings.push(makeUnfinished({ timestamp: new Date(start), finishedCount: 2 }));
+      expect(runAt(start + MIN, settings, overrides).get(KEY)!.status).toBe('UNFINISHED');
+    });
+
+    it('due, then a partial review → UNFINISHED', () => {
+      const { settings, overrides } = setup(mode, level, A);
+      const start = A + I + MIN;
+      settings.push(makeUnfinished({ timestamp: new Date(start), finishedCount: 2 }));
+      expect(runAt(start + MIN, settings, overrides).get(KEY)!.status).toBe('UNFINISHED');
+    });
+
+    it('on-time review → advances one level and is rescheduled from the new completion', () => {
+      const { settings, overrides } = setup(mode, level, A);
+      const done = A + I + MIN;
+      settings.push(makeCompleted({ timestamp: new Date(done - MIN), latestFinishedTime: new Date(done) }));
+      const g = runAt(done + MIN, settings, overrides).get(KEY)!;
+      expect(g.reviewLevel).toBe(next);
+      expect(g.status).toBe('SCHEDULED');
+      expect(g.nextReviewTime).toEqual(new Date(done + INT[next]));
+    });
+
+    it('late review (after the grace window) → back to level 1, SCHEDULED', () => {
+      const { settings, overrides } = setup(mode, level, A);
+      const done = A + 1.5 * I + 5 * MIN;
+      settings.push(makeCompleted({ timestamp: new Date(done - MIN), latestFinishedTime: new Date(done) }));
+      const g = runAt(done + MIN, settings, overrides).get(KEY)!;
+      expect(g.reviewLevel).toBe(0);
+      expect(g.status).toBe('SCHEDULED');
+    });
+
+    it('early review ("提早複習", before due) → counts as on time and advances', () => {
+      const { settings, overrides } = setup(mode, level, A);
+      const done = A + I / 2;
+      settings.push(makeCompleted({ timestamp: new Date(done - MIN), latestFinishedTime: new Date(done) }));
+      const g = runAt(done + MIN, settings, overrides).get(KEY)!;
+      expect(g.reviewLevel).toBe(next);
+      expect(g.status).toBe('SCHEDULED');
+    });
+  });
+});
+
 // ===========================================================================
 // 8. Multiple independent groups
 // ===========================================================================

@@ -183,15 +183,15 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm max-h-[80vh] flex flex-col"
+        className="bg-surface rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm max-h-[80vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
-          <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+          <div className="w-10 h-1 rounded-full bg-ink/20" />
         </div>
 
-        <div className="px-6 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700 flex items-center gap-2">
-          <h2 className="text-base font-bold text-gray-900 dark:text-gray-100">
+        <div className="px-6 pt-4 pb-3 border-b border-line flex items-center gap-2">
+          <h2 className="text-base font-semibold text-ink">
             {t('board.setlist', 'Setlist')}
           </h2>
 
@@ -199,7 +199,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
             <>
               <button
                 onClick={() => setCopyOpen(true)}
-                className="ml-auto shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="ml-auto shrink-0 inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold text-ink-muted hover:bg-ink/5 transition-colors"
                 title={t('board.copySetlist', 'Copy a setlist')}
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -212,8 +212,8 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                 aria-pressed={editMode}
                 className={`shrink-0 px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition-colors ${
                   editMode
-                    ? 'bg-blue-500 text-white'
-                    : 'text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'bg-ink text-paper'
+                    : 'text-ink-muted hover:bg-ink/5 '
                 }`}
               >
                 {editMode ? t('common.done', 'Done') : t('common.edit', 'Edit')}
@@ -223,7 +223,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
 
           <button
             onClick={onClose}
-            className={`shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 ${isAdmin ? '' : 'ml-auto'}`}
+            className={`shrink-0 text-ink-faint hover:text-ink-muted ${isAdmin ? '' : 'ml-auto'}`}
             aria-label={t('common.close', 'Close')}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,7 +234,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
 
         <div className="overflow-y-auto flex-1 px-4 py-3 space-y-1.5">
           {ordered.length === 0 && (
-            <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-6">
+            <p className="text-sm text-ink-faint text-center py-6">
               {t('board.noSongs', 'No songs yet.')}
             </p>
           )}
@@ -243,14 +243,14 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
               key={song.id}
               className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border transition-colors ${
                 song.performing
-                  ? 'bg-amber-50 dark:bg-amber-900/25 border-amber-300 dark:border-amber-600 ring-1 ring-amber-300/60 dark:ring-amber-500/30'
+                  ? 'bg-accent-soft border-accent/30 ring-1 ring-accent/30 '
                   : song.sung
-                    ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800'
-                    : 'bg-gray-50 dark:bg-gray-700/40 border-gray-200 dark:border-gray-700'
+                    ? 'bg-success-soft border-success/30 '
+                    : 'bg-paper border-line '
               }`}
             >
               {/* Sequence number */}
-              <span className="shrink-0 w-6 text-right text-xs font-bold text-gray-400 dark:text-gray-500 tabular-nums">
+              <span className="shrink-0 w-6 text-right text-xs font-semibold text-ink-faint tabular-nums">
                 {idx + 1}.
               </span>
 
@@ -263,7 +263,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                     <button
                       onClick={() => move(idx, -1)}
                       disabled={idx === 0}
-                      className="w-8 h-7 inline-flex items-center justify-center rounded-t-lg text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 disabled:opacity-30 active:bg-gray-100 dark:active:bg-gray-700 transition-colors"
+                      className="w-8 h-7 inline-flex items-center justify-center rounded-t-lg text-ink-muted bg-surface border border-line disabled:opacity-30 active:bg-ink/5 transition-colors"
                       aria-label={t('board.moveUp', 'Move up')}
                     >
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -273,7 +273,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                     <button
                       onClick={() => move(idx, 1)}
                       disabled={idx === ordered.length - 1}
-                      className="w-8 h-7 inline-flex items-center justify-center rounded-b-lg text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-800 border border-t-0 border-gray-200 dark:border-gray-600 disabled:opacity-30 active:bg-gray-100 dark:active:bg-gray-700 transition-colors"
+                      className="w-8 h-7 inline-flex items-center justify-center rounded-b-lg text-ink-muted bg-surface border border-t-0 border-line disabled:opacity-30 active:bg-ink/5 transition-colors"
                       aria-label={t('board.moveDown', 'Move down')}
                     >
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -299,7 +299,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                       enterKeyHint="done"
                       autoCorrect="off"
                       aria-label={t('board.songTitle', 'Song name')}
-                      className="w-full px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-2 py-1.5 rounded-lg border border-line bg-surface text-ink text-sm font-medium focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                     <input
                       type="text"
@@ -310,13 +310,13 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                       autoCorrect="off"
                       aria-label={t('board.note', 'Private note')}
                       placeholder={t('board.notePlaceholder', 'Private note (key, capo, cue…)')}
-                      className="w-full px-2 py-1.5 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-2 py-1.5 rounded-lg border border-line bg-surface text-ink text-xs focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                   </div>
 
                   <button
                     onClick={() => setConfirmDeleteId(song.id)}
-                    className="shrink-0 min-w-[40px] min-h-[40px] inline-flex items-center justify-center rounded-xl text-gray-300 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                    className="shrink-0 min-w-[40px] min-h-[40px] inline-flex items-center justify-center rounded-xl text-ink-faint hover:text-danger transition-colors"
                     aria-label={t('board.delete', 'Delete')}
                     title={t('board.delete', 'Delete')}
                   >
@@ -332,7 +332,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                     <button
                       onClick={() => toggle(song.id, 'sung')}
                       className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors ${
-                        song.sung ? 'bg-green-500 border-green-500' : 'border-gray-300 dark:border-gray-500'
+                        song.sung ? 'bg-success border-success' : 'border-line '
                       }`}
                       aria-label={t('board.markSung', 'Mark sung')}
                       title={t('board.markSung', 'Mark sung')}
@@ -351,8 +351,8 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                       onClick={() => copyTitle(song)}
                       className={`shrink-0 w-5 h-5 flex items-center justify-center transition-colors ${
                         copiedId === song.id
-                          ? 'text-green-500'
-                          : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                          ? 'text-success'
+                          : 'text-ink-faint hover:text-ink-muted '
                       }`}
                       aria-label={t('board.copySongName', 'Copy song name')}
                       title={copiedId === song.id ? t('common.copied', 'Copied!') : t('board.copySongName', 'Copy song name')}
@@ -374,12 +374,12 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                     <button
                       onClick={() => toggle(song.id, 'performing')}
                       className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors ${
-                        song.performing ? 'bg-amber-500 border-amber-500' : 'border-gray-300 dark:border-gray-500'
+                        song.performing ? 'bg-ink border-accent' : 'border-line '
                       }`}
                       aria-label={t('board.performing', 'Performing now')}
                       title={t('board.performing', 'Performing now')}
                     >
-                      <svg className={`w-3 h-3 ${song.performing ? 'text-white' : 'text-gray-400 dark:text-gray-500'}`} fill="currentColor" viewBox="0 0 20 20">
+                      <svg className={`w-3 h-3 ${song.performing ? 'text-white' : 'text-ink-faint '}`} fill="currentColor" viewBox="0 0 20 20">
                         <path d="M6 4l10 6-10 6z" />
                       </svg>
                     </button>
@@ -390,8 +390,8 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                       onClick={() => copyTitle(song)}
                       className={`shrink-0 w-5 h-5 flex items-center justify-center transition-colors ${
                         copiedId === song.id
-                          ? 'text-green-500'
-                          : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                          ? 'text-success'
+                          : 'text-ink-faint hover:text-ink-muted '
                       }`}
                       aria-label={t('board.copySongName', 'Copy song name')}
                       title={copiedId === song.id ? t('common.copied', 'Copied!') : t('board.copySongName', 'Copy song name')}
@@ -411,21 +411,21 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                   <span
                     className={`flex-1 text-sm break-words [overflow-wrap:anywhere] ${
                       song.sung
-                        ? 'line-through text-gray-400 dark:text-gray-500'
-                        : 'text-gray-800 dark:text-gray-100'
+                        ? 'line-through text-ink-faint '
+                        : 'text-ink '
                     }`}
                   >
                     {song.title}
                     {song.performing && (
-                      <span className="ml-2 inline-flex items-center gap-1 align-middle text-[10px] font-bold text-amber-600 dark:text-amber-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                      <span className="ml-2 inline-flex items-center gap-1 align-middle text-[10px] font-semibold text-accent">
+                        <span className="w-1.5 h-1.5 rounded-full bg-ink animate-pulse" />
                         {t('board.nowPlaying', 'Now')}
                       </span>
                     )}
                     {/* Host-only cue line. The server never sends `note` to the
                         audience, so this can't leak by a rendering slip. */}
                     {isAdmin && song.note && (
-                      <span className="block mt-0.5 text-[11px] font-normal not-italic text-gray-400 dark:text-gray-500 no-underline">
+                      <span className="block mt-0.5 text-[11px] font-normal not-italic text-ink-faint no-underline">
                         {song.note}
                       </span>
                     )}
@@ -435,7 +435,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                   <button
                     onClick={() => toggle(song.id, 'request')}
                     disabled={!active}
-                    className="shrink-0 min-w-[44px] min-h-[44px] -ml-1 inline-flex items-center justify-center gap-1 rounded-xl text-xs text-pink-500 hover:text-pink-600 active:scale-90 transition-transform disabled:opacity-50"
+                    className="shrink-0 min-w-[44px] min-h-[44px] -ml-1 inline-flex items-center justify-center gap-1 rounded-xl text-xs text-accent hover:text-accent active:scale-90 transition-transform disabled:opacity-50"
                     aria-label={t('board.request', 'Request')}
                   >
                     <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 20 20">
@@ -451,7 +451,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="shrink-0 min-w-[44px] min-h-[44px] -mr-1.5 inline-flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 active:scale-90 transition-all"
+                    className="shrink-0 min-w-[44px] min-h-[44px] -mr-1.5 inline-flex items-center justify-center rounded-xl hover:bg-ink/5 active:scale-90 transition-all"
                     aria-label={t('board.googleSong', 'Search {title} on Google').replace('{title}', song.title)}
                     title={t('board.googleIt', 'Google it')}
                   >
@@ -469,7 +469,7 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
         </div>
 
         {isAdmin && (
-          <div className="border-t border-gray-100 dark:border-gray-700 px-4 py-3 flex gap-2">
+          <div className="border-t border-line px-4 py-3 flex gap-2">
             <input
               type="text"
               {...newTitle.bind}
@@ -480,12 +480,12 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
               enterKeyHint="done"
               autoCorrect="off"
               placeholder={t('board.addSong', 'Add a song…')}
-              className="flex-1 min-w-0 px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 min-w-0 px-3 py-2.5 rounded-xl border border-line bg-paper text-ink text-base focus:outline-none focus:ring-2 focus:ring-accent"
             />
             <button
               onClick={add}
               disabled={!newTitle.value.trim() || adding}
-              className="shrink-0 min-h-[44px] bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white font-semibold px-4 rounded-xl transition-colors text-sm"
+              className="shrink-0 min-h-[44px] bg-ink hover:bg-ink/85 disabled:opacity-40 text-paper font-semibold px-4 rounded-xl transition-colors text-sm"
             >
               {adding ? '…' : t('common.add', 'Add')}
             </button>
@@ -498,22 +498,22 @@ const BoardSongsModal: React.FC<Props> = ({ sessionId, songs, isAdmin, active, o
             onClick={() => setConfirmDeleteId(null)}
           >
             <div
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-xs p-6 animate-fade-in"
+              className="bg-surface rounded-2xl shadow-2xl w-full max-w-xs p-6 animate-fade-in"
               onClick={(e) => e.stopPropagation()}
             >
-              <p className="text-sm text-gray-700 dark:text-gray-200 mb-5">
+              <p className="text-sm text-ink mb-5">
                 {t('board.confirmDeleteSong', 'Delete this song?')}
               </p>
               <div className="flex gap-2">
                 <button
                   onClick={() => setConfirmDeleteId(null)}
-                  className="flex-1 py-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                  className="flex-1 py-2 rounded-xl bg-ink/5 text-ink font-semibold text-sm hover:bg-ink/10 transition-colors"
                 >
                   {t('common.cancel', 'Cancel')}
                 </button>
                 <button
                   onClick={() => { remove(confirmDeleteId); setConfirmDeleteId(null); }}
-                  className="flex-1 py-2 rounded-xl bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-semibold text-sm transition-colors"
+                  className="flex-1 py-2 rounded-xl bg-danger hover:bg-danger/90 text-white font-semibold text-sm transition-colors"
                 >
                   {t('board.delete', 'Delete')}
                 </button>

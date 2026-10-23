@@ -104,7 +104,7 @@ const WalkthroughOverlay: React.FC = () => {
           width: spot.width + 12,
           height: spot.height + 12,
           borderRadius: 14,
-          border: '2px solid rgba(99,179,237,0.9)',
+          border: '1.5px solid rgb(var(--accent))',
           boxShadow: '0 0 0 2000px rgba(0,0,0,0.65)',
           zIndex: 49,
         }}
@@ -115,19 +115,19 @@ const WalkthroughOverlay: React.FC = () => {
         className="fixed left-4 right-4 max-w-sm mx-auto z-[50]"
         style={{ bottom: spot.cardBottom }}
       >
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+        <div className="bg-surface rounded-2xl shadow-2xl overflow-hidden">
           {/* Blue accent bar */}
-          <div className="h-1 bg-gradient-to-r from-blue-400 to-blue-600" />
+          <div className="h-1 bg-ink" />
 
           <div className="p-5">
             {/* Step counter + skip */}
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 tabular-nums">
+              <span className="text-xs font-semibold text-ink-faint tabular-nums">
                 {t('tour.stepOf', { current: step + 1, total: STEPS.length })}
               </span>
               <button
                 onClick={dismiss}
-                className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                className="text-xs text-ink-faint hover:text-ink-muted transition-colors"
               >
                 {t('tour.skip')}
               </button>
@@ -135,14 +135,13 @@ const WalkthroughOverlay: React.FC = () => {
 
             {/* Icon + title */}
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-3xl leading-none">{current.emoji}</span>
-              <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
+                            <h3 className="text-base font-semibold text-ink">
                 {t(current.titleKey)}
               </h3>
             </div>
 
             {/* Description */}
-            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-5">
+            <p className="text-sm text-ink-muted leading-relaxed mb-5">
               {t(current.descKey)}
             </p>
 
@@ -155,17 +154,17 @@ const WalkthroughOverlay: React.FC = () => {
                     onClick={() => setStep(i)}
                     className={`rounded-full transition-all duration-200 ${
                       i === step
-                        ? 'w-4 h-2 bg-blue-500'
+                        ? 'w-4 h-2 bg-ink'
                         : i < step
-                        ? 'w-2 h-2 bg-blue-300 dark:bg-blue-700'
-                        : 'w-2 h-2 bg-gray-200 dark:bg-gray-600'
+                        ? 'w-2 h-2 bg-accent-soft '
+                        : 'w-2 h-2 bg-ink/10 '
                     }`}
                   />
                 ))}
               </div>
               <button
                 onClick={next}
-                className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-sm font-semibold px-5 py-2 rounded-xl transition-colors"
+                className="bg-ink hover:bg-ink/85 active:bg-ink/85 text-paper text-sm font-semibold px-5 py-2 rounded-xl transition-colors"
               >
                 {step < STEPS.length - 1 ? t('tour.next') : t('tour.done')}
               </button>

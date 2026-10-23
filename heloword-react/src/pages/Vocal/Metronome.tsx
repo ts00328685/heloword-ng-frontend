@@ -24,13 +24,13 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
     return () => io.disconnect();
   }, [onVisibleChange]);
 
-  const roundBtn = 'w-8 h-8 shrink-0 rounded-full border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center text-lg leading-none';
+  const roundBtn = 'w-8 h-8 shrink-0 rounded-full border border-line text-ink-muted hover:bg-ink/5 transition-colors flex items-center justify-center text-lg leading-none';
 
   return (
     <Panel
       id="metronome"
       title={t('vocal.panel.metronome')}
-      indicator={playing && <LiveDot color="bg-green-500" />}
+      indicator={playing && <LiveDot color="bg-success" />}
       summary={t('vocal.metronome.summary', { bpm, beats })}
     >
       <div ref={bodyRef} className="space-y-5">
@@ -45,8 +45,8 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
               key={i}
               className={`w-4 h-4 rounded-full transition-colors duration-75 ${
                 currentBeat === i
-                  ? i === 0 ? 'bg-green-500 scale-125' : 'bg-blue-500 scale-110'
-                  : 'bg-gray-200 dark:bg-gray-700'
+                  ? i === 0 ? 'bg-success scale-125' : 'bg-ink scale-110'
+                  : 'bg-ink/10 '
               }`}
             />
           ))}
@@ -54,8 +54,8 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
 
         {/* BPM */}
         <div>
-          <p className="text-center text-3xl font-light text-gray-800 dark:text-gray-100 mb-3 tabular-nums">
-            {bpm} <span className="text-base text-gray-400">BPM</span>
+          <p className="text-center text-3xl font-light text-ink mb-3 tabular-nums">
+            {bpm} <span className="text-base text-ink-faint">BPM</span>
           </p>
           <div className="flex items-center gap-3">
             <button className={roundBtn} onClick={() => setBpm((b) => clampBpm(b - 1))} aria-label={t('vocal.metronome.decrease')}>−</button>
@@ -73,8 +73,8 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
         {/* Volume */}
         <div>
           <div className="flex justify-between mb-1">
-            <span className="text-xs text-gray-600 dark:text-gray-300">{t('vocal.metronome.volume')}</span>
-            <span className="text-xs font-mono text-blue-500">{Math.round(volume * 100)}%</span>
+            <span className="text-xs text-ink-muted">{t('vocal.metronome.volume')}</span>
+            <span className="text-xs font-mono text-accent">{Math.round(volume * 100)}%</span>
           </div>
           <input
             type="range" min={0} max={1} step={0.05}
@@ -87,14 +87,14 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
 
         {/* Beats per bar */}
         <div>
-          <p className="text-xs text-gray-600 dark:text-gray-300 mb-2">{t('vocal.metronome.beatsPerBar')}</p>
+          <p className="text-xs text-ink-muted mb-2">{t('vocal.metronome.beatsPerBar')}</p>
           <div className="grid grid-cols-5 sm:grid-cols-10 gap-2">
             {BEAT_OPTIONS.map((n) => (
               <button
                 key={n}
                 onClick={() => setBeats(n)}
                 className={`h-9 rounded-full text-sm font-semibold transition-colors ${
-                  beats === n ? 'bg-green-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                  beats === n ? 'bg-success text-white' : 'bg-ink/5 text-ink-muted hover:bg-ink/10 '
                 }`}
               >
                 {n}
@@ -107,15 +107,15 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
         <div className="flex gap-2">
           <button
             onClick={playing ? stop : start}
-            className={`flex-1 py-2.5 rounded-xl text-sm font-semibold text-white transition-colors ${
-              playing ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
+            className={`flex-1 py-2.5 rounded-xl text-sm font-semibold text-paper transition-colors ${
+              playing ? 'bg-danger hover:bg-danger/90' : 'bg-ink hover:bg-ink/85'
             }`}
           >
             {playing ? t('vocal.metronome.stop') : t('vocal.metronome.start')}
           </button>
           <button
             onClick={tap}
-            className="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            className="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-ink/5 text-ink hover:bg-ink/10 transition-colors"
           >
             {t('vocal.metronome.tapTempo')}
           </button>

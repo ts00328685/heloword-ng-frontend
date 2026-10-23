@@ -9,14 +9,14 @@ const MEDAL = ['🥇', '🥈', '🥉'];
 const Scoreboard: React.FC<{ players: ChallengePlayer[]; myUserId: string }> = ({ players, myUserId }) => {
   const { t } = useTranslation();
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-3 shadow-sm">
-      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">{t('challenge.scoreboard')}</p>
+    <div className="bg-surface rounded-2xl border border-line p-3 shadow-sm">
+      <p className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-2">{t('challenge.scoreboard')}</p>
       <div className="space-y-1">
         {players.map((p, i) => (
-          <div key={p.userId} className={`flex items-center gap-2 rounded-xl px-2 py-1 ${p.userId === myUserId ? 'bg-blue-50 dark:bg-blue-900/20' : ''}`}>
+          <div key={p.userId} className={`flex items-center gap-2 rounded-xl px-2 py-1 ${p.userId === myUserId ? 'bg-accent-soft ' : ''}`}>
             <span className="text-sm w-5 text-center">{MEDAL[i] ?? `${i + 1}.`}</span>
-            <span className="flex-1 text-sm text-gray-800 dark:text-gray-100 truncate">{p.displayName}</span>
-            <span className="text-sm font-bold text-blue-500">{p.score}</span>
+            <span className="flex-1 text-sm text-ink truncate">{p.displayName}</span>
+            <span className="text-sm font-semibold text-accent">{p.score}</span>
           </div>
         ))}
       </div>
@@ -141,25 +141,25 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
   const sortedPlayers = [...currentRoom.players].sort((a, b) => b.score - a.score);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-paper">
       {/* Header */}
-      <div className="border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm sticky top-0 z-10">
+      <div className="border-b border-line bg-surface backdrop-blur-sm sticky top-0 z-10">
         <div className="flex items-center gap-3 px-4 h-14 max-w-2xl mx-auto w-full">
-          <button onClick={onLeave} className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button onClick={onLeave} className="p-2 -ml-2 rounded-xl hover:bg-ink/5 transition-colors">
+            <svg className="w-5 h-5 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-gray-800 dark:text-gray-100 truncate text-sm">{currentRoom.name}</p>
-            <p className="text-xs text-gray-400">
+            <p className="font-semibold text-ink truncate text-sm">{currentRoom.name}</p>
+            <p className="text-xs text-ink-faint">
               {isPlaying
                 ? `${t('challenge.round')} ${currentRoom.currentRound} / ${currentRoom.totalRounds}`
                 : currentRoom.status}
             </p>
           </div>
           {timeLeft != null && timeLeft > 0 && (
-            <div className={`text-lg font-bold tabular-nums ${timeLeft <= 5 ? 'text-red-500' : 'text-blue-500'}`}>
+            <div className={`text-lg font-semibold tabular-nums ${timeLeft <= 5 ? 'text-danger' : 'text-accent'}`}>
               {timeLeft}s
             </div>
           )}
@@ -167,7 +167,7 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
       </div>
 
       {idleWarning && (
-        <div className="bg-orange-500 text-white text-xs font-semibold text-center px-4 py-2">
+        <div className="bg-ink text-paper text-xs font-semibold text-center px-4 py-2">
           {t('challenge.idleWarning')}
         </div>
       )}
@@ -179,51 +179,49 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
 
         {/* WAITING state */}
         {isWaiting && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 text-center shadow-sm">
-            <p className="text-2xl mb-2">🎮</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          <div className="bg-surface rounded-2xl border border-line p-6 text-center shadow-sm">
+            <p className="text-sm text-ink-muted mb-4">
               {t('challenge.waitingForPlayers', { count: currentRoom.players.length })}
             </p>
             {isHost && (
               <button
                 onClick={startGameAction}
-                className="px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-colors"
+                className="px-6 py-2.5 bg-ink hover:bg-ink/85 text-paper font-semibold rounded-xl transition-colors"
               >
                 {t('challenge.startGame')}
               </button>
             )}
-            {!isHost && <p className="text-xs text-gray-400">{t('challenge.waitingForHost')}</p>}
+            {!isHost && <p className="text-xs text-ink-faint">{t('challenge.waitingForHost')}</p>}
           </div>
         )}
 
         {/* GAME OVER state */}
         {isGameOver && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 text-center shadow-sm">
-            <p className="text-3xl mb-2">🏆</p>
-            <p className="text-lg font-bold text-gray-800 dark:text-gray-100 mb-1">{t('challenge.gameOver')}</p>
+          <div className="bg-surface rounded-2xl border border-line p-6 text-center shadow-sm">
+            <p className="text-lg font-semibold text-ink mb-1">{t('challenge.gameOver')}</p>
             {sortedPlayers[0] && (
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-ink-muted">
                 {t('challenge.winner', { name: sortedPlayers[0].displayName, score: sortedPlayers[0].score })}
               </p>
             )}
             {currentRoom.system && (
-              <p className="text-xs text-gray-400 mt-3">{t('challenge.nextGameSoon')}</p>
+              <p className="text-xs text-ink-faint mt-3">{t('challenge.nextGameSoon')}</p>
             )}
           </div>
         )}
 
         {/* PLAYING state */}
         {isPlaying && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+          <div className="bg-surface rounded-2xl border border-line p-4 shadow-sm">
             {question ? (
               <>
-                <p className="text-xs text-gray-400 dark:text-gray-500 mb-2 text-center">
+                <p className="text-xs text-ink-faint mb-2 text-center">
                   {currentRoom.gameFormat === 'MULTI_CHOICE' ? t('challenge.chooseAnswer') : t('challenge.typeWordMatch')}
                 </p>
                 <div className="text-center mb-4">
-                  <p className="text-2xl font-bold text-gray-800 dark:text-gray-100 leading-tight">{question}</p>
+                  <p className="text-2xl font-semibold text-ink leading-tight">{question}</p>
                   {hint && timeLeft !== null && timeLeft <= 5 && timeLeft > 0 && (
-                    <p className="mt-2 text-sm font-mono font-semibold text-orange-500 tracking-widest">
+                    <p className="mt-2 text-sm font-mono font-semibold text-accent tracking-widest">
                       {t('challenge.hint', { hint })}
                     </p>
                   )}
@@ -233,7 +231,7 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                   /* ── Multi-choice 2×2 grid ── */
                   <>
                   {answered && roundMsg && (
-                    <p className="text-xs text-center font-medium text-gray-700 dark:text-gray-300 mb-3">{roundMsg}</p>
+                    <p className="text-xs text-center font-medium text-ink mb-3">{roundMsg}</p>
                   )}
                   <div className="grid grid-cols-1 gap-2">
                     {choices.map(choice => {
@@ -242,13 +240,13 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                       const isWrong = isSelected && revealedCorrect !== null && revealedCorrect !== choice;
                       let cls = 'w-full py-3 px-3 text-sm font-semibold rounded-xl border-2 transition-colors text-left';
                       if (isCorrect) {
-                        cls += ' bg-green-100 border-green-500 text-green-800 dark:bg-green-900/30 dark:text-green-300';
+                        cls += ' bg-success-soft border-success text-success';
                       } else if (isWrong) {
-                        cls += ' bg-red-100 border-red-500 text-red-800 dark:bg-red-900/30 dark:text-red-300';
+                        cls += ' bg-danger-soft border-danger text-danger';
                       } else if (isSelected) {
-                        cls += ' bg-blue-100 border-blue-500 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300';
+                        cls += ' bg-accent-soft border-accent text-accent';
                       } else {
-                        cls += ' bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-400 dark:hover:border-blue-500';
+                        cls += ' bg-paper border-line text-ink hover:border-accent';
                       }
                       return (
                         <button
@@ -283,24 +281,24 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck={false}
-                        className={`flex-1 rounded-xl border bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2.5 focus:outline-none focus:ring-2 transition-colors ${
+                        className={`flex-1 rounded-xl border bg-paper text-sm px-3 py-2.5 focus:outline-none focus:ring-2 transition-colors ${
                           wrongFeedback
-                            ? 'border-red-400 focus:ring-red-400'
+                            ? 'border-danger focus:ring-danger'
                             : answered
-                              ? 'opacity-50 border-gray-200 dark:border-gray-700'
-                              : 'border-gray-200 dark:border-gray-700 focus:ring-blue-400'
+                              ? 'opacity-50 border-line '
+                              : 'border-line focus:ring-accent'
                         }`}
                       />
                       <button
                         onClick={handleSubmit}
                         disabled={!answer.trim() || answered}
-                        className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white text-sm font-semibold rounded-xl transition-colors"
+                        className="px-4 py-2 bg-ink hover:bg-ink/85 disabled:opacity-40 text-paper text-sm font-semibold rounded-xl transition-colors"
                       >
                         ↵
                       </button>
                     </div>
                     {wrongFeedback && (
-                      <p className="text-xs text-center text-red-500 mt-2">{t('challenge.wrongAnswer')}</p>
+                      <p className="text-xs text-center text-danger mt-2">{t('challenge.wrongAnswer')}</p>
                     )}
                   </>
                 )}
@@ -308,9 +306,9 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
             ) : (
               <div className="text-center py-4">
                 {roundMsg ? (
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{roundMsg}</p>
+                  <p className="text-sm font-medium text-ink">{roundMsg}</p>
                 ) : (
-                  <p className="text-sm text-gray-400">{t('challenge.getReady')}</p>
+                  <p className="text-sm text-ink-faint">{t('challenge.getReady')}</p>
                 )}
               </div>
             )}
@@ -319,8 +317,8 @@ const ChallengeRoomPage: React.FC<{ onLeave: () => Promise<void> }> = ({ onLeave
 
         {/* Round result message when not playing */}
         {!isPlaying && roundMsg && (
-          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-3 text-center">
-            <p className="text-sm text-gray-600 dark:text-gray-400">{roundMsg}</p>
+          <div className="bg-paper rounded-xl p-3 text-center">
+            <p className="text-sm text-ink-muted">{roundMsg}</p>
           </div>
         )}
 

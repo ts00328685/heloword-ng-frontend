@@ -28,7 +28,7 @@ export interface PitchGraphHandle {
   fit: () => void;
 }
 
-/** Wide enough for black-key labels like "D#/E♭4". Keep in sync with WaveformView so the "now" lines align. */
+/** Wide enough for black-key labels like "D#/E4". Keep in sync with WaveformView so the "now" lines align. */
 const GUTTER = 52;
 const AXIS_H = 18;
 /** Recenter when the voice gets this close (semitones) to the top/bottom edge. */
@@ -426,7 +426,7 @@ const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
   };
 
   const chip = 'h-7 px-2.5 rounded-lg text-[11px] font-semibold transition-colors';
-  const idle = 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
+  const idle = 'bg-ink/5 text-ink-muted hover:bg-ink/10';
 
   return (
     <div>
@@ -444,7 +444,7 @@ const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
         <div className="flex items-center gap-1.5">
           <button
             onClick={toggleFollow}
-            className={`${chip} ${follow ? 'bg-blue-500 text-white' : idle}`}
+            className={`${chip} ${follow ? 'bg-ink text-paper' : idle}`}
             title={t('vocal.graph.followTitle')}
           >
             {t('vocal.graph.follow')}
@@ -455,7 +455,7 @@ const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
           {onToggleFreeze && (
             <button
               onClick={onToggleFreeze}
-              className={`${chip} ${frozen ? 'bg-sky-500 text-white' : idle}`}
+              className={`${chip} ${frozen ? 'bg-ink text-paper' : idle}`}
               title={t('vocal.graph.freezeTitle')}
             >
               {frozen ? t('vocal.graph.frozen') : t('vocal.graph.freeze')}
@@ -465,11 +465,11 @@ const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
 
         <div className="flex items-center gap-1.5">
           <button onClick={() => zoom(-1)} disabled={span === SPANS[0]} className={`${chip} ${idle} w-7 px-0 text-sm disabled:opacity-40`} aria-label={t('vocal.graph.zoomIn')}>+</button>
-          <span className="min-w-[3rem] px-1 text-center whitespace-nowrap text-[11px] font-mono text-gray-500 dark:text-gray-400">{spanLabel(span)}</span>
+          <span className="min-w-[3rem] px-1 text-center whitespace-nowrap text-[11px] font-mono text-ink-muted">{spanLabel(span)}</span>
           <button onClick={() => zoom(1)} disabled={span === SPANS[SPANS.length - 1]} className={`${chip} ${idle} w-7 px-0 text-sm disabled:opacity-40`} aria-label={t('vocal.graph.zoomOut')}>−</button>
         </div>
 
-        <label className="flex items-center gap-2 text-[11px] text-gray-500 dark:text-gray-400">
+        <label className="flex items-center gap-2 text-[11px] text-ink-muted">
           {t('vocal.graph.line')}
           <input
             type="range" min={1} max={8} step={0.5}

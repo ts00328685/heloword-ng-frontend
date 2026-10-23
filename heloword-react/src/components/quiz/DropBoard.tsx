@@ -540,16 +540,16 @@ const DropBoard: React.FC<Props> = ({
   const hearts = Array.from({ length: MAX_HP }, (_, i) => i < hp);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 pb-3 shadow-sm">
+    <div className="bg-surface rounded-2xl border border-line p-4 pb-3 shadow-sm">
       <div className="flex items-center justify-between mb-3">
-        <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
+        <p className="text-xs font-medium text-ink-muted">
           {setTotal ? t('quizMode.setProgress', { current: setIndex, total: setTotal }) : t('quizMode.roundNo', { n: setIndex })}
-          <span className="ml-2 text-gray-400 dark:text-gray-500">{t('quizMode.remaining', { count: remaining })}</span>
+          <span className="ml-2 text-ink-faint">{t('quizMode.remaining', { count: remaining })}</span>
         </p>
         <div className="flex items-center gap-2">
           {combo >= 2 && (
-            <span key={combo} className="animate-quiz-combo text-xs font-bold text-orange-500 dark:text-orange-400">
-              {t('quizMode.combo', { count: combo })} 🔥
+            <span key={combo} className="animate-quiz-combo text-xs font-semibold text-accent">
+              {t('quizMode.combo', { count: combo })} 
             </span>
           )}
           <span className="text-xs tracking-tight" aria-label={`HP ${hp}`}>
@@ -561,11 +561,11 @@ const DropBoard: React.FC<Props> = ({
       </div>
 
       {/* Prompt */}
-      <div className="rounded-2xl bg-gradient-to-br from-rose-50 to-orange-50 dark:from-rose-900/20 dark:to-orange-900/10 border border-rose-200 dark:border-rose-800/60 px-4 py-2.5 mb-2.5 text-center min-h-[3.5rem] flex flex-col items-center justify-center">
-        <p className="text-[11px] uppercase tracking-wider text-rose-500/70 dark:text-rose-400/70 font-semibold mb-1">
+      <div className="rounded-2xl bg-danger-soft border border-danger/30 px-4 py-2.5 mb-2.5 text-center min-h-[3.5rem] flex flex-col items-center justify-center">
+        <p className="text-[11px] uppercase tracking-wider text-danger font-semibold mb-1">
           {t('quizMode.dropHint')}
         </p>
-        <p className="text-sm font-bold text-gray-800 dark:text-gray-100 leading-snug break-words line-clamp-2">
+        <p className="text-sm font-semibold text-ink leading-snug break-words line-clamp-2">
           {promptWord ? meaningText(promptWord, i18n.language) : ''}
         </p>
       </div>
@@ -579,13 +579,13 @@ const DropBoard: React.FC<Props> = ({
         onPointerCancel={() => { dragRef.current.active = false; }}
         className={`quiz-drop-shaft relative overflow-hidden rounded-xl touch-none select-none cursor-pointer border-2 transition-colors ${
           damageFlash
-            ? 'border-red-400 bg-red-50 dark:bg-red-950/40'
-            : 'border-gray-200 dark:border-gray-700 bg-gradient-to-b from-sky-50 to-indigo-50 dark:from-gray-900 dark:to-gray-950'
+            ? 'border-danger bg-danger-soft '
+            : 'border-line bg-surface '
         }`}
       >
         {/* Ceiling spikes */}
         <div
-          className="absolute inset-x-0 top-0 z-20 flex text-red-500"
+          className="absolute inset-x-0 top-0 z-20 flex text-danger"
           style={{ height: SPIKE_H }}
           aria-hidden="true"
         >
@@ -603,16 +603,16 @@ const DropBoard: React.FC<Props> = ({
           <div
             key={p.id}
             ref={registerNode(p)}
-            className={`absolute top-0 left-0 will-change-transform rounded-lg flex items-center justify-center px-2 text-[11px] font-bold whitespace-nowrap overflow-hidden ${
+            className={`absolute top-0 left-0 will-change-transform rounded-lg flex items-center justify-center px-2 text-[11px] font-semibold whitespace-nowrap overflow-hidden ${
               p.kind === 'word'
-                ? 'bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-500 text-gray-800 dark:text-gray-100 shadow-sm'
+                ? 'bg-surface border-2 border-line text-ink shadow-sm'
                 : p.kind === 'spring'
-                  ? 'bg-emerald-200 dark:bg-emerald-800 border-2 border-emerald-400 dark:border-emerald-600 text-emerald-700 dark:text-emerald-200'
+                  ? 'bg-success-soft border-2 border-success text-success '
                   : p.kind === 'conveyor'
-                    ? 'bg-amber-200 dark:bg-amber-800/70 border-2 border-amber-400 dark:border-amber-600 text-amber-700 dark:text-amber-200'
+                    ? 'bg-accent-soft border-2 border-accent text-accent '
                     : p.kind === 'crumble'
-                      ? 'bg-stone-200 dark:bg-stone-700 border-2 border-dashed border-stone-400 dark:border-stone-500 text-stone-500 dark:text-stone-300'
-                      : 'bg-slate-300 dark:bg-slate-600 border-2 border-slate-400 dark:border-slate-500'
+                      ? 'bg-ink/10 border-2 border-dashed border-ink/30 text-ink-muted '
+                      : 'bg-ink/20 border-2 border-ink/30 '
             }`}
             style={{ width: p.w, height: PLAT_H }}
           >
@@ -656,8 +656,8 @@ const DropBoard: React.FC<Props> = ({
         {phase !== 'playing' && (
           <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/55 backdrop-blur-[1px] px-6">
             <div className="animate-quiz-clear flex flex-col items-center gap-3">
-              <div className={`text-white text-sm font-bold px-5 py-2.5 rounded-2xl shadow-lg ${
-                phase === 'cleared' ? 'bg-green-500' : 'bg-gray-700'
+              <div className={`text-paper text-sm font-semibold px-5 py-2.5 rounded-2xl shadow-lg ${
+                phase === 'cleared' ? 'bg-success' : 'bg-ink'
               }`}>
                 {phase === 'cleared' ? t('quizMode.setClear') : t('quizMode.gameOver')}
               </div>
@@ -665,7 +665,7 @@ const DropBoard: React.FC<Props> = ({
                 <button
                   onClick={(e) => { e.stopPropagation(); finish(); }}
                   onPointerDown={(e) => e.stopPropagation()}
-                  className="bg-white text-gray-900 text-sm font-bold px-6 py-3 rounded-2xl shadow-xl active:scale-95 transition-transform"
+                  className="bg-surface text-ink text-sm font-semibold px-6 py-3 rounded-2xl shadow-xl active:scale-95 transition-transform"
                 >
                   {t('quizMode.nextRound')}
                 </button>

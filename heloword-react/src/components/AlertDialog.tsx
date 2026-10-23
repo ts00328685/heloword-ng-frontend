@@ -8,12 +8,12 @@ const AlertDialog: React.FC = () => {
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 px-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-fade-in">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">{alert.header}</h3>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{alert.message}</p>
+      <div className="bg-surface rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-fade-in">
+        <h3 className="text-lg font-semibold text-ink mb-3">{alert.header}</h3>
+        <p className="text-sm text-ink-muted mb-6 leading-relaxed">{alert.message}</p>
         <button
           onClick={dismissAlert}
-          className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors duration-150"
+          className="w-full bg-ink hover:bg-ink/85 active:bg-ink/85 text-paper font-semibold py-3 rounded-xl transition-colors duration-150"
         >
           {alert.buttonText}
         </button>

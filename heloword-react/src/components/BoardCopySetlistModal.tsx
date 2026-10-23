@@ -71,7 +71,7 @@ const BoardCopySetlistModal: React.FC<Props> = ({ sessionId, onCopy, onClose }) 
 
   const spinner = (
     <div className="flex justify-center py-8">
-      <div className="w-6 h-6 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
+      <div className="w-6 h-6 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
     </div>
   );
 
@@ -81,18 +81,18 @@ const BoardCopySetlistModal: React.FC<Props> = ({ sessionId, onCopy, onClose }) 
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm max-h-[80vh] flex flex-col"
+        className="bg-surface rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm max-h-[80vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
-          <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+          <div className="w-10 h-1 rounded-full bg-ink/20" />
         </div>
 
-        <div className="px-6 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700 flex items-center gap-2">
+        <div className="px-6 pt-4 pb-3 border-b border-line flex items-center gap-2">
           {selected && (
             <button
               onClick={() => { setSelected(null); setError(''); }}
-              className="-ml-2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              className="-ml-2 p-1 text-ink-faint hover:text-ink-muted"
               aria-label={t('common.back', 'Back')}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,12 +100,12 @@ const BoardCopySetlistModal: React.FC<Props> = ({ sessionId, onCopy, onClose }) 
               </svg>
             </button>
           )}
-          <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 truncate">
+          <h2 className="text-base font-semibold text-ink truncate">
             {selected ? selected.name : t('board.copySetlist', 'Copy a setlist')}
           </h2>
           <button
             onClick={onClose}
-            className="ml-auto shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+            className="ml-auto shrink-0 text-ink-faint hover:text-ink-muted"
             aria-label={t('common.close', 'Close')}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,7 +119,7 @@ const BoardCopySetlistModal: React.FC<Props> = ({ sessionId, onCopy, onClose }) 
           <div className="overflow-y-auto flex-1 px-4 py-3 space-y-1.5">
             {sessions === null && spinner}
             {sessions?.length === 0 && (
-              <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-6">
+              <p className="text-sm text-ink-faint text-center py-6">
                 {t('board.noOtherBoards', 'No other boards to copy from.')}
               </p>
             )}
@@ -127,18 +127,18 @@ const BoardCopySetlistModal: React.FC<Props> = ({ sessionId, onCopy, onClose }) 
               <button
                 key={s.id}
                 onClick={() => setSelected(s)}
-                className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/40 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="w-full flex items-center gap-3 px-3 py-3 rounded-xl border border-line bg-paper text-left hover:bg-ink/5 transition-colors"
               >
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{s.name}</p>
-                  <p className="text-[11px] text-gray-400 dark:text-gray-500">{formatDate(s.createDate)}</p>
+                  <p className="text-sm font-semibold text-ink truncate">{s.name}</p>
+                  <p className="text-[11px] text-ink-faint">{formatDate(s.createDate)}</p>
                 </div>
                 {s.boardState === 'ACTIVE' && (
-                  <span className="shrink-0 text-[10px] font-bold text-red-500">
+                  <span className="shrink-0 text-[10px] font-semibold text-danger">
                     {t('board.live', 'Live')}
                   </span>
                 )}
-                <svg className="w-4 h-4 shrink-0 text-gray-300 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 shrink-0 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
@@ -152,21 +152,21 @@ const BoardCopySetlistModal: React.FC<Props> = ({ sessionId, onCopy, onClose }) 
             <div className="overflow-y-auto flex-1 px-4 py-3 space-y-1">
               {preview === null && spinner}
               {preview?.length === 0 && (
-                <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-6">
+                <p className="text-sm text-ink-faint text-center py-6">
                   {t('board.noSongs', 'No songs yet.')}
                 </p>
               )}
               {preview?.map((song, idx) => (
-                <div key={song.id} className="flex items-start gap-2.5 px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700/40">
-                  <span className="shrink-0 w-5 text-right text-xs font-bold text-gray-400 dark:text-gray-500 tabular-nums pt-0.5">
+                <div key={song.id} className="flex items-start gap-2.5 px-3 py-2 rounded-lg bg-paper">
+                  <span className="shrink-0 w-5 text-right text-xs font-semibold text-ink-faint tabular-nums pt-0.5">
                     {idx + 1}.
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm text-gray-800 dark:text-gray-100 break-words [overflow-wrap:anywhere]">
+                    <p className="text-sm text-ink break-words [overflow-wrap:anywhere]">
                       {song.title}
                     </p>
                     {song.note && (
-                      <p className="text-[11px] text-gray-400 dark:text-gray-500 break-words [overflow-wrap:anywhere]">
+                      <p className="text-[11px] text-ink-faint break-words [overflow-wrap:anywhere]">
                         {song.note}
                       </p>
                     )}
@@ -175,9 +175,9 @@ const BoardCopySetlistModal: React.FC<Props> = ({ sessionId, onCopy, onClose }) 
               ))}
             </div>
 
-            <div className="border-t border-gray-100 dark:border-gray-700 px-4 py-3">
-              {error && <p className="text-xs text-red-500 mb-2">{error}</p>}
-              <p className="text-[11px] text-gray-400 dark:text-gray-500 mb-2">
+            <div className="border-t border-line px-4 py-3">
+              {error && <p className="text-xs text-danger mb-2">{error}</p>}
+              <p className="text-[11px] text-ink-faint mb-2">
                 {t(
                   'board.copyHint',
                   'Songs are added to the end of this board’s setlist as new entries — unsung, with no requests carried over.'
@@ -186,7 +186,7 @@ const BoardCopySetlistModal: React.FC<Props> = ({ sessionId, onCopy, onClose }) 
               <button
                 onClick={confirm}
                 disabled={copying || !preview || preview.length === 0}
-                className="w-full min-h-[44px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 text-white font-semibold rounded-xl transition-colors text-sm"
+                className="w-full min-h-[44px] bg-ink hover:bg-ink/85 active:bg-ink/85 disabled:opacity-40 text-paper font-semibold rounded-xl transition-colors text-sm"
               >
                 {copying
                   ? '…'

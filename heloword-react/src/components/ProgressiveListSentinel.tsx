@@ -13,7 +13,7 @@ interface Props {
 const ProgressiveListSentinel: React.FC<Props> = ({ sentinelRef, hasMore }) => (
   <div ref={sentinelRef} className="h-10 flex items-center justify-center mt-2">
     {hasMore && (
-      <div className="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+      <div className="w-5 h-5 border-2 border-accent border-t-transparent rounded-full animate-spin" />
     )}
   </div>
 );

@@ -107,7 +107,7 @@ function normalizeSentenceDisplay(text: string): string {
 const SpeakerIcon: React.FC<{ onClick: () => void; label: string; small?: boolean }> = ({ onClick, label, small }) => (
   <button
     onClick={onClick}
-    className={`${small ? 'p-1' : 'p-1.5'} rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors shrink-0`}
+    className={`${small ? 'p-1' : 'p-1.5'} rounded-lg hover:bg-ink/5 text-ink-faint hover:text-ink-muted transition-colors shrink-0`}
     aria-label={label}
   >
     <svg className={small ? 'w-3.5 h-3.5' : 'w-4 h-4'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,18 +146,18 @@ const WordCard: React.FC<{
   };
 
   return (
-  <div className={`bg-white dark:bg-gray-800 rounded-2xl shadow-sm border text-left animate-fade-in-up transition-all ${insightOpen || compareOpen ? 'rainbow-glow' : 'border-gray-100 dark:border-gray-700'}`}>
+  <div className={`bg-surface rounded-2xl shadow-sm border text-left animate-fade-in-up transition-all ${insightOpen || compareOpen ? 'rainbow-glow' : 'border-line '}`}>
     <div className="p-3">
       <div className="flex items-start justify-between gap-2 mb-1.5">
         <div className="flex items-center gap-1 min-w-0">
-          <span className="font-bold text-gray-900 dark:text-gray-100 text-base leading-tight truncate">{entry.word}</span>
+          <span className="font-semibold text-ink text-base leading-tight truncate">{entry.word}</span>
           <SpeakerIcon onClick={() => onSpeak(entry.word, entry.wordLang)} label={t('chatbot.pronounce')} />
         </div>
         {onHeart && (
         <button
           data-analytics="chatbot.save_to_group"
           onClick={() => onHeart(entry)}
-          className="p-1.5 rounded-lg hover:bg-pink-50 dark:hover:bg-pink-900/30 text-pink-400 transition-colors shrink-0"
+          className="p-1.5 rounded-lg hover:bg-accent-soft text-accent transition-colors shrink-0"
           aria-label={t('chatbot.saveToGroup')}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -167,21 +167,21 @@ const WordCard: React.FC<{
         )}
       </div>
       {entry.translateEn && (
-        <p className="text-xs text-blue-600 dark:text-blue-400 mb-0.5">{entry.translateEn}</p>
+        <p className="text-xs text-accent mb-0.5">{entry.translateEn}</p>
       )}
       {entry.translateCh && (
-        <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">{entry.translateCh}</p>
+        <p className="text-xs text-ink-muted mb-0.5">{entry.translateCh}</p>
       )}
       {entry.sentence && (
-        <div className="flex items-start gap-1 mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700">
-          <p className="text-xs text-gray-700 dark:text-gray-300 italic leading-relaxed flex-1 whitespace-pre-wrap">
+        <div className="flex items-start gap-1 mt-1.5 pt-1.5 border-t border-line">
+          <p className="text-xs text-ink italic leading-relaxed flex-1 whitespace-pre-wrap">
             <TapToLookup>{normalizeSentenceDisplay(entry.sentence)}</TapToLookup>
           </p>
           <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(entry.sentence!, entry.wordLang), entry.wordLang)} label={t('chatbot.pronounce')} small />
         </div>
       )}
       {entry.conjugations && (
-        <div className="mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700">
+        <div className="mt-1.5 pt-1.5 border-t border-line">
           {entry.conjugations.split('\n').map((line, i) => {
             const colonIdx = line.indexOf(':');
             if (colonIdx === -1) return null;
@@ -189,39 +189,39 @@ const WordCard: React.FC<{
             const value = line.substring(colonIdx + 1).trim();
             return (
               <div key={i} className="flex items-baseline gap-1.5 text-xs leading-5">
-                <span className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[56px]">{label}</span>
-                <span className="text-gray-800 dark:text-gray-200 font-medium">{value}</span>
+                <span className="text-ink-faint shrink-0 min-w-[56px]">{label}</span>
+                <span className="text-ink font-medium">{value}</span>
               </div>
             );
           })}
         </div>
       )}
       {entry.politeness && (
-        <div className="mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700 space-y-1">
+        <div className="mt-1.5 pt-1.5 border-t border-line space-y-1">
           {([['llm.casual', entry.politeness.casual], ['llm.polite', entry.politeness.polite], ['llm.keigo', entry.politeness.keigo]] as const).map(([label, value]) => (
             <div key={label} className="flex items-baseline gap-1.5 text-xs leading-5">
-              <span className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[56px]">{t(label)}</span>
-              <span className="text-gray-800 dark:text-gray-200 font-medium flex-1"><TapToLookup>{value}</TapToLookup></span>
+              <span className="text-ink-faint shrink-0 min-w-[56px]">{t(label)}</span>
+              <span className="text-ink font-medium flex-1"><TapToLookup>{value}</TapToLookup></span>
               {value && <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(value, 'jp'), 'jp')} label={t('chatbot.pronounce')} small />}
             </div>
           ))}
         </div>
       )}
       {entry.natural && (
-        <div className="mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-700 space-y-1">
+        <div className="mt-1.5 pt-1.5 border-t border-line space-y-1">
           {([['llm.naturalOriginal', entry.input, true], ['llm.naturalNatural', entry.natural.natural, false], ['llm.naturalCasual', entry.natural.casual, false]] as const).map(([label, value, muted]) => (
             <div key={label} className="flex items-baseline gap-1.5 text-xs leading-5">
-              <span className="text-gray-400 dark:text-gray-500 shrink-0 min-w-[56px]">{t(label)}</span>
-              <span className={`flex-1 ${muted ? 'text-gray-400 dark:text-gray-500' : 'text-gray-800 dark:text-gray-200 font-medium'}`}>
+              <span className="text-ink-faint shrink-0 min-w-[56px]">{t(label)}</span>
+              <span className={`flex-1 ${muted ? 'text-ink-faint ' : 'text-ink font-medium'}`}>
                 <TapToLookup>{value}</TapToLookup>
               </span>
               {value && <SpeakerIcon onClick={() => onSpeak(cleanSentenceForTTS(value, entry.wordLang), entry.wordLang)} label={t('chatbot.pronounce')} small />}
             </div>
           ))}
-          {entry.natural.note && <p className="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed pt-0.5">{entry.natural.note}</p>}
+          {entry.natural.note && <p className="text-[11px] text-ink-muted leading-relaxed pt-0.5">{entry.natural.note}</p>}
         </div>
       )}
-      <p className="text-[10px] text-gray-300 dark:text-gray-600 mt-1.5 text-right">
+      <p className="text-[10px] text-ink-faint mt-1.5 text-right">
         {new Date(entry.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
       </p>
     </div>
@@ -232,8 +232,8 @@ const WordCard: React.FC<{
         onClick={handleInsight}
         className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
           insightOpen
-            ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-            : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+            ? 'bg-ink text-paper ring-1 ring-ink '
+            : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
         }`}
       >
         <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -243,8 +243,8 @@ const WordCard: React.FC<{
         onClick={handleCompare}
         className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
           compareOpen
-            ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-            : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+            ? 'bg-ink text-paper ring-1 ring-ink '
+            : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
         }`}
       >
         <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -265,32 +265,32 @@ const WordCard: React.FC<{
     )}
     {insightOpen && (
       <div className="px-3 pb-3 animate-slide-down">
-        <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
+        <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
           {insight.loading ? (
-            <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+            <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
           ) : insight.error ? (
             <div className="flex items-center gap-2">
-              <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-              <button data-analytics="ai.insight.retry" onClick={() => insight.retry(entry.id, () => getWordInsight(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
+              <p className="text-xs text-danger flex-1">{t('llm.error')}</p>
+              <button data-analytics="ai.insight.retry" onClick={() => insight.retry(entry.id, () => getWordInsight(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-accent underline">↺</button>
             </div>
           ) : (
-            <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
+            <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
           )}
         </div>
       </div>
     )}
     {compareOpen && (
       <div className="px-3 pb-3 animate-slide-down">
-        <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-white/[0.06]">
+        <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
           {compare.loading ? (
-            <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+            <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
           ) : compare.error ? (
             <div className="flex items-center gap-2">
-              <p className="text-xs text-red-400 flex-1">{t('llm.error')}</p>
-              <button data-analytics="ai.compare.retry" onClick={() => compare.retry(entry.id, () => getWordComparison(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-blue-400 underline">↺</button>
+              <p className="text-xs text-danger flex-1">{t('llm.error')}</p>
+              <button data-analytics="ai.compare.retry" onClick={() => compare.retry(entry.id, () => getWordComparison(entry.word, entry.translateEn, entry.translateCh, lang, entry.wordLang))} className="text-xs text-accent underline">↺</button>
             </div>
           ) : (
-            <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
+            <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
           )}
         </div>
       </div>
@@ -587,7 +587,7 @@ const ChatBot: React.FC = () => {
         <div className="w-full max-w-2xl mx-auto px-4 flex justify-end">
           {/* Chat panel */}
           <div
-            className="pointer-events-auto w-[340px] max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden animate-chatbot-slide-up"
+            className="pointer-events-auto w-[340px] max-w-[calc(100vw-2rem)] bg-surface rounded-2xl shadow-2xl border border-line flex flex-col overflow-hidden animate-chatbot-slide-up"
             style={{
               maxHeight: 'min(540px, calc(100vh - 120px))',
               marginBottom: `calc(${bottomOffset - 4}px + env(safe-area-inset-bottom, 0px))`,
@@ -595,14 +595,14 @@ const ChatBot: React.FC = () => {
             onClick={e => e.stopPropagation()}
           >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-gray-800 shrink-0">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-line shrink-0">
           <div className="flex items-center gap-2 min-w-0">
             <KittenSVG wink={wink} size={28} />
-            <span className="font-semibold text-sm text-gray-800 dark:text-gray-100 truncate">{t('chatbot.title')}</span>
+            <span className="font-semibold text-sm text-ink truncate">{t('chatbot.title')}</span>
             {!isLoggedIn && quota && (
               <span
                 title={t('llm.remaining', { remaining: quota.remaining, limit: quota.limit })}
-                className={`shrink-0 whitespace-nowrap text-[10px] px-1.5 py-0.5 rounded-full ${quota.remaining > 0 ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-500' : 'bg-red-50 dark:bg-red-900/30 text-red-400'}`}
+                className={`shrink-0 whitespace-nowrap text-[10px] px-1.5 py-0.5 rounded-full ${quota.remaining > 0 ? 'bg-accent-soft text-accent' : 'bg-danger-soft text-danger'}`}
               >
                 {t('llm.remainingShort', { remaining: quota.remaining, limit: quota.limit })}
               </span>
@@ -612,7 +612,7 @@ const ChatBot: React.FC = () => {
             <button
               data-analytics="chatbot.clear_history"
               onClick={() => { setHistory([]); localStorage.removeItem(HISTORY_KEY); }}
-              className="p-1.5 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+              className="p-1.5 rounded-xl hover:bg-danger-soft text-ink-faint hover:text-danger transition-colors"
               aria-label={t('chatbot.clearHistory')}
               title={t('chatbot.clearHistory')}
             >
@@ -623,7 +623,7 @@ const ChatBot: React.FC = () => {
             <button
               data-analytics="chatbot.close"
               onClick={() => closeChat()}
-              className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 transition-colors"
+              className="p-1.5 rounded-xl hover:bg-ink/5 text-ink-faint transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -635,7 +635,7 @@ const ChatBot: React.FC = () => {
         {/* Chat history */}
         <div className="flex-1 overflow-y-auto px-3 pt-3 pb-4 space-y-2.5 scrollbar-hide">
           {history.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-full py-8 text-center text-gray-400 dark:text-gray-500 gap-2">
+            <div className="flex flex-col items-center justify-center h-full py-8 text-center text-ink-faint gap-2">
               <KittenSVG wink="none" size={48} />
               <p className="text-sm">{t('chatbot.emptyHint')}</p>
             </div>
@@ -650,24 +650,24 @@ const ChatBot: React.FC = () => {
             />
           ))}
           {loading && (
-            <div className="flex items-center gap-2 px-2 py-1 text-xs text-gray-400 dark:text-gray-500">
-              <span className="w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full animate-spin inline-block" />
+            <div className="flex items-center gap-2 px-2 py-1 text-xs text-ink-faint">
+              <span className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin inline-block" />
               {t('chatbot.thinking')}
             </div>
           )}
           {error && (
-            <p className="text-xs text-red-400 px-1">{error}</p>
+            <p className="text-xs text-danger px-1">{error}</p>
           )}
           <div ref={historyEndRef} />
         </div>
 
         {/* Action buttons */}
-        <div className="px-3 pt-2 pb-1 grid grid-cols-3 gap-2 shrink-0 border-t border-gray-100 dark:border-gray-800">
+        <div className="px-3 pt-2 pb-1 grid grid-cols-3 gap-2 shrink-0 border-t border-line">
           <button
             data-analytics="chatbot.translate"
             onClick={() => handleAction('translate')}
             disabled={!input.trim() || loading}
-            className="py-2 rounded-xl whitespace-nowrap bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-semibold hover:bg-blue-100 dark:hover:bg-blue-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-accent-soft text-accent text-xs font-semibold hover:bg-accent-soft disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('chatbot.quickTranslate')}
           </button>
@@ -675,7 +675,7 @@ const ChatBot: React.FC = () => {
             data-analytics="chatbot.sentence"
             onClick={() => handleAction('sentence')}
             disabled={!input.trim() || loading}
-            className="py-2 rounded-xl whitespace-nowrap bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-accent-soft text-accent text-xs font-semibold hover:bg-accent-soft disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('chatbot.exampleSentence')}
           </button>
@@ -683,7 +683,7 @@ const ChatBot: React.FC = () => {
             data-analytics="chatbot.conjugation"
             onClick={() => handleAction('conjugation')}
             disabled={!input.trim() || loading}
-            className="py-2 rounded-xl whitespace-nowrap bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 text-xs font-semibold hover:bg-emerald-100 dark:hover:bg-emerald-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-success-soft text-success text-xs font-semibold hover:bg-success-soft disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('chatbot.verbConjugation')}
           </button>
@@ -691,7 +691,7 @@ const ChatBot: React.FC = () => {
             data-analytics="chatbot.politeness"
             onClick={() => handleAction('politeness')}
             disabled={!input.trim() || loading}
-            className="py-2 rounded-xl whitespace-nowrap bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-100 dark:hover:bg-amber-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-accent-soft text-accent text-xs font-semibold hover:bg-accent-soft disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('llm.politeness')}
           </button>
@@ -699,7 +699,7 @@ const ChatBot: React.FC = () => {
             data-analytics="chatbot.natural"
             onClick={() => handleAction('natural')}
             disabled={!input.trim() || loading}
-            className="py-2 rounded-xl whitespace-nowrap bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 text-xs font-semibold hover:bg-rose-100 dark:hover:bg-rose-900/50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="py-2 rounded-xl whitespace-nowrap bg-danger-soft text-danger text-xs font-semibold hover:bg-danger-soft disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             {t('llm.natural')}
           </button>
@@ -707,7 +707,7 @@ const ChatBot: React.FC = () => {
 
         {/* Input */}
         <div className="px-3 pb-3 pt-1 shrink-0">
-          <div className="flex items-end gap-2 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 px-3 py-2">
+          <div className="flex items-end gap-2 bg-paper rounded-xl border border-line px-3 py-2">
             <textarea
               ref={inputRef}
               value={input}
@@ -721,14 +721,14 @@ const ChatBot: React.FC = () => {
               }}
               placeholder={t('chatbot.placeholder')}
               rows={1}
-              className="flex-1 bg-transparent text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 resize-none focus:outline-none leading-5 max-h-20"
+              className="flex-1 bg-transparent text-sm text-ink placeholder-ink-faint resize-none focus:outline-none leading-5 max-h-20"
               style={{ minHeight: '20px' }}
             />
             {input && (
               <button
                 data-analytics="chatbot.clear_input"
                 onClick={() => setInput('')}
-                className="text-gray-300 dark:text-gray-600 hover:text-gray-500 dark:hover:text-gray-400 transition-colors shrink-0"
+                className="text-ink-faint hover:text-ink-muted transition-colors shrink-0"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -764,7 +764,7 @@ const ChatBot: React.FC = () => {
             <button
               data-analytics="chatbot.toggle"
               onClick={handleIconClick}
-              className="rounded-full shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="rounded-full shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               aria-label={t('chatbot.title')}
               style={{ background: 'none', border: 'none', padding: 0 }}
             >

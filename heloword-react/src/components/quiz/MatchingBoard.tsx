@@ -161,17 +161,17 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
   const remaining = words.length - connections.length;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+    <div className="bg-surface rounded-2xl border border-line p-4 shadow-sm">
       <div className="flex items-center justify-between mb-3">
-        <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
+        <p className="text-xs font-medium text-ink-muted">
           {setTotal ? t('quizMode.setProgress', { current: setIndex, total: setTotal }) : t('quizMode.roundNo', { n: setIndex })}
         </p>
-        <p className={`text-xs font-semibold ${resetting ? 'text-red-500' : 'text-gray-400 dark:text-gray-500'}`}>
+        <p className={`text-xs font-semibold ${resetting ? 'text-danger' : 'text-ink-faint '}`}>
           {resetting ? t('quizMode.wrongReset') : t('quizMode.remaining', { count: remaining })}
         </p>
       </div>
 
-      <p className="text-xs text-gray-400 dark:text-gray-500 mb-3">{t('quizMode.matchHint')}</p>
+      <p className="text-xs text-ink-faint mb-3">{t('quizMode.matchHint')}</p>
 
       <div ref={containerRef} className="relative">
         {/* Connector overlay — pointer-events off so it never eats a tap */}
@@ -205,12 +205,12 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
                   disabled={done || resetting || cleared}
                   className={`w-[70%] h-16 px-3 py-2 rounded-xl border-2 text-sm font-semibold text-left break-words flex items-center transition-colors ${
                     isWrong
-                      ? 'animate-quiz-shake border-red-400 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-300'
+                      ? 'animate-quiz-shake border-danger bg-danger-soft text-danger '
                       : done
-                        ? 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/40 text-gray-400 dark:text-gray-500'
+                        ? 'border-line bg-paper text-ink-faint '
                         : isSelected
-                          ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-200 shadow-sm'
-                          : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 hover:border-blue-300 active:scale-[0.98]'
+                          ? 'border-accent bg-accent-soft text-accent shadow-sm'
+                          : 'border-line bg-surface text-ink hover:border-line active:scale-[0.98]'
                   }`}
                 >
                   <span className="line-clamp-2">{promptText(w)}</span>
@@ -232,12 +232,12 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
                   disabled={done || resetting || cleared || !selectedLeft}
                   className={`w-[70%] h-16 px-3 py-2 rounded-xl border-2 text-[11px] font-medium text-left break-words leading-snug flex items-center transition-colors ${
                     isWrong
-                      ? 'animate-quiz-shake border-red-400 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-300'
+                      ? 'animate-quiz-shake border-danger bg-danger-soft text-danger '
                       : done
-                        ? 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/40 text-gray-400 dark:text-gray-500'
+                        ? 'border-line bg-paper text-ink-faint '
                         : selectedLeft
-                          ? 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:border-purple-400 active:scale-[0.98]'
-                          : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/40 text-gray-500 dark:text-gray-400'
+                          ? 'border-line bg-surface text-ink hover:border-accent active:scale-[0.98]'
+                          : 'border-line bg-paper text-ink-muted '
                   }`}
                 >
                   <span className="line-clamp-3">{item.text}</span>
@@ -249,7 +249,7 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
 
         {cleared && (
           <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-            <div className="animate-quiz-clear bg-green-500 text-white text-sm font-bold px-5 py-2.5 rounded-2xl shadow-lg">
+            <div className="animate-quiz-clear bg-success text-white text-sm font-semibold px-5 py-2.5 rounded-2xl shadow-lg">
               {t('quizMode.setClear')}
             </div>
           </div>

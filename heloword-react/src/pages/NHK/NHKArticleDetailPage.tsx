@@ -69,22 +69,22 @@ const NHKArticleDetailPage: React.FC = () => {
   const { speakingKey, speakingMode, spokenRange, triggerSpeak } = useArticleSpeech({ paragraphs, activeLang });
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header title={t('nhk.title')} showBack />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
         {loading && (
           <div className="space-y-4 mt-2">
-            <div className="h-7 bg-gray-100 dark:bg-gray-800 rounded animate-pulse w-3/4" />
-            <div className="h-4 bg-gray-100 dark:bg-gray-800 rounded animate-pulse w-1/3" />
+            <div className="h-7 bg-ink/5 rounded animate-pulse w-3/4" />
+            <div className="h-4 bg-ink/5 rounded animate-pulse w-1/3" />
             <div className="flex gap-2 mt-4">
               {[0, 1, 2, 3].map((i) => (
-                <div key={i} className="h-9 w-16 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse" />
+                <div key={i} className="h-9 w-16 bg-ink/5 rounded-lg animate-pulse" />
               ))}
             </div>
             <div className="space-y-3 mt-2">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="h-24 bg-gray-100 dark:bg-gray-800 rounded-xl animate-pulse" />
+                <div key={i} className="h-24 bg-ink/5 rounded-xl animate-pulse" />
               ))}
             </div>
           </div>
@@ -92,11 +92,10 @@ const NHKArticleDetailPage: React.FC = () => {
 
         {error && (
           <div className="text-center py-16">
-            <p className="text-4xl mb-3">😞</p>
-            <p className="text-gray-400 dark:text-gray-500 text-sm">{t('nhk.loadError')}</p>
+            <p className="text-ink-faint text-sm">{t('nhk.loadError')}</p>
             <button
               onClick={() => navigate('/nhk-articles')}
-              className="mt-4 text-sm text-blue-500 hover:text-blue-700 dark:hover:text-blue-300"
+              className="mt-4 text-sm text-accent hover:text-accent"
             >
               {t('nhk.backToList')}
             </button>
@@ -106,11 +105,11 @@ const NHKArticleDetailPage: React.FC = () => {
         {article && (
           <>
             <div className="mb-4">
-              <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 leading-snug mb-2">
+              <h1 className="text-lg font-semibold text-ink leading-snug mb-2">
                 {article.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
-                <span>🇯🇵 日文原文</span>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-ink-faint">
+                <span>日文原文</span>
                 <span>·</span>
                 <span>{new Date(article.createDate).toLocaleDateString('zh-TW')}</span>
                 {article.sourceUrl && (
@@ -120,7 +119,7 @@ const NHKArticleDetailPage: React.FC = () => {
                       href={article.sourceUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-0.5 hover:text-blue-500 transition-colors"
+                      className="flex items-center gap-0.5 hover:text-accent transition-colors"
                     >
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -132,15 +131,15 @@ const NHKArticleDetailPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex gap-1.5 mb-4 p-1 bg-gray-100 dark:bg-gray-800 rounded-xl">
+            <div className="flex gap-1.5 mb-4 p-1 bg-ink/5 rounded-xl">
               {LANG_TABS.map(({ key, label }) => (
                 <button
                   key={key}
                   onClick={() => setActiveLang(key)}
                   className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                     activeLang === key
-                      ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm'
-                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                      ? 'bg-surface text-accent shadow-sm'
+                      : 'text-ink-muted hover:text-ink '
                   }`}
                 >
                   {label}
@@ -149,7 +148,7 @@ const NHKArticleDetailPage: React.FC = () => {
             </div>
 
             {paragraphs.length > 0 && (
-              <p className="text-xs text-gray-400 dark:text-gray-500 mb-2">{t('wordLookup.tapHint')}</p>
+              <p className="text-xs text-ink-faint mb-2">{t('wordLookup.tapHint')}</p>
             )}
             <div className="space-y-3 mb-5">
               {paragraphs.length > 0 ? (
@@ -169,7 +168,7 @@ const NHKArticleDetailPage: React.FC = () => {
                   />
                 ))
               ) : (
-                <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-8">
+                <p className="text-sm text-ink-faint text-center py-8">
                   {t('nhk.noParagraphs')}
                 </p>
               )}

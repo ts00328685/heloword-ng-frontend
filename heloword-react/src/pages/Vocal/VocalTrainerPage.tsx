@@ -230,7 +230,7 @@ const VocalTrainerPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header title={t('vocal.title')} showBack />
 
       {/* Extra bottom padding leaves room for the metronome dock */}
@@ -238,11 +238,11 @@ const VocalTrainerPage: React.FC = () => {
         <Panel
           id="pitch"
           title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.pitch'), take: replayName }) : t('vocal.panel.pitch')}
-          indicator={running && <LiveDot color="bg-blue-500" />}
+          indicator={running && <LiveDot color="bg-ink" />}
           summary={note ? `${noteName}${noteAlt ? `/${noteAlt}` : ''} ${cents > 0 ? '+' : ''}${cents}¢` : running || replay ? '--' : t('vocal.mic.off')}
         >
           {replay && (
-            <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-xs text-blue-700 dark:text-blue-300">
+            <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-xl bg-accent-soft text-xs text-accent">
               <span className="min-w-0 truncate">
                 ▶ {t('vocal.replay.replaying')} <b>{replayName}</b> — {t('vocal.replay.followHint')}
               </span>
@@ -257,39 +257,39 @@ const VocalTrainerPage: React.FC = () => {
               title={note && !noteVoiced ? t('vocal.lastNote') : undefined}
             >
               <div className="w-24 flex flex-col">
-                <span className={`text-4xl font-bold tabular-nums leading-none ${note ? 'text-gray-900 dark:text-gray-100' : 'text-gray-300 dark:text-gray-600'}`}>
+                <span className={`text-4xl font-semibold tabular-nums leading-none ${note ? 'text-ink ' : 'text-ink-faint '}`}>
                   {noteName ?? '--'}
                 </span>
                 {/* Flat spelling of black keys when no key is set, e.g. C#4 → D♭4 */}
-                <span className="h-4 mt-1 text-xs font-semibold text-gray-400 dark:text-gray-500">{noteAlt ?? ''}</span>
+                <span className="h-4 mt-1 text-xs font-semibold text-ink-faint">{noteAlt ?? ''}</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-xs font-mono text-gray-400 dark:text-gray-500">
+                <span className="text-xs font-mono text-ink-faint">
                   {note ? `${midiToFreq(note.midi + cents / 100).toFixed(1)} Hz` : '— Hz'}
                 </span>
                 {/* Cents meter: -50 … +50 */}
-                <div className="relative w-28 h-2 rounded-full bg-gray-100 dark:bg-gray-700">
-                  <span className="absolute left-1/2 top-0 w-px h-2 bg-gray-300 dark:bg-gray-500" />
+                <div className="relative w-28 h-2 rounded-full bg-ink/5">
+                  <span className="absolute left-1/2 top-0 w-px h-2 bg-ink/20" />
                   {note && (
                     <span
-                      className={`absolute top-1/2 w-2.5 h-2.5 -mt-[5px] -ml-[5px] rounded-full ${inTune ? 'bg-green-500' : 'bg-amber-500'}`}
+                      className={`absolute top-1/2 w-2.5 h-2.5 -mt-[5px] -ml-[5px] rounded-full ${inTune ? 'bg-success' : 'bg-ink'}`}
                       style={{ left: `${50 + cents}%` }}
                     />
                   )}
                 </div>
-                <span className={`text-[11px] font-mono ${note ? (inTune ? 'text-green-500' : 'text-amber-500') : 'text-transparent'}`}>
+                <span className={`text-[11px] font-mono ${note ? (inTune ? 'text-success' : 'text-accent') : 'text-transparent'}`}>
                   {cents > 0 ? '+' : ''}{cents}¢
                 </span>
               </div>
             </div>
             <button
               onClick={toggleMic}
-              className={`shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition-colors ${
-                running ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
+              className={`shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-paper transition-colors ${
+                running ? 'bg-danger hover:bg-danger/90' : 'bg-ink hover:bg-ink/85'
               }`}
               title={t('vocal.mic.title')}
             >
-              <span className={`w-2 h-2 rounded-full ${running ? 'bg-white animate-pulse' : 'bg-white/70'}`} />
+              <span className={`w-2 h-2 rounded-full ${running ? 'bg-surface animate-pulse' : 'bg-surface'}`} />
               {running ? t('vocal.mic.stop') : t('vocal.mic.start')}
             </button>
           </div>
@@ -300,8 +300,8 @@ const VocalTrainerPage: React.FC = () => {
               onClick={toggleMonitor}
               className={`h-7 px-2.5 rounded-lg font-semibold transition-colors ${
                 monitorOn
-                  ? 'bg-violet-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                  ? 'bg-ink text-paper'
+                  : 'bg-ink/5 text-ink-muted hover:bg-ink/10 '
               }`}
               title={t('vocal.monitor.title')}
               aria-pressed={monitorOn}
@@ -317,26 +317,26 @@ const VocalTrainerPage: React.FC = () => {
                   className="w-24 accent-violet-500"
                   aria-label={t('vocal.monitor.volume')}
                 />
-                <span className="font-mono text-gray-500 dark:text-gray-400 tabular-nums">{Math.round(monitorVolume * 100)}%</span>
+                <span className="font-mono text-ink-muted tabular-nums">{Math.round(monitorVolume * 100)}%</span>
                 {monitorLatencyMs !== null && (
-                  <span className="text-gray-400 dark:text-gray-500" title={t('vocal.monitor.delayTitle')}>
+                  <span className="text-ink-faint" title={t('vocal.monitor.delayTitle')}>
                     {t('vocal.monitor.delay', { ms: monitorLatencyMs })}
                   </span>
                 )}
-                <span className="text-amber-600 dark:text-amber-400">{t('vocal.monitor.headphonesOnly')}</span>
+                <span className="text-accent">{t('vocal.monitor.headphonesOnly')}</span>
               </>
             )}
             {askMonitorAck && (
-              <span className="flex flex-wrap items-center gap-2 px-2 py-1 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300">
+              <span className="flex flex-wrap items-center gap-2 px-2 py-1 rounded-lg bg-accent-soft text-accent">
                 {t('vocal.monitor.ack')}
                 <button onClick={() => { setMonitorAck(true); enableMonitor(); }} className="font-semibold underline">{t('vocal.monitor.ackConfirm')}</button>
-                <button onClick={() => setAskMonitorAck(false)} className="text-gray-500 dark:text-gray-400 hover:underline">{t('vocal.monitor.cancel')}</button>
+                <button onClick={() => setAskMonitorAck(false)} className="text-ink-muted hover:underline">{t('vocal.monitor.cancel')}</button>
               </span>
             )}
           </div>
 
           {error && (
-            <p className="mb-3 text-xs text-red-500">
+            <p className="mb-3 text-xs text-danger">
               {t('vocal.mic.unavailable', { error })}
             </p>
           )}
@@ -372,10 +372,10 @@ const VocalTrainerPage: React.FC = () => {
             onResetTally={replay ? undefined : resetLiveTally}
           />
 
-          <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+          <div className="mt-3 pt-3 border-t border-line">
             <button
               onClick={() => setTipsOpen((o) => !o)}
-              className="flex items-center justify-between w-full text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500"
+              className="flex items-center justify-between w-full text-[11px] font-semibold uppercase tracking-wide text-ink-faint"
               aria-expanded={tipsOpen}
             >
               {t('vocal.tips.title')}
@@ -384,12 +384,12 @@ const VocalTrainerPage: React.FC = () => {
               </svg>
             </button>
             {tipsOpen && (
-              <div className="mt-2 space-y-2 text-[11px] text-gray-400 dark:text-gray-500">
+              <div className="mt-2 space-y-2 text-[11px] text-ink-faint">
                 <p>{t('vocal.tips.gestures')}</p>
                 <p className="hidden sm:flex flex-wrap gap-x-3 gap-y-1">
                   {SHORTCUTS.map(([key, action]) => (
                     <span key={key}>
-                      <kbd className="px-1 py-0.5 rounded border border-gray-200 dark:border-gray-600 font-mono text-[10px]">{key}</kbd> {t(`vocal.shortcuts.${action}`)}
+                      <kbd className="px-1 py-0.5 rounded border border-line font-mono text-[10px]">{key}</kbd> {t(`vocal.shortcuts.${action}`)}
                     </span>
                   ))}
                 </p>
@@ -438,7 +438,7 @@ const VocalTrainerPage: React.FC = () => {
 
         <Metronome m={metronome} onVisibleChange={setMetronomeVisible} />
 
-        <p className="text-center text-[11px] text-gray-400 dark:text-gray-500">
+        <p className="text-center text-[11px] text-ink-faint">
           {t('vocal.footer')}
         </p>
       </main>

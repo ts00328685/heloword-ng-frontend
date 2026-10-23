@@ -53,7 +53,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <GoogleOAuthProvider clientId={environment.googleClientId}>
-      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+      <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
         <Header title="Login" showBack />
 
         <main className="flex-1 flex items-center justify-center px-4 pb-20">
@@ -62,12 +62,12 @@ const LoginPage: React.FC = () => {
               <div className="w-20 h-20 rounded-3xl mx-auto mb-4 flex items-center justify-center shadow-lg overflow-hidden">
                 <img src={`${import.meta.env.BASE_URL}apple-touch-icon.png`} alt="Heloword" className="w-full h-full object-contain" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{t('login.welcome')}</h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{t('login.subtitle')}</p>
+              <h1 className="text-2xl font-semibold text-ink">{t('login.welcome')}</h1>
+              <p className="text-sm text-ink-muted mt-1">{t('login.subtitle')}</p>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6">
-              <h2 className="text-base font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
+            <div className="bg-surface rounded-2xl shadow-lg border border-line p-6">
+              <h2 className="text-base font-semibold text-ink mb-4 text-center">
                 {t('login.continueGoogle')}
               </h2>
 
@@ -82,7 +82,7 @@ const LoginPage: React.FC = () => {
                 />
               </div>
 
-              <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-4 leading-relaxed">
+              <p className="text-xs text-ink-faint text-center mt-4 leading-relaxed">
                 {t('login.agreement')}
               </p>
             </div>
@@ -90,7 +90,7 @@ const LoginPage: React.FC = () => {
             <div className="text-center mt-4">
               <button
                 onClick={() => navigate('/home')}
-                className="text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                className="text-sm text-ink-faint hover:text-ink-muted transition-colors"
               >
                 {t('login.skipLogin')}
               </button>

@@ -416,10 +416,10 @@ const BoardPage: React.FC = () => {
   // ── Render ───────────────────────────────────────────────────────────────--
   if (loading) {
     return (
-      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col min-h-screen bg-paper">
         <Header title={t('board.liveBoard', 'Live Board')} showBack onBack={handleBack} minimal />
         <div className="flex-1 flex items-center justify-center">
-          <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
         </div>
       </div>
     );
@@ -427,11 +427,11 @@ const BoardPage: React.FC = () => {
 
   if (!session) {
     return (
-      <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col min-h-screen bg-paper">
         <Header title={t('board.liveBoard', 'Live Board')} showBack onBack={handleBack} minimal />
         <div className="flex-1 flex flex-col items-center justify-center gap-3 px-6 text-center">
-          <p className="text-gray-500 dark:text-gray-400">{t('board.notFound', 'This board is not available.')}</p>
-          <button onClick={() => navigate('/home')} className="text-blue-500 font-medium">
+          <p className="text-ink-muted">{t('board.notFound', 'This board is not available.')}</p>
+          <button onClick={() => navigate('/home')} className="text-accent font-medium">
             {t('board.backHome', 'Back to home')}
           </button>
         </div>
@@ -447,7 +447,7 @@ const BoardPage: React.FC = () => {
   const setlistButton = (
     <button
       onClick={() => setSongsOpen(true)}
-      className="shrink-0 inline-flex items-center gap-1.5 min-h-[38px] px-3.5 py-2 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-300 bg-blue-50 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-500/40 hover:bg-blue-100 dark:hover:bg-blue-500/25 transition-colors"
+      className="shrink-0 inline-flex items-center gap-1.5 min-h-[38px] px-3.5 py-2 rounded-full text-xs font-semibold text-accent bg-accent-soft border border-line hover:bg-accent-soft transition-colors"
     >
       <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
         <path d="M18 3a1 1 0 00-1.196-.98l-8 1.6A1 1 0 008 4.6v7.07A3.5 3.5 0 109 14.5V8.82l7-1.4v3.25a3.5 3.5 0 101 2.45V3z" />
@@ -458,24 +458,24 @@ const BoardPage: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col h-screen [height:var(--vvh,100dvh)] bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col h-screen [height:var(--vvh,100dvh)] bg-paper">
       <Header title={session.name} showBack onBack={handleBack} minimal />
 
       {/* Status bar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 max-w-2xl mx-auto w-full">
+      <div className="flex items-center justify-between px-4 py-2 bg-surface border-b border-line max-w-2xl mx-auto w-full">
         <div className="flex items-center gap-2 min-w-0">
           {active ? (
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-500">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-danger">
+              <span className="w-1.5 h-1.5 rounded-full bg-danger animate-pulse" />
               {t('board.live', 'Live')}
             </span>
           ) : (
-            <span className="text-xs font-semibold text-gray-400">{t('board.ended', 'Ended / Not started')}</span>
+            <span className="text-xs font-semibold text-ink-faint">{t('board.ended', 'Ended / Not started')}</span>
           )}
           {/* Audience size is for the host to gauge the crowd — showing a low
               count to the audience itself only makes a quiet board look dead. */}
           {active && isAdmin && (
-            <span className="text-xs text-gray-400 dark:text-gray-500">
+            <span className="text-xs text-ink-faint">
               · {t('board.viewers', '{n} watching').replace('{n}', String(presence))}
             </span>
           )}
@@ -496,26 +496,26 @@ const BoardPage: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="shrink-0 text-amber-300 hover:text-amber-200 transition-colors"
+                  className="shrink-0 text-accent hover:text-white/80 transition-colors"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                   </svg>
                 </a>
-                <span className="text-sm font-bold tracking-wide text-amber-300 [text-shadow:0_0_10px_rgba(251,191,36,0.45)]">{m.authorName}</span>
-                <span className="ml-auto shrink-0 text-[10px] text-amber-200/60">
+                <span className="text-sm font-semibold tracking-wide text-accent [text-shadow:0_0_10px_rgba(251,191,36,0.45)]">{m.authorName}</span>
+                <span className="ml-auto shrink-0 text-[10px] text-white/80">
                   {showAbsTime ? formatTime(m.createDate) : formatAgo(m.createDate, t)}
                 </span>
                 {isAdmin && (
                   <button
                     onClick={() => askDelete(m.id)}
-                    className="shrink-0 -mr-1 px-2 py-2 text-amber-200/70 hover:text-amber-100 font-medium text-xs"
+                    className="shrink-0 -mr-1 px-2 py-2 text-white/80 hover:text-white/80 font-medium text-xs"
                   >
                     {t('board.delete', 'Delete')}
                   </button>
                 )}
               </div>
-              <p className="text-[15px] font-medium leading-relaxed text-amber-50 whitespace-pre-wrap break-words [overflow-wrap:anywhere]">{m.content}</p>
+              <p className="text-[15px] font-medium leading-relaxed text-white/80 whitespace-pre-wrap break-words [overflow-wrap:anywhere]">{m.content}</p>
             </div>
           ))}
 
@@ -523,7 +523,7 @@ const BoardPage: React.FC = () => {
             <button
               onClick={() => setAnnOpen((v) => !v)}
               aria-expanded={annOpen}
-              className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl border border-dashed border-amber-400/40 bg-amber-400/10 text-[11px] font-semibold text-amber-300 hover:bg-amber-400/15 transition-colors"
+              className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl border border-dashed border-accent/40 bg-accent/10 text-[11px] font-semibold text-accent hover:bg-accent/15 transition-colors"
             >
               {annOpen
                 ? t('board.hideAnnouncements', 'Collapse announcements')
@@ -547,8 +547,8 @@ const BoardPage: React.FC = () => {
           className="flex-1 overflow-y-auto px-4 py-3 space-y-2"
         >
           {comments.length === 0 && (
-            <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-10">
-              {t('board.beFirst', 'No messages yet — be the first to say hi! 👋')}
+            <p className="text-center text-sm text-ink-faint py-10">
+              {t('board.beFirst', 'No messages yet — be the first to say hi!')}
             </p>
           )}
           {comments.map((m) => {
@@ -560,14 +560,14 @@ const BoardPage: React.FC = () => {
                   {/* Name, elapsed time and like share one line above the bubble. */}
                   <div className={`flex items-center gap-1.5 mb-1 ${mine ? 'justify-end' : ''}`}>
                     {isHost && !mine && (
-                      <span className="inline-flex items-center gap-0.5 text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-1.5 py-0.5 rounded-full shrink-0">
+                      <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-accent bg-accent-soft px-1.5 py-0.5 rounded-full shrink-0">
                         <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M2.5 6.5l3 2.5 4.5-5.5 4.5 5.5 3-2.5-1.2 8.5H3.7L2.5 6.5z" />
                         </svg>
                         {t('board.host', 'Host')}
                       </span>
                     )}
-                    <span className={`text-[11px] font-semibold truncate max-w-[140px] ${isHost && !mine ? 'text-amber-600 dark:text-amber-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                    <span className={`text-[11px] font-semibold truncate max-w-[140px] ${isHost && !mine ? 'text-accent ' : 'text-ink-muted '}`}>
                       {mine ? t('board.you', 'You') : m.authorName}
                     </span>
                     {/* Host moderation: an explicit, always-visible control. A
@@ -576,7 +576,7 @@ const BoardPage: React.FC = () => {
                     {isAdmin && !mine && (
                       <button
                         onClick={() => setModTarget(m)}
-                        className="shrink-0 -my-1 p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                        className="shrink-0 -my-1 p-1.5 rounded-lg text-ink-faint hover:text-ink-muted hover:bg-ink/5 transition-colors"
                         aria-label={t('board.messageActions', 'Message actions')}
                       >
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -591,7 +591,7 @@ const BoardPage: React.FC = () => {
                         not an action. */}
                     <button
                       onClick={() => setShowAbsTime((v) => !v)}
-                      className="shrink-0 -my-2 px-1 py-2 text-[10px] leading-none text-gray-400 dark:text-gray-500 tabular-nums whitespace-nowrap"
+                      className="shrink-0 -my-2 px-1 py-2 text-[10px] leading-none text-ink-faint tabular-nums whitespace-nowrap"
                       aria-label={t('board.toggleTime', 'Show exact time')}
                     >
                       {showAbsTime ? formatTime(m.createDate) : formatAgo(m.createDate, t)}
@@ -602,10 +602,10 @@ const BoardPage: React.FC = () => {
                     <div
                       className={`px-3.5 py-2 rounded-2xl text-sm whitespace-pre-wrap break-words [overflow-wrap:anywhere] ${
                         mine
-                          ? 'bg-blue-500 text-white rounded-br-sm'
+                          ? 'bg-ink text-paper rounded-br-sm'
                           : isHost
-                            ? 'bg-amber-50 dark:bg-amber-900/25 text-gray-900 dark:text-amber-50 border border-amber-300 dark:border-amber-600/70 ring-1 ring-amber-300/60 dark:ring-amber-500/30 shadow-sm rounded-bl-sm'
-                            : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-gray-700 rounded-bl-sm'
+                            ? 'bg-accent-soft text-ink border border-accent/30 ring-1 ring-accent/30 shadow-sm rounded-bl-sm'
+                            : 'bg-surface text-ink border border-line rounded-bl-sm'
                       }`}
                     >
                       {m.content}
@@ -619,14 +619,14 @@ const BoardPage: React.FC = () => {
                       onClick={() => toggleLike(m)}
                       aria-pressed={likedIds.has(m.id)}
                       className={`shrink-0 -my-3 min-w-[44px] min-h-[44px] inline-flex items-center justify-center gap-0.5 rounded-xl transition-colors active:scale-90 ${
-                        likedIds.has(m.id) ? 'text-pink-500' : 'text-gray-400 hover:text-pink-500'
+                        likedIds.has(m.id) ? 'text-accent' : 'text-ink-faint hover:text-accent'
                       }`}
                       aria-label={t('board.like', 'Like')}
                     >
                       <svg className="w-4 h-4" fill={likedIds.has(m.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                       </svg>
-                      {m.likeCount > 0 && <span className="text-[10px] font-bold leading-none tabular-nums">{m.likeCount}</span>}
+                      {m.likeCount > 0 && <span className="text-[10px] font-semibold leading-none tabular-nums">{m.likeCount}</span>}
                     </button>
                   </div>
                 </div>
@@ -641,7 +641,7 @@ const BoardPage: React.FC = () => {
         {unread > 0 && (
           <button
             onClick={() => scrollToBottom('smooth')}
-            className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 inline-flex items-center gap-1.5 pl-2.5 pr-3.5 py-2 rounded-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-xs font-semibold shadow-lg shadow-blue-500/30 active:scale-95 transition-all animate-fade-in"
+            className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 inline-flex items-center gap-1.5 pl-2.5 pr-3.5 py-2 rounded-full bg-ink hover:bg-ink/85 active:bg-ink/85 text-paper text-xs font-semibold shadow-lg active:scale-95 transition-all animate-fade-in"
             aria-label={t('board.jumpToNewest', 'Jump to newest message')}
           >
             <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
@@ -660,18 +660,18 @@ const BoardPage: React.FC = () => {
           and it can't be pushed off-screen by a run of announcements. */}
       {performingSong && (
         <div className="px-4 pb-2 max-w-2xl mx-auto w-full">
-          <div className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1.5 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+          <div className="flex items-center gap-2 rounded-xl bg-ink text-paper px-3 py-1.5 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-surface animate-pulse shrink-0" />
             <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path d="M18 3a1 1 0 00-1.196-.98l-8 1.6A1 1 0 008 4.6v7.07A3.5 3.5 0 109 14.5V8.82l7-1.4v3.25a3.5 3.5 0 101 2.45V3z" />
             </svg>
-            <span className="text-[11px] font-bold tracking-wide shrink-0">{t('board.nowSinging', '現在唱的是 →')}</span>
+            <span className="text-[11px] font-semibold tracking-wide shrink-0">{t('board.nowSinging', '現在唱的是 →')}</span>
             <span className="text-xs font-semibold truncate min-w-0">{performingSong.title}</span>
             <a
               href={`https://www.google.com/search?q=${encodeURIComponent(performingSong.title)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-auto shrink-0 inline-flex items-center gap-1 text-[11px] font-semibold bg-white/20 hover:bg-white/30 px-2 py-0.5 rounded-full transition-colors"
+              className="ml-auto shrink-0 inline-flex items-center gap-1 text-[11px] font-semibold bg-paper/20 hover:bg-paper/30 px-2 py-0.5 rounded-full transition-colors"
             >
               {t('board.googleIt', 'Google it')}
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -683,10 +683,10 @@ const BoardPage: React.FC = () => {
       )}
 
       {/* Composer / ended notice */}
-      <div className="border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom))] max-w-2xl mx-auto w-full">
+      <div className="border-t border-line bg-surface px-4 py-3 [padding-bottom:calc(0.75rem+env(safe-area-inset-bottom))] max-w-2xl mx-auto w-full">
         {!active && !isAdmin ? (
           <div className="flex flex-col items-center gap-2 py-2">
-            <p className="text-center text-sm text-gray-400 dark:text-gray-500">
+            <p className="text-center text-sm text-ink-faint">
               {t('board.endedNotice', 'This session has ended or hasn’t started yet. You can read the messages but can no longer post.')}
             </p>
             {/* Read-only: the modal already refuses requests and marking while
@@ -694,13 +694,13 @@ const BoardPage: React.FC = () => {
             {songs.length > 0 && setlistButton}
           </div>
         ) : iAmMuted ? (
-          <p className="text-center text-sm text-amber-500 py-2">
+          <p className="text-center text-sm text-accent py-2">
             {t('board.mutedNotice', 'You have been muted by the host.')}
           </p>
         ) : (
           <>
             {endedAdmin && (
-              <p className="text-[11px] text-amber-500 mb-2">
+              <p className="text-[11px] text-accent mb-2">
                 {t('board.endedAdminNotice', 'This session has ended or hasn’t started yet — your message will be posted as an official announcement.')}
               </p>
             )}
@@ -717,7 +717,7 @@ const BoardPage: React.FC = () => {
                   key={emoji}
                   onClick={() => draft.set(draft.value + emoji)}
                   disabled={posting}
-                  className="shrink-0 min-w-[44px] min-h-[38px] inline-flex items-center justify-center text-lg leading-none rounded-full border border-gray-200 dark:border-gray-600 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700 active:scale-90 disabled:opacity-40 transition-all"
+                  className="shrink-0 min-w-[44px] min-h-[38px] inline-flex items-center justify-center text-lg leading-none rounded-full border border-line bg-transparent hover:bg-ink/5 active:scale-90 disabled:opacity-40 transition-all"
                   aria-label={t('board.addReaction', 'Add {e}').replace('{e}', emoji)}
                 >
                   {emoji}
@@ -729,15 +729,15 @@ const BoardPage: React.FC = () => {
                   aria-pressed={officialMode}
                   className={`shrink-0 min-h-[38px] text-xs font-semibold px-3.5 py-2 rounded-full border transition-colors ${
                     officialMode
-                      ? 'bg-amber-500 border-amber-500 text-amber-950'
-                      : 'bg-transparent border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-300'
+                      ? 'bg-ink border-accent text-accent'
+                      : 'bg-transparent border-line text-ink-muted '
                   }`}
                 >
                   {t('board.officialMode', 'Official')}
                 </button>
               )}
             </div>
-            {error && <p className="text-xs text-red-500 mb-1.5">{error}</p>}
+            {error && <p className="text-xs text-danger mb-1.5">{error}</p>}
             <div className="flex items-end gap-2">
               {/* readOnly rather than disabled while sending: `disabled` blurs
                   the field, which drops the iOS keyboard and reopens it a beat
@@ -755,14 +755,14 @@ const BoardPage: React.FC = () => {
                     ? t('board.officialPlaceholder', 'Post an official message…')
                     : t('board.placeholder', 'Say something…')
                 }
-                className={`flex-1 resize-none max-h-32 px-3.5 py-2.5 rounded-2xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 text-base transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`flex-1 resize-none max-h-32 px-3.5 py-2.5 rounded-2xl border border-line bg-paper text-ink text-base transition-opacity focus:outline-none focus:ring-2 focus:ring-accent ${
                   posting ? 'opacity-50' : ''
                 }`}
               />
               <button
                 onClick={() => send()}
                 disabled={!draft.value.trim() || posting}
-                className="shrink-0 min-w-[44px] min-h-[44px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 text-white font-semibold px-4 rounded-2xl transition-colors text-sm"
+                className="shrink-0 min-w-[44px] min-h-[44px] bg-ink hover:bg-ink/85 active:bg-ink/85 disabled:opacity-40 text-paper font-semibold px-4 rounded-2xl transition-colors text-sm"
               >
                 {posting ? '…' : t('board.send', 'Send')}
               </button>
@@ -791,20 +791,20 @@ const BoardPage: React.FC = () => {
           onClick={() => setConfirm(null)}
         >
           <div
-            className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-xs p-6 animate-fade-in"
+            className="bg-surface rounded-2xl shadow-2xl w-full max-w-xs p-6 animate-fade-in"
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="text-sm text-gray-700 dark:text-gray-200 mb-5">{confirm.message}</p>
+            <p className="text-sm text-ink mb-5">{confirm.message}</p>
             <div className="flex gap-2">
               <button
                 onClick={() => setConfirm(null)}
-                className="flex-1 py-2 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                className="flex-1 py-2 rounded-xl bg-ink/5 text-ink font-semibold text-sm hover:bg-ink/10 transition-colors"
               >
                 {t('common.cancel', 'Cancel')}
               </button>
               <button
                 onClick={() => { confirm.onConfirm(); setConfirm(null); }}
-                className="flex-1 py-2 rounded-xl bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-semibold text-sm transition-colors"
+                className="flex-1 py-2 rounded-xl bg-danger hover:bg-danger/90 text-white font-semibold text-sm transition-colors"
               >
                 {confirm.confirmLabel}
               </button>
@@ -820,37 +820,37 @@ const BoardPage: React.FC = () => {
           onClick={() => setModTarget(null)}
         >
           <div
-            className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-t-3xl shadow-2xl px-4 pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))] animate-sheet-up"
+            className="w-full max-w-sm bg-surface rounded-t-3xl shadow-2xl px-4 pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))] animate-sheet-up"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600 mx-auto my-2" />
-            <p className="px-3 pt-1 pb-2 text-sm font-bold text-gray-900 dark:text-gray-100 truncate">
+            <div className="w-10 h-1 rounded-full bg-ink/20 mx-auto my-2" />
+            <p className="px-3 pt-1 pb-2 text-sm font-semibold text-ink truncate">
               {modTarget.authorName}
             </p>
 
             <button
               onClick={() => { askMute(modTarget.authorUserId, modTarget.authorName); setModTarget(null); }}
-              className="flex items-center gap-3 w-full px-3 py-3.5 rounded-xl text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+              className="flex items-center gap-3 w-full px-3 py-3.5 rounded-xl text-left hover:bg-paper transition-colors"
             >
-              <svg className="w-[17px] h-[17px] text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-[17px] h-[17px] text-ink-faint shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                 {!mutedIds.has(modTarget.authorUserId) && (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l4-4m0 4l-4-4" />
                 )}
               </svg>
-              <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
+              <span className="text-sm font-medium text-ink">
                 {mutedIds.has(modTarget.authorUserId) ? t('board.unmute', 'Unmute') : t('board.mute', 'Mute')}
               </span>
             </button>
 
             <button
               onClick={() => { askDelete(modTarget.id); setModTarget(null); }}
-              className="flex items-center gap-3 w-full px-3 py-3.5 rounded-xl text-left hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+              className="flex items-center gap-3 w-full px-3 py-3.5 rounded-xl text-left hover:bg-danger-soft transition-colors"
             >
-              <svg className="w-[17px] h-[17px] text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-[17px] h-[17px] text-danger shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
-              <span className="text-sm font-medium text-red-500">{t('board.delete', 'Delete')}</span>
+              <span className="text-sm font-medium text-danger">{t('board.delete', 'Delete')}</span>
             </button>
           </div>
         </div>

@@ -47,13 +47,13 @@ const SharedVocabListPage: React.FC = () => {
     : groups;
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-paper">
       <Header title={t('sharedVocab.title')} showBack />
 
       <main className="flex-1 max-w-2xl mx-auto w-full px-4 pt-4 pb-24">
         {/* Search */}
         <div className="relative mb-4">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input
@@ -61,16 +61,16 @@ const SharedVocabListPage: React.FC = () => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t('userVocab.searchGroups', 'Search…')}
-            className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border border-line bg-surface text-ink placeholder-ink-faint focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
 
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
           </div>
         ) : filtered.length === 0 ? (
-          <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-10">
+          <p className="text-sm text-ink-faint text-center py-10">
             {query ? t('userVocab.noResults') : t('sharedVocab.noSharedGroups')}
           </p>
         ) : (
@@ -78,14 +78,14 @@ const SharedVocabListPage: React.FC = () => {
             {filtered.map((sg) => (
               <div
                 key={sg.id}
-                className="relative bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-3 text-left hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                className="relative bg-surface rounded-xl border border-line shadow-sm p-3 text-left hover:shadow-lg transition-all cursor-pointer"
                 onClick={() => navigate(`/shared-vocab/${sg.id}`, { state: { group: sg } })}
               >
                 {isAdmin && (
                   <button
                     onClick={(e) => handleDelete(e, sg.id)}
                     disabled={deleteLoading === sg.id}
-                    className="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30 text-red-500 hover:bg-red-200 dark:hover:bg-red-800/40 disabled:opacity-40 transition-colors"
+                    className="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-full bg-danger-soft text-danger hover:bg-danger-soft disabled:opacity-40 transition-colors"
                     aria-label={t('sharedVocab.delete', 'Delete')}
                   >
                     {deleteLoading === sg.id ? (
@@ -98,21 +98,21 @@ const SharedVocabListPage: React.FC = () => {
                   </button>
                 )}
                 <div className="flex items-center gap-1.5 mb-1">
-                  <span className="text-[10px] bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400 px-1.5 py-0.5 rounded font-medium">
+                  <span className="text-[10px] bg-success-soft text-success px-1.5 py-0.5 rounded font-medium">
                     {sg.language}
                   </span>
-                  <span className="text-[10px] text-gray-400 dark:text-gray-500">
+                  <span className="text-[10px] text-ink-faint">
                     {t('userVocab.wordCount', { count: sg.wordCount })}
                   </span>
                 </div>
-                <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 line-clamp-1">{sg.name}</p>
-                <p className="text-[10px] text-blue-400 dark:text-blue-500 mt-0.5 truncate">
+                <p className="text-sm font-semibold text-ink line-clamp-1">{sg.name}</p>
+                <p className="text-[10px] text-accent mt-0.5 truncate">
                   {t('sharedVocab.sharedBy', { name: sg.sharerDisplayName })}
                 </p>
                 {sg.tags && (
                   <div className="flex gap-1 mt-1.5 overflow-hidden">
                     {sg.tags.split(',').map((s) => s.trim()).filter(Boolean).map((tag) => (
-                      <span key={tag} className="shrink-0 text-[9px] font-medium px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600">
+                      <span key={tag} className="shrink-0 text-[9px] font-medium px-1.5 py-0.5 rounded-md bg-ink/5 text-ink-muted border border-line">
                         #{tag}
                       </span>
                     ))}

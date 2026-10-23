@@ -14,21 +14,21 @@ const DIFFICULTIES = ['easy', 'medium', 'hard'];
 const JLPT_LEVELS = ['N1', 'N2', 'N3', 'N4', 'N5'];
 
 const DIFF_ACTIVE: Record<string, string> = {
-  easy:   'bg-green-500 text-white',
-  medium: 'bg-blue-500 text-white',
-  hard:   'bg-red-500 text-white',
+  easy:   'border border-ink bg-ink/5 text-ink',
+  medium: 'border border-ink bg-ink/5 text-ink',
+  hard:   'border border-ink bg-ink/5 text-ink',
 };
-const JLPT_ACTIVE = 'bg-indigo-500 text-white';
-const DIFF_INACTIVE = 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300';
+const JLPT_ACTIVE = 'border border-ink bg-ink/5 text-ink';
+const DIFF_INACTIVE = 'border border-line bg-surface text-ink-faint';
 
 // 6 distinct colors for the group pills
 const GROUP_ACTIVE = [
-  'bg-violet-500 text-white',
-  'bg-pink-500 text-white',
-  'bg-amber-500 text-white',
-  'bg-teal-500 text-white',
-  'bg-sky-500 text-white',
-  'bg-orange-500 text-white',
+  'border border-ink bg-ink/5 text-ink',
+  'border border-ink bg-ink/5 text-ink',
+  'border border-ink bg-ink/5 text-ink',
+  'border border-ink bg-ink/5 text-ink',
+  'border border-ink bg-ink/5 text-ink',
+  'border border-ink bg-ink/5 text-ink',
 ];
 
 export interface JpSentenceFilterProps {
@@ -92,15 +92,15 @@ const JpSentenceFilter: React.FC<JpSentenceFilterProps> = ({
   };
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-3">
       {/* Difficulty row */}
       <div className="flex items-center gap-1.5 flex-wrap">
-        <span className="text-[11px] text-gray-400 dark:text-gray-500 w-14 shrink-0">{t('jpFilter.difficulty')}</span>
+        <span className="text-[11px] text-ink-faint w-14 shrink-0">{t('jpFilter.difficulty')}</span>
         {DIFFICULTIES.map(d => (
           <button
             key={d}
             onClick={() => toggleDifficulty(d)}
-            className={`px-2.5 py-0.5 rounded-lg text-xs font-semibold transition-colors ${
+            className={`px-2.5 py-1 rounded-md text-xs transition-colors ${
               selectedDifficulties.includes(d) ? DIFF_ACTIVE[d] : DIFF_INACTIVE
             }`}
           >
@@ -111,11 +111,11 @@ const JpSentenceFilter: React.FC<JpSentenceFilterProps> = ({
 
       {/* JLPT row */}
       <div className="flex items-center gap-1.5 flex-wrap">
-        <span className="text-[11px] text-gray-400 dark:text-gray-500 w-14 shrink-0">{t('jpFilter.jlpt')}</span>
+        <span className="text-[11px] text-ink-faint w-14 shrink-0">{t('jpFilter.jlpt')}</span>
         {selectedJlpt !== null && (
           <button
             onClick={() => onJlptChange(null)}
-            className="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            className="px-1 text-[11px] text-ink-muted underline underline-offset-2 decoration-line hover:text-ink transition-colors"
           >
             {t('jpFilter.all')}
           </button>
@@ -126,7 +126,7 @@ const JpSentenceFilter: React.FC<JpSentenceFilterProps> = ({
             <button
               key={level}
               onClick={() => toggleJlpt(level)}
-              className={`px-2.5 py-0.5 rounded-lg text-xs font-semibold transition-colors ${
+              className={`px-2.5 py-1 rounded-md text-xs transition-colors ${
                 active ? JLPT_ACTIVE : DIFF_INACTIVE
               }`}
             >
@@ -138,11 +138,11 @@ const JpSentenceFilter: React.FC<JpSentenceFilterProps> = ({
 
       {/* Topic groups row */}
       <div className="flex items-center gap-1.5 flex-wrap">
-        <span className="text-[11px] text-gray-400 dark:text-gray-500 w-14 shrink-0">{t('jpFilter.topics')}</span>
+        <span className="text-[11px] text-ink-faint w-14 shrink-0">{t('jpFilter.topics')}</span>
         {selectedGroups !== null && (
           <button
             onClick={() => onGroupsChange(null)}
-            className="px-2 py-0.5 rounded-lg text-[10px] font-semibold bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            className="px-1 text-[11px] text-ink-muted underline underline-offset-2 decoration-line hover:text-ink transition-colors"
           >
             {t('jpFilter.all')}
           </button>
@@ -154,7 +154,7 @@ const JpSentenceFilter: React.FC<JpSentenceFilterProps> = ({
               key={g.name}
               onClick={() => toggleGroup(g.name)}
               title={t(`jpFilter.groups.${g.name}`, { defaultValue: g.label })}
-              className={`px-2.5 py-0.5 rounded-lg text-xs font-semibold transition-colors max-w-[160px] truncate ${
+              className={`px-2.5 py-1 rounded-md text-xs transition-colors max-w-[160px] truncate ${
                 active ? GROUP_ACTIVE[i % GROUP_ACTIVE.length] : DIFF_INACTIVE
               }`}
             >

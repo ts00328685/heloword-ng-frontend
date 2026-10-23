@@ -72,20 +72,20 @@ const CreateGroupModal: React.FC<Props> = ({
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
       <div
-        className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm"
+        className="bg-surface rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-sm"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
-          <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+          <div className="w-10 h-1 rounded-full bg-ink/20" />
         </div>
         <div className="px-6 pt-4 pb-6">
-          <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <h2 className="text-base font-semibold text-ink mb-4">
             {initialName ? t('userVocab.editGroup', 'Edit Group') : t('userVocab.newGroup')}
           </h2>
 
           <div className="space-y-3 mb-4">
             <div>
-              <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+              <label className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1 block">
                 {t('userVocab.groupName')} *
               </label>
               <input
@@ -94,12 +94,12 @@ const CreateGroupModal: React.FC<Props> = ({
                 onChange={(e) => setName(e.target.value)}
                 placeholder={t('userVocab.groupName')}
                 maxLength={80}
-                className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2.5 rounded-xl border border-line bg-paper text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+              <label className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1 block">
                 {t('userVocab.groupDesc')}
               </label>
               <input
@@ -108,12 +108,12 @@ const CreateGroupModal: React.FC<Props> = ({
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder={t('userVocab.groupDesc')}
                 maxLength={200}
-                className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2.5 rounded-xl border border-line bg-paper text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+              <label className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1 block">
                 {t('userVocab.language')}
               </label>
               <div className="flex gap-2 flex-wrap">
@@ -123,8 +123,8 @@ const CreateGroupModal: React.FC<Props> = ({
                     onClick={() => setLanguage(lang)}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-colors ${
                       language === lang
-                        ? 'bg-blue-500 text-white border-blue-500'
-                        : 'bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-blue-400'
+                        ? 'bg-ink text-paper border-accent'
+                        : 'bg-paper text-ink-muted border-line hover:border-accent'
                     }`}
                   >
                     {lang}
@@ -134,23 +134,23 @@ const CreateGroupModal: React.FC<Props> = ({
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+              <label className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1 block">
                 {t('userVocab.tags')}
               </label>
               <div
-                className="flex flex-wrap gap-1.5 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 cursor-text min-h-[42px]"
+                className="flex flex-wrap gap-1.5 px-3 py-2 rounded-xl border border-line bg-paper cursor-text min-h-[42px]"
                 onClick={() => tagInputRef.current?.focus()}
               >
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="flex items-center gap-1 bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-xs font-medium px-2 py-0.5 rounded-md"
+                    className="flex items-center gap-1 bg-accent-soft text-accent text-xs font-medium px-2 py-0.5 rounded-md"
                   >
                     {tag}
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); removeTag(tag); }}
-                      className="text-blue-400 hover:text-blue-600 dark:hover:text-blue-200 leading-none"
+                      className="text-accent hover:text-accent leading-none"
                     >
                       ×
                     </button>
@@ -166,25 +166,25 @@ const CreateGroupModal: React.FC<Props> = ({
                   onCompositionEnd={() => { composingRef.current = false; }}
                   onBlur={() => { if (tagInput.trim() && !composingRef.current) addTag(tagInput); }}
                   placeholder={tags.length === 0 ? t('userVocab.tagsPlaceholder') : ''}
-                  className="flex-1 min-w-[80px] bg-transparent text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none"
+                  className="flex-1 min-w-[80px] bg-transparent text-sm text-ink placeholder-ink-faint focus:outline-none"
                 />
               </div>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{t('userVocab.tagsHint')}</p>
+              <p className="text-xs text-ink-faint mt-1">{t('userVocab.tagsHint')}</p>
             </div>
           </div>
 
-          {error && <p className="text-xs text-red-500 mb-3">{error}</p>}
+          {error && <p className="text-xs text-danger mb-3">{error}</p>}
 
           <button
             onClick={handleSave}
             disabled={!name.trim() || saving}
-            className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors mb-2"
+            className="w-full bg-ink hover:bg-ink/85 active:bg-ink/85 disabled:opacity-40 disabled:cursor-not-allowed text-paper font-semibold py-3 rounded-xl transition-colors mb-2"
           >
             {saving ? '…' : t('social.save')}
           </button>
           <button
             onClick={onClose}
-            className="w-full text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 py-2 transition-colors"
+            className="w-full text-sm text-ink-faint hover:text-ink-muted py-2 transition-colors"
           >
             {t('social.cancel')}
           </button>

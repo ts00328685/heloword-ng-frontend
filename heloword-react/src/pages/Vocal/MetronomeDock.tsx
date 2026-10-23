@@ -17,16 +17,16 @@ const MetronomeDock: React.FC<{ m: MetronomeApi }> = ({ m }) => {
     <button
       onClick={toggle}
       className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center text-white transition-colors ${
-        playing ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'
+        playing ? 'bg-danger hover:bg-danger/90' : 'bg-ink hover:bg-ink/85'
       }`}
       aria-label={playing ? t('vocal.metronome.stopAria') : t('vocal.metronome.startAria')}
       title={t('vocal.metronome.dockTitle')}
     >
-      {playing ? <span className="w-3 h-3 rounded-sm bg-white" /> : <span className="ml-0.5 w-0 h-0 border-y-[6px] border-y-transparent border-l-[10px] border-l-white" />}
+      {playing ? <span className="w-3 h-3 rounded-sm bg-surface" /> : <span className="ml-0.5 w-0 h-0 border-y-[6px] border-y-transparent border-l-[10px] border-l-line" />}
     </button>
   );
-  const step = 'w-7 h-7 shrink-0 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 text-base leading-none';
-  const shell = 'pointer-events-auto flex items-center rounded-2xl border border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-800/95 backdrop-blur shadow-lg';
+  const step = 'w-7 h-7 shrink-0 rounded-full text-ink-muted hover:bg-ink/5 text-base leading-none';
+  const shell = 'pointer-events-auto flex items-center rounded-2xl border border-line bg-surface backdrop-blur shadow-lg';
 
   return (
     <div
@@ -38,9 +38,9 @@ const MetronomeDock: React.FC<{ m: MetronomeApi }> = ({ m }) => {
           <div className={`${shell} gap-2 pl-1.5 pr-2 py-1.5`}>
             {playBtn}
             <span className={`w-2.5 h-2.5 rounded-full transition-colors duration-75 ${
-              currentBeat === -1 ? 'bg-gray-200 dark:bg-gray-700' : currentBeat === 0 ? 'bg-green-500' : 'bg-blue-500'
+              currentBeat === -1 ? 'bg-ink/10 ' : currentBeat === 0 ? 'bg-success' : 'bg-ink'
             }`} />
-            <span className="text-xs font-mono text-gray-600 dark:text-gray-300 tabular-nums">{bpm}</span>
+            <span className="text-xs font-mono text-ink-muted tabular-nums">{bpm}</span>
             <button onClick={() => setMinimized(false)} className={step} aria-label={t('vocal.metronome.expand')}>▴</button>
           </div>
         ) : (
@@ -52,15 +52,15 @@ const MetronomeDock: React.FC<{ m: MetronomeApi }> = ({ m }) => {
                 <span
                   key={i}
                   className={`${beats > 8 ? 'w-2 h-2' : 'w-3 h-3'} rounded-full transition-colors duration-75 ${
-                    currentBeat === i ? (i === 0 ? 'bg-green-500' : 'bg-blue-500') : 'bg-gray-200 dark:bg-gray-700'
+                    currentBeat === i ? (i === 0 ? 'bg-success' : 'bg-ink') : 'bg-ink/10 '
                   }`}
                 />
               ))}
             </div>
             <div className="flex items-center shrink-0">
               <button className={step} onClick={() => setBpm((b) => clampBpm(b - 1))} aria-label={t('vocal.metronome.decrease')}>−</button>
-              <span className="w-16 text-center text-sm font-semibold text-gray-700 dark:text-gray-200 tabular-nums">
-                {bpm}<span className="ml-0.5 text-[10px] font-normal text-gray-400">BPM</span>
+              <span className="w-16 text-center text-sm font-semibold text-ink tabular-nums">
+                {bpm}<span className="ml-0.5 text-[10px] font-normal text-ink-faint">BPM</span>
               </span>
               <button className={step} onClick={() => setBpm((b) => clampBpm(b + 1))} aria-label={t('vocal.metronome.increase')}>+</button>
             </div>

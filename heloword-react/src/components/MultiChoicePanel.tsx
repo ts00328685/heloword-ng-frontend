@@ -79,19 +79,19 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
   if (tooFew) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={onExit}>
-        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-7 mx-6 max-w-xs w-full flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
-          <div className="w-14 h-14 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-            <svg className="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="bg-surface rounded-3xl shadow-2xl p-7 mx-6 max-w-xs w-full flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
+          <div className="w-14 h-14 rounded-full bg-accent-soft flex items-center justify-center">
+            <svg className="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
             </svg>
           </div>
           <div className="text-center">
-            <p className="text-base font-bold text-gray-900 dark:text-white">{t('review.multiChoiceTooFewTitle')}</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{t('review.multiChoiceTooFewBody')}</p>
+            <p className="text-base font-semibold text-ink">{t('review.multiChoiceTooFewTitle')}</p>
+            <p className="text-sm text-ink-muted mt-1">{t('review.multiChoiceTooFewBody')}</p>
           </div>
           <button
             onClick={onExit}
-            className="w-full py-2.5 rounded-xl bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="w-full py-2.5 rounded-xl bg-ink text-paper text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             {t('review.multiChoiceConfirm')}
           </button>
@@ -105,14 +105,14 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-28 select-none">
         <div className="w-full max-w-sm flex flex-col items-center gap-6">
-          <div className="w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-            <svg className="w-10 h-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-20 h-20 rounded-full bg-success-soft flex items-center justify-center">
+            <svg className="w-10 h-10 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <div className="text-center">
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">{mcScore} / {mcWords.length}</p>
-            <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+            <p className="text-2xl font-semibold text-ink">{mcScore} / {mcWords.length}</p>
+            <p className="text-sm text-ink-faint mt-1">
               {mcScore === mcWords.length
                 ? t('review.multiChoiceAllCorrect')
                 : mcScore >= mcWords.length * 0.7
@@ -123,13 +123,13 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
           <div className="flex gap-3 w-full">
             <button
               onClick={restart}
-              className="flex-1 py-3 rounded-2xl bg-emerald-500 text-white text-sm font-semibold hover:bg-emerald-600 transition-colors"
+              className="flex-1 py-3 rounded-2xl bg-success text-white text-sm font-semibold hover:bg-success transition-colors"
             >
               {t('review.multiChoiceRetry')}
             </button>
             <button
               onClick={onExit}
-              className="flex-1 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="flex-1 py-3 rounded-2xl border border-line bg-surface text-ink-muted text-sm font-semibold hover:bg-paper transition-colors"
             >
               {t('review.multiChoiceExit')}
             </button>
@@ -147,28 +147,28 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
       <div className="w-full max-w-sm flex flex-col gap-5">
         {/* Progress bar */}
         <div className="flex items-center gap-3">
-          <div className="flex-1 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+          <div className="flex-1 h-1.5 bg-ink/10 rounded-full overflow-hidden">
             <div
-              className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+              className="h-full bg-success rounded-full transition-all duration-500"
               style={{ width: `${(mcIndex / mcWords.length) * 100}%` }}
             />
           </div>
-          <span className="text-xs text-gray-400 dark:text-gray-500 shrink-0">{mcIndex + 1} / {mcWords.length}</span>
+          <span className="text-xs text-ink-faint shrink-0">{mcIndex + 1} / {mcWords.length}</span>
         </div>
 
         {/* Question card */}
-        <div className="bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg px-8 py-8 flex flex-col items-center gap-3">
-          <p className="text-[11px] font-medium uppercase tracking-widest text-gray-400 dark:text-gray-500">
+        <div className="bg-surface rounded-3xl border border-line shadow-lg px-8 py-8 flex flex-col items-center gap-3">
+          <p className="text-[11px] font-medium uppercase tracking-widest text-ink-faint">
             {t('review.multiChoicePrompt')}
           </p>
-          <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug">
+          <p className="text-2xl font-semibold text-ink text-center leading-snug">
             {current.translateEn}
           </p>
           {current.translateCh && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 text-center">{current.translateCh}</p>
+            <p className="text-sm text-ink-muted text-center">{current.translateCh}</p>
           )}
           {current.sentence && (
-            <p className="text-xs text-gray-400 dark:text-gray-500 italic text-center mt-1 max-h-16 overflow-y-auto break-words">
+            <p className="text-xs text-ink-faint italic text-center mt-1 max-h-16 overflow-y-auto break-words">
               {current.sentence}
             </p>
           )}
@@ -181,11 +181,11 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
             const isChosen = mcSelected === opt.id;
             const revealed = mcSelected !== null;
 
-            let cls = 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:border-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20';
+            let cls = 'border-line bg-surface text-ink hover:border-success hover:bg-success-soft';
             if (revealed) {
-              if (isCorrect) cls = 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300';
-              else if (isChosen) cls = 'border-red-400 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400';
-              else cls = 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-600 opacity-50';
+              if (isCorrect) cls = 'border-success bg-success-soft text-success';
+              else if (isChosen) cls = 'border-danger bg-danger-soft text-danger';
+              else cls = 'border-line bg-surface text-ink-faint opacity-50';
             }
 
             return (
