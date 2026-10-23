@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import FuriganaText, { renderFurigana } from '../../components/FuriganaText';
+import { findReadings, snapOutOfReading, useFuriganaMode } from '../../utils/furigana';
 import { useTranslation } from 'react-i18next';
 import { NHKParagraph } from '../../services/nhkArticle.service';
 import {
@@ -327,38 +329,46 @@ export const SpeakerControls: React.FC<{
  * and it shows the next few words before they are spoken.
  */
 const SpokenText: React.FC<{ text: string; range: SpokenRange | null; selected?: { start: number; end: number } | null }> = ({ text, range, selected }) => {
+  const mode = useFuriganaMode();
+  const spans = useMemo(() => findReadings(text), [text]);
+  // Cut points never fall inside a 漢字[かな] unit, so each piece renders whole
+  // furigana; the DOM keeps every source character, so offsets stay exact.
+  const cut = (n: number) => snapOutOfReading(spans, Math.max(0, Math.min(n, text.length)));
+  const piece = (from: number, to: number) => (to > from ? renderFurigana(text.slice(from, to), mode) : null);
+
   if (!range && selected && selected.end > selected.start) {
+    const start = cut(selected.start);
+    const end = Math.max(start, cut(selected.end));
     return (
       <>
-        {text.slice(0, selected.start)}
-        <mark className="rounded-sm bg-accent-soft text-inherit">{text.slice(selected.start, selected.end)}</mark>
-        {text.slice(selected.end)}
+        {piece(0, start)}
+        <mark className="rounded-sm bg-accent-soft text-inherit">{piece(start, end)}</mark>
+        {piece(end, text.length)}
       </>
     );
   }
-  if (!range) return <>{text}</>;
+  if (!range) return <>{piece(0, text.length)}</>;
 
-  const clamp = (n: number) => Math.max(0, Math.min(n, text.length));
-  const start = clamp(range.start);
-  const end = Math.max(start, clamp(range.end));
-  if (start === end) return <>{text}</>;
+  const start = cut(range.start);
+  const end = Math.max(start, cut(range.end));
+  if (start === end) return <>{piece(0, text.length)}</>;
 
-  const wordStart = Math.max(start, Math.min(clamp(range.wordStart), end));
-  const wordEnd = Math.max(wordStart, Math.min(clamp(range.wordEnd), end));
+  const wordStart = Math.max(start, Math.min(cut(range.wordStart), end));
+  const wordEnd = Math.max(wordStart, Math.min(cut(range.wordEnd), end));
 
   return (
     <>
-      {text.slice(0, start)}
+      {piece(0, start)}
       <mark className="-mx-0.5 px-0.5 rounded bg-accent-soft text-inherit">
-        {text.slice(start, wordStart)}
+        {piece(start, wordStart)}
         {wordEnd > wordStart && (
           <mark className="rounded-sm bg-accent-soft text-accent">
-            {text.slice(wordStart, wordEnd)}
+            {piece(wordStart, wordEnd)}
           </mark>
         )}
-        {text.slice(wordEnd, end)}
+        {piece(wordEnd, end)}
       </mark>
-      {text.slice(end)}
+      {piece(end, text.length)}
     </>
   );
 };
@@ -435,7 +445,7 @@ export const ParagraphCard: React.FC<{
         <p className="text-xs text-ink-faint font-mono mb-2">#{index + 1}</p>
         <div className="flex items-start gap-1">
           <p
-            className={`text-sm text-ink leading-relaxed flex-1 ${lookupLang ? 'cursor-pointer' : ''}`}
+            className={`text-[15px] text-ink leading-relaxed flex-1 ${lookupLang ? 'cursor-pointer' : ''}`}
             onClick={lookupLang ? handleOriginalTap : undefined}
             data-no-analytics
           >
@@ -515,7 +525,7 @@ export const ParagraphCard: React.FC<{
           </button>
           {grammarOpen && (
             <div className="px-4 py-3 border-t border-line bg-surface">
-              <p className="text-sm text-ink-muted leading-relaxed whitespace-pre-line">{paragraph.grammar}</p>
+              <p className="text-sm text-ink-muted leading-relaxed whitespace-pre-line"><FuriganaText text={paragraph.grammar} /></p>
             </div>
           )}
         </>
@@ -557,7 +567,7 @@ export const ParagraphCard: React.FC<{
                       >
                         <td className="px-4 py-2.5">
                           <div className="flex items-center gap-1">
-                            <span className="font-medium text-accent">{v.word}</span>
+                            <span className="font-medium text-accent"><FuriganaText text={v.word} /></span>
                             <SpeakerButton
                               small
                               isPlaying={speakingKey === vocabKey}

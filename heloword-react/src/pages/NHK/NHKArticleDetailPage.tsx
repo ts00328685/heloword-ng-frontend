@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import FuriganaText from '../../components/FuriganaText';
+import FuriganaToggle from '../../components/FuriganaToggle';
 import Header from '../../components/Header';
 import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
 import { LangKey, ParagraphCard, useArticleSpeech, useWordLookup } from './ArticleShared';
@@ -106,7 +108,7 @@ const NHKArticleDetailPage: React.FC = () => {
           <>
             <div className="mb-4">
               <h1 className="text-lg font-semibold text-ink leading-snug mb-2">
-                {article.title}
+                <FuriganaText text={article.title} />
               </h1>
               <div className="flex flex-wrap items-center gap-2 text-xs text-ink-faint">
                 <span>日文原文</span>
@@ -129,6 +131,11 @@ const NHKArticleDetailPage: React.FC = () => {
                   </>
                 )}
               </div>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 mb-3">
+              <span className="text-xs text-ink-faint">{t('common.furigana')}</span>
+              <FuriganaToggle />
             </div>
 
             <div className="flex gap-1.5 mb-4 p-1 bg-ink/5 rounded-xl">

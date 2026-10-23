@@ -189,6 +189,25 @@ ruby rt {
   font-size: 0.55em;
   color: rgb(var(--ink-muted));
 }
+ruby.furigana {
+  ruby-position: over;
+  ruby-align: center;
+}
+ruby.furigana rt {
+  font-size: 0.5em;
+  line-height: 1;
+  letter-spacing: 0;
+  user-select: none; /* copy the sentence, not the readings */
+}
+/* Room for readings above the line wherever furigana appears */
+:where(p, li, span, div, td, mark):has(> ruby.furigana) {
+  line-height: 2.1;
+}
+/* Readings shown beside the kanji */
+.furigana-side {
+  font-size: 0.8em;
+  color: rgb(var(--ink-faint));
+}
 
 /* Flashcard 3D flip */
 .flashcard-scene {

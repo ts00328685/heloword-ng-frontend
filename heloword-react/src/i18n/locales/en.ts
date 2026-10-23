@@ -25,6 +25,10 @@ const en = {
     tools: 'Tools',
     ttsTest: 'Test',
     audioShort: 'Audio',
+    furigana: 'Furigana',
+    furiganaTop: 'Above',
+    furiganaSide: 'Beside',
+    display: 'Display',
   },
   nav: {
     quiz: 'Quiz',

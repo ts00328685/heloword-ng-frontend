@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useSessionState } from '../../hooks/useSessionState';
 import { PracticeActions, Sheet, SheetSection, SwitchRow } from '../../components/ui/practice';
 import AudioSettings from '../../components/AudioSettings';
+import FuriganaToggle from '../../components/FuriganaToggle';
 import Header from '../../components/Header';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useAuth } from '../../contexts/AuthContext';
@@ -769,6 +770,9 @@ const VocabularyQuizPage: React.FC = () => {
             ]).map(({ label, val, set }) => (
               <SwitchRow key={label} label={label} checked={val} onChange={() => set(!val)} />
             ))}
+          </SheetSection>
+          <SheetSection title={t('common.display')}>
+            <FuriganaToggle variant="row" />
           </SheetSection>
           <SheetSection title={t('common.audioShort')}>
             <AudioSettings />

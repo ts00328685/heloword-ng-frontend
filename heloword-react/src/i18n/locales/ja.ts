@@ -25,6 +25,10 @@ const ja = {
     tools: 'ツール',
     ttsTest: '試聴',
     audioShort: '音声',
+    furigana: 'ふりがな',
+    furiganaTop: '上',
+    furiganaSide: '横',
+    display: '表示',
   },
   nav: {
     quiz: 'クイズ',

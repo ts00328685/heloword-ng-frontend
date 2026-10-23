@@ -1,27 +1,50 @@
 import React from 'react';
-
-const READING = /([㐀-鿿豈-﫿々〆ヶ]+)\[([^\]]+)\]/g;
+import { findReadings, FuriganaMode, useFuriganaMode } from '../utils/furigana';
 
 /**
- * Renders 漢字[かな] as <ruby>. Builds React elements only — never innerHTML — so it is
- * safe for AI output and user-saved text.
+ * Renders 漢字[かな] as furigana — above the kanji (ruby) or beside it, per the
+ * user's setting. Builds React elements only, never innerHTML, so it is safe
+ * for AI output and user-saved text.
+ *
+ * The DOM keeps every source character (the brackets are hidden, not removed),
+ * so text offsets — tap-to-look-up, read-aloud highlighting — still line up
+ * with the original string.
  */
-const FuriganaText: React.FC<{ text: string; className?: string }> = ({ text, className }) => {
+const FuriganaText: React.FC<{ text: string; className?: string; mode?: FuriganaMode }> = ({ text, className, mode }) => {
+  const preferred = useFuriganaMode();
+  const nodes = renderFurigana(text, mode ?? preferred);
+  return className ? <span className={className}>{nodes}</span> : <>{nodes}</>;
+};
+
+export function renderFurigana(text: string, mode: FuriganaMode): React.ReactNode[] {
   const parts: React.ReactNode[] = [];
   let last = 0;
-  READING.lastIndex = 0;
-  for (let m = READING.exec(text); m; m = READING.exec(text)) {
-    if (m.index > last) parts.push(text.slice(last, m.index));
+  for (const r of findReadings(text)) {
+    if (r.start > last) parts.push(text.slice(last, r.start));
     parts.push(
-      <ruby key={m.index}>
-        {m[1]}
-        <rt className="text-[0.6em] text-ink-faint">{m[2]}</rt>
-      </ruby>,
+      mode === 'top' ? (
+        <ruby key={r.start} className="furigana">
+          {r.base}
+          <rt><span className="hidden">[</span>{r.reading}<span className="hidden">]</span></rt>
+        </ruby>
+      ) : (
+        <React.Fragment key={r.start}>
+          {r.base}
+          <span className="furigana-side">[{r.reading}]</span>
+        </React.Fragment>
+      ),
     );
-    last = m.index + m[0].length;
+    last = r.end;
   }
   if (last < text.length) parts.push(text.slice(last));
-  return <span className={className}>{parts}</span>;
-};
+  return parts;
+}
+
+/** Maps string children through FuriganaText (for markdown renderers). */
+export function withFurigana(children: React.ReactNode): React.ReactNode {
+  return React.Children.map(children, (child) =>
+    typeof child === 'string' ? <FuriganaText text={child} /> : child,
+  );
+}
 
 export default FuriganaText;

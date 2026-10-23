@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Sheet, SheetSection } from './sheet';
 import AudioSettings from '../AudioSettings';
+import FuriganaToggle from '../FuriganaToggle';
 
 export { Sheet, SheetSection };
 
@@ -110,7 +111,9 @@ export const PracticeTopBar: React.FC<{
   left?: React.ReactNode;
   summary?: string;
   settings?: React.ReactNode;
-}> = ({ left, summary, settings }) => {
+  /** Show the furigana (above / beside) switch — for Japanese content. */
+  furigana?: boolean;
+}> = ({ left, summary, settings, furigana = false }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   return (
@@ -128,6 +131,11 @@ export const PracticeTopBar: React.FC<{
           </button>
           <Sheet title={t('common.practiceSettings')} open={open} onClose={() => setOpen(false)}>
             {settings}
+            {furigana && (
+              <SheetSection title={t('common.display')}>
+                <FuriganaToggle variant="row" />
+              </SheetSection>
+            )}
             <SheetSection title={t('common.audioShort')}>
               <AudioSettings />
             </SheetSection>

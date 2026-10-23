@@ -7,6 +7,7 @@ import { useTheme } from '../contexts/ThemeContext';
 import { useSocial } from '../contexts/SocialContext';
 import { LANGUAGES, changeLanguage, Language } from '../i18n';
 import AudioSettings, { AudioButton } from './AudioSettings';
+import FuriganaToggle from './FuriganaToggle';
 import { useNicknameSave } from './NicknameEditor';
 import { useBoard } from '../contexts/BoardContext';
 import {
@@ -453,6 +454,11 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
                   <AudioSettings />
                 </div>
               )}
+            </div>
+
+            {/* Furigana: above / beside the kanji (app-wide) */}
+            <div className="border-b border-line px-4">
+              <FuriganaToggle variant="row" />
             </div>
 
             {/* Row 3: Assistant settings */}

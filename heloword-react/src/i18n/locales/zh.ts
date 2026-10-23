@@ -25,6 +25,10 @@ const zh = {
     tools: '工具',
     ttsTest: '試聽',
     audioShort: '音訊',
+    furigana: '假名標音',
+    furiganaTop: '上方',
+    furiganaSide: '旁邊',
+    display: '顯示',
   },
   nav: {
     quiz: '測驗',

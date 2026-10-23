@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import ReactMarkdown from 'react-markdown';
+import { withFurigana } from '../../components/FuriganaText';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -93,14 +94,16 @@ function scoreColor(score: number): string {
 const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
   <ReactMarkdown
     components={{
-      p: ({ children }) => <p className="leading-relaxed">{children}</p>,
-      h1: ({ children }) => <p className="text-base font-semibold text-ink mt-3">{children}</p>,
-      h2: ({ children }) => <p className="text-sm font-semibold text-ink mt-2">{children}</p>,
-      h3: ({ children }) => <p className="text-sm font-semibold text-ink mt-2">{children}</p>,
-      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-      ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{children}</ul>,
-      ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{children}</ol>,
-      li: ({ children }) => <li>{children}</li>,
+      p: ({ children }) => <p className="leading-relaxed">{withFurigana(children)}</p>,
+      h1: ({ children }) => <p className="text-base font-semibold text-ink mt-3">{withFurigana(children)}</p>,
+      h2: ({ children }) => <p className="text-sm font-semibold text-ink mt-2">{withFurigana(children)}</p>,
+      h3: ({ children }) => <p className="text-sm font-semibold text-ink mt-2">{withFurigana(children)}</p>,
+      strong: ({ children }) => <strong className="font-semibold">{withFurigana(children)}</strong>,
+      ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{withFurigana(children)}</ul>,
+      ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{withFurigana(children)}</ol>,
+      li: ({ children }) => <li>{withFurigana(children)}</li>,
+      em: ({ children }) => <em>{withFurigana(children)}</em>,
+      td: ({ children }) => <td>{withFurigana(children)}</td>,
     }}
   >
     {latexToUnicode(text)}
@@ -265,6 +268,7 @@ const WrittenTranslationPage: React.FC = () => {
       <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full space-y-4">
 
         <PracticeTopBar
+          furigana={lang === 'jp'}
           left={
             <Segmented
               value={lang}
