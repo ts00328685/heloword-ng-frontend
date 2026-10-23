@@ -29,6 +29,8 @@ const en = {
     furiganaTop: 'Above',
     furiganaSide: 'Beside',
     display: 'Display',
+    notice: 'Notice',
+    ok: 'OK',
   },
   nav: {
     quiz: 'Quiz',

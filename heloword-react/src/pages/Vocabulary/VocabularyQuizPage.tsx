@@ -645,6 +645,28 @@ const VocabularyQuizPage: React.FC = () => {
     if (autoInputFocus) inputRef.current?.focus();
   };
 
+  /**
+   * Skipping means "I don't know this one": count a wrong attempt, show the
+   * answer, and requeue the word. (It used to go through goNext with no wrong
+   * attempts, so a skipped word was saved as answered correctly and never
+   * showed up in the stats' wrong count.)
+   */
+  const handleSkip = () => {
+    const current = wordList[0];
+    if (!current) return;
+    if (!jpSuccessFiredRef.current) {
+      wrongCountRef.current += 1;
+      const ans = getRawAnswer(current);
+      if (japaneseMode && current.language === 'jp') {
+        const { ansKanjiFirst, ansKataFirst } = getJpAnswers(ans);
+        showToast(t('quiz.correctAnswerJp', { ans1: ansKanjiFirst, ans2: ansKataFirst }), 1500, 'top');
+      } else {
+        showToast(t('quiz.correctAnswer', { answer: ans }), 1500, 'top');
+      }
+    }
+    goNext(current);
+  };
+
   const handlePronounce = () => {
     const current = wordList[0];
     if (!current) return;
@@ -1022,7 +1044,7 @@ const VocabularyQuizPage: React.FC = () => {
             { label: t('quiz.pronounce'), onClick: handlePronounce },
             { label: t('quiz.reveal'), onClick: handleRevealAnswer },
           ]}
-          primary={{ label: t('quiz.skip'), onClick: () => goNext(current), emphasis: false }}
+          primary={{ label: t('quiz.skip'), onClick: handleSkip, emphasis: false }}
         />
           </>
         )}
