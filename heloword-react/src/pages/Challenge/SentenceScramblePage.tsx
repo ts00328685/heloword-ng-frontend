@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { useUI } from '../../contexts/UIContext';
-import { aiExplainScramble, aiScrambleHint, aiScrambleWrongOrder, SimilarSentence } from '../../services/scramble.service';
+import { aiExplainScramble, aiScrambleWrongOrder, SimilarSentence } from '../../services/scramble.service';
 import WordLookupSheet from '../../components/WordLookupSheet';
 import type { TappedWord } from '../../utils/wordLookup';
 import { countTricky, JustSolvedStrip, recordTricky, SolvedSentence, TrickyRecap } from './ScrambleAiExtras';
@@ -212,10 +212,6 @@ const SentenceScramblePage: React.FC = () => {
   const [longPressMode, setLongPressMode] = useSessionState<'speak' | 'copy' | 'lookup'>('scramble:longPress', 'copy', { kind: 'local' });
 
   // AI extras
-  /** First tap on 提示 gives a grammar nudge (AI); the second places the chunk. */
-  const [aiHintOn, setAiHintOn] = useSessionState('scramble:aiHint', true, { kind: 'local' });
-  const [nudge, setNudge] = useState<{ at: number; text: string } | null>(null);
-  const [nudgeLoading, setNudgeLoading] = useState(false);
   const [wrongWhy, setWrongWhy] = useState<{ text: string; loading: boolean } | null>(null);
   /** The last solved sentence — its natural / politeness / similar actions outlive the auto-advance. */
   const [lastSolved, setLastSolved] = useSessionState<SolvedSentence | null>('scramble:lastSolved', null);
@@ -247,7 +243,6 @@ const SentenceScramblePage: React.FC = () => {
     setShowTranslation(false);
     setAiResult('');
     setShowAiPanel(false);
-    setNudge(null);
     setWrongWhy(null);
     setIsAiItem(false);
 
@@ -341,35 +336,11 @@ const SentenceScramblePage: React.FC = () => {
     setTrickyCount(recordTricky(lang, sentence, translation));
   };
 
-  /** 提示: with AI hints on, the first tap at a position gives a grammar nudge; the next places the chunk. */
-  const handleHint = async () => {
-    if (status !== 'playing' || nudgeLoading) return;
+  /** 提示: place the next correct chunk (and remember the sentence for today's recap). */
+  const handleHint = () => {
+    if (status !== 'playing') return;
     markTricky();
-    const at = answerChunks.length;
-    if (!aiHintOn || nudge?.at === at) {
-      setNudge(null);
-      giveHint();
-      return;
-    }
-    const sentence = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
-    if (!sentence) { giveHint(); return; }
-    // Only the correctly ordered prefix counts as "placed".
-    let k = 0;
-    while (k < answerChunks.length && answerChunks[k].text === originalChunks[k]?.text) k++;
-    const placed = answerChunks.slice(0, k).map(c => c.text).join(' / ');
-    setNudgeLoading(true);
-    try {
-      const text = await aiScrambleHint({
-        lang, sentence, placed,
-        translation: (lang === 'jp' ? currentJp?.translation : currentEn?.translate_ch) ?? '',
-      });
-      setNudge({ at, text });
-    } catch {
-      // No nudge available (quota, network) — fall back to placing the chunk.
-      giveHint();
-    } finally {
-      setNudgeLoading(false);
-    }
+    giveHint();
   };
 
   /** Ask why a fully placed answer is in the wrong order. */
@@ -403,7 +374,6 @@ const SentenceScramblePage: React.FC = () => {
     setShowTranslation(false);
     setAiResult('');
     setShowAiPanel(false);
-    setNudge(null);
     setWrongWhy(null);
     let orig: Chunk[];
     if (itemLang === 'jp') {
@@ -426,20 +396,30 @@ const SentenceScramblePage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  /**
+   * Place the next correct chunk. Keeps the correctly ordered start of the answer;
+   * anything after the first mistake goes back to the bank first (it used to do
+   * nothing when a needed chunk was already placed in the wrong spot, or when every
+   * chunk was placed in the wrong order). Chunks compare by text, so duplicates
+   * like two は are interchangeable.
+   */
   const giveHint = () => {
     if (status !== 'playing') return;
-    const nextCorrect = originalChunks[answerChunks.length];
-    if (!nextCorrect) return;
-    const inBank = bankChunks.find(c => c.uid === nextCorrect.uid && !usedBankUids.has(c.uid));
-    if (inBank) {
-      setUsedBankUids(prev => new Set([...prev, inBank.uid]));
-      setAnswerChunks(prev => [...prev, inBank]);
-    }
+    let k = 0;
+    while (k < answerChunks.length && answerChunks[k].text === originalChunks[k]?.text) k++;
+    const target = originalChunks[k];
+    if (!target) return;
+    const kept = answerChunks.slice(0, k);
+    const keptUids = new Set(kept.map(c => c.uid));
+    const pick = bankChunks.find(c => c.text === target.text && !keptUids.has(c.uid));
+    if (!pick) return;
+    setAnswerChunks([...kept, pick]);
+    setUsedBankUids(new Set([...keptUids, pick.uid]));
+    if (answerChunks.length > k) showToast(t('scramble.hintReturned'), 1500);
   };
 
   const resetGame = () => {
     if (answerChunks.length > 0 && status === 'playing') markTricky();
-    setNudge(null);
     setWrongWhy(null);
     if (autoAdvanceTimer.current) {
       clearTimeout(autoAdvanceTimer.current);
@@ -456,7 +436,6 @@ const SentenceScramblePage: React.FC = () => {
 
   const showAnswer = () => {
     markTricky();
-    setNudge(null);
     setWrongWhy(null);
     const solvedSentence = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
     if (solvedSentence) {
@@ -626,7 +605,6 @@ const SentenceScramblePage: React.FC = () => {
                   />
                 )}
                 <SwitchRow label={t('scramble.autoPronounce')} checked={autoPronounce} onChange={() => setAutoPronounce(p => !p)} />
-                <SwitchRow label={t('scramble.aiHintPref')} sub={t('scramble.aiHintPrefSub')} checked={aiHintOn} onChange={() => setAiHintOn(v => !v)} />
                 <OptionRow
                   label={t('scramble.longPress')}
                   value={longPressMode}
@@ -724,13 +702,6 @@ const SentenceScramblePage: React.FC = () => {
           </div>
         </div>
 
-        {/* AI hint nudge for the current position */}
-        {(nudgeLoading || (nudge && nudge.at === answerChunks.length && status === 'playing')) && (
-          <p className="text-sm text-ink leading-relaxed border-l-2 border-accent pl-3 -mt-1 animate-slide-down">
-            {nudgeLoading ? <span className="text-ink-faint animate-pulse">{t('scramble.nudgeLoading')}</span> : nudge?.text}
-          </p>
-        )}
-
         {/* All chunks placed but the order is wrong — say so, and offer an AI explanation */}
         {isWrongOrder && (
           <div className="-mt-1 space-y-2 animate-slide-down">
@@ -789,11 +760,7 @@ const SentenceScramblePage: React.FC = () => {
 
         <PracticeActions
           tools={[
-            {
-              label: nudge && nudge.at === answerChunks.length && aiHintOn ? t('scramble.hintPlace') : t('scramble.hint'),
-              onClick: handleHint,
-              disabled: status !== 'playing' || nudgeLoading,
-            },
+            { label: t('scramble.hint'), onClick: handleHint, disabled: status !== 'playing' },
             { label: t('scramble.showAnswer'), onClick: showAnswer, disabled: status === 'correct' },
             { label: t('scramble.reset'), onClick: resetGame },
           ]}

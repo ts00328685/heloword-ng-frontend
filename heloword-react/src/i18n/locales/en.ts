@@ -648,10 +648,6 @@ const en = {
     descEn: 'Rearrange English sentence chunks',
     wrongOrder: 'Not quite the right order — try rearranging',
     aiWhyWrong: 'AI: what went wrong?',
-    hintPlace: 'Place next chunk',
-    nudgeLoading: 'Thinking of a hint…',
-    aiHintPref: 'AI grammar hints',
-    aiHintPrefSub: 'Get a grammar nudge first; tap again to place the chunk',
     longPressLookup: 'Look up',
     justSolved: 'Just solved',
     aiNatural: 'How natives say it',
@@ -665,6 +661,7 @@ const en = {
     politeKeigo: 'Keigo',
     recap: 'Today\'s tricky points ({{count}})',
     aiItem: 'AI-made',
+    hintReturned: 'Moved the misplaced pieces back to the word bank',
   },
   jpFilter: {
     difficulty: 'Difficulty',

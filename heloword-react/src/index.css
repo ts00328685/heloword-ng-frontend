@@ -49,7 +49,6 @@
 
   body {
     @apply bg-paper text-ink antialiased;
-    font-feature-settings: 'palt';
     /* Allow safe-area insets for iOS notch */
     padding-bottom: env(safe-area-inset-bottom);
   }

@@ -648,10 +648,6 @@ const zh = {
     descEn: '重組英文句子',
     wrongOrder: '順序不對，再調整看看',
     aiWhyWrong: 'AI：哪裡錯了？',
-    hintPlace: '放入下一塊',
-    nudgeLoading: '想提示中…',
-    aiHintPref: 'AI 文法提示',
-    aiHintPrefSub: '先給一句文法提示，再按一次才幫你放入答案',
     longPressLookup: '查詢',
     justSolved: '剛完成',
     aiNatural: '母語人士怎麼說',
@@ -665,6 +661,7 @@ const zh = {
     politeKeigo: '敬語',
     recap: '今日卡關重點（{{count}} 句）',
     aiItem: 'AI 出題',
+    hintReturned: '已把放錯的部分移回字詞庫',
   },
   jpFilter: {
     difficulty: '難度',

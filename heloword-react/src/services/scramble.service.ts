@@ -38,13 +38,6 @@ export async function aiScrambleWrongOrder(request: {
   return aiPost<string>('scramble/ai-wrong-order', request, 'AI wrong-order failed');
 }
 
-/** One grammar nudge toward the next chunk. `placed` = correctly placed chunks joined with " / ". */
-export async function aiScrambleHint(request: {
-  lang: 'jp' | 'en'; sentence: string; placed: string; translation: string;
-}): Promise<string> {
-  return aiPost<string>('scramble/ai-hint', request, 'AI hint failed');
-}
-
 export interface SimilarSentence {
   sentence: string;
   /** The sentence split into chunks, in the correct order (Japanese). */
