@@ -37,12 +37,12 @@ const Avatar: React.FC<{ name: string; online?: boolean; size?: 'sm' | 'md' }> =
   const initials = safe.slice(0, 2).toUpperCase();
   const sz = size === 'sm' ? 'w-8 h-8 text-xs' : 'w-10 h-10 text-sm';
   return (
-    <div className={`relative flex-shrink-0 ${sz} rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center font-semibold text-blue-600 dark:text-blue-400`}>
+    <div className={`relative flex-shrink-0 ${sz} rounded-full bg-accent-soft flex items-center justify-center font-semibold text-accent`}>
       {initials}
       {online !== undefined && (
         <span
-          className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-white dark:border-gray-800 ${
-            online ? 'bg-green-400' : 'bg-gray-300 dark:bg-gray-600'
+          className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-line ${
+            online ? 'bg-success' : 'bg-ink/20 '
           }`}
         />
       )}
@@ -86,20 +86,20 @@ const ChatPanel: React.FC<{
   };
 
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 z-50 flex flex-col bg-gray-100 dark:bg-gray-950 sm:items-center sm:justify-center">
-      <div className="flex flex-col w-full max-w-2xl h-full sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl bg-white dark:bg-gray-900 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex flex-col bg-ink/5 sm:items-center sm:justify-center">
+      <div className="flex flex-col w-full max-w-2xl h-full sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl bg-surface overflow-hidden">
         {/* Chat header */}
-        <div className="flex items-center gap-3 px-4 h-14 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm flex-shrink-0">
+        <div className="flex items-center gap-3 px-4 h-14 border-b border-line bg-surface backdrop-blur-sm flex-shrink-0">
           <button
             onClick={onClose}
-            className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 -ml-2 rounded-xl hover:bg-ink/5 transition-colors"
           >
-            <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <Avatar name={targetDisplayName} size="sm" />
-          <span className="font-semibold text-gray-800 dark:text-gray-100 flex-1 truncate">
+          <span className="font-semibold text-ink flex-1 truncate">
             {targetDisplayName}
           </span>
         </div>
@@ -107,7 +107,7 @@ const ChatPanel: React.FC<{
         {/* Messages */}
         <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
           {messages.length === 0 && (
-            <p className="text-center text-xs text-gray-400 dark:text-gray-500 mt-8">
+            <p className="text-center text-xs text-ink-faint mt-8">
               {t('social.noMessages')}
             </p>
           )}
@@ -118,12 +118,12 @@ const ChatPanel: React.FC<{
                 <div
                   className={`max-w-[75%] rounded-2xl px-3 py-2 text-sm ${
                     isMine
-                      ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-br-sm'
-                      : 'bg-gray-100 dark:bg-gray-700 dark:ring-1 dark:ring-white/5 text-gray-800 dark:text-gray-200 rounded-bl-sm'
+                      ? 'bg-ink text-paper rounded-br-sm'
+                      : 'bg-ink/5 dark:ring-1 text-ink rounded-bl-sm'
                   }`}
                 >
                   {msg.content}
-                  <div className={`text-[9px] mt-0.5 opacity-60 ${isMine ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`}>
+                  <div className={`text-[9px] mt-0.5 opacity-60 ${isMine ? 'text-white' : 'text-ink-muted '}`}>
                     {new Date(msg.sentAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
@@ -134,19 +134,19 @@ const ChatPanel: React.FC<{
         </div>
 
         {/* Input */}
-        <div className="flex items-end gap-2 px-4 pb-6 pt-2 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 flex-shrink-0">
+        <div className="flex items-end gap-2 px-4 pb-6 pt-2 border-t border-line bg-surface flex-shrink-0">
           <textarea
             rows={1}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKey}
             placeholder={t('social.messagePlaceholder')}
-            className="flex-1 resize-none rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-1 resize-none rounded-2xl border border-line bg-paper text-sm text-ink px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
           />
           <button
             onClick={handleSend}
             disabled={!input.trim()}
-            className="p-2.5 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white rounded-2xl transition-colors"
+            className="p-2.5 bg-ink hover:bg-ink/85 disabled:opacity-40 text-paper rounded-2xl transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -169,30 +169,30 @@ const OfficialPanel: React.FC<{
   const sorted = [...messages].sort((a, b) => b.id - a.id);
 
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 z-50 flex flex-col bg-gray-100 dark:bg-gray-950 sm:items-center sm:justify-center">
-      <div className="flex flex-col w-full max-w-2xl h-full sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl bg-white dark:bg-gray-900 overflow-hidden">
-        <div className="flex items-center gap-3 px-4 h-14 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm flex-shrink-0">
+    <div className="fixed inset-0 z-50 flex flex-col bg-ink/5 sm:items-center sm:justify-center">
+      <div className="flex flex-col w-full max-w-2xl h-full sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl bg-surface overflow-hidden">
+        <div className="flex items-center gap-3 px-4 h-14 border-b border-line bg-surface backdrop-blur-sm flex-shrink-0">
           <button
             onClick={onClose}
-            className="p-2 -ml-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 -ml-2 rounded-xl hover:bg-ink/5 transition-colors"
           >
-            <svg className="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <span className="font-semibold text-gray-800 dark:text-gray-100 flex-1">{t('social.officialChannelTitle')}</span>
+          <span className="font-semibold text-ink flex-1">{t('social.officialChannelTitle')}</span>
         </div>
         <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
           {sorted.length === 0 && (
-            <p className="text-center text-xs text-gray-400 mt-8">{t('social.officialChannelEmpty')}</p>
+            <p className="text-center text-xs text-ink-faint mt-8">{t('social.officialChannelEmpty')}</p>
           )}
           {sorted.map((msg) => (
-            <div key={msg.id} className="bg-gray-100 dark:bg-gray-800 rounded-2xl px-4 py-3">
-              <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{msg.title}</p>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 mb-1">
+            <div key={msg.id} className="bg-ink/5 rounded-2xl px-4 py-3">
+              <p className="text-sm font-semibold text-ink">{msg.title}</p>
+              <p className="text-xs text-ink-faint mt-0.5 mb-1">
                 {new Date(msg.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
               </p>
-              <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{msg.content}</p>
+              <p className="text-sm text-ink whitespace-pre-wrap">{msg.content}</p>
             </div>
           ))}
         </div>
@@ -219,22 +219,22 @@ const NicknameModal: React.FC<{
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4" onClick={onClose}>
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 w-full max-w-sm shadow-xl" onClick={(e) => e.stopPropagation()}>
-        <h3 className="font-semibold text-gray-800 dark:text-gray-100 mb-1">{t('social.setNickname')}</h3>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{t('social.nicknameHint', { name: maskIfEmail(friend.displayName) })}</p>
+      <div className="bg-surface rounded-2xl p-5 w-full max-w-sm shadow-xl" onClick={(e) => e.stopPropagation()}>
+        <h3 className="font-semibold text-ink mb-1">{t('social.setNickname')}</h3>
+        <p className="text-xs text-ink-muted mb-3">{t('social.nicknameHint', { name: maskIfEmail(friend.displayName) })}</p>
         <input
           autoFocus
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSave()}
-          className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-sm px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full rounded-xl border border-line bg-paper text-sm px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-accent"
           placeholder={t('social.nicknamePlaceholder')}
         />
         <div className="flex gap-2 justify-end">
-          <button onClick={onClose} className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
+          <button onClick={onClose} className="px-4 py-2 text-sm text-ink-muted hover:text-ink transition-colors">
             {t('social.cancel')}
           </button>
-          <button onClick={handleSave} className="px-4 py-2 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-xl transition-colors">
+          <button onClick={handleSave} className="px-4 py-2 text-sm bg-ink hover:bg-ink/85 text-paper rounded-xl transition-colors">
             {t('social.save')}
           </button>
         </div>
@@ -344,7 +344,7 @@ const SocialPage: React.FC = () => {
   const pendingSent = friends.filter((f) => f.status === 'PENDING_SENT');
   // Map userId → friendship for O(1) status lookup in the Online tab
   const friendshipByUserId = new Map(friends.map((f) => [f.otherUserId, f]));
-  // Display name from the online-users heartbeat (their own nickname/fullname, not masked)
+  // Display name from the online-users heartbeat (their public name — nickname or a neutral label, never their Google name)
   const onlineDisplayByUserId = new Map(onlineUsers.map((u) => [u.userId, u.displayName]));
   const totalUnread = Object.values(unreadCounts).reduce((s, n) => s + n, 0);
 
@@ -383,31 +383,31 @@ const SocialPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header title={t('nav.social')} />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
 
         {/* My identity badge */}
-        <div className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 mb-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+        <div className="flex items-center gap-3 bg-surface rounded-2xl p-3 mb-4 border border-line shadow-sm">
           <Avatar name={myDisplayName} online={!hideOnlineStatus} />
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{myDisplayName}</p>
-            <p className="text-xs text-gray-400 dark:text-gray-500 truncate">
+            <p className="text-sm font-semibold text-ink truncate">{myDisplayName}</p>
+            <p className="text-xs text-ink-faint truncate">
               {isLoggedIn ? t('social.loggedIn') : t('social.guestMode')}
             </p>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-xs text-gray-400 dark:text-gray-500">{t('social.appearOnline')}</span>
+            <span className="text-xs text-ink-faint">{t('social.appearOnline')}</span>
             <button
               role="switch"
               aria-checked={!hideOnlineStatus}
               onClick={() => setHideOnlineStatus(!hideOnlineStatus)}
               className={`relative w-9 h-5 rounded-full transition-colors ${
-                !hideOnlineStatus ? 'bg-green-400' : 'bg-gray-300 dark:bg-gray-600'
+                !hideOnlineStatus ? 'bg-success' : 'bg-ink/20 '
               }`}
             >
-              <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${
+              <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-surface rounded-full shadow transition-transform ${
                 !hideOnlineStatus ? 'translate-x-4' : 'translate-x-0'
               }`} />
             </button>
@@ -415,7 +415,7 @@ const SocialPage: React.FC = () => {
           {!isLoggedIn && (
             <button
               onClick={() => navigate('/login')}
-              className="text-xs bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded-xl transition-colors"
+              className="text-xs bg-ink hover:bg-ink/85 text-paper px-3 py-1.5 rounded-xl transition-colors"
             >
               {t('common.login')}
             </button>
@@ -423,36 +423,36 @@ const SocialPage: React.FC = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-1 mb-4 gap-1">
+        <div className="flex bg-surface rounded-2xl border border-line p-1 mb-4 gap-1">
           {(['online', 'friends', 'messages'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`flex-1 py-2 rounded-xl text-sm font-medium transition-colors ${
                 activeTab === tab
-                  ? 'bg-blue-500 text-white shadow-sm'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  ? 'bg-ink text-paper shadow-sm'
+                  : 'text-ink-muted hover:text-ink '
               }`}
             >
               {tab === 'online' ? (
                 <>
                   {t('social.tabOnline')}
                   {otherOnlineUsers.length > 0 && (
-                    <span className="ml-1.5 text-xs bg-white/20 rounded-full px-1.5">{otherOnlineUsers.length}</span>
+                    <span className="ml-1.5 text-xs bg-paper/20 rounded-full px-1.5">{otherOnlineUsers.length}</span>
                   )}
                 </>
               ) : tab === 'friends' ? (
                 <>
                   {t('social.tabFriends')}
                   {pendingReceived.length > 0 && (
-                    <span className="ml-1.5 text-xs bg-orange-400 text-white rounded-full px-1.5">{pendingReceived.length}</span>
+                    <span className="ml-1.5 text-xs bg-ink text-paper rounded-full px-1.5">{pendingReceived.length}</span>
                   )}
                 </>
               ) : (
                 <>
                   {t('social.tabMessages')}
                   {(totalUnread + officialUnread) > 0 && (
-                    <span className="ml-1.5 text-xs bg-red-500 text-white rounded-full px-1.5">{(totalUnread + officialUnread) > 99 ? '99+' : (totalUnread + officialUnread)}</span>
+                    <span className="ml-1.5 text-xs bg-accent text-paper rounded-full px-1.5">{(totalUnread + officialUnread) > 99 ? '99+' : (totalUnread + officialUnread)}</span>
                   )}
                 </>
               )}
@@ -464,22 +464,22 @@ const SocialPage: React.FC = () => {
         {activeTab === 'online' && (
           <div className="space-y-2">
             {onlineTabError && (
-              <p className="text-xs text-red-500 dark:text-red-400 px-1">{onlineTabError}</p>
+              <p className="text-xs text-danger px-1">{onlineTabError}</p>
             )}
             {otherOnlineUsers.length === 0 ? (
-              <div className="text-center py-12 text-gray-400 dark:text-gray-500 text-sm">
+              <div className="text-center py-12 text-ink-faint text-sm">
                 {t('social.noOneOnline')}
               </div>
             ) : (
               otherOnlineUsers.map((u) => (
                 <div
                   key={u.userId}
-                  className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 shadow-sm"
+                  className="flex items-center gap-3 bg-surface rounded-2xl p-3 border border-line shadow-sm"
                 >
                   <Avatar name={maskIfEmail(u.displayName)} online={true} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{maskIfEmail(u.displayName)}</p>
-                    <p className="text-xs text-gray-400 dark:text-gray-500">
+                    <p className="text-sm font-medium text-ink truncate">{maskIfEmail(u.displayName)}</p>
+                    <p className="text-xs text-ink-faint">
                       {u.isGuest ? t('social.guestUser') : t('social.member')}
                     </p>
                   </div>
@@ -488,13 +488,13 @@ const SocialPage: React.FC = () => {
                       onClick={isLoggedIn && !u.isGuest ? () => openChat(u.userId, u.displayName) : undefined}
                       disabled={!isLoggedIn || u.isGuest}
                       title={!isLoggedIn ? t('social.loginToChat') : u.isGuest ? t('social.cannotMessageGuest') : t('social.chat')}
-                      className={`relative p-2 rounded-xl transition-colors ${isLoggedIn && !u.isGuest ? 'bg-blue-50 dark:bg-blue-900/40 hover:bg-blue-100 dark:hover:bg-blue-900/60 text-blue-500 cursor-pointer' : 'bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed opacity-50'}`}
+                      className={`relative p-2 rounded-xl transition-colors ${isLoggedIn && !u.isGuest ? 'bg-accent-soft hover:bg-accent-soft text-accent cursor-pointer' : 'bg-ink/5 text-ink-faint cursor-not-allowed opacity-50'}`}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                       </svg>
                       {isLoggedIn && !u.isGuest && (unreadCounts[u.userId] ?? 0) > 0 && (
-                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-accent text-paper text-[10px] font-semibold rounded-full flex items-center justify-center px-0.5 leading-none">
                           {unreadCounts[u.userId] > 99 ? '99+' : unreadCounts[u.userId]}
                         </span>
                       )}
@@ -518,11 +518,11 @@ const SocialPage: React.FC = () => {
                                 setAddingFriendId(null);
                               }
                             }}
-                            className="p-2 bg-green-50 dark:bg-green-900/40 hover:bg-green-100 dark:hover:bg-green-900/60 disabled:opacity-50 text-green-500 rounded-xl transition-colors"
+                            className="p-2 bg-success-soft hover:bg-success-soft disabled:opacity-50 text-success rounded-xl transition-colors"
                             title={t('social.addFriend')}
                           >
                             {addingFriendId === u.userId ? (
-                              <span className="w-4 h-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin inline-block" />
+                              <span className="w-4 h-4 border-2 border-success border-t-transparent rounded-full animate-spin inline-block" />
                             ) : (
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
@@ -538,7 +538,7 @@ const SocialPage: React.FC = () => {
                       if (fs.status === 'PENDING_SENT') {
                         // We already sent them a request
                         return (
-                          <span className="text-xs text-gray-400 dark:text-gray-500 px-1">{t('social.pending')}</span>
+                          <span className="text-xs text-ink-faint px-1">{t('social.pending')}</span>
                         );
                       }
                       if (fs.status === 'PENDING_RECEIVED') {
@@ -557,7 +557,7 @@ const SocialPage: React.FC = () => {
                                 setAcceptingId(null);
                               }
                             }}
-                            className="text-xs bg-green-500 hover:bg-green-600 disabled:opacity-50 text-white px-3 py-1.5 rounded-lg transition-colors"
+                            className="text-xs bg-ink hover:bg-ink/85 disabled:opacity-50 text-paper px-3 py-1.5 rounded-lg transition-colors"
                           >
                             {acceptingId === fs.id ? '...' : t('social.accept')}
                           </button>
@@ -576,11 +576,11 @@ const SocialPage: React.FC = () => {
         {activeTab === 'friends' && (
           <div className="space-y-4">
             {!isLoggedIn ? (
-              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-4 text-center">
-                <p className="text-sm text-blue-600 dark:text-blue-400 mb-3">{t('social.loginForFriends')}</p>
+              <div className="bg-accent-soft border border-line rounded-2xl p-4 text-center">
+                <p className="text-sm text-accent mb-3">{t('social.loginForFriends')}</p>
                 <button
                   onClick={() => navigate('/login')}
-                  className="text-sm bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition-colors"
+                  className="text-sm bg-ink hover:bg-ink/85 text-paper px-4 py-2 rounded-xl transition-colors"
                 >
                   {t('common.login')}
                 </button>
@@ -590,20 +590,20 @@ const SocialPage: React.FC = () => {
                 {/* Pending received */}
                 {pendingReceived.length > 0 && (
                   <div>
-                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
+                    <p className="text-xs font-semibold text-ink-muted uppercase tracking-wide px-1 mb-2">
                       {t('social.pendingRequests')} ({pendingReceived.length})
                     </p>
                     {friendActionError && (
-                      <p className="text-xs text-red-500 dark:text-red-400 px-1 mb-2">{friendActionError}</p>
+                      <p className="text-xs text-danger px-1 mb-2">{friendActionError}</p>
                     )}
                     <div className="space-y-2">
                       {pendingReceived.map((f) => {
                         const primaryName = f.displayName;
                         return (
-                        <div key={f.id} className="flex items-center gap-3 bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-3 border border-orange-200 dark:border-orange-800">
+                        <div key={f.id} className="flex items-center gap-3 bg-accent-soft rounded-2xl p-3 border border-accent/30">
                           <Avatar name={primaryName} />
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{primaryName}</p>
+                            <p className="text-sm font-medium text-ink truncate">{primaryName}</p>
                           </div>
                           <button
                             disabled={acceptingId === f.id}
@@ -618,14 +618,14 @@ const SocialPage: React.FC = () => {
                                 setAcceptingId(null);
                               }
                             }}
-                            className="text-xs bg-green-500 hover:bg-green-600 disabled:opacity-50 text-white px-3 py-1.5 rounded-lg transition-colors"
+                            className="text-xs bg-ink hover:bg-ink/85 disabled:opacity-50 text-paper px-3 py-1.5 rounded-lg transition-colors"
                           >
                             {acceptingId === f.id ? '...' : t('social.accept')}
                           </button>
                           <button
                             disabled={acceptingId === f.id}
                             onClick={() => doRejectFriendRequest(f.id).catch(() => {})}
-                            className="text-xs text-gray-400 hover:text-red-500 dark:hover:text-red-400 disabled:opacity-50 transition-colors ml-1"
+                            className="text-xs text-ink-faint hover:text-danger disabled:opacity-50 transition-colors ml-1"
                           >
                             {t('social.reject')}
                           </button>
@@ -639,7 +639,7 @@ const SocialPage: React.FC = () => {
                 {/* Vocab share requests */}
                 {vocabShares.length > 0 && (
                   <div>
-                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
+                    <p className="text-xs font-semibold text-ink-muted uppercase tracking-wide px-1 mb-2">
                       {t('vocabShare.inboxTitle', 'Shared Vocab Groups')} ({vocabShares.length})
                     </p>
                     <div className="space-y-2">
@@ -649,21 +649,21 @@ const SocialPage: React.FC = () => {
                           ? maskIfEmail(senderFriend.displayName)
                           : maskIfEmail(share.groupName);
                         return (
-                        <div key={share.id} className="flex items-start gap-3 bg-purple-50 dark:bg-purple-900/20 rounded-2xl p-3 border border-purple-200 dark:border-purple-800">
-                          <div className="w-9 h-9 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center shrink-0 mt-0.5">
-                            <svg className="w-4 h-4 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div key={share.id} className="flex items-start gap-3 bg-accent-soft rounded-2xl p-3 border border-line">
+                          <div className="w-9 h-9 rounded-full bg-accent-soft flex items-center justify-center shrink-0 mt-0.5">
+                            <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                             </svg>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{share.groupName}</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                            <p className="text-sm font-semibold text-ink truncate">{share.groupName}</p>
+                            <p className="text-xs text-ink-muted mt-0.5">
                               {t('vocabShare.from', 'From')} <span className="font-medium">{senderName}</span>
                               {' · '}{share.wordCount} {t('vocabShare.words', 'words')}
-                              {share.language && <span className="ml-1 text-purple-600 dark:text-purple-400">[{share.language}]</span>}
+                              {share.language && <span className="ml-1 text-accent">[{share.language}]</span>}
                             </p>
                             {share.description && (
-                              <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 truncate">{share.description}</p>
+                              <p className="text-xs text-ink-faint mt-0.5 truncate">{share.description}</p>
                             )}
                           </div>
                           <div className="flex flex-row gap-2 items-center shrink-0">
@@ -677,7 +677,7 @@ const SocialPage: React.FC = () => {
                                   setVocabShareActingId(null);
                                 }
                               }}
-                              className="text-xs bg-green-500 hover:bg-green-600 disabled:opacity-50 text-white px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
+                              className="text-xs bg-ink hover:bg-ink/85 disabled:opacity-50 text-paper px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
                             >
                               {vocabShareActingId === share.id ? '...' : t('vocabShare.accept', 'Accept')}
                             </button>
@@ -691,7 +691,7 @@ const SocialPage: React.FC = () => {
                                   setVocabShareActingId(null);
                                 }
                               }}
-                              className="text-xs text-gray-400 hover:text-red-500 dark:hover:text-red-400 disabled:opacity-50 transition-colors whitespace-nowrap"
+                              className="text-xs text-ink-faint hover:text-danger disabled:opacity-50 transition-colors whitespace-nowrap"
                             >
                               {t('vocabShare.reject', 'Decline')}
                             </button>
@@ -706,7 +706,7 @@ const SocialPage: React.FC = () => {
                 {/* Accepted friends */}
                 {acceptedFriends.length > 0 && (
                   <div>
-                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
+                    <p className="text-xs font-semibold text-ink-muted uppercase tracking-wide px-1 mb-2">
                       {t('social.friends')} ({acceptedFriends.length})
                     </p>
                     <div className="space-y-2">
@@ -714,23 +714,23 @@ const SocialPage: React.FC = () => {
                         // maskIfEmail handles the case where myNickname was auto-populated with their username (an email)
                         const primaryName = f.displayName;
                         return (
-                        <div key={f.id} className="flex items-center gap-3 bg-white dark:bg-gray-800 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 shadow-sm">
+                        <div key={f.id} className="flex items-center gap-3 bg-surface rounded-2xl p-3 border border-line shadow-sm">
                           <Avatar name={primaryName} online={f.isOnline} />
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-800 dark:text-gray-100 truncate">{primaryName}</p>
-                            {/* {primaryName !== maskedEmail && <p className="text-xs text-gray-400 dark:text-gray-500 truncate">{maskedEmail}</p>} */}
+                            <p className="text-sm font-medium text-ink truncate">{primaryName}</p>
+                            {/* {primaryName !== maskedEmail && <p className="text-xs text-ink-faint truncate">{maskedEmail}</p>} */}
                           </div>
                           <div className="flex gap-1">
                             <button
                               onClick={() => openChat(f.otherUserId, f.myNickname || f.displayName)}
-                              className="relative p-2 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/40 rounded-xl transition-colors"
+                              className="relative p-2 text-accent hover:bg-accent-soft rounded-xl transition-colors"
                               title={t('social.chat')}
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                               </svg>
                               {(unreadCounts[f.otherUserId] ?? 0) > 0 && (
-                                <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+                                <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-accent text-paper text-[10px] font-semibold rounded-full flex items-center justify-center px-0.5 leading-none">
                                   {unreadCounts[f.otherUserId] > 99 ? '99+' : unreadCounts[f.otherUserId]}
                                 </span>
                               )}
@@ -738,7 +738,7 @@ const SocialPage: React.FC = () => {
                             {/* Friends tab is only shown to logged-in members; button always active here */}
                             <button
                               onClick={() => setNicknameTarget(f)}
-                              className="p-2 text-gray-400 hover:text-blue-500 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-xl transition-colors"
+                              className="p-2 text-ink-faint hover:text-accent hover:bg-paper rounded-xl transition-colors"
                               title={t('social.setNickname')}
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -747,7 +747,7 @@ const SocialPage: React.FC = () => {
                             </button>
                             <button
                               onClick={() => mutedUserIds.has(f.otherUserId) ? unmuteUser(f.otherUserId) : muteUser(f.otherUserId)}
-                              className={`p-2 rounded-xl transition-colors ${mutedUserIds.has(f.otherUserId) ? 'text-orange-400 hover:text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-900/30' : 'text-gray-300 hover:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
+                              className={`p-2 rounded-xl transition-colors ${mutedUserIds.has(f.otherUserId) ? 'text-accent hover:text-accent hover:bg-accent-soft ' : 'text-ink-faint hover:text-ink-muted hover:bg-paper '}`}
                               title={mutedUserIds.has(f.otherUserId) ? t('social.unmute') : t('social.mute')}
                             >
                               {mutedUserIds.has(f.otherUserId) ? (
@@ -763,7 +763,7 @@ const SocialPage: React.FC = () => {
                             </button>
                             <button
                               onClick={() => doRemoveFriend(f.id).catch(() => {})}
-                              className="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition-colors"
+                              className="p-2 text-ink-faint hover:text-danger hover:bg-danger-soft rounded-xl transition-colors"
                               title={t('social.removeFriend')}
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -781,20 +781,20 @@ const SocialPage: React.FC = () => {
                 {/* Pending sent */}
                 {pendingSent.length > 0 && (
                   <div>
-                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide px-1 mb-2">
+                    <p className="text-xs font-semibold text-ink-muted uppercase tracking-wide px-1 mb-2">
                       {t('social.pendingSent')} ({pendingSent.length})
                     </p>
                     <div className="space-y-2">
                       {pendingSent.map((f) => {
                         const primaryName = f.displayName
                         return (
-                        <div key={f.id} className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 border border-gray-200 dark:border-gray-700 opacity-80">
+                        <div key={f.id} className="flex items-center gap-3 bg-paper rounded-2xl p-3 border border-line opacity-80">
                           <Avatar name={primaryName} />
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm text-gray-600 dark:text-gray-400 truncate">{primaryName}</p>
+                            <p className="text-sm text-ink-muted truncate">{primaryName}</p>
                           </div>
-                          <span className="text-xs text-gray-400 dark:text-gray-500">{t('social.pending')}</span>
-                          <button onClick={() => doRemoveFriend(f.id).catch(() => {})} className="text-xs text-gray-300 hover:text-red-500 dark:hover:text-red-400 ml-2 transition-colors">
+                          <span className="text-xs text-ink-faint">{t('social.pending')}</span>
+                          <button onClick={() => doRemoveFriend(f.id).catch(() => {})} className="text-xs text-ink-faint hover:text-danger ml-2 transition-colors">
                             {t('social.cancel')}
                           </button>
                         </div>
@@ -805,7 +805,7 @@ const SocialPage: React.FC = () => {
                 )}
 
                 {acceptedFriends.length === 0 && pendingReceived.length === 0 && pendingSent.length === 0 && (
-                  <div className="text-center py-10 text-gray-400 dark:text-gray-500 text-sm">
+                  <div className="text-center py-10 text-ink-faint text-sm">
                     {t('social.noFriends')}
                   </div>
                 )}
@@ -820,30 +820,30 @@ const SocialPage: React.FC = () => {
             {/* Pinned official channel — always visible */}
             <button
               onClick={() => { markOfficialSeen(); setOfficialPanelOpen(true); }}
-              className="w-full flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-950 rounded-2xl border border-blue-200 dark:border-blue-800 shadow-sm hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors text-left"
+              className="w-full flex items-center gap-3 p-3 bg-accent-soft rounded-2xl border border-line shadow-sm hover:bg-accent-soft transition-colors text-left"
             >
               <div className="relative flex-shrink-0">
-                <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-ink flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
                   </svg>
                 </div>
                 {officialUnread > 0 && (
-                  <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+                  <span className="absolute -top-1 -right-1 min-w-[16px] h-4 bg-accent text-paper text-[10px] font-semibold rounded-full flex items-center justify-center px-0.5 leading-none">
                     {officialUnread > 99 ? '99+' : officialUnread}
                   </span>
                 )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between gap-2">
-                  <p className="text-sm font-semibold text-blue-700 dark:text-blue-300 truncate">{t('social.officialChannel')}</p>
+                  <p className="text-sm font-semibold text-accent truncate">{t('social.officialChannel')}</p>
                   {officialMessages.length > 0 && (
-                    <span className="text-[11px] text-gray-400 dark:text-gray-500 flex-shrink-0">
+                    <span className="text-[11px] text-ink-faint flex-shrink-0">
                       {new Date(officialMessages[0].publishedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-gray-400 dark:text-gray-500 truncate mt-0.5">
+                <p className="text-xs text-ink-faint truncate mt-0.5">
                   {officialMessages[0]?.content ?? t('social.officialChannelEmpty')}
                 </p>
               </div>
@@ -851,10 +851,10 @@ const SocialPage: React.FC = () => {
 
             {roomsLoading ? (
               <div className="flex justify-center py-12">
-                <div className="w-6 h-6 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+                <div className="w-6 h-6 border-2 border-accent border-t-transparent rounded-full animate-spin" />
               </div>
             ) : chatRooms.length === 0 ? (
-              <div className="text-center py-8 text-gray-400 dark:text-gray-500 text-sm">
+              <div className="text-center py-8 text-ink-faint text-sm">
                 {t('social.noConversations')}
               </div>
             ) : (
@@ -870,18 +870,18 @@ const SocialPage: React.FC = () => {
                 return (
                   <div
                     key={msg.roomId}
-                    className="w-full flex items-center bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden"
+                    className="w-full flex items-center bg-surface rounded-2xl border border-line shadow-sm overflow-hidden"
                   >
                     <button
                       onClick={() => openChat(otherUserId, displayName)}
-                      className="flex-1 flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors text-left min-w-0"
+                      className="flex-1 flex items-center gap-3 p-3 hover:bg-paper transition-colors text-left min-w-0"
                     >
                       <div className="relative flex-shrink-0">
                         <Avatar name={displayName} online={onlineUsers.some((u) => u.userId === otherUserId)} />
                         {unread > 0 && (
                           <div className="absolute -top-1 -right-1">
-                            <span className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-75" />
-                            <span className="relative min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
+                            <span className="absolute inset-0 rounded-full bg-danger animate-ping opacity-75" />
+                            <span className="relative min-w-[16px] h-4 bg-accent text-paper text-[10px] font-semibold rounded-full flex items-center justify-center px-0.5 leading-none">
                               {unread > 99 ? '99+' : unread}
                             </span>
                           </div>
@@ -889,20 +889,20 @@ const SocialPage: React.FC = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-baseline justify-between gap-2">
-                          <p className={`text-sm font-semibold truncate ${unread > 0 ? 'text-gray-900 dark:text-gray-50' : 'text-gray-800 dark:text-gray-100'}`}>
+                          <p className={`text-sm font-semibold truncate ${unread > 0 ? 'text-ink ' : 'text-ink '}`}>
                             {displayName}
-                            {isMuted && <span className="ml-1.5 text-[10px] font-normal text-orange-400">{t('social.muted')}</span>}
+                            {isMuted && <span className="ml-1.5 text-[10px] font-normal text-accent">{t('social.muted')}</span>}
                           </p>
-                          <span className="text-[11px] text-gray-400 dark:text-gray-500 flex-shrink-0">{time}</span>
+                          <span className="text-[11px] text-ink-faint flex-shrink-0">{time}</span>
                         </div>
-                        <p className={`text-xs truncate mt-0.5 ${unread > 0 ? 'text-gray-700 dark:text-gray-300 font-medium' : 'text-gray-400 dark:text-gray-500'}`}>
+                        <p className={`text-xs truncate mt-0.5 ${unread > 0 ? 'text-ink font-medium' : 'text-ink-faint '}`}>
                           {preview}
                         </p>
                       </div>
                     </button>
                     <button
                       onClick={() => isMuted ? unmuteUser(otherUserId) : muteUser(otherUserId)}
-                      className={`flex-shrink-0 p-3 transition-colors ${isMuted ? 'text-orange-400 hover:text-orange-500' : 'text-gray-300 hover:text-gray-500'}`}
+                      className={`flex-shrink-0 p-3 transition-colors ${isMuted ? 'text-accent hover:text-accent' : 'text-ink-faint hover:text-ink-muted'}`}
                       title={isMuted ? t('social.unmute') : t('social.mute')}
                     >
                       {isMuted ? (

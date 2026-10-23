@@ -106,15 +106,15 @@ const WordLookupSheet: React.FC<{
         className="fixed inset-x-0 bottom-0 z-[56] flex justify-center pointer-events-none"
       >
         <div className="pointer-events-auto w-full max-w-2xl mx-auto mb-[64px] px-4">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 animate-chatbot-slide-up">
+          <div className="bg-surface rounded-2xl shadow-2xl border border-line p-4 animate-chatbot-slide-up">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <FuriganaText text={result?.word ?? tapped.word} className="text-lg font-bold text-gray-900 dark:text-gray-100 leading-relaxed" />
+                  <FuriganaText text={result?.word ?? tapped.word} className="text-lg font-semibold text-ink leading-relaxed" />
                   <button
                     data-analytics="article.lookup.pronounce"
                     onClick={() => pronounceWord(plainWord, lang === 'ja' ? 'jp' : 'en')}
-                    className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                    className="p-1 rounded-lg text-ink-faint hover:text-ink-muted hover:bg-ink/5"
                     aria-label={t('chatbot.pronounce')}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,7 +123,7 @@ const WordLookupSheet: React.FC<{
                   </button>
                 </div>
                 {result && (
-                  <span className="text-[10px] text-gray-400 dark:text-gray-500">
+                  <span className="text-[10px] text-ink-faint">
                     {source === 'article' ? t('wordLookup.fromArticle') : t('wordLookup.fromAi')}
                   </span>
                 )}
@@ -133,7 +133,7 @@ const WordLookupSheet: React.FC<{
                   <button
                     data-analytics="article.lookup.save"
                     onClick={() => setSaving(true)}
-                    className="p-1.5 rounded-lg hover:bg-pink-50 dark:hover:bg-pink-900/30 text-pink-400"
+                    className="p-1.5 rounded-lg hover:bg-accent-soft text-accent"
                     aria-label={t('wordLookup.save')}
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,7 +144,7 @@ const WordLookupSheet: React.FC<{
                 <button
                   data-analytics="article.lookup.close"
                   onClick={onClose}
-                  className="p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="p-1.5 rounded-lg text-ink-faint hover:bg-ink/5"
                   aria-label={t('wordLookup.close')}
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,24 +156,24 @@ const WordLookupSheet: React.FC<{
 
             <div className="mt-2 min-h-[2.5rem]">
               {error ? (
-                <p className="text-sm text-red-400">{error}</p>
+                <p className="text-sm text-danger">{error}</p>
               ) : result ? (
                 <>
-                  {result.meaningZh && <p className="text-sm text-gray-800 dark:text-gray-100">{result.meaningZh}</p>}
-                  {result.meaningEn && <p className="text-xs text-blue-600 dark:text-blue-400 mt-0.5">{result.meaningEn}</p>}
+                  {result.meaningZh && <p className="text-sm text-ink">{result.meaningZh}</p>}
+                  {result.meaningEn && <p className="text-xs text-accent mt-0.5">{result.meaningEn}</p>}
                 </>
               ) : (
-                <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                <p className="text-sm text-ink-faint animate-pulse">{t('llm.thinking')}</p>
               )}
             </div>
 
-            <div className="mt-3 pt-2 border-t border-gray-100 dark:border-gray-700">
-              <p className="text-[10px] text-gray-400 dark:text-gray-500 mb-0.5">{t('wordLookup.sentence')}</p>
-              <FuriganaText text={tapped.sentence} className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed" />
+            <div className="mt-3 pt-2 border-t border-line">
+              <p className="text-[10px] text-ink-faint mb-0.5">{t('wordLookup.sentence')}</p>
+              <FuriganaText text={tapped.sentence} className="text-xs text-ink-muted leading-relaxed" />
             </div>
 
             {!isLoggedIn && result && (
-              <a href="/login" data-analytics="article.lookup.login" className="block mt-2 text-xs text-blue-500 underline">
+              <a href="/login" data-analytics="article.lookup.login" className="block mt-2 text-xs text-accent underline">
                 {t('wordLookup.saveLoginHint')}
               </a>
             )}

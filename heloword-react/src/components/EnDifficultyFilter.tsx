@@ -25,11 +25,11 @@ export function applyEnDifficultyFilter<T extends { sentence: string }>(
 }
 
 const ACTIVE: Record<EnDifficulty, string> = {
-  easy:   'bg-green-500 text-white',
-  medium: 'bg-blue-500 text-white',
-  hard:   'bg-red-500 text-white',
+  easy:   'border border-ink bg-ink/5 text-ink',
+  medium: 'border border-ink bg-ink/5 text-ink',
+  hard:   'border border-ink bg-ink/5 text-ink',
 };
-const INACTIVE = 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300';
+const INACTIVE = 'border border-line bg-surface text-ink-faint';
 
 interface Props {
   selected: EnDifficulty[];
@@ -50,12 +50,12 @@ const EnDifficultyFilter: React.FC<Props> = ({ selected, onChange }) => {
 
   return (
     <div className="flex items-center gap-1.5 flex-wrap">
-      <span className="text-[11px] text-gray-400 dark:text-gray-500 w-14 shrink-0">{t('jpFilter.difficulty')}</span>
+      <span className="text-[11px] text-ink-faint w-14 shrink-0">{t('jpFilter.difficulty')}</span>
       {EN_DIFFICULTIES.map(d => (
         <button
           key={d}
           onClick={() => toggle(d)}
-          className={`px-2.5 py-0.5 rounded-lg text-xs font-semibold transition-colors ${
+          className={`px-2.5 py-1 rounded-md text-xs transition-colors ${
             selected.includes(d) ? ACTIVE[d] : INACTIVE
           }`}
         >

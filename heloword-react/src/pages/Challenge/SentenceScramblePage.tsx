@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import ReactMarkdown from 'react-markdown';
+import { withFurigana } from '../../components/FuriganaText';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -13,8 +14,10 @@ import AddToGroupModal from '../../components/AddToGroupModal';
 import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
 import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
 import { Sentence } from '../../models';
+import { AiDisclosure, BlockLabel, OptionRow, PracticeActions, PracticeTopBar, Segmented, SheetSection, SwitchRow } from '../../components/ui/practice';
 import { pronounceWord } from '../../services/tts.service';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
+import { readSessionState, setCodec, useSessionState } from '../../hooks/useSessionState';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -107,9 +110,9 @@ const ChunkButton: React.FC<{
   const base =
     'select-none cursor-pointer px-3 py-1.5 rounded-xl text-sm font-medium border transition-all active:scale-95 touch-manipulation';
   const bankStyle =
-    'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-100 shadow-sm hover:border-blue-400 hover:shadow-md';
+    'bg-surface border-line text-ink shadow-sm hover:border-accent hover:shadow-md';
   const answerStyle =
-    'bg-blue-500 border-blue-600 text-white shadow-sm hover:bg-blue-600';
+    'bg-ink border-accent text-paper shadow-sm hover:bg-ink/85';
   const disabledStyle = 'opacity-30 cursor-not-allowed pointer-events-none';
   const invisibleStyle = 'invisible pointer-events-none';
 
@@ -134,14 +137,16 @@ const ChunkButton: React.FC<{
 const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
   <ReactMarkdown
     components={{
-      p: ({ children }) => <p className="leading-relaxed">{children}</p>,
-      h1: ({ children }) => <p className="text-base font-bold text-gray-900 dark:text-gray-100 mt-3">{children}</p>,
-      h2: ({ children }) => <p className="text-sm font-bold text-gray-800 dark:text-gray-100 mt-2">{children}</p>,
-      h3: ({ children }) => <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mt-2">{children}</p>,
-      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-      ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{children}</ul>,
-      ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{children}</ol>,
-      li: ({ children }) => <li>{children}</li>,
+      p: ({ children }) => <p className="leading-relaxed">{withFurigana(children)}</p>,
+      h1: ({ children }) => <p className="text-base font-semibold text-ink mt-3">{withFurigana(children)}</p>,
+      h2: ({ children }) => <p className="text-sm font-semibold text-ink mt-2">{withFurigana(children)}</p>,
+      h3: ({ children }) => <p className="text-sm font-semibold text-ink mt-2">{withFurigana(children)}</p>,
+      strong: ({ children }) => <strong className="font-semibold">{withFurigana(children)}</strong>,
+      ul: ({ children }) => <ul className="list-disc list-outside pl-5 space-y-1">{withFurigana(children)}</ul>,
+      ol: ({ children }) => <ol className="list-decimal list-outside pl-5 space-y-1">{withFurigana(children)}</ol>,
+      li: ({ children }) => <li>{withFurigana(children)}</li>,
+      em: ({ children }) => <em>{withFurigana(children)}</em>,
+      td: ({ children }) => <td>{withFurigana(children)}</td>,
     }}
   >
     {latexToUnicode(text)}
@@ -157,38 +162,51 @@ const SentenceScramblePage: React.FC = () => {
   const location = useLocation();
   const { incrementProgress } = useDailyGoal();
 
-  const initialLang: Lang = (location.state as { lang?: Lang } | null)?.lang ?? 'jp';
-  const [lang, setLang] = useState<Lang>(initialLang);
-  const [chunkSize, setChunkSize] = useState(2);
+  // Everything below survives leaving the page (login, audio, another tab of the
+  // app…): game state per browser tab, preferences & filters across visits.
+  const navLang = (location.state as { lang?: Lang } | null)?.lang;
+  const [lang, setLang] = useSessionState<Lang>('scramble:lang', navLang ?? 'jp');
+  const [chunkSize, setChunkSize] = useSessionState('scramble:chunkSize', 2, { kind: 'local' });
+
+  // A shortcut that names a language (e.g. Home → "JP scramble") wins — but only
+  // once per navigation, so coming Back to this entry keeps the in-page choice.
+  useEffect(() => {
+    if (!navLang) return;
+    if (readSessionState<string>('scramble:navKey') === location.key) return;
+    try { sessionStorage.setItem('hw-state:scramble:navKey', JSON.stringify(location.key)); } catch {}
+    setLang(navLang);
+  }, [location.key]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // JP sentence filters
-  const [filterDifficulties, setFilterDifficulties] = useState<string[]>(['easy', 'medium', 'hard']);
-  const [selectedGroups, setSelectedGroups] = useState<string[] | null>(null);
-  const [selectedJlpt, setSelectedJlpt] = useState<string[] | null>(null);
+  const [filterDifficulties, setFilterDifficulties] = useSessionState<string[]>('scramble:jpDifficulties', ['easy', 'medium', 'hard'], { kind: 'local' });
+  const [selectedGroups, setSelectedGroups] = useSessionState<string[] | null>('scramble:jpGroups', null, { kind: 'local' });
+  const [selectedJlpt, setSelectedJlpt] = useSessionState<string[] | null>('scramble:jpJlpt', null, { kind: 'local' });
   // EN sentence filter
-  const [enDifficulties, setEnDifficulties] = useState<EnDifficulty[]>([...EN_DIFFICULTIES]);
+  const [enDifficulties, setEnDifficulties] = useSessionState<EnDifficulty[]>('scramble:enDifficulties', [...EN_DIFFICULTIES], { kind: 'local' });
 
   // Game state
-  const [currentJp, setCurrentJp] = useState<JpSentence | null>(null);
-  const [currentEn, setCurrentEn] = useState<EnSentence | null>(null);
-  const [bankChunks, setBankChunks] = useState<Chunk[]>([]);
-  const [usedBankUids, setUsedBankUids] = useState<Set<string>>(new Set());
-  const [answerChunks, setAnswerChunks] = useState<Chunk[]>([]);
-  const [originalChunks, setOriginalChunks] = useState<Chunk[]>([]);
-  const [status, setStatus] = useState<GameStatus>('playing');
+  const [currentJp, setCurrentJp] = useSessionState<JpSentence | null>('scramble:currentJp', null);
+  const [currentEn, setCurrentEn] = useSessionState<EnSentence | null>('scramble:currentEn', null);
+  const [bankChunks, setBankChunks] = useSessionState<Chunk[]>('scramble:bank', []);
+  const [usedBankUids, setUsedBankUids] = useSessionState<Set<string>>('scramble:usedBank', () => new Set(), { codec: setCodec });
+  const [answerChunks, setAnswerChunks] = useSessionState<Chunk[]>('scramble:answer', []);
+  const [originalChunks, setOriginalChunks] = useSessionState<Chunk[]>('scramble:original', []);
+  const [status, setStatus] = useSessionState<GameStatus>('scramble:status', 'playing');
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
-  const [showTranslation, setShowTranslation] = useState(false);
+  const [showTranslation, setShowTranslation] = useSessionState('scramble:showTranslation', false);
+  // Which settings the current sentence was drawn for (see the load effect).
+  const [loadedFor, setLoadedFor] = useSessionState('scramble:loadedFor', '');
 
   // AI state
-  const [aiResult, setAiResult] = useState('');
+  const [aiResult, setAiResult] = useSessionState('scramble:aiResult', '');
   const [aiLoading, setAiLoading] = useState(false);
-  const [showAiPanel, setShowAiPanel] = useState(false);
+  const [showAiPanel, setShowAiPanel] = useSessionState('scramble:aiOpen', false);
 
   // Pronunciation toggle
-  const [autoPronounce, setAutoPronounce] = useState(false);
+  const [autoPronounce, setAutoPronounce] = useSessionState('scramble:autoPronounce', false, { kind: 'local' });
 
   // Long-press behavior toggle: 'speak' | 'copy'
-  const [longPressMode, setLongPressMode] = useState<'speak' | 'copy'>('copy');
+  const [longPressMode, setLongPressMode] = useSessionState<'speak' | 'copy'>('scramble:longPress', 'copy', { kind: 'local' });
 
   // Lazy-loaded data cache (populated on first access, never re-fetched)
   const jpDataRef = useRef<JpSentence[] | null>(null);
@@ -248,7 +266,15 @@ const SentenceScramblePage: React.FC = () => {
     }
   }, [lang, chunkSize, filterDifficulties, selectedGroups, selectedJlpt, enDifficulties]);
 
-  useEffect(() => { loadSentence(); }, [loadSentence]);
+  // Draw a new sentence when the settings change — but not when we come back to
+  // the page with a sentence still in progress for the same settings.
+  const configKey = JSON.stringify([lang, chunkSize, filterDifficulties, selectedGroups, selectedJlpt, enDifficulties]);
+  useEffect(() => {
+    const hasSentence = lang === 'jp' ? !!currentJp : !!currentEn;
+    if (hasSentence && loadedFor === configKey) return;
+    setLoadedFor(configKey);
+    loadSentence();
+  }, [loadSentence]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Check answer ─────────────────────────────────────────────────────────
 
@@ -421,70 +447,67 @@ const SentenceScramblePage: React.FC = () => {
   // ── Render ───────────────────────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-paper">
       <Header title={t('scramble.title')} showBack />
-      <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full space-y-3">
+      <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full space-y-4">
 
-        {/* Language + EN chunk-size toggles */}
-        <div className="flex items-center gap-2 flex-wrap">
-          {(['jp', 'en'] as Lang[]).map(l => (
-            <button
-              key={l}
-              onClick={() => setLang(l)}
-              className={`px-4 py-1.5 rounded-xl text-sm font-semibold transition-colors ${
-                lang === l
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300'
-              }`}
-            >
-              {l === 'jp' ? '🇯🇵 Japanese' : '🇬🇧 English'}
-            </button>
-          ))}
-          {lang === 'en' && (
-            <div className="flex items-center gap-1.5 ml-auto">
-              <span className="text-xs text-gray-500 dark:text-gray-400">{t('scramble.chunkSize')}</span>
-              {[1, 2, 3].map(n => (
-                <button
-                  key={n}
-                  onClick={() => setChunkSize(n)}
-                  className={`w-7 h-7 rounded-lg text-xs font-bold transition-colors ${
-                    chunkSize === n
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300'
-                  }`}
-                >
-                  {n}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* EN difficulty filter */}
-        {lang === 'en' && (
-          <EnDifficultyFilter selected={enDifficulties} onChange={setEnDifficulties} />
-        )}
-
-        {/* JP filters */}
-        {lang === 'jp' && (
-          <JpSentenceFilter
-            selectedDifficulties={filterDifficulties}
-            onDifficultiesChange={setFilterDifficulties}
-            selectedJlpt={selectedJlpt}
-            onJlptChange={setSelectedJlpt}
-            selectedGroups={selectedGroups}
-            onGroupsChange={setSelectedGroups}
-          />
-        )}
+        <PracticeTopBar
+          furigana={lang === 'jp'}
+          left={
+            <Segmented
+              value={lang}
+              onChange={setLang}
+              options={[{ value: 'jp', label: '日本語' }, { value: 'en', label: 'English' }]}
+            />
+          }
+          settings={
+            <>
+              <SheetSection title={t('common.filters')}>
+                {lang === 'en' ? (
+                  <EnDifficultyFilter selected={enDifficulties} onChange={setEnDifficulties} />
+                ) : (
+                  <JpSentenceFilter
+                    selectedDifficulties={filterDifficulties}
+                    onDifficultiesChange={setFilterDifficulties}
+                    selectedJlpt={selectedJlpt}
+                    onJlptChange={setSelectedJlpt}
+                    selectedGroups={selectedGroups}
+                    onGroupsChange={setSelectedGroups}
+                  />
+                )}
+              </SheetSection>
+              <SheetSection title={t('common.preferences')}>
+                {lang === 'en' && (
+                  <OptionRow
+                    label={t('scramble.chunkSize')}
+                    value={chunkSize}
+                    onChange={setChunkSize}
+                    options={[1, 2, 3].map(n => ({ value: n, label: String(n) }))}
+                  />
+                )}
+                <SwitchRow label={t('scramble.autoPronounce')} checked={autoPronounce} onChange={() => setAutoPronounce(p => !p)} />
+                <OptionRow
+                  label={t('scramble.longPress')}
+                  value={longPressMode}
+                  onChange={setLongPressMode}
+                  options={[
+                    { value: 'speak', label: t('scramble.longPressSpeak') },
+                    { value: 'copy', label: t('scramble.longPressCopy') },
+                  ]}
+                />
+              </SheetSection>
+            </>
+          }
+        />
 
         {/* Translation card */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+        <div className="bg-surface rounded-2xl border border-line p-4 shadow-sm">
           {dataLoading ? (
-            <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">{t('common.loading')}</p>
+            <p className="text-sm text-ink-faint animate-pulse">{t('common.loading')}</p>
           ) : (
             <>
               <div className="flex items-center justify-between mb-1">
-                <p className="text-sm text-gray-500 dark:text-gray-400">{t('scramble.translateCh')}</p>
+                <p className="text-sm text-ink-muted">{t('scramble.translateCh')}</p>
                 {isLoggedIn && (lang === 'jp' ? currentJp : currentEn) && (
                   <button
                     onClick={() => {
@@ -493,7 +516,7 @@ const SentenceScramblePage: React.FC = () => {
                         : { id: (currentEn as EnSentence).id, word: (currentEn as EnSentence).sentence, translateEn: (currentEn as EnSentence).sentence, translateCh: (currentEn as EnSentence).translate_ch || '', sentence: (currentEn as EnSentence).sentence, language: 'en', status: 1 };
                       setHeartWord(w);
                     }}
-                    className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                    className="p-1 rounded-lg text-ink-faint hover:text-danger transition-colors"
                     aria-label={t('userVocab.addToGroup')}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -502,46 +525,40 @@ const SentenceScramblePage: React.FC = () => {
                   </button>
                 )}
               </div>
-              <p className="text-base font-medium text-gray-800 dark:text-gray-100 leading-relaxed">
+              <p className="text-base font-medium text-ink leading-relaxed">
                 {chineseTranslation ?? '…'}
               </p>
               {/* Always show English for JP sentences */}
               {lang === 'jp' && currentJp?.english && (
-                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{currentJp.english}</p>
+                <p className="text-xs text-ink-faint mt-1">{currentJp.english}</p>
               )}
               {/* For EN mode: show the sentence only after correct/show-answer */}
               {lang === 'en' && showTranslation && (
-                <p className="text-xs text-green-500 font-medium mt-1">{fullSentence}</p>
+                <p className="text-xs text-success font-medium mt-1">{fullSentence}</p>
               )}
             </>
           )}
         </div>
 
-        {/* Status feedback — always in DOM so it doesn't shift the answer zone */}
-        <div className={`rounded-2xl px-4 py-2 text-sm font-semibold text-center transition-colors ${
-          status === 'correct'
-            ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400'
-            : 'invisible'
-        }`}>
-          {t('scramble.correct')} 🎉
-        </div>
+        {/* Status feedback — fixed height so the answer zone doesn't jump */}
+        <p className={`h-5 text-sm text-center text-success ${status === 'correct' ? '' : 'invisible'}`}>
+          {t('scramble.correct')}
+        </p>
 
         {/* Answer zone */}
         <div>
-          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-1.5 px-1">
-            {t('scramble.answerZone')}
-          </p>
+          <BlockLabel>{t('scramble.answerZone')}</BlockLabel>
           <div
             onDragOver={handleDragOver}
             onDrop={handleDropOnAnswerZone}
             className={`min-h-[52px] flex flex-wrap gap-2 p-3 rounded-2xl border-2 border-dashed transition-colors ${
               status === 'correct'
-                ? 'border-green-400 bg-green-50 dark:bg-green-900/10'
-                : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800'
+                ? 'border-success bg-success-soft '
+                : 'border-line bg-surface '
             }`}
           >
             {answerChunks.length === 0 && (
-              <span className="text-xs text-gray-300 dark:text-gray-600 self-center">
+              <span className="text-xs text-ink-faint self-center">
                 {t('scramble.dropHere')}
               </span>
             )}
@@ -564,16 +581,14 @@ const SentenceScramblePage: React.FC = () => {
 
         {/* Word bank */}
         <div>
-          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-1.5 px-1">
-            {t('scramble.wordBank')}
-          </p>
+          <BlockLabel>{t('scramble.wordBank')}</BlockLabel>
           <div
             onDragOver={handleDragOver}
             onDrop={handleDropOnBank}
-            className="min-h-[52px] flex flex-wrap gap-2 p-3 rounded-2xl bg-gray-100 dark:bg-gray-800/60"
+            className="min-h-[52px] flex flex-wrap gap-2 p-3 rounded-2xl bg-ink/5"
           >
             {bankChunks.every(c => usedBankUids.has(c.uid)) && (
-              <span className="text-xs text-gray-300 dark:text-gray-600 self-center">
+              <span className="text-xs text-ink-faint self-center">
                 {t('scramble.bankEmpty')}
               </span>
             )}
@@ -594,91 +609,31 @@ const SentenceScramblePage: React.FC = () => {
           </div>
         </div>
 
-        {/* Controls */}
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            onClick={giveHint}
-            disabled={status !== 'playing'}
-            className="py-2 rounded-xl text-sm font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 hover:bg-purple-200 dark:hover:bg-purple-900/50 disabled:opacity-40 transition-colors"
-          >
-            💡 {t('scramble.hint')}
-          </button>
-          <button
-            onClick={resetGame}
-            className="py-2 rounded-xl text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          >
-            🔄 {t('scramble.reset')}
-          </button>
-          <button
-            onClick={showAnswer}
-            disabled={status === 'correct'}
-            className="py-2 rounded-xl text-sm font-medium bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-900/50 disabled:opacity-40 transition-colors"
-          >
-            👁 {t('scramble.showAnswer')}
-          </button>
-          <button
-            onClick={() => loadSentence()}
-            className="py-2 rounded-xl text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white transition-colors"
-          >
-            ⏭ {t('scramble.next')}
-          </button>
-          <button
-            onClick={() => setAutoPronounce(p => !p)}
-            className={`py-2 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-              autoPronounce
-                ? 'bg-teal-500 hover:bg-teal-600 text-white'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-            }`}
-          >
-            🔊 {t('scramble.autoPronounce')}
-            <span className={`text-xs font-bold px-1.5 py-0.5 rounded-md ${autoPronounce ? 'bg-white/20' : 'bg-gray-300 dark:bg-gray-600'}`}>
-              {autoPronounce ? t('scramble.pronounceOn') : t('scramble.pronounceOff')}
-            </span>
-          </button>
-          <button
-            onClick={() => setLongPressMode(m => m === 'speak' ? 'copy' : 'speak')}
-            title={longPressMode === 'copy' ? t('scramble.longPressCopyTooltip') : t('scramble.longPressSpeakTooltip')}
-            className={`py-2 rounded-xl text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-              longPressMode === 'copy'
-                ? 'bg-amber-500 hover:bg-amber-600 text-white'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-            }`}
-          >
-            {longPressMode === 'copy' ? '📋' : '👆'} {t('scramble.longPress')}
-            <span className={`text-xs font-bold px-1.5 py-0.5 rounded-md ${longPressMode === 'copy' ? 'bg-white/20' : 'bg-gray-300 dark:bg-gray-600'}`}>
-              {longPressMode === 'copy' ? t('scramble.longPressCopy') : t('scramble.longPressSpeak')}
-            </span>
-          </button>
-        </div>
+        <PracticeActions
+          tools={[
+            { label: t('scramble.hint'), onClick: giveHint, disabled: status !== 'playing' },
+            { label: t('scramble.showAnswer'), onClick: showAnswer, disabled: status === 'correct' },
+            { label: t('scramble.reset'), onClick: resetGame },
+          ]}
+          primary={{
+            label: status === 'correct' ? t('scramble.next') : t('common.skip'),
+            onClick: () => loadSentence(),
+            emphasis: status === 'correct',
+          }}
+        />
 
-        {/* AI Grammar button */}
-        <button data-analytics="ai.scramble_explain"
-          onClick={handleAiExplain}
-          disabled={aiLoading}
-          className="w-full py-2.5 rounded-2xl text-sm font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
-          style={{ background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)' }}
+        <AiDisclosure
+          label={t('scramble.aiExplain')}
+          analytics="ai.scramble_explain"
+          open={showAiPanel}
+          loading={aiLoading}
+          loadingText={t('scramble.aiThinking')}
+          onToggle={() => (showAiPanel ? setShowAiPanel(false) : aiResult ? setShowAiPanel(true) : handleAiExplain())}
         >
-          <span>✨</span>
-          <span>{t('scramble.aiExplain')}</span>
-        </button>
-
-        {/* AI panel */}
-        {showAiPanel && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl border-2 rainbow-glow p-4 shadow-sm">
-            <p className="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-2">
-              ✨ {t('scramble.aiGrammar')}
-            </p>
-            {aiLoading ? (
-              <p className="text-sm text-gray-400 dark:text-gray-500 animate-pulse">
-                {t('scramble.aiThinking')}
-              </p>
-            ) : (
-              <div className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed space-y-2">
-                <TapToLookup as="div"><AiMarkdown text={aiResult} /></TapToLookup>
-              </div>
-            )}
+          <div className="text-sm text-ink leading-relaxed space-y-2">
+            <TapToLookup as="div"><AiMarkdown text={aiResult} /></TapToLookup>
           </div>
-        )}
+        </AiDisclosure>
 
       </main>
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}

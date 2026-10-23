@@ -1,7 +1,9 @@
+import { isTourPending } from '../../components/WalkthroughOverlay';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Sheet } from '../../components/ui/practice';
 import Header from '../../components/Header';
 import OnboardingModal from '../../components/OnboardingModal';
 
@@ -34,6 +36,8 @@ interface QuizGroup {
   date: Date;
   records: QuizSetting[];
   completed: number;
+  /** Correct answers in the most recent session — the progress of the cycle in flight. */
+  currentCompleted: number;
   total: number;
   latestFinishedTime?: Date;
 }
@@ -42,10 +46,10 @@ type StatusFilter = 'ALL' | 'UNFINISHED' | 'DUE' | 'FRESH' | 'SCHEDULED';
 type SortKey = 'recent' | 'level-asc' | 'level-desc' | 'progress' | 'next-review';
 
 const STATUS_CONFIG = {
-  UNFINISHED: { color: 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400',    dot: 'bg-blue-400' },
-  DUE:        { color: 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400', dot: 'bg-orange-400' },
-  FRESH:      { color: 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400',         dot: 'bg-red-400' },
-  SCHEDULED:  { color: 'bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400', dot: 'bg-green-400' },
+  UNFINISHED: { color: 'bg-accent-soft text-accent',    dot: 'bg-ink' },
+  DUE:        { color: 'bg-accent-soft text-accent', dot: 'bg-ink' },
+  FRESH:      { color: 'bg-danger-soft text-danger',         dot: 'bg-danger' },
+  SCHEDULED:  { color: 'bg-success-soft text-success', dot: 'bg-success' },
 };
 
 const ReviewPage: React.FC = () => {
@@ -158,6 +162,7 @@ const ReviewPage: React.FC = () => {
           date: new Date(mostRecent.timestamp),
           records: [recordForQuiz],
           completed,
+          currentCompleted: Math.min(mostRecent.finishedCount ?? 0, total),
           total,
           latestFinishedTime: latestFinished ? new Date(latestFinished) : undefined,
         };
@@ -170,7 +175,7 @@ const ReviewPage: React.FC = () => {
       });
 
       setGroups(parsed);
-      if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY)) {
+      if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY) && !isTourPending()) {
         setShowReviewOnboarding(true);
       }
       refresh();
@@ -231,6 +236,7 @@ const ReviewPage: React.FC = () => {
         date: new Date(mostRecent.timestamp),
         records: [record_qs],
         completed,
+        currentCompleted: Math.min(mostRecentCorrectIds.size, rangeSize),
         total: mostRecent.max - mostRecent.min + 1,
         latestFinishedTime: latestFinishedMs > 0 ? new Date(latestFinishedMs) : undefined,
       };
@@ -242,7 +248,7 @@ const ReviewPage: React.FC = () => {
       return b.date.getTime() - a.date.getTime();
     });
     setGroups(parsed);
-    if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY)) {
+    if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY) && !isTourPending()) {
       setShowReviewOnboarding(true);
     }
   };
@@ -254,7 +260,10 @@ const ReviewPage: React.FC = () => {
     const states = keys.map((k) => groupStates.get(k)).filter(Boolean) as DueGroup[];
     if (states.length === 0) return undefined;
     const order = { UNFINISHED: 0, FRESH: 1, DUE: 2, SCHEDULED: 3 };
-    return states.sort((a, b) => order[a.status] - order[b.status])[0];
+    const state = states.sort((a, b) => order[a.status] - order[b.status])[0];
+    // A stored level can exceed the interval list if the user later shortened their
+    // custom intervals — clamp so labels, filters and the edit slider stay in range.
+    return { ...state, reviewLevel: Math.min(state.reviewLevel, intervals.length - 1) };
   };
 
   // ─── Formatting ───────────────────────────────────────────────────────────
@@ -310,18 +319,22 @@ const ReviewPage: React.FC = () => {
         case 'level-desc':
           return (stateB?.reviewLevel ?? 0) - (stateA?.reviewLevel ?? 0);
         case 'progress': {
-          const pctA = a.total > 0 ? (a.completed % a.total) / a.total : 0;
-          const pctB = b.total > 0 ? (b.completed % b.total) / b.total : 0;
+          const pctA = a.total > 0 ? a.currentCompleted / a.total : 0;
+          const pctB = b.total > 0 ? b.currentCompleted / b.total : 0;
           return pctB - pctA;
         }
         case 'next-review': {
+          // Use the engine's due time (it accounts for level overrides); groups that
+          // need attention now sort first, groups that were never completed last.
+          // (Was `!state?.reviewLevel` → every level-1 group, level index 0, sorted as "never".)
           const getNext = (g: QuizGroup) => {
             const state = resolveGroupState(g.records);
-            if (!state?.reviewLevel || !g.latestFinishedTime) return Infinity;
-            const iv = intervals[Math.min(state.reviewLevel, intervals.length - 1)];
-            return g.latestFinishedTime.getTime() + iv;
+            if (!state) return Infinity;
+            if (state.status !== 'SCHEDULED') return -Infinity;
+            return state.nextReviewTime?.getTime() ?? Infinity;
           };
-          return getNext(a) - getNext(b);
+          const na = getNext(a), nb = getNext(b);
+          return na === nb ? 0 : na < nb ? -1 : 1;
         }
         case 'recent':
         default: {
@@ -412,9 +425,13 @@ const ReviewPage: React.FC = () => {
     );
 
     if (isDue || forceNewSession) {
+      // A review always starts a NEW session. Drop the record's id: if the group's
+      // latest session is an unfinished one that predates a level override, keeping
+      // its id would make the quiz append answers to that superseded session and the
+      // review would never register.
       const quizSettings: Record<string, QuizSetting> = {};
       group.records.forEach((s) => {
-        quizSettings[s.type] = { ...s, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
+        quizSettings[s.type] = { ...s, id: undefined, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
       });
       if (isCustomGroup) {
         showLoading();
@@ -454,9 +471,10 @@ const ReviewPage: React.FC = () => {
     const isDue = state && (state.status === 'DUE' || state.status === 'FRESH');
 
     if (isDue || forceNewSession) {
+      // New session — never resume via _guestId (see handleCardClick).
       const quizSettings: Record<string, QuizSetting> = {};
       group.records.forEach((s: any) => {
-        quizSettings[s.type] = { ...s, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
+        quizSettings[s.type] = { ...s, _guestId: undefined, timestamp: new Date(), tableName: TYPE_TO_TABLE_MAP[s.type] || s.tableName };
       });
       navigate('/vocabulary/quiz', { state: { quizSettings, quizMode } });
       return;
@@ -722,7 +740,7 @@ const ReviewPage: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header title={t('nav.review')} />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
@@ -731,32 +749,32 @@ const ReviewPage: React.FC = () => {
         {!isLoggedIn && (
           <div
             onClick={() => navigate('/login')}
-            className="flex items-center gap-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-3 mb-4 cursor-pointer hover:bg-blue-100 transition-colors"
+            className="flex items-center gap-3 rounded-md border border-line bg-surface px-3 py-2.5 mb-4 cursor-pointer hover:border-ink/30 transition-colors"
           >
-            <svg className="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg className="w-4 h-4 text-ink-faint shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <p className="text-xs text-blue-600 dark:text-blue-400 flex-1">
-              {t('review.guestBanner')} <span className="font-semibold underline">{t('common.login')}</span>
+            <p className="text-xs text-ink-muted flex-1">
+              {t('review.guestBanner')} <span className="text-ink underline underline-offset-2">{t('common.login')}</span>
             </p>
           </div>
         )}
 
         {/* Due-for-review section */}
         {dueCount > 0 && (
-          <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-2xl p-4 mb-4">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-2">
-                <span className="w-6 h-6 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
-                  {dueCount > 99 ? '99+' : dueCount}
-                </span>
-                <h3 className="text-sm font-semibold text-orange-700 dark:text-orange-400">{t('review.dueForReview')}</h3>
+          <div className="border-y border-line py-4 mb-5">
+            <div className="flex items-baseline justify-between mb-1">
+              <div className="flex items-baseline gap-3">
+                <span className="font-serif text-3xl leading-none text-accent tabular-nums">{dueCount > 99 ? '99+' : dueCount}</span>
+                <h3 className="text-sm text-ink">{t('review.dueForReview')}</h3>
               </div>
-              <button onClick={() => setShowAllDue((v) => !v)} className="text-xs text-orange-500 font-medium">
-                {showAllDue ? t('review.hide') : t('review.showAll')}
-              </button>
+              {dueCount > 6 && (
+                <button onClick={() => setShowAllDue((v) => !v)} className="text-xs text-ink-muted hover:text-ink">
+                  {showAllDue ? t('review.hide') : t('review.showAll')}
+                </button>
+              )}
             </div>
-            <p className="text-xs text-orange-500 mb-3">{t('review.dueDescription')}</p>
+            <p className="text-xs text-ink-muted mb-3">{t('review.dueDescription')}</p>
             <div className="flex flex-wrap gap-1.5">
               {(showAllDue ? dueGroups : dueGroups.slice(0, 6)).map((g) => {
                 const cfg = STATUS_CONFIG[g.status];
@@ -764,16 +782,16 @@ const ReviewPage: React.FC = () => {
                   <button
                     key={g.groupKey}
                     onClick={() => handleTagClick(g)}
-                    className={`text-xs px-2 py-0.5 rounded-lg font-medium flex items-center gap-1 cursor-pointer transition-opacity hover:opacity-75 active:scale-95 ${cfg.color}`}
+                    className="text-xs px-2.5 py-1 rounded-md border border-line bg-surface text-ink flex items-center gap-1.5 hover:border-ink/30 transition-colors"
                   >
                     <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
                     {formatGroupType(g.type)} {g.min}–{g.max}
-                    {' '}<span className="opacity-60">L{g.reviewLevel}</span>
+                    {' '}<span className="text-ink-faint">L{Math.min(g.reviewLevel, intervals.length - 1) + 1}</span>
                   </button>
                 );
               })}
               {!showAllDue && dueCount > 6 && (
-                <span className="text-xs text-orange-400 px-2 py-0.5">{t('review.moreItems', { count: dueCount - 6 })}</span>
+                <span className="text-xs text-ink-faint px-2 py-1">{t('review.moreItems', { count: dueCount - 6 })}</span>
               )}
             </div>
           </div>
@@ -787,7 +805,7 @@ const ReviewPage: React.FC = () => {
               {/* Top row: search + filter toggle + select */}
               <div className="flex gap-2">
                 <div className="relative flex-1">
-                  <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                   <input
@@ -795,26 +813,26 @@ const ReviewPage: React.FC = () => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder={t('review.searchPlaceholder')}
-                    className="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-800 dark:text-gray-200 placeholder-gray-400"
+                    className="w-full pl-9 pr-4 py-2 text-sm bg-surface border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-accent text-ink placeholder-ink-faint"
                   />
                   {searchQuery && (
-                    <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">×</button>
+                    <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-faint hover:text-ink-muted">×</button>
                   )}
                 </div>
                 {/* Filter toggle button */}
                 <button
-                  onClick={() => setShowFilterPanel((v) => !v)}
+                  onClick={() => setShowFilterPanel(true)}
                   className={`relative shrink-0 flex items-center gap-1.5 text-xs px-3 py-2 rounded-xl border font-medium transition-colors ${
                     showFilterPanel || activeFilterCount > 0
-                      ? 'border-blue-400 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                      : 'border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                      ? 'border-ink/40 text-ink '
+                      : 'border-line text-ink-muted hover:text-ink '
                   }`}
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h18M6 12h12M10 20h4" />
                   </svg>
                   {activeFilterCount > 0 && (
-                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-blue-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-ink text-paper text-[10px] font-semibold rounded-full flex items-center justify-center">
                       {activeFilterCount}
                     </span>
                   )}
@@ -823,35 +841,35 @@ const ReviewPage: React.FC = () => {
                 {!selectionMode ? (
                   <button
                     onClick={() => setSelectionMode(true)}
-                    className="shrink-0 text-xs px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium transition-colors"
+                    className="shrink-0 text-xs px-3 py-2 rounded-xl border border-line text-ink-muted hover:bg-ink/5 font-medium transition-colors"
                   >
                     {t('review.select')}
                   </button>
                 ) : (
                   <button
                     onClick={exitSelectionMode}
-                    className="shrink-0 text-xs px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium transition-colors"
+                    className="shrink-0 text-xs px-3 py-2 rounded-xl border border-line text-ink-muted hover:bg-ink/5 font-medium transition-colors"
                   >
                     {t('review.cancel')}
                   </button>
                 )}
               </div>
 
-              {/* Expandable filter panel */}
-              {showFilterPanel && (
-                <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-3 space-y-3 animate-slide-down">
+              {/* Filter sheet */}
+              <Sheet title={t('common.filters')} open={showFilterPanel} onClose={() => setShowFilterPanel(false)}>
+                <div className="space-y-5">
                   {/* Sort */}
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">{t('review.sortLabel')}</p>
+                    <p className="text-[10px] font-medium uppercase tracking-label text-ink-faint mb-2">{t('review.sortLabel')}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {sortOptions.map(({ key, label }) => (
                         <button
                           key={key}
                           onClick={() => setSortKey(key)}
-                          className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+                          className={`text-xs px-3 py-1 rounded-md border transition-colors ${
                             sortKey === key
-                              ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900'
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                              ? 'border-ink bg-ink/5 text-ink'
+                              : 'border-line text-ink-faint hover:text-ink-muted'
                           }`}
                         >
                           {label}
@@ -861,16 +879,16 @@ const ReviewPage: React.FC = () => {
                   </div>
                   {/* Status */}
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">{t('review.statusLabel')}</p>
+                    <p className="text-[10px] font-medium uppercase tracking-label text-ink-faint mb-2">{t('review.statusLabel')}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {filterButtons.map(({ key, label }) => (
                         <button
                           key={key}
                           onClick={() => setStatusFilter(key)}
-                          className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+                          className={`text-xs px-3 py-1 rounded-md border transition-colors ${
                             statusFilter === key
-                              ? 'bg-blue-500 text-white'
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                              ? 'border-ink bg-ink/5 text-ink'
+                              : 'border-line text-ink-faint hover:text-ink-muted'
                           }`}
                         >
                           {label}
@@ -881,14 +899,14 @@ const ReviewPage: React.FC = () => {
                   {/* Level (only when multiple levels exist) */}
                   {uniqueLevels.length > 1 && (
                     <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">{t('review.levelLabel')}</p>
+                      <p className="text-[10px] font-medium uppercase tracking-label text-ink-faint mb-2">{t('review.levelLabel')}</p>
                       <div className="flex flex-wrap gap-1.5">
                         <button
                           onClick={() => setLevelFilter('ALL')}
-                          className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+                          className={`text-xs px-3 py-1 rounded-md border transition-colors ${
                             levelFilter === 'ALL'
-                              ? 'bg-purple-500 text-white'
-                              : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                              ? 'border-ink bg-ink/5 text-ink'
+                              : 'border-line text-ink-faint hover:text-ink-muted'
                           }`}
                         >
                           {t('review.allLevels')}
@@ -897,10 +915,10 @@ const ReviewPage: React.FC = () => {
                           <button
                             key={level}
                             onClick={() => setLevelFilter(level)}
-                            className={`text-xs px-3 py-1 rounded-full font-medium transition-colors ${
+                            className={`text-xs px-3 py-1 rounded-md border transition-colors ${
                               levelFilter === level
-                                ? 'bg-purple-500 text-white'
-                                : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
+                                ? 'border-ink bg-ink/5 text-ink'
+                                : 'border-line text-ink-faint hover:text-ink-muted'
                             }`}
                           >
                             {t('review.reviewLevel', { level: level + 1 })}
@@ -913,25 +931,25 @@ const ReviewPage: React.FC = () => {
                   {activeFilterCount > 0 && (
                     <button
                       onClick={() => { setStatusFilter('ALL'); setLevelFilter('ALL'); setSortKey('recent'); }}
-                      className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 underline underline-offset-2"
+                      className="text-xs text-ink-faint hover:text-ink-muted underline underline-offset-2"
                     >
                       {t('review.resetFilters')}
                     </button>
                   )}
                 </div>
-              )}
+              </Sheet>
 
               {/* Active filter summary chips (collapsed state) */}
-              {!showFilterPanel && (statusFilter !== 'ALL' || levelFilter !== 'ALL' || selectionMode) && (
+              {(statusFilter !== 'ALL' || levelFilter !== 'ALL' || selectionMode) && (
                 <div className="flex items-center gap-1.5 flex-wrap">
                   {statusFilter !== 'ALL' && (
-                    <span className="inline-flex items-center gap-1 text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-700">
+                    <span className="inline-flex items-center gap-1 text-xs bg-accent-soft text-accent px-2 py-0.5 rounded-full border border-line">
                       {filterButtons.find((b) => b.key === statusFilter)?.label}
                       <button onClick={() => setStatusFilter('ALL')} className="opacity-60 hover:opacity-100 leading-none">×</button>
                     </span>
                   )}
                   {levelFilter !== 'ALL' && (
-                    <span className="inline-flex items-center gap-1 text-xs bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-2 py-0.5 rounded-full border border-purple-200 dark:border-purple-700">
+                    <span className="inline-flex items-center gap-1 text-xs bg-accent-soft text-accent px-2 py-0.5 rounded-full border border-line">
                       {t('review.reviewLevel', { level: (levelFilter as number) + 1 })}
                       <button onClick={() => setLevelFilter('ALL')} className="opacity-60 hover:opacity-100 leading-none">×</button>
                     </span>
@@ -939,21 +957,12 @@ const ReviewPage: React.FC = () => {
                   {selectionMode && filteredGroups.length > 0 && (
                     <button
                       onClick={toggleSelectAll}
-                      className="text-xs text-blue-500 dark:text-blue-400 font-medium ml-auto"
+                      className="text-xs text-accent font-medium ml-auto"
                     >
                       {selectedKeys.size === filteredGroups.length ? t('review.deselectAll') : t('review.selectAll')}
                     </button>
                   )}
                 </div>
-              )}
-              {/* Select all when filter panel is open */}
-              {showFilterPanel && selectionMode && filteredGroups.length > 0 && (
-                <button
-                  onClick={toggleSelectAll}
-                  className="text-xs text-blue-500 dark:text-blue-400 font-medium"
-                >
-                  {selectedKeys.size === filteredGroups.length ? t('review.deselectAll') : t('review.selectAll')}
-                </button>
               )}
             </div>
           );
@@ -961,17 +970,17 @@ const ReviewPage: React.FC = () => {
 
         {loading && (
           <div className="text-center py-12">
-            <div className="w-8 h-8 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-sm text-gray-400 dark:text-gray-500">{t('review.loading')}</p>
+            <div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+            <p className="text-sm text-ink-faint">{t('review.loading')}</p>
           </div>
         )}
 
         {!loading && groups.length === 0 && (
           <div className="text-center py-16 flex flex-col items-center gap-4">
-            <p className="text-gray-400 dark:text-gray-500 text-sm">{t('review.empty')}</p>
+            <p className="text-ink-faint text-sm">{t('review.empty')}</p>
             <button
               onClick={() => navigate('/vocabulary')}
-              className="px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-2xl transition-colors"
+              className="px-5 py-2.5 bg-ink hover:bg-ink/85 text-paper text-sm font-semibold rounded-2xl transition-colors"
             >
               {t('review.goConfigureGroups')}
             </button>
@@ -980,23 +989,22 @@ const ReviewPage: React.FC = () => {
 
         {!loading && filteredGroups.length === 0 && groups.length > 0 && (
           <div className="text-center py-10">
-            <p className="text-gray-400 dark:text-gray-500 text-sm">{t('review.noResults')}</p>
+            <p className="text-ink-faint text-sm">{t('review.noResults')}</p>
           </div>
         )}
 
         {!loading && filteredGroups.length > 0 && (
-          <div className="space-y-3" style={{ paddingBottom: selectionMode && selectedKeys.size > 0 ? '5rem' : undefined }}>
+          <div className="space-y-2.5" style={{ paddingBottom: selectionMode && selectedKeys.size > 0 ? '5rem' : undefined }}>
             {filteredGroups.map((group, i) => {
               const groupState = resolveGroupState(group.records);
               const status = groupState?.status ?? 'SCHEDULED';
-              // finishedCount accumulates across all review cycles, so use modulo to get
-              // the current cycle's progress. SCHEDULED means just completed → show full.
-              // FRESH means the grace window was missed; by definition the most recent session
-              // is fully complete, so any non-zero cycleCompleted is stale data — always 0.
-              const cycleCompleted = group.total > 0 ? group.completed % group.total : 0;
+              // Progress of the current cycle: a just-finished cycle (SCHEDULED) is full,
+              // a due/forgotten group starts a fresh cycle at 0, and an in-flight cycle
+              // shows the most recent session's own count. (Summing every session and
+              // taking `% total` broke as soon as any earlier session was abandoned.)
               const displayCompleted = status === 'SCHEDULED' ? group.total
-                : status === 'FRESH' ? 0
-                : cycleCompleted;
+                : status === 'UNFINISHED' ? group.currentCompleted
+                : 0;
               const pct = group.total > 0 ? Math.round((displayCompleted / group.total) * 100) : 0;
               const cfg = STATUS_CONFIG[status];
               const isDue = status === 'DUE' || status === 'FRESH';
@@ -1012,18 +1020,18 @@ const ReviewPage: React.FC = () => {
                 <div
                   key={i}
                   onClick={() => selectionMode && toggleSelect(key)}
-                  className={`bg-white dark:bg-gray-800 rounded-2xl border-2 p-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 animate-fade-in-up ${
+                  className={`bg-surface rounded-md border p-4 transition-colors animate-fade-in-up ${
                     selectionMode ? 'cursor-pointer' : 'cursor-default'
                   } ${
                     isSelected
-                      ? 'border-blue-500 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/10'
+                      ? 'border-accent bg-accent-soft '
                       : isDue && !selectionMode
-                        ? 'border-orange-300 dark:border-orange-700'
+                        ? 'border-accent/30 '
                         : isUnfinished && !selectionMode
-                          ? 'border-blue-300 dark:border-blue-700'
+                          ? 'border-line '
                           : selectionMode
-                            ? 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
-                            : 'border-gray-200 dark:border-gray-700'
+                            ? 'border-line hover:border-line '
+                            : 'border-line '
                   }`}
                   style={{ animationDelay: `${Math.min(i, 8) * 50}ms` }}
                 >
@@ -1032,7 +1040,7 @@ const ReviewPage: React.FC = () => {
                       {/* Checkbox (selection mode only) */}
                       {selectionMode && (
                         <div className={`mt-0.5 shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-                          isSelected ? 'border-blue-500 bg-blue-500' : 'border-gray-300 dark:border-gray-600'
+                          isSelected ? 'border-accent bg-ink' : 'border-line '
                         }`}>
                           {isSelected && (
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1042,9 +1050,9 @@ const ReviewPage: React.FC = () => {
                         </div>
                       )}
                       <div className="min-w-0">
-                        <p className="text-sm font-bold text-gray-800 dark:text-gray-100">{formatDate(group.date)}</p>
+                        <p className="text-sm font-semibold text-ink">{formatDate(group.date)}</p>
                         {group.latestFinishedTime && (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                          <p className="text-xs text-ink-faint mt-0.5">
                             {t('review.lastActivity', { time: formatTime(group.latestFinishedTime) })}
                           </p>
                         )}
@@ -1052,104 +1060,78 @@ const ReviewPage: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-end gap-1 shrink-0 ml-2">
                       {/* Status badge */}
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 ${cfg.color}`}>
+                      <span className="text-xs text-ink-muted flex items-center gap-1.5">
                         <span className={`w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
                         {statusLabel(status)}
                       </span>
                       {/* Review level + interval tag */}
                       {groupState && (
-                        <span className="text-xs text-gray-400 dark:text-gray-500">
+                        <span className="text-xs text-ink-faint">
                           {t('review.reviewLevel', { level: groupState.reviewLevel + 1 })} / {intervals.length}
                           {' · '}
-                          <span className="text-blue-400 dark:text-blue-500 font-medium">{formatInterval(currentIntervalMs)}</span>
+                          <span className="text-accent font-medium">{formatInterval(currentIntervalMs)}</span>
                         </span>
-                      )}
-                      {/* Edit button — hidden in selection mode */}
-                      {!selectionMode && (
-                        <button
-                          onClick={(e) => openEdit(e, group)}
-                          className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 mt-0.5 flex items-center gap-1 transition-colors"
-                        >
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                          </svg>
-                          {t('review.edit')}
-                        </button>
                       )}
                     </div>
                   </div>
 
-                  <div className="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full mb-3">
+                  <div className="h-[3px] bg-ink/10 rounded-full mb-2">
                     <div
-                      className={`h-1.5 rounded-full transition-all ${pct === 100 ? 'bg-green-400' : 'bg-blue-500'}`}
+                      className={`h-[3px] rounded-full transition-all ${pct === 100 ? 'bg-success' : 'bg-ink'}`}
                       style={{ width: `${pct}%` }}
                     />
                   </div>
 
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                  <p className="text-xs text-ink-muted mb-2">
                     {t('review.completionRatio', { completed: displayCompleted, total: group.total })}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5">
+                  <p className="text-xs text-ink-faint leading-relaxed">
                     {group.records.map((r) => (
-                      <span key={r.type} className="text-xs bg-blue-50 dark:bg-blue-900/40 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
-                        {formatGroupType(r.type)}
-                        {r.min && r.max && !r.type.startsWith('userCustomGroup:') && !r.type.startsWith('sharedVocabGroup:') ? ` (${r.min}–${r.max})` : ''}
-                      </span>
-                    ))}
-                  </div>
+                      formatGroupType(r.type)
+                      + (r.min && r.max && !r.type.startsWith('userCustomGroup:') && !r.type.startsWith('sharedVocabGroup:') ? ` ${r.min}–${r.max}` : '')
+                    )).join(' · ')}
+                  </p>
 
                   {!selectionMode && (
-                    <div className="mt-2 flex items-center justify-between">
-                      {/* Preview — always on the left */}
+                    <div className="mt-3 pt-3 border-t border-line flex items-center gap-4">
                       <button
                         onClick={(e) => handlePreview(e, group, key)}
                         disabled={previewLoadingKey === key}
-                        className="text-xs font-semibold text-indigo-600 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-800/60 hover:bg-indigo-200 dark:hover:bg-indigo-700/70 border border-indigo-200 dark:border-indigo-700 disabled:opacity-40 transition-colors flex items-center gap-1 px-2.5 py-1 rounded-full"
+                        className="text-xs text-ink-muted hover:text-ink disabled:opacity-40 transition-colors"
                       >
-                        {previewLoadingKey === key ? (
-                          <span className="animate-pulse">…</span>
-                        ) : (
-                          <>
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                            {t('review.preview', '先預習')}
-                          </>
-                        )}
+                        {previewLoadingKey === key ? <span className="animate-pulse">…</span> : t('review.preview', '先預習')}
+                      </button>
+                      <button
+                        onClick={(e) => openEdit(e, group)}
+                        className="text-xs text-ink-muted hover:text-ink transition-colors"
+                      >
+                        {t('review.edit')}
                       </button>
 
-                      {/* Right-side status action */}
-                      {status === 'SCHEDULED' && groupState?.nextReviewTime && (
-                        <p className="text-xs text-green-500 dark:text-green-400 font-medium">
-                          {t('review.nextReview', { time: formatRelativeTime(groupState.nextReviewTime) })}
-                        </p>
-                      )}
-                      {isDue && (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
-                          className="text-xs font-semibold text-orange-600 dark:text-orange-300 bg-orange-100 dark:bg-orange-800/60 hover:bg-orange-200 dark:hover:bg-orange-700/70 border border-orange-200 dark:border-orange-700 transition-colors px-2.5 py-1 rounded-full"
-                        >
-                          {t('review.reviewNow')}
-                        </button>
-                      )}
-                      {isUnfinished && (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
-                          className="text-xs font-semibold text-blue-600 dark:text-blue-300 bg-blue-100 dark:bg-blue-800/60 hover:bg-blue-200 dark:hover:bg-blue-700/70 border border-blue-200 dark:border-blue-700 transition-colors px-2.5 py-1 rounded-full"
-                        >
-                          {t('review.resumePrompt')}
-                        </button>
-                      )}
-                      {status === 'SCHEDULED' && pct === 100 && (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); onCardClick(group, true); }}
-                          className="text-xs font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600 hover:text-blue-500 transition-colors px-2.5 py-1 rounded-full"
-                        >
-                          {t('review.reviewEarly')}
-                        </button>
-                      )}
+                      <div className="ml-auto flex items-center gap-3">
+                        {status === 'SCHEDULED' && groupState?.nextReviewTime && (
+                          <span className="text-xs text-ink-faint">
+                            {t('review.nextReview', { time: formatRelativeTime(groupState.nextReviewTime) })}
+                          </span>
+                        )}
+                        {(isDue || isUnfinished) && (
+                          <button
+                            onClick={(e) => { e.stopPropagation(); onCardClick(group); }}
+                            className="h-8 px-3.5 rounded-md bg-ink hover:bg-ink/85 text-paper text-xs font-medium transition-colors"
+                          >
+                            {isDue ? t('review.reviewNow') : t('review.resumePrompt')}
+                          </button>
+                        )}
+                        {status === 'SCHEDULED' && pct === 100 && (
+                          <button
+                            onClick={(e) => { e.stopPropagation(); onCardClick(group, true); }}
+                            className="h-8 px-3 rounded-md border border-line text-xs text-ink-muted hover:text-ink hover:border-ink/30 transition-colors"
+                          >
+                            {t('review.reviewEarly')}
+                          </button>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -1163,23 +1145,23 @@ const ReviewPage: React.FC = () => {
       {selectionMode && selectedKeys.size > 0 && (
         <div className="fixed bottom-16 left-0 right-0 z-40 px-4 pb-2 pointer-events-none">
           <div className="max-w-2xl mx-auto pointer-events-auto">
-            <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3">
-              <p className="flex-1 text-sm font-semibold text-gray-700 dark:text-gray-200">
+            <div className="bg-surface border border-line rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3">
+              <p className="flex-1 text-sm font-semibold text-ink">
                 {t('review.selectedCount', { count: selectedKeys.size })}
               </p>
               <button
                 onClick={exitSelectionMode}
-                className="text-xs text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 px-3 py-2 rounded-xl transition-colors"
+                className="text-xs text-ink-faint hover:text-ink-muted px-3 py-2 rounded-xl transition-colors"
               >
                 {t('review.cancel')}
               </button>
               <button
                 onClick={handleBatchDelete}
                 disabled={batchDeleting}
-                className="text-xs font-semibold px-4 py-2 rounded-xl bg-red-500 hover:bg-red-600 text-white transition-colors disabled:opacity-50 flex items-center gap-1.5"
+                className="text-xs font-semibold px-4 py-2 rounded-xl bg-danger hover:bg-danger/90 text-white transition-colors disabled:opacity-50 flex items-center gap-1.5"
               >
                 {batchDeleting
-                  ? <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  ? <span className="w-3.5 h-3.5 border-2 border-line border-t-transparent rounded-full animate-spin" />
                   : <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
@@ -1195,19 +1177,19 @@ const ReviewPage: React.FC = () => {
       {editGroup && ReactDOM.createPortal(
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setEditGroup(null)}>
           <div
-            className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full max-w-md shadow-2xl animate-fade-in"
+            className="bg-surface rounded-t-3xl sm:rounded-3xl w-full max-w-md shadow-2xl animate-fade-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Handle */}
             <div className="flex justify-center pt-3 pb-1 sm:hidden">
-              <div className="w-10 h-1 bg-gray-200 dark:bg-gray-700 rounded-full" />
+              <div className="w-10 h-1 bg-ink/10 rounded-full" />
             </div>
 
             <div className="px-5 pt-3 pb-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-base font-bold text-gray-900 dark:text-gray-100">{t('review.editGroupTitle')}</h2>
-                <button onClick={() => setEditGroup(null)} className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h2 className="text-base font-semibold text-ink">{t('review.editGroupTitle')}</h2>
+                <button onClick={() => setEditGroup(null)} className="p-1.5 rounded-xl hover:bg-ink/5 transition-colors">
+                  <svg className="w-5 h-5 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -1216,16 +1198,16 @@ const ReviewPage: React.FC = () => {
               {/* Group info */}
               <div className="flex flex-wrap gap-1.5 mb-5">
                 {editGroup.records.map((r) => (
-                  <span key={r.type} className="text-xs bg-blue-50 dark:bg-blue-900/40 text-blue-500 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
+                  <span key={r.type} className="text-xs bg-accent-soft text-accent px-2 py-0.5 rounded-md font-medium">
                     {formatGroupType(r.type)}{!r.type.startsWith('userCustomGroup:') && !r.type.startsWith('sharedVocabGroup:') ? ` (${r.min}–${r.max})` : ''}
                   </span>
                 ))}
               </div>
 
               {/* Level slider */}
-              <label className="text-xs font-semibold text-gray-700 dark:text-gray-300 block mb-2">
+              <label className="text-xs font-semibold text-ink block mb-2">
                 {t('review.setLevel')} — {t('review.reviewLevel', { level: editLevel + 1 })} / {intervals.length}
-                <span className="ml-2 font-normal text-blue-500">{formatInterval(intervals[Math.min(editLevel, intervals.length - 1)])}</span>
+                <span className="ml-2 font-normal text-accent">{formatInterval(intervals[Math.min(editLevel, intervals.length - 1)])}</span>
               </label>
               <input
                 type="range"
@@ -1236,13 +1218,13 @@ const ReviewPage: React.FC = () => {
                 className="w-full accent-blue-500 mb-1"
               />
               {/* Interval labels */}
-              <div className="flex justify-between text-xs text-gray-400 mb-4">
+              <div className="flex justify-between text-xs text-ink-faint mb-4">
                 {intervals.map((ms, i) => (
-                  <span key={i} className={i === editLevel ? 'text-blue-500 font-semibold' : ''}>{formatInterval(ms)}</span>
+                  <span key={i} className={i === editLevel ? 'text-accent font-semibold' : ''}>{formatInterval(ms)}</span>
                 ))}
               </div>
 
-              <p className="text-xs text-gray-400 dark:text-gray-500 mb-5">
+              <p className="text-xs text-ink-faint mb-5">
                 {t('review.setLevelHint')}
               </p>
 
@@ -1252,14 +1234,14 @@ const ReviewPage: React.FC = () => {
                   <button
                     onClick={handleClearOverride}
                     disabled={editSaving}
-                    className="flex-1 py-2.5 text-sm rounded-xl border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors disabled:opacity-50"
+                    className="flex-1 py-2.5 text-sm rounded-xl border border-line text-ink-muted hover:bg-paper transition-colors disabled:opacity-50"
                   >
                     {t('review.clearOverride')}
                   </button>
                   <button
                     onClick={handleSaveLevel}
                     disabled={editSaving}
-                    className="flex-1 py-2.5 text-sm rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-colors disabled:opacity-50"
+                    className="flex-1 py-2.5 text-sm rounded-xl bg-ink hover:bg-ink/85 text-paper font-semibold transition-colors disabled:opacity-50"
                   >
                     {editSaving ? '…' : t('review.saveLevel')}
                   </button>
@@ -1267,7 +1249,7 @@ const ReviewPage: React.FC = () => {
                 <button
                   onClick={() => handleDeleteGroup(editGroup)}
                   disabled={editSaving}
-                  className="w-full py-2.5 text-sm rounded-xl bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 dark:hover:bg-red-900/40 font-medium transition-colors disabled:opacity-50"
+                  className="w-full py-2.5 text-sm rounded-xl bg-danger-soft text-danger hover:bg-danger-soft font-medium transition-colors disabled:opacity-50"
                 >
                   {editSaving ? '…' : t('review.deleteGroup')}
                 </button>
@@ -1283,7 +1265,7 @@ const ReviewPage: React.FC = () => {
         if (!Array.isArray(raw)) return null;
         const steps = (raw as any[]).map((s: any) => ({
           icon: s.icon,
-          iconBg: 'bg-green-50 dark:bg-green-900/20',
+          iconBg: 'bg-success-soft',
           title: s.title,
           body: s.body,
         }));

@@ -133,11 +133,11 @@ const VoiceQualityPanel: React.FC<Props> = ({
   const showAdvanced = advancedOpen || calStep !== null;
   const zone = readout ? zoneOf(readout.index) : null;
   const zoneLabel = zone ? t(`vocal.quality.zone.${zone}`) : null;
-  const chip = 'inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-gray-100 dark:bg-gray-700/60 text-[11px] text-gray-600 dark:text-gray-300 tabular-nums cursor-help';
+  const chip = 'inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-ink/5 text-[11px] text-ink-muted tabular-nums cursor-help';
   const btn = 'h-7 px-2.5 rounded-lg text-[11px] font-semibold transition-colors';
-  const idle = 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600';
+  const idle = 'bg-ink/5 text-ink-muted hover:bg-ink/10';
   const segment = (z: keyof typeof ZONE_COLORS) =>
-    ({ breathy: 'bg-sky-200 dark:bg-sky-900/70', balanced: 'bg-emerald-200 dark:bg-emerald-900/70', firm: 'bg-amber-200 dark:bg-amber-900/70' })[z];
+    ({ breathy: 'bg-accent-soft', balanced: 'bg-success-soft', firm: 'bg-accent-soft' })[z];
 
   return (
     <Panel
@@ -150,7 +150,7 @@ const VoiceQualityPanel: React.FC<Props> = ({
           {/* Gauge */}
           <div className={`transition-opacity ${readout?.held ? 'opacity-50' : ''}`} title={readout?.held ? t('vocal.quality.held') : undefined}>
             <div className="flex items-baseline gap-3 mb-2">
-              <span className="text-3xl font-bold tabular-nums text-gray-900 dark:text-gray-100 leading-none">
+              <span className="text-3xl font-semibold tabular-nums text-ink leading-none">
                 {readout ? readout.index : '--'}
               </span>
               <span
@@ -166,7 +166,7 @@ const VoiceQualityPanel: React.FC<Props> = ({
               <div className={segment('firm')} style={{ width: `${100 - ZONES.firmAbove}%` }} />
               {readout && (
                 <span
-                  className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-1.5 h-5 rounded-full bg-gray-900 dark:bg-white shadow transition-[left] duration-150"
+                  className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-1.5 h-5 rounded-full bg-ink shadow transition-[left] duration-150"
                   style={{ left: `${readout.index}%` }}
                 />
               )}
@@ -181,16 +181,16 @@ const VoiceQualityPanel: React.FC<Props> = ({
 
         {/* Closure over time — beside the gauge on wide screens */}
         <div>
-          <p className="mb-1 text-[11px] font-semibold text-gray-500 dark:text-gray-400">{t('vocal.quality.traceTitle')}</p>
+          <p className="mb-1 text-[11px] font-semibold text-ink-muted">{t('vocal.quality.traceTitle')}</p>
           <ClosureTrace dataRef={dataRef} isDark={isDark} calibration={calibration} />
         </div>
       </div>
 
       {/* Details & calibration — technical extras, folded away by default */}
-      <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
+      <div className="mt-4 pt-3 border-t border-line">
         <button
           onClick={() => setAdvancedOpen((o) => !o)}
-          className="flex items-center justify-between w-full text-[11px] font-semibold uppercase tracking-wide text-gray-400 dark:text-gray-500"
+          className="flex items-center justify-between w-full text-[11px] font-semibold uppercase tracking-wide text-ink-faint"
           aria-expanded={showAdvanced}
         >
           {t('vocal.quality.advanced')}
@@ -215,39 +215,39 @@ const VoiceQualityPanel: React.FC<Props> = ({
 
             {/* Cycle shape — full width */}
             <div>
-              <p className="mb-1 text-[11px] font-semibold text-gray-500 dark:text-gray-400 cursor-help" title={t('vocal.quality.scopeHelp')}>
+              <p className="mb-1 text-[11px] font-semibold text-ink-muted cursor-help" title={t('vocal.quality.scopeHelp')}>
                 {t('vocal.quality.scopeTitle')} ⓘ
               </p>
               <CycleScope dataRef={dataRef} isDark={isDark} replay={replay} />
             </div>
 
             {/* Calibration */}
-            <div className="pt-3 border-t border-gray-100 dark:border-gray-700">
+            <div className="pt-3 border-t border-line">
               {calStep && calStep.phase !== 'error' ? (
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
-                    <span className="shrink-0 px-1.5 py-0.5 rounded-md bg-violet-500 text-white text-[10px] font-bold">
+                    <span className="shrink-0 px-1.5 py-0.5 rounded-md bg-ink text-paper text-[10px] font-semibold">
                       {calStep.phase === 'breathy' ? '1/2' : '2/2'}
                     </span>
-                    <p className="flex-1 text-xs text-gray-700 dark:text-gray-200">
+                    <p className="flex-1 text-xs text-ink">
                       {calStep.phase === 'breathy' ? t('vocal.quality.calBreathy') : t('vocal.quality.calFirm')}
                     </p>
                     <button onClick={cancelCalibration} className={`${btn} ${idle}`}>{t('vocal.quality.cancel')}</button>
                   </div>
-                  <div className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
-                    <div className="h-full bg-violet-500 transition-[width]" style={{ width: `${Math.min(1, calStep.progress) * 100}%` }} />
+                  <div className="h-1.5 rounded-full bg-ink/5 overflow-hidden">
+                    <div className="h-full bg-ink transition-[width]" style={{ width: `${Math.min(1, calStep.progress) * 100}%` }} />
                   </div>
                 </div>
               ) : (
                 <div className="flex flex-wrap items-center gap-2 text-[11px]">
                   {calStep?.phase === 'error' ? (
-                    <span className="text-red-500">{t('vocal.quality.calTimeout')}</span>
+                    <span className="text-danger">{t('vocal.quality.calTimeout')}</span>
                   ) : (
-                    <span className={isCustomCalibration ? 'text-emerald-600 dark:text-emerald-400 font-semibold' : 'text-gray-500 dark:text-gray-400'}>
+                    <span className={isCustomCalibration ? 'text-success font-semibold' : 'text-ink-muted'}>
                       {isCustomCalibration ? t('vocal.quality.calibrated') : t('vocal.quality.notCalibrated')}
                     </span>
                   )}
-                  <button onClick={startCalibration} className={`${btn} bg-violet-500 hover:bg-violet-600 text-white`} title={t('vocal.quality.calibrateHelp')}>
+                  <button onClick={startCalibration} className={`${btn} bg-ink hover:bg-ink/85 text-paper`} title={t('vocal.quality.calibrateHelp')}>
                     {isCustomCalibration ? t('vocal.quality.recalibrate') : t('vocal.quality.calibrate')}
                   </button>
                   {isCustomCalibration && (
@@ -259,8 +259,8 @@ const VoiceQualityPanel: React.FC<Props> = ({
 
             {/* How to read this */}
             <div>
-              <p className="mb-1 text-[11px] font-semibold text-gray-500 dark:text-gray-400">{t('vocal.quality.tipsTitle')}</p>
-              <ul className="space-y-1 list-disc pl-4 text-[11px] text-gray-500 dark:text-gray-400">
+              <p className="mb-1 text-[11px] font-semibold text-ink-muted">{t('vocal.quality.tipsTitle')}</p>
+              <ul className="space-y-1 list-disc pl-4 text-[11px] text-ink-muted">
                 <li>{t('vocal.quality.tipCompare')}</li>
                 <li>{t('vocal.quality.tipScope')}</li>
                 <li>{t('vocal.quality.tipRelative')}</li>

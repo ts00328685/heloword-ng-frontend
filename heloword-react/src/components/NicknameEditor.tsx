@@ -1,3 +1,4 @@
+import { publicName } from '../utils/publicName';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -46,14 +47,14 @@ const NicknameEditor: React.FC<{ onSaved?: () => void }> = ({ onSaved }) => {
   const { myDisplayName } = useSocial();
   const saveNickname = useNicknameSave();
 
-  const currentLabel = isLoggedIn ? user.nickname || user.fullname || 'Hw' : myDisplayName || 'Guest';
+  const currentLabel = isLoggedIn ? publicName(user) : myDisplayName || 'Guest';
 
   const [editing, setEditing] = useState(false);
   const draft = useImeText(MAX_NICK);
   const [saving, setSaving] = useState(false);
 
   const open = () => {
-    draft.set(isLoggedIn ? user.nickname || user.fullname || '' : (myDisplayName || '').replace(/^Guest-/, ''));
+    draft.set(isLoggedIn ? user.nickname || '' : (myDisplayName || '').replace(/^Guest-/, ''));
     setEditing(true);
   };
 
@@ -75,11 +76,11 @@ const NicknameEditor: React.FC<{ onSaved?: () => void }> = ({ onSaved }) => {
     return (
       <button
         onClick={open}
-        className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-blue-500 transition-colors"
+        className="inline-flex items-center gap-1 text-xs text-ink-muted hover:text-accent transition-colors"
       >
         <span>
           {t('board.postingAs', 'Posting as')}{' '}
-          <span className="font-semibold text-blue-500">{currentLabel}</span>
+          <span className="font-semibold text-accent">{currentLabel}</span>
         </span>
         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -92,7 +93,7 @@ const NicknameEditor: React.FC<{ onSaved?: () => void }> = ({ onSaved }) => {
     <div className="flex items-center gap-2">
       <div className="relative flex-1">
         {!isLoggedIn && (
-          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-blue-500 select-none pointer-events-none">
+          <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-accent select-none pointer-events-none">
             Guest-
           </span>
         )}
@@ -109,19 +110,19 @@ const NicknameEditor: React.FC<{ onSaved?: () => void }> = ({ onSaved }) => {
           autoCapitalize="off"
           autoCorrect="off"
           placeholder={isLoggedIn ? t('common.nicknamePlaceholder', 'Your nickname…') : t('guestSetup.placeholder', 'Your name')}
-          className={`w-full ${!isLoggedIn ? 'pl-[3.6rem]' : 'pl-2.5'} pr-2 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-blue-500`}
+          className={`w-full ${!isLoggedIn ? 'pl-[3.6rem]' : 'pl-2.5'} pr-2 py-2 rounded-lg border border-line bg-paper text-ink text-base focus:outline-none focus:ring-2 focus:ring-accent`}
         />
       </div>
       <button
         onClick={save}
         disabled={!draft.value.trim() || saving}
-        className="shrink-0 min-h-[38px] bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white font-semibold px-3 py-2 rounded-lg transition-colors text-xs"
+        className="shrink-0 min-h-[38px] bg-ink hover:bg-ink/85 disabled:opacity-40 text-paper font-semibold px-3 py-2 rounded-lg transition-colors text-xs"
       >
         {saving ? '…' : t('social.save', 'Save')}
       </button>
       <button
         onClick={() => setEditing(false)}
-        className="shrink-0 min-h-[38px] text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 px-2"
+        className="shrink-0 min-h-[38px] text-xs text-ink-faint hover:text-ink-muted px-2"
       >
         {t('common.cancel', 'Cancel')}
       </button>

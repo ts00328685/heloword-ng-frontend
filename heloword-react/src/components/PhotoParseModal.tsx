@@ -271,13 +271,13 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full sm:max-w-3xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl"
+        className="bg-surface rounded-t-3xl sm:rounded-3xl w-full sm:max-w-3xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-800 shrink-0">
-          <h2 className="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
-            <svg className="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center justify-between px-5 pt-5 pb-3 border-b border-line shrink-0">
+          <h2 className="text-base font-semibold text-ink flex items-center gap-2">
+            <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
@@ -285,9 +285,9 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
           </h2>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-1.5 rounded-xl hover:bg-ink/5 transition-colors"
           >
-            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -299,38 +299,38 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
           {/* Photo selection — shown when no rows yet and not parsing and not cropping */}
           {!cropFile && !parsing && rows.length === 0 && (
             <div className="space-y-3">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-ink-muted">
                 {t('userVocab.photoImportHint')}
               </p>
-              <div className="flex items-start gap-2 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl px-3 py-2.5">
-                <svg className="w-4 h-4 text-yellow-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-start gap-2 bg-accent-soft rounded-xl px-3 py-2.5">
+                <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
                 </svg>
-                <p className="text-xs text-yellow-700 dark:text-yellow-400">
+                <p className="text-xs text-accent">
                   {t('userVocab.photoParseLimit')}
                 </p>
               </div>
               <div className="flex gap-3">
                 <button
                   onClick={() => galleryRef.current?.click()}
-                  className="flex-1 flex flex-col items-center gap-2.5 p-5 rounded-2xl border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-purple-400 dark:hover:border-purple-500 transition-colors"
+                  className="flex-1 flex flex-col items-center gap-2.5 p-5 rounded-2xl border-2 border-dashed border-line hover:border-accent transition-colors"
                 >
-                  <svg className="w-9 h-9 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-9 h-9 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  <span className="text-sm text-ink-muted font-medium">
                     {t('userVocab.photoPickGallery')}
                   </span>
                 </button>
                 <button
                   onClick={() => cameraRef.current?.click()}
-                  className="flex-1 flex flex-col items-center gap-2.5 p-5 rounded-2xl border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-purple-400 dark:hover:border-purple-500 transition-colors"
+                  className="flex-1 flex flex-col items-center gap-2.5 p-5 rounded-2xl border-2 border-dashed border-line hover:border-accent transition-colors"
                 >
-                  <svg className="w-9 h-9 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-9 h-9 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  <span className="text-sm text-ink-muted font-medium">
                     {t('userVocab.photoTakePhoto')}
                   </span>
                 </button>
@@ -359,7 +359,7 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
           {cropFile && !parsing && rows.length === 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <p className="text-sm font-medium text-ink">
                   {t('userVocab.photoCropTitle')}
                 </p>
                 <button
@@ -367,8 +367,8 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                   title="Free-form crop (or press F)"
                   className={`text-xs font-medium px-2.5 py-1 rounded-lg transition-colors ${
                     cropAspect === undefined
-                      ? 'bg-purple-500 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600'
+                      ? 'bg-ink text-paper'
+                      : 'bg-ink/10 text-ink-muted hover:bg-ink/20 '
                   }`}
                 >
                   Free
@@ -376,14 +376,14 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
               </div>
 
               {/* Aspect ratio inputs with increment/decrement */}
-              <div className="flex items-center gap-2 bg-gray-50 dark:bg-gray-800 rounded-lg p-2.5">
-                <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Ratio:</span>
+              <div className="flex items-center gap-2 bg-paper rounded-lg p-2.5">
+                <span className="text-xs font-medium text-ink-muted">Ratio:</span>
 
                 {/* Width input */}
                 <div className="flex items-center">
                   <button
                     onClick={decrementW}
-                    className="p-1 rounded-l-lg border border-r-0 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 transition-colors"
+                    className="p-1 rounded-l-lg border border-r-0 border-line bg-surface hover:bg-ink/5 text-ink-muted transition-colors"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -395,11 +395,11 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                     value={customAspectW}
                     onChange={(e) => setCustomAspectW(e.target.value)}
                     placeholder="W"
-                    className="w-12 px-2 py-1.5 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-xs text-center focus:outline-none focus:ring-1 focus:ring-purple-400"
+                    className="w-12 px-2 py-1.5 border border-line bg-surface text-ink text-xs text-center focus:outline-none focus:ring-1 focus:ring-accent"
                   />
                   <button
                     onClick={incrementW}
-                    className="p-1 rounded-r-lg border border-l-0 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 transition-colors"
+                    className="p-1 rounded-r-lg border border-l-0 border-line bg-surface hover:bg-ink/5 text-ink-muted transition-colors"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -407,13 +407,13 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                   </button>
                 </div>
 
-                <span className="text-xs font-medium text-gray-600 dark:text-gray-400">:</span>
+                <span className="text-xs font-medium text-ink-muted">:</span>
 
                 {/* Height input */}
                 <div className="flex items-center">
                   <button
                     onClick={decrementH}
-                    className="p-1 rounded-l-lg border border-r-0 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 transition-colors"
+                    className="p-1 rounded-l-lg border border-r-0 border-line bg-surface hover:bg-ink/5 text-ink-muted transition-colors"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -425,11 +425,11 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                     value={customAspectH}
                     onChange={(e) => setCustomAspectH(e.target.value)}
                     placeholder="H"
-                    className="w-12 px-2 py-1.5 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-xs text-center focus:outline-none focus:ring-1 focus:ring-purple-400"
+                    className="w-12 px-2 py-1.5 border border-line bg-surface text-ink text-xs text-center focus:outline-none focus:ring-1 focus:ring-accent"
                   />
                   <button
                     onClick={incrementH}
-                    className="p-1 rounded-r-lg border border-l-0 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 transition-colors"
+                    className="p-1 rounded-r-lg border border-l-0 border-line bg-surface hover:bg-ink/5 text-ink-muted transition-colors"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -438,7 +438,7 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                 </div>
               </div>
 
-              <div ref={cropperRef} className="relative w-full h-64 rounded-xl overflow-hidden bg-gray-900">
+              <div ref={cropperRef} className="relative w-full h-64 rounded-xl overflow-hidden bg-ink">
                 <Cropper
                   image={cropPreview}
                   crop={crop}
@@ -463,8 +463,8 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                   onChange={(e) => setZoom(Number(e.target.value))}
                   className="flex-1 accent-purple-500"
                 />
-                <p className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                  Press <kbd className="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-[10px] font-medium">F</kbd> for free-form
+                <p className="text-xs text-ink-muted whitespace-nowrap">
+                  Press <kbd className="px-1.5 py-0.5 bg-ink/10 rounded text-[10px] font-medium">F</kbd> for free-form
                 </p>
               </div>
             </div>
@@ -480,8 +480,8 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                   alt="preview"
                 />
               )}
-              <div className="w-8 h-8 border-[3px] border-purple-400 border-t-transparent rounded-full animate-spin" />
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <div className="w-8 h-8 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
+              <p className="text-sm text-ink-muted">
                 {t('userVocab.photoAnalyzing')}
               </p>
             </div>
@@ -489,11 +489,11 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
 
           {/* Error */}
           {error && (
-            <div className="flex items-start gap-2 bg-red-50 dark:bg-red-900/20 rounded-xl px-4 py-3">
-              <svg className="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-start gap-2 bg-danger-soft rounded-xl px-4 py-3">
+              <svg className="w-4 h-4 text-danger shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className="text-sm text-red-500 dark:text-red-400">{error}</p>
+              <p className="text-sm text-danger">{error}</p>
             </div>
           )}
 
@@ -506,7 +506,7 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                   <img src={preview} className="h-10 rounded-lg object-contain" alt="photo" />
                   <button
                     onClick={resetPhoto}
-                    className="text-xs text-purple-500 hover:text-purple-700 dark:hover:text-purple-300 font-medium"
+                    className="text-xs text-accent hover:text-accent font-medium"
                   >
                     {t('userVocab.photoReselect')}
                   </button>
@@ -515,13 +515,13 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
 
               {/* Stats row */}
               <div className="flex items-center justify-between">
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                <p className="text-xs font-semibold text-ink-muted uppercase tracking-wide">
                   {t('userVocab.photoResults', { count: rows.length })}
                 </p>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-ink-faint">
                   {t('userVocab.importValid', { count: validRows.length })}
                   {rows.length > validRows.length && (
-                    <span className="text-orange-400 ml-1">
+                    <span className="text-accent ml-1">
                       ({t('userVocab.importSkipped', { count: rows.length - validRows.length })})
                     </span>
                   )}
@@ -529,17 +529,17 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
               </div>
 
               {/* Editable table */}
-              <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+              <div className="overflow-x-auto rounded-xl border border-line">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="bg-gray-50 dark:bg-gray-800">
+                    <tr className="bg-paper">
                       {COLUMNS.map((col) => (
                         <th
                           key={col.key}
-                          className={`px-3 py-2 text-left font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap ${col.width}`}
+                          className={`px-3 py-2 text-left font-medium text-ink-muted whitespace-nowrap ${col.width}`}
                         >
                           {col.label}
-                          {col.required && <span className="text-red-400 ml-0.5">*</span>}
+                          {col.required && <span className="text-danger ml-0.5">*</span>}
                         </th>
                       ))}
                       <th className="px-2 py-2 w-8" />
@@ -551,8 +551,8 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                       return (
                         <tr
                           key={idx}
-                          className={`border-t border-gray-100 dark:border-gray-800 ${
-                            isInvalid ? 'bg-red-50 dark:bg-red-900/10' : ''
+                          className={`border-t border-line ${
+                            isInvalid ? 'bg-danger-soft ' : ''
                           }`}
                         >
                           {COLUMNS.map((col) => (
@@ -561,10 +561,10 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                                 type="text"
                                 value={row[col.key]}
                                 onChange={(e) => updateRow(idx, col.key, e.target.value)}
-                                className={`w-full px-2 py-1 rounded-lg border text-xs bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-1 focus:ring-purple-400 ${
+                                className={`w-full px-2 py-1 rounded-lg border text-xs bg-surface text-ink focus:outline-none focus:ring-1 focus:ring-accent ${
                                   col.required && !row[col.key].trim()
-                                    ? 'border-red-300 dark:border-red-700'
-                                    : 'border-gray-200 dark:border-gray-700'
+                                    ? 'border-danger/30 '
+                                    : 'border-line '
                                 }`}
                                 placeholder={col.required ? col.label : '—'}
                               />
@@ -573,7 +573,7 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                           <td className="px-2 py-1.5">
                             <button
                               onClick={() => deleteRow(idx)}
-                              className="w-6 h-6 flex items-center justify-center rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-300 dark:text-gray-600 hover:text-red-400 transition-colors"
+                              className="w-6 h-6 flex items-center justify-center rounded-lg hover:bg-danger-soft text-ink-faint hover:text-danger transition-colors"
                               aria-label="Delete row"
                             >
                               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -592,25 +592,25 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
         </div>
 
         {/* Footer */}
-        <div className="shrink-0 px-5 py-4 border-t border-gray-100 dark:border-gray-800 flex gap-3">
+        <div className="shrink-0 px-5 py-4 border-t border-line flex gap-3">
           {cropFile && !parsing && rows.length === 0 ? (
             <>
               <button
                 onClick={handleCropBack}
-                className="flex-1 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                className="flex-1 py-3 rounded-2xl border border-line text-sm font-medium text-ink-muted hover:bg-paper transition-colors"
               >
                 {t('review.cancel')}
               </button>
               <button
                 onClick={handleSkipCrop}
-                className="flex-1 py-3 rounded-2xl border border-purple-300 dark:border-purple-700 text-sm font-medium text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors"
+                className="flex-1 py-3 rounded-2xl border border-line text-sm font-medium text-accent hover:bg-accent-soft transition-colors"
               >
                 {t('userVocab.photoCropSkip')}
               </button>
               <button
                 onClick={handleCropConfirm}
                 disabled={cropping}
-                className="flex-1 py-3 rounded-2xl bg-purple-500 hover:bg-purple-600 disabled:opacity-40 text-white text-sm font-bold transition-colors"
+                className="flex-1 py-3 rounded-2xl bg-ink hover:bg-ink/85 disabled:opacity-40 text-paper text-sm font-semibold transition-colors"
               >
                 {cropping ? '…' : t('userVocab.photoCropConfirm')}
               </button>
@@ -619,7 +619,7 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
             <>
               <button
                 onClick={onClose}
-                className="flex-1 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                className="flex-1 py-3 rounded-2xl border border-line text-sm font-medium text-ink-muted hover:bg-paper transition-colors"
               >
                 {t('review.cancel')}
               </button>
@@ -627,7 +627,7 @@ const PhotoParseModal: React.FC<Props> = ({ onClose, onImport, lang = 'EN' }) =>
                 <button
                   onClick={handleSave}
                   disabled={validRows.length === 0 || importing}
-                  className="flex-1 py-3 rounded-2xl bg-purple-500 hover:bg-purple-600 disabled:opacity-40 text-white text-sm font-bold transition-colors"
+                  className="flex-1 py-3 rounded-2xl bg-ink hover:bg-ink/85 disabled:opacity-40 text-paper text-sm font-semibold transition-colors"
                 >
                   {importing ? '…' : t('userVocab.importConfirm', { count: validRows.length })}
                 </button>

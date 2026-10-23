@@ -1,3 +1,4 @@
+import { publicName } from '../utils/publicName';
 import React, {
   createContext,
   useCallback,
@@ -150,7 +151,7 @@ export const SocialProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     if (!hasCheckedLoginStatus) return;
     if (isLoggedIn && user) {
       setMyUserId(user.uuid);
-      setMyDisplayName(user.nickname || user.fullname);
+      setMyDisplayName(publicName(user)); // shown to others — never the Google name
     } else {
       const { userId, displayName } = getOrCreateGuestIdentity();
       setMyUserId(userId);

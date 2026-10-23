@@ -118,17 +118,17 @@ const UserVocabPage: React.FC = () => {
   }, [groups]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header
         title={t('userVocab.title')}
         showBack
         rightContent={
           <button
             onClick={() => setShowCreateModal(true)}
-            className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-xl hover:bg-ink/5 transition-colors"
             aria-label={t('userVocab.newGroup')}
           >
-            <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
           </button>
@@ -138,25 +138,25 @@ const UserVocabPage: React.FC = () => {
       <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full">
         {loading && (
           <div className="flex justify-center py-16">
-            <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
           </div>
         )}
 
         {!loading && error && (
-          <p className="text-sm text-red-500 text-center py-8">{error}</p>
+          <p className="text-sm text-danger text-center py-8">{error}</p>
         )}
 
         {!loading && !error && groups.length === 0 && (
           <div className="text-center py-20 flex flex-col items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
-              <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-16 h-16 rounded-2xl bg-accent-soft flex items-center justify-center">
+              <svg className="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </div>
-            <p className="text-sm text-gray-400 dark:text-gray-500">{t('userVocab.emptyGroups')}</p>
+            <p className="text-sm text-ink-faint">{t('userVocab.emptyGroups')}</p>
             <button
               onClick={() => setShowCreateModal(true)}
-              className="px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-xl transition-colors"
+              className="px-6 py-2.5 bg-ink hover:bg-ink/85 text-paper text-sm font-semibold rounded-xl transition-colors"
             >
               {t('userVocab.newGroup')}
             </button>
@@ -168,7 +168,7 @@ const UserVocabPage: React.FC = () => {
             {/* Search + language filter */}
             <div className="mb-4 space-y-2">
               <div className="relative">
-                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-faint pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
                 </svg>
                 <input
@@ -176,10 +176,10 @@ const UserVocabPage: React.FC = () => {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={t('userVocab.searchGroups')}
-                  className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-line bg-surface text-sm text-ink placeholder-ink-faint focus:outline-none focus:ring-2 focus:ring-accent"
                 />
                 {query && (
-                  <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                  <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-faint hover:text-ink-muted">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -193,8 +193,8 @@ const UserVocabPage: React.FC = () => {
                     onClick={() => setLangFilter('')}
                     className={`px-3 py-1 rounded-lg text-xs font-semibold border transition-colors ${
                       !langFilter
-                        ? 'bg-blue-500 text-white border-blue-500'
-                        : 'bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-blue-400'
+                        ? 'bg-ink text-paper border-accent'
+                        : 'bg-surface text-ink-muted border-line hover:border-accent'
                     }`}
                   >
                     {t('userVocab.allLangs')}
@@ -205,8 +205,8 @@ const UserVocabPage: React.FC = () => {
                       onClick={() => setLangFilter(lang === langFilter ? '' : lang)}
                       className={`px-3 py-1 rounded-lg text-xs font-semibold border transition-colors ${
                         langFilter === lang
-                          ? 'bg-blue-500 text-white border-blue-500'
-                          : 'bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-blue-400'
+                          ? 'bg-ink text-paper border-accent'
+                          : 'bg-surface text-ink-muted border-line hover:border-accent'
                       }`}
                     >
                       {lang}
@@ -218,14 +218,14 @@ const UserVocabPage: React.FC = () => {
 
             <div className="space-y-3">
               {filtered.length === 0 && (
-                <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-8">{t('userVocab.noResults')}</p>
+                <p className="text-sm text-ink-faint text-center py-8">{t('userVocab.noResults')}</p>
               )}
               {filtered.map((group, i) => {
                 const tagList = group.tags ? group.tags.split(',').map((t) => t.trim()).filter(Boolean) : [];
                 return (
                   <div
                     key={group.id}
-                    className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm animate-fade-in-up"
+                    className="bg-surface rounded-2xl border border-line p-4 shadow-sm animate-fade-in-up"
                     style={{ animationDelay: `${i * 50}ms` }}
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -234,23 +234,23 @@ const UserVocabPage: React.FC = () => {
                         className="flex-1 text-left min-w-0"
                       >
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
+                          <span className="text-xs bg-accent-soft text-accent px-2 py-0.5 rounded-md font-medium">
                             {group.language}
                           </span>
-                          <span className="text-xs text-gray-400 dark:text-gray-500">
+                          <span className="text-xs text-ink-faint">
                             {t('userVocab.wordCount', { count: group.wordCount })}
                           </span>
                         </div>
-                        <p className="text-sm font-bold text-gray-800 dark:text-gray-100">{group.name}</p>
+                        <p className="text-sm font-semibold text-ink">{group.name}</p>
                         {group.description && (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 line-clamp-1">{group.description}</p>
+                          <p className="text-xs text-ink-faint mt-0.5 line-clamp-1">{group.description}</p>
                         )}
                         {tagList.length > 0 && (
                           <div className="flex flex-wrap gap-1 mt-1.5">
                             {tagList.map((tag) => (
                               <span
                                 key={tag}
-                                className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-1.5 py-0.5 rounded-md"
+                                className="text-xs bg-ink/5 text-ink-muted px-1.5 py-0.5 rounded-md"
                               >
                                 #{tag}
                               </span>
@@ -262,39 +262,39 @@ const UserVocabPage: React.FC = () => {
                         <button
                           onClick={() => handleDownload(group)}
                           disabled={downloadingId === group.id}
-                          className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-40"
+                          className="p-2 rounded-xl hover:bg-ink/5 transition-colors disabled:opacity-40"
                           title="Download as Excel"
                         >
                           {downloadingId === group.id ? (
-                            <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+                            <div className="w-4 h-4 border-2 border-ink/30 border-t-transparent rounded-full animate-spin" />
                           ) : (
-                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
                           )}
                         </button>
                         <button
                           onClick={() => setShareGroup(group)}
-                          className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                          className="p-2 rounded-xl hover:bg-ink/5 transition-colors"
                           title={t('vocabShare.shareTitle', 'Share with friend')}
                         >
-                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                           </svg>
                         </button>
                         <button
                           onClick={() => setEditingGroup(group)}
-                          className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                          className="p-2 rounded-xl hover:bg-ink/5 transition-colors"
                         >
-                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                           </svg>
                         </button>
                         <button
                           onClick={() => setConfirmDelete(group)}
-                          className="p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                          className="p-2 rounded-xl hover:bg-danger-soft transition-colors"
                         >
-                          <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                           </svg>
                         </button>
@@ -302,7 +302,7 @@ const UserVocabPage: React.FC = () => {
                     </div>
                     <button
                       onClick={() => navigate(`/user-vocab/${group.id}`, { state: { group } })}
-                      className="mt-3 w-full text-center text-xs text-blue-500 font-medium hover:text-blue-700 transition-colors"
+                      className="mt-3 w-full text-center text-xs text-accent font-medium hover:text-accent transition-colors"
                     >
                       {t('home.viewAll')}
                     </button>
@@ -319,7 +319,7 @@ const UserVocabPage: React.FC = () => {
       {!loading && ReactDOM.createPortal(
         <button
           onClick={() => setShowCreateModal(true)}
-          className="fixed bottom-24 right-6 w-14 h-14 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-2xl shadow-lg flex items-center justify-center transition-colors z-30"
+          className="fixed bottom-24 right-6 w-14 h-14 bg-ink hover:bg-ink/85 active:bg-ink/85 text-paper rounded-2xl shadow-lg flex items-center justify-center transition-colors z-30"
           aria-label={t('userVocab.newGroup')}
         >
           <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -357,20 +357,20 @@ const UserVocabPage: React.FC = () => {
 
       {confirmDelete && ReactDOM.createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 max-w-sm w-full">
-            <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-2">{t('userVocab.deleteGroup')}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">{t('userVocab.confirmDelete')}</p>
+          <div className="bg-surface rounded-2xl shadow-2xl p-6 max-w-sm w-full">
+            <h2 className="text-base font-semibold text-ink mb-2">{t('userVocab.deleteGroup')}</h2>
+            <p className="text-sm text-ink-muted mb-5">{t('userVocab.confirmDelete')}</p>
             <div className="flex gap-3">
               <button
                 onClick={() => setConfirmDelete(null)}
-                className="flex-1 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 text-sm text-gray-600 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="flex-1 py-2.5 rounded-xl border border-line text-sm text-ink-muted font-medium hover:bg-paper transition-colors"
               >
                 {t('social.cancel')}
               </button>
               <button
                 onClick={handleDelete}
                 disabled={deleting}
-                className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-sm font-semibold disabled:opacity-40 transition-colors"
+                className="flex-1 py-2.5 rounded-xl bg-danger hover:bg-danger/90 text-white text-sm font-semibold disabled:opacity-40 transition-colors"
               >
                 {deleting ? '…' : t('review.deleteGroup')}
               </button>

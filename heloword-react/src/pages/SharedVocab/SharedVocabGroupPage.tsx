@@ -234,34 +234,34 @@ const SharedVocabGroupPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex flex-col min-h-screen bg-paper">
       <Header title={group?.name ?? ''} showBack />
 
       <main className="flex-1 max-w-2xl mx-auto w-full px-4 pt-4 pb-24">
         {/* Group info */}
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-[11px] bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded font-medium">
+            <span className="text-[11px] bg-accent-soft text-accent px-2 py-0.5 rounded font-medium">
               {group?.language ?? '—'}
             </span>
-            <span className="text-[11px] text-gray-400 dark:text-gray-500">
+            <span className="text-[11px] text-ink-faint">
               {t('userVocab.wordCount', { count: group?.wordCount ?? words.length })}
             </span>
-            <span className="ml-auto text-[11px] text-gray-400 dark:text-gray-500 italic bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded">
+            <span className="ml-auto text-[11px] text-ink-faint italic bg-ink/5 px-2 py-0.5 rounded">
               {t('sharedVocab.readOnly', 'Read-only')}
             </span>
           </div>
-          <h1 className="text-lg font-bold text-gray-900 dark:text-white leading-snug">{group?.name ?? '…'}</h1>
+          <h1 className="text-lg font-semibold text-ink leading-snug">{group?.name ?? '…'}</h1>
           {group?.description && (
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{group.description}</p>
+            <p className="text-xs text-ink-muted mt-0.5">{group.description}</p>
           )}
-          <p className="text-xs text-blue-500 dark:text-blue-400 mt-1">
+          <p className="text-xs text-accent mt-1">
             {t('sharedVocab.sharedBy', { name: group?.sharerDisplayName ?? '…' })}
           </p>
           {group?.tags && (
             <div className="flex gap-1 mt-1.5 flex-wrap">
               {group.tags.split(',').map((s) => s.trim()).filter(Boolean).map((tag) => (
-                <span key={tag} className="text-[10px] font-medium px-1.5 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600">
+                <span key={tag} className="text-[10px] font-medium px-1.5 py-0.5 rounded-md bg-ink/5 text-ink-muted border border-line">
                   #{tag}
                 </span>
               ))}
@@ -274,14 +274,14 @@ const SharedVocabGroupPage: React.FC = () => {
           <button
             onClick={handleStartQuiz}
             disabled={quizLoading || words.length === 0}
-            className="flex-1 bg-blue-500 hover:bg-blue-600 disabled:opacity-40 text-white font-bold py-3 rounded-2xl shadow-sm transition-colors text-sm"
+            className="flex-1 bg-ink hover:bg-ink/85 disabled:opacity-40 text-paper font-semibold py-3 rounded-2xl shadow-sm transition-colors text-sm"
           >
             {quizLoading ? '…' : t('sharedVocab.startQuiz')}
           </button>
           <button
             onClick={handleCopy}
             disabled={copying}
-            className="flex-1 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-40 text-gray-700 dark:text-gray-200 font-semibold py-3 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors text-sm"
+            className="flex-1 bg-surface hover:bg-paper disabled:opacity-40 text-ink font-semibold py-3 rounded-2xl border border-line shadow-sm transition-colors text-sm"
           >
             {copying ? t('sharedVocab.copying') : t('sharedVocab.copyGroup')}
           </button>
@@ -290,7 +290,7 @@ const SharedVocabGroupPage: React.FC = () => {
         {/* Search + hide meanings toggle */}
         <div className="flex gap-2 mb-3">
           <div className="relative flex-1">
-            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input
@@ -298,17 +298,17 @@ const SharedVocabGroupPage: React.FC = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t('userVocab.searchGroups', 'Search…')}
-              className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border border-line bg-surface text-ink placeholder-ink-faint focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
         </div>
 
         {loading ? (
           <div className="flex justify-center py-12">
-            <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
           </div>
         ) : words.length === 0 ? (
-          <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-10">
+          <p className="text-sm text-ink-faint text-center py-10">
             {t('userVocab.emptyWords')}
           </p>
         ) : (
@@ -321,8 +321,8 @@ const SharedVocabGroupPage: React.FC = () => {
                   onClick={() => { setFlashMode((m) => !m); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
                   className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
                     flashMode
-                      ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
-                      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                      ? 'bg-ink border-accent text-paper shadow-sm'
+                      : 'border-line bg-surface text-ink-muted hover:bg-paper '
                   }`}
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -335,8 +335,8 @@ const SharedVocabGroupPage: React.FC = () => {
                   onClick={() => { if (multiMode) { setMultiMode(false); } else { setFlashMode(false); setMultiMode(true); } }}
                   className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
                     multiMode
-                      ? 'bg-emerald-500 border-emerald-500 text-white shadow-sm'
-                      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                      ? 'bg-success border-success text-white shadow-sm'
+                      : 'border-line bg-surface text-ink-muted hover:bg-paper '
                   }`}
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -351,8 +351,8 @@ const SharedVocabGroupPage: React.FC = () => {
                 onClick={() => { setHideMeanings((v) => !v); setRevealedIds(new Set()); }}
                 className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-lg border transition-colors ${
                   hideMeanings
-                    ? 'border-indigo-300 dark:border-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                    ? 'border-line bg-accent-soft text-accent '
+                    : 'border-line bg-surface text-ink-muted hover:border-line '
                 }`}
               >
                 {hideMeanings ? (
@@ -385,7 +385,7 @@ const SharedVocabGroupPage: React.FC = () => {
                       if (cardIndex + offset >= filtered.length) return null;
                       return (
                         <div key={offset}
-                          className="absolute inset-x-0 bottom-0 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-md"
+                          className="absolute inset-x-0 bottom-0 bg-surface rounded-3xl border border-line shadow-md"
                           style={{ height: 300, transform: `translateY(-${offset * 10}px) scale(${1 - offset * 0.045})`, transformOrigin: 'bottom center', zIndex: 10 - offset, opacity: 1 - offset * 0.3 }}
                         />
                       );
@@ -402,19 +402,19 @@ const SharedVocabGroupPage: React.FC = () => {
                       <div className="flashcard-scene w-full h-full">
                         <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
                           {/* Front */}
-                          <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col px-8 py-6">
-                            <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{cardIndex + 1}</span>
+                          <div className="flashcard-face bg-surface rounded-3xl border border-line shadow-lg flex flex-col px-8 py-6">
+                            <span className="absolute top-3 left-4 text-[11px] font-mono text-ink-faint">{cardIndex + 1}</span>
                             <div className="flex-1 flex flex-col items-center justify-center gap-2">
-                              <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">{cur.word}</p>
-                              {cur.phonetics && <p className="text-sm text-gray-400 dark:text-gray-500 text-center">{cur.phonetics}</p>}
+                              <p className="text-3xl font-semibold text-ink text-center leading-tight break-words">{cur.word}</p>
+                              {cur.phonetics && <p className="text-sm text-ink-faint text-center">{cur.phonetics}</p>}
                             </div>
                             <div className="flex items-center justify-between">
-                              <p className="text-[11px] text-gray-300 dark:text-gray-600">{t('review.flashcardTap')}</p>
+                              <p className="text-[11px] text-ink-faint">{t('review.flashcardTap')}</p>
                               <div className="flex items-center gap-2">
                                 <button
                                   onPointerDown={(e) => e.stopPropagation()}
                                   onClick={(e) => { e.stopPropagation(); pronounceWord(cur.word, wordLang); }}
-                                  className="p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                  className="p-2.5 rounded-2xl bg-ink/5 text-ink-muted hover:bg-ink/10 transition-colors"
                                   aria-label="Pronounce"
                                 >
                                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -426,8 +426,8 @@ const SharedVocabGroupPage: React.FC = () => {
                                   onClick={(e) => { e.stopPropagation(); handleWordTap(cur); }}
                                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                                     flashInsightOpen
-                                      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                                      : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                                      ? 'bg-ink text-paper ring-1 ring-ink '
+                                      : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                                   }`}
                                 >
                                   <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -439,8 +439,8 @@ const SharedVocabGroupPage: React.FC = () => {
                                   onClick={(e) => { e.stopPropagation(); handleCompareTap(cur); }}
                                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                                     flashCompareOpen
-                                      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                                      : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                                      ? 'bg-ink text-paper ring-1 ring-ink '
+                                      : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                                   }`}
                                 >
                                   <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -450,13 +450,13 @@ const SharedVocabGroupPage: React.FC = () => {
                             </div>
                           </div>
                           {/* Back */}
-                          <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center overflow-y-auto scrollbar-hide px-8 py-6">
+                          <div className="flashcard-face flashcard-back-face bg-surface rounded-3xl border border-line shadow-lg flex flex-col items-center overflow-y-auto scrollbar-hide px-8 py-6">
                             <div className="my-auto w-full flex flex-col items-center gap-2">
-                              <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 text-center">{cur.word}</p>
-                              <div className="w-8 h-px bg-blue-200 dark:bg-gray-500 my-1" />
-                              <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug break-words">{cur.translateEn}</p>
-                              {cur.translateCh && <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1 break-words">{cur.translateCh}</p>}
-                              {cur.sentence && <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic mt-3 leading-relaxed break-words px-2">{cur.sentence}</p>}
+                              <p className="text-sm font-semibold text-ink-faint text-center">{cur.word}</p>
+                              <div className="w-8 h-px bg-accent-soft my-1" />
+                              <p className="text-2xl font-semibold text-ink text-center leading-snug break-words">{cur.translateEn}</p>
+                              {cur.translateCh && <p className="text-sm text-ink-muted text-center mt-1 break-words">{cur.translateCh}</p>}
+                              {cur.sentence && <p className="text-xs text-ink-faint text-center italic mt-3 leading-relaxed break-words px-2">{cur.sentence}</p>}
                             </div>
                           </div>
                         </div>
@@ -467,16 +467,16 @@ const SharedVocabGroupPage: React.FC = () => {
                   {/* AI insight panel */}
                   {flashInsightOpen && (
                     <div className="w-full max-w-sm mt-4 animate-fade-in">
-                      <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                      <div className="bg-paper rounded-2xl p-3 ring-1 ring-inset ring-line">
                         {insight.loading ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                          <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                         ) : insight.error ? (
                           <div className="flex items-center gap-2">
-                            <p className="text-xs text-red-400">{t('llm.error')}</p>
-                            <button data-analytics="ai.insight.retry" onClick={() => insight.retry(String(cur.id), () => getWordInsight(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
+                            <p className="text-xs text-danger">{t('llm.error')}</p>
+                            <button data-analytics="ai.insight.retry" onClick={() => insight.retry(String(cur.id), () => getWordInsight(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-accent underline">↺</button>
                           </div>
                         ) : (
-                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
+                          <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
                         )}
                       </div>
                     </div>
@@ -484,16 +484,16 @@ const SharedVocabGroupPage: React.FC = () => {
                   {/* AI compare panel */}
                   {flashCompareOpen && (
                     <div className="w-full max-w-sm mt-4 animate-fade-in">
-                      <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                      <div className="bg-paper rounded-2xl p-3 ring-1 ring-inset ring-line">
                         {compare.loading ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                          <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                         ) : compare.error ? (
                           <div className="flex items-center gap-2">
-                            <p className="text-xs text-red-400">{t('llm.error')}</p>
-                            <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(cur.id), () => getWordComparison(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
+                            <p className="text-xs text-danger">{t('llm.error')}</p>
+                            <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(cur.id), () => getWordComparison(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-accent underline">↺</button>
                           </div>
                         ) : (
-                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
+                          <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                         )}
                       </div>
                     </div>
@@ -506,7 +506,7 @@ const SharedVocabGroupPage: React.FC = () => {
                       return (
                         <button key={i}
                           onClick={() => { if (!exitingRef.current) { setCardIndex(i); setFlipped(false); setDragX(0); clearInsight(); } }}
-                          className={`rounded-full transition-all duration-200 ${i === cardIndex ? 'w-5 h-2 bg-blue-500' : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`}
+                          className={`rounded-full transition-all duration-200 ${i === cardIndex ? 'w-5 h-2 bg-ink' : 'w-2 h-2 bg-ink/20 hover:bg-ink-faint '}`}
                           aria-label={`Card ${i + 1}`}
                         />
                       );
@@ -518,20 +518,20 @@ const SharedVocabGroupPage: React.FC = () => {
                     <button
                       onClick={() => flashGoPrev()}
                       disabled={cardIndex === 0}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-line shadow-sm text-ink-muted disabled:opacity-30 hover:bg-paper transition-colors"
                       aria-label="Previous card"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                       </svg>
                     </button>
-                    <span className="text-sm text-gray-400 dark:text-gray-500 min-w-[60px] text-center">
+                    <span className="text-sm text-ink-faint min-w-[60px] text-center">
                       {cardIndex + 1} / {filtered.length}
                     </span>
                     <button
                       onClick={() => flashGoNext(filtered)}
                       disabled={cardIndex >= filtered.length - 1}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-line shadow-sm text-ink-muted disabled:opacity-30 hover:bg-paper transition-colors"
                       aria-label="Next card"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -544,7 +544,7 @@ const SharedVocabGroupPage: React.FC = () => {
             })() : (
               /* ── List mode ─────────────────────────────────────────────────── */
               filtered.length === 0 ? (
-                <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-10">
+                <p className="text-sm text-ink-faint text-center py-10">
                   {t('userVocab.noResults')}
                 </p>
               ) : (
@@ -555,21 +555,21 @@ const SharedVocabGroupPage: React.FC = () => {
                   return (
                     <div
                       key={word.id}
-                      className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all animate-fade-in-up ${
+                      className={`bg-surface rounded-xl border shadow-sm transition-all animate-fade-in-up ${
                         isSelected || isCompareSelected
                           ? 'rainbow-glow'
-                          : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
+                          : 'border-line hover:shadow-md'
                       }`}
                       style={{ animationDelay: `${Math.min(idx, 10) * 40}ms` }}
                     >
                       <div className="p-3 flex gap-3 items-start">
-                        <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600 pt-0.5 w-7 text-right">{wordNo}</span>
+                        <span className="shrink-0 text-[11px] font-mono text-ink-faint pt-0.5 w-7 text-right">{wordNo}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-1.5">
-                            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
+                            <p className="text-sm font-semibold text-ink">{word.word}</p>
                             <button
                               onClick={() => pronounceWord(word.word, wordLang)}
-                              className="shrink-0 p-0.5 rounded text-gray-300 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
+                              className="shrink-0 p-0.5 rounded text-ink-faint hover:text-accent transition-colors"
                               aria-label="Pronounce"
                             >
                               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -579,14 +579,14 @@ const SharedVocabGroupPage: React.FC = () => {
                           </div>
                           {isMeaningVisible(word.id) ? (
                             <>
-                              {word.translateEn && <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>}
-                              {word.translateCh && <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>}
-                              {word.sentence && <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed max-h-16 overflow-y-auto break-words">{word.sentence}</p>}
+                              {word.translateEn && <p className="text-xs text-accent mt-0.5">{word.translateEn}</p>}
+                              {word.translateCh && <p className="text-xs text-ink-faint">{word.translateCh}</p>}
+                              {word.sentence && <p className="text-xs text-ink-muted italic mt-1 leading-relaxed max-h-16 overflow-y-auto break-words">{word.sentence}</p>}
                             </>
                           ) : (
                             <div className="flex items-center gap-2 mt-1">
-                              <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-24" />
-                              <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
+                              <div className="h-2.5 rounded-full bg-ink/10 w-24" />
+                              <div className="h-2.5 rounded-full bg-ink/10 w-16" />
                             </div>
                           )}
                           {/* AI Insight / Compare buttons */}
@@ -595,8 +595,8 @@ const SharedVocabGroupPage: React.FC = () => {
                               onClick={() => handleWordTap(word)}
                               className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                                 isSelected
-                                  ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                                  : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                                  ? 'bg-ink text-paper ring-1 ring-ink '
+                                  : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                               }`}
                             >
                               <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -606,8 +606,8 @@ const SharedVocabGroupPage: React.FC = () => {
                               onClick={() => handleCompareTap(word)}
                               className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                                 isCompareSelected
-                                  ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                                  : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                                  ? 'bg-ink text-paper ring-1 ring-ink '
+                                  : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                               }`}
                             >
                               <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -619,7 +619,7 @@ const SharedVocabGroupPage: React.FC = () => {
                           {hideMeanings && (
                             <button
                               onClick={() => toggleReveal(word.id)}
-                              className="p-1.5 rounded-xl transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400"
+                              className="p-1.5 rounded-xl transition-colors text-ink-faint hover:text-accent"
                               aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
                             >
                               {isMeaningVisible(word.id) ? (
@@ -637,7 +637,7 @@ const SharedVocabGroupPage: React.FC = () => {
                           {isLoggedIn && (
                             <button
                               onClick={(e) => { e.stopPropagation(); setHeartWord(word); }}
-                              className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                              className="p-1 rounded-lg text-ink-faint hover:text-danger transition-colors"
                               aria-label={t('userVocab.addToGroup')}
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -651,19 +651,19 @@ const SharedVocabGroupPage: React.FC = () => {
                       {/* AI insight panel */}
                       {isSelected && (
                         <div className="px-3 pb-3 pt-0 animate-slide-down">
-                          <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                          <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
                             {insight.loading ? (
-                              <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                              <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                             ) : insight.error ? (
                               <div className="flex items-center gap-2">
-                                <p className="text-xs text-red-400">{t('llm.error')}</p>
+                                <p className="text-xs text-danger">{t('llm.error')}</p>
                                 <button data-analytics="ai.insight.retry"
                                   onClick={() => insight.retry(String(word.id), () => getWordInsight(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang))}
-                                  className="text-xs text-blue-400 underline"
+                                  className="text-xs text-accent underline"
                                 >↺</button>
                               </div>
                             ) : (
-                              <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
+                              <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
                             )}
                           </div>
                         </div>
@@ -671,19 +671,19 @@ const SharedVocabGroupPage: React.FC = () => {
                       {/* AI compare panel */}
                       {isCompareSelected && (
                         <div className="px-3 pb-3 pt-0 animate-slide-down">
-                          <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                          <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
                             {compare.loading ? (
-                              <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                              <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                             ) : compare.error ? (
                               <div className="flex items-center gap-2">
-                                <p className="text-xs text-red-400">{t('llm.error')}</p>
+                                <p className="text-xs text-danger">{t('llm.error')}</p>
                                 <button data-analytics="ai.compare.retry"
                                   onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang))}
-                                  className="text-xs text-blue-400 underline"
+                                  className="text-xs text-accent underline"
                                 >↺</button>
                               </div>
                             ) : (
-                              <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
+                              <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                             )}
                           </div>
                         </div>

@@ -45,36 +45,36 @@ const LiveBoardPopup: React.FC = () => {
   return createPortal(
     <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 px-4" onClick={close}>
       <div
-        className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-fade-in"
+        className="bg-surface rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-fade-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 mb-2">
-          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-xs font-bold uppercase tracking-wide text-red-500">{t('board.live', 'Live')}</span>
+          <span className="w-2 h-2 rounded-full bg-danger animate-pulse" />
+          <span className="text-xs font-semibold uppercase tracking-wide text-danger">{t('board.live', 'Live')}</span>
         </div>
-        <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-1.5 break-words [overflow-wrap:anywhere]">
+        <h3 className="text-lg font-semibold text-ink mb-1.5 break-words [overflow-wrap:anywhere]">
           {activeSession.name}
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-5">
+        <p className="text-sm text-ink-muted mb-5">
           {t('board.popupBody', 'A live board is happening right now. Jump in to chat and interact!')}
         </p>
         <button
           onClick={join}
-          className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold py-2.5 rounded-xl transition-colors mb-2"
+          className="w-full bg-ink hover:bg-ink/85 active:bg-ink/85 text-paper font-semibold py-2.5 rounded-xl transition-colors mb-2"
         >
           {t('board.joinNow', 'Join the live board')}
         </button>
         {!isLoggedIn && (
           <button
             onClick={() => { close(); navigate('/login'); }}
-            className="w-full text-xs text-blue-500 hover:text-blue-700 py-1.5"
+            className="w-full text-xs text-accent hover:text-accent py-1.5"
           >
-            {t('board.registerCta', '✨ Create a free account to unlock the full app')}
+            {t('board.registerCta', 'Create a free account to unlock the full app')}
           </button>
         )}
         <button
           onClick={close}
-          className="w-full text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 py-1"
+          className="w-full text-xs text-ink-faint hover:text-ink-muted py-1"
         >
           {t('board.maybeLater', 'Maybe later')}
         </button>

@@ -31,15 +31,15 @@ const JP_WORD_PRESETS = [
 
 // Language color palette keyed by list type
 const TYPE_COLOR: Record<string, { bg: string; dot: string; badge: string }> = {
-  wordEnglishList:     { bg: 'bg-blue-50 dark:bg-blue-900/20',   dot: 'bg-blue-400',   badge: 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300' },
-  wordGermanList:      { bg: 'bg-red-50 dark:bg-red-900/20',     dot: 'bg-red-400',    badge: 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-300' },
-  wordJapaneseList:    { bg: 'bg-pink-50 dark:bg-pink-900/20',   dot: 'bg-pink-400',   badge: 'bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-300' },
-  wordJapaneseVerbList:{ bg: 'bg-rose-50 dark:bg-rose-900/20',   dot: 'bg-rose-500',   badge: 'bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300' },
-  sentenceEnglishList: { bg: 'bg-cyan-50 dark:bg-cyan-900/20',   dot: 'bg-cyan-400',   badge: 'bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-300' },
-  sentenceGermanList:  { bg: 'bg-orange-50 dark:bg-orange-900/20', dot: 'bg-orange-400', badge: 'bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-300' },
-  sentenceJapaneseList:{ bg: 'bg-purple-50 dark:bg-purple-900/20', dot: 'bg-purple-400', badge: 'bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300' },
+  wordEnglishList:     { bg: 'bg-accent-soft',   dot: 'bg-ink',   badge: 'bg-accent-soft text-accent' },
+  wordGermanList:      { bg: 'bg-accent-soft', dot: 'bg-accent', badge: 'bg-accent-soft text-accent' },
+  wordJapaneseList:    { bg: 'bg-accent-soft',   dot: 'bg-ink',   badge: 'bg-accent-soft text-accent' },
+  wordJapaneseVerbList:{ bg: 'bg-accent-soft', dot: 'bg-accent', badge: 'bg-accent-soft text-accent' },
+  sentenceEnglishList: { bg: 'bg-accent-soft',   dot: 'bg-ink',   badge: 'bg-accent-soft text-accent' },
+  sentenceGermanList:  { bg: 'bg-accent-soft', dot: 'bg-ink', badge: 'bg-accent-soft text-accent' },
+  sentenceJapaneseList:{ bg: 'bg-accent-soft', dot: 'bg-ink', badge: 'bg-accent-soft text-accent' },
 };
-const DEFAULT_COLOR = { bg: 'bg-gray-50 dark:bg-gray-800', dot: 'bg-gray-400', badge: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300' };
+const DEFAULT_COLOR = { bg: 'bg-paper', dot: 'bg-ink-faint', badge: 'bg-ink/5 text-ink-muted' };
 
 interface QuizSettingItemProps {
   setting: QuizSetting;
@@ -53,13 +53,13 @@ const Toggle: React.FC<{ checked: boolean; onChange: () => void }> = ({ checked,
     role="switch"
     aria-checked={checked}
     onClick={onChange}
-    className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
-      checked ? 'bg-blue-500' : 'bg-gray-200 dark:bg-gray-600'
+    className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+      checked ? 'bg-ink' : 'bg-ink/10 '
     }`}
   >
     <span
       aria-hidden="true"
-      className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out ${
+      className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-surface shadow-md ring-0 transition-transform duration-200 ease-in-out ${
         checked ? 'translate-x-5' : 'translate-x-0'
       }`}
     />
@@ -87,29 +87,29 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
     <div
       className={`rounded-2xl border-2 transition-all duration-200 overflow-hidden ${
         setting.isSelected
-          ? 'border-blue-400 dark:border-blue-500 shadow-sm'
-          : 'border-gray-100 dark:border-gray-700'
+          ? 'border-accent shadow-sm'
+          : 'border-line '
       }`}
     >
       {/* Header row */}
       <div
         className={`flex items-center justify-between px-4 py-3 cursor-pointer ${
-          setting.isSelected ? 'bg-white dark:bg-gray-800' : 'bg-white dark:bg-gray-800'
+          setting.isSelected ? 'bg-surface ' : 'bg-surface '
         }`}
         onClick={() => onChange({ ...setting, isSelected: !setting.isSelected })}
       >
         <div className="flex items-center gap-3 min-w-0">
           <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${color.dot}`} />
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 truncate">{title}</p>
-            <p className="text-xs text-gray-400 dark:text-gray-500">{t('quizModal.itemCount', { count: setting.total })}</p>
+            <p className="text-sm font-semibold text-ink truncate">{title}</p>
+            <p className="text-xs text-ink-faint">{t('quizModal.itemCount', { count: setting.total })}</p>
             {setting.type === 'wordEnglishList' && (
-              <p className="text-xs text-blue-400 dark:text-blue-500 mt-0.5">
+              <p className="text-xs text-accent mt-0.5">
                 {t('multiChoice.easy')} · {t('multiChoice.medium')} · {t('multiChoice.intermediary')} · {t('multiChoice.advanced')}
               </p>
             )}
             {setting.type === 'wordJapaneseList' && (
-              <p className="text-xs text-pink-400 dark:text-pink-500 mt-0.5">
+              <p className="text-xs text-accent mt-0.5">
                 N5 · N4 · N3 · N2 · N1
               </p>
             )}
@@ -128,7 +128,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
           {/* English word difficulty presets */}
           {setting.type === 'wordEnglishList' && (
             <div className="mb-3">
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">{t('quizModal.quickSelect')}</p>
+              <p className="text-xs font-medium text-ink-muted mb-1.5">{t('quizModal.quickSelect')}</p>
               <div className="grid grid-cols-2 gap-1.5">
                 {EN_WORD_PRESETS.map((preset) => {
                   const isActive = setting.min === preset.min && setting.max === preset.max;
@@ -144,14 +144,14 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                       }}
                       className={`text-left px-3 py-2 rounded-xl border text-xs transition-colors ${
                         isActive
-                          ? 'border-blue-400 bg-blue-500 text-white'
-                          : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-blue-300 dark:hover:border-blue-600'
+                          ? 'border-accent bg-ink text-paper'
+                          : 'border-line bg-surface text-ink hover:border-line '
                       }`}
                     >
                       <span className="font-semibold block">
                         {t(preset.labelKey)}{preset.coreLabel ? ` · ${preset.coreLabel}` : ''}
                       </span>
-                      <span className={`block mt-0.5 ${isActive ? 'text-blue-100' : 'text-gray-400 dark:text-gray-500'}`}>
+                      <span className={`block mt-0.5 ${isActive ? 'text-white/80' : 'text-ink-faint '}`}>
                         {t(preset.descKey)}
                       </span>
                     </button>
@@ -164,7 +164,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
           {/* Japanese word JLPT level presets */}
           {setting.type === 'wordJapaneseList' && (
             <div className="mb-3">
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">{t('quizModal.quickSelect')}</p>
+              <p className="text-xs font-medium text-ink-muted mb-1.5">{t('quizModal.quickSelect')}</p>
               <div className="grid grid-cols-5 gap-1.5">
                 {JP_WORD_PRESETS.map((preset) => {
                   const isActive = setting.min === preset.min && setting.max === preset.max;
@@ -180,12 +180,12 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                       }}
                       className={`text-center px-2 py-2 rounded-xl border text-xs transition-colors ${
                         isActive
-                          ? 'border-pink-400 bg-pink-500 text-white'
-                          : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-pink-300 dark:hover:border-pink-600'
+                          ? 'border-accent bg-ink text-paper'
+                          : 'border-line bg-surface text-ink hover:border-line '
                       }`}
                     >
-                      <span className="font-bold block">{preset.coreLabel}</span>
-                      <span className={`block mt-0.5 text-[10px] leading-tight ${isActive ? 'text-pink-100' : 'text-gray-400 dark:text-gray-500'}`}>
+                      <span className="font-semibold block">{preset.coreLabel}</span>
+                      <span className={`block mt-0.5 text-[10px] leading-tight ${isActive ? 'text-white/80' : 'text-ink-faint '}`}>
                         {t(preset.descKey)}
                       </span>
                     </button>
@@ -199,7 +199,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
             <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${color.badge}`}>
               {t('quizModal.range', { min: setting.min ?? 1, max: setting.max ?? setting.total })}
             </span>
-            <span className="text-xs text-gray-400 dark:text-gray-500">
+            <span className="text-xs text-ink-faint">
               {t('quizModal.countSelected', { count: (setting.max ?? setting.total) - (setting.min ?? 1) + 1 })}
             </span>
           </div>
@@ -207,7 +207,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
           <div className="flex gap-3">
             {/* From */}
             <div className="flex-1">
-              <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">{t('quizModal.from')}</label>
+              <label className="text-xs text-ink-muted font-medium block mb-1.5">{t('quizModal.from')}</label>
               <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
                 <button
                   type="button"
@@ -216,7 +216,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                     setMinStr(String(next));
                     onChange({ ...setting, min: next });
                   }}
-                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
+                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-line bg-surface text-ink-muted hover:bg-paper text-base font-semibold shrink-0"
                 >−</button>
                 <input
                   type="number"
@@ -236,7 +236,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                       }
                     }
                   }}
-                  className="w-full text-sm text-center border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                  className="w-full text-sm text-center border border-line bg-surface text-ink rounded-xl px-2 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
                 />
                 <button
                   type="button"
@@ -251,13 +251,13 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                       onChange({ ...setting, min: next });
                     }
                   }}
-                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
+                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-line bg-surface text-ink-muted hover:bg-paper text-base font-semibold shrink-0"
                 >+</button>
               </div>
             </div>
             {/* To */}
             <div className="flex-1">
-              <label className="text-xs text-gray-500 dark:text-gray-400 font-medium block mb-1.5">{t('quizModal.to')}</label>
+              <label className="text-xs text-ink-muted font-medium block mb-1.5">{t('quizModal.to')}</label>
               <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
                 <button
                   type="button"
@@ -266,7 +266,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                     setMaxStr(String(next));
                     onChange({ ...setting, max: next });
                   }}
-                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
+                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-line bg-surface text-ink-muted hover:bg-paper text-base font-semibold shrink-0"
                 >−</button>
                 <input
                   type="number"
@@ -278,7 +278,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                     const v = parseInt(e.target.value, 10);
                     if (!isNaN(v)) onChange({ ...setting, max: v });
                   }}
-                  className="w-full text-sm text-center border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 rounded-xl px-2 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                  className="w-full text-sm text-center border border-line bg-surface text-ink rounded-xl px-2 py-2 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
                 />
                 <button
                   type="button"
@@ -287,7 +287,7 @@ const QuizSettingItem: React.FC<QuizSettingItemProps> = ({ setting, title, onCha
                     setMaxStr(String(next));
                     onChange({ ...setting, max: next });
                   }}
-                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 text-base font-bold shrink-0"
+                  className="w-8 h-8 flex items-center justify-center rounded-lg border border-line bg-surface text-ink-muted hover:bg-paper text-base font-semibold shrink-0"
                 >+</button>
               </div>
             </div>
@@ -416,33 +416,33 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-white dark:bg-gray-900 rounded-t-3xl sm:rounded-3xl w-full max-w-md max-h-[calc(90vh-4rem)] sm:max-h-[90vh] flex flex-col shadow-2xl animate-fade-in mb-16 sm:mb-0">
+      <div className="bg-surface rounded-t-3xl sm:rounded-3xl w-full max-w-md max-h-[calc(90vh-4rem)] sm:max-h-[90vh] flex flex-col shadow-2xl animate-fade-in mb-16 sm:mb-0">
 
         {/* Drag handle (mobile) */}
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
-          <div className="w-10 h-1 bg-gray-200 dark:bg-gray-700 rounded-full" />
+          <div className="w-10 h-1 bg-ink/10 rounded-full" />
         </div>
 
         {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-3 pb-4 border-b border-gray-100 dark:border-gray-800">
+        <div className="flex items-center justify-between px-5 pt-3 pb-4 border-b border-line">
           <div>
-            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">{t('quizModal.title')}</h2>
-            <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+            <h2 className="text-lg font-semibold text-ink">{t('quizModal.title')}</h2>
+            <p className="text-xs text-ink-faint mt-0.5">
               {selectedCount === 0 ? t('quizModal.subtitleEmpty') : t('quizModal.subtitleCount', { count: selectedCount })}
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={handleSelectAll}
-              className="text-xs font-semibold text-blue-500 hover:text-blue-700 dark:hover:text-blue-300 px-2 py-1 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+              className="text-xs font-semibold text-accent hover:text-accent px-2 py-1 rounded-lg hover:bg-accent-soft transition-colors"
             >
               {settings.every((s) => s.isSelected) ? t('quizModal.deselectAll') : t('quizModal.selectAll')}
             </button>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-xl hover:bg-ink/5 transition-colors"
             >
-              <svg className="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -453,20 +453,19 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2">
 
           {/* Ebbinghaus info card */}
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-2xl p-3 mb-1">
+          <div className="bg-accent-soft border border-line rounded-2xl p-3 mb-1">
             <div className="flex items-start gap-2">
-              <span className="text-base mt-0.5">🧠</span>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 mb-1">{t('quizModal.ebbinghausTitle')}</p>
-                <p className="text-xs text-blue-600 dark:text-blue-400 leading-relaxed">{t('quizModal.ebbinghausDesc')}</p>
-                <p className="text-xs text-blue-500 dark:text-blue-500 mt-1 font-medium">{t('quizModal.recommendedSize')}</p>
+                <p className="text-xs font-semibold text-accent mb-1">{t('quizModal.ebbinghausTitle')}</p>
+                <p className="text-xs text-accent leading-relaxed">{t('quizModal.ebbinghausDesc')}</p>
+                <p className="text-xs text-accent mt-1 font-medium">{t('quizModal.recommendedSize')}</p>
               </div>
             </div>
 
             {/* Current intervals display */}
             <div className="mt-2 flex flex-wrap gap-1">
               {getIntervals().map((ms, i) => (
-                <span key={i} className="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 px-1.5 py-0.5 rounded-md font-mono">
+                <span key={i} className="text-xs bg-accent-soft text-accent px-1.5 py-0.5 rounded-md font-mono">
                   {formatInterval(ms)}
                 </span>
               ))}
@@ -475,7 +474,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
             {/* Toggle interval configurator */}
             <button
               onClick={() => setShowIntervalConfig((v) => !v)}
-              className="mt-2 text-xs text-blue-500 dark:text-blue-400 font-medium hover:underline"
+              className="mt-2 text-xs text-accent font-medium hover:underline"
             >
               {showIntervalConfig ? '▲' : '▼'} {t('quizModal.customizeIntervals')}
             </button>
@@ -485,7 +484,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
                 <div className="grid grid-cols-4 gap-1.5">
                   {intervalInputs.map((val, i) => (
                     <div key={i} className="flex flex-col items-center gap-0.5">
-                      <span className="text-xs text-blue-400 dark:text-blue-500 font-medium">{i + 1}</span>
+                      <span className="text-xs text-accent font-medium">{i + 1}</span>
                       <input
                         type="number"
                         min={1}
@@ -495,7 +494,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
                           updated[i] = e.target.value;
                           setIntervalInputs(updated);
                         }}
-                        className="w-full text-xs border border-blue-200 dark:border-blue-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-lg px-1.5 py-1 text-center focus:outline-none focus:ring-1 focus:ring-blue-400"
+                        className="w-full text-xs border border-line bg-surface text-ink rounded-lg px-1.5 py-1 text-center focus:outline-none focus:ring-1 focus:ring-accent"
                       />
                     </div>
                   ))}
@@ -503,13 +502,13 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
                 <div className="flex gap-2">
                   <button
                     onClick={handleResetIntervals}
-                    className="flex-1 text-xs py-1.5 rounded-xl border border-blue-200 dark:border-blue-700 text-blue-500 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+                    className="flex-1 text-xs py-1.5 rounded-xl border border-line text-accent hover:bg-accent-soft transition-colors"
                   >
                     {t('quizModal.resetIntervals')}
                   </button>
                   <button
                     onClick={handleSaveIntervals}
-                    className="flex-1 text-xs py-1.5 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-semibold transition-colors"
+                    className="flex-1 text-xs py-1.5 rounded-xl bg-ink hover:bg-ink/85 text-paper font-semibold transition-colors"
                   >
                     {t('quizModal.saveIntervals')}
                   </button>
@@ -520,13 +519,13 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
 
           {dataLoading ? (
             <div className="text-center py-10">
-              <div className="w-7 h-7 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-              <p className="text-sm text-gray-400 dark:text-gray-500">{t('quizModal.noLists')}</p>
+              <div className="w-7 h-7 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+              <p className="text-sm text-ink-faint">{t('quizModal.noLists')}</p>
             </div>
           ) : loadError ? (
-            <p className="text-center text-red-400 dark:text-red-500 py-10 text-sm">{t('quizModal.loadError')}</p>
+            <p className="text-center text-danger py-10 text-sm">{t('quizModal.loadError')}</p>
           ) : settings.length === 0 ? (
-            <p className="text-center text-gray-400 dark:text-gray-500 py-10 text-sm">
+            <p className="text-center text-ink-faint py-10 text-sm">
               {t('quizModal.loadError')}
             </p>
           ) : (
@@ -542,14 +541,14 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         </div>
 
         {/* Footer */}
-        <div className="px-4 pt-4 pb-4 border-t border-gray-100 dark:border-gray-800" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
+        <div className="px-4 pt-4 pb-4 border-t border-line" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
           <button
             onClick={handleStart}
             disabled={selectedCount === 0}
-            className={`w-full font-bold py-4 rounded-2xl transition-all text-base ${
+            className={`w-full font-semibold py-4 rounded-2xl transition-all text-base ${
               selectedCount > 0
-                ? 'bg-blue-500 hover:bg-blue-600 active:scale-[0.98] text-white shadow-md shadow-blue-200 dark:shadow-none'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                ? 'bg-ink hover:bg-ink/85 active:scale-[0.98] text-paper shadow-md dark:shadow-none'
+                : 'bg-ink/5 text-ink-faint cursor-not-allowed'
             }`}
           >
             {selectedCount === 0 ? t('quizModal.selectList') : t('quizModal.startQuiz')}
@@ -562,7 +561,7 @@ const QuizSettingModal: React.FC<QuizSettingModalProps> = ({ onClose }) => {
         if (!Array.isArray(raw)) return null;
         const steps = (raw as any[]).map((s: any) => ({
           icon: s.icon,
-          iconBg: 'bg-blue-50 dark:bg-blue-900/20',
+          iconBg: 'bg-accent-soft',
           title: s.title,
           body: s.body,
         }));

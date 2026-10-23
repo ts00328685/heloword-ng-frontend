@@ -36,8 +36,8 @@ const LiveBoardRedirect: React.FC = () => {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 items-center justify-center gap-3">
-      <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
+    <div className="flex flex-col min-h-screen bg-paper items-center justify-center gap-3">
+      <div className="w-8 h-8 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
     </div>
   );
 };

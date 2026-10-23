@@ -86,11 +86,11 @@ const StatsPage: React.FC = () => {
     setRange(r);
   };
 
-  const gridColor   = isDark ? '#374151' : '#e5e7eb';
-  const textColor   = isDark ? '#9ca3af' : '#6b7280';
+  const gridColor   = isDark ? '#2E2C29' : '#E4E0D8';
+  const textColor   = isDark ? '#9E9A92' : '#6B6862';
   const tooltipStyle = isDark
-    ? { backgroundColor: '#1f2937', border: '1px solid #374151', color: '#f3f4f6' }
-    : { backgroundColor: '#ffffff', border: '1px solid #e5e7eb', color: '#111827' };
+    ? { backgroundColor: '#1C1B19', border: '1px solid #2E2C29', color: '#E8E6E1' }
+    : { backgroundColor: '#FFFFFF', border: '1px solid #E4E0D8', color: '#1F1E1C' };
 
   const chartData = stats.map((s) => ({
     ...s,
@@ -119,7 +119,7 @@ const StatsPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header title="Statistics" />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-2xl mx-auto w-full">
@@ -129,19 +129,19 @@ const StatsPage: React.FC = () => {
 
         {/* Not logged in — compact unlock card */}
         {!isLoggedIn && (
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center gap-3 mb-4">
-            <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0">
-              <svg className="w-4.5 h-4.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
+          <div className="bg-surface rounded-2xl p-4 shadow-sm border border-line flex items-center gap-3 mb-4">
+            <div className="w-9 h-9 rounded-xl bg-accent-soft flex items-center justify-center flex-shrink-0">
+              <svg className="w-4.5 h-4.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 leading-tight">Statistics</p>
-              <p className="text-xs text-gray-400 dark:text-gray-500 leading-tight mt-0.5">{t('stats.loginPrompt')}</p>
+              <p className="text-sm font-semibold text-ink leading-tight">Statistics</p>
+              <p className="text-xs text-ink-faint leading-tight mt-0.5">{t('stats.loginPrompt')}</p>
             </div>
             <button
               onClick={() => navigate('/login')}
-              className="flex-shrink-0 bg-blue-500 text-white font-semibold text-xs px-4 py-2 rounded-xl hover:bg-blue-600 transition-colors"
+              className="flex-shrink-0 bg-ink text-paper font-semibold text-xs px-4 py-2 rounded-xl hover:bg-ink/85 transition-colors"
             >
               Login
             </button>
@@ -151,18 +151,18 @@ const StatsPage: React.FC = () => {
         {isLoggedIn && (
           <>
         {/* Section label */}
-        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">{t('stats.history')}</p>
+        <p className="text-xs font-semibold text-ink-faint uppercase tracking-wider mb-3">{t('stats.history')}</p>
 
         {/* Range toggle */}
-        <div className="flex bg-gray-100 dark:bg-gray-800 rounded-xl p-1 mb-5 gap-1">
+        <div className="flex bg-ink/5 rounded-xl p-1 mb-5 gap-1">
           {RANGES.map(({ label, value }) => (
             <button
               key={value}
               onClick={() => handleRangeChange(value)}
               className={`flex-1 py-1.5 text-sm font-semibold rounded-lg transition-colors ${
                 range === value
-                  ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  ? 'bg-surface text-ink shadow-sm'
+                  : 'text-ink-muted hover:text-ink '
               }`}
             >
               {label}
@@ -185,7 +185,7 @@ const StatsPage: React.FC = () => {
               <button data-analytics="ai.study_coach"
                 onClick={handleStudyCoach}
                 disabled={coachLoading}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide ring-1 ring-inset ring-gray-300 dark:ring-gray-600 text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-900 hover:ring-gray-500 dark:hover:ring-gray-400 hover:text-gray-900 dark:hover:text-white disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide ring-1 ring-inset ring-line text-ink-muted bg-surface hover:ring-ink/30 hover:text-ink disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
               >
                 {coachLoading
                   ? <><span className="w-3 h-3 border-[1.5px] border-current border-t-transparent rounded-full animate-spin" />{t('llm.thinking')}</>
@@ -193,15 +193,15 @@ const StatsPage: React.FC = () => {
               </button>
             </div>
             {(coachText || coachError) && (
-              <div className="mt-3 bg-gray-50 dark:bg-gray-800/60 rounded-2xl ring-1 ring-inset ring-gray-100 dark:ring-gray-700 p-4">
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5">{t('llm.studyCoach')}</p>
+              <div className="mt-3 bg-paper rounded-2xl ring-1 ring-inset ring-line p-4">
+                <p className="text-xs font-semibold text-ink-muted mb-1.5">{t('llm.studyCoach')}</p>
                 {coachError ? (
                   <div className="flex items-center gap-2">
-                    <p className="text-sm text-red-400 flex-1">{t('llm.error')}</p>
-                    <button data-analytics="ai.study_coach" onClick={handleStudyCoach} className="text-xs text-blue-400 underline">↺</button>
+                    <p className="text-sm text-danger flex-1">{t('llm.error')}</p>
+                    <button data-analytics="ai.study_coach" onClick={handleStudyCoach} className="text-xs text-accent underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">{coachText}</p>
+                  <p className="text-sm text-ink leading-relaxed whitespace-pre-wrap">{coachText}</p>
                 )}
               </div>
             )}
@@ -211,20 +211,20 @@ const StatsPage: React.FC = () => {
         {isLoggedIn && totalReviewed > 0 && <WeeklyStoryCard />}
 
         {error && (
-          <p className="text-center text-sm text-red-400 mb-4">{t('stats.errorLoading')}</p>
+          <p className="text-center text-sm text-danger mb-4">{t('stats.errorLoading')}</p>
         )}
 
         {!error && stats.every((s) => s.total === 0) && (
           <div className="text-center py-10">
-            <p className="text-sm text-gray-400 dark:text-gray-500">{t('stats.noData')}</p>
+            <p className="text-sm text-ink-faint">{t('stats.noData')}</p>
           </div>
         )}
 
         {chartData.some((d) => d.total > 0) && (
           <>
             {/* Reviews chart */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 mb-4 shadow-sm border border-gray-100 dark:border-gray-700">
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">{t('stats.chartReviews')}</h3>
+            <div className="bg-surface rounded-2xl p-4 mb-4 shadow-sm border border-line">
+              <h3 className="text-sm font-semibold text-ink mb-3">{t('stats.chartReviews')}</h3>
               <ResponsiveContainer width="100%" height={180}>
                 <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
@@ -232,23 +232,23 @@ const StatsPage: React.FC = () => {
                   <YAxis tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} allowDecimals={false} />
                   <Tooltip contentStyle={tooltipStyle} />
                   <Legend wrapperStyle={{ fontSize: 11, color: textColor }} />
-                  <Line type="monotone" dataKey="total"        name={t('stats.total')}   stroke="#3b82f6" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
-                  <Line type="monotone" dataKey="correctCount" name={t('stats.correct')} stroke="#22c55e" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
-                  <Line type="monotone" dataKey="wrongCount"   name={t('stats.wrong')}   stroke="#ef4444" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+                  <Line type="monotone" dataKey="total"        name={t('stats.total')}   stroke={isDark ? '#8FA8C7' : '#2E4A6B'} strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
+                  <Line type="monotone" dataKey="correctCount" name={t('stats.correct')} stroke={isDark ? '#8CA880' : '#5A7451'} strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
+                  <Line type="monotone" dataKey="wrongCount"   name={t('stats.wrong')}   stroke={isDark ? '#C98073' : '#A8584B'} strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
 
             {/* Time spent chart */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
-              <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">{t('stats.chartTime')}</h3>
+            <div className="bg-surface rounded-2xl p-4 shadow-sm border border-line">
+              <h3 className="text-sm font-semibold text-ink mb-3">{t('stats.chartTime')}</h3>
               <ResponsiveContainer width="100%" height={160}>
                 <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
                   <XAxis dataKey="label" tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} interval={range === 30 ? 4 : 0} />
                   <YAxis tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} />
                   <Tooltip contentStyle={tooltipStyle} formatter={(v) => [`${v} min`, t('stats.time')]} />
-                  <Line type="monotone" dataKey="timeSpentMin" name={t('stats.minutes')} stroke="#a855f7" strokeWidth={2} dot={{ r: 3 }} activeDot={{ r: 5 }} />
+                  <Line type="monotone" dataKey="timeSpentMin" name={t('stats.minutes')} stroke={isDark ? '#8FA8C7' : '#2E4A6B'} strokeWidth={1.5} dot={false} activeDot={{ r: 3 }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -262,16 +262,16 @@ const StatsPage: React.FC = () => {
 };
 
 const colorMap: Record<string, string> = {
-  blue:   'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
-  green:  'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400',
-  red:    'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400',
-  purple: 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
+  blue:   'bg-accent-soft text-accent',
+  green:  'bg-success-soft text-success',
+  red:    'bg-danger-soft text-danger',
+  purple: 'bg-accent-soft text-accent',
 };
 
 const SummaryCard: React.FC<{ label: string; value: string; color: string }> = ({ label, value, color }) => (
   <div className={`rounded-2xl p-4 ${colorMap[color]}`}>
     <p className="text-xs font-medium opacity-70 mb-1">{label}</p>
-    <p className="text-2xl font-bold">{value}</p>
+    <p className="text-2xl font-semibold">{value}</p>
   </div>
 );
 

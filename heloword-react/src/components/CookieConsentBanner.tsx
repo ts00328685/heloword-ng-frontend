@@ -24,17 +24,16 @@ const CookieConsentBanner: React.FC = () => {
 
   return (
     <div className="fixed bottom-20 left-0 right-0 z-[45] flex justify-center px-4 pointer-events-none">
-      <div className="bg-gray-900 dark:bg-gray-800 text-white rounded-2xl shadow-2xl px-4 py-3 flex items-center gap-3 max-w-lg w-full pointer-events-auto border border-gray-700">
+      <div className="bg-ink text-paper rounded-2xl shadow-2xl px-4 py-3 flex items-center gap-3 max-w-lg w-full pointer-events-auto border border-ink">
         {/* Cookie icon */}
-        <span className="text-xl flex-shrink-0">🍪</span>
 
-        <p className="flex-1 text-xs text-gray-300 leading-relaxed">
+        <p className="flex-1 text-xs text-ink-faint leading-relaxed">
           {t('cookie.message')}
         </p>
 
         <button
           onClick={handleAccept}
-          className="flex-shrink-0 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors duration-150"
+          className="flex-shrink-0 bg-ink hover:bg-ink/85 active:bg-ink/85 text-paper text-xs font-semibold px-4 py-2 rounded-xl transition-colors duration-150"
         >
           {t('cookie.accept')}
         </button>

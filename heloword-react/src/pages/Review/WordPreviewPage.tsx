@@ -1,3 +1,4 @@
+import { isTourPending } from '../../components/WalkthroughOverlay';
 import React, { useRef, useState, useMemo, useEffect } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -28,16 +29,16 @@ const InsightPanel: React.FC<{
   errorLabel: string;
   onRetry: () => void;
 }> = ({ loading, error, text, thinkingLabel, errorLabel, onRetry }) => (
-  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+  <div className="bg-paper rounded-2xl p-3 ring-1 ring-inset ring-line">
     {loading ? (
-      <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{thinkingLabel}</p>
+      <p className="text-xs text-ink-faint animate-pulse">{thinkingLabel}</p>
     ) : error ? (
       <div className="flex items-center gap-2">
-        <p className="text-xs text-red-400">{errorLabel}</p>
-        <button data-analytics="ai.insight.retry" onClick={onRetry} className="text-xs text-blue-400 underline">↺</button>
+        <p className="text-xs text-danger">{errorLabel}</p>
+        <button data-analytics="ai.insight.retry" onClick={onRetry} className="text-xs text-accent underline">↺</button>
       </div>
     ) : (
-      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{text}</TapToLookup></p>
+      <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{text}</TapToLookup></p>
     )}
   </div>
 );
@@ -57,8 +58,8 @@ const InsightButton: React.FC<{
     onPointerDown={onPointerDown}
     className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
       active
-        ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-        : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+        ? 'bg-ink text-paper ring-1 ring-ink '
+        : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
     }`}
   >
     <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true">
@@ -90,7 +91,7 @@ const WordPreviewPage: React.FC = () => {
   const groupName: string = state?.groupName ?? '';
 
   // Onboarding
-  const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem(PREVIEW_ONBOARDING_KEY));
+  const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem(PREVIEW_ONBOARDING_KEY) && !isTourPending());
   const dismissOnboarding = () => { localStorage.setItem(PREVIEW_ONBOARDING_KEY, '1'); setShowOnboarding(false); };
 
   // Search & shuffle
@@ -315,17 +316,17 @@ const WordPreviewPage: React.FC = () => {
   // ── Render ──────────────────────────────────────────────────────────────────
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex flex-col animate-page-enter">
+    <div className="min-h-screen bg-paper flex flex-col animate-page-enter">
       <Header title={groupName || t('review.preview')} showBack />
 
       {/* Toolbar */}
-      <div className="sticky top-14 z-10 bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
+      <div className="sticky top-14 z-10 bg-paper border-b border-line">
         <div className="max-w-2xl mx-auto px-4 pt-2 pb-2 space-y-2">
 
           {/* Search row */}
           <div className="flex items-center gap-2">
             <div className="relative flex-1">
-              <svg className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 dark:text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-ink-faint pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z" />
               </svg>
               <input
@@ -333,12 +334,12 @@ const WordPreviewPage: React.FC = () => {
                 value={query}
                 onChange={(e) => { setQuery(e.target.value); setCardIndex(0); }}
                 placeholder={t('review.previewSearch', 'Search words…')}
-                className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-line bg-surface text-ink placeholder-ink-faint focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
               />
               {query && (
                 <button
                   onClick={() => { setQuery(''); setCardIndex(0); }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-ink-faint hover:text-ink-muted"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -353,8 +354,8 @@ const WordPreviewPage: React.FC = () => {
               title={shuffled ? t('review.previewUnshuffle', 'Original order') : t('review.previewShuffle', 'Shuffle')}
               className={`shrink-0 p-1.5 rounded-lg border transition-colors ${
                 shuffled
-                  ? 'bg-purple-500 border-purple-500 text-white'
-                  : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  ? 'bg-ink border-accent text-paper'
+                  : 'border-line bg-surface text-ink-muted hover:bg-paper '
               }`}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -365,7 +366,7 @@ const WordPreviewPage: React.FC = () => {
 
           {/* Controls row */}
           <div className="flex items-center justify-between gap-2">
-            <p className="text-xs text-gray-400 dark:text-gray-500">
+            <p className="text-xs text-ink-faint">
               {query
                 ? t('review.previewFiltered', { shown: displayWords.length, total: words.length })
                 : t('review.previewWordCount', { count: words.length })}
@@ -375,8 +376,8 @@ const WordPreviewPage: React.FC = () => {
                 onClick={() => { setFlashMode((m) => !m); setMultiMode(false); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
                 className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
                   flashMode
-                    ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    ? 'bg-ink border-accent text-paper shadow-sm'
+                    : 'border-line bg-surface text-ink-muted hover:bg-paper '
                 }`}
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -389,8 +390,8 @@ const WordPreviewPage: React.FC = () => {
                 onClick={() => { if (multiMode) { setMultiMode(false); } else { setFlashMode(false); setMultiMode(true); } }}
                 className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
                   multiMode
-                    ? 'bg-emerald-500 border-emerald-500 text-white shadow-sm'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    ? 'bg-success border-success text-white shadow-sm'
+                    : 'border-line bg-surface text-ink-muted hover:bg-paper '
                 }`}
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -401,10 +402,10 @@ const WordPreviewPage: React.FC = () => {
 
               {!flashMode && (
                 <>
-                  <button onClick={hideAll} disabled={allHidden} className="text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 disabled:opacity-40 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <button onClick={hideAll} disabled={allHidden} className="text-xs font-medium px-3 py-1.5 rounded-lg border border-line bg-surface text-ink-muted disabled:opacity-40 transition-colors hover:bg-paper">
                     {t('review.previewHideAll')}
                   </button>
-                  <button onClick={showAll} disabled={allRevealed} className="text-xs font-medium px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 disabled:opacity-40 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <button onClick={showAll} disabled={allRevealed} className="text-xs font-medium px-3 py-1.5 rounded-lg border border-line bg-surface text-ink-muted disabled:opacity-40 transition-colors hover:bg-paper">
                     {t('review.previewShowAll')}
                   </button>
                 </>
@@ -421,7 +422,7 @@ const WordPreviewPage: React.FC = () => {
         /* ── FLASHCARD MODE ── */
         <main className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-28 overflow-x-hidden overflow-y-auto">
           {displayWords.length === 0 ? (
-            <p className="text-sm text-gray-400 dark:text-gray-500">{t('review.previewNoResults', 'No words match your search.')}</p>
+            <p className="text-sm text-ink-faint">{t('review.previewNoResults', 'No words match your search.')}</p>
           ) : (
             <>
               {/* Card stack */}
@@ -434,7 +435,7 @@ const WordPreviewPage: React.FC = () => {
                   return (
                     <div
                       key={peekIdx}
-                      className="absolute inset-x-0 bottom-0 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-md"
+                      className="absolute inset-x-0 bottom-0 bg-surface rounded-3xl border border-line shadow-md"
                       style={{
                         height: 300,
                         transform: `translateY(-${offset * 10}px) scale(${1 - offset * 0.045})`,
@@ -459,22 +460,22 @@ const WordPreviewPage: React.FC = () => {
                     <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
 
                       {/* Front face */}
-                      <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col px-8 py-6">
-                        <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{originalIndex.get(currentWord.id) ?? cardIndex + 1}</span>
+                      <div className="flashcard-face bg-surface rounded-3xl border border-line shadow-lg flex flex-col px-8 py-6">
+                        <span className="absolute top-3 left-4 text-[11px] font-mono text-ink-faint">{originalIndex.get(currentWord.id) ?? cardIndex + 1}</span>
                         {/* Vertically centered word content */}
                         <div className="flex-1 flex flex-col items-center justify-center gap-2 overflow-y-auto">
-                          <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">
+                          <p className="text-3xl font-semibold text-ink text-center leading-tight break-words">
                             {currentWord.word}
                           </p>
                           {currentWord.sentence && (
-                            <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic break-words px-2">
+                            <p className="text-xs text-ink-faint text-center italic break-words px-2">
                               {currentWord.sentence}
                             </p>
                           )}
                         </div>
                         {/* Bottom bar: tap hint left, buttons right */}
                         <div className="flex items-center justify-between">
-                          <p className="text-[11px] text-gray-300 dark:text-gray-600">
+                          <p className="text-[11px] text-ink-faint">
                             {t('review.flashcardTap')}
                           </p>
                           <div className="flex items-center gap-2">
@@ -493,7 +494,7 @@ const WordPreviewPage: React.FC = () => {
                             <button
                               onPointerDown={(e) => e.stopPropagation()}
                               onClick={(e) => { e.stopPropagation(); pronounceWord(currentWord.word, wordLang(currentWord)); }}
-                              className="p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                              className="p-2.5 rounded-2xl bg-ink/5 text-ink-muted hover:bg-ink/10 transition-colors"
                               aria-label="Pronounce"
                             >
                               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -505,7 +506,7 @@ const WordPreviewPage: React.FC = () => {
                               <button
                                 onPointerDown={(e) => e.stopPropagation()}
                                 onClick={(e) => { e.stopPropagation(); setHeartWord(currentWord); }}
-                                className="p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 hover:text-red-400 dark:hover:text-red-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                className="p-2.5 rounded-2xl bg-ink/5 text-ink-faint hover:text-danger hover:bg-ink/10 transition-colors"
                                 aria-label={t('userVocab.addToGroup')}
                               >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -518,22 +519,22 @@ const WordPreviewPage: React.FC = () => {
                       </div>
 
                       {/* Back face */}
-                      <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center overflow-y-auto scrollbar-hide px-8 py-6">
+                      <div className="flashcard-face flashcard-back-face bg-surface rounded-3xl border border-line shadow-lg flex flex-col items-center overflow-y-auto scrollbar-hide px-8 py-6">
                         <div className="my-auto w-full flex flex-col items-center gap-2">
-                          <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 text-center">
+                          <p className="text-sm font-semibold text-ink-faint text-center">
                             {currentWord.word}
                           </p>
-                          <div className="w-8 h-px bg-blue-200 dark:bg-gray-500 my-1" />
-                          <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug break-words">
+                          <div className="w-8 h-px bg-accent-soft my-1" />
+                          <p className="text-2xl font-semibold text-ink text-center leading-snug break-words">
                             {currentWord.translateEn}
                           </p>
                           {currentWord.translateCh && (
-                            <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1 break-words">
+                            <p className="text-sm text-ink-muted text-center mt-1 break-words">
                               {currentWord.translateCh}
                             </p>
                           )}
                           {currentWord.sentence && (
-                            <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic mt-3 leading-relaxed break-words px-2">
+                            <p className="text-xs text-ink-faint text-center italic mt-3 leading-relaxed break-words px-2">
                               {currentWord.sentence}
                             </p>
                           )}
@@ -561,16 +562,16 @@ const WordPreviewPage: React.FC = () => {
               {/* AI compare panel for flashcard mode */}
               {flashCompareOpen && (
                 <div className="w-full max-w-sm mt-4 animate-slide-down">
-                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                  <div className="bg-paper rounded-2xl p-3 ring-1 ring-inset ring-line">
                     {compare.loading ? (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                      <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                     ) : compare.error ? (
                       <div className="flex items-center gap-2">
-                        <p className="text-xs text-red-400">{t('llm.error')}</p>
-                        <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(currentWord.id), () => getWordComparison(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))} className="text-xs text-blue-400 underline">↺</button>
+                        <p className="text-xs text-danger">{t('llm.error')}</p>
+                        <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(currentWord.id), () => getWordComparison(currentWord.word || '', currentWord.translateEn || '', currentWord.translateCh || '', i18n.language, wordLang(currentWord)))} className="text-xs text-accent underline">↺</button>
                       </div>
                     ) : (
-                      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
+                      <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                     )}
                   </div>
                 </div>
@@ -585,7 +586,7 @@ const WordPreviewPage: React.FC = () => {
                       key={i}
                       onClick={() => { if (!exitingRef.current) { setCardIndex(i); setFlipped(false); setDragX(0); clearInsight(); } }}
                       className={`rounded-full transition-all duration-200 ${
-                        i === cardIndex ? 'w-5 h-2 bg-blue-500' : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                        i === cardIndex ? 'w-5 h-2 bg-ink' : 'w-2 h-2 bg-ink/20 hover:bg-ink-faint '
                       }`}
                       aria-label={`Card ${i + 1}`}
                     />
@@ -598,20 +599,20 @@ const WordPreviewPage: React.FC = () => {
                 <button
                   onClick={goPrev}
                   disabled={cardIndex === 0}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-line shadow-sm text-ink-muted disabled:opacity-30 hover:bg-paper transition-colors"
                   aria-label="Previous card"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <span className="text-sm text-gray-400 dark:text-gray-500 min-w-[60px] text-center">
+                <span className="text-sm text-ink-faint min-w-[60px] text-center">
                   {cardIndex + 1} / {displayWords.length}
                 </span>
                 <button
                   onClick={goNext}
                   disabled={cardIndex >= displayWords.length - 1}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-line shadow-sm text-ink-muted disabled:opacity-30 hover:bg-paper transition-colors"
                   aria-label="Next card"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -626,7 +627,7 @@ const WordPreviewPage: React.FC = () => {
         /* ── LIST MODE ── */
         <main className="flex-1 overflow-y-auto px-4 py-3 space-y-2.5 max-w-xl mx-auto w-full pb-8">
           {displayWords.length === 0 && (
-            <p className="text-center text-sm text-gray-400 dark:text-gray-500 py-12">
+            <p className="text-center text-sm text-ink-faint py-12">
               {t('review.previewNoResults', 'No words match your search.')}
             </p>
           )}
@@ -637,8 +638,8 @@ const WordPreviewPage: React.FC = () => {
             return (
               <div
                 key={word.id ?? i}
-                className={`bg-white dark:bg-gray-800 rounded-2xl border shadow-sm overflow-hidden transition-all animate-fade-in-up ${
-                  isInsightOpen || isCompareOpen ? 'rainbow-glow' : 'border-gray-100 dark:border-gray-700'
+                className={`bg-surface rounded-2xl border shadow-sm overflow-hidden transition-all animate-fade-in-up ${
+                  isInsightOpen || isCompareOpen ? 'rainbow-glow' : 'border-line '
                 }`}
                 style={{ animationDelay: `${Math.min(i, 12) * 35}ms` }}
               >
@@ -646,13 +647,13 @@ const WordPreviewPage: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 px-4 py-3">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5">
-                      <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600">{originalIndex.get(word.id) ?? i + 1}</span>
-                      <p className="text-base font-bold text-gray-900 dark:text-white leading-snug break-words">
+                      <span className="shrink-0 text-[11px] font-mono text-ink-faint">{originalIndex.get(word.id) ?? i + 1}</span>
+                      <p className="text-base font-semibold text-ink leading-snug break-words">
                         {word.word}
                       </p>
                       <button
                         onClick={() => pronounceWord(word.word, wordLang(word))}
-                        className="shrink-0 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-400 dark:text-gray-500"
+                        className="shrink-0 p-1 rounded-lg hover:bg-ink/5 transition-colors text-ink-faint"
                         aria-label="Pronounce"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -661,7 +662,7 @@ const WordPreviewPage: React.FC = () => {
                       </button>
                     </div>
                     {word.sentence && (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 italic truncate">
+                      <p className="text-xs text-ink-faint mt-0.5 italic truncate">
                         {word.sentence}
                       </p>
                     )}
@@ -684,7 +685,7 @@ const WordPreviewPage: React.FC = () => {
                     {isLoggedIn && (
                       <button
                         onClick={() => setHeartWord(word)}
-                        className="p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400"
+                        className="p-2 rounded-xl hover:bg-danger-soft transition-colors text-ink-faint hover:text-danger"
                         aria-label={t('userVocab.addToGroup')}
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -694,7 +695,7 @@ const WordPreviewPage: React.FC = () => {
                     )}
                     <button
                       onClick={() => toggleReveal(word.id)}
-                      className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-400 dark:text-gray-500"
+                      className="p-2 rounded-xl hover:bg-ink/5 transition-colors text-ink-faint"
                       aria-label={isRevealed ? t('review.previewHide') : t('review.previewReveal')}
                     >
                       {isRevealed ? (
@@ -712,19 +713,19 @@ const WordPreviewPage: React.FC = () => {
                 </div>
 
                 {/* Meaning area */}
-                <div className="border-t border-gray-100 dark:border-gray-700 px-4 py-2.5 min-h-[40px] flex items-center">
+                <div className="border-t border-line px-4 py-2.5 min-h-[40px] flex items-center">
                   {isRevealed ? (
                     <div>
-                      <p className="text-sm text-gray-700 dark:text-gray-200 font-medium">{word.translateEn}</p>
+                      <p className="text-sm text-ink font-medium">{word.translateEn}</p>
                       {word.translateCh && (
-                        <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{word.translateCh}</p>
+                        <p className="text-xs text-ink-faint mt-0.5">{word.translateCh}</p>
                       )}
                     </div>
                   ) : (
                     <div className="flex items-center gap-2 w-full">
-                      <div className="h-3 rounded-full bg-gray-200 dark:bg-gray-700 flex-1 max-w-[180px]" />
-                      <div className="h-3 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
-                      <p className="text-xs text-gray-300 dark:text-gray-600 ml-auto">{t('review.previewTapReveal')}</p>
+                      <div className="h-3 rounded-full bg-ink/10 flex-1 max-w-[180px]" />
+                      <div className="h-3 rounded-full bg-ink/10 w-16" />
+                      <p className="text-xs text-ink-faint ml-auto">{t('review.previewTapReveal')}</p>
                     </div>
                   )}
                 </div>
@@ -745,16 +746,16 @@ const WordPreviewPage: React.FC = () => {
                 {/* AI compare panel */}
                 {isCompareOpen && (
                   <div className="px-4 pb-3 pt-0 animate-slide-down">
-                    <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                    <div className="bg-paper rounded-2xl p-3 ring-1 ring-inset ring-line">
                       {compare.loading ? (
-                        <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                        <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                       ) : compare.error ? (
                         <div className="flex items-center gap-2">
-                          <p className="text-xs text-red-400">{t('llm.error')}</p>
-                          <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)))} className="text-xs text-blue-400 underline">↺</button>
+                          <p className="text-xs text-danger">{t('llm.error')}</p>
+                          <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word || '', word.translateEn || '', word.translateCh || '', i18n.language, wordLang(word)))} className="text-xs text-accent underline">↺</button>
                         </div>
                       ) : (
-                        <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
+                        <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                       )}
                     </div>
                   </div>
@@ -765,7 +766,7 @@ const WordPreviewPage: React.FC = () => {
           {/* Sentinel — triggers next batch when scrolled into view */}
           <div ref={sentinelRef} className="h-10 flex items-center justify-center">
             {visibleCount < displayWords.length && (
-              <div className="w-5 h-5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-accent border-t-transparent rounded-full animate-spin" />
             )}
           </div>
         </main>
@@ -773,7 +774,7 @@ const WordPreviewPage: React.FC = () => {
 
       {showOnboarding && (() => {
         const raw: any[] = t('onboarding.wordPreview', { returnObjects: true }) as any[];
-        const steps = raw.map((s) => ({ icon: s.icon, iconBg: 'bg-blue-50 dark:bg-blue-900/20', title: s.title, body: s.body }));
+        const steps = raw.map((s) => ({ icon: s.icon, iconBg: 'bg-accent-soft', title: s.title, body: s.body }));
         return <OnboardingModal steps={steps} onDone={dismissOnboarding} onSkip={dismissOnboarding} />;
       })()}
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}

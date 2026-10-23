@@ -115,20 +115,20 @@ const AdminAnalyticsPage: React.FC = () => {
   const chartData = (data?.daily || []).map((p) => ({ ...p, label: formatXLabel(p.date, range) }));
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header title={t('analytics.title', 'Analytics')} />
 
       <main className="flex-1 pb-20 px-4 pt-4 max-w-3xl mx-auto w-full">
         {/* Range toggle */}
-        <div className="flex bg-gray-100 dark:bg-gray-800 rounded-xl p-1 mb-5 gap-1">
+        <div className="flex bg-ink/5 rounded-xl p-1 mb-5 gap-1">
           {RANGES.map(({ label, value }) => (
             <button
               key={value}
               onClick={() => setRange(value)}
               className={`flex-1 py-1.5 text-sm font-semibold rounded-lg transition-colors ${
                 range === value
-                  ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                  ? 'bg-surface text-ink shadow-sm'
+                  : 'text-ink-muted hover:text-ink '
               }`}
             >
               {label}
@@ -145,12 +145,12 @@ const AdminAnalyticsPage: React.FC = () => {
         </div>
 
         {error && (
-          <p className="text-center text-sm text-red-400 mb-4">{t('analytics.errorLoading', 'Could not load analytics.')}</p>
+          <p className="text-center text-sm text-danger mb-4">{t('analytics.errorLoading', 'Could not load analytics.')}</p>
         )}
 
         {/* Traffic over time */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 mb-4 shadow-sm border border-gray-100 dark:border-gray-700">
-          <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">{t('analytics.traffic', 'Traffic over time')}</h3>
+        <div className="bg-surface rounded-2xl p-4 mb-4 shadow-sm border border-line">
+          <h3 className="text-sm font-semibold text-ink mb-3">{t('analytics.traffic', 'Traffic over time')}</h3>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
@@ -166,13 +166,13 @@ const AdminAnalyticsPage: React.FC = () => {
 
         {/* Top pages & top actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <RankList title={t('analytics.topPages', 'Top pages')} items={data?.topPages} barColor="bg-blue-400" />
-          <RankList title={t('analytics.topActions', 'Top clicks & actions')} items={data?.topEvents} barColor="bg-purple-400" />
+          <RankList title={t('analytics.topPages', 'Top pages')} items={data?.topPages} barColor="bg-ink" />
+          <RankList title={t('analytics.topActions', 'Top clicks & actions')} items={data?.topEvents} barColor="bg-ink" />
         </div>
 
         {/* Top content viewed (articles / words) */}
         <div className="mb-4">
-          <RankList title={t('analytics.topContent', 'Top content viewed')} items={data?.topContent} barColor="bg-emerald-400" />
+          <RankList title={t('analytics.topContent', 'Top content viewed')} items={data?.topContent} barColor="bg-success" />
         </div>
 
         {/* Device & audience splits */}
@@ -190,16 +190,16 @@ function fmt(n?: number): string {
 }
 
 const colorMap: Record<string, string> = {
-  blue: 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400',
-  green: 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400',
-  purple: 'bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
-  amber: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400',
+  blue: 'bg-accent-soft text-accent',
+  green: 'bg-success-soft text-success',
+  purple: 'bg-accent-soft text-accent',
+  amber: 'bg-accent-soft text-accent',
 };
 
 const SummaryCard: React.FC<{ label: string; value: string; color: string }> = ({ label, value, color }) => (
   <div className={`rounded-2xl p-4 ${colorMap[color]}`}>
     <p className="text-xs font-medium opacity-70 mb-1">{label}</p>
-    <p className="text-2xl font-bold">{value}</p>
+    <p className="text-2xl font-semibold">{value}</p>
   </div>
 );
 
@@ -207,19 +207,19 @@ const RankList: React.FC<{ title: string; items?: CountItem[]; barColor: string 
   const list = items || [];
   const max = list.reduce((m, i) => Math.max(m, i.count), 0) || 1;
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">{title}</h3>
+    <div className="bg-surface rounded-2xl p-4 shadow-sm border border-line">
+      <h3 className="text-sm font-semibold text-ink mb-3">{title}</h3>
       {list.length === 0 ? (
-        <p className="text-xs text-gray-400 dark:text-gray-500 py-4 text-center">—</p>
+        <p className="text-xs text-ink-faint py-4 text-center">—</p>
       ) : (
         <div className="space-y-2">
           {list.map((i) => (
             <div key={i.name}>
               <div className="flex items-center justify-between text-xs mb-0.5">
-                <span className="text-gray-600 dark:text-gray-300 truncate mr-2" title={i.name}>{i.name}</span>
-                <span className="text-gray-400 dark:text-gray-500 font-medium tabular-nums shrink-0">{i.count.toLocaleString()}</span>
+                <span className="text-ink-muted truncate mr-2" title={i.name}>{i.name}</span>
+                <span className="text-ink-faint font-medium tabular-nums shrink-0">{i.count.toLocaleString()}</span>
               </div>
-              <div className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
+              <div className="h-1.5 rounded-full bg-ink/5 overflow-hidden">
                 <div className={`h-full rounded-full ${barColor}`} style={{ width: `${Math.max(4, (i.count / max) * 100)}%` }} />
               </div>
             </div>
@@ -233,10 +233,10 @@ const RankList: React.FC<{ title: string; items?: CountItem[]; barColor: string 
 const SplitPie: React.FC<{ title: string; items?: CountItem[]; tooltipStyle: React.CSSProperties }> = ({ title, items, tooltipStyle }) => {
   const list = (items || []).filter((i) => i.count > 0);
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
-      <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-3">{title}</h3>
+    <div className="bg-surface rounded-2xl p-4 shadow-sm border border-line">
+      <h3 className="text-sm font-semibold text-ink mb-3">{title}</h3>
       {list.length === 0 ? (
-        <p className="text-xs text-gray-400 dark:text-gray-500 py-8 text-center">—</p>
+        <p className="text-xs text-ink-faint py-8 text-center">—</p>
       ) : (
         <ResponsiveContainer width="100%" height={180}>
           <PieChart>

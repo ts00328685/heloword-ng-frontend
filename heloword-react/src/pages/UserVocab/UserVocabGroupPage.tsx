@@ -1,3 +1,4 @@
+import { isTourPending } from '../../components/WalkthroughOverlay';
 import React, { useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import MultiChoicePanel from '../../components/MultiChoicePanel';
@@ -90,7 +91,7 @@ const UserVocabGroupPage: React.FC = () => {
 
   const GROUP_SHARE_ONBOARDING_KEY = 'onboarding:group_share';
   const [showShareOnboarding, setShowShareOnboarding] = useState(
-    () => !localStorage.getItem(GROUP_SHARE_ONBOARDING_KEY)
+    () => !localStorage.getItem(GROUP_SHARE_ONBOARDING_KEY) && !isTourPending()
   );
 
   const id = Number(groupId);
@@ -371,17 +372,17 @@ const UserVocabGroupPage: React.FC = () => {
     useProgressiveList(filtered);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header
         title={group.name || t('userVocab.title')}
         showBack
         rightContent={
           <button
             onClick={() => setShowAddModal(true)}
-            className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-xl hover:bg-ink/5 transition-colors"
             aria-label={t('userVocab.addWord')}
           >
-            <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
           </button>
@@ -391,44 +392,44 @@ const UserVocabGroupPage: React.FC = () => {
       <main className="flex-1 pb-44 px-4 pt-4 max-w-2xl mx-auto w-full">
         {/* Group info bar */}
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md font-medium">
+          <span className="text-xs bg-accent-soft text-accent px-2 py-0.5 rounded-md font-medium">
             {group.language}
           </span>
-          <span className="text-xs text-gray-400 dark:text-gray-500">
+          <span className="text-xs text-ink-faint">
             {t('userVocab.wordCount', { count: words.length })}
           </span>
           {group.description && (
-            <span className="text-xs text-gray-400 dark:text-gray-500 truncate flex-1">· {group.description}</span>
+            <span className="text-xs text-ink-faint truncate flex-1">· {group.description}</span>
           )}
           <div className="ml-auto flex items-center gap-1">
             <button
               onClick={handleDownload}
               disabled={downloading}
-              className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors disabled:opacity-40"
+              className="p-1.5 rounded-xl hover:bg-ink/5 transition-colors disabled:opacity-40"
               title="Download as Excel"
             >
               {downloading ? (
-                <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-ink/30 border-t-transparent rounded-full animate-spin" />
               ) : (
-                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               )}
             </button>
             <button
               onClick={() => setShowShareModal(true)}
-              className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="p-1.5 rounded-xl hover:bg-ink/5 transition-colors"
               title={t('vocabShare.shareTitle', 'Share with friend')}
             >
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
               </svg>
             </button>
             <button
               onClick={() => setEditingGroup(true)}
-              className="p-1.5 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="p-1.5 rounded-xl hover:bg-ink/5 transition-colors"
             >
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
             </button>
@@ -438,7 +439,7 @@ const UserVocabGroupPage: React.FC = () => {
         {/* Search + actions row */}
         <div className="flex items-center gap-2 mb-4">
           <div className="relative flex-1">
-            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-faint pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
             </svg>
             <input
@@ -446,10 +447,10 @@ const UserVocabGroupPage: React.FC = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t('review.searchPlaceholder')}
-              className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-line bg-surface text-sm text-ink placeholder-ink-faint focus:outline-none focus:ring-2 focus:ring-accent"
             />
             {query && (
-              <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+              <button onClick={() => setQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-faint hover:text-ink-muted">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -458,10 +459,10 @@ const UserVocabGroupPage: React.FC = () => {
           </div>
 
           {/* Desktop action buttons — inline with search bar */}
-          <div className="hidden sm:flex items-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden divide-x divide-gray-200 dark:divide-gray-700 shrink-0 shadow-sm">
+          <div className="hidden sm:flex items-center bg-surface border border-line rounded-xl overflow-hidden divide-x divide-line shrink-0 shadow-sm">
             <button
               onClick={() => setShowImportModal(true)}
-              className="flex items-center gap-1.5 px-3 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors whitespace-nowrap"
+              className="flex items-center gap-1.5 px-3 py-2.5 text-sm text-ink-muted hover:bg-paper transition-colors whitespace-nowrap"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M8 12l4-4m0 0l4 4m-4-4v12" />
@@ -471,7 +472,7 @@ const UserVocabGroupPage: React.FC = () => {
             {
               <button
                 onClick={() => setShowPhotoModal(true)}
-                className="flex items-center gap-1.5 px-3 py-2.5 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors whitespace-nowrap"
+                className="flex items-center gap-1.5 px-3 py-2.5 text-sm text-ink-muted hover:bg-paper transition-colors whitespace-nowrap"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -482,7 +483,7 @@ const UserVocabGroupPage: React.FC = () => {
             }
             <button
               onClick={() => setShowAddModal(true)}
-              className="flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 transition-colors whitespace-nowrap"
+              className="flex items-center gap-1.5 px-3 py-2.5 text-sm font-semibold text-paper bg-ink hover:bg-ink/85 transition-colors whitespace-nowrap"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -494,16 +495,16 @@ const UserVocabGroupPage: React.FC = () => {
 
         {loading && (
           <div className="flex justify-center py-16">
-            <div className="w-8 h-8 border-[3px] border-blue-400 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-[3px] border-accent border-t-transparent rounded-full animate-spin" />
           </div>
         )}
 
         {!loading && words.length === 0 && (
           <div className="text-center py-16 flex flex-col items-center gap-4">
-            <p className="text-sm text-gray-400 dark:text-gray-500">{t('userVocab.emptyWords', 'No words yet. Add your first word!')}</p>
+            <p className="text-sm text-ink-faint">{t('userVocab.emptyWords', 'No words yet. Add your first word!')}</p>
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-xl transition-colors"
+              className="px-6 py-2.5 bg-ink hover:bg-ink/85 text-paper text-sm font-semibold rounded-xl transition-colors"
             >
               {t('userVocab.addWord')}
             </button>
@@ -521,8 +522,8 @@ const UserVocabGroupPage: React.FC = () => {
                   onClick={() => { setFlashMode((m) => !m); setCardIndex(0); setFlipped(false); setDragX(0); clearInsight(); }}
                   className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
                     flashMode
-                      ? 'bg-blue-500 border-blue-500 text-white shadow-sm'
-                      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                      ? 'bg-ink border-accent text-paper shadow-sm'
+                      : 'border-line bg-surface text-ink-muted hover:bg-paper '
                   }`}
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -535,8 +536,8 @@ const UserVocabGroupPage: React.FC = () => {
                   onClick={() => { if (multiMode) { setMultiMode(false); } else { setFlashMode(false); setMultiMode(true); } }}
                   className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
                     multiMode
-                      ? 'bg-emerald-500 border-emerald-500 text-white shadow-sm'
-                      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                      ? 'bg-success border-success text-white shadow-sm'
+                      : 'border-line bg-surface text-ink-muted hover:bg-paper '
                   }`}
                 >
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -552,8 +553,8 @@ const UserVocabGroupPage: React.FC = () => {
                 onClick={() => { setHideMeanings((v) => !v); setRevealedIds(new Set()); }}
                 className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-lg border transition-colors ${
                   hideMeanings
-                    ? 'border-indigo-300 dark:border-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                    ? 'border-line bg-accent-soft text-accent '
+                    : 'border-line bg-surface text-ink-muted hover:border-line '
                 }`}
               >
                 {hideMeanings ? (
@@ -572,8 +573,8 @@ const UserVocabGroupPage: React.FC = () => {
                 onClick={() => { setSelectMode((v) => !v); setSelectedIds(new Set()); }}
                 className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-lg border transition-colors ${
                   selectMode
-                    ? 'border-red-300 dark:border-red-600 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                    ? 'border-danger/30 bg-danger-soft text-danger '
+                    : 'border-line bg-surface text-ink-muted hover:border-line '
                 }`}
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -595,22 +596,22 @@ const UserVocabGroupPage: React.FC = () => {
                       setSelectedIds(new Set(filtered.map((w) => w.id)));
                     }
                   }}
-                  className="text-xs text-blue-500 hover:text-blue-600 font-medium"
+                  className="text-xs text-accent hover:text-accent font-medium"
                 >
                   {selectedIds.size === filtered.length
                     ? t('userVocab.deselectAll', 'Deselect all')
                     : t('userVocab.selectAll', 'Select all')}
                 </button>
-                <span className="text-xs text-gray-400 dark:text-gray-500">
+                <span className="text-xs text-ink-faint">
                   {t('userVocab.selectedCount', '{{count}} selected', { count: selectedIds.size })}
                 </span>
                 <button
                   onClick={handleBatchDelete}
                   disabled={selectedIds.size === 0 || deletingSelected}
-                  className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-xs font-semibold disabled:opacity-40 transition-colors"
+                  className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-danger hover:bg-danger/90 text-white text-xs font-semibold disabled:opacity-40 transition-colors"
                 >
                   {deletingSelected ? (
-                    <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <div className="w-3.5 h-3.5 border-2 border-line border-t-transparent rounded-full animate-spin" />
                   ) : (
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -626,7 +627,7 @@ const UserVocabGroupPage: React.FC = () => {
               <button
                 onClick={handleStartQuiz}
                 disabled={quizLoading}
-                className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 text-white font-bold py-3.5 rounded-2xl shadow-lg transition-colors mb-2"
+                className="w-full bg-ink hover:bg-ink/85 active:bg-ink/85 disabled:opacity-40 text-paper font-semibold py-3.5 rounded-2xl shadow-lg transition-colors mb-2"
               >
                 {quizLoading ? '…' : t('userVocab.startQuiz')}
               </button>
@@ -647,7 +648,7 @@ const UserVocabGroupPage: React.FC = () => {
                       if (cardIndex + offset >= filtered.length) return null;
                       return (
                         <div key={offset}
-                          className="absolute inset-x-0 bottom-0 bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-md"
+                          className="absolute inset-x-0 bottom-0 bg-surface rounded-3xl border border-line shadow-md"
                           style={{ height: 300, transform: `translateY(-${offset * 10}px) scale(${1 - offset * 0.045})`, transformOrigin: 'bottom center', zIndex: 10 - offset, opacity: 1 - offset * 0.3 }}
                         />
                       );
@@ -664,21 +665,21 @@ const UserVocabGroupPage: React.FC = () => {
                       <div className="flashcard-scene w-full h-full">
                         <div className={`flashcard-inner w-full h-full${flipped ? ' is-flipped' : ''}`}>
                           {/* Front */}
-                          <div className="flashcard-face bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 shadow-lg flex flex-col px-8 py-6">
-                            <span className="absolute top-3 left-4 text-[11px] font-mono text-gray-300 dark:text-gray-600">{cardIndex + 1}</span>
+                          <div className="flashcard-face bg-surface rounded-3xl border border-line shadow-lg flex flex-col px-8 py-6">
+                            <span className="absolute top-3 left-4 text-[11px] font-mono text-ink-faint">{cardIndex + 1}</span>
                             {/* Vertically centered word content */}
                             <div className="flex-1 flex flex-col items-center justify-center gap-2">
-                              <p className="text-3xl font-bold text-gray-900 dark:text-white text-center leading-tight break-words">{cur.word}</p>
-                              {cur.phonetics && <p className="text-sm text-gray-400 dark:text-gray-500 text-center">{cur.phonetics}</p>}
+                              <p className="text-3xl font-semibold text-ink text-center leading-tight break-words">{cur.word}</p>
+                              {cur.phonetics && <p className="text-sm text-ink-faint text-center">{cur.phonetics}</p>}
                             </div>
                             {/* Bottom bar: tap hint left, buttons right */}
                             <div className="flex items-center justify-between">
-                              <p className="text-[11px] text-gray-300 dark:text-gray-600">{t('review.flashcardTap')}</p>
+                              <p className="text-[11px] text-ink-faint">{t('review.flashcardTap')}</p>
                               <div className="flex items-center gap-2">
                                 <button
                                   onPointerDown={(e) => e.stopPropagation()}
                                   onClick={(e) => { e.stopPropagation(); pronounceWord(cur.word, wordLang); }}
-                                  className="p-2.5 rounded-2xl bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                  className="p-2.5 rounded-2xl bg-ink/5 text-ink-muted hover:bg-ink/10 transition-colors"
                                   aria-label="Pronounce"
                                 >
                                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -691,8 +692,8 @@ const UserVocabGroupPage: React.FC = () => {
                                   onClick={(e) => { e.stopPropagation(); handleWordTap(cur); }}
                                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                                     flashInsightOpen
-                                      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                                      : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                                      ? 'bg-ink text-paper ring-1 ring-ink '
+                                      : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                                   }`}
                                 >
                                   <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -704,8 +705,8 @@ const UserVocabGroupPage: React.FC = () => {
                                   onClick={(e) => { e.stopPropagation(); handleCompareTap(cur); }}
                                   className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                                     flashCompareOpen
-                                      ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                                      : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                                      ? 'bg-ink text-paper ring-1 ring-ink '
+                                      : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                                   }`}
                                 >
                                   <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -715,13 +716,13 @@ const UserVocabGroupPage: React.FC = () => {
                             </div>
                           </div>
                           {/* Back */}
-                          <div className="flashcard-face flashcard-back-face bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl border border-blue-100 dark:border-gray-600 shadow-lg flex flex-col items-center overflow-y-auto scrollbar-hide px-8 py-6">
+                          <div className="flashcard-face flashcard-back-face bg-surface rounded-3xl border border-line shadow-lg flex flex-col items-center overflow-y-auto scrollbar-hide px-8 py-6">
                             <div className="my-auto w-full flex flex-col items-center gap-2">
-                              <p className="text-sm font-semibold text-gray-400 dark:text-gray-500 text-center">{cur.word}</p>
-                              <div className="w-8 h-px bg-blue-200 dark:bg-gray-500 my-1" />
-                              <p className="text-2xl font-bold text-gray-900 dark:text-white text-center leading-snug break-words">{cur.translateEn}</p>
-                              {cur.translateCh && <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-1 break-words">{cur.translateCh}</p>}
-                              {cur.sentence && <p className="text-xs text-gray-400 dark:text-gray-500 text-center italic mt-3 leading-relaxed break-words px-2">{cur.sentence}</p>}
+                              <p className="text-sm font-semibold text-ink-faint text-center">{cur.word}</p>
+                              <div className="w-8 h-px bg-accent-soft my-1" />
+                              <p className="text-2xl font-semibold text-ink text-center leading-snug break-words">{cur.translateEn}</p>
+                              {cur.translateCh && <p className="text-sm text-ink-muted text-center mt-1 break-words">{cur.translateCh}</p>}
+                              {cur.sentence && <p className="text-xs text-ink-faint text-center italic mt-3 leading-relaxed break-words px-2">{cur.sentence}</p>}
                             </div>
                           </div>
                         </div>
@@ -732,18 +733,18 @@ const UserVocabGroupPage: React.FC = () => {
                   {/* AI insight panel */}
                   {flashInsightOpen && (
                     <div className="w-full max-w-sm mt-4 animate-fade-in">
-                      <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                      <div className="bg-paper rounded-2xl p-3 ring-1 ring-inset ring-line">
                         {!isLoggedIn ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                          <p className="text-xs text-ink-faint italic">{t('llm.loginRequired')}</p>
                         ) : insight.loading ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                          <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                         ) : insight.error ? (
                           <div className="flex items-center gap-2">
-                            <p className="text-xs text-red-400">{t('llm.error')}</p>
-                            <button data-analytics="ai.insight.retry" onClick={() => insight.retry(String(cur.id), () => getWordInsight(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
+                            <p className="text-xs text-danger">{t('llm.error')}</p>
+                            <button data-analytics="ai.insight.retry" onClick={() => insight.retry(String(cur.id), () => getWordInsight(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-accent underline">↺</button>
                           </div>
                         ) : (
-                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
+                          <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{insight.text}</TapToLookup></p>
                         )}
                       </div>
                     </div>
@@ -751,18 +752,18 @@ const UserVocabGroupPage: React.FC = () => {
                   {/* AI compare panel */}
                   {flashCompareOpen && (
                     <div className="w-full max-w-sm mt-4 animate-fade-in">
-                      <div className="bg-gray-50 dark:bg-gray-800/60 rounded-2xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                      <div className="bg-paper rounded-2xl p-3 ring-1 ring-inset ring-line">
                         {!isLoggedIn ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                          <p className="text-xs text-ink-faint italic">{t('llm.loginRequired')}</p>
                         ) : compare.loading ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                          <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                         ) : compare.error ? (
                           <div className="flex items-center gap-2">
-                            <p className="text-xs text-red-400">{t('llm.error')}</p>
-                            <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(cur.id), () => getWordComparison(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-blue-400 underline">↺</button>
+                            <p className="text-xs text-danger">{t('llm.error')}</p>
+                            <button data-analytics="ai.compare.retry" onClick={() => compare.retry(String(cur.id), () => getWordComparison(cur.word, cur.translateEn, cur.translateCh || '', i18n.language, wordLang))} className="text-xs text-accent underline">↺</button>
                           </div>
                         ) : (
-                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
+                          <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                         )}
                       </div>
                     </div>
@@ -775,7 +776,7 @@ const UserVocabGroupPage: React.FC = () => {
                       return (
                         <button key={i}
                           onClick={() => { if (!exitingRef.current) { setCardIndex(i); setFlipped(false); setDragX(0); clearInsight(); } }}
-                          className={`rounded-full transition-all duration-200 ${i === cardIndex ? 'w-5 h-2 bg-blue-500' : 'w-2 h-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`}
+                          className={`rounded-full transition-all duration-200 ${i === cardIndex ? 'w-5 h-2 bg-ink' : 'w-2 h-2 bg-ink/20 hover:bg-ink-faint '}`}
                           aria-label={`Card ${i + 1}`}
                         />
                       );
@@ -786,20 +787,20 @@ const UserVocabGroupPage: React.FC = () => {
                     <button
                       onClick={() => flashGoPrev()}
                       disabled={cardIndex === 0}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-line shadow-sm text-ink-muted disabled:opacity-30 hover:bg-paper transition-colors"
                       aria-label="Previous card"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                       </svg>
                     </button>
-                    <span className="text-sm text-gray-400 dark:text-gray-500 min-w-[60px] text-center">
+                    <span className="text-sm text-ink-faint min-w-[60px] text-center">
                       {cardIndex + 1} / {filtered.length}
                     </span>
                     <button
                       onClick={() => flashGoNext(filtered)}
                       disabled={cardIndex >= filtered.length - 1}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm text-gray-500 dark:text-gray-400 disabled:opacity-30 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-surface border border-line shadow-sm text-ink-muted disabled:opacity-30 hover:bg-paper transition-colors"
                       aria-label="Next card"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -817,12 +818,12 @@ const UserVocabGroupPage: React.FC = () => {
               return (
                 <div
                   key={word.id}
-                  className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all animate-fade-in-up ${
+                  className={`bg-surface rounded-xl border shadow-sm transition-all animate-fade-in-up ${
                     selectMode && isChecked
-                      ? 'border-red-300 dark:border-red-600 bg-red-50/30 dark:bg-red-900/10'
+                      ? 'border-danger/30 bg-danger-soft '
                       : isSelected || isCompareSelected
                       ? 'rainbow-glow'
-                      : 'border-gray-200 dark:border-gray-700 hover:shadow-md'
+                      : 'border-line hover:shadow-md'
                   }`}
                   style={{ animationDelay: `${Math.min(idx, 10) * 40}ms` }}
                   onClick={selectMode ? () => toggleSelectId(word.id) : undefined}
@@ -832,8 +833,8 @@ const UserVocabGroupPage: React.FC = () => {
                     {selectMode ? (
                       <div className={`shrink-0 mt-0.5 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
                         isChecked
-                          ? 'bg-red-500 border-red-500'
-                          : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800'
+                          ? 'bg-danger border-danger'
+                          : 'border-line bg-surface '
                       }`}>
                         {isChecked && (
                           <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -842,17 +843,17 @@ const UserVocabGroupPage: React.FC = () => {
                         )}
                       </div>
                     ) : (
-                      <span className="shrink-0 text-[11px] font-mono text-gray-300 dark:text-gray-600 pt-0.5 w-7 text-right">{wordNo}</span>
+                      <span className="shrink-0 text-[11px] font-mono text-ink-faint pt-0.5 w-7 text-right">{wordNo}</span>
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5">
-                        <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{word.word}</p>
+                        <p className="text-sm font-semibold text-ink">{word.word}</p>
                         {word.level && (
-                          <span className="shrink-0 px-1.5 py-px rounded text-[10px] font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-500 dark:text-indigo-300">{word.level}</span>
+                          <span className="shrink-0 px-1.5 py-px rounded text-[10px] font-semibold bg-accent-soft text-accent">{word.level}</span>
                         )}
                         <button
                           onClick={() => pronounceWord(word.word, wordLang)}
-                          className="shrink-0 p-0.5 rounded text-gray-300 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
+                          className="shrink-0 p-0.5 rounded text-ink-faint hover:text-accent transition-colors"
                           aria-label="Pronounce"
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -862,14 +863,14 @@ const UserVocabGroupPage: React.FC = () => {
                       </div>
                       {isMeaningVisible(word.id) ? (
                         <>
-                          {word.translateEn && <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>}
-                          {word.translateCh && <p className="text-xs text-gray-400 dark:text-gray-500">{word.translateCh}</p>}
-                          {word.sentence && <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed max-h-16 overflow-y-auto break-words">{word.sentence}</p>}
+                          {word.translateEn && <p className="text-xs text-accent mt-0.5">{word.translateEn}</p>}
+                          {word.translateCh && <p className="text-xs text-ink-faint">{word.translateCh}</p>}
+                          {word.sentence && <p className="text-xs text-ink-muted italic mt-1 leading-relaxed max-h-16 overflow-y-auto break-words">{word.sentence}</p>}
                         </>
                       ) : (
                         <div className="flex items-center gap-2 mt-1">
-                          <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-24" />
-                          <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
+                          <div className="h-2.5 rounded-full bg-ink/10 w-24" />
+                          <div className="h-2.5 rounded-full bg-ink/10 w-16" />
                         </div>
                       )}
                       {/* AI Insight / Compare buttons */}
@@ -878,8 +879,8 @@ const UserVocabGroupPage: React.FC = () => {
                           onClick={() => handleWordTap(word)}
                           className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                             isSelected
-                              ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                              : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                              ? 'bg-ink text-paper ring-1 ring-ink '
+                              : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                           }`}
                         >
                           <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -889,8 +890,8 @@ const UserVocabGroupPage: React.FC = () => {
                           onClick={() => handleCompareTap(word)}
                           className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                             isCompareSelected
-                              ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                              : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                              ? 'bg-ink text-paper ring-1 ring-ink '
+                              : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                           }`}
                         >
                           <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -903,7 +904,7 @@ const UserVocabGroupPage: React.FC = () => {
                       {hideMeanings && (
                         <button
                           onClick={() => toggleReveal(word.id)}
-                          className="p-1.5 rounded-xl transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400"
+                          className="p-1.5 rounded-xl transition-colors text-ink-faint hover:text-accent"
                           aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
                         >
                           {isMeaningVisible(word.id) ? (
@@ -920,17 +921,17 @@ const UserVocabGroupPage: React.FC = () => {
                       )}
                       <button
                         onClick={() => setEditingWord(word)}
-                        className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                        className="p-2 rounded-xl hover:bg-ink/5 transition-colors"
                       >
-                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-ink-faint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
                       </button>
                       <button
                         onClick={() => setConfirmDeleteWord(word)}
-                        className="p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        className="p-2 rounded-xl hover:bg-danger-soft transition-colors"
                       >
-                        <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                       </button>
@@ -941,21 +942,21 @@ const UserVocabGroupPage: React.FC = () => {
                   {/* AI insight panel */}
                   {!selectMode && isSelected && (
                     <div className="px-3 pb-3 pt-0 animate-slide-down">
-                      <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                      <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
                         {!isLoggedIn ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                          <p className="text-xs text-ink-faint italic">{t('llm.loginRequired')}</p>
                         ) : insight.loading ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                          <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                         ) : insight.error ? (
                           <div className="flex items-center gap-2">
-                            <p className="text-xs text-red-400">{t('llm.error')}</p>
+                            <p className="text-xs text-danger">{t('llm.error')}</p>
                             <button data-analytics="ai.insight.retry"
                               onClick={() => insight.retry(String(word.id), () => getWordInsight(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang))}
-                              className="text-xs text-blue-400 underline"
+                              className="text-xs text-accent underline"
                             >↺</button>
                           </div>
                         ) : (
-                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                          <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap">
                             <TapToLookup>{insight.text}</TapToLookup>
                           </p>
                         )}
@@ -964,21 +965,21 @@ const UserVocabGroupPage: React.FC = () => {
                   )}
                   {!selectMode && isCompareSelected && (
                     <div className="px-3 pb-3 pt-0 animate-slide-down">
-                      <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                      <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
                         {!isLoggedIn ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 italic">{t('llm.loginRequired')}</p>
+                          <p className="text-xs text-ink-faint italic">{t('llm.loginRequired')}</p>
                         ) : compare.loading ? (
-                          <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                          <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                         ) : compare.error ? (
                           <div className="flex items-center gap-2">
-                            <p className="text-xs text-red-400">{t('llm.error')}</p>
+                            <p className="text-xs text-danger">{t('llm.error')}</p>
                             <button data-analytics="ai.compare.retry"
                               onClick={() => compare.retry(String(word.id), () => getWordComparison(word.word, word.translateEn, word.translateCh || '', i18n.language, wordLang))}
-                              className="text-xs text-blue-400 underline"
+                              className="text-xs text-accent underline"
                             >↺</button>
                           </div>
                         ) : (
-                          <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                          <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap">
                             <TapToLookup>{compare.text}</TapToLookup>
                           </p>
                         )}
@@ -1000,7 +1001,7 @@ const UserVocabGroupPage: React.FC = () => {
         <div className="sm:hidden fixed bottom-36 right-4 flex flex-col items-end gap-2 z-30">
           <button
             onClick={() => setShowImportModal(true)}
-            className="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300 rounded-2xl shadow-md flex items-center justify-center transition-colors"
+            className="w-12 h-12 bg-surface border border-line hover:bg-paper text-ink-muted rounded-2xl shadow-md flex items-center justify-center transition-colors"
             aria-label={t('userVocab.importTitle')}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1010,7 +1011,7 @@ const UserVocabGroupPage: React.FC = () => {
           {
             <button
               onClick={() => setShowPhotoModal(true)}
-              className="w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-purple-500 dark:text-purple-400 rounded-2xl shadow-md flex items-center justify-center transition-colors"
+              className="w-12 h-12 bg-surface border border-line hover:bg-paper text-accent rounded-2xl shadow-md flex items-center justify-center transition-colors"
               aria-label={t('userVocab.photoImportTitle')}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1021,7 +1022,7 @@ const UserVocabGroupPage: React.FC = () => {
           }
           <button
             onClick={() => setShowAddModal(true)}
-            className="w-12 h-12 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-2xl shadow-lg flex items-center justify-center transition-colors"
+            className="w-12 h-12 bg-ink hover:bg-ink/85 active:bg-ink/85 text-paper rounded-2xl shadow-lg flex items-center justify-center transition-colors"
             aria-label={t('userVocab.addWord')}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1076,7 +1077,7 @@ const UserVocabGroupPage: React.FC = () => {
       {showShareOnboarding && (() => {
         const raw = t('onboarding.groupShare', { returnObjects: true });
         if (!Array.isArray(raw)) return null;
-        const steps = (raw as any[]).map((s: any) => ({ icon: s.icon, iconBg: 'bg-purple-50 dark:bg-purple-900/20', title: s.title, body: s.body }));
+        const steps = (raw as any[]).map((s: any) => ({ icon: s.icon, iconBg: 'bg-accent-soft', title: s.title, body: s.body }));
         const dismiss = () => { localStorage.setItem(GROUP_SHARE_ONBOARDING_KEY, '1'); setShowShareOnboarding(false); };
         return <OnboardingModal steps={steps} onDone={dismiss} onSkip={dismiss} />;
       })()}
@@ -1102,21 +1103,21 @@ const UserVocabGroupPage: React.FC = () => {
 
       {confirmDeleteWord && ReactDOM.createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 max-w-sm w-full">
-            <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-2">{t('userVocab.deleteWord', 'Delete word')}</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 font-semibold">{confirmDeleteWord.word}</p>
-            <p className="text-sm text-gray-400 dark:text-gray-500 mb-5">{t('userVocab.confirmDeleteWord', 'Are you sure you want to delete this word?')}</p>
+          <div className="bg-surface rounded-2xl shadow-2xl p-6 max-w-sm w-full">
+            <h2 className="text-base font-semibold text-ink mb-2">{t('userVocab.deleteWord', 'Delete word')}</h2>
+            <p className="text-sm text-ink-muted mb-1 font-semibold">{confirmDeleteWord.word}</p>
+            <p className="text-sm text-ink-faint mb-5">{t('userVocab.confirmDeleteWord', 'Are you sure you want to delete this word?')}</p>
             <div className="flex gap-3">
               <button
                 onClick={() => setConfirmDeleteWord(null)}
-                className="flex-1 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 text-sm text-gray-600 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="flex-1 py-2.5 rounded-xl border border-line text-sm text-ink-muted font-medium hover:bg-paper transition-colors"
               >
                 {t('social.cancel')}
               </button>
               <button
                 onClick={handleDeleteWord}
                 disabled={deletingWord}
-                className="flex-1 py-2.5 rounded-xl bg-red-500 hover:bg-red-600 text-white text-sm font-semibold disabled:opacity-40 transition-colors"
+                className="flex-1 py-2.5 rounded-xl bg-danger hover:bg-danger/90 text-white text-sm font-semibold disabled:opacity-40 transition-colors"
               >
                 {deletingWord ? '…' : t('userVocab.deleteWord', 'Delete Word')}
               </button>

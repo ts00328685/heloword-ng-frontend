@@ -212,18 +212,18 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 px-4 pb-safe" onClick={onClose}>
       <div
-        className="bg-white dark:bg-gray-800 rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-lg max-h-[92vh] flex flex-col"
+        className="bg-surface rounded-t-3xl sm:rounded-2xl shadow-2xl w-full max-w-lg max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Drag handle (mobile) */}
         <div className="flex justify-center pt-3 pb-1 sm:hidden">
-          <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+          <div className="w-10 h-1 rounded-full bg-ink/20" />
         </div>
 
         {/* Header */}
-        <div className="px-6 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div className="px-6 pt-4 pb-3 border-b border-line">
           <div className="flex items-center justify-between gap-3">
-            <h2 className="text-base font-bold text-gray-900 dark:text-gray-100 shrink-0">
+            <h2 className="text-base font-semibold text-ink shrink-0">
               {initial?.word
                 ? t('userVocab.editWord', 'Edit Word')
                 : bulkMode
@@ -235,20 +235,20 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
               {!bulkMode && systemWords && systemWords.length > 0 && (
                 <button
                   onClick={() => setShowSystemSearch((v) => !v)}
-                  className="text-xs text-blue-500 font-medium hover:text-blue-700 transition-colors whitespace-nowrap"
+                  className="text-xs text-accent font-medium hover:text-accent transition-colors whitespace-nowrap"
                 >
                   {t('userVocab.fillSystem')}
                 </button>
               )}
               {/* Mode toggle (add mode only) */}
               {canBulk && (
-                <div className="flex items-center bg-gray-100 dark:bg-gray-700 rounded-lg p-0.5">
+                <div className="flex items-center bg-ink/5 rounded-lg p-0.5">
                   <button
                     onClick={() => setBulkMode(false)}
                     className={`text-xs font-medium px-2.5 py-1 rounded-md transition-colors ${
                       !bulkMode
-                        ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-gray-100 shadow-sm'
-                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700'
+                        ? 'bg-surface text-ink shadow-sm'
+                        : 'text-ink-muted hover:text-ink'
                     }`}
                   >
                     {t('userVocab.singleMode', 'Single')}
@@ -257,8 +257,8 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                     onClick={() => setBulkMode(true)}
                     className={`text-xs font-medium px-2.5 py-1 rounded-md transition-colors ${
                       bulkMode
-                        ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-gray-100 shadow-sm'
-                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-700'
+                        ? 'bg-surface text-ink shadow-sm'
+                        : 'text-ink-muted hover:text-ink'
                     }`}
                   >
                     {t('userVocab.bulkMode', 'Bulk')}
@@ -273,14 +273,14 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
         {!bulkMode && (
           <>
             {showSystemSearch && (
-              <div className="px-6 py-3 border-b border-gray-100 dark:border-gray-700 animate-slide-down">
+              <div className="px-6 py-3 border-b border-line animate-slide-down">
                 <input
                   autoFocus
                   type="text"
                   value={systemQuery}
                   onChange={(e) => setSystemQuery(e.target.value)}
                   placeholder={t('userVocab.searchSystem', 'Search system words...')}
-                  className="w-full px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 rounded-xl border border-line bg-paper text-sm text-ink focus:outline-none focus:ring-2 focus:ring-accent"
                 />
                 {filteredSystem.length > 0 && (
                   <div className="mt-2 space-y-1 max-h-48 overflow-y-auto">
@@ -288,23 +288,23 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                       <button
                         key={sw.id}
                         onClick={() => fillFromSystem(sw)}
-                        className="w-full text-left px-3 py-2 rounded-xl bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
+                        className="w-full text-left px-3 py-2 rounded-xl bg-paper hover:bg-accent-soft transition-colors"
                       >
-                        <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">{sw.word || sw.sentence}</p>
-                        {sw.translateEn && <p className="text-xs text-blue-500 break-words">{sw.translateEn}</p>}
+                        <p className="text-sm font-semibold text-ink">{sw.word || sw.sentence}</p>
+                        {sw.translateEn && <p className="text-xs text-accent break-words">{sw.translateEn}</p>}
                       </button>
                     ))}
                   </div>
                 )}
                 {systemQuery && filteredSystem.length === 0 && (
-                  <p className="text-xs text-gray-400 mt-2 text-center">No matches</p>
+                  <p className="text-xs text-ink-faint mt-2 text-center">No matches</p>
                 )}
               </div>
             )}
 
             <div className="px-6 py-4 space-y-3 overflow-y-auto flex-1">
               <div>
-                <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+                <label className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1 block">
                   {t('userVocab.word')}
                 </label>
                 <input
@@ -312,14 +312,14 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                   value={word}
                   onChange={(e) => setWord(e.target.value)}
                   placeholder={t('userVocab.word')}
-                  className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2.5 rounded-xl border border-line bg-paper text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                 />
                 {language === 'JA' && (
                   <div className="mt-1.5 flex items-start gap-1.5 px-1">
-                    <svg className="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <p className="text-[11px] text-amber-600 dark:text-amber-400 leading-snug">
+                    <p className="text-[11px] text-accent leading-snug">
                       {t('userVocab.jpKanjiHint')}
                     </p>
                   </div>
@@ -327,7 +327,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+                <label className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1 block">
                   {t('userVocab.meaningEn')}
                 </label>
                 <input
@@ -335,12 +335,12 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                   value={translateEn}
                   onChange={(e) => setTranslateEn(e.target.value)}
                   placeholder={t('userVocab.meaningEn')}
-                  className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2.5 rounded-xl border border-line bg-paper text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+                <label className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1 block">
                   {t('userVocab.meaningCh')}
                 </label>
                 <input
@@ -348,12 +348,12 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                   value={translateCh}
                   onChange={(e) => setTranslateCh(e.target.value)}
                   placeholder={t('userVocab.meaningCh')}
-                  className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2.5 rounded-xl border border-line bg-paper text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 block">
+                <label className="text-xs font-semibold text-ink-muted uppercase tracking-wide mb-1 block">
                   {t('userVocab.sentence')}
                 </label>
                 <textarea
@@ -361,37 +361,37 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                   onChange={(e) => setSentence(e.target.value)}
                   placeholder={t('userVocab.sentence')}
                   rows={2}
-                  className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  className="w-full px-3 py-2.5 rounded-xl border border-line bg-paper text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent resize-none"
                 />
               </div>
 
               <button data-analytics="ai.word_fill"
                 onClick={handleAiFill}
                 disabled={aiLoading || !word.trim()}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-purple-200 dark:border-purple-700 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 text-sm font-medium hover:bg-purple-100 dark:hover:bg-purple-900/40 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-line bg-accent-soft text-accent text-sm font-medium hover:bg-accent-soft disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {aiLoading ? (
-                  <div className="w-4 h-4 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <svg className="w-4 h-4" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 )}
                 {aiLoading ? t('llm.thinking') : t('userVocab.fillAI')}
               </button>
 
-              {error && <p className="text-xs text-red-500">{error}</p>}
+              {error && <p className="text-xs text-danger">{error}</p>}
             </div>
 
-            <div className="px-6 pb-6 pt-2 border-t border-gray-100 dark:border-gray-700">
+            <div className="px-6 pb-6 pt-2 border-t border-line">
               <button
                 onClick={handleSave}
                 disabled={!word.trim() || !translateEn.trim() || saving}
-                className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors mb-2"
+                className="w-full bg-ink hover:bg-ink/85 active:bg-ink/85 disabled:opacity-40 disabled:cursor-not-allowed text-paper font-semibold py-3 rounded-xl transition-colors mb-2"
               >
                 {saving ? '…' : t('social.save')}
               </button>
               <button
                 onClick={onClose}
-                className="w-full text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 py-2 transition-colors"
+                className="w-full text-sm text-ink-faint hover:text-ink-muted py-2 transition-colors"
               >
                 {t('social.cancel')}
               </button>
@@ -405,19 +405,19 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
             {/* Rows */}
             <div className="flex-1 overflow-y-auto px-4 pt-3 space-y-2 pb-2">
               {rows.map((row, idx) => (
-                <div key={idx} className="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 p-2.5 space-y-1.5">
+                <div key={idx} className="rounded-xl border border-line bg-paper p-2.5 space-y-1.5">
                   {/* Row header: index + AI btn + remove btn */}
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">#{idx + 1}</span>
+                    <span className="text-[10px] font-semibold text-ink-faint uppercase tracking-wider">#{idx + 1}</span>
                     <div className="flex items-center gap-1">
                       <button data-analytics="ai.word_fill.row"
                         onClick={() => handleBulkAiFillRow(idx)}
                         disabled={!row.word.trim() || row.aiLoading}
                         title={t('userVocab.fillAI')}
-                        className="flex items-center gap-1 px-2 py-1 rounded-lg text-xs text-purple-600 dark:text-purple-400 font-medium hover:bg-purple-100 dark:hover:bg-purple-900/40 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                        className="flex items-center gap-1 px-2 py-1 rounded-lg text-xs text-accent font-medium hover:bg-accent-soft disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                       >
                         {row.aiLoading ? (
-                          <div className="w-3 h-3 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                          <div className="w-3 h-3 border-2 border-accent border-t-transparent rounded-full animate-spin" />
                         ) : (
                           <svg className="w-3 h-3" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                         )}
@@ -426,7 +426,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                       <button
                         onClick={() => removeRow(idx)}
                         title="Remove row"
-                        className="w-6 h-6 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                        className="w-6 h-6 flex items-center justify-center rounded-lg text-ink-faint hover:text-danger hover:bg-danger-soft transition-colors"
                       >
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -442,14 +442,14 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                       value={row.word}
                       onChange={(e) => updateRow(idx, 'word', e.target.value)}
                       placeholder={t('userVocab.word').replace(' *', '') + ' *'}
-                      className="w-full px-2.5 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-2.5 py-2 rounded-lg border border-line bg-surface text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                     <input
                       type="text"
                       value={row.translateEn}
                       onChange={(e) => updateRow(idx, 'translateEn', e.target.value)}
                       placeholder={t('userVocab.meaningEn').replace(' *', '') + ' *'}
-                      className="w-full px-2.5 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-2.5 py-2 rounded-lg border border-line bg-surface text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                   </div>
 
@@ -460,14 +460,14 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
                       value={row.translateCh}
                       onChange={(e) => updateRow(idx, 'translateCh', e.target.value)}
                       placeholder={t('userVocab.meaningCh')}
-                      className="w-full px-2.5 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-2.5 py-2 rounded-lg border border-line bg-surface text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                     <input
                       type="text"
                       value={row.sentence}
                       onChange={(e) => updateRow(idx, 'sentence', e.target.value)}
                       placeholder={t('userVocab.sentence')}
-                      className="w-full px-2.5 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-2.5 py-2 rounded-lg border border-line bg-surface text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                   </div>
                 </div>
@@ -476,7 +476,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
               {/* Add row button */}
               <button
                 onClick={addRow}
-                className="mt-1 flex items-center gap-1.5 text-xs text-blue-500 hover:text-blue-700 font-medium py-1 px-1 transition-colors"
+                className="mt-1 flex items-center gap-1.5 text-xs text-accent hover:text-accent font-medium py-1 px-1 transition-colors"
               >
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
@@ -486,32 +486,32 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
             </div>
 
             {/* Footer */}
-            <div className="px-4 pb-6 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2">
+            <div className="px-4 pb-6 pt-3 border-t border-line space-y-2">
               {/* AI Fill All */}
               <button data-analytics="ai.word_fill.all"
                 onClick={handleBulkAiFillAll}
                 disabled={bulkAiAllLoading || anyBulkRowAiLoading || unfilledWords === 0}
-                className="w-full flex items-center justify-center gap-2 py-2 rounded-xl border border-purple-200 dark:border-purple-700 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 text-sm font-medium hover:bg-purple-100 dark:hover:bg-purple-900/40 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2 rounded-xl border border-line bg-accent-soft text-accent text-sm font-medium hover:bg-accent-soft disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {bulkAiAllLoading || anyBulkRowAiLoading ? (
-                  <div className="w-4 h-4 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <svg className="w-4 h-4" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 )}
                 {bulkAiAllLoading || anyBulkRowAiLoading
                   ? t('llm.thinking')
-                  : t('userVocab.fillAllAI', '✨ AI Fill All')}
+                  : t('userVocab.fillAllAI', 'AI Fill All')}
                 {unfilledWords > 0 && !bulkAiAllLoading && !anyBulkRowAiLoading && (
                   <span className="ml-1 text-xs opacity-70">({unfilledWords})</span>
                 )}
               </button>
 
-              {bulkError && <p className="text-xs text-red-500 text-center">{bulkError}</p>}
+              {bulkError && <p className="text-xs text-danger text-center">{bulkError}</p>}
 
               <button
                 onClick={handleBulkSave}
                 disabled={validBulkCount === 0 || bulkSaving || anyBulkRowAiLoading}
-                className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl transition-colors"
+                className="w-full bg-ink hover:bg-ink/85 active:bg-ink/85 disabled:opacity-40 disabled:cursor-not-allowed text-paper font-semibold py-3 rounded-xl transition-colors"
               >
                 {bulkSaving
                   ? '…'
@@ -521,7 +521,7 @@ const UserVocabWordFormModal: React.FC<Props> = ({ initial, onClose, onSave, onB
               </button>
               <button
                 onClick={onClose}
-                className="w-full text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 py-2 transition-colors"
+                className="w-full text-sm text-ink-faint hover:text-ink-muted py-2 transition-colors"
               >
                 {t('social.cancel')}
               </button>

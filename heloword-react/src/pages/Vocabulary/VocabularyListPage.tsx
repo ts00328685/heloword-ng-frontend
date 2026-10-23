@@ -169,17 +169,17 @@ const VocabularyListPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
       <Header
         title={t('wordList.title')}
         showBack
         rightContent={
           <button
             onClick={() => setShowModal(true)}
-            className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-xl hover:bg-ink/5 transition-colors"
             aria-label="Start quiz"
           >
-            <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -190,7 +190,7 @@ const VocabularyListPage: React.FC = () => {
       <main className="flex-1 pb-24 px-4 pt-4 max-w-2xl mx-auto w-full">
         {/* Search */}
         <div className="relative mb-3">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-faint pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
           </svg>
           <input
@@ -198,12 +198,12 @@ const VocabularyListPage: React.FC = () => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t('review.searchPlaceholder')}
-            className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full pl-9 pr-9 py-2.5 rounded-xl border border-line bg-surface text-sm text-ink placeholder-ink-faint focus:outline-none focus:ring-2 focus:ring-accent"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-faint hover:text-ink-muted"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -219,8 +219,8 @@ const VocabularyListPage: React.FC = () => {
               onClick={() => setActiveFilter(null)}
               className={`flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                 activeFilter === null
-                  ? 'bg-blue-500 text-white border-blue-500'
-                  : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-400'
+                  ? 'bg-ink text-paper border-accent'
+                  : 'bg-surface text-ink-muted border-line hover:border-accent'
               }`}
             >
               All
@@ -231,8 +231,8 @@ const VocabularyListPage: React.FC = () => {
                 onClick={() => setActiveFilter(activeFilter?.label === btn.label ? null : btn)}
                 className={`flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
                   activeFilter?.label === btn.label
-                    ? 'bg-blue-500 text-white border-blue-500'
-                    : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-blue-400'
+                    ? 'bg-ink text-paper border-accent'
+                    : 'bg-surface text-ink-muted border-line hover:border-accent'
                 }`}
               >
                 {btn.label}
@@ -242,7 +242,7 @@ const VocabularyListPage: React.FC = () => {
         )}
 
         <div className="flex items-center justify-between mb-3">
-          <p className="text-xs text-gray-400 dark:text-gray-500">
+          <p className="text-xs text-ink-faint">
             {query || activeFilter
               ? t('wordList.itemCount', { count: filtered.length })
               : t('wordList.itemCount', { count: list.length })}
@@ -251,8 +251,8 @@ const VocabularyListPage: React.FC = () => {
             onClick={() => { setHideMeanings((v) => !v); setRevealedIds(new Set()); }}
             className={`flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-lg border transition-colors ${
               hideMeanings
-                ? 'border-indigo-300 dark:border-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400'
-                : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600'
+                ? 'border-line bg-accent-soft text-accent '
+                : 'border-line bg-surface text-ink-muted hover:border-line '
             }`}
           >
             {hideMeanings ? (
@@ -276,25 +276,25 @@ const VocabularyListPage: React.FC = () => {
             return (
             <div
               key={`${word.tableName}-${word.id}`}
-              className={`bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all ${
+              className={`bg-surface rounded-xl border shadow-sm transition-all ${
                 isSelected || isCompareSelected
                   ? 'rainbow-glow'
-                  : 'border-gray-200 dark:border-gray-700 hover:shadow-md hover:-translate-y-0.5'
+                  : 'border-line hover:shadow-md '
               }`}
             >
               {/* Main row */}
               <div className="p-3 flex gap-3 items-start">
-                <span className="text-xs text-gray-400 dark:text-gray-500 font-mono pt-0.5 min-w-[24px]">
+                <span className="text-xs text-ink-faint font-mono pt-0.5 min-w-[24px]">
                   {activeFilter ? activeFilter.min + index : index + 1}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+                    <p className="text-sm font-semibold text-ink">
                       <SentenceRenderer text={word.word || word.sentence} />
                     </p>
                     <button
                       onClick={(e) => { e.stopPropagation(); pronounceWord(word.word || word.sentence || '', word.language ?? 'en'); }}
-                      className="shrink-0 p-0.5 rounded text-gray-300 dark:text-gray-600 hover:text-blue-400 dark:hover:text-blue-400 transition-colors"
+                      className="shrink-0 p-0.5 rounded text-ink-faint hover:text-accent transition-colors"
                       aria-label="Pronounce"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -305,21 +305,21 @@ const VocabularyListPage: React.FC = () => {
                   {isMeaningVisible(word.id) ? (
                     <>
                       {word.translateEn && (
-                        <p className="text-xs text-blue-500 mt-0.5">{word.translateEn}</p>
+                        <p className="text-xs text-accent mt-0.5">{word.translateEn}</p>
                       )}
                       {word.translateCh && (
-                        <p className="text-xs text-gray-500 dark:text-gray-300">{word.translateCh}</p>
+                        <p className="text-xs text-ink-muted">{word.translateCh}</p>
                       )}
                       {word.sentence && word.word && (
-                        <p className="text-xs text-gray-500 dark:text-gray-400 italic mt-1 leading-relaxed">
+                        <p className="text-xs text-ink-muted italic mt-1 leading-relaxed">
                           <SentenceRenderer text={word.sentence} />
                         </p>
                       )}
                     </>
                   ) : (
                     <div className="flex items-center gap-2 mt-1">
-                      <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-24" />
-                      <div className="h-2.5 rounded-full bg-gray-200 dark:bg-gray-700 w-16" />
+                      <div className="h-2.5 rounded-full bg-ink/10 w-24" />
+                      <div className="h-2.5 rounded-full bg-ink/10 w-16" />
                     </div>
                   )}
                   {/* Explain / Compare buttons — always visible */}
@@ -328,8 +328,8 @@ const VocabularyListPage: React.FC = () => {
                       onClick={() => handleWordTap(word)}
                       className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                         isSelected
-                          ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                          : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                          ? 'bg-ink text-paper ring-1 ring-ink '
+                          : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                       }`}
                     >
                       <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -339,8 +339,8 @@ const VocabularyListPage: React.FC = () => {
                       onClick={() => handleCompare(word)}
                       className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
                         isCompareSelected
-                          ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 ring-1 ring-gray-800 dark:ring-gray-100'
-                          : 'text-gray-400 dark:text-gray-500 ring-1 ring-inset ring-gray-200 dark:ring-gray-700 hover:ring-gray-400 dark:hover:ring-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+                          ? 'bg-ink text-paper ring-1 ring-ink '
+                          : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
                       }`}
                     >
                       <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
@@ -349,13 +349,13 @@ const VocabularyListPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-1 flex-shrink-0 mt-0.5">
-                  <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-0.5 rounded-md font-mono">
+                  <span className="text-xs bg-ink/5 text-ink-muted px-2 py-0.5 rounded-md font-mono">
                     {word.language?.toUpperCase()}
                   </span>
                   {hideMeanings && (
                     <button
                       onClick={(e) => { e.stopPropagation(); toggleReveal(word.id); }}
-                      className="p-1 rounded-lg transition-colors text-gray-300 dark:text-gray-600 hover:text-indigo-400 dark:hover:text-indigo-400"
+                      className="p-1 rounded-lg transition-colors text-ink-faint hover:text-accent"
                       aria-label={isMeaningVisible(word.id) ? 'Hide' : 'Reveal'}
                     >
                       {isMeaningVisible(word.id) ? (
@@ -373,7 +373,7 @@ const VocabularyListPage: React.FC = () => {
                   {isLoggedIn && (
                     <button
                       onClick={(e) => { e.stopPropagation(); setHeartWord(word); }}
-                      className="p-1 rounded-lg text-gray-300 dark:text-gray-600 hover:text-red-400 dark:hover:text-red-400 transition-colors"
+                      className="p-1 rounded-lg text-ink-faint hover:text-danger transition-colors"
                       aria-label={t('userVocab.addToGroup')}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -387,19 +387,19 @@ const VocabularyListPage: React.FC = () => {
               {/* AI insight panel — shown when tapped */}
               {isSelected && (
                 <div className="px-3 pb-3 pt-0">
-                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                  <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
                     {insight.loading ? (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                      <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                     ) : insight.error ? (
                       <div className="flex items-center gap-2">
-                        <p className="text-xs text-red-400">{t('llm.error')}</p>
+                        <p className="text-xs text-danger">{t('llm.error')}</p>
                         <button data-analytics="ai.insight.retry"
                           onClick={() => insight.retry(`${word.language || 'en'}:${word.id}`, () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', i18n.language, word.language || 'en'))}
-                          className="text-xs text-blue-400 underline"
+                          className="text-xs text-accent underline"
                         >↺</button>
                       </div>
                     ) : (
-                      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                      <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap">
                         <TapToLookup>{insight.text}</TapToLookup>
                       </p>
                     )}
@@ -409,19 +409,19 @@ const VocabularyListPage: React.FC = () => {
               {/* AI compare panel */}
               {isCompareSelected && (
                 <div className="px-3 pb-3 pt-0">
-                  <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 ring-1 ring-inset ring-gray-100 dark:ring-gray-700">
+                  <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
                     {compare.loading ? (
-                      <p className="text-xs text-gray-400 dark:text-gray-500 animate-pulse">{t('llm.thinking')}</p>
+                      <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                     ) : compare.error ? (
                       <div className="flex items-center gap-2">
-                        <p className="text-xs text-red-400">{t('llm.error')}</p>
+                        <p className="text-xs text-danger">{t('llm.error')}</p>
                         <button data-analytics="ai.compare.retry"
                           onClick={() => compare.retry(`${word.language || 'en'}:${word.id}`, () => getWordComparison(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', i18n.language, word.language || 'en'))}
-                          className="text-xs text-blue-400 underline"
+                          className="text-xs text-accent underline"
                         >↺</button>
                       </div>
                     ) : (
-                      <p className="text-xs text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-wrap">
+                      <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap">
                         <TapToLookup>{compare.text}</TapToLookup>
                       </p>
                     )}
@@ -433,7 +433,7 @@ const VocabularyListPage: React.FC = () => {
           })}
 
           {(query || activeFilter) && filtered.length === 0 && (
-            <p className="text-sm text-gray-400 dark:text-gray-500 text-center py-10">
+            <p className="text-sm text-ink-faint text-center py-10">
               {t('review.noResults')}
             </p>
           )}
@@ -445,7 +445,7 @@ const VocabularyListPage: React.FC = () => {
       {ReactDOM.createPortal(
         <button
           onClick={() => setShowModal(true)}
-          className="fixed bottom-20 right-4 z-30 w-14 h-14 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 rounded-full shadow-lg flex items-center justify-center transition-colors"
+          className="fixed bottom-20 right-4 z-30 w-14 h-14 bg-ink hover:bg-ink/85 active:bg-ink/85 rounded-full shadow-lg flex items-center justify-center transition-colors"
           aria-label="Open quiz settings"
         >
           <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

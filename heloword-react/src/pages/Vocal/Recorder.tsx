@@ -223,7 +223,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     <Panel
       id="recorder"
       title={t('vocal.panel.recorder')}
-      indicator={recording && <LiveDot color="bg-red-500" />}
+      indicator={recording && <LiveDot color="bg-danger" />}
       summary={recording ? t('vocal.recorder.rec', { time: fmtClock(elapsed) }) : t('vocal.recorder.takes', { count: takes.length })}
     >
       <div className="flex flex-wrap items-center gap-3">
@@ -231,27 +231,27 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
           onClick={recording ? stop : start}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-colors ${
             recording
-              ? 'bg-gray-800 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-700 dark:hover:bg-white'
-              : 'bg-red-500 hover:bg-red-600 text-white'
+              ? 'bg-ink text-paper hover:bg-ink/85 '
+              : 'bg-danger hover:bg-danger/90 text-paper'
           }`}
           title={t('vocal.recorder.recordTitle')}
         >
           {recording ? (
             <><span className="w-2.5 h-2.5 rounded-sm bg-current" />{t('vocal.recorder.stop')}</>
           ) : (
-            <><span className="w-2.5 h-2.5 rounded-full bg-white" />{t('vocal.recorder.record')}</>
+            <><span className="w-2.5 h-2.5 rounded-full bg-surface" />{t('vocal.recorder.record')}</>
           )}
         </button>
         {recording && (
-          <span className="flex items-center gap-1.5 text-sm font-mono text-red-500 tabular-nums">
-            <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+          <span className="flex items-center gap-1.5 text-sm font-mono text-danger tabular-nums">
+            <span className="inline-block w-2 h-2 rounded-full bg-danger animate-pulse" />
             {fmtClock(elapsed)}
           </span>
         )}
         <button
           onClick={() => fileInputRef.current?.click()}
           disabled={!!importing}
-          className="ml-auto px-3 py-2 rounded-xl text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors disabled:opacity-50"
+          className="ml-auto px-3 py-2 rounded-xl text-xs font-semibold bg-ink/5 text-ink-muted hover:bg-ink/10 transition-colors disabled:opacity-50"
           title={t('vocal.recorder.importTitle')}
         >
           {t('vocal.recorder.import')}
@@ -268,18 +268,18 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
 
       {importing && (
         <div className="mt-3">
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 truncate">
+          <p className="text-xs text-ink-muted mb-1 truncate">
             {t('vocal.recorder.analysing', { name: importing.name, pct: Math.round(importing.progress * 100) })}
           </p>
-          <div className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
-            <div className="h-full bg-blue-500 transition-[width]" style={{ width: `${importing.progress * 100}%` }} />
+          <div className="h-1.5 rounded-full bg-ink/5 overflow-hidden">
+            <div className="h-full bg-ink transition-[width]" style={{ width: `${importing.progress * 100}%` }} />
           </div>
         </div>
       )}
 
-      {error && <p className="mt-3 text-xs text-red-500">{error}</p>}
+      {error && <p className="mt-3 text-xs text-danger">{error}</p>}
 
-      <p className="mt-3 text-[11px] text-gray-400 dark:text-gray-500">
+      <p className="mt-3 text-[11px] text-ink-faint">
         {canPersist
           ? t('vocal.recorder.saved')
           : t('vocal.recorder.notSaved')}

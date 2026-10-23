@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { findTappedWordInMixedText, LookupLang, TappedWord, textOffsetFromPoint } from '../utils/wordLookup';
 import WordLookupSheet from './WordLookupSheet';
+import { withFurigana } from './FuriganaText';
 
 const HIGHLIGHT = 'word-lookup';
 
@@ -68,7 +69,7 @@ const TapToLookup: React.FC<{ children: React.ReactNode; as?: 'span' | 'div'; cl
 
   return (
     <>
-      {React.createElement(Tag, { ref, onClick, className, 'data-no-analytics': true }, children)}
+      {React.createElement(Tag, { ref, onClick, className, 'data-no-analytics': true }, withFurigana(children))}
       {tap && <WordLookupSheet tapped={tap} lang={tap.lang} context="ai_text" onClose={close} />}
     </>
   );
