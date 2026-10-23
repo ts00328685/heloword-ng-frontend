@@ -1,4 +1,4 @@
-import { DueGroup, DueWord, QuizSetting } from '../models';
+import { DailyStat, DueGroup, DueWord, QuizSetting } from '../models';
 import { computeGroupStates, getIntervals, GroupLevelOverride } from '../utils/ebbinghaus';
 
 export interface GuestSetting {
@@ -200,3 +200,46 @@ export function deleteGuestGroup(type: string, min: number, max: number): void {
 }
 
 export { generateId };
+
+// ─── Stats (guest) ──────────────────────────────────────────────────────────
+
+const pad2 = (n: number) => String(n).padStart(2, '0');
+const localDay = (d: Date) => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+const localMonth = (d: Date) => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}`;
+
+/**
+ * Daily (or, for days = 0, monthly) quiz stats from the guest's local records —
+ * same shape and rules as the server's /stats/daily-summary, so guests see
+ * their own progress without logging in.
+ */
+export function computeGuestDailyStats(days: number, now: Date = new Date()): DailyStat[] {
+  const records = getGuestRecords().filter((r) => r.finishedTime);
+  const bucket = new Map<string, DailyStat>();
+  const keyOf = days === 0 ? localMonth : localDay;
+
+  const keys: string[] = [];
+  if (days > 0) {
+    for (let i = days - 1; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
+      keys.push(localDay(d));
+    }
+  } else {
+    const first = records.reduce<Date | null>((min, r) => {
+      const d = new Date(r.finishedTime);
+      return !min || d < min ? d : min;
+    }, null) ?? now;
+    for (let d = new Date(first.getFullYear(), first.getMonth(), 1); d <= now; d = new Date(d.getFullYear(), d.getMonth() + 1, 1)) {
+      keys.push(localMonth(d));
+    }
+  }
+  keys.forEach((k) => bucket.set(k, { date: k, total: 0, wrongCount: 0, timeSpent: 0 }));
+
+  for (const r of records) {
+    const stat = bucket.get(keyOf(new Date(r.finishedTime)));
+    if (!stat) continue; // outside the range
+    stat.total += 1;
+    stat.wrongCount += r.wrongCount ?? 0;
+    stat.timeSpent += Math.round(r.timeSpent ?? 0);
+  }
+  return keys.map((k) => bucket.get(k)!);
+}

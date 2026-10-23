@@ -164,7 +164,10 @@ export const PracticeActions: React.FC<{
   tools?: ToolAction[];
   primary?: ToolAction & { emphasis?: boolean };
   secondary?: ToolAction;
-}> = ({ tools = [], primary, secondary }) => (
+  /** Small right-aligned primary button instead of a full-width one — for actions
+   *  that are easy to hit by accident (e.g. Skip under a tap-heavy board). */
+  compact?: boolean;
+}> = ({ tools = [], primary, secondary, compact = false }) => (
   <div className="space-y-3 pt-1">
     {tools.length > 0 && (
       <div className="flex items-stretch justify-center divide-x divide-line">
@@ -185,7 +188,7 @@ export const PracticeActions: React.FC<{
       </div>
     )}
     {(primary || secondary) && (
-      <div className="flex gap-2">
+      <div className={cx('flex gap-2', compact && 'justify-end')}>
         {secondary && (
           <button
             onClick={secondary.onClick}
@@ -202,7 +205,8 @@ export const PracticeActions: React.FC<{
             disabled={primary.disabled}
             data-analytics={primary.analytics}
             className={cx(
-              'flex-[2] h-12 rounded-md text-sm font-medium tracking-wide transition-colors disabled:opacity-40 inline-flex items-center justify-center gap-1.5',
+              compact ? 'h-9 px-4' : 'flex-[2] h-12',
+              'rounded-md text-sm font-medium tracking-wide transition-colors disabled:opacity-40 inline-flex items-center justify-center gap-1.5',
               primary.emphasis === false
                 ? 'border border-ink/25 bg-surface text-ink hover:border-ink/50'
                 : 'bg-ink text-paper hover:bg-ink/85',

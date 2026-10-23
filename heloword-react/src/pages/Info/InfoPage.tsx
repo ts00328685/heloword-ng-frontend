@@ -7,7 +7,7 @@ const InfoPage: React.FC = () => {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
-      <Header title="About" showBack />
+      <Header title={t('nav.info')} showBack />
 
       <main className="flex-1 pb-20 px-4 pt-6 max-w-2xl mx-auto w-full">
         <div className="bg-surface rounded-2xl border border-line p-6 mb-4 shadow-sm text-center">

@@ -57,13 +57,24 @@ export function saveIntervals(intervals: number[]): void {
   } catch {}
 }
 
-/** Human-readable interval label: "20 min", "1 hour", "3 days", etc. */
-export function formatInterval(ms: number): string {
+/**
+ * Human-readable interval label: "20 min", "1 hour", "3 days" — or, with a locale,
+ * the localized form ("20 分鐘", "3 日"). Without a locale the English output is
+ * unchanged.
+ */
+export function formatInterval(ms: number, locale?: string): string {
   const min = ms / 60_000;
-  if (min < 60) return `${Math.round(min)} min`;
   const h = ms / 3_600_000;
-  if (h < 24) return h === 1 ? '1 hour' : `${Math.round(h)} hours`;
   const d = ms / 86_400_000;
+  if (locale && !locale.startsWith('en')) {
+    const unit = (value: number, u: 'minute' | 'hour' | 'day') =>
+      new Intl.NumberFormat(locale, { style: 'unit', unit: u, unitDisplay: 'long' }).format(value);
+    if (min < 60) return unit(Math.round(min), 'minute');
+    if (h < 24) return unit(Math.round(h), 'hour');
+    return unit(Math.round(d), 'day');
+  }
+  if (min < 60) return `${Math.round(min)} min`;
+  if (h < 24) return h === 1 ? '1 hour' : `${Math.round(h)} hours`;
   return d === 1 ? '1 day' : `${Math.round(d)} days`;
 }
 

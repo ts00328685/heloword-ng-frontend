@@ -54,7 +54,8 @@ const STATUS_CONFIG = {
 
 const ReviewPage: React.FC = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const uiLocale = i18n.language === 'zh' ? 'zh-TW' : i18n.language;
   const { isLoggedIn } = useAuth();
   const { showLoading, hideLoading } = useUI();
 
@@ -1069,7 +1070,7 @@ const ReviewPage: React.FC = () => {
                         <span className="text-xs text-ink-faint">
                           {t('review.reviewLevel', { level: groupState.reviewLevel + 1 })} / {intervals.length}
                           {' · '}
-                          <span className="text-accent font-medium">{formatInterval(currentIntervalMs)}</span>
+                          <span className="text-accent font-medium">{formatInterval(currentIntervalMs, uiLocale)}</span>
                         </span>
                       )}
                     </div>
@@ -1207,7 +1208,7 @@ const ReviewPage: React.FC = () => {
               {/* Level slider */}
               <label className="text-xs font-semibold text-ink block mb-2">
                 {t('review.setLevel')} — {t('review.reviewLevel', { level: editLevel + 1 })} / {intervals.length}
-                <span className="ml-2 font-normal text-accent">{formatInterval(intervals[Math.min(editLevel, intervals.length - 1)])}</span>
+                <span className="ml-2 font-normal text-accent">{formatInterval(intervals[Math.min(editLevel, intervals.length - 1)], uiLocale)}</span>
               </label>
               <input
                 type="range"
@@ -1220,7 +1221,7 @@ const ReviewPage: React.FC = () => {
               {/* Interval labels */}
               <div className="flex justify-between text-xs text-ink-faint mb-4">
                 {intervals.map((ms, i) => (
-                  <span key={i} className={i === editLevel ? 'text-accent font-semibold' : ''}>{formatInterval(ms)}</span>
+                  <span key={i} className={i === editLevel ? 'text-accent font-semibold' : ''}>{formatInterval(ms, uiLocale)}</span>
                 ))}
               </div>
 

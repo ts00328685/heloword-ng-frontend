@@ -438,3 +438,13 @@ body.hw-chatbot main:not(.justify-center)::after {
 .dark .bg-ink .text-white\/80 {
   color: rgb(var(--paper));
 }
+
+/* Pinch-zoom is allowed (people zoom into kanji and furigana). iOS Safari zooms the
+   page on focus when a field's text is under 16px, so touch screens get 16px fields. */
+@media (pointer: coarse) {
+  input:not([type='range']):not([type='checkbox']):not([type='radio']),
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
