@@ -9,6 +9,8 @@ interface Props {
   listRoute: string;
   detailRoutePrefix: string;
   viewAllLabel: string;
+  /** Rendered beside the title (e.g. language tabs). Also keeps the section visible when empty. */
+  extra?: React.ReactNode;
 }
 
 const ArticlePreviewSection: React.FC<Props> = ({
@@ -17,6 +19,7 @@ const ArticlePreviewSection: React.FC<Props> = ({
   listRoute,
   detailRoutePrefix,
   viewAllLabel,
+  extra,
 }) => {
   const navigate = useNavigate();
   const [articles, setArticles] = React.useState<NHKArticle[]>([]);
@@ -29,11 +32,11 @@ const ArticlePreviewSection: React.FC<Props> = ({
       .finally(() => setLoading(false));
   }, [sourceLang]);
 
-  if (!loading && articles.length === 0) return null;
+  if (!loading && articles.length === 0 && !extra) return null;
 
   return (
     <section className="mb-10">
-      <SectionHeader title={title} action={{ label: viewAllLabel, onClick: () => navigate(listRoute) }} />
+      <SectionHeader title={title} extra={extra} action={{ label: viewAllLabel, onClick: () => navigate(listRoute) }} />
 
       {loading ? (
         <div className="border-y border-line divide-y divide-line">
@@ -43,6 +46,8 @@ const ArticlePreviewSection: React.FC<Props> = ({
             </div>
           ))}
         </div>
+      ) : articles.length === 0 ? (
+        <p className="text-xs text-ink-faint text-center py-8 border-y border-line">—</p>
       ) : (
         <ul className="border-y border-line divide-y divide-line">
           {articles.map((article) => (

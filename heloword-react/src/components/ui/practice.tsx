@@ -35,7 +35,7 @@ export function Segmented<T extends string | number>({ value, options, onChange,
             aria-selected={active}
             onClick={() => onChange(o.value)}
             className={cx(
-              'border-b-[1.5px] pb-1 transition-colors',
+              'shrink-0 whitespace-nowrap border-b-[1.5px] pb-1 transition-colors',
               size === 'sm' ? 'text-xs' : 'text-sm',
               active ? 'border-ink text-ink font-medium' : 'border-transparent text-ink-faint hover:text-ink-muted',
             )}

@@ -29,8 +29,10 @@ import { pronounceWord } from '../../services/tts.service';
 import { getWordInsight, getWordComparison } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
-import NHKSection from '../../components/NHKSection';
-import ENSection from '../../components/ENSection';
+import ArticlePreviewSection from '../../components/ArticlePreviewSection';
+import { Segmented } from '../../components/ui/practice';
+import { useSessionState } from '../../hooks/useSessionState';
+import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import QuickPracticeSection from '../../components/QuickPracticeSection';
 import { Button, ChevronRight, Eyebrow, GridCell, GridPanel, HelpDot, Meta, SectionHeader } from '../../components/ui';
 
@@ -46,7 +48,9 @@ const WordSection: React.FC<{
   lang: string;
   onHeartWord?: (word: Sentence) => void;
   sectionKey: string;
-}> = ({ title, list, onViewAll, isLoggedIn, lang, onHeartWord, sectionKey }) => {
+  /** Optional tab row under the header (Home shows one list at a time). */
+  tabs?: React.ReactNode;
+}> = ({ title, list, onViewAll, isLoggedIn, lang, onHeartWord, sectionKey, tabs }) => {
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
@@ -138,6 +142,7 @@ const WordSection: React.FC<{
         }
         action={{ label: t('home.viewAll'), onClick: onViewAll }}
       />
+      {tabs && <div className="-mx-5 px-5 mb-4 overflow-x-auto scrollbar-hide">{tabs}</div>}
       <GridPanel>
         {list.slice(0, 4).map((word, i) => {
           const isSelected = selectedId === word.id;
@@ -307,6 +312,11 @@ const HomePage: React.FC = () => {
   const location = useLocation();
   const [showVocabOnboarding, setShowVocabOnboarding] = useState(false);
   const [showSharedVocabOnboarding, setShowSharedVocabOnboarding] = useState(false);
+  const { config: goalConfig, unfinishedCount: goalsLeft, hasGoals } = useDailyGoal();
+  // Tabs remember the last choice across visits.
+  const [readingLang, setReadingLang] = useSessionState<'ja' | 'en'>('home:readingLang', 'ja', { kind: 'local' });
+  const [wordbookTab, setWordbookTab] = useSessionState<'mine' | 'shared'>('home:wordbookTab', 'mine', { kind: 'local' });
+  const [wordTab, setWordTab] = useSessionState('home:wordTab', 'wordEnglishList', { kind: 'local' });
 
 
   useEffect(() => {
@@ -449,6 +459,13 @@ const HomePage: React.FC = () => {
   ];
 
   const hasData = allSections.some((s) => s.list?.length > 0);
+  const wordTabs = allSections.filter((s) => s.list?.length > 0);
+  const activeWords = wordTabs.find((s) => s.key === wordTab) ?? wordTabs[0];
+
+  const goalTotal = (['japanese', 'english'] as const)
+    .reduce((n, lang) => n + Object.values(goalConfig[lang]).filter((v) => v > 0).length, 0);
+  const goalsDone = goalTotal - goalsLeft;
+  const today = new Date().toLocaleDateString(i18n.language === 'zh' ? 'zh-TW' : i18n.language, { month: 'long', day: 'numeric', weekday: 'short' });
 
   return (
     <div className="flex flex-col min-h-screen bg-paper animate-page-enter">
@@ -472,42 +489,79 @@ const HomePage: React.FC = () => {
           </button>
         )}
 
-        {/* Hero — no card: type, a hairline, one ink button */}
-        <section className="mb-8">
-          <div className="flex items-start justify-between gap-4">
-            <Eyebrow>Heloword · 今日の学習</Eyebrow>
-            <button
-              onClick={() => setShowAuthor(true)}
-              className="shrink-0 -mt-0.5 text-xs text-ink-muted border-b border-line hover:text-ink hover:border-ink/40 transition-colors"
-            >
-              {t('authorNote.buttonLabel')}
-            </button>
+        {/* Today — one clear next step: review what's due, otherwise learn new words */}
+        <section className="mb-10">
+          <Eyebrow>{today}</Eyebrow>
+          {dueCount > 0 ? (
+            <>
+              <h2 className="font-serif text-[26px] leading-snug text-ink mt-3">{t('home.dueWords', { count: dueCount })}</h2>
+              <p className="text-sm text-ink-muted mt-2 leading-relaxed">{t('home.dueCurve')}</p>
+            </>
+          ) : (
+            <>
+              <h2 className="font-serif text-[26px] leading-snug text-ink mt-3">{t('home.quizTitle')}</h2>
+              <p className="text-sm text-ink-muted mt-2 leading-relaxed">{t('home.nothingDue')}</p>
+            </>
+          )}
+          <div className="mt-5 flex items-center gap-5">
+            {dueCount > 0 ? (
+              <>
+                <Button onClick={() => navigate('/review')}>
+                  {t('home.reviewNow', { count: dueCount })}
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </Button>
+                <button onClick={() => navigate('/vocabulary')} className="text-sm text-ink-muted hover:text-ink transition-colors">
+                  {t('home.startQuiz')}
+                </button>
+              </>
+            ) : (
+              <Button onClick={() => navigate('/vocabulary')}>
+                {t('home.startQuiz')}
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Button>
+            )}
           </div>
-          <h2 className="font-serif text-[26px] leading-snug text-ink mt-3">{t('home.quizTitle')}</h2>
-          <p className="text-sm text-ink-muted mt-2 leading-relaxed">{t('home.quizSubtitle')}</p>
-          <Button onClick={() => navigate('/vocabulary')} className="mt-5">
-            {t('home.goToQuiz')}
-            <ChevronRight className="w-3.5 h-3.5" />
-          </Button>
+
+          {/* Daily goal at a glance */}
+          <button
+            onClick={() => navigate('/stats')}
+            className="mt-6 w-full flex items-center gap-3 border-t border-line pt-4 text-left group"
+          >
+            {hasGoals ? (
+              <>
+                <span className="text-xs text-ink-muted shrink-0">{t('home.goalProgress', { done: goalsDone, total: goalTotal })}</span>
+                <span className="flex-1 h-[3px] rounded-full bg-ink/10 overflow-hidden">
+                  <span
+                    className={`block h-full rounded-full ${goalsLeft === 0 ? 'bg-success' : 'bg-ink'}`}
+                    style={{ width: `${goalTotal ? (goalsDone / goalTotal) * 100 : 0}%` }}
+                  />
+                </span>
+              </>
+            ) : (
+              <span className="flex-1 text-xs text-ink-muted group-hover:text-ink transition-colors">{t('home.setGoal')}</span>
+            )}
+            <ChevronRight className="w-3.5 h-3.5 text-ink-faint shrink-0" />
+          </button>
         </section>
 
-        {dueCount > 0 && (
-          <button
-            onClick={() => navigate('/review')}
-            className="w-full flex items-center gap-4 border-y border-line py-4 mb-10 text-left group"
-          >
-            <span className="font-serif text-3xl leading-none text-accent tabular-nums w-10 text-center">{dueCount}</span>
-            <div className="flex-1 min-w-0 border-l border-line pl-4">
-              <p className="text-sm text-ink">{t('home.dueWords', { count: dueCount })}</p>
-              <p className="text-xs text-ink-muted mt-0.5">{t('home.dueCurve')}</p>
-            </div>
-            <ChevronRight className="w-4 h-4 text-ink-faint group-hover:text-ink transition-colors shrink-0" />
-          </button>
-        )}
-
         <QuickPracticeSection />
-        <NHKSection />
-        <ENSection />
+        <ArticlePreviewSection
+          sourceLang={readingLang}
+          title={t('home.reading')}
+          listRoute={readingLang === 'ja' ? '/nhk-articles' : '/en-articles'}
+          detailRoutePrefix={readingLang === 'ja' ? '/nhk-articles' : '/en-articles'}
+          viewAllLabel={t('home.viewAll')}
+          extra={
+            <span className="ml-3">
+              <Segmented
+                size="sm"
+                value={readingLang}
+                onChange={setReadingLang}
+                options={[{ value: 'ja', label: t('home.tabJa') }, { value: 'en', label: t('home.tabEn') }]}
+              />
+            </span>
+          }
+        />
 
         {!hasData && (
           <div className="text-center py-12">
@@ -516,14 +570,30 @@ const HomePage: React.FC = () => {
           </div>
         )}
 
-        {/* My Vocabulary section — always visible; interactive only when logged in */}
+        {/* Word lists — mine | shared */}
         <section className="mb-10">
           <SectionHeader
-            title={t('userVocab.title')}
-            extra={<HelpDot onClick={() => setShowVocabOnboarding(true)} label={t('userVocab.introTitle')} />}
-            action={isLoggedIn ? { label: t('home.viewAll'), onClick: () => navigate('/user-vocab') } : undefined}
+            title={t('home.wordbooks')}
+            extra={
+              <span className="ml-3 inline-flex items-center gap-2">
+                <Segmented
+                  size="sm"
+                  value={wordbookTab}
+                  onChange={setWordbookTab}
+                  options={[{ value: 'mine', label: t('userVocab.title') }, { value: 'shared', label: t('sharedVocab.title') }]}
+                />
+                <HelpDot
+                  onClick={() => (wordbookTab === 'mine' ? setShowVocabOnboarding(true) : setShowSharedVocabOnboarding(true))}
+                  label={wordbookTab === 'mine' ? t('userVocab.introTitle') : t('sharedVocab.title')}
+                />
+              </span>
+            }
+            action={wordbookTab === 'mine'
+              ? (isLoggedIn ? { label: t('home.viewAll'), onClick: () => navigate('/user-vocab') } : undefined)
+              : (sharedGroups.length > 4 ? { label: t('sharedVocab.viewAll'), onClick: () => navigate('/shared-vocab') } : undefined)}
           />
 
+          {wordbookTab === 'mine' && (<>
           {isLoggedIn && customGroups.length > 0 && (
             <GridPanel>
               {customGroups.slice(0, 4).map((group) => (
@@ -556,16 +626,9 @@ const HomePage: React.FC = () => {
               icon="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
             />
           )}
-        </section>
+          </>)}
 
-        {/* Shared Vocabulary section */}
-        <section className="mb-10">
-          <SectionHeader
-            title={t('sharedVocab.title')}
-            extra={<HelpDot onClick={() => setShowSharedVocabOnboarding(true)} label={t('sharedVocab.title')} />}
-            action={sharedGroups.length > 4 ? { label: t('sharedVocab.viewAll'), onClick: () => navigate('/shared-vocab') } : undefined}
-          />
-
+          {wordbookTab === 'shared' && (<>
           {/* Admin: pending requests */}
           {isAdmin && pendingRequests.length > 0 && (
             <div className="mb-4 border-l-2 border-kincha-400 pl-3">
@@ -627,20 +690,38 @@ const HomePage: React.FC = () => {
               {t('sharedVocab.noSharedGroups')}
             </p>
           )}
+          </>)}
         </section>
 
-        {allSections.map(({ key, list }) => (
+        {activeWords && (
           <WordSection
-            key={key}
-            sectionKey={key}
-            title={t(`wordLists.${key}`, key)}
-            list={list}
-            onViewAll={() => handleViewAll(key, list)}
+            key={activeWords.key}
+            sectionKey={activeWords.key}
+            title={t('home.wordPreview')}
+            list={activeWords.list}
+            onViewAll={() => handleViewAll(activeWords.key, activeWords.list)}
             isLoggedIn={isLoggedIn}
             lang={i18n.language}
             onHeartWord={isLoggedIn ? setHeartWord : undefined}
+            tabs={wordTabs.length > 1 && (
+              <Segmented
+                size="sm"
+                value={activeWords.key}
+                onChange={setWordTab}
+                options={wordTabs.map((s) => ({ value: s.key, label: t(`wordLists.${s.key}`, s.key) }))}
+              />
+            )}
           />
-        ))}
+        )}
+
+        <footer className="pt-6 mt-4 border-t border-line text-center">
+          <button
+            onClick={() => setShowAuthor(true)}
+            className="text-xs text-ink-faint hover:text-ink-muted transition-colors"
+          >
+            {t('authorNote.buttonLabel')}
+          </button>
+        </footer>
       </main>
 
       {showAuthor && <AuthorNoteModal onClose={() => setShowAuthor(false)} />}
