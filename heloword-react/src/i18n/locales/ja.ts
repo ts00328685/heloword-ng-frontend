@@ -648,10 +648,6 @@ const ja = {
     descEn: '英語の文を並べ替え',
     wrongOrder: '順番が違います。並べ替えてみましょう',
     aiWhyWrong: 'AI：どこが違う？',
-    hintPlace: '次を置く',
-    nudgeLoading: 'ヒントを考え中…',
-    aiHintPref: 'AI 文法ヒント',
-    aiHintPrefSub: 'まず文法のヒント、もう一度押すと次のパーツを置きます',
     longPressLookup: '調べる',
     justSolved: 'さっき解いた文',
     aiNatural: 'ネイティブの言い方',
@@ -665,6 +661,7 @@ const ja = {
     politeKeigo: '敬語',
     recap: '今日のつまずきポイント（{{count}} 文）',
     aiItem: 'AI 作問',
+    hintReturned: '間違った位置のパーツを戻しました',
   },
   jpFilter: {
     difficulty: '難易度',
