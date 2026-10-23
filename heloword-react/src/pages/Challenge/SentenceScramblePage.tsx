@@ -1,3 +1,4 @@
+import SentenceMeta from '../../components/SentenceMeta';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import ReactMarkdown from 'react-markdown';
@@ -15,7 +16,7 @@ import { countTricky, JustSolvedStrip, recordTricky, SolvedSentence, TrickyRecap
 import { aiErrorMessage } from '../../utils/aiError';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
-import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
+import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty, enSentenceDifficulty } from '../../components/EnDifficultyFilter';
 import { Sentence } from '../../models';
 import { AiDisclosure, BlockLabel, OptionRow, PracticeActions, PracticeTopBar, Segmented, SheetSection, SwitchRow } from '../../components/ui/practice';
 import { pronounceWord } from '../../services/tts.service';
@@ -630,6 +631,12 @@ const SentenceScramblePage: React.FC = () => {
                 <p className="text-sm text-ink-muted flex items-center gap-2">
                   {t('scramble.translateCh')}
                   {isAiItem && <span className="text-[11px] px-1.5 py-0.5 rounded border border-accent/40 text-accent">{t('scramble.aiItem')}</span>}
+                  {!isAiItem && (
+                    <SentenceMeta
+                      difficulty={lang === 'jp' ? currentJp?.difficulty : currentEn ? enSentenceDifficulty(currentEn.sentence) : undefined}
+                      tags={lang === 'jp' ? currentJp?.tags : []}
+                    />
+                  )}
                 </p>
                 {isLoggedIn && (lang === 'jp' ? currentJp : currentEn) && (
                   <button

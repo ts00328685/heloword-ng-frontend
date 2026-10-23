@@ -1,3 +1,4 @@
+import SentenceMeta from '../../components/SentenceMeta';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import ReactDOM from 'react-dom';
@@ -380,7 +381,12 @@ const SpeakingPracticeJpPage: React.FC = () => {
 
         <PracticeTopBar
           furigana={true}
-          left={<span className="text-xs text-ink-faint tabular-nums">{currentIndex + 1} / {sentences.length}</span>}
+          left={
+            <span className="flex items-baseline gap-3">
+              <span className="text-xs text-ink-faint tabular-nums">{currentIndex + 1} / {sentences.length}</span>
+              <SentenceMeta difficulty={currentSentence.difficulty} tags={currentSentence.tags} />
+            </span>
+          }
           settings={
             <>
               <SheetSection title={t('common.filters')}>
