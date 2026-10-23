@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Sheet, SheetSection } from './sheet';
+import AudioSettings from '../AudioSettings';
+
+export { Sheet, SheetSection };
 
 /**
  * Shared layout for practice screens, so every game reads the same way:
@@ -51,44 +54,6 @@ const SlidersIcon = () => (
   <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true">
     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
   </svg>
-);
-
-export const Sheet: React.FC<{ title: string; open: boolean; onClose: () => void; children: React.ReactNode }> = ({ title, open, onClose, children }) => {
-  const { t } = useTranslation();
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose]);
-  if (!open) return null;
-  return ReactDOM.createPortal(
-    <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center bg-black/40" onClick={onClose}>
-      <div
-        role="dialog"
-        aria-label={title}
-        className="w-full max-w-md max-h-[85vh] flex flex-col bg-surface border-t sm:border border-line rounded-t-xl sm:rounded-lg animate-sheet-up"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-line">
-          <h2 className="font-serif text-base text-ink">{title}</h2>
-          <button onClick={onClose} className="text-sm text-ink border-b border-ink/30 hover:border-ink">
-            {t('common.done')}
-          </button>
-        </div>
-        <div className="flex-1 overflow-y-auto px-5 py-4 space-y-6 safe-area-bottom">{children}</div>
-      </div>
-    </div>,
-    document.body,
-  );
-};
-
-/** Titled group inside a Sheet. */
-export const SheetSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
-  <section>
-    <p className="text-[10px] font-medium uppercase tracking-label text-ink-faint mb-2">{title}</p>
-    {children}
-  </section>
 );
 
 // ── Switch row ──────────────────────────────────────────────────────────────
@@ -163,6 +128,9 @@ export const PracticeTopBar: React.FC<{
           </button>
           <Sheet title={t('common.practiceSettings')} open={open} onClose={() => setOpen(false)}>
             {settings}
+            <SheetSection title={t('common.audioShort')}>
+              <AudioSettings />
+            </SheetSection>
           </Sheet>
         </>
       )}

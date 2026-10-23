@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSessionState } from '../../hooks/useSessionState';
 import Header from '../../components/Header';
 import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
@@ -97,6 +98,10 @@ const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 
+/** Speaking intros already dismissed during this page load. */
+const INTRO_SEEN = new Set<string>();
+
+
 const HighlightedSentence: React.FC<{ sentence: string; spokenSet: Set<string> }> = ({
   sentence, spokenSet,
 }) => (
@@ -128,15 +133,20 @@ const SpeakingPracticePage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { incrementProgress } = useDailyGoal();
   const dataRef = useRef<EnSentence[] | null>(null);
-  const [enDifficulties, setEnDifficulties] = useState<EnDifficulty[]>([...EN_DIFFICULTIES]);
+  const [enDifficulties, setEnDifficulties] = useSessionState<EnDifficulty[]>('speakEn:enDifficulties', [...EN_DIFFICULTIES], { kind: 'local' });
 
   // Game state
   const [sentences, setSentences] = useState<EnSentence[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Position survives leaving the page (login, audio, …): the shuffled order is
+  // kept as ids, plus the result card if one was showing.
+  const [currentIndex, setCurrentIndex] = useSessionState('speakEn:index', 0);
+  const [order, setOrder] = useSessionState<number[]>('speakEn:order', []);
+  const [loadedFor, setLoadedFor] = useSessionState('speakEn:loadedFor', '');
+  const [resultFor, setResultFor] = useSessionState<number | null>('speakEn:resultFor', null);
   const [gameState, setGameState] = useState<GameState>('loading');
   const [isListening, setIsListening] = useState(false);
-  const [spokenText, setSpokenText] = useState('');
-  const [score, setScore] = useState(0);
+  const [spokenText, setSpokenText] = useSessionState('speakEn:spoken', '');
+  const [score, setScore] = useSessionState('speakEn:score', 0);
   const [recError, setRecError] = useState<string | null>(null);
   const [countdown, setCountdown] = useState(5);
 
@@ -146,7 +156,9 @@ const SpeakingPracticePage: React.FC = () => {
   const [showAiPanel, setShowAiPanel] = useState(false);
 
   // Intro modal — shown once on entry
-  const [showIntro, setShowIntro] = useState(true);
+  // Intro (its tap unlocks audio) — once per page load, not on every return.
+  const [showIntro, setShowIntroState] = useState(() => !INTRO_SEEN.has('speakEn'));
+  const setShowIntro = (v: boolean) => { if (!v) INTRO_SEEN.add('speakEn'); setShowIntroState(v); };
 
   // Settings (persisted)
   const [showEnglish, setShowEnglish]   = useState(() => getPref('hw-sp-show-en', false));
@@ -178,9 +190,26 @@ const SpeakingPracticePage: React.FC = () => {
         const mod = await import('../../data/scramble-en.json');
         dataRef.current = mod.default as EnSentence[];
       }
-      setSentences(shuffle(applyEnDifficultyFilter(dataRef.current, enDifficulties)));
-      setCurrentIndex(0);
-      setGameState('ready');
+      const filtered = applyEnDifficultyFilter(dataRef.current, enDifficulties);
+      const filterKey = JSON.stringify(enDifficulties);
+      const byId = new Map(filtered.map((x) => [x.id, x] as const));
+      const restored = loadedFor === filterKey && order.length > 0
+        ? order.map((id) => byId.get(id)).filter((x): x is EnSentence => !!x)
+        : [];
+      if (restored.length > 0 && restored.length === order.length) {
+        const idx = Math.min(currentIndex, restored.length - 1);
+        setSentences(restored);
+        setCurrentIndex(idx);
+        setGameState(resultFor === idx ? 'result' : 'ready');
+      } else {
+        const shuffled = shuffle(filtered);
+        setSentences(shuffled);
+        setOrder(shuffled.map((x) => x.id));
+        setLoadedFor(filterKey);
+        setCurrentIndex(0);
+        setResultFor(null);
+        setGameState('ready');
+      }
     };
     load();
     return () => {
@@ -188,6 +217,11 @@ const SpeakingPracticePage: React.FC = () => {
       recognitionRef.current?.abort();
     };
   }, [enDifficulties]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (gameState === 'result') setResultFor(currentIndex);
+    else if (gameState !== 'loading') setResultFor(null);
+  }, [gameState, currentIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── TTS sequence ─────────────────────────────────────────────────────────
 

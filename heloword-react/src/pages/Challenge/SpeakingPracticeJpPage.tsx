@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSessionState } from '../../hooks/useSessionState';
 import Header from '../../components/Header';
 import { cancelPronouncing, speakSentence } from '../../services/tts.service';
 import { useAuth } from '../../contexts/AuthContext';
@@ -94,6 +95,10 @@ const AiMarkdown: React.FC<{ text: string }> = ({ text }) => (
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 
+/** Speaking intros already dismissed during this page load. */
+const INTRO_SEEN = new Set<string>();
+
+
 // Highlights characters: green if matched, red if not
 const HighlightedJapanese: React.FC<{ sentence: string; spokenChars: Set<string> }> = ({
   sentence, spokenChars,
@@ -126,20 +131,27 @@ const SpeakingPracticeJpPage: React.FC = () => {
   const dataRef = useRef<JpSentence[] | null>(null);
 
   const [sentences, setSentences] = useState<JpSentence[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Position survives leaving the page (login, audio, …): the shuffled order is
+  // kept as ids, plus the result card if one was showing.
+  const [currentIndex, setCurrentIndex] = useSessionState('speakJp:index', 0);
+  const [order, setOrder] = useSessionState<string[]>('speakJp:order', []);
+  const [loadedFor, setLoadedFor] = useSessionState('speakJp:loadedFor', '');
+  const [resultFor, setResultFor] = useSessionState<number | null>('speakJp:resultFor', null);
 
   // JP sentence filters
-  const [filterDifficulties, setFilterDifficulties] = useState<string[]>(['easy', 'medium', 'hard']);
-  const [selectedGroups, setSelectedGroups] = useState<string[] | null>(null);
-  const [selectedJlpt, setSelectedJlpt] = useState<string[] | null>(null);
+  const [filterDifficulties, setFilterDifficulties] = useSessionState<string[]>('speakJp:jpDifficulties', ['easy', 'medium', 'hard'], { kind: 'local' });
+  const [selectedGroups, setSelectedGroups] = useSessionState<string[] | null>('speakJp:jpGroups', null, { kind: 'local' });
+  const [selectedJlpt, setSelectedJlpt] = useSessionState<string[] | null>('speakJp:jpJlpt', null, { kind: 'local' });
   const [gameState, setGameState] = useState<GameState>('loading');
   const [isListening, setIsListening] = useState(false);
-  const [spokenText, setSpokenText] = useState('');
-  const [score, setScore] = useState(0);
+  const [spokenText, setSpokenText] = useSessionState('speakJp:spoken', '');
+  const [score, setScore] = useSessionState('speakJp:score', 0);
   const [recError, setRecError] = useState<string | null>(null);
   const [countdown, setCountdown] = useState(5);
 
-  const [showIntro, setShowIntro] = useState(true);
+  // Intro (its tap unlocks audio) — once per page load, not on every return.
+  const [showIntro, setShowIntroState] = useState(() => !INTRO_SEEN.has('speakJp'));
+  const setShowIntro = (v: boolean) => { if (!v) INTRO_SEEN.add('speakJp'); setShowIntroState(v); };
 
   // AI state
   const [aiResult, setAiResult] = useState('');
@@ -175,9 +187,25 @@ const SpeakingPracticeJpPage: React.FC = () => {
         dataRef.current = (mod.default as JpSentence[]);
       }
       const filtered = applyJpFilter(dataRef.current, filterDifficulties, selectedGroups, selectedJlpt);
-      setSentences(shuffle(filtered));
-      setCurrentIndex(0);
-      setGameState('ready');
+      const filterKey = JSON.stringify([filterDifficulties, selectedGroups, selectedJlpt]);
+      const byId = new Map(filtered.map((x) => [x.id, x] as const));
+      const restored = loadedFor === filterKey && order.length > 0
+        ? order.map((id) => byId.get(id)).filter((x): x is JpSentence => !!x)
+        : [];
+      if (restored.length > 0 && restored.length === order.length) {
+        const idx = Math.min(currentIndex, restored.length - 1);
+        setSentences(restored);
+        setCurrentIndex(idx);
+        setGameState(resultFor === idx ? 'result' : 'ready');
+      } else {
+        const shuffled = shuffle(filtered);
+        setSentences(shuffled);
+        setOrder(shuffled.map((x) => x.id));
+        setLoadedFor(filterKey);
+        setCurrentIndex(0);
+        setResultFor(null);
+        setGameState('ready');
+      }
     };
     load();
     return () => {
@@ -185,6 +213,11 @@ const SpeakingPracticeJpPage: React.FC = () => {
       recognitionRef.current?.abort();
     };
   }, [filterDifficulties, selectedGroups, selectedJlpt]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (gameState === 'result') setResultFor(currentIndex);
+    else if (gameState !== 'loading') setResultFor(null);
+  }, [gameState, currentIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── TTS sequence ─────────────────────────────────────────────────────────
 

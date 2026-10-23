@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { readSessionState, useSessionState } from '../../hooks/useSessionState';
 import Header from '../../components/Header';
 import { useAuth } from '../../contexts/AuthContext';
 import { aiAnalyzeTranslation } from '../../services/scramble.service';
@@ -114,27 +115,40 @@ const WrittenTranslationPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { incrementProgress } = useDailyGoal();
-  const hasCountedRef = useRef(false);
+  // Daily-goal credit for the current sentence — persisted so returning to the
+  // page can't count the same sentence twice.
+  const [hasCounted, setHasCounted] = useSessionState('written:counted', false);
 
-  const initialLang: Lang = (location.state as { lang?: Lang } | null)?.lang ?? 'jp';
-  const [lang, setLang] = useState<Lang>(initialLang);
-  const [difficulty, setDifficulty] = useState<Difficulty>('medium');
+  // Game state survives leaving the page (login, audio, …); filters persist across visits.
+  const navLang = (location.state as { lang?: Lang } | null)?.lang;
+  const [lang, setLang] = useSessionState<Lang>('written:lang', navLang ?? 'jp');
+  useEffect(() => {
+    if (!navLang) return;
+    if (readSessionState<string>('written:navKey') === location.key) return;
+    try { sessionStorage.setItem('hw-state:written:navKey', JSON.stringify(location.key)); } catch {}
+    setLang(navLang);
+  }, [location.key]); // eslint-disable-line react-hooks/exhaustive-deps
+  const [difficulty, setDifficulty] = useSessionState<Difficulty>('written:hintCount', 'medium', { kind: 'local' });
 
   // JP sentence filters
-  const [filterDifficulties, setFilterDifficulties] = useState<string[]>(['easy', 'medium', 'hard']);
-  const [selectedGroups, setSelectedGroups] = useState<string[] | null>(null);
-  const [selectedJlpt, setSelectedJlpt] = useState<string[] | null>(null);
+  const [filterDifficulties, setFilterDifficulties] = useSessionState<string[]>('written:jpDifficulties', ['easy', 'medium', 'hard'], { kind: 'local' });
+  const [selectedGroups, setSelectedGroups] = useSessionState<string[] | null>('written:jpGroups', null, { kind: 'local' });
+  const [selectedJlpt, setSelectedJlpt] = useSessionState<string[] | null>('written:jpJlpt', null, { kind: 'local' });
   // EN sentence filter
-  const [enDifficulties, setEnDifficulties] = useState<EnDifficulty[]>([...EN_DIFFICULTIES]);
+  const [enDifficulties, setEnDifficulties] = useSessionState<EnDifficulty[]>('written:enDifficulties', [...EN_DIFFICULTIES], { kind: 'local' });
 
-  const [currentJp, setCurrentJp] = useState<JpSentence | null>(null);
-  const [currentEn, setCurrentEn] = useState<EnSentence | null>(null);
-  const [hints, setHints] = useState<string[]>([]);
-  const [userInput, setUserInput] = useState('');
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [score, setScore] = useState<number | null>(null);
-  const [submitState, setSubmitState] = useState<SubmitState>('idle');
-  const [aiResult, setAiResult] = useState('');
+  const [currentJp, setCurrentJp] = useSessionState<JpSentence | null>('written:currentJp', null);
+  const [currentEn, setCurrentEn] = useSessionState<EnSentence | null>('written:currentEn', null);
+  const [hints, setHints] = useSessionState<string[]>('written:hints', []);
+  const [userInput, setUserInput] = useSessionState('written:input', '');
+  const [showAnswer, setShowAnswer] = useSessionState('written:showAnswer', false);
+  const [score, setScore] = useSessionState<number | null>('written:score', null);
+  // An AI request in flight can't be resumed after leaving; restore it as not submitted.
+  const [submitState, setSubmitState] = useSessionState<SubmitState>('written:submit', 'idle', {
+    codec: { encode: (v) => v, decode: (raw) => (raw === 'ai-loading' ? 'idle' : raw) as SubmitState },
+  });
+  const [loadedFor, setLoadedFor] = useSessionState('written:loadedFor', '');
+  const [aiResult, setAiResult] = useSessionState('written:aiResult', '');
   const [dataLoading, setDataLoading] = useState(false);
 
   const jpDataRef = useRef<JpSentence[] | null>(null);
@@ -148,7 +162,7 @@ const WrittenTranslationPage: React.FC = () => {
     setShowAnswer(false);
     setSubmitState('idle');
     setAiResult('');
-    hasCountedRef.current = false;
+    setHasCounted(false);
 
     if (lang === 'jp') {
       if (!jpDataRef.current) {
@@ -177,7 +191,14 @@ const WrittenTranslationPage: React.FC = () => {
     }
   }, [lang, difficulty, filterDifficulties, selectedGroups, selectedJlpt, enDifficulties]);
 
-  useEffect(() => { loadSentence(); }, [loadSentence]);
+  // New sentence when settings change — not when returning mid-sentence.
+  const configKey = JSON.stringify([lang, difficulty, filterDifficulties, selectedGroups, selectedJlpt, enDifficulties]);
+  useEffect(() => {
+    const hasSentence = lang === 'jp' ? !!currentJp : !!currentEn;
+    if (hasSentence && loadedFor === configKey) return;
+    setLoadedFor(configKey);
+    loadSentence();
+  }, [loadSentence]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Actions ────────────────────────────────────────────────────────────
 
@@ -188,8 +209,8 @@ const WrittenTranslationPage: React.FC = () => {
     setScore(s);
     setShowAnswer(true);
     setSubmitState('compared');
-    if (!hasCountedRef.current) {
-      hasCountedRef.current = true;
+    if (!hasCounted) {
+      setHasCounted(true);
       incrementProgress(lang === 'jp' ? 'japanese' : 'english', 'writtenSentences');
     }
   };
@@ -199,8 +220,8 @@ const WrittenTranslationPage: React.FC = () => {
     const translation = lang === 'jp' ? currentJp?.translation : currentEn?.translate_ch;
     if (!answer || !userInput.trim()) return;
 
-    if (!hasCountedRef.current) {
-      hasCountedRef.current = true;
+    if (!hasCounted) {
+      setHasCounted(true);
       incrementProgress(lang === 'jp' ? 'japanese' : 'english', 'writtenSentences');
     }
     setSubmitState('ai-loading');

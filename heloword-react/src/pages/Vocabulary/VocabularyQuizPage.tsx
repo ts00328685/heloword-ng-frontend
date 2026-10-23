@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSessionState } from '../../hooks/useSessionState';
 import { PracticeActions, Sheet, SheetSection, SwitchRow } from '../../components/ui/practice';
+import AudioSettings from '../../components/AudioSettings';
 import Header from '../../components/Header';
 import SentenceRenderer from '../../components/SentenceRenderer';
 import { useAuth } from '../../contexts/AuthContext';
@@ -119,16 +121,17 @@ const VocabularyQuizPage: React.FC = () => {
   const wrongAccumRef = useRef<Map<string, number>>(new Map());
 
   // Board modes stay silent unless the learner turns this on.
-  const [boardPronounce, setBoardPronounce] = useState(false);
-  const [autoPronounce, setAutoPronounce] = useState(false);
-  const [autoPronounceEn, setAutoPronounceEn] = useState(false);
-  const [autoPronounceCh, setAutoPronounceCh] = useState(false);
-  const [autoPronounceSentence, setAutoPronounceSentence] = useState(false);
-  const [autoInputFocus, setAutoInputFocus] = useState(true);
-  const [enableEnMask, setEnableMaskEn] = useState(false);
-  const [enableSentenceMask, setEnableSentenceMask] = useState(false);
-  const [failWhenMaskOff, setFailWhenMaskOff] = useState(false);
-  const [japaneseMode, setJapaneseMode] = useState(false);
+  // Quiz options are remembered across visits (localStorage) — set once, keep forever.
+  const [boardPronounce, setBoardPronounce] = useSessionState('quiz:boardPronounce', false, { kind: 'local' });
+  const [autoPronounce, setAutoPronounce] = useSessionState('quiz:autoPronounce', false, { kind: 'local' });
+  const [autoPronounceEn, setAutoPronounceEn] = useSessionState('quiz:autoPronounceEn', false, { kind: 'local' });
+  const [autoPronounceCh, setAutoPronounceCh] = useSessionState('quiz:autoPronounceCh', false, { kind: 'local' });
+  const [autoPronounceSentence, setAutoPronounceSentence] = useSessionState('quiz:autoPronounceSentence', false, { kind: 'local' });
+  const [autoInputFocus, setAutoInputFocus] = useSessionState('quiz:autoInputFocus', true, { kind: 'local' });
+  const [enableEnMask, setEnableMaskEn] = useSessionState('quiz:maskEn', false, { kind: 'local' });
+  const [enableSentenceMask, setEnableSentenceMask] = useSessionState('quiz:maskSentence', false, { kind: 'local' });
+  const [failWhenMaskOff, setFailWhenMaskOff] = useSessionState('quiz:failWhenMaskOff', false, { kind: 'local' });
+  const [japaneseMode, setJapaneseMode] = useSessionState('quiz:japaneseMode', false, { kind: 'local' });
   const [showSettings, setShowSettings] = useState(false);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
 
@@ -138,7 +141,7 @@ const VocabularyQuizPage: React.FC = () => {
   const aiCompare  = useAiInsight('quiz:compare');
 
   // Japanese button-input mode
-  const [jpButtonMode, setJpButtonMode] = useState(true);
+  const [jpButtonMode, setJpButtonMode] = useSessionState('quiz:jpButtonMode', true, { kind: 'local' });
   const [builtAnswer, setBuiltAnswer] = useState<string[]>([]);
   const [builtAnswerIndices, setBuiltAnswerIndices] = useState<number[]>([]);
   const [kanaGroups, setKanaGroups] = useState<string[]>([]);
@@ -766,6 +769,9 @@ const VocabularyQuizPage: React.FC = () => {
             ]).map(({ label, val, set }) => (
               <SwitchRow key={label} label={label} checked={val} onChange={() => set(!val)} />
             ))}
+          </SheetSection>
+          <SheetSection title={t('common.audioShort')}>
+            <AudioSettings />
           </SheetSection>
         </Sheet>
 

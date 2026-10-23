@@ -23,6 +23,8 @@ const ja = {
     done: '完了',
     skip: 'スキップ',
     tools: 'ツール',
+    ttsTest: '試聴',
+    audioShort: '音声',
   },
   nav: {
     quiz: 'クイズ',

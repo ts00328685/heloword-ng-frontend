@@ -16,6 +16,7 @@ import { Sentence } from '../../models';
 import { AiDisclosure, BlockLabel, OptionRow, PracticeActions, PracticeTopBar, Segmented, SheetSection, SwitchRow } from '../../components/ui/practice';
 import { pronounceWord } from '../../services/tts.service';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
+import { readSessionState, setCodec, useSessionState } from '../../hooks/useSessionState';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -158,38 +159,51 @@ const SentenceScramblePage: React.FC = () => {
   const location = useLocation();
   const { incrementProgress } = useDailyGoal();
 
-  const initialLang: Lang = (location.state as { lang?: Lang } | null)?.lang ?? 'jp';
-  const [lang, setLang] = useState<Lang>(initialLang);
-  const [chunkSize, setChunkSize] = useState(2);
+  // Everything below survives leaving the page (login, audio, another tab of the
+  // app…): game state per browser tab, preferences & filters across visits.
+  const navLang = (location.state as { lang?: Lang } | null)?.lang;
+  const [lang, setLang] = useSessionState<Lang>('scramble:lang', navLang ?? 'jp');
+  const [chunkSize, setChunkSize] = useSessionState('scramble:chunkSize', 2, { kind: 'local' });
+
+  // A shortcut that names a language (e.g. Home → "JP scramble") wins — but only
+  // once per navigation, so coming Back to this entry keeps the in-page choice.
+  useEffect(() => {
+    if (!navLang) return;
+    if (readSessionState<string>('scramble:navKey') === location.key) return;
+    try { sessionStorage.setItem('hw-state:scramble:navKey', JSON.stringify(location.key)); } catch {}
+    setLang(navLang);
+  }, [location.key]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // JP sentence filters
-  const [filterDifficulties, setFilterDifficulties] = useState<string[]>(['easy', 'medium', 'hard']);
-  const [selectedGroups, setSelectedGroups] = useState<string[] | null>(null);
-  const [selectedJlpt, setSelectedJlpt] = useState<string[] | null>(null);
+  const [filterDifficulties, setFilterDifficulties] = useSessionState<string[]>('scramble:jpDifficulties', ['easy', 'medium', 'hard'], { kind: 'local' });
+  const [selectedGroups, setSelectedGroups] = useSessionState<string[] | null>('scramble:jpGroups', null, { kind: 'local' });
+  const [selectedJlpt, setSelectedJlpt] = useSessionState<string[] | null>('scramble:jpJlpt', null, { kind: 'local' });
   // EN sentence filter
-  const [enDifficulties, setEnDifficulties] = useState<EnDifficulty[]>([...EN_DIFFICULTIES]);
+  const [enDifficulties, setEnDifficulties] = useSessionState<EnDifficulty[]>('scramble:enDifficulties', [...EN_DIFFICULTIES], { kind: 'local' });
 
   // Game state
-  const [currentJp, setCurrentJp] = useState<JpSentence | null>(null);
-  const [currentEn, setCurrentEn] = useState<EnSentence | null>(null);
-  const [bankChunks, setBankChunks] = useState<Chunk[]>([]);
-  const [usedBankUids, setUsedBankUids] = useState<Set<string>>(new Set());
-  const [answerChunks, setAnswerChunks] = useState<Chunk[]>([]);
-  const [originalChunks, setOriginalChunks] = useState<Chunk[]>([]);
-  const [status, setStatus] = useState<GameStatus>('playing');
+  const [currentJp, setCurrentJp] = useSessionState<JpSentence | null>('scramble:currentJp', null);
+  const [currentEn, setCurrentEn] = useSessionState<EnSentence | null>('scramble:currentEn', null);
+  const [bankChunks, setBankChunks] = useSessionState<Chunk[]>('scramble:bank', []);
+  const [usedBankUids, setUsedBankUids] = useSessionState<Set<string>>('scramble:usedBank', () => new Set(), { codec: setCodec });
+  const [answerChunks, setAnswerChunks] = useSessionState<Chunk[]>('scramble:answer', []);
+  const [originalChunks, setOriginalChunks] = useSessionState<Chunk[]>('scramble:original', []);
+  const [status, setStatus] = useSessionState<GameStatus>('scramble:status', 'playing');
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
-  const [showTranslation, setShowTranslation] = useState(false);
+  const [showTranslation, setShowTranslation] = useSessionState('scramble:showTranslation', false);
+  // Which settings the current sentence was drawn for (see the load effect).
+  const [loadedFor, setLoadedFor] = useSessionState('scramble:loadedFor', '');
 
   // AI state
-  const [aiResult, setAiResult] = useState('');
+  const [aiResult, setAiResult] = useSessionState('scramble:aiResult', '');
   const [aiLoading, setAiLoading] = useState(false);
-  const [showAiPanel, setShowAiPanel] = useState(false);
+  const [showAiPanel, setShowAiPanel] = useSessionState('scramble:aiOpen', false);
 
   // Pronunciation toggle
-  const [autoPronounce, setAutoPronounce] = useState(false);
+  const [autoPronounce, setAutoPronounce] = useSessionState('scramble:autoPronounce', false, { kind: 'local' });
 
   // Long-press behavior toggle: 'speak' | 'copy'
-  const [longPressMode, setLongPressMode] = useState<'speak' | 'copy'>('copy');
+  const [longPressMode, setLongPressMode] = useSessionState<'speak' | 'copy'>('scramble:longPress', 'copy', { kind: 'local' });
 
   // Lazy-loaded data cache (populated on first access, never re-fetched)
   const jpDataRef = useRef<JpSentence[] | null>(null);
@@ -249,7 +263,15 @@ const SentenceScramblePage: React.FC = () => {
     }
   }, [lang, chunkSize, filterDifficulties, selectedGroups, selectedJlpt, enDifficulties]);
 
-  useEffect(() => { loadSentence(); }, [loadSentence]);
+  // Draw a new sentence when the settings change — but not when we come back to
+  // the page with a sentence still in progress for the same settings.
+  const configKey = JSON.stringify([lang, chunkSize, filterDifficulties, selectedGroups, selectedJlpt, enDifficulties]);
+  useEffect(() => {
+    const hasSentence = lang === 'jp' ? !!currentJp : !!currentEn;
+    if (hasSentence && loadedFor === configKey) return;
+    setLoadedFor(configKey);
+    loadSentence();
+  }, [loadSentence]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Check answer ─────────────────────────────────────────────────────────
 

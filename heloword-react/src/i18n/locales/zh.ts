@@ -23,6 +23,8 @@ const zh = {
     done: '完成',
     skip: '跳過',
     tools: '工具',
+    ttsTest: '試聽',
+    audioShort: '音訊',
   },
   nav: {
     quiz: '測驗',

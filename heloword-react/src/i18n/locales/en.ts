@@ -23,6 +23,8 @@ const en = {
     done: 'Done',
     skip: 'Skip',
     tools: 'Tools',
+    ttsTest: 'Test',
+    audioShort: 'Audio',
   },
   nav: {
     quiz: 'Quiz',

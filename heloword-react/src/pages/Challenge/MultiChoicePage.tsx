@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import { useSessionState } from '../../hooks/useSessionState';
 import { OptionRow, PracticeTopBar, SheetSection } from '../../components/ui/practice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -167,24 +168,28 @@ const MultiChoicePage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { showToast } = useUI();
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
-  const [longPressMode, setLongPressMode] = useState<'speak' | 'copy'>('copy');
+  const [longPressMode, setLongPressMode] = useSessionState<'speak' | 'copy'>('mc:longPress', 'copy', { kind: 'local' });
   const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isLongPress = useRef(false);
 
   const gameType: GameType = (location.state as { gameType?: GameType } | null)?.gameType ?? 'en';
 
-  const [selectedLevel, setSelectedLevel] = useState<LevelDef | null>(null);
+  // The run survives leaving the page (login, audio, …). The word pool is too big
+  // to store, so it's rebuilt from the saved level when we come back.
+  const k = (name: string) => `mc:${gameType}:${name}`;
+  const [selectedLevel, setSelectedLevel] = useSessionState<LevelDef | null>(k('level'), null);
   const [pool, setPool] = useState<Sentence[]>([]);
-  const [correct, setCorrect] = useState<Word | null>(null);
-  const [choices, setChoices] = useState<Word[]>([]);
-  const [answerState, setAnswerState] = useState<AnswerState>('idle');
-  const [pickedId, setPickedId] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
-  const [streak, setStreak] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [showLevelPicker, setShowLevelPicker] = useState(true);
-  const [playMode, setPlayMode] = useState<QuizMode | null>(null);
-  const [showModePicker, setShowModePicker] = useState(false);
+  const [correct, setCorrect] = useSessionState<Word | null>(k('correct'), null);
+  const [choices, setChoices] = useSessionState<Word[]>(k('choices'), []);
+  const [answerState, setAnswerState] = useSessionState<AnswerState>(k('answer'), 'idle');
+  const [pickedId, setPickedId] = useSessionState<number | null>(k('picked'), null);
+  const [score, setScore] = useSessionState(k('score'), 0);
+  const [streak, setStreak] = useSessionState(k('streak'), 0);
+  const [total, setTotal] = useSessionState(k('total'), 0);
+  const [showLevelPicker, setShowLevelPicker] = useSessionState(k('levelPicker'), true);
+  const [playMode, setPlayMode] = useSessionState<QuizMode | null>(k('mode'), null);
+  // Left mid-way through picking a mode? Reopen the picker.
+  const [showModePicker, setShowModePicker] = useState(() => !!selectedLevel && !playMode && !showLevelPicker);
 
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const why = useAiInsight('mc:why');
@@ -218,6 +223,14 @@ const MultiChoicePage: React.FC = () => {
     setWhyOpen(false);
     why.clear();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!selectedLevel || pool.length > 0) return;
+    const p = buildPool(selectedLevel);
+    if (p.length === 0) return; // word lists still loading — retried when wordStore fills
+    setPool(p);
+    if (playMode === 'choice' && (!correct || answerState !== 'idle')) nextQuestion(p);
+  }, [selectedLevel, buildPool]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ── Handle level selection ───────────────────────────────────────────────
 

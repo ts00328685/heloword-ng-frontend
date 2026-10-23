@@ -6,7 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useSocial } from '../contexts/SocialContext';
 import { LANGUAGES, changeLanguage, Language } from '../i18n';
-import { getTTSSettings, setTTSSettings, TTSSettings } from '../services/ttsSettings.service';
+import AudioSettings, { AudioButton } from './AudioSettings';
 import { useNicknameSave } from './NicknameEditor';
 import { useBoard } from '../contexts/BoardContext';
 import {
@@ -54,7 +54,6 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [draft, setDraft] = useState('');
   const [saving, setSaving] = useState(false);
-  const [ttsSettings, setTtsSettings] = useState<TTSSettings>(getTTSSettings);
   const [autoCopyTrigger, setAutoCopyTrigger] = useState(() => {
     const stored = localStorage.getItem('hw-chatbot-copy-trigger');
     return stored !== null ? stored === 'true' : true;
@@ -64,12 +63,6 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
     return stored !== null ? stored === 'true' : true;
   });
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const updateTTS = (patch: Partial<TTSSettings>) => {
-    const next = { ...ttsSettings, ...patch };
-    setTtsSettings(next);
-    setTTSSettings(next);
-  };
 
   const toggleAutoCopyTrigger = () => {
     const next = !autoCopyTrigger;
@@ -212,6 +205,8 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
           {/* Right: language switcher + dark mode + user */}
           <div className="flex items-center gap-1 min-w-[40px] justify-end">
             {minimal ? (
+              <>
+              <AudioButton />
               <button
                 onClick={() => setOverflowOpen(true)}
                 className="p-2 -mr-2 rounded-xl hover:bg-ink/5 active:bg-ink/10 transition-colors"
@@ -223,6 +218,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
                   <circle cx="10" cy="16" r="1.7" />
                 </svg>
               </button>
+              </>
             ) : (
               <>
             {/* Language switcher */}
@@ -241,6 +237,9 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
                 </button>
               ))}
             </div>
+
+            {/* Audio — reachable from every page, including games */}
+            <AudioButton />
 
             {/* Dark mode toggle */}
             <button
@@ -450,43 +449,8 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
                 </svg>
               </button>
               {openSection === 'audio' && (
-                <div className="pl-6 pr-4 pb-4 pt-1 space-y-3">
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-xs text-ink-muted">{t('common.ttsSpeed')}</span>
-                      <span className="text-xs font-mono text-accent">{ttsSettings.speed.toFixed(1)}×</span>
-                    </div>
-                    <input
-                      type="range" min={0.5} max={2} step={0.1}
-                      value={ttsSettings.speed}
-                      onChange={(e) => updateTTS({ speed: parseFloat(e.target.value) })}
-                      className="w-full accent-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-xs text-ink-muted">{t('common.ttsVolume')}</span>
-                      <span className="text-xs font-mono text-accent">{Math.round(ttsSettings.volume * 100)}%</span>
-                    </div>
-                    <input
-                      type="range" min={0} max={1} step={0.05}
-                      value={ttsSettings.volume}
-                      onChange={(e) => updateTTS({ volume: parseFloat(e.target.value) })}
-                      className="w-full accent-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-xs text-ink-muted">{t('common.ttsPitch')}</span>
-                      <span className="text-xs font-mono text-accent">{ttsSettings.pitch.toFixed(1)}</span>
-                    </div>
-                    <input
-                      type="range" min={0.5} max={2} step={0.1}
-                      value={ttsSettings.pitch}
-                      onChange={(e) => updateTTS({ pitch: parseFloat(e.target.value) })}
-                      className="w-full accent-blue-500"
-                    />
-                  </div>
+                <div className="px-4 pb-4 pt-1">
+                  <AudioSettings />
                 </div>
               )}
             </div>
