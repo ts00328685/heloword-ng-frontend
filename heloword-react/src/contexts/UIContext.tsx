@@ -37,8 +37,8 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   });
   const [alert, setAlert] = useState<AlertState>({
     message: '',
-    header: 'Notification',
-    buttonText: 'Okay',
+    header: '',
+    buttonText: '',
     visible: false,
   });
   const [loading, setLoading] = useState(false);
@@ -52,7 +52,8 @@ export const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     }, duration);
   }, []);
 
-  const showAlert = useCallback((message: string, header = 'Notification', buttonText = 'Okay') => {
+  const showAlert = useCallback((message: string, header = '', buttonText = '') => {
+    // Empty header/button → AlertDialog shows translated defaults (common.notice / common.ok).
     setAlert({ message, header, buttonText, visible: true });
   }, []);
 

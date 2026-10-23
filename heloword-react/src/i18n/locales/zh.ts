@@ -29,6 +29,8 @@ const zh = {
     furiganaTop: '上方',
     furiganaSide: '旁邊',
     display: '顯示',
+    notice: '提示',
+    ok: '好',
   },
   nav: {
     quiz: '測驗',

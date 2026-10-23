@@ -29,6 +29,8 @@ const ja = {
     furiganaTop: '上',
     furiganaSide: '横',
     display: '表示',
+    notice: 'お知らせ',
+    ok: 'OK',
   },
   nav: {
     quiz: 'クイズ',
