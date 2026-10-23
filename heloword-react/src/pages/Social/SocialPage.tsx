@@ -344,7 +344,7 @@ const SocialPage: React.FC = () => {
   const pendingSent = friends.filter((f) => f.status === 'PENDING_SENT');
   // Map userId → friendship for O(1) status lookup in the Online tab
   const friendshipByUserId = new Map(friends.map((f) => [f.otherUserId, f]));
-  // Display name from the online-users heartbeat (their own nickname/fullname, not masked)
+  // Display name from the online-users heartbeat (their public name — nickname or a neutral label, never their Google name)
   const onlineDisplayByUserId = new Map(onlineUsers.map((u) => [u.userId, u.displayName]));
   const totalUnread = Object.values(unreadCounts).reduce((s, n) => s + n, 0);
 

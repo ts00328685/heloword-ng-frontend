@@ -1,3 +1,4 @@
+import { publicName } from '../utils/publicName';
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
@@ -88,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
 
   const openMenu = () => {
     const current = isLoggedIn
-      ? (user.nickname || user.fullname || '')
+      ? (user.nickname || '')
       : myDisplayName.replace(/^Guest-/, '');
     setDraft(current);
     setMenuOpen(true);
@@ -163,7 +164,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
   };
 
   const displayLabel = isLoggedIn
-    ? (user.nickname || user.fullname || 'Hw')
+    ? publicName(user)
     : myDisplayName || 'Hw';
 
   return (
@@ -265,7 +266,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
                   {user.picture && (
                     <img
                       src={user.picture}
-                      alt={user.nickname || user.fullname}
+                      alt={publicName(user)}
                       className="w-7 h-7 rounded-full object-cover"
                     />
                   )}

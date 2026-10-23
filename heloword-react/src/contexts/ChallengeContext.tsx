@@ -1,3 +1,4 @@
+import { publicName } from '../utils/publicName';
 import React, {
   createContext,
   useCallback,
@@ -64,7 +65,7 @@ export const ChallengeProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const guestIdentity = isLoggedIn ? null : getOrCreateGuestIdentity();
   const myUserId: string = isLoggedIn && user ? user.uuid : (guestIdentity?.userId ?? `guest-${Date.now()}`);
   const myDisplayName: string = isLoggedIn && user
-    ? (user.nickname || user.fullname)
+    ? publicName(user) // shown to others — never the Google name
     : (guestIdentity?.displayName ?? 'Guest');
   const isGuest = !isLoggedIn;
 

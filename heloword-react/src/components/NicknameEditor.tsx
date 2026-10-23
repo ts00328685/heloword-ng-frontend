@@ -1,3 +1,4 @@
+import { publicName } from '../utils/publicName';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -46,14 +47,14 @@ const NicknameEditor: React.FC<{ onSaved?: () => void }> = ({ onSaved }) => {
   const { myDisplayName } = useSocial();
   const saveNickname = useNicknameSave();
 
-  const currentLabel = isLoggedIn ? user.nickname || user.fullname || 'Hw' : myDisplayName || 'Guest';
+  const currentLabel = isLoggedIn ? publicName(user) : myDisplayName || 'Guest';
 
   const [editing, setEditing] = useState(false);
   const draft = useImeText(MAX_NICK);
   const [saving, setSaving] = useState(false);
 
   const open = () => {
-    draft.set(isLoggedIn ? user.nickname || user.fullname || '' : (myDisplayName || '').replace(/^Guest-/, ''));
+    draft.set(isLoggedIn ? user.nickname || '' : (myDisplayName || '').replace(/^Guest-/, ''));
     setEditing(true);
   };
 
