@@ -196,7 +196,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
                   </svg>
                 </button>
                 {/* Nickname display (non-clickable) */}
-                <span className="text-ink-muted text-xs tracking-wide truncate max-w-[90px]">{displayLabel}</span>
+                <span className="hidden sm:inline text-ink-muted text-xs tracking-wide truncate max-w-[90px]">{displayLabel}</span>
               </div>
             )}
           </div>
@@ -280,7 +280,7 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
               ) : (
                 <button
                   onClick={() => navigate('/login')}
-                  className="text-xs text-ink border-b border-ink/30 hover:border-ink transition-colors"
+                  className="text-xs text-ink whitespace-nowrap border-b border-ink/30 hover:border-ink transition-colors"
                 >
                   {t('common.login')}
                 </button>

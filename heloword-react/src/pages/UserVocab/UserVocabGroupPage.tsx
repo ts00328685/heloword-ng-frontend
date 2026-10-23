@@ -1,3 +1,4 @@
+import { isTourPending } from '../../components/WalkthroughOverlay';
 import React, { useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import MultiChoicePanel from '../../components/MultiChoicePanel';
@@ -90,7 +91,7 @@ const UserVocabGroupPage: React.FC = () => {
 
   const GROUP_SHARE_ONBOARDING_KEY = 'onboarding:group_share';
   const [showShareOnboarding, setShowShareOnboarding] = useState(
-    () => !localStorage.getItem(GROUP_SHARE_ONBOARDING_KEY)
+    () => !localStorage.getItem(GROUP_SHARE_ONBOARDING_KEY) && !isTourPending()
   );
 
   const id = Number(groupId);

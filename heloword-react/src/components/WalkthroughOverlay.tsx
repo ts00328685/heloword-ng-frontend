@@ -1,6 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+
+/**
+ * True while the first-visit tab tour is waiting to show or showing. Page intros
+ * hold back meanwhile so two popups never stack; they appear on the next visit.
+ */
+export function isTourPending(): boolean {
+  try {
+    return !localStorage.getItem('hw-tour-done') && !!localStorage.getItem('hw-guest-name');
+  } catch {
+    return false;
+  }
+}
+
 const STEPS = [
   { tourId: 'tab-home',       emoji: '🏠', titleKey: 'tour.home.title',      descKey: 'tour.home.desc' },
   { tourId: 'tab-vocabulary', emoji: '📖', titleKey: 'tour.quiz.title',      descKey: 'tour.quiz.desc' },

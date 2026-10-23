@@ -1,3 +1,4 @@
+import { isTourPending } from '../../components/WalkthroughOverlay';
 import React, { useRef, useState, useMemo, useEffect } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -90,7 +91,7 @@ const WordPreviewPage: React.FC = () => {
   const groupName: string = state?.groupName ?? '';
 
   // Onboarding
-  const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem(PREVIEW_ONBOARDING_KEY));
+  const [showOnboarding, setShowOnboarding] = useState(() => !localStorage.getItem(PREVIEW_ONBOARDING_KEY) && !isTourPending());
   const dismissOnboarding = () => { localStorage.setItem(PREVIEW_ONBOARDING_KEY, '1'); setShowOnboarding(false); };
 
   // Search & shuffle

@@ -312,7 +312,7 @@ const en = {
       {
         icon: '',
         title: 'Import from System Words',
-        body: 'Tap the heart button on any word in the vocabulary list or quiz to instantly add it to one of your custom groups.',
+        body: 'In any word list or quiz, tap the heart icon next to a word to add it to one of your groups.',
       },
       {
         icon: '',
@@ -333,35 +333,35 @@ const en = {
     reviewCard: [
       {
         icon: '',
-        title: 'Status badge',
-        body: 'Shows where the group stands: Due Now (tap to review), In Progress (resume an unfinished quiz), Scheduled (upcoming review), or Forgotten (missed review — tap to reset your level).',
+        title: 'Status',
+        body: 'The top right of each card shows its status: Due Now, In Progress (an unfinished quiz), Scheduled (not due yet) or Forgotten (review window missed).',
       },
       {
         icon: '',
-        title: 'Progress bar',
-        body: 'Tracks how many words in the current cycle you\'ve answered correctly. The bar fills as you complete the quiz and resets when a new review cycle begins.',
-      },
-      {
-        icon: '⬆️',
-        title: 'Review level & interval',
-        body: 'Shows which interval step you\'re on — e.g. "Level 3 / 7 · 8h" means this is your 3rd review with 8 hours between sessions. Each successful review moves you up one level with a longer wait.',
+        title: 'Progress',
+        body: 'The bar and "x / y completed" count the words you got right this cycle; finishing starts the next cycle.',
       },
       {
         icon: '',
-        title: 'Word range',
-        body: 'The word list and number range for this group, e.g. "English Words (1–50)". Groups with different ranges are always kept separate.',
+        title: 'Level & interval',
+        body: '"Level 3 / 7 · 8 hours" means the 3rd review, 8 hours apart. Reviewing on time moves up a level with a longer gap; finishing after the grace window goes back to level 1.',
       },
       {
-        icon: '⏰',
-        title: 'Next review time',
-        body: 'Scheduled groups show exactly when the next review is due. Groups showing Due Now or Forgotten are tappable — tap the card to start the quiz immediately!',
+        icon: '',
+        title: 'One main button per card',
+        body: 'The button at the bottom right follows the status: "Review Now", "Resume" or "Review early"; scheduled groups show when the next review is.',
+      },
+      {
+        icon: '',
+        title: 'Preview & edit',
+        body: '"Preview Words" (bottom left) lets you browse the words first; "Edit" sets the review level by hand or deletes the group.',
       },
     ],
     groupShare: [
       {
         icon: '',
         title: 'Share this group with a friend',
-        body: 'Tap the share icon (↗) in the top-right corner to send this entire vocabulary group to any of your friends.',
+        body: 'Tap the share icon at the right of the info bar under the group name to send the whole group to a friend.',
       },
       {
         icon: '',
@@ -376,17 +376,17 @@ const en = {
       {
         icon: '',
         title: 'Import words from Excel or CSV',
-        body: 'Tap the upload button next to "+ Add Word" to import words in bulk. Download a sample file to see the required format — up to 500 words at a time.',
+        body: 'Tap "Import from File" next to the search bar (on phones, the button at the bottom right) to add words in bulk. Download the template to see the format — up to 500 words at a time.',
       },
     ],
     wordPreview: [
       {
         icon: '',
         title: 'Reveal meanings one by one',
-        body: 'Each word starts hidden. Tap the eye icon on any card to reveal its meaning, or use Hide All / Show All in the toolbar to toggle the entire list at once.',
+        body: 'Meanings are hidden by default. Tap the eye icon on a card to reveal it, or use "Hide All" / "Show All" in the toolbar for the whole list.',
       },
       {
-        icon: '🃏',
+        icon: '',
         title: 'Flashcard mode',
         body: 'Tap the Flashcard button in the toolbar to switch to full-screen swipeable cards. The front shows the word — tap the card to flip it and see the meaning.',
       },
@@ -414,7 +414,7 @@ const en = {
     loading: 'Loading quiz history...',
     done: 'Done',
     completionRatio: '{{completed}} / {{total}} completed',
-    resumePrompt: 'Tap to resume →',
+    resumePrompt: 'Resume →',
     lastActivity: 'Last activity: {{time}}',
     groupStatusUnfinished: 'In Progress',
     groupStatusDue: 'Due Now',
@@ -796,19 +796,19 @@ const en = {
     stepOf: '{{current}} / {{total}}',
     home: {
       title: 'Home',
-      desc: 'Browse today\'s word preview cards. Tap AI Insight on any word for an instant AI-powered definition and example sentence. Guests get 10 free AI uses a day; log in for more.',
+      desc: 'See today\'s next step at a glance: "Review N groups" when reviews are due, otherwise start a new quiz, with your daily-goal progress below. Further down: quick practice, daily reading (Japanese / English), word lists and word preview — each with tabs. The speaker icon at the top adjusts voice volume and speed anytime.',
     },
     quiz: {
       title: 'Quiz',
-      desc: 'Test yourself with typed answers. Tap Insight or Example on any word to get an AI explanation and a fresh sample sentence on demand.',
+      desc: 'Vocabulary quiz where you type the answer. Tap Explain or Compare for an AI explanation anytime. The settings icon (top right) controls auto-pronounce, masks and Japanese input — and remembers your choices.',
     },
     review: {
       title: 'Review',
-      desc: 'Track your spaced-repetition schedule. Groups due for review appear here — complete them to keep your streak alive.',
+      desc: 'Track your spaced-repetition progress. Due groups have a "Review Now" button, unfinished ones "Resume"; filter, sort, or use "Preview Words" first.',
     },
     stats: {
       title: 'Stats',
-      desc: 'View your accuracy, review counts, and progress charts. Logged-in users can tap AI Study Coach for a personalised tip based on your recent performance.',
+      desc: 'See accuracy, review counts and progress charts, and set daily goals. Logged in, the AI study coach gives personalised advice from your recent results.',
     },
     social: {
       title: 'Social',
@@ -816,7 +816,7 @@ const en = {
     },
     challenge: {
       title: 'Challenge',
-      desc: 'Join live spelling or multiple-choice rooms — the panel header shows how many players are active right now. Or go solo with sentence scramble and word-quiz mini-games in EN or JP.',
+      desc: 'Join live spelling or multiple-choice rooms, or practise solo: English/Japanese sentence scramble, translation, speaking and word quizzes. Each game\'s "Practice settings" holds filters, preferences and audio — and leaving keeps you on the same question.',
     },
   },
   userVocab: {

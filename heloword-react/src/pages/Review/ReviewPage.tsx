@@ -1,3 +1,4 @@
+import { isTourPending } from '../../components/WalkthroughOverlay';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
@@ -174,7 +175,7 @@ const ReviewPage: React.FC = () => {
       });
 
       setGroups(parsed);
-      if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY)) {
+      if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY) && !isTourPending()) {
         setShowReviewOnboarding(true);
       }
       refresh();
@@ -247,7 +248,7 @@ const ReviewPage: React.FC = () => {
       return b.date.getTime() - a.date.getTime();
     });
     setGroups(parsed);
-    if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY)) {
+    if (parsed.length > 0 && !localStorage.getItem(REVIEW_ONBOARDING_KEY) && !isTourPending()) {
       setShowReviewOnboarding(true);
     }
   };

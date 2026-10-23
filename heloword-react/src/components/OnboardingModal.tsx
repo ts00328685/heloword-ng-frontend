@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useTranslation } from 'react-i18next';
 
 export interface OnboardingStep {
   icon: string;
@@ -15,6 +16,7 @@ interface OnboardingModalProps {
 }
 
 const OnboardingModal: React.FC<OnboardingModalProps> = ({ steps, onDone, onSkip }) => {
+  const { t } = useTranslation();
   const [current, setCurrent] = React.useState(0);
   const isLast = current === steps.length - 1;
   const step = steps[current];
@@ -64,7 +66,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({ steps, onDone, onSkip
               onClick={onSkip}
               className="flex-1 py-2.5 rounded-2xl border border-line text-sm text-ink-faint hover:bg-paper transition-colors"
             >
-              Skip
+              {t('tour.skip')}
             </button>
           )}
           {current > 0 && (
@@ -79,7 +81,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({ steps, onDone, onSkip
             onClick={() => isLast ? onDone() : setCurrent((c) => c + 1)}
             className="flex-1 py-2.5 rounded-2xl bg-ink hover:bg-ink/85 active:bg-ink/85 text-paper text-sm font-semibold transition-colors"
           >
-            {isLast ? 'Got it!' : 'Next →'}
+            {isLast ? t('tour.done') : t('tour.next')}
           </button>
         </div>
       </div>
