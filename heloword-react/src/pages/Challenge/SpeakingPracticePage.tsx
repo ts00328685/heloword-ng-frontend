@@ -1,3 +1,4 @@
+import SentenceMeta from '../../components/SentenceMeta';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
 import ReactDOM from 'react-dom';
@@ -13,7 +14,7 @@ import { aiExplainScramble } from '../../services/scramble.service';
 import { aiErrorMessage } from '../../utils/aiError';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import { AiDisclosure, PracticeActions, PracticeTopBar, SheetSection, SwitchRow } from '../../components/ui/practice';
-import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty } from '../../components/EnDifficultyFilter';
+import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty, enSentenceDifficulty } from '../../components/EnDifficultyFilter';
 import { latexToUnicode } from '../../utils/latexToUnicode';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -388,7 +389,12 @@ const SpeakingPracticePage: React.FC = () => {
       <main className="flex-1 pb-24 px-4 pt-5 max-w-xl mx-auto w-full flex flex-col gap-4">
 
         <PracticeTopBar
-          left={<span className="text-xs text-ink-faint tabular-nums">{currentIndex + 1} / {sentences.length}</span>}
+          left={
+            <span className="flex items-baseline gap-3">
+              <span className="text-xs text-ink-faint tabular-nums">{currentIndex + 1} / {sentences.length}</span>
+              <SentenceMeta difficulty={enSentenceDifficulty(currentSentence.sentence)} />
+            </span>
+          }
           settings={
             <>
               <SheetSection title={t('common.filters')}>
