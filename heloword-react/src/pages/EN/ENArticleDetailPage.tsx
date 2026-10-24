@@ -3,8 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
-import { LangKey, ParagraphCard, useArticleSpeech, useWordLookup } from '../NHK/ArticleShared';
+import { LangKey, ParagraphCard, useArticleSpeech, useWordLookup, vocabTap } from '../NHK/ArticleShared';
 import WordLookupSheet from '../../components/WordLookupSheet';
+import { SwitchRow } from '../../components/ui/practice';
+import { RecallSummary, recallTargetsByParagraph, useArticleRecall } from '../NHK/ArticleRecall';
 import { trackContentView } from '../../services/analytics.service';
 
 function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
@@ -67,6 +69,8 @@ const ENArticleDetailPage: React.FC = () => {
   }, [article]);
 
   const lookup = useWordLookup();
+  const recall = useArticleRecall(`en:${id}`);
+  const recallTargets = useMemo(() => recallTargetsByParagraph(paragraphs, 'en'), [paragraphs]);
   const { speakingKey, speakingMode, spokenRange, triggerSpeak } = useArticleSpeech({
     paragraphs,
     activeLang,
@@ -154,7 +158,15 @@ const ENArticleDetailPage: React.FC = () => {
             </div>
 
             {paragraphs.length > 0 && (
-              <p className="text-xs text-ink-faint mb-2">{t('wordLookup.tapHint')}</p>
+              <div className="mb-3">
+                <SwitchRow
+                  label={t('articleRecall.toggle')}
+                  sub={t('articleRecall.toggleSub')}
+                  checked={recall.on}
+                  onChange={recall.toggle}
+                />
+                <p className="text-xs text-ink-faint mt-2">{recall.on ? t('articleRecall.hint') : t('wordLookup.tapHint')}</p>
+              </div>
             )}
             <div className="space-y-3 mb-5">
               {paragraphs.length > 0 ? (
@@ -171,6 +183,7 @@ const ENArticleDetailPage: React.FC = () => {
                     lookupLang="en"
                     selectedWord={lookup.tap?.index === i ? lookup.tap.word : null}
                     onWordTap={(word) => lookup.setTap({ index: i, word })}
+                    recall={recall.on ? { targets: recallTargets[i] ?? [], marks: recall.marks, onMark: recall.setMark } : null}
                     originalTtsCode="en-US"
                     originalCleanLang="en"
                     vocabTtsCode="en-US"
@@ -182,6 +195,14 @@ const ENArticleDetailPage: React.FC = () => {
                 </p>
               )}
             </div>
+            {recall.on && (
+              <RecallSummary
+                targets={recallTargets}
+                marks={recall.marks}
+                onWordTap={(i, item) => lookup.setTap({ index: i, word: vocabTap(paragraphs[i], item, 'en') })}
+                onReset={recall.reset}
+              />
+            )}
           </>
         )}
       </main>

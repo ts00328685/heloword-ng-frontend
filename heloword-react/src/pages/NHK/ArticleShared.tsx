@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import FuriganaText, { renderFurigana } from '../../components/FuriganaText';
 import { findReadings, snapOutOfReading, useFuriganaMode } from '../../utils/furigana';
 import { useTranslation } from 'react-i18next';
-import { NHKParagraph } from '../../services/nhkArticle.service';
+import { NHKParagraph, NHKVocabItem } from '../../services/nhkArticle.service';
 import {
   cancelPronouncing,
   cleanSentenceForTTSMapped,
@@ -12,6 +12,7 @@ import {
   TextRange,
 } from '../../services/tts.service';
 import { findTappedWord, LookupLang, stripReadings, TappedWord, textOffsetFromPoint } from '../../utils/wordLookup';
+import { RecallMark, RecallTarget, RecallText } from './ArticleRecall';
 
 export type LangKey = 'original' | 'zh' | 'en' | 'ja';
 
@@ -373,6 +374,20 @@ const SpokenText: React.FC<{ text: string; range: SpokenRange | null; selected?:
   );
 };
 
+/**
+ * A vocabulary entry as if it had been tapped in the paragraph: the lookup
+ * sheet shows the article's own meaning and the word is highlighted in place.
+ */
+export function vocabTap(paragraph: NHKParagraph, v: NHKVocabItem, lang: LookupLang): TappedWord {
+  const plain = stripReadings(v.word).text.trim();
+  const { text, map } = stripReadings(paragraph.original);
+  const at = plain ? text.indexOf(plain) : -1;
+  const found = at >= 0 ? findTappedWord(paragraph.original, map[at], lang, paragraph.vocabulary ?? []) : null;
+  return found
+    ? { ...found, word: plain, start: map[at], end: map[at + plain.length - 1] + 1, vocab: v }
+    : { word: plain, start: 0, end: 0, sentence: paragraph.original, sentenceText: text, vocab: v };
+}
+
 export const ParagraphCard: React.FC<{
   paragraph: NHKParagraph;
   activeLang: LangKey;
@@ -389,6 +404,8 @@ export const ParagraphCard: React.FC<{
   /** The word currently open in the lookup sheet, if it is in this paragraph. */
   selectedWord?: TappedWord | null;
   onWordTap?: (word: TappedWord) => void;
+  /** Recall mode: vocabulary words are blanked out in the original text. */
+  recall?: { targets: RecallTarget[]; marks: Record<string, RecallMark>; onMark: (key: string, mark: RecallMark) => void } | null;
 }> = ({
   paragraph,
   activeLang,
@@ -403,6 +420,7 @@ export const ParagraphCard: React.FC<{
   lookupLang,
   selectedWord,
   onWordTap,
+  recall,
 }) => {
   const { t } = useTranslation();
   const [translationOpen, setTranslationOpen] = useState(false);
@@ -423,17 +441,8 @@ export const ParagraphCard: React.FC<{
     if (word) onWordTap(word);
   };
 
-  // A vocabulary-table row opens the same lookup sheet, with the article's own
-  // meaning and the word highlighted where it appears in the paragraph.
-  const handleVocabTap = (v: NonNullable<TappedWord["vocab"]>) => {
-    if (!lookupLang || !onWordTap) return;
-    const plain = stripReadings(v.word).text.trim();
-    const { text, map } = stripReadings(paragraph.original);
-    const at = plain ? text.indexOf(plain) : -1;
-    const found = at >= 0 ? findTappedWord(paragraph.original, map[at], lookupLang, paragraph.vocabulary ?? []) : null;
-    onWordTap(found
-      ? { ...found, word: plain, end: map[at + plain.length - 1] + 1, start: map[at], vocab: v }
-      : { word: plain, start: 0, end: 0, sentence: paragraph.original, sentenceText: text, vocab: v });
+  const handleVocabTap = (v: NHKVocabItem) => {
+    if (lookupLang && onWordTap) onWordTap(vocabTap(paragraph, v, lookupLang));
   };
 
   useEffect(() => { setTranslationOpen(false); }, [activeLang]);
@@ -458,15 +467,19 @@ export const ParagraphCard: React.FC<{
         <p className="text-xs text-ink-faint font-mono mb-2">#{index + 1}</p>
         <div className="flex items-start gap-1">
           <p
-            className={`text-[15px] text-ink leading-relaxed flex-1 ${lookupLang ? 'cursor-pointer' : ''}`}
-            onClick={lookupLang ? handleOriginalTap : undefined}
+            className={`text-[15px] text-ink flex-1 ${recall ? 'leading-loose' : 'leading-relaxed'} ${lookupLang && !recall ? 'cursor-pointer' : ''}`}
+            onClick={lookupLang && !recall ? handleOriginalTap : undefined}
             data-no-analytics
           >
-            <SpokenText
-              text={paragraph.original}
-              range={spokenRange?.key === originalKey ? spokenRange : null}
-              selected={selectedWord}
-            />
+            {recall ? (
+              <RecallText text={paragraph.original} targets={recall.targets} marks={recall.marks} onMark={recall.onMark} />
+            ) : (
+              <SpokenText
+                text={paragraph.original}
+                range={spokenRange?.key === originalKey ? spokenRange : null}
+                selected={selectedWord}
+              />
+            )}
           </p>
           <SpeakerControls
             speakKey={originalKey}

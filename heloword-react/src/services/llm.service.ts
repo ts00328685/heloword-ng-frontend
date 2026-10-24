@@ -251,6 +251,20 @@ export async function lookupWord(word: string, sentence: string, wordLang: strin
   return aiPost<LookupResult>('ai/lookup', { word, sentence, wordLang }, 'Lookup failed');
 }
 
+export interface ExplainSentenceResult {
+  /** Meaningful chunks in sentence order; Japanese carries 漢字[かな] readings */
+  chunks: { text: string; note: string }[];
+  /** Grammar points worth knowing (may be empty) */
+  points: { text: string; note: string }[];
+  /** Natural Traditional Chinese translation */
+  translation: string;
+}
+
+/** A sentence broken into chunks, grammar points and a translation. Already-cached answers cost no quota. */
+export async function explainSentence(sentence: string): Promise<ExplainSentenceResult> {
+  return aiPost<ExplainSentenceResult>('ai/explain-sentence', { sentence }, 'Explain sentence failed');
+}
+
 export interface NaturalResult {
   lang: 'jp' | 'en';
   natural: string;

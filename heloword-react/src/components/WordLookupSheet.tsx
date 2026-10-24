@@ -11,6 +11,7 @@ import { Sentence } from '../models';
 import AddToGroupModal from './AddToGroupModal';
 import FuriganaText from './FuriganaText';
 import WordPractice from './WordPractice';
+import SentenceBreakdown from './SentenceBreakdown';
 
 type Source = 'article' | 'ai';
 
@@ -119,7 +120,7 @@ const WordLookupSheet: React.FC<{
         className="fixed inset-x-0 bottom-0 z-[56] flex justify-center pointer-events-none"
       >
         <div className="pointer-events-auto w-full max-w-2xl mx-auto mb-[64px] px-4">
-          <div className="bg-surface rounded-2xl shadow-2xl border border-line p-4 animate-chatbot-slide-up">
+          <div className="bg-surface rounded-2xl shadow-2xl border border-line p-4 animate-chatbot-slide-up max-h-[calc(100dvh-140px)] overflow-y-auto overscroll-contain">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
@@ -171,6 +172,9 @@ const WordLookupSheet: React.FC<{
             <div className="mt-3 pt-2 border-t border-line">
               <p className="text-[10px] text-ink-faint mb-0.5">{t('wordLookup.sentence')}</p>
               <FuriganaText text={tapped.sentence} className="text-xs text-ink-muted leading-relaxed" />
+              {tapped.sentenceText && (
+                <SentenceBreakdown key={tapped.sentenceText} sentence={tapped.sentenceText} analytics={`${context}.explain_sentence`} />
+              )}
             </div>
 
             {result && (

@@ -5,8 +5,10 @@ import FuriganaText from '../../components/FuriganaText';
 import FuriganaToggle from '../../components/FuriganaToggle';
 import Header from '../../components/Header';
 import { fetchNHKArticleById, NHKArticleDetail, NHKParagraph } from '../../services/nhkArticle.service';
-import { LangKey, ParagraphCard, useArticleSpeech, useWordLookup } from './ArticleShared';
+import { LangKey, ParagraphCard, useArticleSpeech, useWordLookup, vocabTap } from './ArticleShared';
 import WordLookupSheet from '../../components/WordLookupSheet';
+import { SwitchRow } from '../../components/ui/practice';
+import { RecallSummary, recallTargetsByParagraph, useArticleRecall } from './ArticleRecall';
 import { trackContentView } from '../../services/analytics.service';
 
 function buildParagraphsFromContent(article: NHKArticleDetail): NHKParagraph[] {
@@ -68,6 +70,8 @@ const NHKArticleDetailPage: React.FC = () => {
   }, [article]);
 
   const lookup = useWordLookup();
+  const recall = useArticleRecall(`${'nhk'}:${id}`);
+  const recallTargets = useMemo(() => recallTargetsByParagraph(paragraphs, 'ja'), [paragraphs]);
   const { speakingKey, speakingMode, spokenRange, triggerSpeak } = useArticleSpeech({ paragraphs, activeLang });
 
   return (
@@ -155,7 +159,15 @@ const NHKArticleDetailPage: React.FC = () => {
             </div>
 
             {paragraphs.length > 0 && (
-              <p className="text-xs text-ink-faint mb-2">{t('wordLookup.tapHint')}</p>
+              <div className="mb-3">
+                <SwitchRow
+                  label={t('articleRecall.toggle')}
+                  sub={t('articleRecall.toggleSub')}
+                  checked={recall.on}
+                  onChange={recall.toggle}
+                />
+                <p className="text-xs text-ink-faint mt-2">{recall.on ? t('articleRecall.hint') : t('wordLookup.tapHint')}</p>
+              </div>
             )}
             <div className="space-y-3 mb-5">
               {paragraphs.length > 0 ? (
@@ -172,6 +184,7 @@ const NHKArticleDetailPage: React.FC = () => {
                     lookupLang="ja"
                     selectedWord={lookup.tap?.index === i ? lookup.tap.word : null}
                     onWordTap={(word) => lookup.setTap({ index: i, word })}
+                    recall={recall.on ? { targets: recallTargets[i] ?? [], marks: recall.marks, onMark: recall.setMark } : null}
                   />
                 ))
               ) : (
@@ -180,6 +193,14 @@ const NHKArticleDetailPage: React.FC = () => {
                 </p>
               )}
             </div>
+            {recall.on && (
+              <RecallSummary
+                targets={recallTargets}
+                marks={recall.marks}
+                onWordTap={(i, item) => lookup.setTap({ index: i, word: vocabTap(paragraphs[i], item, 'ja') })}
+                onReset={recall.reset}
+              />
+            )}
           </>
         )}
       </main>
