@@ -246,6 +246,7 @@ const en = {
     shortcut: 'Photo to words',
   },
   wordLookup: {
+    tapAnyWord: 'Tap any Japanese or English word to look it up or save it',
     tapHint: 'Tap any word in the original text to look it up or explain its sentence',
     fromArticle: 'Article word list',
     fromAi: 'AI, in context',

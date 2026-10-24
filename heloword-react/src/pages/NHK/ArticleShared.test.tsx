@@ -15,6 +15,8 @@ import { ParagraphCard, useArticleSpeech } from './ArticleShared';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
+  // Grammar notes use TapToLookup, whose lookup sheet pulls in the real i18n setup.
+  initReactI18next: { type: '3rdParty', init: () => {} },
 }));
 
 // ─── Fake speech engine ──────────────────────────────────────────────────────

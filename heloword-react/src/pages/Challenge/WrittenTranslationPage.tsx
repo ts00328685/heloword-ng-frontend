@@ -393,7 +393,7 @@ const WrittenTranslationPage: React.FC = () => {
                   {t('writtenTranslation.correctAnswer')}
                 </p>
                 <p className="text-sm font-medium text-ink leading-relaxed bg-success-soft border border-success/30 rounded-xl px-3 py-2">
-                  {correctAnswer}
+                  <TapToLookup lang={lang === 'jp' ? 'ja' : 'en'}>{correctAnswer}</TapToLookup>
                 </p>
               </div>
             )}
@@ -410,7 +410,7 @@ const WrittenTranslationPage: React.FC = () => {
                   </p>
                 ) : (
                   <div className="text-sm text-ink leading-relaxed space-y-2">
-                    <TapToLookup as="div"><AiMarkdown text={aiResult} /></TapToLookup>
+                    <TapToLookup as="div" hint><AiMarkdown text={aiResult} /></TapToLookup>
                   </div>
                 )}
               </div>

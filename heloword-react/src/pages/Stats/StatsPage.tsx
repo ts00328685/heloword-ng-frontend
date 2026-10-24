@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import TapToLookup from '../../components/TapToLookup';
 import { useNavigate } from 'react-router-dom';
 import {
   LineChart,
@@ -200,7 +201,7 @@ const StatsPage: React.FC = () => {
                     <button data-analytics="ai.study_coach" onClick={handleStudyCoach} className="text-xs text-accent underline">↺</button>
                   </div>
                 ) : (
-                  <p className="text-sm text-ink leading-relaxed whitespace-pre-wrap">{coachText}</p>
+                  <p className="text-sm text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{coachText}</TapToLookup></p>
                 )}
               </div>
             )}

@@ -453,7 +453,7 @@ const SpeakingPracticePage: React.FC = () => {
 
           {showEnglish ? (
             <p className="text-lg font-medium text-accent leading-relaxed">
-              {currentSentence.sentence}
+              <TapToLookup lang="en">{currentSentence.sentence}</TapToLookup>
             </p>
           ) : (
             <div className="flex flex-wrap gap-1 items-center">
@@ -588,7 +588,7 @@ const SpeakingPracticePage: React.FC = () => {
           onToggle={() => (showAiPanel ? setShowAiPanel(false) : aiResult ? setShowAiPanel(true) : handleAiExplain())}
         >
           <div className="text-sm text-ink leading-relaxed space-y-2">
-            <TapToLookup as="div"><AiMarkdown text={aiResult} /></TapToLookup>
+            <TapToLookup as="div" hint><AiMarkdown text={aiResult} /></TapToLookup>
           </div>
         </AiDisclosure>
 

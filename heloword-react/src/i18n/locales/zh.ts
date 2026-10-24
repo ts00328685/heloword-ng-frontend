@@ -246,6 +246,7 @@ const zh = {
     shortcut: '拍照加單字',
   },
   wordLookup: {
+    tapAnyWord: '點文中的日文或英文單字，可以查意思、收藏',
     tapHint: '點原文裡的單字就能查意思，也能解析整句',
     fromArticle: '文章單字表',
     fromAi: 'AI 依句子解釋',

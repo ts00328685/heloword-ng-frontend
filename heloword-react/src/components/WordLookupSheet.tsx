@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import TapToLookup from './TapToLookup';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -18,6 +19,18 @@ type Source = 'article' | 'ai';
 const SESSION_PREFIX = 'ai:lookup:';
 
 /** Same tap twice in a session (or across re-renders) never calls the server again. */
+/** One request per word+sentence even if the sheet asks twice before the first answer lands. */
+const inFlight = new Map<string, Promise<LookupResult>>();
+
+function lookupOnce(word: string, sentence: string, lang: LookupLang, key: string): Promise<LookupResult> {
+  let p = inFlight.get(key);
+  if (!p) {
+    p = lookupWord(word, sentence, lang).finally(() => inFlight.delete(key));
+    inFlight.set(key, p);
+  }
+  return p;
+}
+
 function readCache(key: string): LookupResult | null {
   try {
     const raw = sessionStorage.getItem(SESSION_PREFIX + key);
@@ -66,7 +79,7 @@ const WordLookupSheet: React.FC<{
     if (cached) { setResult(cached); return; }
 
     setResult(null);
-    lookupWord(tapped.word, tapped.sentenceText, lang)
+    lookupOnce(tapped.word, tapped.sentenceText, lang, key)
       .then((r) => {
         writeCache(key, r);
         if (latest.current === tapped) setResult(r);
@@ -171,7 +184,7 @@ const WordLookupSheet: React.FC<{
 
             <div className="mt-3 pt-2 border-t border-line">
               <p className="text-[10px] text-ink-faint mb-0.5">{t('wordLookup.sentence')}</p>
-              <FuriganaText text={tapped.sentence} className="text-xs text-ink-muted leading-relaxed" />
+              <TapToLookup className="text-xs text-ink-muted leading-relaxed" lang={lang}>{tapped.sentence}</TapToLookup>
               {tapped.sentenceText && (
                 <SentenceBreakdown key={tapped.sentenceText} sentence={tapped.sentenceText} analytics={`${context}.explain_sentence`} />
               )}

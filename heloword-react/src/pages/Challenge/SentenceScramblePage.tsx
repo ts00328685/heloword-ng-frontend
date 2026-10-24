@@ -899,7 +899,7 @@ const SentenceScramblePage: React.FC = () => {
               <div className="border-l-2 border-accent pl-3">
                 {wrongWhy.loading
                   ? <p className="text-sm text-ink-faint animate-pulse">{t('scramble.aiThinking')}</p>
-                  : <div className="text-sm text-ink leading-relaxed space-y-2"><TapToLookup as="div"><AiMarkdown text={wrongWhy.text} /></TapToLookup></div>}
+                  : <div className="text-sm text-ink leading-relaxed space-y-2"><TapToLookup as="div" hint><AiMarkdown text={wrongWhy.text} /></TapToLookup></div>}
               </div>
             )}
           </div>
@@ -956,7 +956,7 @@ const SentenceScramblePage: React.FC = () => {
           onToggle={() => (showAiPanel ? setShowAiPanel(false) : aiResult ? setShowAiPanel(true) : handleAiExplain())}
         >
           <div className="text-sm text-ink leading-relaxed space-y-2">
-            <TapToLookup as="div"><AiMarkdown text={aiResult} /></TapToLookup>
+            <TapToLookup as="div" hint><AiMarkdown text={aiResult} /></TapToLookup>
           </div>
         </AiDisclosure>
 
