@@ -105,14 +105,14 @@ describe('WordLookupSheet', () => {
     lookupWord.mockResolvedValue({ word: 'attend', meaningZh: '出席', meaningEn: 'to be present' });
     const guest = render(<WordLookupSheet tapped={tap({ word: 'attend', sentence: 'He will attend.', sentenceText: 'He will attend.' })} lang="en" onClose={vi.fn()} />);
     await screen.findByText('出席');
-    expect(screen.queryByLabelText('wordLookup.save')).not.toBeInTheDocument();
+    expect(screen.queryByText('wordLookup.saveToList')).not.toBeInTheDocument();
     expect(screen.getByText('wordLookup.saveLoginHint')).toBeInTheDocument();
     guest.unmount();
 
     auth.isLoggedIn = true;
     render(<WordLookupSheet tapped={tap({ word: 'attend', sentence: 'He will attend.', sentenceText: 'He will attend.' })} lang="en" onClose={vi.fn()} />);
     await screen.findByText('出席');
-    act(() => { screen.getByLabelText('wordLookup.save').click(); });
+    act(() => { screen.getByText('wordLookup.saveToList').click(); });
     await waitFor(() => expect(screen.getByTestId('add-to-group')).toBeInTheDocument());
     // the sheet steps aside so the modal is not covered
     expect(screen.queryByText('出席')).not.toBeInTheDocument();
