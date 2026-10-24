@@ -11,7 +11,7 @@ import {
   splitPhrases,
   TextRange,
 } from '../../services/tts.service';
-import { findTappedWord, LookupLang, TappedWord, textOffsetFromPoint } from '../../utils/wordLookup';
+import { findTappedWord, LookupLang, stripReadings, TappedWord, textOffsetFromPoint } from '../../utils/wordLookup';
 
 export type LangKey = 'original' | 'zh' | 'en' | 'ja';
 
@@ -423,6 +423,19 @@ export const ParagraphCard: React.FC<{
     if (word) onWordTap(word);
   };
 
+  // A vocabulary-table row opens the same lookup sheet, with the article's own
+  // meaning and the word highlighted where it appears in the paragraph.
+  const handleVocabTap = (v: NonNullable<TappedWord["vocab"]>) => {
+    if (!lookupLang || !onWordTap) return;
+    const plain = stripReadings(v.word).text.trim();
+    const { text, map } = stripReadings(paragraph.original);
+    const at = plain ? text.indexOf(plain) : -1;
+    const found = at >= 0 ? findTappedWord(paragraph.original, map[at], lookupLang, paragraph.vocabulary ?? []) : null;
+    onWordTap(found
+      ? { ...found, word: plain, end: map[at + plain.length - 1] + 1, start: map[at], vocab: v }
+      : { word: plain, start: 0, end: 0, sentence: paragraph.original, sentenceText: text, vocab: v });
+  };
+
   useEffect(() => { setTranslationOpen(false); }, [activeLang]);
 
   const originalKey = `${index}-original`;
@@ -563,7 +576,9 @@ export const ParagraphCard: React.FC<{
                     return (
                       <tr
                         key={i}
-                        className="border-t border-line border-l-2 border-l-transparent hover:border-l-accent hover:bg-paper transition-colors"
+                        onClick={lookupLang && onWordTap ? () => handleVocabTap(v) : undefined}
+                        data-analytics="article.vocab.row"
+                        className={`border-t border-line border-l-2 border-l-transparent hover:border-l-accent hover:bg-paper transition-colors ${lookupLang && onWordTap ? 'cursor-pointer' : ''}`}
                       >
                         <td className="px-4 py-2.5">
                           <div className="flex items-center gap-1">
