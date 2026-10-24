@@ -121,6 +121,7 @@ const en = {
     itemCount: '{{count}} items',
   },
   quiz: {
+    lastWord: 'Last word',
     loading: 'Loading quiz...',
     options: 'Quiz Options',
     autoPronounce: 'Auto Pronounce',

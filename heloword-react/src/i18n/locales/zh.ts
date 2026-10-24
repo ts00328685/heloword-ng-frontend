@@ -121,6 +121,7 @@ const zh = {
     itemCount: '{{count}} 個項目',
   },
   quiz: {
+    lastWord: '上一題',
     loading: '載入測驗中...',
     options: '測驗選項',
     autoPronounce: '自動發音',

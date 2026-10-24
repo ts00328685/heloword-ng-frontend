@@ -121,6 +121,7 @@ const ja = {
     itemCount: '{{count}} 件',
   },
   quiz: {
+    lastWord: '前の単語',
     loading: 'クイズを読み込み中...',
     options: 'クイズオプション',
     autoPronounce: '自動発音',
