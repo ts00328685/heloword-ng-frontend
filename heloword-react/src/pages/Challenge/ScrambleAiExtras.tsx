@@ -15,9 +15,14 @@ type Lang = 'jp' | 'en';
 const TRICKY_KEY = 'hw-scramble-tricky';
 const MAX_TRICKY = 20;
 
+interface TrickyItem { lang: Lang; sentence: string; translation: string }
+
 interface TrickyStore {
   date: string;
-  items: { lang: Lang; sentence: string; translation: string }[];
+  items: TrickyItem[];
+  /** The previous day's items, mixed back into today's practice once. */
+  yesterday?: TrickyItem[];
+  yesterdayTaken?: boolean;
 }
 
 const today = () => new Date().toLocaleDateString('sv'); // YYYY-MM-DD, local time
@@ -26,8 +31,31 @@ function readTricky(): TrickyStore {
   try {
     const raw = JSON.parse(localStorage.getItem(TRICKY_KEY) || 'null') as TrickyStore | null;
     if (raw && raw.date === today() && Array.isArray(raw.items)) return raw;
+    // A new day: yesterday's list becomes the one to revisit.
+    if (raw && Array.isArray(raw.items)) {
+      const rolled: TrickyStore = { date: today(), items: [], yesterday: raw.items, yesterdayTaken: false };
+      try { localStorage.setItem(TRICKY_KEY, JSON.stringify(rolled)); } catch {}
+      return rolled;
+    }
   } catch {}
   return { date: today(), items: [] };
+}
+
+/** Today's tricky sentences for a language (newest last). */
+export function trickyItems(lang: Lang): TrickyItem[] {
+  return readTricky().items.filter((i) => i.lang === lang);
+}
+
+/** Yesterday's tricky sentences for a language — returned once per day, then marked taken. */
+export function takeYesterdayTricky(lang: Lang): TrickyItem[] {
+  const store = readTricky();
+  if (store.yesterdayTaken || !store.yesterday?.length) return [];
+  const mine = store.yesterday.filter((i) => i.lang === lang);
+  if (mine.length === 0) return [];
+  store.yesterday = store.yesterday.filter((i) => i.lang !== lang);
+  store.yesterdayTaken = store.yesterday.length === 0;
+  try { localStorage.setItem(TRICKY_KEY, JSON.stringify(store)); } catch {}
+  return mine;
 }
 
 /**

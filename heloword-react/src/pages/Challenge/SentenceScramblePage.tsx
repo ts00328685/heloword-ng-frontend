@@ -12,14 +12,15 @@ import { useUI } from '../../contexts/UIContext';
 import { aiExplainScramble, aiScrambleWrongOrder, SimilarSentence } from '../../services/scramble.service';
 import WordLookupSheet from '../../components/WordLookupSheet';
 import type { TappedWord } from '../../utils/wordLookup';
-import { countTricky, JustSolvedStrip, recordTricky, SolvedSentence, TrickyRecap } from './ScrambleAiExtras';
+import { countTricky, JustSolvedStrip, recordTricky, SolvedSentence, takeYesterdayTricky, trickyItems, TrickyRecap } from './ScrambleAiExtras';
+import { MAX_RETURNS, newRun, RETRY_GAP, RetryItem, RunEndCard, ScrambleRun, SessionBar, tapFeedback } from './ScrambleSession';
 import { aiErrorMessage } from '../../utils/aiError';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import JpSentenceFilter, { applyJpFilter } from '../../components/JpSentenceFilter';
 import EnDifficultyFilter, { applyEnDifficultyFilter, EN_DIFFICULTIES, EnDifficulty, enSentenceDifficulty } from '../../components/EnDifficultyFilter';
 import { Sentence } from '../../models';
 import { AiDisclosure, BlockLabel, OptionRow, PracticeActions, PracticeTopBar, Segmented, SheetSection, SwitchRow } from '../../components/ui/practice';
-import { pronounceWord } from '../../services/tts.service';
+import { cancelPronouncing, pronounceWord, speakSentence } from '../../services/tts.service';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import { readSessionState, setCodec, useSessionState } from '../../hooks/useSessionState';
 
@@ -85,12 +86,16 @@ const ChunkButton: React.FC<{
   invisible?: boolean;
   variant: 'bank' | 'answer';
   index: number;
+  /** Solved: chunks settle in one by one. */
+  settle?: boolean;
+  /** Wrong spot in a fully placed answer: a gentle shake and a red outline. */
+  misplaced?: boolean;
   onTap: () => void;
   onLongPress: () => void;
   onDragStart: (e: React.DragEvent) => void;
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (e: React.DragEvent) => void;
-}> = ({ chunk, disabled, invisible, variant, onTap, onLongPress, onDragStart, onDragOver, onDrop }) => {
+}> = ({ chunk, disabled, invisible, variant, index, settle, misplaced, onTap, onLongPress, onDragStart, onDragOver, onDrop }) => {
   const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isLongPress = useRef(false);
 
@@ -129,7 +134,9 @@ const ChunkButton: React.FC<{
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}
-      className={`${base} ${variant === 'bank' ? bankStyle : answerStyle} ${disabled ? disabledStyle : ''} ${invisible ? invisibleStyle : ''}`}
+      className={`${base} ${variant === 'bank' ? bankStyle : answerStyle} ${disabled && !settle ? disabledStyle : ''} ${invisible ? invisibleStyle : ''} ${
+        settle ? 'animate-chunk-settle pointer-events-none' : ''} ${misplaced ? 'animate-quiz-shake ring-2 ring-danger/60' : ''}`}
+      style={settle ? { animationDelay: `${index * 60}ms` } : undefined}
     >
       {chunk.text}
     </div>
@@ -222,6 +229,36 @@ const SentenceScramblePage: React.FC = () => {
   const [trickyCount, setTrickyCount] = useState(() => countTricky(lang));
   useEffect(() => { setTrickyCount(countTricky(lang)); }, [lang]);
 
+  // Session: daily set, streak, and missed sentences coming back
+  const [autoNext, setAutoNext] = useSessionState('scramble:autoNext', true, { kind: 'local' });
+  const [tapFx, setTapFx] = useSessionState('scramble:tapFx', false, { kind: 'local' });
+  /** The current sentence got help (hint / show answer / reset / why-wrong). */
+  const [helped, setHelped] = useSessionState('scramble:helped', false);
+  /** The current sentence's outcome has been counted. */
+  const [ticked, setTicked] = useSessionState('scramble:ticked', false);
+  const [streak, setStreak] = useSessionState('scramble:streak', 0);
+  const [run, setRun] = useSessionState<ScrambleRun | null>('scramble:run', null);
+  const [retry, setRetry] = useSessionState<RetryItem[]>('scramble:retry', []);
+  const [finishedCount, setFinishedCount] = useSessionState('scramble:finished', 0);
+  /** null = a normal sentence; n = this sentence is coming back for the n-th time. */
+  const [retryReturns, setRetryReturns] = useSessionState<number | null>('scramble:retryReturns', null);
+  // loadSentence is memoised; it reads these through refs to see the latest values.
+  const runRef = useRef(run); runRef.current = run;
+  const retryRef = useRef(retry); retryRef.current = retry;
+  const finishedRef = useRef(finishedCount); finishedRef.current = finishedCount;
+  /** Bumped on every new sentence so a late speech callback can't advance the wrong one. */
+  const advanceGen = useRef(0);
+
+  // Yesterday's tricky sentences are mixed into today's practice, one every few sentences.
+  useEffect(() => {
+    const items = takeYesterdayTricky(lang);
+    if (items.length === 0) return;
+    setRetry(q => [
+      ...q,
+      ...items.map((it, i) => ({ lang, sentence: it.sentence, dueAt: finishedRef.current + 2 + i * RETRY_GAP, returns: 0 })),
+    ]);
+  }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Lazy-loaded data cache (populated on first access, never re-fetched)
   const jpDataRef = useRef<JpSentence[] | null>(null);
   const enDataRef = useRef<EnSentence[] | null>(null);
@@ -246,6 +283,26 @@ const SentenceScramblePage: React.FC = () => {
     setShowAiPanel(false);
     setWrongWhy(null);
     setIsAiItem(false);
+    setHelped(false);
+    setTicked(false);
+    advanceGen.current++;
+
+    // Which sentence text to serve next, if any: the mistakes set's queue, then a
+    // missed sentence whose turn has come. Otherwise a random one from the pool.
+    let wanted: string | null = null;
+    let returns: number | null = null;
+    const r = runRef.current;
+    if (r && r.kind === 'mistakes' && !r.finishedAt && r.queue && r.queue.length > 0) {
+      wanted = r.queue[0];
+      setRun({ ...r, queue: r.queue.slice(1) });
+    } else {
+      const due = retryRef.current.find(x => x.lang === lang && x.dueAt <= finishedRef.current);
+      if (due) {
+        wanted = due.sentence;
+        returns = due.returns + 1;
+        setRetry(retryRef.current.filter(x => x !== due));
+      }
+    }
 
     if (lang === 'jp') {
       if (!jpDataRef.current) {
@@ -255,7 +312,9 @@ const SentenceScramblePage: React.FC = () => {
         setDataLoading(false);
       }
       const pool = applyJpFilter(jpDataRef.current, filterDifficulties, selectedGroups, selectedJlpt);
-      const item = pool[Math.floor(Math.random() * pool.length)];
+      const found = wanted ? jpDataRef.current.find(i => i.japanese === wanted) : undefined;
+      const item = found ?? pool[Math.floor(Math.random() * pool.length)];
+      setRetryReturns(found && returns !== null ? returns : null);
       setCurrentJp(item);
       setCurrentEn(null);
       const orig = buildChunks(item.chunks);
@@ -271,7 +330,9 @@ const SentenceScramblePage: React.FC = () => {
         setDataLoading(false);
       }
       const pool = applyEnDifficultyFilter(enDataRef.current, enDifficulties);
-      const item = pool[Math.floor(Math.random() * pool.length)];
+      const found = wanted ? enDataRef.current.find(i => i.sentence === wanted) : undefined;
+      const item = found ?? pool[Math.floor(Math.random() * pool.length)];
+      setRetryReturns(found && returns !== null ? returns : null);
       setCurrentEn(item);
       setCurrentJp(null);
       const orig = buildEnChunks(item.sentence, chunkSize);
@@ -308,9 +369,24 @@ const SentenceScramblePage: React.FC = () => {
         setLastSolved({ lang, sentence: solvedSentence, translation: (lang === 'jp' ? currentJp?.translation : currentEn?.translate_ch) ?? '' });
       }
       showToast(t('scramble.correct'), 1000);
-      if (autoPronounce) speak(correctText, lang);
       incrementProgress(lang === 'jp' ? 'japanese' : 'english', 'scrambleSentences');
-      autoAdvanceTimer.current = setTimeout(() => loadSentence(), 1000);
+      const finishesRun = settle(!helped);
+      // Read the whole sentence (if on), and only then move on (if on) — so the
+      // reading is never cut off. The last sentence of a set stays for the end card.
+      const gen = advanceGen.current;
+      const advance = (delay: number) => {
+        if (!autoNext || finishesRun) return;
+        if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current);
+        autoAdvanceTimer.current = setTimeout(() => { if (gen === advanceGen.current) loadSentence(); }, delay);
+      };
+      if (autoPronounce) {
+        let done = false;
+        const after = () => { if (!done) { done = true; advance(500); } };
+        speakSentence(correctText, lang === 'jp' ? 'ja-JP' : 'en-US', {}, after);
+        setTimeout(after, 9000); // never wait forever (no voices, blocked audio)
+      } else {
+        advance(1000);
+      }
     }
   }, [answerChunks, originalChunks, status, showToast, t, autoPronounce, lang, loadSentence, incrementProgress, currentJp, currentEn]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -319,6 +395,7 @@ const SentenceScramblePage: React.FC = () => {
   const moveFromBank = (uid: string) => {
     const chunk = bankChunks.find(c => c.uid === uid);
     if (!chunk || status !== 'playing' || usedBankUids.has(uid)) return;
+    if (tapFx) tapFeedback();
     setUsedBankUids(prev => new Set([...prev, uid]));
     setAnswerChunks(prev => [...prev, chunk]);
   };
@@ -326,6 +403,7 @@ const SentenceScramblePage: React.FC = () => {
   const moveToBank = (uid: string) => {
     const chunk = answerChunks.find(c => c.uid === uid);
     if (!chunk || status !== 'playing') return;
+    if (tapFx) tapFeedback();
     setAnswerChunks(prev => prev.filter(c => c.uid !== uid));
     setUsedBankUids(prev => { const s = new Set(prev); s.delete(uid); return s; });
   };
@@ -335,7 +413,76 @@ const SentenceScramblePage: React.FC = () => {
     const sentence = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
     const translation = lang === 'jp' ? currentJp?.translation : currentEn?.translate_ch;
     setTrickyCount(recordTricky(lang, sentence, translation));
+    setHelped(true);
   };
+
+  /**
+   * Count the current sentence once: streak, set progress, and — if it wasn't a
+   * clean solve — bring it back a few sentences later. Returns true when this
+   * finishes the current set.
+   */
+  const settle = (clean: boolean): boolean => {
+    if (ticked) return false;
+    setTicked(true);
+    const nextStreak = clean ? streak + 1 : 0;
+    setStreak(nextStreak);
+    setFinishedCount(n => n + 1);
+    const sentence = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
+    if (!clean && sentence && !isAiItem && (retryReturns ?? 0) < MAX_RETURNS) {
+      setRetry(q => [
+        ...q.filter(x => !(x.lang === lang && x.sentence === sentence)),
+        { lang, sentence, dueAt: finishedRef.current + 1 + RETRY_GAP, returns: retryReturns ?? 0 },
+      ]);
+    }
+    let finishes = false;
+    if (run && !run.finishedAt) {
+      const done = run.done + 1;
+      finishes = done >= run.total;
+      setRun({
+        ...run,
+        done,
+        clean: run.clean + (clean ? 1 : 0),
+        bestStreak: Math.max(run.bestStreak, nextStreak),
+        finishedAt: finishes ? Date.now() : undefined,
+      });
+    }
+    return finishes;
+  };
+
+  /** Skip / Next. A skipped sentence counts as missed (and comes back). */
+  const goNext = () => {
+    cancelPronouncing();
+    // Skipping means "didn't know it": it joins today's mistakes too.
+    if (status === 'playing') markTricky();
+    const finishes = status === 'playing' ? settle(false) : false;
+    if (finishes || (run?.finishedAt)) return;
+    // Let the counters above render first: the next pick reads them.
+    setTimeout(() => loadSentence(), 0);
+  };
+
+  const ensureData = async (l: Lang) => {
+    if (l === 'jp' && !jpDataRef.current) jpDataRef.current = (await import('../../data/scramble-jp.json')).default as JpSentence[];
+    if (l === 'en' && !enDataRef.current) enDataRef.current = (await import('../../data/scramble-en.json')).default as EnSentence[];
+  };
+
+  const startDaily = () => {
+    setRun(newRun('daily'));
+    setTimeout(() => loadSentence(), 0);
+  };
+
+  /** Replay today's tricky sentences (those still in the built-in sets) as a set. */
+  const startMistakes = async () => {
+    await ensureData(lang);
+    const known = (s: string) => lang === 'jp'
+      ? !!jpDataRef.current?.some(i => i.japanese === s)
+      : !!enDataRef.current?.some(i => i.sentence === s);
+    const queue = [...new Set(trickyItems(lang).map(i => i.sentence))].filter(known).slice(-10);
+    if (queue.length === 0) { showToast(t('scramble.noMistakes'), 1500); return; }
+    setRun(newRun('mistakes', queue));
+    setTimeout(() => loadSentence(), 0);
+  };
+
+  const endRun = () => setRun(null);
 
   /** 提示: place the next correct chunk (and remember the sentence for today's recap). */
   const handleHint = () => {
@@ -437,6 +584,7 @@ const SentenceScramblePage: React.FC = () => {
 
   const showAnswer = () => {
     markTricky();
+    settle(false);
     setWrongWhy(null);
     const solvedSentence = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
     if (solvedSentence) {
@@ -605,7 +753,9 @@ const SentenceScramblePage: React.FC = () => {
                     options={[1, 2, 3].map(n => ({ value: n, label: String(n) }))}
                   />
                 )}
-                <SwitchRow label={t('scramble.autoPronounce')} checked={autoPronounce} onChange={() => setAutoPronounce(p => !p)} />
+                <SwitchRow label={t('scramble.readAloudOnCorrect')} sub={t('scramble.readAloudOnCorrectSub')} checked={autoPronounce} onChange={() => setAutoPronounce(p => !p)} />
+                <SwitchRow label={t('scramble.autoNext')} sub={t('scramble.autoNextSub')} checked={autoNext} onChange={() => setAutoNext(v => !v)} />
+                <SwitchRow label={t('scramble.tapFx')} sub={t('scramble.tapFxSub')} checked={tapFx} onChange={() => setTapFx(v => !v)} />
                 <OptionRow
                   label={t('scramble.longPress')}
                   value={longPressMode}
@@ -621,6 +771,21 @@ const SentenceScramblePage: React.FC = () => {
           }
         />
 
+        <SessionBar run={run} streak={streak} counted={ticked} onStartDaily={startDaily} onEndRun={endRun} />
+
+        {run?.finishedAt ? (
+          <>
+            <RunEndCard
+              run={run}
+              mistakesCount={trickyCount}
+              onAgain={startDaily}
+              onMistakes={startMistakes}
+              onFree={() => { setRun(null); setTimeout(() => loadSentence(), 0); }}
+            />
+            <TrickyRecap lang={lang} count={trickyCount} isLoggedIn={isLoggedIn} />
+          </>
+        ) : (<>
+
         {/* Translation card */}
         <div className="bg-surface rounded-2xl border border-line p-4 shadow-sm">
           {dataLoading ? (
@@ -631,6 +796,9 @@ const SentenceScramblePage: React.FC = () => {
                 <p className="text-sm text-ink-muted flex items-center gap-2">
                   {t('scramble.translateCh')}
                   {isAiItem && <span className="text-[11px] px-1.5 py-0.5 rounded border border-accent/40 text-accent">{t('scramble.aiItem')}</span>}
+                  {retryReturns !== null && !isAiItem && (
+                    <span className="text-[11px] px-1.5 py-0.5 rounded border border-line text-ink-muted">{t('scramble.retryTag')}</span>
+                  )}
                   {!isAiItem && (
                     <SentenceMeta
                       difficulty={lang === 'jp' ? currentJp?.difficulty : currentEn ? enSentenceDifficulty(currentEn.sentence) : undefined}
@@ -692,12 +860,14 @@ const SentenceScramblePage: React.FC = () => {
                 {t('scramble.dropHere')}
               </span>
             )}
-            {answerChunks.map(chunk => (
+            {answerChunks.map((chunk, i) => (
               <ChunkButton
                 key={chunk.uid}
                 chunk={chunk}
                 variant="answer"
-                index={0}
+                index={i}
+                settle={status === 'correct'}
+                misplaced={isWrongOrder && chunk.text !== originalChunks[i]?.text}
                 disabled={status !== 'playing'}
                 onTap={() => moveToBank(chunk.uid)}
                 onLongPress={() => speak(chunk.text, lang)}
@@ -796,10 +966,11 @@ const SentenceScramblePage: React.FC = () => {
           compact
           primary={{
             label: status === 'correct' ? t('scramble.next') : t('common.skip'),
-            onClick: () => loadSentence(),
+            onClick: goNext,
             emphasis: status === 'correct',
           }}
         />
+        </>)}
 
       </main>
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
