@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
-import { checkSentence, CheckSentenceResult, getSampleSentence, lookupWord, LookupResult } from '../services/llm.service';
+import { lookupWord, LookupResult } from '../services/llm.service';
 import { pronounceWord } from '../services/tts.service';
 import { track } from '../services/analytics.service';
 import { aiErrorMessage } from '../utils/aiError';
@@ -10,6 +10,8 @@ import { LookupLang, stripReadings, TappedWord } from '../utils/wordLookup';
 import { Sentence } from '../models';
 import AddToGroupModal from './AddToGroupModal';
 import FuriganaText from './FuriganaText';
+import WordPractice from './WordPractice';
+import SentenceBreakdown from './SentenceBreakdown';
 
 type Source = 'article' | 'ai';
 
@@ -40,23 +42,17 @@ const WordLookupSheet: React.FC<{
   /** Where the tap happened, for analytics: 'article' or 'ai_text'. */
   context?: string;
 }> = ({ tapped, lang, onClose, context = 'article' }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const [result, setResult] = useState<LookupResult | null>(null);
   const [source, setSource] = useState<Source>('ai');
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
-  // Practice actions: an AI example sentence, or the learner's own sentence checked by AI.
-  const [panel, setPanel] = useState<'example' | 'write' | null>(null);
-  const [example, setExample] = useState<{ text: string; loading: boolean } | null>(null);
-  const [draft, setDraft] = useState('');
-  const [check, setCheck] = useState<{ result?: CheckSentenceResult; error?: string; loading: boolean } | null>(null);
   const latest = useRef(tapped);
   latest.current = tapped;
 
   useEffect(() => {
     setError('');
-    setPanel(null); setExample(null); setDraft(''); setCheck(null);
     if (tapped.vocab) {
       setSource('article');
       setResult({ word: tapped.vocab.word, meaningZh: tapped.vocab.meaning_zh, meaningEn: tapped.vocab.meaning_en });
@@ -87,31 +83,6 @@ const WordLookupSheet: React.FC<{
   }, [onClose]);
 
   const plainWord = result ? stripReadings(result.word).text : tapped.word;
-  const wordLang = lang === 'ja' ? 'jp' : 'en';
-
-  const showExample = async () => {
-    if (panel === 'example') { setPanel(null); return; }
-    setPanel('example');
-    if (example?.text) return;
-    setExample({ text: '', loading: true });
-    try {
-      const text = await getSampleSentence(plainWord, result?.meaningEn ?? '', i18n.language, wordLang);
-      setExample({ text, loading: false });
-    } catch (e) {
-      setExample({ text: aiErrorMessage(e, isLoggedIn), loading: false });
-    }
-  };
-
-  const runCheck = async () => {
-    const sentence = draft.trim();
-    if (!sentence) return;
-    setCheck({ loading: true });
-    try {
-      setCheck({ result: await checkSentence(plainWord, wordLang, sentence), loading: false });
-    } catch (e) {
-      setCheck({ error: aiErrorMessage(e, isLoggedIn), loading: false });
-    }
-  };
 
   const action = (label: string, onClick: () => void, active = false, analytics?: string) => (
     <button
@@ -149,7 +120,7 @@ const WordLookupSheet: React.FC<{
         className="fixed inset-x-0 bottom-0 z-[56] flex justify-center pointer-events-none"
       >
         <div className="pointer-events-auto w-full max-w-2xl mx-auto mb-[64px] px-4">
-          <div className="bg-surface rounded-2xl shadow-2xl border border-line p-4 animate-chatbot-slide-up">
+          <div className="bg-surface rounded-2xl shadow-2xl border border-line p-4 animate-chatbot-slide-up max-h-[calc(100dvh-140px)] overflow-y-auto overscroll-contain">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
@@ -201,72 +172,27 @@ const WordLookupSheet: React.FC<{
             <div className="mt-3 pt-2 border-t border-line">
               <p className="text-[10px] text-ink-faint mb-0.5">{t('wordLookup.sentence')}</p>
               <FuriganaText text={tapped.sentence} className="text-xs text-ink-muted leading-relaxed" />
+              {tapped.sentenceText && (
+                <SentenceBreakdown key={tapped.sentenceText} sentence={tapped.sentenceText} analytics={`${context}.explain_sentence`} />
+              )}
             </div>
 
             {result && (
-              <div className="mt-3 flex flex-wrap items-center gap-2">
-                {isLoggedIn && asSentence
+              <WordPractice
+                key={`${tapped.sentence}|${tapped.start}|${plainWord}`}
+                className="mt-3"
+                word={plainWord}
+                meaningEn={result.meaningEn}
+                wordLang={lang === 'ja' ? 'jp' : 'en'}
+                analytics="article.lookup"
+                leading={isLoggedIn && asSentence
                   ? action(t('wordLookup.saveToList'), () => setSaving(true), false, 'article.lookup.save')
                   : (
                     <a href="/login" data-analytics="article.lookup.login" className="text-xs text-ink-muted underline underline-offset-2 hover:text-ink mr-1">
                       {t('wordLookup.saveLoginHint')}
                     </a>
                   )}
-                {action(t('wordLookup.aiExample'), showExample, panel === 'example', 'article.lookup.example')}
-                {action(t('wordLookup.mySentence'), () => setPanel(p => (p === 'write' ? null : 'write')), panel === 'write', 'article.lookup.write')}
-              </div>
-            )}
-
-            {panel === 'example' && example && (
-              <div className="mt-3 border-l-2 border-accent pl-3 animate-slide-down">
-                {example.loading
-                  ? <p className="text-sm text-ink-faint animate-pulse">{t('llm.thinking')}</p>
-                  : (
-                    <div className="flex items-start gap-2">
-                      <p className="flex-1 text-sm text-ink leading-relaxed whitespace-pre-wrap"><FuriganaText text={example.text} /></p>
-                      <button
-                        onClick={() => pronounceWord(stripReadings(example.text.split('\n')[0]).text, wordLang)}
-                        className="shrink-0 p-1 text-ink-faint hover:text-accent"
-                        aria-label={t('chatbot.pronounce')}
-                      >
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" /></svg>
-                      </button>
-                    </div>
-                  )}
-              </div>
-            )}
-
-            {panel === 'write' && (
-              <div className="mt-3 space-y-2 animate-slide-down">
-                <div className="flex gap-2">
-                  <input
-                    value={draft}
-                    onChange={(e) => { setDraft(e.target.value); setCheck(null); }}
-                    onKeyDown={(e) => { if (e.key === 'Enter') runCheck(); }}
-                    placeholder={t('wordLookup.writePlaceholder', { word: plainWord })}
-                    className="flex-1 min-w-0 h-9 px-3 rounded-md border border-line bg-surface text-sm text-ink placeholder-ink-faint focus:outline-none focus:border-ink/40"
-                  />
-                  <button
-                    data-analytics="article.lookup.check"
-                    onClick={runCheck}
-                    disabled={!draft.trim() || check?.loading}
-                    className="shrink-0 h-9 px-3 rounded-md bg-ink text-paper text-xs font-medium disabled:opacity-40"
-                  >
-                    {check?.loading ? '…' : t('wordLookup.check')}
-                  </button>
-                </div>
-                {check && !check.loading && (
-                  check.error
-                    ? <p className="text-xs text-danger">{check.error}</p>
-                    : check.result?.ok
-                      ? <p className="text-xs text-success">{t('wordLookup.checkOk')}</p>
-                      : (
-                        <p className="text-xs text-ink leading-relaxed border-l-2 border-accent pl-2">
-                          <span className="text-ink-muted">{t('wordLookup.checkFix')}</span> <FuriganaText text={check.result?.fix ?? ''} />
-                        </p>
-                      )
-                )}
-              </div>
+              />
             )}
           </div>
         </div>

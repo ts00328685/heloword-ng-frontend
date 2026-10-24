@@ -19,6 +19,9 @@ import {
   saveGuestSetting,
   saveGuestRecord,
 } from '../../services/guestStorage.service';
+import WordPractice from '../../components/WordPractice';
+import FuriganaText from '../../components/FuriganaText';
+import { stripReadings } from '../../utils/wordLookup';
 import { getWordInsight, getSampleSentence, getWordComparison } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import AddToGroupModal from '../../components/AddToGroupModal';
@@ -135,6 +138,8 @@ const VocabularyQuizPage: React.FC = () => {
   const [japaneseMode, setJapaneseMode] = useSessionState('quiz:japaneseMode', false, { kind: 'local' });
   const [showSettings, setShowSettings] = useState(false);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
+  // The word just answered: practise it with an AI example or your own sentence.
+  const [lastWord, setLastWord] = useState<Sentence | null>(null);
 
   // AI insight / sample sentence / compare
   const aiInsight  = useAiInsight('quiz:insight');
@@ -478,6 +483,8 @@ const VocabularyQuizPage: React.FC = () => {
         needRetest = true;
       }
 
+      setLastWord(current.word && (current.language === 'jp' || current.language === 'en') ? current : null);
+
       startTimeRef.current = new Date();
       pronounceCountRef.current = 0;
       deleteCountRef.current = 0;
@@ -614,6 +621,8 @@ const VocabularyQuizPage: React.FC = () => {
     if (!word || word.language !== 'jp' || !jpButtonMode || !word.word) return;
     const handler = (e: KeyboardEvent) => {
       if (jpSuccessFiredRef.current) return;
+      // Typing elsewhere (e.g. writing a sentence for the last word) isn't a kana pick.
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
       if (e.key === 'Backspace') {
         e.preventDefault();
         setBuiltAnswer((p) => p.slice(0, -1));
@@ -1046,6 +1055,23 @@ const VocabularyQuizPage: React.FC = () => {
           ]}
           primary={{ label: t('quiz.skip'), onClick: handleSkip, emphasis: false }}
         />
+
+        {lastWord?.word && (
+          <section className="mt-5 pt-3 border-t border-line animate-fade-in">
+            <p className="text-[11px] text-ink-faint">{t('quiz.lastWord')}</p>
+            <div className="flex items-baseline gap-2 mt-1 mb-2 min-w-0">
+              <FuriganaText text={lastWord.word} className="text-base text-ink" />
+              <span className="text-xs text-ink-muted truncate">{lastWord.translateCh || lastWord.translateEn}</span>
+            </div>
+            <WordPractice
+              key={`${lastWord.id}:${lastWord.tableName ?? ''}`}
+              word={stripReadings(lastWord.word).text}
+              meaningEn={lastWord.translateEn}
+              wordLang={lastWord.language === 'jp' ? 'jp' : 'en'}
+              analytics="quiz.last"
+            />
+          </section>
+        )}
           </>
         )}
       </main>
