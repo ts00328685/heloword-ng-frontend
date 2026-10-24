@@ -44,6 +44,7 @@ const WrittenTranslationPage = React.lazy(() => import('./pages/Challenge/Writte
 const KirbyGamePage           = React.lazy(() => import('./pages/Challenge/KirbyGame/KirbyGamePage'));
 const UserVocabPage           = React.lazy(() => import('./pages/UserVocab/UserVocabPage'));
 const UserVocabGroupPage      = React.lazy(() => import('./pages/UserVocab/UserVocabGroupPage'));
+const PhotoWordsPage          = React.lazy(() => import('./pages/UserVocab/PhotoWordsPage'));
 const SharedVocabGroupPage    = React.lazy(() => import('./pages/SharedVocab/SharedVocabGroupPage'));
 const SharedVocabListPage     = React.lazy(() => import('./pages/SharedVocab/SharedVocabListPage'));
 const WordPreviewPage         = React.lazy(() => import('./pages/Review/WordPreviewPage'));
@@ -92,6 +93,7 @@ const AppLayout: React.FC = () => {
           <Route path="/challenge/written" element={<WrittenTranslationPage />} />
           <Route path="/challenge/kirby" element={<KirbyGamePage />} />
           <Route path="/user-vocab" element={<UserVocabPage />} />
+          <Route path="/photo-words" element={<PhotoWordsPage />} />
           <Route path="/user-vocab/:groupId" element={<UserVocabGroupPage />} />
           <Route path="/shared-vocab" element={<SharedVocabListPage />} />
           <Route path="/shared-vocab/:shareId" element={<SharedVocabGroupPage />} />
