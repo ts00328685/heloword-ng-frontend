@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import TapToLookup from './TapToLookup';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { checkSentence, CheckSentenceResult, getSampleSentence } from '../services/llm.service';
 import { pronounceWord } from '../services/tts.service';
 import { aiErrorMessage } from '../utils/aiError';
 import { stripReadings } from '../utils/wordLookup';
-import FuriganaText from './FuriganaText';
 
 /**
  * Practise one word: "AI 例句" fetches an example sentence, "我來造句" lets the
@@ -81,7 +81,7 @@ const WordPractice: React.FC<{
                   ? <p className="text-sm text-ink-faint animate-pulse">{t('llm.thinking')}</p>
                   : (
                     <div className="flex items-start gap-2">
-                      <p className="flex-1 text-sm text-ink leading-relaxed whitespace-pre-wrap"><FuriganaText text={example.text} /></p>
+                      <p className="flex-1 text-sm text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{example.text}</TapToLookup></p>
                       <button
                         onClick={() => pronounceWord(stripReadings(example.text.split('\n')[0]).text, wordLang)}
                         className="shrink-0 p-1 text-ink-faint hover:text-accent"
@@ -120,7 +120,7 @@ const WordPractice: React.FC<{
                       ? <p className="text-xs text-success">{t('wordLookup.checkOk')}</p>
                       : (
                         <p className="text-xs text-ink leading-relaxed border-l-2 border-accent pl-2">
-                          <span className="text-ink-muted">{t('wordLookup.checkFix')}</span> <FuriganaText text={check.result?.fix ?? ''} />
+                          <span className="text-ink-muted">{t('wordLookup.checkFix')}</span> <TapToLookup>{check.result?.fix ?? ''}</TapToLookup>
                         </p>
                       )
                 )}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import TapToLookup from './TapToLookup';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { explainSentence, ExplainSentenceResult } from '../services/llm.service';
 import { aiErrorMessage } from '../utils/aiError';
-import FuriganaText from './FuriganaText';
 
 const SESSION_PREFIX = 'ai:explain-sentence:';
 
@@ -83,7 +83,7 @@ const SentenceBreakdown: React.FC<{ sentence: string; analytics: string }> = ({ 
                   <li key={i} className="flex gap-3 px-3 py-2">
                     <span className="text-[11px] text-ink-faint tabular-nums pt-0.5 w-3 shrink-0">{i + 1}</span>
                     <span className="min-w-0">
-                      <FuriganaText text={c.text} className="block text-sm text-ink leading-relaxed" />
+                      <TapToLookup as="div" className="text-sm text-ink leading-relaxed">{c.text}</TapToLookup>
                       <span className="block text-xs text-ink-muted mt-0.5">{c.note}</span>
                     </span>
                   </li>
@@ -95,7 +95,7 @@ const SentenceBreakdown: React.FC<{ sentence: string; analytics: string }> = ({ 
                   <ul className="space-y-1">
                     {result.points.map((p, i) => (
                       <li key={i} className="text-xs leading-relaxed">
-                        <FuriganaText text={p.text} className="text-ink font-medium" />
+                        <TapToLookup className="text-ink font-medium">{p.text}</TapToLookup>
                         <span className="text-ink-muted">：{p.note}</span>
                       </li>
                     ))}
