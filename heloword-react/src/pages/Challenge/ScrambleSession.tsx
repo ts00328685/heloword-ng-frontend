@@ -57,7 +57,9 @@ export const SessionBar: React.FC<{
   counted: boolean;
   onStartDaily: () => void;
   onEndRun: () => void;
-}> = ({ run, streak, counted, onStartDaily, onEndRun }) => {
+  /** Skip / Next for the sentence on screen, at the right end of the row. */
+  action?: { label: string; onClick: () => void; emphasis?: boolean };
+}> = ({ run, streak, counted, onStartDaily, onEndRun, action }) => {
   const { t } = useTranslation();
   const active = run && !run.finishedAt;
   // Number of the sentence on screen: stays put until the next one appears.
@@ -96,6 +98,16 @@ export const SessionBar: React.FC<{
       >
         {streak > 0 ? t('scramble.streak', { count: streak }) : ''}
       </span>
+      {action && !run?.finishedAt && (
+        <button
+          onClick={action.onClick}
+          className={`shrink-0 h-8 px-3 rounded-md text-xs font-medium transition-colors ${
+            action.emphasis ? 'bg-ink text-paper hover:bg-ink/85' : 'border border-line bg-surface text-ink hover:border-ink/30'
+          }`}
+        >
+          {action.label}
+        </button>
+      )}
     </div>
   );
 };

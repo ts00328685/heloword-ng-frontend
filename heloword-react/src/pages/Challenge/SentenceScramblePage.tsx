@@ -242,6 +242,9 @@ const SentenceScramblePage: React.FC = () => {
   const [finishedCount, setFinishedCount] = useSessionState('scramble:finished', 0);
   /** null = a normal sentence; n = this sentence is coming back for the n-th time. */
   const [retryReturns, setRetryReturns] = useSessionState<number | null>('scramble:retryReturns', null);
+  /** Sentences the learner skipped: never served again. */
+  const [skipped, setSkipped] = useSessionState<string[]>('scramble:skipped', [], { kind: 'local' });
+  const skippedRef = useRef(new Set(skipped)); skippedRef.current = new Set(skipped);
   // loadSentence is memoised; it reads these through refs to see the latest values.
   const runRef = useRef(run); runRef.current = run;
   const retryRef = useRef(retry); retryRef.current = retry;
@@ -251,7 +254,7 @@ const SentenceScramblePage: React.FC = () => {
 
   // Yesterday's tricky sentences are mixed into today's practice, one every few sentences.
   useEffect(() => {
-    const items = takeYesterdayTricky(lang);
+    const items = takeYesterdayTricky(lang).filter(it => !skippedRef.current.has(it.sentence));
     if (items.length === 0) return;
     setRetry(q => [
       ...q,
@@ -271,6 +274,12 @@ const SentenceScramblePage: React.FC = () => {
   const dragSource = useRef<{ zone: 'bank' | 'answer'; uid: string } | null>(null);
 
   // ── Load sentence ────────────────────────────────────────────────────────
+
+  /** Leave out skipped sentences — unless that would leave nothing to play. */
+  const notSkipped = <T,>(pool: T[], text: (i: T) => string): T[] => {
+    const rest = pool.filter(i => !skippedRef.current.has(text(i)));
+    return rest.length > 0 ? rest : pool;
+  };
 
   const loadSentence = useCallback(async () => {
     if (autoAdvanceTimer.current) {
@@ -296,7 +305,7 @@ const SentenceScramblePage: React.FC = () => {
       wanted = r.queue[0];
       setRun({ ...r, queue: r.queue.slice(1) });
     } else {
-      const due = retryRef.current.find(x => x.lang === lang && x.dueAt <= finishedRef.current);
+      const due = retryRef.current.find(x => x.lang === lang && x.dueAt <= finishedRef.current && !skippedRef.current.has(x.sentence));
       if (due) {
         wanted = due.sentence;
         returns = due.returns + 1;
@@ -311,7 +320,7 @@ const SentenceScramblePage: React.FC = () => {
         jpDataRef.current = mod.default as JpSentence[];
         setDataLoading(false);
       }
-      const pool = applyJpFilter(jpDataRef.current, filterDifficulties, selectedGroups, selectedJlpt);
+      const pool = notSkipped(applyJpFilter(jpDataRef.current, filterDifficulties, selectedGroups, selectedJlpt), i => i.japanese);
       const found = wanted ? jpDataRef.current.find(i => i.japanese === wanted) : undefined;
       const item = found ?? pool[Math.floor(Math.random() * pool.length)];
       setRetryReturns(found && returns !== null ? returns : null);
@@ -329,7 +338,7 @@ const SentenceScramblePage: React.FC = () => {
         enDataRef.current = mod.default as EnSentence[];
         setDataLoading(false);
       }
-      const pool = applyEnDifficultyFilter(enDataRef.current, enDifficulties);
+      const pool = notSkipped(applyEnDifficultyFilter(enDataRef.current, enDifficulties), i => i.sentence);
       const found = wanted ? enDataRef.current.find(i => i.sentence === wanted) : undefined;
       const item = found ?? pool[Math.floor(Math.random() * pool.length)];
       setRetryReturns(found && returns !== null ? returns : null);
@@ -421,14 +430,16 @@ const SentenceScramblePage: React.FC = () => {
    * clean solve — bring it back a few sentences later. Returns true when this
    * finishes the current set.
    */
-  const settle = (clean: boolean): boolean => {
+  const settle = (clean: boolean, requeue = true): boolean => {
     if (ticked) return false;
     setTicked(true);
     const nextStreak = clean ? streak + 1 : 0;
     setStreak(nextStreak);
     setFinishedCount(n => n + 1);
     const sentence = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
-    if (!clean && sentence && !isAiItem && (retryReturns ?? 0) < MAX_RETURNS) {
+    if (!requeue && sentence) {
+      setRetry(q => q.filter(x => !(x.lang === lang && x.sentence === sentence)));
+    } else if (!clean && sentence && !isAiItem && (retryReturns ?? 0) < MAX_RETURNS) {
       setRetry(q => [
         ...q.filter(x => !(x.lang === lang && x.sentence === sentence)),
         { lang, sentence, dueAt: finishedRef.current + 1 + RETRY_GAP, returns: retryReturns ?? 0 },
@@ -449,12 +460,18 @@ const SentenceScramblePage: React.FC = () => {
     return finishes;
   };
 
-  /** Skip / Next. A skipped sentence counts as missed (and comes back). */
+  /** Skip / Next. A skipped sentence counts as missed and is never served again. */
   const goNext = () => {
     cancelPronouncing();
-    // Skipping means "didn't know it": it joins today's mistakes too.
-    if (status === 'playing') markTricky();
-    const finishes = status === 'playing' ? settle(false) : false;
+    let finishes = false;
+    if (status === 'playing') {
+      const sentence = lang === 'jp' ? currentJp?.japanese : currentEn?.sentence;
+      if (sentence && !isAiItem) {
+        setSkipped(s => (s.includes(sentence) ? s : [...s, sentence]));
+        skippedRef.current.add(sentence);
+      }
+      finishes = settle(false, false);
+    }
     if (finishes || (run?.finishedAt)) return;
     // Let the counters above render first: the next pick reads them.
     setTimeout(() => loadSentence(), 0);
@@ -476,7 +493,8 @@ const SentenceScramblePage: React.FC = () => {
     const known = (s: string) => lang === 'jp'
       ? !!jpDataRef.current?.some(i => i.japanese === s)
       : !!enDataRef.current?.some(i => i.sentence === s);
-    const queue = [...new Set(trickyItems(lang).map(i => i.sentence))].filter(known).slice(-10);
+    const queue = [...new Set(trickyItems(lang).map(i => i.sentence))]
+      .filter(s => known(s) && !skippedRef.current.has(s)).slice(-10);
     if (queue.length === 0) { showToast(t('scramble.noMistakes'), 1500); return; }
     setRun(newRun('mistakes', queue));
     setTimeout(() => loadSentence(), 0);
@@ -771,7 +789,18 @@ const SentenceScramblePage: React.FC = () => {
           }
         />
 
-        <SessionBar run={run} streak={streak} counted={ticked} onStartDaily={startDaily} onEndRun={endRun} />
+        <SessionBar
+          run={run}
+          streak={streak}
+          counted={ticked}
+          onStartDaily={startDaily}
+          onEndRun={endRun}
+          action={{
+            label: status === 'correct' ? t('scramble.next') : t('common.skip'),
+            onClick: goNext,
+            emphasis: status === 'correct',
+          }}
+        />
 
         {run?.finishedAt ? (
           <>
@@ -961,15 +990,6 @@ const SentenceScramblePage: React.FC = () => {
         </AiDisclosure>
 
         <TrickyRecap lang={lang} count={trickyCount} isLoggedIn={isLoggedIn} />
-
-        <PracticeActions
-          compact
-          primary={{
-            label: status === 'correct' ? t('scramble.next') : t('common.skip'),
-            onClick: goNext,
-            emphasis: status === 'correct',
-          }}
-        />
         </>)}
 
       </main>
