@@ -3,6 +3,8 @@ import { Navigate } from 'react-router-dom';
 import {
   LineChart,
   Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -30,6 +32,7 @@ interface Point {
   date: string;
   events: number;
   users: number;
+  newMembers: number;
 }
 interface Dashboard {
   days: number;
@@ -37,6 +40,7 @@ interface Dashboard {
   uniqueUsers: number;
   pageViews: number;
   activeToday: number;
+  newMembers: number;
   daily: Point[];
   topPages: CountItem[];
   topEvents: CountItem[];
@@ -67,7 +71,7 @@ const AdminAnalyticsPage: React.FC = () => {
   const { t } = useTranslation();
 
   const isAdmin = hasAnyRole(['ADMIN']);
-  const [range, setRange] = useState<Range>(30);
+  const [range, setRange] = useState<Range>(1);
   const [data, setData] = useState<Dashboard | null>(null);
   const [error, setError] = useState(false);
   const fetchedFor = useRef<Range | null>(null);
@@ -100,6 +104,7 @@ const AdminAnalyticsPage: React.FC = () => {
   }
 
   const gridColor = isDark ? '#374151' : '#e5e7eb';
+  const accentColor = isDark ? '#8fa8c7' : '#2e4a6b';
   const textColor = isDark ? '#9ca3af' : '#6b7280';
   const tooltipStyle = isDark
     ? { backgroundColor: '#1f2937', border: '1px solid #374151', color: '#f3f4f6' }
@@ -162,6 +167,25 @@ const AdminAnalyticsPage: React.FC = () => {
               <Line type="monotone" dataKey="users" name={t('analytics.visitors', 'Visitors')} stroke="#22c55e" strokeWidth={2} dot={chartData.length <= 1} activeDot={{ r: 5 }} />
             </LineChart>
           </ResponsiveContainer>
+        </div>
+
+        {/* New member registrations */}
+        <div className="bg-surface rounded-2xl p-4 mb-4 shadow-sm border border-line">
+          <div className="flex items-baseline justify-between mb-3">
+            <h3 className="text-sm font-semibold text-ink">{t('analytics.newMembers', 'New members')}</h3>
+            <span className="text-2xl font-semibold text-accent tabular-nums">{fmt(data?.newMembers)}</span>
+          </div>
+          {range > 1 && (
+            <ResponsiveContainer width="100%" height={160}>
+              <BarChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke={gridColor} vertical={false} />
+                <XAxis dataKey="label" tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} interval={range <= 7 ? 0 : Math.floor(range / 7)} />
+                <YAxis tick={{ fill: textColor, fontSize: 11 }} axisLine={false} tickLine={false} allowDecimals={false} />
+                <Tooltip contentStyle={tooltipStyle} cursor={{ fill: gridColor, opacity: 0.4 }} />
+                <Bar dataKey="newMembers" name={t('analytics.newMembers', 'New members')} fill={accentColor} radius={[3, 3, 0, 0]} maxBarSize={24} />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
         </div>
 
         {/* Top pages & top actions */}
