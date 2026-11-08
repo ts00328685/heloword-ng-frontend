@@ -909,9 +909,10 @@ const zh = {
   },
   grammar: {
     title: '快速文法',
-    eyebrow: '英文基本觀念',
     subtitle: '先抓主詞和主要動詞，長句子也能拆得懂。點例句裡的單字可以查意思，按喇叭聽發音。',
     homeSubtitle: '英文句子的組成，10 個觀念快速看懂',
+    subtitleJa: '先看句尾的動詞，再看助詞，長句子也能拆得懂。點例句裡的單字可以查意思，按喇叭聽發音。',
+    homeSubtitleJa: '日文句子的組成，10 個觀念快速看懂',
     toBeContinued: '未完待續…',
   },
   tour: {

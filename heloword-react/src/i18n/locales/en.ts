@@ -909,9 +909,10 @@ const en = {
   },
   grammar: {
     title: 'Quick Grammar',
-    eyebrow: 'English basics',
     subtitle: 'Find the subject and the main verb, and long sentences stop being scary. Tap a word in an example to look it up, or the speaker to hear it. Explanations are in Chinese.',
     homeSubtitle: 'How English sentences are built — 10 key ideas (in Chinese)',
+    subtitleJa: 'Read the verb at the end first, then the particles, and long sentences fall into place. Tap a word in an example to look it up, or the speaker to hear it. Explanations are in Chinese.',
+    homeSubtitleJa: 'How Japanese sentences are built — 10 key ideas (in Chinese)',
     toBeContinued: 'To be continued…',
   },
   tour: {
