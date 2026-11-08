@@ -1,6 +1,7 @@
 import SentenceMeta from '../../components/SentenceMeta';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
+import GrammarTipLink from '../../components/GrammarTipLink';
 import ReactDOM from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 import { withFurigana } from '../../components/FuriganaText';
@@ -596,6 +597,7 @@ const SpeakingPracticeJpPage: React.FC = () => {
         <AiDisclosure
           label={t('scramble.aiExplain')}
           analytics="ai.scramble_explain"
+          footer={<GrammarTipLink lang="ja" analytics="ai.speaking_jp_explain" />}
           open={showAiPanel}
           loading={aiLoading}
           loadingText={t('scramble.aiThinking')}

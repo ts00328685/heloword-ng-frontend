@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TapToLookup from './TapToLookup';
+import GrammarTipLink from './GrammarTipLink';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { useAiInsight } from '../hooks/useAiInsight';
@@ -46,6 +47,7 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const [open, setOpen] = useState<Tool | null>(null);
+  const grammarLang = wordLang === 'en' ? 'en' : wordLang === 'jp' || wordLang === 'ja' ? 'ja' : null;
 
   const hook = useAiInsight('tools:hook');
   const colloc = useAiInsight('tools:colloc');
@@ -176,7 +178,12 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
                 {check && (
                   check.ok
                     ? <p className="text-xs text-success">{t('llm.sentenceCorrect')}</p>
-                    : <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{check.fix}</TapToLookup></p>
+                    : (
+                      <>
+                        <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{check.fix}</TapToLookup></p>
+                        {grammarLang && <div className="flex justify-end"><GrammarTipLink lang={grammarLang} analytics="ai.tools.check" /></div>}
+                      </>
+                    )
                 )}
               </>
             )}

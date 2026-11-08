@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { explainSentence, ExplainSentenceResult } from '../services/llm.service';
 import { aiErrorMessage } from '../utils/aiError';
+import { LookupLang } from '../utils/wordLookup';
+import GrammarTipLink from './GrammarTipLink';
 
 const SESSION_PREFIX = 'ai:explain-sentence:';
 
@@ -25,7 +27,7 @@ function writeCache(sentence: string, result: ExplainSentenceResult) {
  * grammar points worth knowing, and a natural translation. Remount (via `key`)
  * for another sentence.
  */
-const SentenceBreakdown: React.FC<{ sentence: string; analytics: string }> = ({ sentence, analytics }) => {
+const SentenceBreakdown: React.FC<{ sentence: string; analytics: string; lang?: LookupLang }> = ({ sentence, analytics, lang }) => {
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const [open, setOpen] = useState(false);
@@ -106,6 +108,7 @@ const SentenceBreakdown: React.FC<{ sentence: string; analytics: string }> = ({ 
                 <p className="text-[10px] text-ink-faint mb-0.5">{t('sentenceBreakdown.translation')}</p>
                 <p className="text-sm text-ink leading-relaxed">{result.translation}</p>
               </div>
+              {lang && <div className="flex justify-end"><GrammarTipLink lang={lang} analytics={analytics} /></div>}
             </div>
           )}
         </div>

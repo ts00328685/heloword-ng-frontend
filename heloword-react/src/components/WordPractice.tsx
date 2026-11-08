@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TapToLookup from './TapToLookup';
+import GrammarTipLink from './GrammarTipLink';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { checkSentence, CheckSentenceResult, getCollocationsText, getSampleSentence } from '../services/llm.service';
@@ -145,6 +146,7 @@ const WordPractice: React.FC<{
                       : (
                         <p className="text-xs text-ink leading-relaxed border-l-2 border-accent pl-2">
                           <span className="text-ink-muted">{t('wordLookup.checkFix')}</span> <TapToLookup>{check.result?.fix ?? ''}</TapToLookup>
+                          <GrammarTipLink lang={wordLang === 'jp' ? 'ja' : 'en'} analytics={analytics} className="ml-2 align-middle" />
                         </p>
                       )
                 )}

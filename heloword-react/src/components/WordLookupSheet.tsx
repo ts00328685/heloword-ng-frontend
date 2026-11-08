@@ -186,7 +186,7 @@ const WordLookupSheet: React.FC<{
               <p className="text-[10px] text-ink-faint mb-0.5">{t('wordLookup.sentence')}</p>
               <TapToLookup className="text-xs text-ink-muted leading-relaxed" lang={lang}>{tapped.sentence}</TapToLookup>
               {tapped.sentenceText && (
-                <SentenceBreakdown key={tapped.sentenceText} sentence={tapped.sentenceText} analytics={`${context}.explain_sentence`} />
+                <SentenceBreakdown key={tapped.sentenceText} sentence={tapped.sentenceText} lang={lang} analytics={`${context}.explain_sentence`} />
               )}
             </div>
 

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import TapToLookup from '../../components/TapToLookup';
+import GrammarTipLink from '../../components/GrammarTipLink';
 import FuriganaText, { renderFurigana } from '../../components/FuriganaText';
 import { findReadings, snapOutOfReading, useFuriganaMode } from '../../utils/furigana';
 import { useTranslation } from 'react-i18next';
@@ -553,6 +554,7 @@ export const ParagraphCard: React.FC<{
           {grammarOpen && (
             <div className="px-4 py-3 border-t border-line bg-surface">
               <p className="text-sm text-ink-muted leading-relaxed whitespace-pre-line"><TapToLookup>{paragraph.grammar}</TapToLookup></p>
+              {lookupLang && <div className="mt-2 flex justify-end"><GrammarTipLink lang={lookupLang} analytics="article.grammar" /></div>}
             </div>
           )}
         </>
