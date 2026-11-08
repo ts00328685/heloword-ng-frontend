@@ -371,7 +371,7 @@ const SharedVocabGroupPage: React.FC = () => {
 
             {/* ── Flashcard / Multi-choice mode ────────────────────────────── */}
             {multiMode ? (
-              <MultiChoicePanel words={filtered} onExit={() => setMultiMode(false)} />
+              <MultiChoicePanel words={filtered} wordLang={wordLang} onExit={() => setMultiMode(false)} />
             ) : flashMode ? (() => {
               const flashInsightOpen = selectedWordId === filtered[cardIndex]?.id;
               const flashCompareOpen = selectedCompareId === filtered[cardIndex]?.id;

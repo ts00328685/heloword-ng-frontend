@@ -245,6 +245,12 @@ const zh = {
     openGroup: '打開單字本',
     shortcut: '拍照加單字',
   },
+  wordSheet: {
+    longPressHint: '長按單字可以發音、收藏、解析、看例句、自己造句（查過的字會再出現複習）',
+    tapHint: '點單字可以收藏、解析、看例句、自己造句',
+    longPressTools: '單字工具',
+    more: '更多',
+  },
   wordLookup: {
     tapAnyWord: '點文中的日文或英文單字，可以查意思、收藏',
     tapHint: '點原文裡的單字就能查意思，也能解析整句',

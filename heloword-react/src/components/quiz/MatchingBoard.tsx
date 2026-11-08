@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useSta
 import { useTranslation } from 'react-i18next';
 import { Sentence } from '../../models';
 import { meaningText, pickDecoys, promptText, randomLineColor, shuffle, wordKey } from './boardUtils';
+import { NO_CALLOUT, useLongPress } from '../../hooks/useLongPress';
+import WordToolsSheet from './WordToolsSheet';
 
 interface Props {
   /** The words of this set — every one must be connected before the set completes. */
@@ -20,6 +22,7 @@ interface Props {
 interface RightItem {
   key: string;
   text: string;
+  word: Sentence;
   /** Decoys are never connectable — they exist to keep small sets hard. */
   decoy: boolean;
 }
@@ -49,11 +52,12 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
   const left = useMemo(() => shuffle(words), [setId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const right = useMemo<RightItem[]>(() => {
-    const real = words.map((w) => ({ key: wordKey(w), text: meaningText(w, i18n.language), decoy: false }));
+    const real = words.map((w) => ({ key: wordKey(w), text: meaningText(w, i18n.language), word: w, decoy: false }));
     // A 2-word board is a giveaway; pad the answer column so there is always a real choice.
     const decoys = pickDecoys(pool, words, Math.max(0, 4 - words.length)).map((w, i) => ({
       key: `decoy-${i}-${wordKey(w)}`,
       text: meaningText(w, i18n.language),
+      word: w,
       decoy: true,
     }));
     return shuffle([...real, ...decoys]);
@@ -65,6 +69,8 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
   const [resetting, setResetting] = useState(false);
   const [cleared, setCleared] = useState(false);
   const [lines, setLines] = useState<LineCoord[]>([]);
+  const [sheetWord, setSheetWord] = useState<Sentence | null>(null);
+  const longPress = useLongPress();
 
   // Fresh board whenever the set changes.
   useEffect(() => {
@@ -160,6 +166,13 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
 
   const remaining = words.length - connections.length;
 
+  // Looking up an unmatched word mid-round means it wasn't known yet, so it counts
+  // as missed and comes back for review. Matched words and decoys are free to open.
+  const openSheet = (key: string, w: Sentence, decoy: boolean) => {
+    if (!decoy && !cleared && !connectedKeys.has(key)) failedRef.current.set(key, (failedRef.current.get(key) ?? 0) + 1);
+    setSheetWord(w);
+  };
+
   return (
     <div className="bg-surface rounded-2xl border border-line p-4 shadow-sm">
       <div className="flex items-center justify-between mb-3">
@@ -201,9 +214,10 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
                 <button
                   key={key}
                   ref={(el) => { leftRefs.current[key] = el; }}
-                  onClick={() => handleLeftClick(w)}
-                  disabled={done || resetting || cleared}
-                  className={`w-[70%] h-16 px-3 py-2 rounded-xl border-2 text-sm font-semibold text-left break-words flex items-center transition-colors ${
+                  {...longPress.bind(() => openSheet(key, w, false))}
+                  onClick={() => { if (longPress.consumed()) return; handleLeftClick(w); }}
+                  aria-disabled={done || resetting || cleared}
+                  className={`${NO_CALLOUT} w-[70%] h-16 px-3 py-2 rounded-xl border-2 text-sm font-semibold text-left break-words flex items-center transition-colors ${
                     isWrong
                       ? 'animate-quiz-shake border-danger bg-danger-soft text-danger '
                       : done
@@ -228,9 +242,10 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
                 <button
                   key={item.key}
                   ref={(el) => { rightRefs.current[item.key] = el; }}
-                  onClick={() => handleRightClick(item)}
-                  disabled={done || resetting || cleared || !selectedLeft}
-                  className={`w-[70%] h-16 px-3 py-2 rounded-xl border-2 text-[11px] font-medium text-left break-words leading-snug flex items-center transition-colors ${
+                  {...longPress.bind(() => openSheet(item.key, item.word, item.decoy))}
+                  onClick={() => { if (longPress.consumed()) return; handleRightClick(item); }}
+                  aria-disabled={done || resetting || cleared || !selectedLeft}
+                  className={`${NO_CALLOUT} w-[70%] h-16 px-3 py-2 rounded-xl border-2 text-[11px] font-medium text-left break-words leading-snug flex items-center transition-colors ${
                     isWrong
                       ? 'animate-quiz-shake border-danger bg-danger-soft text-danger '
                       : done
@@ -255,6 +270,8 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
           </div>
         )}
       </div>
+      <p className="mt-3 text-[11px] text-ink-faint text-center">{t('wordSheet.longPressHint')}</p>
+      {sheetWord && <WordToolsSheet word={sheetWord} context="matching" onClose={() => setSheetWord(null)} />}
     </div>
   );
 };

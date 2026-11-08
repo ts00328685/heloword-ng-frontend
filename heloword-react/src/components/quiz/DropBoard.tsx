@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Sentence } from '../../models';
 import { meaningText, pickDecoys, promptText, shuffle, wordKey } from './boardUtils';
+import WordToolsSheet from './WordToolsSheet';
 
 /**
  * 單字下樓梯 — a falling-platformer review mode modelled on 小朋友下樓梯.
@@ -103,6 +104,7 @@ const DropBoard: React.FC<Props> = ({
   const [promptWord, setPromptWord] = useState<Sentence | null>(null);
   const [phase, setPhase] = useState<'playing' | 'cleared' | 'over'>('playing');
   const [damageFlash, setDamageFlash] = useState(false);
+  const [sheetWord, setSheetWord] = useState<Sentence | null>(null);
 
   const gRef = useRef({
     W: 0, H: 0,
@@ -670,10 +672,34 @@ const DropBoard: React.FC<Props> = ({
                   {t('quizMode.nextRound')}
                 </button>
               )}
+              {/* Steering owns every press during play, so the round's words open
+                  their tools here, once the round is over. */}
+              {!(autoAdvanceOnClear && phase === 'cleared') && (
+                <div className="mt-1 max-w-xs flex flex-wrap justify-center gap-1.5 max-h-40 overflow-y-auto" onPointerDown={(e) => e.stopPropagation()}>
+                  {words.map((w) => {
+                    const k = wordKey(w);
+                    const missed = gRef.current.failed.has(k) || gRef.current.queue.includes(k);
+                    return (
+                      <button
+                        key={k}
+                        data-analytics="quiz.drop.word_sheet"
+                        onClick={(e) => { e.stopPropagation(); setSheetWord(w); }}
+                        className={`px-2.5 py-1 rounded-lg text-xs font-semibold bg-surface border-2 active:scale-95 transition-transform ${
+                          missed ? 'border-danger text-danger' : 'border-line text-ink'
+                        }`}
+                      >
+                        {promptText(w)}
+                      </button>
+                    );
+                  })}
+                  <p className="w-full text-[11px] text-paper/80 text-center">{t('wordSheet.tapHint')}</p>
+                </div>
+              )}
             </div>
           </div>
         )}
       </div>
+      {sheetWord && <WordToolsSheet word={sheetWord} context="drop" onClose={() => setSheetWord(null)} />}
     </div>
   );
 };

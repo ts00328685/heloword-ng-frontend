@@ -15,6 +15,7 @@ import QuizModeModal, { CHALLENGE_MODES } from '../../components/QuizModeModal';
 import MatchingBoard from '../../components/quiz/MatchingBoard';
 import BlastBoard from '../../components/quiz/BlastBoard';
 import DropBoard from '../../components/quiz/DropBoard';
+import WordToolsSheet from '../../components/quiz/WordToolsSheet';
 import { wordKey } from '../../components/quiz/boardUtils';
 import { pronounceWord } from '../../services/tts.service';
 import { explainWrongAnswer } from '../../services/llm.service';
@@ -152,7 +153,9 @@ const MultiChoicePage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const { showToast } = useUI();
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
-  const [longPressMode, setLongPressMode] = useSessionState<'speak' | 'copy'>('mc:longPress', 'copy', { kind: 'local' });
+  // New key: the old one stored 'copy' for everyone, and long press now opens the word tools by default.
+  const [longPressMode, setLongPressMode] = useSessionState<'tools' | 'speak' | 'copy'>('mc:longPressAction', 'tools', { kind: 'local' });
+  const [sheetWord, setSheetWord] = useState<Sentence | null>(null);
   const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isLongPress = useRef(false);
 
@@ -299,7 +302,9 @@ const MultiChoicePage: React.FC = () => {
     isLongPress.current = false;
     pressTimer.current = setTimeout(() => {
       isLongPress.current = true;
-      if (longPressMode === 'copy') {
+      if (longPressMode === 'tools') {
+        setSheetWord({ ...word, language: word.language || gameType, sentence: '' } as Sentence);
+      } else if (longPressMode === 'copy') {
         navigator.clipboard.writeText(word.word).then(() => {
           showToast(t('common.copied'), 1000);
           window.dispatchEvent(new CustomEvent('hw-chatbot-word-copied', { detail: { text: word.word } }));
@@ -372,6 +377,7 @@ const MultiChoicePage: React.FC = () => {
                   value={longPressMode}
                   onChange={setLongPressMode}
                   options={[
+                    { value: 'tools', label: t('wordSheet.longPressTools') },
                     { value: 'speak', label: t('scramble.longPressSpeak') },
                     { value: 'copy', label: t('scramble.longPressCopy') },
                   ]}
@@ -425,8 +431,9 @@ const MultiChoicePage: React.FC = () => {
                 onPointerDown={handleChoicePointerDown(word)}
                 onPointerUp={handleChoicePointerUp(word)}
                 onPointerLeave={handleChoicePointerLeave}
-                disabled={answerState !== 'idle'}
-                className={`${choiceBtnClass(word)} touch-manipulation select-none`}
+                onContextMenu={(e) => e.preventDefault()}
+                aria-disabled={answerState !== 'idle'}
+                className={`${choiceBtnClass(word)} touch-manipulation select-none [-webkit-touch-callout:none]`}
               >
                 {word.word}
               </button>
@@ -502,6 +509,7 @@ const MultiChoicePage: React.FC = () => {
         />
       )}
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
+      {sheetWord && <WordToolsSheet word={sheetWord} context="choice" onClose={() => setSheetWord(null)} />}
     </div>
   );
 };
