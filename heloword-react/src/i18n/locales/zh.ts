@@ -282,7 +282,7 @@ const zh = {
     invalidInput: '輸入內容過長或格式不符',
     remaining: '今日免費 AI：剩 {{remaining}}/{{limit}} 次',
     memoryHook: '記憶法',
-    collocations: '常見搭配',
+    collocations: '搭配',
     cloze: '填空',
     checkSentence: '造句',
     checkPlaceholder: '用這個單字造一個句子…',

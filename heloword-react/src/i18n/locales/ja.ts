@@ -282,7 +282,7 @@ const ja = {
     invalidInput: '入力が長すぎるか、形式が正しくありません',
     remaining: '本日の無料 AI：残り {{remaining}}/{{limit}} 回',
     memoryHook: '覚え方',
-    collocations: 'よく使う組み合わせ',
+    collocations: '組み合わせ',
     cloze: '穴埋め',
     checkSentence: '作文チェック',
     checkPlaceholder: 'この単語を使って文を作ってみよう…',
