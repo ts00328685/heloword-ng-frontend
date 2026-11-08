@@ -234,7 +234,9 @@ export const AiDisclosure: React.FC<{
   onToggle: () => void;
   analytics?: string;
   children?: React.ReactNode;
-}> = ({ label, open, loading, loadingText, onToggle, analytics, children }) => (
+  /** Shown under the answer once it has loaded, e.g. a link to the grammar page. */
+  footer?: React.ReactNode;
+}> = ({ label, open, loading, loadingText, onToggle, analytics, children, footer }) => (
   <div className="border-y border-line">
     <button
       onClick={onToggle}
@@ -254,6 +256,7 @@ export const AiDisclosure: React.FC<{
       <div className="pb-4 animate-slide-down">
         <div className="border-l-2 border-accent pl-3">
           {loading ? <p className="text-sm text-ink-faint animate-pulse">{loadingText}</p> : children}
+          {!loading && footer && <div className="mt-3 flex justify-end">{footer}</div>}
         </div>
       </div>
     )}

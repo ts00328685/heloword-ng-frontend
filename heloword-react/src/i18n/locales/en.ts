@@ -905,13 +905,14 @@ const en = {
   authorNote: {
     buttonLabel: 'About the Author',
     title: 'A Note from Ryan',
-    body: "Hi there! I'm Ryan. I built this site to be a convenient vocabulary memorisation system. From my own self-taught English journey, mastering the core 7,000 words is enough to handle the vast majority of everyday and work situations — as long as those words are truly locked into long-term memory.\n\nGrammar, writing, and speaking of course take more practice on top of that, but they all build on a solid vocabulary first — that's what makes everything after it far more efficient.\n\nWhen I first started learning English, I wanted to begin by reading English novels — and on the very first page I couldn't understand 90% of it. So I knuckled down and memorised all 7,000 words first. When I came back to the book, it was so much easier. Building your own word bank and reviewing it regularly is what keeps words in long-term memory, so that when you speak or write, the English for whatever comes to mind comes out by reflex.\n\nGrammar: I recommend 賴氏英文文法 (Lai's English Grammar) with its companion MP3s\n\nWriting: Translate TOEFL-style 150-word essays from Chinese into English — lots of them\n\nSpeaking: Once Chinese-to-English translation feels natural, you'll find you have things to say; add shadowing to improve pronunciation and fluency\n\nIf you find any bugs or have feature requests, feel free to reach out!",
+    body: "Hi there! I'm Ryan. I built this site to be a convenient vocabulary memorisation system. From my own self-taught English journey, mastering the core 7,000 words is enough to handle the vast majority of everyday and work situations — and once you have the vocabulary, translating sentences and whole articles gets so much easier!\n\nIf you find any bugs or have feature requests, feel free to reach out!!",
   },
   grammar: {
     title: 'Quick Grammar',
-    eyebrow: 'English basics',
     subtitle: 'Find the subject and the main verb, and long sentences stop being scary. Tap a word in an example to look it up, or the speaker to hear it. Explanations are in Chinese.',
     homeSubtitle: 'How English sentences are built — 10 key ideas (in Chinese)',
+    subtitleJa: 'Read the verb at the end first, then the particles, and long sentences fall into place. Tap a word in an example to look it up, or the speaker to hear it. Explanations are in Chinese.',
+    homeSubtitleJa: 'How Japanese sentences are built — 10 key ideas (in Chinese)',
     toBeContinued: 'To be continued…',
   },
   tour: {

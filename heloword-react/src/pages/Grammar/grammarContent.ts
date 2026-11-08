@@ -1,10 +1,13 @@
 /**
- * 快速文法 — 英文句子的組成 (from Ryan's 英文基本觀念 handout).
+ * 快速文法 — 英文句子的組成 (from Ryan's 英文基本觀念 handout). The Japanese
+ * topics live in grammarContentJa.ts and share these types.
  *
- * Text supports **bold**. A sentence is either plain `en` or `segs`: chunks shown
- * underlined, with an optional grammar role under each and `del` for words that
- * get dropped (shown struck through).
+ * Text supports **bold** and 漢字[かな] readings. A sentence is either plain `text`
+ * or `segs`: chunks shown underlined, with an optional grammar role under each and
+ * `del` for words that get dropped (shown struck through).
  */
+
+export type { GrammarLang } from './grammarPath';
 
 export interface Seg {
   t: string;
@@ -13,7 +16,8 @@ export interface Seg {
 }
 
 export interface Example {
-  en?: string;
+  /** The sentence in the topic's language */
+  text?: string;
   segs?: Seg[];
   /** Chinese meaning */
   zh?: string;
@@ -28,7 +32,8 @@ export type Block =
   | { kind: 'h'; text: string; warn?: boolean }
   | { kind: 'rule'; title?: string; lines: string[] }
   | { kind: 'examples'; label?: string; items: Example[] }
-  | { kind: 'table'; caption?: string; head: string[]; rows: string[][] }
+  /** `stack`: show each row as a small card on phones (for sentence-length cells) */
+  | { kind: 'table'; caption?: string; head: string[]; rows: string[][]; stack?: boolean }
   | { kind: 'note'; text: string; examples?: string[] }
   | { kind: 'transform'; items: { from: string; fromTag: string; to: string; toTag: string }[] };
 
@@ -119,20 +124,20 @@ export const GRAMMAR_TOPICS: GrammarTopic[] = [
       { kind: 'p', text: 'Be 動詞另外一個常見的用法是在後面放另一個動詞的 **ING 型態**來形成**進行式**，或是在後面放另一個動詞的**過去分詞型態**（俗稱 p.p.，通常是動詞＋ed）來形成**被動式**。' },
       {
         kind: 'examples', label: '例 1（進行式）', items: [
-          { en: 'I dance.', tag: '簡單現在式' },
-          { en: 'I danc**ed**.', tag: '簡單過去式' },
-          { en: 'I am danc**ing**.', tag: '現在進行式' },
-          { en: 'I was danc**ing**.', tag: '過去進行式' },
-          { en: 'He is read**ing** a book.' },
-          { en: 'They were do**ing** something.' },
+          { text: 'I dance.', tag: '簡單現在式' },
+          { text: 'I danc**ed**.', tag: '簡單過去式' },
+          { text: 'I am danc**ing**.', tag: '現在進行式' },
+          { text: 'I was danc**ing**.', tag: '過去進行式' },
+          { text: 'He is read**ing** a book.' },
+          { text: 'They were do**ing** something.' },
         ],
       },
       {
         kind: 'examples', label: '例 2（被動式）', items: [
-          { en: 'She kills me.', tag: '簡單現在式' },
-          { en: 'She kill**ed** me.', tag: '簡單過去式' },
-          { en: 'I am kill**ed** by her.', tag: '被動式' },
-          { en: 'I was kill**ed** by her.', tag: '被動式（過去）' },
+          { text: 'She kills me.', tag: '簡單現在式' },
+          { text: 'She kill**ed** me.', tag: '簡單過去式' },
+          { text: 'I am kill**ed** by her.', tag: '被動式' },
+          { text: 'I was kill**ed** by her.', tag: '被動式（過去）' },
         ],
       },
       { kind: 'note', text: 'by her 是介係詞片語，當作副詞用，可有可無，只是用來補充句子的意思。' },
@@ -146,10 +151,10 @@ export const GRAMMAR_TOPICS: GrammarTopic[] = [
       { kind: 'p', text: 'Be 動詞和其他英文動詞的**原形**大多出現**在助動詞後面**，因大部分的助動詞後面只能接動詞原形！助動詞顧名思義就是用來補充動詞的意思。而有助動詞出現時，**句子的時態只要用助動詞來變就可以**，後面的動詞一樣維持原形。' },
       {
         kind: 'examples', label: '例 1', items: [
-          { en: 'They are students.', zh: '他們**是**學生' },
-          { en: 'They will be students.', zh: '他們**將會是**學生' },
-          { en: 'She loved cats.', zh: '她以前**愛**貓咪' },
-          { en: 'She did not love cats.', zh: '她以前**不愛**貓咪' },
+          { text: 'They are students.', zh: '他們**是**學生' },
+          { text: 'They will be students.', zh: '他們**將會是**學生' },
+          { text: 'She loved cats.', zh: '她以前**愛**貓咪' },
+          { text: 'She did not love cats.', zh: '她以前**不愛**貓咪' },
         ],
       },
       {
@@ -180,17 +185,17 @@ export const GRAMMAR_TOPICS: GrammarTopic[] = [
       { kind: 'h', text: '1. 前面放 Be 動詞形成被動式' },
       {
         kind: 'examples', items: [
-          { en: 'He is killed.', tag: 'kill 三態：kill　killed　killed' },
-          { en: 'They are seen.', tag: 'see　saw　seen' },
-          { en: 'We were cheated.', tag: 'cheat　cheated　cheated' },
+          { text: 'He is killed.', tag: 'kill 三態：kill　killed　killed' },
+          { text: 'They are seen.', tag: 'see　saw　seen' },
+          { text: 'We were cheated.', tag: 'cheat　cheated　cheated' },
         ],
       },
       { kind: 'h', text: '2. 前面放 Have 形成完成式' },
       { kind: 'p', text: '此時 have 為助動詞，要依據人稱變化。' },
       {
         kind: 'examples', items: [
-          { en: 'I have done my job.', tag: 'do　did　done', zh: '我**已經**做了我的工作' },
-          { en: 'He has died.', tag: 'die　died　died', zh: '他**已經**死了' },
+          { text: 'I have done my job.', tag: 'do　did　done', zh: '我**已經**做了我的工作' },
+          { text: 'He has died.', tag: 'die　died　died', zh: '他**已經**死了' },
         ],
       },
       {
@@ -203,16 +208,16 @@ export const GRAMMAR_TOPICS: GrammarTopic[] = [
       { kind: 'p', text: '完成式也有被動式，表示已經被…，此時要用 **have ＋ been ＋ 動詞 p.p.**' },
       {
         kind: 'examples', items: [
-          { en: 'He has been killed.', zh: '他已經被殺了' },
-          { en: 'We have been bitten.', zh: '我們已經被咬了' },
+          { text: 'He has been killed.', zh: '他已經被殺了' },
+          { text: 'We have been bitten.', zh: '我們已經被咬了' },
         ],
       },
       { kind: 'note', text: 'be 動詞的過去分詞就是 **been**。' },
       { kind: 'p', text: '注意：Have 本身也可以當作一般動詞，意思是**有**，**所以看到兩個 have 一起出現時，前面的 have 就是助動詞，用來形成完成式**。' },
       {
         kind: 'examples', items: [
-          { en: 'She **has** had a dog.' },
-          { en: 'We **have** had a good time.' },
+          { text: 'She **has** had a dog.' },
+          { text: 'We **have** had a good time.' },
         ],
       },
     ],
@@ -226,9 +231,9 @@ export const GRAMMAR_TOPICS: GrammarTopic[] = [
       { kind: 'p', text: '一般常看到的主詞如 Peter, Mary, you, a dog, school…等等，**只要是名詞就可以拿來當主詞。**' },
       {
         kind: 'examples', items: [
-          { en: 'Peter is good.' },
-          { en: 'Mary is bad.' },
-          { en: 'You make me angry.' },
+          { text: 'Peter is good.' },
+          { text: 'Mary is bad.' },
+          { text: 'You make me angry.' },
         ],
       },
       { kind: 'h', text: '但如果想用句子當主詞時怎麼辦？' },
@@ -322,10 +327,10 @@ export const GRAMMAR_TOPICS: GrammarTopic[] = [
       { kind: 'h', text: '注意！That 子句當受詞時，That 可以省略：', warn: true },
       {
         kind: 'examples', items: [
-          { en: 'I believe that Mary likes Peter.', zh: '我 相信 瑪莉喜歡彼得' },
-          { en: 'We know that Teddy loves to kick Ryan.', zh: '我們 知道 Teddy 喜歡踢 Ryan' },
-          { en: 'I believe Mary likes Peter.', tag: '省略 that', arrow: true },
-          { en: 'We know Teddy loves to kick Ryan.', tag: '省略 that', arrow: true },
+          { text: 'I believe that Mary likes Peter.', zh: '我 相信 瑪莉喜歡彼得' },
+          { text: 'We know that Teddy loves to kick Ryan.', zh: '我們 知道 Teddy 喜歡踢 Ryan' },
+          { text: 'I believe Mary likes Peter.', tag: '省略 that', arrow: true },
+          { text: 'We know Teddy loves to kick Ryan.', tag: '省略 that', arrow: true },
         ],
       },
       { kind: 'p', text: '**這時如果不知道是有 that 被省略掉的話，會搞不清楚句子的意思，到底是「我 相信 瑪莉」，還是「我 相信 瑪莉喜歡彼得」？**' },
@@ -348,15 +353,15 @@ export const GRAMMAR_TOPICS: GrammarTopic[] = [
       { kind: 'p', text: '奇怪一般句子不是應該要寫成 I had a dog (I bought a dog)，a dog 不是應該要放在 bought 後面才對嗎？沒辦法～形容詞子句的規則就是這樣，代替的名詞（which／who／that）**一定要放在最前面，即使是當受詞也一樣**。' },
       {
         kind: 'examples', items: [
-          { en: 'I saw a person that I hate.', zh: '我看到一個我討厭的人', tag: 'that 代替 a person，做 hate 的受詞' },
-          { en: 'I bought a toy which I am interested in.', zh: '我買了一個我有興趣的玩具', tag: 'which 代替 a toy，做 in 的受詞' },
+          { text: 'I saw a person that I hate.', zh: '我看到一個我討厭的人', tag: 'that 代替 a person，做 hate 的受詞' },
+          { text: 'I bought a toy which I am interested in.', zh: '我買了一個我有興趣的玩具', tag: 'which 代替 a toy，做 in 的受詞' },
         ],
       },
       { kind: 'h', text: '注意！形容詞子句開頭的（who／which／that）當受詞時，可以省略：', warn: true },
       {
         kind: 'examples', items: [
-          { en: 'I saw a person I hate.', zh: '我看到一個我討厭的人', tag: '省略 that 或 who/whom' },
-          { en: 'I bought a toy I am interested in.', zh: '我買了一個我有興趣的玩具', tag: '省略 that 或 which' },
+          { text: 'I saw a person I hate.', zh: '我看到一個我討厭的人', tag: '省略 that 或 who/whom' },
+          { text: 'I bought a toy I am interested in.', zh: '我買了一個我有興趣的玩具', tag: '省略 that 或 which' },
         ],
       },
       { kind: 'p', text: '形容詞子句的開頭 which／who／that，除可以當受詞外，也可以當主詞，當主詞時順序就和一般句子沒兩樣：' },
@@ -417,7 +422,7 @@ export const GRAMMAR_TOPICS: GrammarTopic[] = [
       { kind: 'p', text: '有了上述的概念後，在讀文章時，就可以先分清楚句中**最重要的人或物是誰（主詞）**，而這個**主詞做了什麼動作（主要動詞）**，動作的**對象又是誰（受詞）**，其他介係詞（in／on／with／after…等）開頭的片語都是補充意思的，可以先不看。' },
       { kind: 'p', text: '在句子中間又看到一個句子時怎麼辦，搞不清楚狀況，這時候趕快看看句子中間的句子**前面**有沒有 **think／believe／know 等這類和知覺／想法有關的動詞，有的話後面的句子八成就是 that 子句在當他們的受詞。**' },
       { kind: 'p', text: '如果沒有，**前面有的是名詞，那後面的句子八成是形容詞子句，趕快把意思翻譯出來加個（的）再加上前面的名詞，如果句意通順就沒錯了！**' },
-      { kind: 'examples', items: [{ en: 'In 1991, a boy many people loved knew he was going to be a super star.' }] },
+      { kind: 'examples', items: [{ text: 'In 1991, a boy many people loved knew he was going to be a super star.' }] },
       { kind: 'p', text: '這個句子看似複雜，many people loved 插在中間不知道幹麻，後面還有一句 he was going to be a super star，到底是怎樣，搞不清楚，別怕，many people loved 看起來像句子，那看看前面有沒有 think／believe／know 之類的動詞或名詞，發現前面只有 a boy，是個名詞，那八成這句是形容詞子句，而後面的 he was going to be a super star 又是一個句子，哎呀前面果然有一個 knew，那這句八成是 that 子句當 knew 的受詞。' },
       { kind: 'p', text: '這樣就可以輕鬆翻譯出來囉：' },
       {

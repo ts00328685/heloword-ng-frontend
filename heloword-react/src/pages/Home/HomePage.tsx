@@ -35,7 +35,9 @@ import { useSessionState } from '../../hooks/useSessionState';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import QuickPracticeSection from '../../components/QuickPracticeSection';
 import { Button, ChevronRight, Eyebrow, GridCell, GridPanel, HelpDot, Meta, SectionHeader } from '../../components/ui';
-import { GRAMMAR_TOPICS } from '../Grammar/grammarContent';
+import { GRAMMAR } from '../Grammar/grammarRegistry';
+import { grammarPath } from '../Grammar/grammarPath';
+import FuriganaText from '../../components/FuriganaText';
 
 const VOCAB_ONBOARDING_KEY = 'onboarding:my_vocab';
 const SHARED_VOCAB_ONBOARDING_KEY = 'onboarding:shared_vocab';
@@ -333,6 +335,7 @@ const HomePage: React.FC = () => {
   const { config: goalConfig, unfinishedCount: goalsLeft, hasGoals } = useDailyGoal();
   // Tabs remember the last choice across visits.
   const [readingLang, setReadingLang] = useSessionState<'ja' | 'en'>('home:readingLang', 'ja', { kind: 'local' });
+  const [grammarLang, setGrammarLang] = useSessionState<'en' | 'ja'>('home:grammarLang', 'en', { kind: 'local' });
   const [wordbookTab, setWordbookTab] = useSessionState<'mine' | 'shared'>('home:wordbookTab', 'mine', { kind: 'local' });
   const [wordTab, setWordTab] = useSessionState('home:wordTab', 'wordEnglishList', { kind: 'local' });
 
@@ -585,15 +588,25 @@ const HomePage: React.FC = () => {
         <section className="mb-10">
           <SectionHeader
             title={t('grammar.title')}
-            subtitle={t('grammar.homeSubtitle')}
-            action={{ label: t('home.viewAll'), onClick: () => navigate('/grammar'), analytics: 'home.grammar.all' }}
+            subtitle={t(grammarLang === 'ja' ? 'grammar.homeSubtitleJa' : 'grammar.homeSubtitle')}
+            extra={
+              <span className="ml-3">
+                <Segmented
+                  size="sm"
+                  value={grammarLang}
+                  onChange={setGrammarLang}
+                  options={[{ value: 'en', label: t('home.tabEn') }, { value: 'ja', label: t('home.tabJa') }]}
+                />
+              </span>
+            }
+            action={{ label: t('home.viewAll'), onClick: () => navigate(grammarPath(grammarLang)), analytics: 'home.grammar.all' }}
           />
           <GridPanel>
-            {GRAMMAR_TOPICS.slice(0, 4).map((topic, i) => (
-              <GridCell key={topic.id} onClick={() => navigate(`/grammar#${topic.id}`)} analytics={`home.grammar.${topic.id}`}>
+            {GRAMMAR[grammarLang].topics.slice(0, 4).map((topic, i) => (
+              <GridCell key={topic.id} onClick={() => navigate(grammarPath(grammarLang, topic.id))} analytics={`home.grammar.${topic.id}`}>
                 <Meta>{String(i + 1).padStart(2, '0')}</Meta>
                 <p className="mt-1.5 text-sm font-medium text-ink leading-snug">{topic.title}</p>
-                <p className="mt-0.5 text-[11px] text-ink-faint leading-snug">{topic.summary}</p>
+                <p className="mt-0.5 text-[11px] text-ink-faint leading-snug"><FuriganaText text={topic.summary} /></p>
               </GridCell>
             ))}
           </GridPanel>
