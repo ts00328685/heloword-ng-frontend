@@ -117,6 +117,7 @@ const WordToolsSheet: React.FC<{
               meaningEn={word.translateEn}
               wordLang={lang === 'jp' ? 'jp' : 'en'}
               analytics="quiz.word_sheet"
+              collocations={false}
               leading={<>
                 {isLoggedIn
                   ? action(t('wordLookup.save'), () => setSaving(true), false, 'quiz.word_sheet.save')

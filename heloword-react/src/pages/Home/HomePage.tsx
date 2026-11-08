@@ -35,6 +35,7 @@ import { useSessionState } from '../../hooks/useSessionState';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
 import QuickPracticeSection from '../../components/QuickPracticeSection';
 import { Button, ChevronRight, Eyebrow, GridCell, GridPanel, HelpDot, Meta, SectionHeader } from '../../components/ui';
+import { GRAMMAR_TOPICS } from '../Grammar/grammarContent';
 
 const VOCAB_ONBOARDING_KEY = 'onboarding:my_vocab';
 const SHARED_VOCAB_ONBOARDING_KEY = 'onboarding:shared_vocab';
@@ -103,7 +104,7 @@ const WordSection: React.FC<{
   };
 
   const aiChip = (active: boolean) =>
-    `inline-flex items-center h-6 px-2 rounded-sm text-[11px] tracking-wide transition-colors ${
+    `inline-flex items-center h-6 px-2 rounded-sm text-[11px] whitespace-nowrap tracking-wide transition-colors ${
       active ? 'bg-ink text-paper' : 'text-ink-muted border border-line hover:border-ink/40 hover:text-ink'
     }`;
 
@@ -207,7 +208,7 @@ const WordSection: React.FC<{
                   </div>
                 )}
               </div>
-              <div className="px-3.5 pb-3 flex items-center gap-1.5">
+              <div className="px-3.5 pb-3 flex flex-wrap items-center gap-1.5">
                 <button data-analytics="ai.insight" onClick={() => handleInsight(word)} className={aiChip(isSelected)}>
                   {t('llm.insight')}
                 </button>
@@ -579,6 +580,24 @@ const HomePage: React.FC = () => {
             </span>
           }
         />
+
+        {/* Quick grammar — the first few topics, the rest one tap away */}
+        <section className="mb-10">
+          <SectionHeader
+            title={t('grammar.title')}
+            subtitle={t('grammar.homeSubtitle')}
+            action={{ label: t('home.viewAll'), onClick: () => navigate('/grammar'), analytics: 'home.grammar.all' }}
+          />
+          <GridPanel>
+            {GRAMMAR_TOPICS.slice(0, 4).map((topic, i) => (
+              <GridCell key={topic.id} onClick={() => navigate(`/grammar#${topic.id}`)} analytics={`home.grammar.${topic.id}`}>
+                <Meta>{String(i + 1).padStart(2, '0')}</Meta>
+                <p className="mt-1.5 text-sm font-medium text-ink leading-snug">{topic.title}</p>
+                <p className="mt-0.5 text-[11px] text-ink-faint leading-snug">{topic.summary}</p>
+              </GridCell>
+            ))}
+          </GridPanel>
+        </section>
 
         {!hasData && (
           <div className="text-center py-12">

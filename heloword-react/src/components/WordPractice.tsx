@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import TapToLookup from './TapToLookup';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
-import { checkSentence, CheckSentenceResult, getSampleSentence } from '../services/llm.service';
+import { checkSentence, CheckSentenceResult, getCollocationsText, getSampleSentence } from '../services/llm.service';
 import { pronounceWord } from '../services/tts.service';
 import { aiErrorMessage } from '../utils/aiError';
 import { stripReadings } from '../utils/wordLookup';
 
 /**
- * Practise one word: "AI 例句" fetches an example sentence, "我來造句" lets the
- * learner write their own and has AI check it. Used by the word lookup sheet
- * and the vocabulary quiz. Remount (via `key`) to reset for another word.
+ * Practise one word: "AI 例句" fetches an example sentence, "搭配" lists common
+ * pairings, "我來造句" lets the learner write their own and has AI check it. Used by
+ * the word lookup sheet and the vocabulary quiz. Remount (via `key`) to reset for another word.
  */
 const WordPractice: React.FC<{
   /** Plain word, readings stripped. */
@@ -22,11 +22,14 @@ const WordPractice: React.FC<{
   /** data-analytics prefix, e.g. 'article.lookup'. */
   analytics: string;
   className?: string;
-}> = ({ word, meaningEn = '', wordLang, leading, analytics, className = '' }) => {
+  /** Off where the host already offers collocations (the quiz word tools sheet). */
+  collocations?: boolean;
+}> = ({ word, meaningEn = '', wordLang, leading, analytics, className = '', collocations = true }) => {
   const { t, i18n } = useTranslation();
   const { isLoggedIn } = useAuth();
-  const [panel, setPanel] = useState<'example' | 'write' | null>(null);
+  const [panel, setPanel] = useState<'example' | 'colloc' | 'write' | null>(null);
   const [example, setExample] = useState<{ text: string; loading: boolean } | null>(null);
+  const [colloc, setColloc] = useState<{ text: string; loading: boolean } | null>(null);
   const [draft, setDraft] = useState('');
   const [check, setCheck] = useState<{ result?: CheckSentenceResult; error?: string; loading: boolean } | null>(null);
   const plainWord = word;
@@ -41,6 +44,18 @@ const WordPractice: React.FC<{
       setExample({ text, loading: false });
     } catch (e) {
       setExample({ text: aiErrorMessage(e, isLoggedIn), loading: false });
+    }
+  };
+
+  const showColloc = async () => {
+    if (panel === 'colloc') { setPanel(null); return; }
+    setPanel('colloc');
+    if (colloc?.text) return;
+    setColloc({ text: '', loading: true });
+    try {
+      setColloc({ text: await getCollocationsText(plainWord, wordLang), loading: false });
+    } catch (e) {
+      setColloc({ text: aiErrorMessage(e, isLoggedIn), loading: false });
     }
   };
 
@@ -72,6 +87,7 @@ const WordPractice: React.FC<{
       <div className="flex flex-wrap items-center gap-2">
         {leading}
         {action(t('wordLookup.aiExample'), showExample, panel === 'example', `${analytics}.example`)}
+        {collocations && action(t('llm.collocations'), showColloc, panel === 'colloc', `${analytics}.colloc`)}
         {action(t('wordLookup.mySentence'), () => setPanel(p => (p === 'write' ? null : 'write')), panel === 'write', `${analytics}.write`)}
       </div>
 
@@ -91,6 +107,14 @@ const WordPractice: React.FC<{
                       </button>
                     </div>
                   )}
+              </div>
+            )}
+
+            {panel === 'colloc' && colloc && (
+              <div className="mt-3 border-l-2 border-accent pl-3 animate-slide-down">
+                {colloc.loading
+                  ? <p className="text-sm text-ink-faint animate-pulse">{t('llm.thinking')}</p>
+                  : <p className="text-sm text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{colloc.text}</TapToLookup></p>}
               </div>
             )}
 

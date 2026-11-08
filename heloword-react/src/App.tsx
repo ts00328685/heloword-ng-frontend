@@ -34,6 +34,7 @@ const VocabularyQuizPage  = React.lazy(() => import('./pages/Vocabulary/Vocabula
 const ReviewPage          = React.lazy(() => import('./pages/Review/ReviewPage'));
 const StatsPage           = React.lazy(() => import('./pages/Stats/StatsPage'));
 const InfoPage            = React.lazy(() => import('./pages/Info/InfoPage'));
+const GrammarPage         = React.lazy(() => import('./pages/Grammar/GrammarPage'));
 const SocialPage          = React.lazy(() => import('./pages/Social/SocialPage'));
 const ChallengePage       = React.lazy(() => import('./pages/Challenge/ChallengePage'));
 const SentenceScramblePage = React.lazy(() => import('./pages/Challenge/SentenceScramblePage'));
@@ -84,6 +85,7 @@ const AppLayout: React.FC = () => {
         <Route path="/review/preview" element={<WordPreviewPage />} />
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/info" element={<InfoPage />} />
+          <Route path="/grammar" element={<GrammarPage />} />
           <Route path="/social" element={<SocialPage />} />
           <Route path="/challenge" element={<ChallengePage />} />
           <Route path="/challenge/scramble" element={<SentenceScramblePage />} />

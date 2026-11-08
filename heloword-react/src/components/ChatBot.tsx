@@ -10,6 +10,7 @@ import {
   getPoliteness, PolitenessResult, getNatural, NaturalResult, getAiQuota, AiQuota, AI_USED_EVENT, AI_INVALID_INPUT,
 } from '../services/llm.service';
 import AiWordTools from './AiWordTools';
+import FuriganaText from './FuriganaText';
 import { aiErrorMessage } from '../utils/aiError';
 import { useAiInsight } from '../hooks/useAiInsight';
 import { pronounceWord, cleanSentenceForTTS, toLangCode } from '../services/tts.service';
@@ -150,7 +151,7 @@ const WordCard: React.FC<{
     <div className="p-3">
       <div className="flex items-start justify-between gap-2 mb-1.5">
         <div className="flex items-center gap-1 min-w-0">
-          <span className="font-semibold text-ink text-base leading-tight truncate">{entry.word}</span>
+          <FuriganaText text={entry.word} className="font-semibold text-ink text-base leading-tight truncate" />
           <SpeakerIcon onClick={() => onSpeak(entry.word, entry.wordLang)} label={t('chatbot.pronounce')} />
         </div>
         {onHeart && (

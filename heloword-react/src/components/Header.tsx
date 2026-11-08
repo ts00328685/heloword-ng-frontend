@@ -499,6 +499,20 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
               )}
             </div>
 
+            {/* Quick grammar reference */}
+            <div className="border-b border-line">
+              <button
+                data-analytics="menu.grammar"
+                onClick={() => { closeMenu(); navigate('/grammar'); }}
+                className="flex items-center justify-between w-full px-4 py-3 text-xs font-semibold text-ink-faint uppercase tracking-wide hover:bg-paper transition-colors"
+              >
+                <span>{t('grammar.title')}</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
             {/* Vocal trainer (pitch meter, waveform, metronome) */}
             <div className="border-b border-line">
               <button
