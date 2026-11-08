@@ -103,7 +103,7 @@ const WordSection: React.FC<{
   };
 
   const aiChip = (active: boolean) =>
-    `inline-flex items-center h-6 px-2 rounded-sm text-[11px] tracking-wide transition-colors ${
+    `inline-flex items-center h-6 px-2 rounded-sm text-[11px] whitespace-nowrap tracking-wide transition-colors ${
       active ? 'bg-ink text-paper' : 'text-ink-muted border border-line hover:border-ink/40 hover:text-ink'
     }`;
 
@@ -207,7 +207,7 @@ const WordSection: React.FC<{
                   </div>
                 )}
               </div>
-              <div className="px-3.5 pb-3 flex items-center gap-1.5">
+              <div className="px-3.5 pb-3 flex flex-wrap items-center gap-1.5">
                 <button data-analytics="ai.insight" onClick={() => handleInsight(word)} className={aiChip(isSelected)}>
                   {t('llm.insight')}
                 </button>
