@@ -10,7 +10,7 @@ import SentenceRenderer from '../../components/SentenceRenderer';
 import { useData } from '../../contexts/DataContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { Sentence } from '../../models';
-import { getWordInsight, getWordComparison } from '../../services/llm.service';
+import { getWordInsight, getWordComparison, getCollocationsText } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import { useProgressiveList } from '../../hooks/useProgressiveList';
 import ProgressiveListSentinel from '../../components/ProgressiveListSentinel';
@@ -69,8 +69,10 @@ const VocabularyListPage: React.FC = () => {
   // AI insight state
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
   const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
+  const [selectedCollocId, setSelectedCollocId] = useState<number | null>(null);
   const insight = useAiInsight('vocab:insight');
   const compare = useAiInsight('vocab:compare');
+  const colloc = useAiInsight('vocab:colloc');
 
   // Heart / add-to-group state
   const [heartWord, setHeartWord] = useState<typeof list[0] | null>(null);
@@ -101,6 +103,19 @@ const VocabularyListPage: React.FC = () => {
         i18n.language,
         word.language || 'en',
       ),
+    );
+  };
+
+  const handleColloc = (word: Sentence) => {
+    if (selectedCollocId === word.id) {
+      setSelectedCollocId(null);
+      colloc.clear();
+      return;
+    }
+    setSelectedCollocId(word.id);
+    colloc.run(
+      `${word.language || 'en'}:${word.id}`,
+      () => getCollocationsText(word.word || word.sentence || '', word.language || 'en'),
     );
   };
 
@@ -273,11 +288,12 @@ const VocabularyListPage: React.FC = () => {
           {visible.map((word, index) => {
             const isSelected = selectedWordId === word.id;
             const isCompareSelected = selectedCompareId === word.id;
+            const isCollocSelected = selectedCollocId === word.id;
             return (
             <div
               key={`${word.tableName}-${word.id}`}
               className={`bg-surface rounded-xl border shadow-sm transition-all ${
-                isSelected || isCompareSelected
+                isSelected || isCompareSelected || isCollocSelected
                   ? 'rainbow-glow'
                   : 'border-line hover:shadow-md '
               }`}
@@ -345,6 +361,17 @@ const VocabularyListPage: React.FC = () => {
                     >
                       <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                       {isCompareSelected ? `${t('llm.compare')} ▲` : t('llm.compare')}
+                    </button>
+                    <button data-analytics="ai.tools.colloc"
+                      onClick={() => handleColloc(word)}
+                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                        isCollocSelected
+                          ? 'bg-ink text-paper ring-1 ring-ink '
+                          : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
+                      }`}
+                    >
+                      <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                      {isCollocSelected ? `${t('llm.collocations')} ▲` : t('llm.collocations')}
                     </button>
                   </div>
                 </div>
@@ -423,6 +450,27 @@ const VocabularyListPage: React.FC = () => {
                     ) : (
                       <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap">
                         <TapToLookup>{compare.text}</TapToLookup>
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+              {isCollocSelected && (
+                <div className="px-3 pb-3 pt-0">
+                  <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
+                    {colloc.loading ? (
+                      <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
+                    ) : colloc.error ? (
+                      <div className="flex items-center gap-2">
+                        <p className="text-xs text-danger">{t('llm.error')}</p>
+                        <button data-analytics="ai.tools.colloc.retry"
+                          onClick={() => colloc.retry(`${word.language || 'en'}:${word.id}`, () => getCollocationsText(word.word || word.sentence || '', word.language || 'en'))}
+                          className="text-xs text-accent underline"
+                        >↺</button>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap">
+                        <TapToLookup>{colloc.text}</TapToLookup>
                       </p>
                     )}
                   </div>

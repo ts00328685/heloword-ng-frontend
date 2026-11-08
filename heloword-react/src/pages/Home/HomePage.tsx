@@ -26,7 +26,7 @@ import { useNotifications } from '../../contexts/NotificationContext';
 import { useBoard } from '../../contexts/BoardContext';
 
 import { pronounceWord } from '../../services/tts.service';
-import { getWordInsight, getWordComparison } from '../../services/llm.service';
+import { getWordInsight, getWordComparison, getCollocationsText } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import OnboardingModal from '../../components/OnboardingModal';
 import ArticlePreviewSection from '../../components/ArticlePreviewSection';
@@ -54,8 +54,10 @@ const WordSection: React.FC<{
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
+  const [selectedCollocId, setSelectedCollocId] = useState<number | null>(null);
   const insight = useAiInsight('home:insight');
   const compare = useAiInsight('home:compare');
+  const colloc = useAiInsight('home:colloc');
   const lsKey = `${HIDE_MEANINGS_KEY}:${sectionKey}`;
   const [hideMeanings, setHideMeanings] = useState(() => localStorage.getItem(lsKey) !== '0');
   const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set());
@@ -88,6 +90,16 @@ const WordSection: React.FC<{
       String(word.id),
       () => getWordComparison(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en'),
     );
+  };
+
+  const handleColloc = (word: Sentence) => {
+    if (selectedCollocId === word.id) {
+      setSelectedCollocId(null);
+      colloc.clear();
+      return;
+    }
+    setSelectedCollocId(word.id);
+    colloc.run(String(word.id), () => getCollocationsText(word.word || word.sentence || '', word.language || 'en'));
   };
 
   const aiChip = (active: boolean) =>
@@ -147,6 +159,7 @@ const WordSection: React.FC<{
         {list.slice(0, 4).map((word, i) => {
           const isSelected = selectedId === word.id;
           const isCompareSelected = selectedCompareId === word.id;
+          const isCollocSelected = selectedCollocId === word.id;
           return (
             <div
               key={`${word.tableName}-${word.id}-${i}`}
@@ -201,6 +214,9 @@ const WordSection: React.FC<{
                 <button data-analytics="ai.compare" onClick={() => handleCompare(word)} className={aiChip(isCompareSelected)}>
                   {t('llm.compare')}
                 </button>
+                <button data-analytics="ai.tools.colloc" onClick={() => handleColloc(word)} className={aiChip(isCollocSelected)}>
+                  {t('llm.collocations')}
+                </button>
                 {isLoggedIn && onHeartWord && (
                   <button
                     onClick={(e) => { e.stopPropagation(); onHeartWord(word); }}
@@ -215,6 +231,7 @@ const WordSection: React.FC<{
               </div>
               {isSelected && aiPanel(insight, () => insight.retry(String(word.id), () => getWordInsight(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en')))}
               {isCompareSelected && aiPanel(compare, () => compare.retry(String(word.id), () => getWordComparison(word.word || word.sentence || '', word.translateEn || '', word.translateCh || '', lang, word.language || 'en')))}
+              {isCollocSelected && aiPanel(colloc, () => colloc.retry(String(word.id), () => getCollocationsText(word.word || word.sentence || '', word.language || 'en')))}
             </div>
           );
         })}

@@ -22,7 +22,7 @@ import {
 import WordPractice from '../../components/WordPractice';
 import FuriganaText from '../../components/FuriganaText';
 import { stripReadings } from '../../utils/wordLookup';
-import { getWordInsight, getSampleSentence, getWordComparison } from '../../services/llm.service';
+import { getWordInsight, getSampleSentence, getWordComparison, getCollocationsText } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import WordToolsSheet from '../../components/quiz/WordToolsSheet';
 import AddToGroupModal from '../../components/AddToGroupModal';
@@ -147,6 +147,7 @@ const VocabularyQuizPage: React.FC = () => {
   const aiInsight  = useAiInsight('quiz:insight');
   const aiSample   = useAiInsight('quiz:sample');
   const aiCompare  = useAiInsight('quiz:compare');
+  const aiColloc   = useAiInsight('tools:colloc');
 
   // Japanese button-input mode
   const [jpButtonMode, setJpButtonMode] = useSessionState('quiz:jpButtonMode', true, { kind: 'local' });
@@ -703,6 +704,7 @@ const VocabularyQuizPage: React.FC = () => {
     aiInsight.clear();
     aiSample.clear();
     aiCompare.clear();
+    aiColloc.clear();
   }, [current?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleAiInsight = () => {
@@ -729,6 +731,16 @@ const VocabularyQuizPage: React.FC = () => {
       String(current.id),
       () => getWordComparison(current.word || current.sentence || '', current.translateEn || '', current.translateCh || '', i18n.language, current.language || 'en'),
     );
+  };
+
+  const collocWord = () => current?.word || current?.sentence || '';
+  const collocKey = () => `${current?.language || 'en'}:${collocWord()}`;
+
+  // Pairings contain the word itself, so this counts as a hint like 解析
+  const handleAiColloc = () => {
+    if (!current) return;
+    wrongCountRef.current++;
+    aiColloc.run(collocKey(), () => getCollocationsText(collocWord(), current.language || 'en'));
   };
 
   const handleIdleContinue = () => {
@@ -926,6 +938,14 @@ const VocabularyQuizPage: React.FC = () => {
                 <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                 {aiCompare.loading ? t('llm.thinking') : t('llm.compare')}
               </button>
+              <button data-analytics="ai.tools.colloc"
+                onClick={handleAiColloc}
+                disabled={aiColloc.loading}
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-medium tracking-wide ring-1 ring-inset ring-line text-ink-muted bg-surface hover:ring-ink/30 hover:text-ink disabled:opacity-40 disabled:pointer-events-none transition-all duration-150"
+              >
+                <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                {aiColloc.loading ? t('llm.thinking') : t('llm.collocations')}
+              </button>
             </div>
 
             {(aiInsight.text || aiInsight.error) && (
@@ -963,6 +983,19 @@ const VocabularyQuizPage: React.FC = () => {
                   </div>
                 ) : (
                   <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiCompare.text}</TapToLookup></p>
+                )}
+              </div>
+            )}
+
+            {(aiColloc.text || aiColloc.error) && (
+              <div className="bg-paper rounded-xl p-2.5 mt-2 ring-1 ring-inset ring-line">
+                {aiColloc.error ? (
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-danger flex-1">{t('llm.error')}</p>
+                    <button data-analytics="ai.tools.colloc.retry" onClick={() => current && aiColloc.retry(collocKey(), () => getCollocationsText(collocWord(), current.language || 'en'))} className="text-xs text-accent underline">↺</button>
+                  </div>
+                ) : (
+                  <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{aiColloc.text}</TapToLookup></p>
                 )}
               </div>
             )}

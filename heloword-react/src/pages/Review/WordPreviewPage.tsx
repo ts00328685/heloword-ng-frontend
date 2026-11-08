@@ -9,7 +9,7 @@ import AddToGroupModal from '../../components/AddToGroupModal';
 import MultiChoicePanel from '../../components/MultiChoicePanel';
 import { Sentence } from '../../models';
 import { pronounceWord } from '../../services/tts.service';
-import { getWordInsight, getWordComparison } from '../../services/llm.service';
+import { getWordInsight, getWordComparison, getCollocationsText } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -173,8 +173,10 @@ const WordPreviewPage: React.FC = () => {
   // AI insight / compare
   const insight = useAiInsight('preview:insight');
   const compare = useAiInsight('preview:compare');
+  const colloc = useAiInsight('preview:colloc');
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
   const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
+  const [selectedCollocId, setSelectedCollocId] = useState<number | null>(null);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
 
   if (!state || words.length === 0) {
@@ -211,6 +213,16 @@ const WordPreviewPage: React.FC = () => {
     );
   };
 
+  const runColloc = (word: Sentence) => {
+    if (selectedCollocId === word.id) {
+      setSelectedCollocId(null);
+      colloc.clear();
+      return;
+    }
+    setSelectedCollocId(word.id);
+    colloc.run(String(word.id), () => getCollocationsText(word.word || '', wordLang(word)));
+  };
+
   // ── Shuffle toggle ──────────────────────────────────────────────────────────
 
   const toggleShuffle = () => {
@@ -225,7 +237,7 @@ const WordPreviewPage: React.FC = () => {
 
   // ── Flashcard navigation ────────────────────────────────────────────────────
 
-  const clearInsight = () => { setSelectedWordId(null); insight.clear(); setSelectedCompareId(null); compare.clear(); };
+  const clearInsight = () => { setSelectedWordId(null); insight.clear(); setSelectedCompareId(null); compare.clear(); setSelectedCollocId(null); colloc.clear(); };
 
   const goNext = () => {
     if (exitingRef.current || cardIndex >= displayWords.length - 1) return;
@@ -312,6 +324,7 @@ const WordPreviewPage: React.FC = () => {
   const currentWord = displayWords[cardIndex];
   const flashInsightOpen = selectedWordId === currentWord?.id;
   const flashCompareOpen = selectedCompareId === currentWord?.id;
+  const flashCollocOpen = selectedCollocId === currentWord?.id;
 
   // ── Render ──────────────────────────────────────────────────────────────────
 
@@ -491,6 +504,12 @@ const WordPreviewPage: React.FC = () => {
                               onPointerDown={(e) => e.stopPropagation()}
                               onClick={(e) => { e.stopPropagation(); runCompare(currentWord); }}
                             />
+                            <InsightButton analytics="ai.tools.colloc"
+                              active={flashCollocOpen}
+                              label={t('llm.collocations')}
+                              onPointerDown={(e) => e.stopPropagation()}
+                              onClick={(e) => { e.stopPropagation(); runColloc(currentWord); }}
+                            />
                             <button
                               onPointerDown={(e) => e.stopPropagation()}
                               onClick={(e) => { e.stopPropagation(); pronounceWord(currentWord.word, wordLang(currentWord)); }}
@@ -576,6 +595,18 @@ const WordPreviewPage: React.FC = () => {
                   </div>
                 </div>
               )}
+              {flashCollocOpen && (
+                <div className="w-full max-w-sm mt-4 animate-slide-down">
+                  <InsightPanel
+                    loading={colloc.loading}
+                    error={colloc.error}
+                    text={colloc.text}
+                    thinkingLabel={t('llm.thinking')}
+                    errorLabel={t('llm.error')}
+                    onRetry={() => colloc.retry(String(currentWord.id), () => getCollocationsText(currentWord.word || '', wordLang(currentWord)))}
+                  />
+                </div>
+              )}
 
               {/* Progress dots — show current ± 5 */}
               <div className="flex items-center gap-1.5 mt-6 justify-center">
@@ -634,12 +665,13 @@ const WordPreviewPage: React.FC = () => {
           {displayWords.slice(0, visibleCount).map((word, i) => {
             const isInsightOpen = selectedWordId === word.id;
             const isCompareOpen = selectedCompareId === word.id;
+            const isCollocOpen = selectedCollocId === word.id;
             const isRevealed = revealedIds.has(word.id);
             return (
               <div
                 key={word.id ?? i}
                 className={`bg-surface rounded-2xl border shadow-sm overflow-hidden transition-all animate-fade-in-up ${
-                  isInsightOpen || isCompareOpen ? 'rainbow-glow' : 'border-line '
+                  isInsightOpen || isCompareOpen || isCollocOpen ? 'rainbow-glow' : 'border-line '
                 }`}
                 style={{ animationDelay: `${Math.min(i, 12) * 35}ms` }}
               >
@@ -677,6 +709,11 @@ const WordPreviewPage: React.FC = () => {
                         active={isCompareOpen}
                         label={t('llm.compare')}
                         onClick={() => runCompare(word)}
+                      />
+                      <InsightButton analytics="ai.tools.colloc"
+                        active={isCollocOpen}
+                        label={t('llm.collocations')}
+                        onClick={() => runColloc(word)}
                       />
                     </div>
                   </div>
@@ -758,6 +795,18 @@ const WordPreviewPage: React.FC = () => {
                         <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{compare.text}</TapToLookup></p>
                       )}
                     </div>
+                  </div>
+                )}
+                {isCollocOpen && (
+                  <div className="px-4 pb-3 pt-0 animate-slide-down">
+                    <InsightPanel
+                      loading={colloc.loading}
+                      error={colloc.error}
+                      text={colloc.text}
+                      thinkingLabel={t('llm.thinking')}
+                      errorLabel={t('llm.error')}
+                      onRetry={() => colloc.retry(String(word.id), () => getCollocationsText(word.word || '', wordLang(word)))}
+                    />
                   </div>
                 )}
               </div>

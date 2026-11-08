@@ -16,7 +16,7 @@ import PhotoParseModal from '../../components/PhotoParseModal';
 import QuizModeModal from '../../components/QuizModeModal';
 import { QuizMode } from '../../models';
 import { pronounceWord } from '../../services/tts.service';
-import { getWordInsight, getWordComparison, getWordLevel } from '../../services/llm.service';
+import { getWordInsight, getWordComparison, getCollocationsText, getWordLevel } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
 import { useProgressiveList } from '../../hooks/useProgressiveList';
 import ProgressiveListSentinel from '../../components/ProgressiveListSentinel';
@@ -54,8 +54,10 @@ const UserVocabGroupPage: React.FC = () => {
   const { isLoggedIn } = useAuth();
   const [selectedWordId, setSelectedWordId] = useState<number | null>(null);
   const [selectedCompareId, setSelectedCompareId] = useState<number | null>(null);
+  const [selectedCollocId, setSelectedCollocId] = useState<number | null>(null);
   const insight = useAiInsight('custom-vocab:insight');
   const compare = useAiInsight('custom-vocab:compare');
+  const colloc = useAiInsight('custom-vocab:colloc');
 
   // Flashcard mode
   const [flashMode, setFlashMode] = useState(false);
@@ -167,9 +169,23 @@ const UserVocabGroupPage: React.FC = () => {
     );
   };
 
+  const handleCollocTap = (word: CustomWord) => {
+    if (selectedCollocId === word.id) {
+      setSelectedCollocId(null);
+      colloc.clear();
+      return;
+    }
+    setSelectedCollocId(word.id);
+    if (!isLoggedIn) return;
+    colloc.run(
+      String(word.id),
+      () => getCollocationsText(word.word, wordLang),
+    );
+  };
+
   // ── Flashcard helpers ────────────────────────────────────────────────────────
 
-  const clearInsight = () => { setSelectedWordId(null); insight.clear(); setSelectedCompareId(null); compare.clear(); };
+  const clearInsight = () => { setSelectedWordId(null); insight.clear(); setSelectedCompareId(null); compare.clear(); setSelectedCollocId(null); colloc.clear(); };
 
   const flashGoNext = (list: CustomWord[]) => {
     if (exitingRef.current || cardIndex >= list.length - 1) return;
@@ -638,6 +654,7 @@ const UserVocabGroupPage: React.FC = () => {
             ) : flashMode ? (() => {
               const flashInsightOpen = selectedWordId === filtered[cardIndex]?.id;
               const flashCompareOpen = selectedCompareId === filtered[cardIndex]?.id;
+              const flashCollocOpen = selectedCollocId === filtered[cardIndex]?.id;
               const cur = filtered[cardIndex];
               if (!cur) return null;
               return (
@@ -712,6 +729,18 @@ const UserVocabGroupPage: React.FC = () => {
                                   <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                                   {flashCompareOpen ? `${t('llm.compare')} ▲` : t('llm.compare')}
                                 </button>
+                                <button data-analytics="ai.tools.colloc"
+                                  onPointerDown={(e) => e.stopPropagation()}
+                                  onClick={(e) => { e.stopPropagation(); handleCollocTap(cur); }}
+                                  className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                                    flashCollocOpen
+                                      ? 'bg-ink text-paper ring-1 ring-ink '
+                                      : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
+                                  }`}
+                                >
+                                  <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                                  {flashCollocOpen ? `${t('llm.collocations')} ▲` : t('llm.collocations')}
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -768,6 +797,24 @@ const UserVocabGroupPage: React.FC = () => {
                       </div>
                     </div>
                   )}
+                  {flashCollocOpen && (
+                    <div className="w-full max-w-sm mt-4 animate-fade-in">
+                      <div className="bg-paper rounded-2xl p-3 ring-1 ring-inset ring-line">
+                        {!isLoggedIn ? (
+                          <p className="text-xs text-ink-faint italic">{t('llm.loginRequired')}</p>
+                        ) : colloc.loading ? (
+                          <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
+                        ) : colloc.error ? (
+                          <div className="flex items-center gap-2">
+                            <p className="text-xs text-danger">{t('llm.error')}</p>
+                            <button data-analytics="ai.tools.colloc.retry" onClick={() => colloc.retry(String(cur.id), () => getCollocationsText(cur.word, wordLang))} className="text-xs text-accent underline">↺</button>
+                          </div>
+                        ) : (
+                          <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap"><TapToLookup>{colloc.text}</TapToLookup></p>
+                        )}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Progress dots — show current ± 5 */}
                   <div className="flex items-center gap-1.5 mt-6 justify-center">
@@ -813,6 +860,7 @@ const UserVocabGroupPage: React.FC = () => {
             })() : visibleWords.map((word, idx) => {
               const isSelected = selectedWordId === word.id;
               const isCompareSelected = selectedCompareId === word.id;
+              const isCollocSelected = selectedCollocId === word.id;
               const isChecked = selectedIds.has(word.id);
               const wordNo = words.indexOf(word) + 1;
               return (
@@ -821,7 +869,7 @@ const UserVocabGroupPage: React.FC = () => {
                   className={`bg-surface rounded-xl border shadow-sm transition-all animate-fade-in-up ${
                     selectMode && isChecked
                       ? 'border-danger/30 bg-danger-soft '
-                      : isSelected || isCompareSelected
+                      : isSelected || isCompareSelected || isCollocSelected
                       ? 'rainbow-glow'
                       : 'border-line hover:shadow-md'
                   }`}
@@ -896,6 +944,17 @@ const UserVocabGroupPage: React.FC = () => {
                         >
                           <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
                           {isCompareSelected ? `${t('llm.compare')} ▲` : t('llm.compare')}
+                        </button>
+                        <button data-analytics="ai.tools.colloc"
+                          onClick={() => handleCollocTap(word)}
+                          className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide transition-all duration-150 ${
+                            isCollocSelected
+                              ? 'bg-ink text-paper ring-1 ring-ink '
+                              : 'text-ink-faint ring-1 ring-inset ring-line hover:ring-ink/30 hover:text-ink-muted '
+                          }`}
+                        >
+                          <svg className="w-2.5 h-2.5 flex-shrink-0" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M5 0L6 4L10 5L6 6L5 10L4 6L0 5L4 4Z"/></svg>
+                          {isCollocSelected ? `${t('llm.collocations')} ▲` : t('llm.collocations')}
                         </button>
                       </div>
                     </div>
@@ -981,6 +1040,29 @@ const UserVocabGroupPage: React.FC = () => {
                         ) : (
                           <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap">
                             <TapToLookup>{compare.text}</TapToLookup>
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  {!selectMode && isCollocSelected && (
+                    <div className="px-3 pb-3 pt-0 animate-slide-down">
+                      <div className="bg-paper rounded-xl p-3 ring-1 ring-inset ring-line">
+                        {!isLoggedIn ? (
+                          <p className="text-xs text-ink-faint italic">{t('llm.loginRequired')}</p>
+                        ) : colloc.loading ? (
+                          <p className="text-xs text-ink-faint animate-pulse">{t('llm.thinking')}</p>
+                        ) : colloc.error ? (
+                          <div className="flex items-center gap-2">
+                            <p className="text-xs text-danger">{t('llm.error')}</p>
+                            <button data-analytics="ai.tools.colloc.retry"
+                              onClick={() => colloc.retry(String(word.id), () => getCollocationsText(word.word, wordLang))}
+                              className="text-xs text-accent underline"
+                            >↺</button>
+                          </div>
+                        ) : (
+                          <p className="text-xs text-ink leading-relaxed whitespace-pre-wrap">
+                            <TapToLookup>{colloc.text}</TapToLookup>
                           </p>
                         )}
                       </div>
