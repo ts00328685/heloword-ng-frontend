@@ -170,6 +170,25 @@ input[type='range']::-webkit-slider-thumb {
   .animate-sheet-up { animation: none; }
 }
 
+/* Long-press hint — fingertip presses down and holds while a ring spreads out */
+@keyframes long-press-dot {
+  0%, 15%   { transform: scale(1); }
+  30%, 70%  { transform: scale(0.7); }
+  85%, 100% { transform: scale(1); }
+}
+@keyframes long-press-ring {
+  0%, 25% { transform: scale(0.5); opacity: 0; }
+  35%     { opacity: 0.8; }
+  80%     { transform: scale(1.6); opacity: 0; }
+  100%    { transform: scale(1.6); opacity: 0; }
+}
+.long-press-hint-dot  { animation: long-press-dot 2.2s ease-in-out infinite; }
+.long-press-hint-ring { animation: long-press-ring 2.2s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .long-press-hint-dot, .long-press-hint-ring { animation: none; }
+  .long-press-hint-ring { opacity: 0.4; }
+}
+
 /* Expand/collapse using CSS grid rows — no JS height measurement needed */
 .collapsible {
   display: grid;

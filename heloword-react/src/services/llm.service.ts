@@ -1,6 +1,7 @@
 import { doPost } from './api.service';
 import { CommonResponse } from '../models';
 import { track } from './analytics.service';
+import { stripReadings } from '../utils/wordLookup';
 
 /** Backend AI error codes → stable Error messages the UI can switch on. */
 export const AI_QUOTA_EXCEEDED = 'AI_QUOTA_EXCEEDED';
@@ -219,6 +220,12 @@ export interface Collocation {
 /** Three common pairings for the word. */
 export async function getCollocations(word: string, wordLang: string): Promise<Collocation[]> {
   return aiPost<Collocation[]>('ai/collocations', { word, wordLang }, 'Collocations failed');
+}
+
+/** Collocations as one line per pairing, for plain-text AI panels. Accepts 漢字[かな] words. */
+export async function getCollocationsText(word: string, wordLang: string): Promise<string> {
+  const list = await getCollocations(stripReadings(word).text, wordLang);
+  return list.map(c => `${c.phrase}　${c.meaning}`).join('\n');
 }
 
 /** JLPT / CEFR level tag (members only). Returns '' when unknown. */

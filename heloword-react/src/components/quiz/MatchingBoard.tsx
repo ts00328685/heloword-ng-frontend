@@ -4,6 +4,7 @@ import { Sentence } from '../../models';
 import { meaningText, pickDecoys, promptText, randomLineColor, shuffle, wordKey } from './boardUtils';
 import { NO_CALLOUT, useLongPress } from '../../hooks/useLongPress';
 import WordToolsSheet from './WordToolsSheet';
+import LongPressHint from './LongPressHint';
 
 interface Props {
   /** The words of this set — every one must be connected before the set completes. */
@@ -270,7 +271,7 @@ const MatchingBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, set
           </div>
         )}
       </div>
-      <p className="mt-3 text-[11px] text-ink-faint text-center">{t('wordSheet.longPressHint')}</p>
+      <LongPressHint className="mt-3" />
       {sheetWord && <WordToolsSheet word={sheetWord} context="matching" onClose={() => setSheetWord(null)} />}
     </div>
   );

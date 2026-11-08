@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { useAiInsight } from '../hooks/useAiInsight';
 import {
-  checkSentence, CheckSentenceResult, ClozeResult, getCloze, getCollocations, getMemoryHook,
+  checkSentence, CheckSentenceResult, ClozeResult, getCloze, getCollocationsText, getMemoryHook,
 } from '../services/llm.service';
 import { aiErrorMessage } from '../utils/aiError';
 
@@ -66,10 +66,7 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
     setError('');
     onOpen?.();
     if (tool === 'hook') hook.run(cacheKey, () => getMemoryHook(word, wordLang, meaningZh));
-    if (tool === 'colloc') {
-      colloc.run(cacheKey, () => getCollocations(word, wordLang)
-        .then(list => list.map(c => `${c.phrase}　${c.meaning}`).join('\n')));
-    }
+    if (tool === 'colloc') colloc.run(cacheKey, () => getCollocationsText(word, wordLang));
     if (tool === 'cloze' && !cloze) loadCloze();
   };
 

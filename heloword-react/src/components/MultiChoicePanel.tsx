@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Sentence } from '../models';
 import { NO_CALLOUT, useLongPress } from '../hooks/useLongPress';
 import WordToolsSheet from './quiz/WordToolsSheet';
+import LongPressHint from './quiz/LongPressHint';
 
 export interface MCWord {
   id: number;
@@ -220,7 +221,7 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit, wordLang = 'en' }) =
             );
           })}
         </div>
-        <p className="text-[11px] text-ink-faint text-center">{t('wordSheet.longPressHint')}</p>
+        <LongPressHint />
       </div>
       {sheetWord && <WordToolsSheet word={sheetWord} context="group_choice" onClose={() => setSheetWord(null)} />}
     </div>
