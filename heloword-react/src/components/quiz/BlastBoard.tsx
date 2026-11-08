@@ -4,6 +4,7 @@ import { Sentence } from '../../models';
 import { meaningText, pickDecoys, promptText, shuffle, wordKey } from './boardUtils';
 import { NO_CALLOUT, useLongPress } from '../../hooks/useLongPress';
 import WordToolsSheet from './WordToolsSheet';
+import LongPressHint from './LongPressHint';
 
 interface Props {
   /** The words of this set — every one must be cleared before the set completes. */
@@ -184,7 +185,7 @@ const BlastBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTot
           );
         })}
       </div>
-      <p className="mt-3 text-[11px] text-ink-faint text-center">{t('wordSheet.longPressHint')}</p>
+      <LongPressHint className="mt-3" />
       {sheetWord && <WordToolsSheet word={sheetWord} context="blast" onClose={() => setSheetWord(null)} />}
     </div>
   );
