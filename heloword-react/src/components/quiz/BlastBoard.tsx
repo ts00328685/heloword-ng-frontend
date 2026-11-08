@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Sentence } from '../../models';
 import { meaningText, pickDecoys, promptText, shuffle, wordKey } from './boardUtils';
+import { NO_CALLOUT, useLongPress } from '../../hooks/useLongPress';
+import WordToolsSheet from './WordToolsSheet';
 
 interface Props {
   /** The words of this set — every one must be cleared before the set completes. */
@@ -49,6 +51,16 @@ const BlastBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTot
   const [combo, setCombo] = useState(0);
   const [bestCombo, setBestCombo] = useState(0);
   const [done, setDone] = useState(false);
+  const [sheetWord, setSheetWord] = useState<Sentence | null>(null);
+  const longPress = useLongPress();
+
+  // Looking a word up mid-round means it wasn't known yet, so it counts as missed
+  // and comes back for review — the sheet shows its meaning, which would otherwise
+  // be a free answer.
+  const openSheet = (tile: Tile) => {
+    if (!tile.decoy && !done) failedRef.current.set(tile.key, (failedRef.current.get(tile.key) ?? 0) + 1);
+    setSheetWord(tile.word);
+  };
 
   // Fresh board whenever the set changes.
   useEffect(() => {
@@ -156,9 +168,10 @@ const BlastBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTot
           return (
             <button
               key={tile.key}
-              onClick={() => handleTap(tile)}
-              disabled={done || !!bursting}
-              className={`min-h-[3.5rem] px-2.5 py-2 rounded-xl border-2 text-sm font-semibold break-words transition-colors ${
+              {...longPress.bind(() => openSheet(tile))}
+              onClick={() => { if (longPress.consumed()) return; handleTap(tile); }}
+              aria-disabled={done || !!bursting}
+              className={`${NO_CALLOUT} min-h-[3.5rem] px-2.5 py-2 rounded-xl border-2 text-sm font-semibold break-words transition-colors ${
                 isBursting
                   ? 'animate-quiz-burst border-success bg-success-soft text-success '
                   : isShaking
@@ -171,6 +184,8 @@ const BlastBoard: React.FC<Props> = ({ words, pool, onComplete, setIndex, setTot
           );
         })}
       </div>
+      <p className="mt-3 text-[11px] text-ink-faint text-center">{t('wordSheet.longPressHint')}</p>
+      {sheetWord && <WordToolsSheet word={sheetWord} context="blast" onClose={() => setSheetWord(null)} />}
     </div>
   );
 };

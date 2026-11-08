@@ -10,6 +10,8 @@ import { aiErrorMessage } from '../utils/aiError';
 
 type Tool = 'hook' | 'colloc' | 'cloze' | 'check';
 
+const ALL_TOOLS: Tool[] = ['hook', 'colloc', 'cloze', 'check'];
+
 interface Props {
   /** Stable id for client-side caching, e.g. a chat entry id */
   cacheKey: string;
@@ -18,6 +20,8 @@ interface Props {
   meaningZh?: string;
   /** Called when a tool opens, so the parent can close its own panels */
   onOpen?: () => void;
+  /** Which tools to offer, in order. Defaults to all four. */
+  tools?: Tool[];
 }
 
 const pillClass = (active: boolean) =>
@@ -38,7 +42,7 @@ const plain = (s: string) => s.replace(/\[[^\]]*\]/g, '').trim().toLowerCase();
  * Extra AI learning tools for a single word: memory hook, common pairings,
  * fill-in-the-blank and "check my sentence". Each call counts toward the daily AI quota.
  */
-const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = '', onOpen }) => {
+const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = '', onOpen, tools = ALL_TOOLS }) => {
   const { t } = useTranslation();
   const { isLoggedIn } = useAuth();
   const [open, setOpen] = useState<Tool | null>(null);
@@ -111,7 +115,7 @@ const AiWordTools: React.FC<Props> = ({ cacheKey, word, wordLang, meaningZh = ''
   return (
     <>
       <div className="flex flex-wrap items-center gap-1.5">
-        {(['hook', 'colloc', 'cloze', 'check'] as Tool[]).map(tool => (
+        {tools.map(tool => (
           <button key={tool} data-analytics={`ai.tools.${tool}`} onClick={() => toggle(tool)} className={pillClass(open === tool)}>
             <Spark />
             {t({ hook: 'llm.memoryHook', colloc: 'llm.collocations', cloze: 'llm.cloze', check: 'llm.checkSentence' }[tool])}

@@ -24,6 +24,7 @@ import FuriganaText from '../../components/FuriganaText';
 import { stripReadings } from '../../utils/wordLookup';
 import { getWordInsight, getSampleSentence, getWordComparison } from '../../services/llm.service';
 import { useAiInsight } from '../../hooks/useAiInsight';
+import WordToolsSheet from '../../components/quiz/WordToolsSheet';
 import AddToGroupModal from '../../components/AddToGroupModal';
 import { pronounceWord, cancelPronouncing } from '../../services/tts.service';
 import { useDailyGoal } from '../../contexts/DailyGoalContext';
@@ -138,6 +139,7 @@ const VocabularyQuizPage: React.FC = () => {
   const [japaneseMode, setJapaneseMode] = useSessionState('quiz:japaneseMode', false, { kind: 'local' });
   const [showSettings, setShowSettings] = useState(false);
   const [heartWord, setHeartWord] = useState<Sentence | null>(null);
+  const [sheetWord, setSheetWord] = useState<Sentence | null>(null);
   // The word just answered: practise it with an AI example or your own sentence.
   const [lastWord, setLastWord] = useState<Sentence | null>(null);
 
@@ -1069,6 +1071,15 @@ const VocabularyQuizPage: React.FC = () => {
               meaningEn={lastWord.translateEn}
               wordLang={lastWord.language === 'jp' ? 'jp' : 'en'}
               analytics="quiz.last"
+              leading={
+                <button
+                  data-analytics="quiz.last.more"
+                  onClick={() => setSheetWord(lastWord)}
+                  className="h-8 px-3 rounded-md border border-line text-xs text-ink-muted hover:text-ink hover:border-ink/30 transition-colors"
+                >
+                  {t('wordSheet.more')}
+                </button>
+              }
             />
           </section>
         )}
@@ -1076,6 +1087,7 @@ const VocabularyQuizPage: React.FC = () => {
         )}
       </main>
       {heartWord && <AddToGroupModal word={heartWord} onClose={() => setHeartWord(null)} />}
+      {sheetWord && <WordToolsSheet word={sheetWord} context="spelling" onClose={() => setSheetWord(null)} />}
 
       {showIdleModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">

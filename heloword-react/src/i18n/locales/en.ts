@@ -245,6 +245,12 @@ const en = {
     openGroup: 'Open word list',
     shortcut: 'Photo to words',
   },
+  wordSheet: {
+    longPressHint: 'Long press a word to hear it, save it, get an explanation, examples or write your own sentence (words you look up come back for review)',
+    tapHint: 'Tap a word to save it, get an explanation, examples or write your own sentence',
+    longPressTools: 'Word tools',
+    more: 'More',
+  },
   wordLookup: {
     tapAnyWord: 'Tap any Japanese or English word to look it up or save it',
     tapHint: 'Tap any word in the original text to look it up or explain its sentence',

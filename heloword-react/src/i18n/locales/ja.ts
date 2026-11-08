@@ -245,6 +245,12 @@ const ja = {
     openGroup: '単語帳を開く',
     shortcut: '写真で単語追加',
   },
+  wordSheet: {
+    longPressHint: '単語を長押しで、読み上げ・保存・解説・例文・自分で作文（調べた単語はもう一度復習に出ます）',
+    tapHint: '単語をタップで、保存・解説・例文・自分で作文',
+    longPressTools: '単語ツール',
+    more: 'もっと',
+  },
   wordLookup: {
     tapAnyWord: '文中の日本語・英語の単語をタップすると意味を調べて保存できます',
     tapHint: '原文の単語をタップすると意味を調べたり、文を解説したりできます',

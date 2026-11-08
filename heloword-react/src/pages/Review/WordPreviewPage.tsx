@@ -417,7 +417,7 @@ const WordPreviewPage: React.FC = () => {
 
       {multiMode ? (
         /* ── MULTI-CHOICE MODE ── */
-        <MultiChoicePanel words={displayWords} onExit={() => setMultiMode(false)} />
+        <MultiChoicePanel words={displayWords.map((w) => ({ ...w, language: wordLang(w) }))} onExit={() => setMultiMode(false)} />
       ) : flashMode ? (
         /* ── FLASHCARD MODE ── */
         <main className="flex-1 flex flex-col items-center justify-center px-6 pt-8 pb-28 overflow-x-hidden overflow-y-auto">

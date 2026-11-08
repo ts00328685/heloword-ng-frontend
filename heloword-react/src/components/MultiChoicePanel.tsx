@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Sentence } from '../models';
+import { NO_CALLOUT, useLongPress } from '../hooks/useLongPress';
+import WordToolsSheet from './quiz/WordToolsSheet';
 
 export interface MCWord {
   id: number;
@@ -7,11 +10,15 @@ export interface MCWord {
   translateEn: string;
   translateCh?: string | null;
   sentence?: string | null;
+  /** 'jp' | 'en'; falls back to the panel's `wordLang`. */
+  language?: string;
 }
 
 interface Props {
   words: MCWord[];
   onExit: () => void;
+  /** Language of the whole list, for pronunciation and the word tools sheet. */
+  wordLang?: string;
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -28,8 +35,20 @@ function generateOptions(correct: MCWord, pool: MCWord[]): MCWord[] {
   return shuffle([correct, ...others.slice(0, 3)]);
 }
 
-const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
+const MultiChoicePanel: React.FC<Props> = ({ words, onExit, wordLang = 'en' }) => {
   const { t } = useTranslation();
+  const [sheetWord, setSheetWord] = useState<Sentence | null>(null);
+  const longPress = useLongPress();
+
+  const openSheet = (w: MCWord) => setSheetWord({
+    id: w.id,
+    status: 1,
+    word: w.word,
+    translateEn: w.translateEn,
+    translateCh: w.translateCh || '',
+    sentence: w.sentence || '',
+    language: w.language || wordLang,
+  });
 
   // Show the too-few popup immediately if not enough words
   const tooFew = words.length < 4;
@@ -191,16 +210,19 @@ const MultiChoicePanel: React.FC<Props> = ({ words, onExit }) => {
             return (
               <button
                 key={opt.id}
-                onClick={() => handleSelect(opt)}
-                disabled={revealed}
-                className={`py-4 px-3 rounded-2xl border-2 text-sm font-semibold text-center transition-all duration-200 ${cls}`}
+                {...longPress.bind(() => openSheet(opt))}
+                onClick={() => { if (longPress.consumed()) return; handleSelect(opt); }}
+                aria-disabled={revealed}
+                className={`${NO_CALLOUT} py-4 px-3 rounded-2xl border-2 text-sm font-semibold text-center transition-all duration-200 ${cls}`}
               >
                 {opt.word}
               </button>
             );
           })}
         </div>
+        <p className="text-[11px] text-ink-faint text-center">{t('wordSheet.longPressHint')}</p>
       </div>
+      {sheetWord && <WordToolsSheet word={sheetWord} context="group_choice" onClose={() => setSheetWord(null)} />}
     </div>
   );
 };
