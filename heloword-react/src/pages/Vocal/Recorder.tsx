@@ -7,6 +7,7 @@ import TakeCard, { downloadBlob, fmtClock, safeFileName } from './TakeCard';
 import { deleteTake, exportTake, loadTakes, parseExport, requestPersistence, saveTake, StoredTake, Take, TakeFileError } from './takeStore';
 import { TakeMeters } from './useMicAnalyser';
 import { QualityCalibration } from './voiceQuality';
+import { withWebmDuration } from './webmDuration';
 
 interface Props {
   /** Opens the mic if needed and returns its stream (null if denied). */
@@ -77,8 +78,17 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
 
   useEffect(() => {
     loadTakes()
-      .then((stored) => {
-        const loaded = stored.sort((x, y) => y.createdAt - x.createdAt).map(withUrl);
+      .then(async (stored) => {
+        // Older Chrome takes were saved without a duration (player bar stuck at the end) — fix them once.
+        const fixed = await Promise.all(stored.map(async (take) => {
+          if (take.ext !== 'webm') return take;
+          const blob = await withWebmDuration(take.blob, take.seconds);
+          if (blob === take.blob) return take;
+          const updated = { ...take, blob };
+          saveTake(updated).catch(() => {});
+          return updated;
+        }));
+        const loaded = fixed.sort((x, y) => y.createdAt - x.createdAt).map(withUrl);
         lastIdRef.current = Math.max(0, ...loaded.map((take) => take.id));
         // Keep anything recorded while loading.
         setTakes((current) => [...current, ...loaded.filter((take) => !current.some((c) => c.id === take.id))]);
@@ -125,18 +135,21 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     // Meters start when audio actually starts, so their timeline matches the file.
     rec.onstart = beginCapture;
     // Also fires if the mic is switched off mid-take, so nothing is lost.
-    rec.onstop = () => {
+    rec.onstop = async () => {
       clearInterval(timerRef.current);
       setRecording(false);
       recorderRef.current = null;
       const meters = endCapture();
       if (!chunks.length) return;
+      const seconds = (performance.now() - startedAt) / 1000;
+      const raw = new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' });
       addTake({
         id: nextId(),
         name: t('vocal.recorder.defaultName', { n: takesRef.current.length + 1 }),
-        blob: new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' }),
+        // Chrome leaves the duration out of webm files; write it in so the player bar works.
+        blob: ext === 'webm' ? await withWebmDuration(raw, seconds) : raw,
         ext,
-        seconds: (performance.now() - startedAt) / 1000,
+        seconds,
         createdAt: Date.now(),
         meters,
       });
