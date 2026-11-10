@@ -1215,6 +1215,12 @@ const zh = {
       ackConfirm: '我已戴上耳機',
       cancel: '取消',
     },
+    piano: {
+      title: '鋼琴',
+      labels: '音名',
+      lower: '低一個八度',
+      higher: '高一個八度',
+    },
     tips: {
       title: '提示與快捷鍵',
       gestures: '上下拖曳可捲動音高 · 滑鼠移上去可查看 · 點擊音名可試聽並設為目標音。',

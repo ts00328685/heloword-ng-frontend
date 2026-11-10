@@ -1215,6 +1215,12 @@ const en = {
       ackConfirm: "I'm on headphones",
       cancel: 'Cancel',
     },
+    piano: {
+      title: 'Piano',
+      labels: 'Note names',
+      lower: 'Lower octave',
+      higher: 'Higher octave',
+    },
     tips: {
       title: 'Tips & shortcuts',
       gestures: 'Drag up/down to scroll notes · hover to inspect · click a note name to hear it and set it as the target.',

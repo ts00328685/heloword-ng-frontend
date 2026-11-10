@@ -11,6 +11,7 @@ import { indexAtTime, MicData, useMicAnalyser } from './useMicAnalyser';
 import { usePersistedState } from './usePersistedState';
 import { useReferenceTone } from './useReferenceTone';
 import PitchGraph, { PitchGraphHandle } from './PitchGraph';
+import Piano from './Piano';
 import PracticeBar, { TOLERANCES } from './PracticeBar';
 import WaveformView from './WaveformView';
 import Metronome from './Metronome';
@@ -247,6 +248,14 @@ const VocalTrainerPage: React.FC = () => {
           indicator={running && <LiveDot color="bg-ink" />}
           summary={note ? `${noteName}${noteAlt ? `/${noteAlt}` : ''} ${cents > 0 ? '+' : ''}${cents}¢` : running || replay ? '--' : t('vocal.mic.off')}
         >
+          <Piano
+            isDark={isDark}
+            keySig={keySig}
+            sung={note && noteVoiced ? note.midi : null}
+            target={target}
+            onKey={(m) => { play(m); setTarget(m); }}
+          />
+
           {replay && (
             <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-xl bg-accent-soft text-xs text-accent">
               <span className="min-w-0 truncate">
