@@ -1214,6 +1214,12 @@ const ja = {
       ackConfirm: 'ヘッドホンを使っています',
       cancel: 'キャンセル',
     },
+    panels: {
+      showAll: 'すべてのパネルを表示',
+      pitchOnly: '音程のみ',
+      hint: '声の質・波形・録音・メトロノーム',
+      busy: '先に録音を停止してください',
+    },
     piano: {
       title: 'ピアノ',
       labels: '音名',

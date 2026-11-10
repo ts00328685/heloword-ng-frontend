@@ -1215,6 +1215,12 @@ const en = {
       ackConfirm: "I'm on headphones",
       cancel: 'Cancel',
     },
+    panels: {
+      showAll: 'Show all panels',
+      pitchOnly: 'Pitch only',
+      hint: 'Voice quality, waveform, recorder and metronome',
+      busy: 'Stop recording first',
+    },
     piano: {
       title: 'Piano',
       labels: 'Note names',

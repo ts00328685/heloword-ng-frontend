@@ -1215,6 +1215,12 @@ const zh = {
       ackConfirm: '我已戴上耳機',
       cancel: '取消',
     },
+    panels: {
+      showAll: '顯示所有面板',
+      pitchOnly: '只顯示音高',
+      hint: '聲音品質、波形、錄音、節拍器',
+      busy: '請先停止錄音',
+    },
     piano: {
       title: '鋼琴',
       labels: '音名',
