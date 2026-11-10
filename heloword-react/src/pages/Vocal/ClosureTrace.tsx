@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BUFFER_SECONDS, fmtTakeTime, indexAtTime, MicData, NOW_POSITION } from './useMicAnalyser';
-import { useCanvasLoop } from './useCanvasLoop';
+import { isLiveData, useCanvasLoop } from './useCanvasLoop';
 import { closureIndex, QualityCalibration, QualityPoint, ZONES, zoneOf } from './voiceQuality';
 
 interface Props {
@@ -154,7 +154,7 @@ const ClosureTrace: React.FC<Props> = ({ dataRef, isDark, calibration }) => {
         ctx.restore();
       }
     }
-  });
+  }, () => isLiveData(dataRef.current));
 
   const setHover = (e: React.PointerEvent<HTMLCanvasElement>) => {
     hoverXRef.current = e.clientX - e.currentTarget.getBoundingClientRect().left;

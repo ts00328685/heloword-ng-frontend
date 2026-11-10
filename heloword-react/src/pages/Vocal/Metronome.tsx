@@ -29,6 +29,7 @@ const Metronome: React.FC<Props> = ({ m, onVisibleChange }) => {
   return (
     <Panel
       id="metronome"
+      defaultOpen={false}
       title={t('vocal.panel.metronome')}
       indicator={playing && <LiveDot color="bg-success" />}
       summary={t('vocal.metronome.summary', { bpm, beats })}

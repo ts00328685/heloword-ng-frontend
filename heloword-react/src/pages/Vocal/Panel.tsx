@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { usePersistedState } from './usePersistedState';
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
   /** Shown on the right of the header only while collapsed. */
   summary?: React.ReactNode;
   defaultOpen?: boolean;
+  /** Told the open state on mount and whenever it changes. */
+  onOpenChange?: (open: boolean) => void;
   children: React.ReactNode;
 }
 
@@ -17,8 +19,9 @@ interface Props {
  * Collapsible card. Collapsed content is hidden, not unmounted, so audio,
  * timers and settings inside keep running.
  */
-const Panel: React.FC<Props> = ({ id, title, indicator, summary, defaultOpen = true, children }) => {
+const Panel: React.FC<Props> = ({ id, title, indicator, summary, defaultOpen = true, onOpenChange, children }) => {
   const [open, setOpen] = usePersistedState(`panel-${id}-open`, defaultOpen);
+  useEffect(() => { onOpenChange?.(open); }, [open, onOpenChange]);
   return (
     <section className="bg-surface rounded-2xl border border-line shadow-sm">
       <button

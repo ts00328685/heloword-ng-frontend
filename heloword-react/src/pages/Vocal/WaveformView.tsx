@@ -1,6 +1,6 @@
 import React from 'react';
 import { BUFFER_SECONDS, indexAtTime, MicData, NOW_POSITION } from './useMicAnalyser';
-import { useCanvasLoop } from './useCanvasLoop';
+import { isLiveData, useCanvasLoop } from './useCanvasLoop';
 
 interface Props {
   dataRef: React.MutableRefObject<MicData>;
@@ -89,7 +89,7 @@ const WaveformView: React.FC<Props> = ({ dataRef, isDark }) => {
     // "Now" marker — same position as on the pitch graph
     ctx.fillStyle = c.zero;
     ctx.fillRect(GUTTER + nowCol, 0, 1, h);
-  });
+  }, () => isLiveData(dataRef.current));
 
   return <canvas ref={canvasRef} className="w-full h-36 block rounded-xl" />;
 };
