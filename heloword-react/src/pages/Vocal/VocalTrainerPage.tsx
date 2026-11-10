@@ -209,6 +209,8 @@ const VocalTrainerPage: React.FC = () => {
   const shortcutRef = useRef<(e: KeyboardEvent) => void>(() => {});
   shortcutRef.current = (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
+    // Claimed by the piano's computer-keyboard mode.
+    if (e.defaultPrevented) return;
     const el = e.target as HTMLElement | null;
     if (el?.closest('input, textarea, select, audio, [contenteditable="true"]')) return;
     const handled = () => {
