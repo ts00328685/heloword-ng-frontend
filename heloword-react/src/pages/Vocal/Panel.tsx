@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { usePersistedState } from './usePersistedState';
 
 interface Props {
@@ -22,6 +22,10 @@ interface Props {
 const Panel: React.FC<Props> = ({ id, title, indicator, summary, defaultOpen = true, onOpenChange, children }) => {
   const [open, setOpen] = usePersistedState(`panel-${id}-open`, defaultOpen);
   useEffect(() => { onOpenChange?.(open); }, [open, onOpenChange]);
+  // Removed from the page counts as closed.
+  const onOpenChangeRef = useRef(onOpenChange);
+  onOpenChangeRef.current = onOpenChange;
+  useEffect(() => () => onOpenChangeRef.current?.(false), []);
   return (
     <section className="bg-surface rounded-2xl border border-line shadow-sm">
       <button

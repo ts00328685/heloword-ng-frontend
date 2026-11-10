@@ -11,6 +11,7 @@ import { indexAtTime, MicData, useMicAnalyser } from './useMicAnalyser';
 import { usePersistedState } from './usePersistedState';
 import { useReferenceTone } from './useReferenceTone';
 import PitchGraph, { PitchGraphHandle } from './PitchGraph';
+import Piano from './Piano';
 import PracticeBar, { TOLERANCES } from './PracticeBar';
 import WaveformView from './WaveformView';
 import Metronome from './Metronome';
@@ -68,6 +69,8 @@ const VocalTrainerPage: React.FC = () => {
   const [recorderControlsVisible, setRecorderControlsVisible] = useState(false);
   const onRecStatus = useCallback((s: RecStatus) => setRecStatus(s), []);
   const [tipsOpen, setTipsOpen] = usePersistedState('tips-open', false);
+  /** Show Voice quality, Waveform, Recorder and Metronome — off for new visitors. */
+  const [allPanels, setAllPanelsState] = usePersistedState('all-panels', false);
 
   const graphRef = useRef<PitchGraphHandle>(null);
   const recorderRef = useRef<RecorderHandle>(null);
@@ -179,6 +182,12 @@ const VocalTrainerPage: React.FC = () => {
   const noteName = note ? spellNote(note.midi, keySig) : null;
   const noteAlt = note ? altName(note.midi, keySig) : null;
 
+  const setAllPanels = (on: boolean) => {
+    // Hiding them leaves nothing to control a replay or a running metronome.
+    if (!on) { exitReplay(); metronome.stop(); }
+    setAllPanelsState(on);
+  };
+
   const toggleMic = () => {
     if (running) stop();
     else { exitReplay(); start(); }
@@ -221,7 +230,7 @@ const VocalTrainerPage: React.FC = () => {
       case '-': case '_': handled(); graphRef.current?.zoom(1); break;
       case 'f': case 'F': handled(); graphRef.current?.fit(); break;
       case 't': case 'T': handled(); playTarget(); break;
-      case 'k': case 'K': handled(); metronome.toggle(); break;
+      case 'k': case 'K': if (allPanels) { handled(); metronome.toggle(); } break;
       case 'h': case 'H': handled(); toggleMonitor(); break;
       case 'Escape':
         if (replay) { handled(); exitReplay(); }
@@ -247,6 +256,14 @@ const VocalTrainerPage: React.FC = () => {
           indicator={running && <LiveDot color="bg-ink" />}
           summary={note ? `${noteName}${noteAlt ? `/${noteAlt}` : ''} ${cents > 0 ? '+' : ''}${cents}¢` : running || replay ? '--' : t('vocal.mic.off')}
         >
+          <Piano
+            isDark={isDark}
+            keySig={keySig}
+            sung={note && noteVoiced ? note.midi : null}
+            target={target}
+            onKey={(m) => { play(m); setTarget(m); }}
+          />
+
           {replay && (
             <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-xl bg-accent-soft text-xs text-accent">
               <span className="min-w-0 truncate">
@@ -404,48 +421,68 @@ const VocalTrainerPage: React.FC = () => {
           </div>
         </Panel>
 
-        <VoiceQualityPanel
-          dataRef={source}
-          isDark={isDark}
-          replay={!!replay}
-          calibration={calibration}
-          isCustomCalibration={isCustomCalibration}
-          onCalibration={saveCalibration}
-          addFrameListener={addFrameListener}
-          onOpenChange={setQualityWanted}
-          ensureMic={() => { if (replay) exitReplay(); return start(); }}
-        />
+        {/* Everything but Pitch is opt-in — fewer live views keeps slower devices smooth */}
+        <div className="flex flex-col items-center gap-1">
+          <button
+            onClick={() => setAllPanels(!allPanels)}
+            disabled={allPanels && recStatus.phase !== 'idle'}
+            title={allPanels && recStatus.phase !== 'idle' ? t('vocal.panels.busy') : undefined}
+            className={`h-8 px-3 rounded-lg text-xs font-semibold transition-colors disabled:opacity-50 ${
+              allPanels ? 'bg-ink/5 text-ink-muted hover:bg-ink/10' : 'bg-ink text-paper hover:bg-ink/85'
+            }`}
+            aria-pressed={allPanels}
+          >
+            {allPanels ? t('vocal.panels.pitchOnly') : t('vocal.panels.showAll')}
+          </button>
+          {!allPanels && <span className="text-[11px] text-ink-faint">{t('vocal.panels.hint')}</span>}
+        </div>
 
-        <Panel id="waveform" defaultOpen={false} title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.waveform'), take: replayName }) : t('vocal.panel.waveform')}>
-          <WaveformView dataRef={source} isDark={isDark} />
-        </Panel>
+        {allPanels && (
+          <>
+          <VoiceQualityPanel
+            dataRef={source}
+            isDark={isDark}
+            replay={!!replay}
+            calibration={calibration}
+            isCustomCalibration={isCustomCalibration}
+            onCalibration={saveCalibration}
+            addFrameListener={addFrameListener}
+            onOpenChange={setQualityWanted}
+            ensureMic={() => { if (replay) exitReplay(); return start(); }}
+          />
 
-        <Recorder
-          ref={recorderRef}
-          getStream={() => { exitReplay(); return start(); }}
-          beginCapture={beginCapture}
-          endCapture={endCapture}
-          keySig={keySig}
-          calibration={calibration}
-          replayingId={replay?.take.id ?? null}
-          onReplay={(take, audio) => { if (take.meters.pitch.length) setReplay({ take, audio }); }}
-          onLoopChange={(id, loop) => {
-            loopsRef.current.set(id, loop);
-            if (replayIdRef.current === id) replayRef.current.loop = loop;
-          }}
-          onRenamed={(id, name) => setRenamedTakes((m) => ({ ...m, [id]: name }))}
-          onGainChange={(id, gain) => {
-            if (replayIdRef.current === id) replayRef.current.gain = gain;
-          }}
-          onRemove={(id) => {
-            loopsRef.current.delete(id);
-            if (replayIdRef.current === id) exitReplay();
-          }}
-          onStatusChange={onRecStatus}
-          onControlsVisibleChange={setRecorderControlsVisible}
-        />
+          <Panel id="waveform" defaultOpen={false} title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.waveform'), take: replayName }) : t('vocal.panel.waveform')}>
+            <WaveformView dataRef={source} isDark={isDark} />
+          </Panel>
 
-        <Metronome m={metronome} onVisibleChange={setMetronomeVisible} />
+          <Recorder
+            ref={recorderRef}
+            getStream={() => { exitReplay(); return start(); }}
+            beginCapture={beginCapture}
+            endCapture={endCapture}
+            keySig={keySig}
+            calibration={calibration}
+            replayingId={replay?.take.id ?? null}
+            onReplay={(take, audio) => { if (take.meters.pitch.length) setReplay({ take, audio }); }}
+            onLoopChange={(id, loop) => {
+              loopsRef.current.set(id, loop);
+              if (replayIdRef.current === id) replayRef.current.loop = loop;
+            }}
+            onRenamed={(id, name) => setRenamedTakes((m) => ({ ...m, [id]: name }))}
+            onGainChange={(id, gain) => {
+              if (replayIdRef.current === id) replayRef.current.gain = gain;
+            }}
+            onRemove={(id) => {
+              loopsRef.current.delete(id);
+              if (replayIdRef.current === id) exitReplay();
+            }}
+            onStatusChange={onRecStatus}
+            onControlsVisibleChange={setRecorderControlsVisible}
+          />
+
+          <Metronome m={metronome} onVisibleChange={setMetronomeVisible} />
+          </>
+        )}
 
         <p className="text-center text-[11px] text-ink-faint">
           {t('vocal.footer')}
@@ -457,7 +494,7 @@ const VocalTrainerPage: React.FC = () => {
         Portalled to <body>: the page's enter animation leaves a transform on the
         root, which would make `fixed` scroll with the page.
       */}
-      {(!recorderControlsVisible || !metronomeVisible) && createPortal(
+      {allPanels && (!recorderControlsVisible || !metronomeVisible) && createPortal(
         <div
           className="fixed inset-x-0 z-30 px-4 pointer-events-none"
           style={{ bottom: 'calc(64px + env(safe-area-inset-bottom, 0px))' }}

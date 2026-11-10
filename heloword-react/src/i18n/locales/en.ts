@@ -1215,6 +1215,18 @@ const en = {
       ackConfirm: "I'm on headphones",
       cancel: 'Cancel',
     },
+    panels: {
+      showAll: 'Show all panels',
+      pitchOnly: 'Pitch only',
+      hint: 'Voice quality, waveform, recorder and metronome',
+      busy: 'Stop recording first',
+    },
+    piano: {
+      title: 'Piano',
+      labels: 'Note names',
+      lower: 'Lower octave',
+      higher: 'Higher octave',
+    },
     tips: {
       title: 'Tips & shortcuts',
       gestures: 'Drag up/down to scroll notes · hover to inspect · click a note name to hear it and set it as the target.',
