@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -15,7 +16,8 @@ import WaveformView from './WaveformView';
 import Metronome from './Metronome';
 import MetronomeDock from './MetronomeDock';
 import { useMetronome } from './useMetronome';
-import Recorder, { RecorderHandle } from './Recorder';
+import Recorder, { RecorderHandle, RecStatus } from './Recorder';
+import RecordDock from './RecordDock';
 import Panel, { LiveDot } from './Panel';
 import VoiceQualityPanel from './VoiceQualityPanel';
 import { useCalibration } from './useCalibration';
@@ -61,6 +63,10 @@ const VocalTrainerPage: React.FC = () => {
   const metronome = useMetronome();
   /** The full Metronome panel's controls are on screen — hide the dock then. */
   const [metronomeVisible, setMetronomeVisible] = useState(false);
+  // ── Floating record button: shown while the Recorder panel's own button is off screen ──
+  const [recStatus, setRecStatus] = useState<RecStatus>({ phase: 'idle', startedAt: 0 });
+  const [recorderControlsVisible, setRecorderControlsVisible] = useState(false);
+  const onRecStatus = useCallback((s: RecStatus) => setRecStatus(s), []);
   const [tipsOpen, setTipsOpen] = usePersistedState('tips-open', false);
 
   const graphRef = useRef<PitchGraphHandle>(null);
@@ -434,6 +440,8 @@ const VocalTrainerPage: React.FC = () => {
             loopsRef.current.delete(id);
             if (replayIdRef.current === id) exitReplay();
           }}
+          onStatusChange={onRecStatus}
+          onControlsVisibleChange={setRecorderControlsVisible}
         />
 
         <Metronome m={metronome} onVisibleChange={setMetronomeVisible} />
@@ -443,7 +451,26 @@ const VocalTrainerPage: React.FC = () => {
         </p>
       </main>
 
-      {!metronomeVisible && <MetronomeDock m={metronome} />}
+      {/*
+        Floating dock above the bottom tabs: record button + compact metronome.
+        Portalled to <body>: the page's enter animation leaves a transform on the
+        root, which would make `fixed` scroll with the page.
+      */}
+      {(!recorderControlsVisible || !metronomeVisible) && createPortal(
+        <div
+          className="fixed inset-x-0 z-30 px-4 pointer-events-none"
+          style={{ bottom: 'calc(64px + env(safe-area-inset-bottom, 0px))' }}
+        >
+          {/* On phones the full metronome wraps below the record button rather than squeezing its beat dots */}
+          <div className="mx-auto max-w-3xl flex flex-wrap items-center justify-end gap-2">
+            {!recorderControlsVisible && (
+              <RecordDock status={recStatus} onToggle={() => recorderRef.current?.toggleRecording()} />
+            )}
+            {!metronomeVisible && <MetronomeDock m={metronome} />}
+          </div>
+        </div>,
+        document.body,
+      )}
     </div>
   );
 };

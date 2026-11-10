@@ -7,6 +7,7 @@ import TakeCard, { downloadBlob, fmtClock, safeFileName } from './TakeCard';
 import { deleteTake, exportTake, loadTakes, parseExport, requestPersistence, saveTake, StoredTake, Take, TakeFileError } from './takeStore';
 import { TakeMeters } from './useMicAnalyser';
 import { QualityCalibration } from './voiceQuality';
+import { withWebmDuration } from './webmDuration';
 
 interface Props {
   /** Opens the mic if needed and returns its stream (null if denied). */
@@ -28,6 +29,17 @@ interface Props {
   onRenamed: (id: number, name: string) => void;
   /** A take's volume changed. */
   onGainChange: (id: number, gain: number) => void;
+  /** Recording state, for the floating record button. */
+  onStatusChange?: (status: RecStatus) => void;
+  /** Whether the panel's record button is on screen — the page floats one when it isn't. */
+  onControlsVisibleChange?: (visible: boolean) => void;
+}
+
+export type RecPhase = 'idle' | 'starting' | 'recording';
+export interface RecStatus {
+  phase: RecPhase;
+  /** performance.now() when the take started (recording only). */
+  startedAt: number;
 }
 
 export interface RecorderHandle {
@@ -54,9 +66,15 @@ const strip = ({ url: _url, ...t }: Take): StoredTake => t;
  */
 const Recorder = forwardRef<RecorderHandle, Props>(({
   getStream, beginCapture, endCapture, keySig, calibration, replayingId, onReplay, onLoopChange, onRemove, onGainChange, onRenamed,
+  onStatusChange, onControlsVisibleChange,
 }, ref) => {
   const { t } = useTranslation();
-  const [recording, setRecording] = useState(false);
+  const [phase, setPhase] = useState<RecPhase>('idle');
+  const recording = phase === 'recording';
+  const startedAtRef = useRef(0);
+  /** Current phase without waiting for a render — blocks a second start while the mic opens. */
+  const phaseRef = useRef<RecPhase>('idle');
+  phaseRef.current = phase;
   const [elapsed, setElapsed] = useState(0);
   const [takes, setTakes] = useState<Take[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -72,13 +90,37 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const gainSaveTimers = useRef(new Map<number, number>());
 
+  const controlsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    onStatusChange?.({ phase, startedAt: startedAtRef.current });
+  }, [phase, onStatusChange]);
+
+  useEffect(() => {
+    const el = controlsRef.current;
+    if (!el || !onControlsVisibleChange) return;
+    // A collapsed panel hides this row, which also reports "not visible".
+    const io = new IntersectionObserver(([entry]) => onControlsVisibleChange(entry.isIntersecting), { threshold: 0.5 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [onControlsVisibleChange]);
+
   /** Unique, increasing ids (ms timestamps). */
   const nextId = () => (lastIdRef.current = Math.max(Date.now(), lastIdRef.current + 1));
 
   useEffect(() => {
     loadTakes()
-      .then((stored) => {
-        const loaded = stored.sort((x, y) => y.createdAt - x.createdAt).map(withUrl);
+      .then(async (stored) => {
+        // Older Chrome takes were saved without a duration (player bar stuck at the end) — fix them once.
+        const fixed = await Promise.all(stored.map(async (take) => {
+          if (take.ext !== 'webm') return take;
+          const blob = await withWebmDuration(take.blob, take.seconds);
+          if (blob === take.blob) return take;
+          const updated = { ...take, blob };
+          saveTake(updated).catch(() => {});
+          return updated;
+        }));
+        const loaded = fixed.sort((x, y) => y.createdAt - x.createdAt).map(withUrl);
         lastIdRef.current = Math.max(0, ...loaded.map((take) => take.id));
         // Keep anything recorded while loading.
         setTakes((current) => [...current, ...loaded.filter((take) => !current.some((c) => c.id === take.id))]);
@@ -104,9 +146,13 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
   };
 
   const start = async () => {
+    if (phaseRef.current !== 'idle') return;
     setError(null);
+    phaseRef.current = 'starting';
+    setPhase('starting');
     const stream = await getStream();
     if (!stream) {
+      setPhase('idle');
       setError(t('vocal.mic.unavailableShort'));
       return;
     }
@@ -115,6 +161,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     try {
       rec = new MediaRecorder(stream, { ...(mime && { mimeType: mime }), audioBitsPerSecond: 128000 });
     } catch (e) {
+      setPhase('idle');
       setError(e instanceof Error ? e.message : String(e));
       return;
     }
@@ -125,18 +172,21 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     // Meters start when audio actually starts, so their timeline matches the file.
     rec.onstart = beginCapture;
     // Also fires if the mic is switched off mid-take, so nothing is lost.
-    rec.onstop = () => {
+    rec.onstop = async () => {
       clearInterval(timerRef.current);
-      setRecording(false);
+      setPhase('idle');
       recorderRef.current = null;
       const meters = endCapture();
       if (!chunks.length) return;
+      const seconds = (performance.now() - startedAt) / 1000;
+      const raw = new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' });
       addTake({
         id: nextId(),
         name: t('vocal.recorder.defaultName', { n: takesRef.current.length + 1 }),
-        blob: new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' }),
+        // Chrome leaves the duration out of webm files; write it in so the player bar works.
+        blob: ext === 'webm' ? await withWebmDuration(raw, seconds) : raw,
         ext,
-        seconds: (performance.now() - startedAt) / 1000,
+        seconds,
         createdAt: Date.now(),
         meters,
       });
@@ -144,7 +194,8 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
 
     rec.start(1000);
     recorderRef.current = rec;
-    setRecording(true);
+    startedAtRef.current = startedAt;
+    setPhase('recording');
     setElapsed(0);
     timerRef.current = window.setInterval(() => setElapsed((performance.now() - startedAt) / 1000), 200);
   };
@@ -226,26 +277,26 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       indicator={recording && <LiveDot color="bg-danger" />}
       summary={recording ? t('vocal.recorder.rec', { time: fmtClock(elapsed) }) : t('vocal.recorder.takes', { count: takes.length })}
     >
-      <div className="flex flex-wrap items-center gap-3">
+      <div ref={controlsRef} className="flex flex-wrap items-center gap-3">
         <button
           onClick={recording ? stop : start}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-colors ${
-            recording
-              ? 'bg-ink text-paper hover:bg-ink/85 '
-              : 'bg-danger hover:bg-danger/90 text-paper'
+          disabled={phase === 'starting'}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-paper transition-colors disabled:opacity-60 ${
+            recording ? 'bg-danger hover:bg-danger/90' : 'bg-ink hover:bg-ink/85'
           }`}
-          title={t('vocal.recorder.recordTitle')}
+          title={recording ? t('vocal.recorder.stopTitle') : t('vocal.recorder.startTitle')}
+          aria-pressed={recording}
         >
           {recording ? (
-            <><span className="w-2.5 h-2.5 rounded-sm bg-current" />{t('vocal.recorder.stop')}</>
+            <><span className="w-2.5 h-2.5 rounded-sm bg-current" />{t('vocal.recorder.stopSave')}</>
           ) : (
-            <><span className="w-2.5 h-2.5 rounded-full bg-surface" />{t('vocal.recorder.record')}</>
+            <><span className="w-2.5 h-2.5 rounded-full bg-danger" />{phase === 'starting' ? t('vocal.recorder.starting') : t('vocal.recorder.start')}</>
           )}
         </button>
         {recording && (
-          <span className="flex items-center gap-1.5 text-sm font-mono text-danger tabular-nums">
+          <span className="flex items-center gap-1.5 text-sm font-mono text-danger tabular-nums" aria-live="off">
             <span className="inline-block w-2 h-2 rounded-full bg-danger animate-pulse" />
-            {fmtClock(elapsed)}
+            {t('vocal.recorder.rec', { time: fmtClock(elapsed) })}
           </span>
         )}
         <button
