@@ -1222,7 +1222,9 @@ const ja = {
     },
     piano: {
       keyboard: 'キー',
-      keyboardTitle: 'パソコンのキーボードで演奏：A〜;（W・E・T… が黒鍵）、Z / X で1オクターブ移動。オン中は F・T・K・H がショートカットではなく音になります。',
+      keyboardTitle: 'パソコンのキーボードで演奏：A〜;（W・E・T… が黒鍵）、1〜8 でコード、Z / X で1オクターブ移動。オン中は F・T・K・H がショートカットではなく音になります。',
+      chords: 'クイックコード',
+      chordTitle: '{{chord}} を鳴らす',
       title: 'ピアノ',
       labels: '音名',
       lower: '1オクターブ下へ',

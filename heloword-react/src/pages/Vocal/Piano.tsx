@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { chordNotes, quickChords } from './chords';
 import { KeySig, spellNote } from './music';
 import { isSharp } from './pitch';
 import { usePersistedState } from './usePersistedState';
@@ -13,6 +14,8 @@ interface Props {
   target: number | null;
   /** A key was pressed (or slid onto). */
   onKey: (midi: number) => void;
+  /** A quick-chord button was pressed. */
+  onChord: (midis: number[]) => void;
 }
 
 /** Lowest start: C1. The range never runs past C8 (MIDI 108). */
@@ -35,9 +38,10 @@ const noteOnly = (midi: number, key: KeySig | null) => spellNote(midi, key).repl
  * Collapsible keyboard at the top of the Pitch panel: tap (or slide across)
  * keys to hear them and set the target, optional note names, and ‹ › to move
  * the range an octave at a time. The sung note and the target light up.
- * With ⌨ on, the computer keyboard plays it too (see KEY_CODES).
+ * With ⌨ on, the computer keyboard plays it too (see KEY_CODES), and 1–8
+ * play the quick chords above the keys.
  */
-const Piano: React.FC<Props> = ({ isDark, keySig, sung, target, onKey }) => {
+const Piano: React.FC<Props> = ({ isDark, keySig, sung, target, onKey, onChord }) => {
   const { t } = useTranslation();
   const [open, setOpen] = usePersistedState('piano-open', true);
   const [labels, setLabels] = usePersistedState('piano-labels', true);
@@ -78,6 +82,24 @@ const Piano: React.FC<Props> = ({ isDark, keySig, sung, target, onKey }) => {
   };
   const release = () => { downRef.current = false; setPressed(null); };
 
+  // ── Quick chords: the key's diatonic triads + V7, rooted in the lowest octave shown ──
+  const chords = useMemo(() => quickChords(keySig), [keySig]);
+  /** Notes of the chord just played, lit briefly on the keys. */
+  const [chordLit, setChordLit] = useState<{ index: number; notes: ReadonlySet<number> } | null>(null);
+  const litTimerRef = useRef(0);
+  useEffect(() => () => clearTimeout(litTimerRef.current), []);
+  const playChordAt = (i: number) => {
+    const chord = chords[i];
+    if (!chord) return;
+    const notes = chordNotes(chord, keySig, low);
+    onChord(notes);
+    setChordLit({ index: i, notes: new Set(notes) });
+    clearTimeout(litTimerRef.current);
+    litTimerRef.current = window.setTimeout(() => setChordLit(null), 600);
+  };
+  const playChordRef = useRef(playChordAt);
+  playChordRef.current = playChordAt;
+
   // ── Computer keyboard ──
   /** Notes held down on the computer keyboard, lit like a pressed key. */
   const [held, setHeld] = useState<ReadonlySet<number>>(new Set());
@@ -98,6 +120,12 @@ const Piano: React.FC<Props> = ({ isDark, keySig, sung, target, onKey }) => {
         // Claimed so the page's shortcuts skip it.
         e.preventDefault();
         if (!e.repeat) setStartOctave(Math.max(MIN_OCTAVE, Math.min(maxOct, oct + (e.code === 'KeyX' ? 1 : -1))));
+        return;
+      }
+      const digit = /^Digit([1-8])$/.exec(e.code);
+      if (digit) {
+        e.preventDefault();
+        if (!e.repeat) playChordRef.current(Number(digit[1]) - 1);
         return;
       }
       const i = KEY_CODES.indexOf(e.code);
@@ -131,7 +159,7 @@ const Piano: React.FC<Props> = ({ isDark, keySig, sung, target, onKey }) => {
   const whiteText = isDark ? 'text-paper/60' : 'text-ink-faint';
   const blackText = isDark ? 'text-ink/70' : 'text-paper/70';
   const stateBg = (m: number) =>
-    m === pressed || held.has(m) ? 'bg-ink-muted' : m === sung ? 'bg-accent' : null;
+    m === pressed || held.has(m) || chordLit?.notes.has(m) ? 'bg-ink-muted' : m === sung ? 'bg-accent' : null;
 
   const step = 'w-7 h-7 rounded-lg text-ink-muted hover:bg-ink/5 disabled:opacity-30 disabled:hover:bg-transparent transition-colors';
 
@@ -175,6 +203,25 @@ const Piano: React.FC<Props> = ({ isDark, keySig, sung, target, onKey }) => {
 
       {open && (
         <div ref={boxRef} className="px-3 pb-3">
+          {/* Quick chords — 4 per row on phones, all 8 in one row when there's room */}
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5 mb-2" role="group" aria-label={t('vocal.piano.chords')}>
+            {chords.map((c, i) => (
+              <button
+                key={c.roman}
+                onClick={() => playChordAt(i)}
+                className={`relative flex flex-col items-center justify-center h-10 rounded-lg border transition-colors duration-75 ${
+                  chordLit?.index === i ? 'bg-ink text-paper border-ink' : 'border-line text-ink hover:bg-ink/5'
+                }`}
+                title={t('vocal.piano.chordTitle', { chord: c.name })}
+              >
+                <span className="text-xs font-semibold leading-none">{c.name}</span>
+                <span className={`mt-0.5 text-[9px] font-mono leading-none ${chordLit?.index === i ? 'text-paper/70' : 'text-ink-faint'}`}>{c.roman}</span>
+                {keyboardOn && (
+                  <span className={`hidden sm:block absolute top-0.5 right-1 text-[8px] font-mono ${chordLit?.index === i ? 'text-paper/60' : 'text-ink-faint'}`}>{i + 1}</span>
+                )}
+              </button>
+            ))}
+          </div>
           <div
             className="relative h-28 select-none touch-none"
             onPointerDown={(e) => { downRef.current = true; press(midiAt(e.clientX, e.clientY)); }}
