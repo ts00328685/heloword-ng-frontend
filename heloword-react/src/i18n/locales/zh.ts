@@ -1222,6 +1222,10 @@ const zh = {
       busy: '請先停止錄音',
     },
     piano: {
+      keyboard: '鍵盤',
+      keyboardTitle: '用電腦鍵盤彈奏：A～;（W、E、T… 是黑鍵），1～8 彈和弦，Z / X 移動一個八度。開啟時 F、T、K、H 會彈奏音符而不是快捷鍵。',
+      chords: '快速和弦',
+      chordTitle: '彈奏 {{chord}}',
       title: '鋼琴',
       labels: '音名',
       lower: '低一個八度',

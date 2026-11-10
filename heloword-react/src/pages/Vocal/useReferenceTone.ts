@@ -14,7 +14,8 @@ const PARTIALS: [ratio: number, type: OscillatorType, level: number][] = [
 ];
 
 /**
- * Reference pitches: `play` strikes a short piano-like note, `setDrone`
+ * Reference pitches: `play` strikes a short piano-like note (`playChord`
+ * several at once), `setDrone`
  * holds a soft sustained tone. Separate AudioContext from the mic — it is
  * never routed into the analyser (though speakers can still leak into the mic).
  */
@@ -44,12 +45,13 @@ export const useReferenceTone = (volume: number) => {
     }
   }, [volume]);
 
-  const play = useCallback((midi: number) => {
+  /** One piano-like note at `peak` level, starting `delay` seconds from now. */
+  const strike = useCallback((midi: number, peak: number, delay = 0) => {
     const { ctx, master } = ensure();
-    const t = ctx.currentTime;
+    const t = ctx.currentTime + delay;
     const env = ctx.createGain();
     env.gain.setValueAtTime(0.0001, t);
-    env.gain.exponentialRampToValueAtTime(0.5, t + 0.008);
+    env.gain.exponentialRampToValueAtTime(peak, t + 0.008);
     env.gain.exponentialRampToValueAtTime(0.0001, t + 1.6);
     env.connect(master);
     for (const [ratio, type, level] of PARTIALS) {
@@ -63,6 +65,14 @@ export const useReferenceTone = (volume: number) => {
       osc.stop(t + 1.7);
     }
   }, [ensure]);
+
+  const play = useCallback((midi: number) => strike(midi, 0.5), [strike]);
+
+  /** Several notes together, softened so the sum doesn't clip, with a light strum. */
+  const playChord = useCallback((midis: number[]) => {
+    const peak = 0.5 / Math.sqrt(midis.length);
+    midis.forEach((m, i) => strike(m, peak, i * 0.012));
+  }, [strike]);
 
   const setDrone = useCallback((midi: number | null) => {
     const current = droneRef.current;
@@ -102,5 +112,5 @@ export const useReferenceTone = (volume: number) => {
     ctxRef.current?.close().catch(() => {});
   }, []);
 
-  return { play, setDrone };
+  return { play, playChord, setDrone };
 };

@@ -1222,6 +1222,10 @@ const en = {
       busy: 'Stop recording first',
     },
     piano: {
+      keyboard: 'Keys',
+      keyboardTitle: 'Play with the computer keyboard: A–; (W, E, T… are the black keys), 1–8 play the chords, Z / X move an octave. F, T, K and H then play notes instead of their shortcuts.',
+      chords: 'Quick chords',
+      chordTitle: 'Play {{chord}}',
       title: 'Piano',
       labels: 'Note names',
       lower: 'Lower octave',

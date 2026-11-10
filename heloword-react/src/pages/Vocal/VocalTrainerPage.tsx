@@ -87,7 +87,7 @@ const VocalTrainerPage: React.FC = () => {
   const [drone, setDroneOn] = useState(false);
   const [frozen, setFrozen] = useState(false);
 
-  const { play, setDrone } = useReferenceTone(toneVolume);
+  const { play, playChord, setDrone } = useReferenceTone(toneVolume);
   useEffect(() => { setDrone(drone && target !== null ? target : null); }, [drone, target, setDrone]);
   useEffect(() => { dataRef.current.frozen = frozen; }, [frozen, dataRef]);
 
@@ -209,6 +209,8 @@ const VocalTrainerPage: React.FC = () => {
   const shortcutRef = useRef<(e: KeyboardEvent) => void>(() => {});
   shortcutRef.current = (e) => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
+    // Claimed by the piano's computer-keyboard mode.
+    if (e.defaultPrevented) return;
     const el = e.target as HTMLElement | null;
     if (el?.closest('input, textarea, select, audio, [contenteditable="true"]')) return;
     const handled = () => {
@@ -262,6 +264,7 @@ const VocalTrainerPage: React.FC = () => {
             sung={note && noteVoiced ? note.midi : null}
             target={target}
             onKey={(m) => { play(m); setTarget(m); }}
+            onChord={playChord}
           />
 
           {replay && (
