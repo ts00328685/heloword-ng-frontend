@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MicData, ScopeFrame } from './useMicAnalyser';
-import { useCanvasLoop } from './useCanvasLoop';
+import { isLiveData, useCanvasLoop } from './useCanvasLoop';
 
 interface Props {
   dataRef: React.MutableRefObject<MicData>;
@@ -100,7 +100,7 @@ const CycleScope: React.FC<Props> = ({ dataRef, isDark, replay }) => {
       ctx.fillText(hint, w / 2, h / 2 - 12);
       ctx.textAlign = 'left';
     }
-  });
+  }, () => isLiveData(dataRef.current));
 
   return <canvas ref={canvasRef} className="w-full h-36 block rounded-xl" aria-label={t('vocal.quality.scopeTitle')} />;
 };

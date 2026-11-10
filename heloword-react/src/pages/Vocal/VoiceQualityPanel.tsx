@@ -17,6 +17,8 @@ interface Props {
   isCustomCalibration: boolean;
   onCalibration: (cal: QualityCalibration | null) => void;
   addFrameListener: (fn: FrameListener) => () => void;
+  /** Live voice-quality analysis is only needed while this panel is open. */
+  onOpenChange?: (open: boolean) => void;
   /** Opens the mic (and leaves replay) — calibration needs live input. */
   ensureMic: () => Promise<unknown>;
 }
@@ -42,7 +44,7 @@ interface Readout {
  * time, and a two-step calibration to the singer's own voice.
  */
 const VoiceQualityPanel: React.FC<Props> = ({
-  dataRef, isDark, replay, calibration, isCustomCalibration, onCalibration, addFrameListener, ensureMic,
+  dataRef, isDark, replay, calibration, isCustomCalibration, onCalibration, addFrameListener, ensureMic, onOpenChange,
 }) => {
   const { t } = useTranslation();
   const [readout, setReadout] = useState<Readout | null>(null);
@@ -142,6 +144,8 @@ const VoiceQualityPanel: React.FC<Props> = ({
   return (
     <Panel
       id="quality"
+      defaultOpen={false}
+      onOpenChange={onOpenChange}
       title={t('vocal.quality.title')}
       summary={readout ? `${readout.index} · ${zoneLabel}` : undefined}
     >

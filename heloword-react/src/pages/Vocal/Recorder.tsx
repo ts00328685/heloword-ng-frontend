@@ -273,6 +273,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
   return (
     <Panel
       id="recorder"
+      defaultOpen={false}
       title={t('vocal.panel.recorder')}
       indicator={recording && <LiveDot color="bg-danger" />}
       summary={recording ? t('vocal.recorder.rec', { time: fmtClock(elapsed) }) : t('vocal.recorder.takes', { count: takes.length })}

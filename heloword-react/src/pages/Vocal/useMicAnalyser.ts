@@ -71,7 +71,6 @@ export const useMicAnalyser = () => {
   const streamRef = useRef<MediaStream | null>(null);
   const rafRef = useRef<number>(0);
   const captureRef = useRef<(Required<TakeMeters> & { start: number }) | null>(null);
-  /** Called for every frame added to the live view (not while paused/frozen). */
   /** Monitor (hear yourself) level; 0 = off. Kept in a ref so it applies when the mic starts. */
   const monitorLevelRef = useRef(0);
   const monitorGainRef = useRef<GainNode | null>(null);
@@ -87,6 +86,9 @@ export const useMicAnalyser = () => {
 
   /** Called for every frame added to the live view (not while paused/frozen). */
   const frameListenersRef = useRef(new Set<FrameListener>());
+  /** Voice-quality analysis is the costliest per-frame step — only run it while something shows it. */
+  const qualityWantedRef = useRef(false);
+  const setQualityWanted = useCallback((wanted: boolean) => { qualityWantedRef.current = wanted; }, []);
   /** Subscribe to live frames; returns the unsubscribe function. */
   const addFrameListener = useCallback((fn: FrameListener) => {
     frameListenersRef.current.add(fn);
@@ -194,9 +196,10 @@ export const useMicAnalyser = () => {
         const midi = smoother.push(detected?.hz ?? null);
         data.scope = { samples: buf, sampleRate: ctx.sampleRate, hz: detected?.hz ?? null };
 
-        // Voice quality only for frames the pitch line accepts as sung.
+        // Voice quality only for frames the pitch line accepts as sung, and only while
+        // its panel is open or a take is recording (takes keep it for replay).
         let quality: QualityValues | null = null;
-        if (detected && midi !== null) {
+        if (detected && midi !== null && (qualityWantedRef.current || capture)) {
           qualityAnalyser.getFloatTimeDomainData(qualityBuf);
           quality = measureQuality(qualityBuf, ctx.sampleRate, detected.hz, detected.aperiodicity);
         }
@@ -243,7 +246,7 @@ export const useMicAnalyser = () => {
 
   return {
     dataRef, running, error, note, voiced, start, stop, beginCapture, endCapture, addFrameListener,
-    setMonitorLevel, monitorLatencyMs,
+    setMonitorLevel, monitorLatencyMs, setQualityWanted,
   };
 };
 

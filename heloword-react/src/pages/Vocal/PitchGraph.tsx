@@ -4,7 +4,7 @@ import { freqToNote, isSharp, midiToFreq } from './pitch';
 import { axisLabel, fullName, inScale, isTonic, KeySig } from './music';
 import { isOnTarget } from './stats';
 import { BUFFER_SECONDS, fmtTakeTime, indexAtTime, MicData, NOW_POSITION } from './useMicAnalyser';
-import { useCanvasLoop } from './useCanvasLoop';
+import { isLiveData, useCanvasLoop } from './useCanvasLoop';
 import { usePersistedState } from './usePersistedState';
 
 interface Props {
@@ -338,7 +338,7 @@ const PitchGraph = forwardRef<PitchGraphHandle, Props>(({
       ctx.textBaseline = 'middle';
       ctx.fillText(label, bx + 18, 16);
     }
-  });
+  }, () => isLiveData(dataRef.current));
 
   const pointerX = (e: React.PointerEvent<HTMLCanvasElement>) => e.clientX - e.currentTarget.getBoundingClientRect().left;
   const pointerY = (e: React.PointerEvent<HTMLCanvasElement>) => e.clientY - e.currentTarget.getBoundingClientRect().top;

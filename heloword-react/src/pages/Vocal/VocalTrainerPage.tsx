@@ -50,7 +50,7 @@ const VocalTrainerPage: React.FC = () => {
   const { isDark } = useTheme();
   const {
     dataRef, running, error, note: liveNote, voiced: liveVoiced,
-    start, stop, beginCapture, endCapture, addFrameListener, setMonitorLevel, monitorLatencyMs,
+    start, stop, beginCapture, endCapture, addFrameListener, setMonitorLevel, monitorLatencyMs, setQualityWanted,
   } = useMicAnalyser();
 
   // ── Monitoring (hear yourself) — always starts off; headphones reminder until acknowledged ──
@@ -412,10 +412,11 @@ const VocalTrainerPage: React.FC = () => {
           isCustomCalibration={isCustomCalibration}
           onCalibration={saveCalibration}
           addFrameListener={addFrameListener}
+          onOpenChange={setQualityWanted}
           ensureMic={() => { if (replay) exitReplay(); return start(); }}
         />
 
-        <Panel id="waveform" title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.waveform'), take: replayName }) : t('vocal.panel.waveform')}>
+        <Panel id="waveform" defaultOpen={false} title={replay ? t('vocal.panel.withTake', { panel: t('vocal.panel.waveform'), take: replayName }) : t('vocal.panel.waveform')}>
           <WaveformView dataRef={source} isDark={isDark} />
         </Panel>
 
