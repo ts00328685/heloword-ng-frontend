@@ -94,8 +94,13 @@ export const patchWebmHeader = (head: Uint8Array, seconds: number): Uint8Array |
         const csize = cid && readVint(head, p + cid.length);
         if (!cid || !csize || csize.unknown) return null;
         const cdata = p + cid.length + csize.length;
+        // A child running past Info means a corrupt file; also keeps readUint from looping on a huge size.
+        if (cdata + csize.value > dataEnd) return null;
         if (cid.value === DURATION) return null; // already has one
-        if (cid.value === TIMECODE_SCALE) scale = readUint(head, cdata, csize.value) || scale;
+        if (cid.value === TIMECODE_SCALE) {
+          if (csize.value > 8) return null;
+          scale = readUint(head, cdata, csize.value) || scale;
+        }
         p = cdata + csize.value;
       }
       const duration = new Uint8Array(11);
