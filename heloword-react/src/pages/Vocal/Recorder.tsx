@@ -268,14 +268,17 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       const base = file.name.replace(/\.vocal\.json$|\.[^.]+$/i, '');
       try {
         if (/\.json$/i.test(file.name) || file.type === 'application/json') {
-          addTake({ ...(await parseExport(file)), id: nextId() });
+          const imported = await parseExport(file);
+          // Exports made before durations were written in — fix them now rather than on the next visit.
+          addTake({ ...imported, blob: await withWebmDuration(imported.blob, imported.seconds), id: nextId() });
         } else {
           setImporting({ name: file.name, progress: 0 });
           const { meters, seconds } = await analyseAudio(file, (progress) => setImporting({ name: file.name, progress }));
           addTake({
             id: nextId(),
             name: base.slice(0, 60) || t('vocal.recorder.importedName'),
-            blob: file,
+            // A webm from Chrome's recorder has no duration; write it in (other files come back as-is).
+            blob: await withWebmDuration(file, seconds),
             ext: file.name.split('.').pop()?.toLowerCase() || 'audio',
             seconds,
             createdAt: Date.now(),

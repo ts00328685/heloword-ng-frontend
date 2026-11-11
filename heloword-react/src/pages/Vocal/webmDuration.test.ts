@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { patchWebmHeader, withWebmDuration } from './webmDuration';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { patchWebmHeader, probeDuration, withWebmDuration } from './webmDuration';
 
 /** Minimal MediaRecorder-style webm: EBML header, unknown-size Segment, Info (no Duration), Cluster. */
 const header = (withDuration = false) => {
@@ -58,5 +58,66 @@ describe('withWebmDuration', () => {
   it('passes other formats through', async () => {
     const mp4 = new Blob([header()], { type: 'audio/mp4' });
     expect(await withWebmDuration(mp4, 2)).toBe(mp4);
+  });
+});
+
+/** Stand-in <audio>: records seeks, lets the test set the duration and fire events. */
+const fakeMedia = (duration: number) => {
+  const target = new EventTarget();
+  const seeks: number[] = [];
+  const el = {
+    duration,
+    _t: 0,
+    get currentTime() { return this._t; },
+    set currentTime(v: number) { this._t = v; seeks.push(v); },
+    addEventListener: target.addEventListener.bind(target),
+    removeEventListener: target.removeEventListener.bind(target),
+    fire: (type: string) => target.dispatchEvent(new Event(type)),
+  };
+  return { el, seeks };
+};
+
+describe('probeDuration', () => {
+  beforeEach(() => { vi.useFakeTimers(); });
+  afterEach(() => { vi.useRealTimers(); });
+
+  it('does nothing when the duration is known', () => {
+    const { el, seeks } = fakeMedia(5);
+    const done = vi.fn();
+    probeDuration(el as unknown as HTMLMediaElement, done);
+    expect(seeks).toEqual([]);
+    expect(done).toHaveBeenCalled();
+  });
+
+  it('ignores an early timeupdate and returns to 0 once the duration is measured', () => {
+    const { el, seeks } = fakeMedia(Infinity);
+    const done = vi.fn();
+    probeDuration(el as unknown as HTMLMediaElement, done);
+    expect(seeks).toEqual([1e101]);
+    el.fire('timeupdate'); // before the browser knows the length — must not jump back yet
+    expect(seeks).toEqual([1e101]);
+    el.duration = 4.2;
+    el.fire('durationchange');
+    expect(seeks).toEqual([1e101, 0]);
+    expect(done).not.toHaveBeenCalled();
+    el.fire('seeked');
+    expect(done).toHaveBeenCalledTimes(1);
+  });
+
+  it('still returns to 0 if the duration never arrives', () => {
+    const { el, seeks } = fakeMedia(Infinity);
+    probeDuration(el as unknown as HTMLMediaElement, () => {});
+    vi.advanceTimersByTime(3000);
+    expect(seeks).toEqual([1e101, 0]);
+  });
+
+  it('can be cancelled', () => {
+    const { el, seeks } = fakeMedia(Infinity);
+    const cancel = probeDuration(el as unknown as HTMLMediaElement, () => {});
+    cancel();
+    el.duration = 3;
+    el.fire('durationchange');
+    vi.advanceTimersByTime(5000);
+    expect(seeks).toEqual([1e101]);
   });
 });
