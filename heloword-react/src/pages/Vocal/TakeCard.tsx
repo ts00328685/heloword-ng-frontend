@@ -212,6 +212,7 @@ const TakeCard: React.FC<Props> = ({ take, keySig, calibration, active, onActiva
 
   return (
     <li
+      data-take-id={take.id}
       className={`rounded-xl border p-3 transition-colors ${
         active ? 'border-accent bg-accent-soft ' : 'border-line '
       }`}

@@ -1300,6 +1300,9 @@ const zh = {
     recorder: {
       start: '開始錄音',
       dockStart: '錄音',
+      dockLatest: '最新錄音',
+      dockPlayTitle: '播放最新錄音',
+      dockPauseTitle: '暫停',
       starting: '正在開啟麥克風…',
       saving: '儲存中…',
       stopSave: '停止並儲存',

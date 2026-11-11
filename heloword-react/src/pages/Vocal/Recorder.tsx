@@ -34,6 +34,8 @@ interface Props {
   /** Recording state, for the floating record button. */
   onStatusChange?: (status: RecStatus) => void;
   /** Whether the panel's record button is on screen — the page floats one when it isn't. */
+  /** The newest take (or null), for the floating play button. */
+  onLatestChange?: (latest: LatestTake | null) => void;
   onControlsVisibleChange?: (visible: boolean) => void;
 }
 
@@ -49,8 +51,12 @@ export interface RecStatus {
 export const recLabel = (phase: RecPhase, idle: string, t: (key: string) => string): string =>
   phase === 'starting' ? t('vocal.recorder.starting') : phase === 'stopping' ? t('vocal.recorder.saving') : idle;
 
+export interface LatestTake { id: number; seconds: number }
+
 export interface RecorderHandle {
   toggleRecording: () => void;
+  /** The newest take's player — playing it goes through the take card, so replay mode follows. */
+  latestAudio: () => HTMLAudioElement | null;
 }
 
 /** First format the browser can record: Chrome/Firefox → webm/ogg, Safari → mp4. */
@@ -73,7 +79,7 @@ const strip = ({ url: _url, ...t }: Take): StoredTake => t;
  */
 const Recorder = forwardRef<RecorderHandle, Props>(({
   getStream, micOpen, beginCapture, endCapture, keySig, calibration, replayingId, onReplay, onLoopChange, onRemove, onGainChange, onRenamed,
-  onStatusChange, onControlsVisibleChange,
+  onStatusChange, onControlsVisibleChange, onLatestChange,
 }, ref) => {
   const { t } = useTranslation();
   const [phase, setPhase] = useState<RecPhase>('idle');
@@ -224,7 +230,18 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     if (rec.state !== 'inactive') rec.stop();
   };
   const toggleRecording = () => { if (phaseRef.current === 'recording') stop(); else start(); };
-  useImperativeHandle(ref, () => ({ toggleRecording }));
+  const listRef = useRef<HTMLUListElement>(null);
+  const latestAudio = () => {
+    const id = takesRef.current[0]?.id;
+    return id === undefined ? null : listRef.current?.querySelector<HTMLAudioElement>(`li[data-take-id="${id}"] audio`) ?? null;
+  };
+  useImperativeHandle(ref, () => ({ toggleRecording, latestAudio }));
+
+  // Takes are newest first (new and imported ones are prepended).
+  const latest = takes[0];
+  useEffect(() => {
+    onLatestChange?.(latest ? { id: latest.id, seconds: latest.seconds } : null);
+  }, [latest?.id, latest?.seconds, onLatestChange]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const remove = (id: number) => {
     const take = takesRef.current.find((x) => x.id === id);
@@ -363,7 +380,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       </p>
 
       {takes.length > 0 && (
-        <ul className="mt-3 space-y-3">
+        <ul ref={listRef} className="mt-3 space-y-3">
           {takes.map((take) => (
             <TakeCard
               key={take.id}

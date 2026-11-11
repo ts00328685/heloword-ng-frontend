@@ -1300,6 +1300,9 @@ const en = {
     recorder: {
       start: 'Start recording',
       dockStart: 'Record',
+      dockLatest: 'Latest take',
+      dockPlayTitle: 'Play the latest take',
+      dockPauseTitle: 'Pause',
       starting: 'Opening mic…',
       saving: 'Saving…',
       stopSave: 'Stop & save',

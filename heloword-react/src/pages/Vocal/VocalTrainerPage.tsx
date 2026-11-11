@@ -17,8 +17,9 @@ import WaveformView from './WaveformView';
 import Metronome from './Metronome';
 import MetronomeDock from './MetronomeDock';
 import { useMetronome } from './useMetronome';
-import Recorder, { RecorderHandle, RecStatus } from './Recorder';
+import Recorder, { LatestTake, RecorderHandle, RecStatus } from './Recorder';
 import RecordDock from './RecordDock';
+import ReplayDock from './ReplayDock';
 import Panel, { LiveDot } from './Panel';
 import VoiceQualityPanel from './VoiceQualityPanel';
 import { useCalibration } from './useCalibration';
@@ -68,6 +69,7 @@ const VocalTrainerPage: React.FC = () => {
   const [recStatus, setRecStatus] = useState<RecStatus>({ phase: 'idle', startedAt: 0 });
   const [recorderControlsVisible, setRecorderControlsVisible] = useState(false);
   const onRecStatus = useCallback((s: RecStatus) => setRecStatus(s), []);
+  const [latestTake, setLatestTake] = useState<LatestTake | null>(null);
   const [tipsOpen, setTipsOpen] = usePersistedState('tips-open', false);
   /** Show Voice quality, Waveform, Recorder and Metronome — off for new visitors. */
   const [allPanels, setAllPanelsState] = usePersistedState('all-panels', false);
@@ -482,6 +484,7 @@ const VocalTrainerPage: React.FC = () => {
             }}
             onStatusChange={onRecStatus}
             onControlsVisibleChange={setRecorderControlsVisible}
+            onLatestChange={setLatestTake}
           />
 
           <Metronome m={metronome} onVisibleChange={setMetronomeVisible} />
@@ -494,7 +497,7 @@ const VocalTrainerPage: React.FC = () => {
       </main>
 
       {/*
-        Floating dock above the bottom tabs: record button + compact metronome.
+        Floating dock above the bottom tabs: record, play latest take, compact metronome.
         Portalled to <body>: the page's enter animation leaves a transform on the
         root, which would make `fixed` scroll with the page.
       */}
@@ -507,6 +510,13 @@ const VocalTrainerPage: React.FC = () => {
           <div className="mx-auto max-w-3xl flex flex-wrap items-center justify-end gap-2">
             {!recorderControlsVisible && (
               <RecordDock status={recStatus} onToggle={() => recorderRef.current?.toggleRecording()} />
+            )}
+            {!recorderControlsVisible && latestTake && (
+              <ReplayDock
+                latest={latestTake}
+                getAudio={() => recorderRef.current?.latestAudio() ?? null}
+                disabled={recStatus.phase !== 'idle'}
+              />
             )}
             {!metronomeVisible && <MetronomeDock m={metronome} />}
           </div>

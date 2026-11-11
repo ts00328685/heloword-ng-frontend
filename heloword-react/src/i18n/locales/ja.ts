@@ -1299,6 +1299,9 @@ const ja = {
     recorder: {
       start: '録音開始',
       dockStart: '録音',
+      dockLatest: '最新テイク',
+      dockPlayTitle: '最新テイクを再生',
+      dockPauseTitle: '一時停止',
       starting: 'マイクを準備中…',
       saving: '保存中…',
       stopSave: '停止して保存',
