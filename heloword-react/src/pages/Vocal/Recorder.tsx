@@ -12,6 +12,8 @@ import { withWebmDuration } from './webmDuration';
 interface Props {
   /** Opens the mic if needed and returns its stream (null if denied). */
   getStream: () => Promise<MediaStream | null>;
+  /** The mic is already open — starting a take needs no "Opening mic…" step. */
+  micOpen: boolean;
   /** Start/stop copying pitch & waveform frames for the take being recorded. */
   beginCapture: () => void;
   endCapture: () => TakeMeters;
@@ -32,18 +34,29 @@ interface Props {
   /** Recording state, for the floating record button. */
   onStatusChange?: (status: RecStatus) => void;
   /** Whether the panel's record button is on screen — the page floats one when it isn't. */
+  /** The newest take (or null), for the floating play button. */
+  onLatestChange?: (latest: LatestTake | null) => void;
   onControlsVisibleChange?: (visible: boolean) => void;
 }
 
-export type RecPhase = 'idle' | 'starting' | 'recording';
+/** starting = opening the mic, stopping = finishing and saving the take. */
+export type RecPhase = 'idle' | 'starting' | 'recording' | 'stopping';
 export interface RecStatus {
   phase: RecPhase;
   /** performance.now() when the take started (recording only). */
   startedAt: number;
 }
 
+/** Button text for the not-recording phases; `idle` is the caller's own wording. */
+export const recLabel = (phase: RecPhase, idle: string, t: (key: string) => string): string =>
+  phase === 'starting' ? t('vocal.recorder.starting') : phase === 'stopping' ? t('vocal.recorder.saving') : idle;
+
+export interface LatestTake { id: number; seconds: number }
+
 export interface RecorderHandle {
   toggleRecording: () => void;
+  /** The newest take's player — playing it goes through the take card, so replay mode follows. */
+  latestAudio: () => HTMLAudioElement | null;
 }
 
 /** First format the browser can record: Chrome/Firefox → webm/ogg, Safari → mp4. */
@@ -65,16 +78,20 @@ const strip = ({ url: _url, ...t }: Take): StoredTake => t;
  * files (or exports) can be imported — plain audio is analysed on import.
  */
 const Recorder = forwardRef<RecorderHandle, Props>(({
-  getStream, beginCapture, endCapture, keySig, calibration, replayingId, onReplay, onLoopChange, onRemove, onGainChange, onRenamed,
-  onStatusChange, onControlsVisibleChange,
+  getStream, micOpen, beginCapture, endCapture, keySig, calibration, replayingId, onReplay, onLoopChange, onRemove, onGainChange, onRenamed,
+  onStatusChange, onControlsVisibleChange, onLatestChange,
 }, ref) => {
   const { t } = useTranslation();
   const [phase, setPhase] = useState<RecPhase>('idle');
   const recording = phase === 'recording';
   const startedAtRef = useRef(0);
-  /** Current phase without waiting for a render — blocks a second start while the mic opens. */
+  /**
+   * Current phase without waiting for a render — blocks a second start while the
+   * mic opens. Only `go` writes it, so it can't drift from what's on screen.
+   */
   const phaseRef = useRef<RecPhase>('idle');
-  phaseRef.current = phase;
+  const go = (p: RecPhase) => { phaseRef.current = p; setPhase(p); };
+  const busy = phase === 'starting' || phase === 'stopping';
   const [elapsed, setElapsed] = useState(0);
   const [takes, setTakes] = useState<Take[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -148,11 +165,12 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
   const start = async () => {
     if (phaseRef.current !== 'idle') return;
     setError(null);
-    phaseRef.current = 'starting';
-    setPhase('starting');
+    // Only say "Opening mic…" when it actually has to open (it may ask for permission).
+    if (micOpen) phaseRef.current = 'starting';
+    else go('starting');
     const stream = await getStream();
     if (!stream) {
-      setPhase('idle');
+      go('idle');
       setError(t('vocal.mic.unavailableShort'));
       return;
     }
@@ -161,7 +179,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     try {
       rec = new MediaRecorder(stream, { ...(mime && { mimeType: mime }), audioBitsPerSecond: 128000 });
     } catch (e) {
-      setPhase('idle');
+      go('idle');
       setError(e instanceof Error ? e.message : String(e));
       return;
     }
@@ -174,35 +192,56 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
     // Also fires if the mic is switched off mid-take, so nothing is lost.
     rec.onstop = async () => {
       clearInterval(timerRef.current);
-      setPhase('idle');
+      go('stopping');
       recorderRef.current = null;
       const meters = endCapture();
-      if (!chunks.length) return;
-      const seconds = (performance.now() - startedAt) / 1000;
-      const raw = new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' });
-      addTake({
-        id: nextId(),
-        name: t('vocal.recorder.defaultName', { n: takesRef.current.length + 1 }),
-        // Chrome leaves the duration out of webm files; write it in so the player bar works.
-        blob: ext === 'webm' ? await withWebmDuration(raw, seconds) : raw,
-        ext,
-        seconds,
-        createdAt: Date.now(),
-        meters,
-      });
+      try {
+        if (!chunks.length) return;
+        const seconds = (performance.now() - startedAt) / 1000;
+        const raw = new Blob(chunks, { type: rec.mimeType || mime || 'audio/webm' });
+        addTake({
+          id: nextId(),
+          name: t('vocal.recorder.defaultName', { n: takesRef.current.length + 1 }),
+          // Chrome leaves the duration out of webm files; write it in so the player bar works.
+          blob: ext === 'webm' ? await withWebmDuration(raw, seconds) : raw,
+          ext,
+          seconds,
+          createdAt: Date.now(),
+          meters,
+        });
+      } finally {
+        go('idle');
+      }
     };
 
     rec.start(1000);
     recorderRef.current = rec;
     startedAtRef.current = startedAt;
-    setPhase('recording');
+    go('recording');
     setElapsed(0);
     timerRef.current = window.setInterval(() => setElapsed((performance.now() - startedAt) / 1000), 200);
   };
 
-  const stop = () => recorderRef.current?.stop();
-  const toggleRecording = () => { if (recorderRef.current) stop(); else start(); };
-  useImperativeHandle(ref, () => ({ toggleRecording }));
+  /** Shows "Saving…" right away; `onstop` (after the last chunk arrives) saves and returns to idle. */
+  const stop = () => {
+    const rec = recorderRef.current;
+    if (!rec || phaseRef.current !== 'recording') return;
+    go('stopping');
+    if (rec.state !== 'inactive') rec.stop();
+  };
+  const toggleRecording = () => { if (phaseRef.current === 'recording') stop(); else start(); };
+  const listRef = useRef<HTMLUListElement>(null);
+  const latestAudio = () => {
+    const id = takesRef.current[0]?.id;
+    return id === undefined ? null : listRef.current?.querySelector<HTMLAudioElement>(`li[data-take-id="${id}"] audio`) ?? null;
+  };
+  useImperativeHandle(ref, () => ({ toggleRecording, latestAudio }));
+
+  // Takes are newest first (new and imported ones are prepended).
+  const latest = takes[0];
+  useEffect(() => {
+    onLatestChange?.(latest ? { id: latest.id, seconds: latest.seconds } : null);
+  }, [latest?.id, latest?.seconds, onLatestChange]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const remove = (id: number) => {
     const take = takesRef.current.find((x) => x.id === id);
@@ -246,14 +285,17 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       const base = file.name.replace(/\.vocal\.json$|\.[^.]+$/i, '');
       try {
         if (/\.json$/i.test(file.name) || file.type === 'application/json') {
-          addTake({ ...(await parseExport(file)), id: nextId() });
+          const imported = await parseExport(file);
+          // Exports made before durations were written in — fix them now rather than on the next visit.
+          addTake({ ...imported, blob: await withWebmDuration(imported.blob, imported.seconds), id: nextId() });
         } else {
           setImporting({ name: file.name, progress: 0 });
           const { meters, seconds } = await analyseAudio(file, (progress) => setImporting({ name: file.name, progress }));
           addTake({
             id: nextId(),
             name: base.slice(0, 60) || t('vocal.recorder.importedName'),
-            blob: file,
+            // A webm from Chrome's recorder has no duration; write it in (other files come back as-is).
+            blob: await withWebmDuration(file, seconds),
             ext: file.name.split('.').pop()?.toLowerCase() || 'audio',
             seconds,
             createdAt: Date.now(),
@@ -281,7 +323,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       <div ref={controlsRef} className="flex flex-wrap items-center gap-3">
         <button
           onClick={recording ? stop : start}
-          disabled={phase === 'starting'}
+          disabled={busy}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-paper transition-colors disabled:opacity-60 ${
             recording ? 'bg-danger hover:bg-danger/90' : 'bg-ink hover:bg-ink/85'
           }`}
@@ -291,7 +333,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
           {recording ? (
             <><span className="w-2.5 h-2.5 rounded-sm bg-current" />{t('vocal.recorder.stopSave')}</>
           ) : (
-            <><span className="w-2.5 h-2.5 rounded-full bg-danger" />{phase === 'starting' ? t('vocal.recorder.starting') : t('vocal.recorder.start')}</>
+            <><span className="w-2.5 h-2.5 rounded-full bg-danger" />{recLabel(phase, t('vocal.recorder.start'), t)}</>
           )}
         </button>
         {recording && (
@@ -338,7 +380,7 @@ const Recorder = forwardRef<RecorderHandle, Props>(({
       </p>
 
       {takes.length > 0 && (
-        <ul className="mt-3 space-y-3">
+        <ul ref={listRef} className="mt-3 space-y-3">
           {takes.map((take) => (
             <TakeCard
               key={take.id}

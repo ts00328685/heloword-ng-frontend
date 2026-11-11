@@ -7,6 +7,7 @@ import { QualityCalibration, summariseQuality, zoneOf } from './voiceQuality';
 import { ZONE_COLORS } from './ClosureTrace';
 import { Take } from './takeStore';
 import { fmtTakeTime } from './useMicAnalyser';
+import { probeDuration } from './webmDuration';
 
 const SPEEDS = [0.5, 0.75, 1];
 /** Volume slider range: up to +9.5 dB of boost for quiet takes. */
@@ -133,23 +134,19 @@ const TakeCard: React.FC<Props> = ({ take, keySig, calibration, active, onActiva
   };
 
   /**
-   * Chrome's MediaRecorder writes webm without a duration, so <audio> shows an
-   * unseekable "Infinity" bar until played through. Seeking far past the end
-   * forces the browser to compute the real duration.
+   * Webm takes get their duration written in (webmDuration.ts); anything still
+   * without one would show an unseekable bar pinned at the end, so measure it.
    */
+  const cancelProbeRef = useRef<() => void>(() => {});
+  useEffect(() => () => cancelProbeRef.current(), []);
   const onLoaded = () => {
     const el = audioRef.current;
     if (!el) return;
     el.playbackRate = el.defaultPlaybackRate = rate;
+    cancelProbeRef.current();
     if (Number.isFinite(el.duration)) return;
     fixingRef.current = true;
-    const reset = () => {
-      el.removeEventListener('timeupdate', reset);
-      el.currentTime = 0;
-      el.addEventListener('seeked', () => { fixingRef.current = false; }, { once: true });
-    };
-    el.addEventListener('timeupdate', reset);
-    el.currentTime = 1e101;
+    cancelProbeRef.current = probeDuration(el, () => { fixingRef.current = false; });
   };
 
   // Slow-down keeps the pitch (browsers default to preservesPitch = true; set it explicitly anyway).
@@ -215,6 +212,7 @@ const TakeCard: React.FC<Props> = ({ take, keySig, calibration, active, onActiva
 
   return (
     <li
+      data-take-id={take.id}
       className={`rounded-xl border p-3 transition-colors ${
         active ? 'border-accent bg-accent-soft ' : 'border-line '
       }`}

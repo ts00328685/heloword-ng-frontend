@@ -132,3 +132,40 @@ export const withWebmDuration = async (blob: Blob, seconds: number): Promise<Blo
     return blob;
   }
 };
+
+/** Give up waiting for the browser to work out the duration after this long (ms). */
+const DURATION_PROBE_MS = 3000;
+
+/**
+ * Last resort for files still without a duration (e.g. some Safari / Firefox
+ * recordings): seek far past the end so the browser measures the real length,
+ * then go back to 0 once it has — on `durationchange`, not the first
+ * `timeupdate`, which some browsers fire before measuring (leaving the bar
+ * stuck at the end). A timeout makes sure it always ends back at 0.
+ * `onDone` runs after the final seek back. Returns a cancel function.
+ */
+export const probeDuration = (el: HTMLMediaElement, onDone: () => void): (() => void) => {
+  if (Number.isFinite(el.duration)) {
+    onDone();
+    return () => {};
+  }
+  let finished = false;
+  const check = () => { if (Number.isFinite(el.duration) && el.duration > 0) finish(); };
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    el.removeEventListener('durationchange', check);
+    clearTimeout(timer);
+    el.addEventListener('seeked', onDone, { once: true });
+    el.currentTime = 0;
+  };
+  el.addEventListener('durationchange', check);
+  const timer = setTimeout(finish, DURATION_PROBE_MS);
+  el.currentTime = 1e101;
+  return () => {
+    finished = true;
+    el.removeEventListener('durationchange', check);
+    el.removeEventListener('seeked', onDone);
+    clearTimeout(timer);
+  };
+};
