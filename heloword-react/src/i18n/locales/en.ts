@@ -1301,6 +1301,7 @@ const en = {
       start: 'Start recording',
       dockStart: 'Record',
       starting: 'Opening mic…',
+      saving: 'Saving…',
       stopSave: 'Stop & save',
       startTitle: 'Start recording a new take (R)',
       stopTitle: 'Stop recording and save this take (R)',

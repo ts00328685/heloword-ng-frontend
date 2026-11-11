@@ -1300,6 +1300,7 @@ const ja = {
       start: '録音開始',
       dockStart: '録音',
       starting: 'マイクを準備中…',
+      saving: '保存中…',
       stopSave: '停止して保存',
       startTitle: '新しいテイクの録音を開始 (R)',
       stopTitle: '録音を停止してこのテイクを保存 (R)',

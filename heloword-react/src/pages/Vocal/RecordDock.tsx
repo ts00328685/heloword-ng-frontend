@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { fmtClock } from './TakeCard';
-import { RecStatus } from './Recorder';
+import { recLabel, RecStatus } from './Recorder';
 
 interface Props {
   status: RecStatus;
@@ -30,7 +30,7 @@ const RecordDock: React.FC<Props> = ({ status, onToggle }) => {
   return (
     <button
       onClick={onToggle}
-      disabled={phase === 'starting'}
+      disabled={phase === 'starting' || phase === 'stopping'}
       className={`pointer-events-auto shrink-0 flex items-center gap-2 py-1.5 pl-1.5 pr-3.5 rounded-2xl border shadow-lg text-sm font-semibold transition-colors disabled:opacity-60 ${
         recording
           ? 'border-danger bg-danger text-paper hover:brightness-95'
@@ -53,7 +53,7 @@ const RecordDock: React.FC<Props> = ({ status, onToggle }) => {
           <span className="text-[11px] font-semibold">{t('vocal.recorder.stopSave')}</span>
         </span>
       ) : (
-        <span>{phase === 'starting' ? t('vocal.recorder.starting') : t('vocal.recorder.dockStart')}</span>
+        <span>{recLabel(phase, t('vocal.recorder.dockStart'), t)}</span>
       )}
     </button>
   );

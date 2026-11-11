@@ -461,6 +461,7 @@ const VocalTrainerPage: React.FC = () => {
           <Recorder
             ref={recorderRef}
             getStream={() => { exitReplay(); return start(); }}
+            micOpen={running}
             beginCapture={beginCapture}
             endCapture={endCapture}
             keySig={keySig}
