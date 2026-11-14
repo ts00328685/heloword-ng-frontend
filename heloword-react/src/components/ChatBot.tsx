@@ -13,6 +13,7 @@ import AiWordTools from './AiWordTools';
 import FuriganaText from './FuriganaText';
 import { aiErrorMessage } from '../utils/aiError';
 import { useAiInsight } from '../hooks/useAiInsight';
+import { useCopyOnSelect } from '../hooks/useCopyOnSelect';
 import { pronounceWord, cleanSentenceForTTS, toLangCode } from '../services/tts.service';
 import AddToGroupModal from './AddToGroupModal';
 import { Sentence } from '../models';
@@ -311,6 +312,8 @@ const ChatBot: React.FC = () => {
   const bottomOffset = hasBottomTabs(pathname) ? 80 : 16;
 
   const [isOpen, setIsOpen] = useState(false);
+  // Highlighting text copies it and hands it to the assistant (menu toggle, on by default).
+  useCopyOnSelect();
   const [isIdle, setIsIdle] = useState(false);
   const [wink, setWink] = useState<WinkEye>('none');
   const winkSideRef = useRef<'left' | 'right'>('left');

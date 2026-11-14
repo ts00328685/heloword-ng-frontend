@@ -1113,6 +1113,7 @@ const ja = {
     thinking: '考え中…',
     emptyHint: '単語を入力して翻訳か例文を押してください！',
     clearHistory: 'チャット履歴を削除',
+    copyOnSelect: '選択したらコピー',
     autoCopyTrigger: 'コピー時に開く',
     idleShrink: '待機中・スクロール中は端に寄せる',
     pronounce: '発音',

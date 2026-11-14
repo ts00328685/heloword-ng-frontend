@@ -9,6 +9,7 @@ import { useSocial } from '../contexts/SocialContext';
 import { LANGUAGES, changeLanguage, Language } from '../i18n';
 import AudioSettings, { AudioButton } from './AudioSettings';
 import FuriganaToggle from './FuriganaToggle';
+import { COPY_ON_SELECT_KEY, isCopyOnSelectEnabled } from '../hooks/useCopyOnSelect';
 import { useNicknameSave } from './NicknameEditor';
 import { useBoard } from '../contexts/BoardContext';
 import {
@@ -66,7 +67,14 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
     const stored = localStorage.getItem('hw-chatbot-idle-shrink');
     return stored !== null ? stored === 'true' : true;
   });
+  const [copyOnSelect, setCopyOnSelect] = useState(isCopyOnSelectEnabled);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const toggleCopyOnSelect = () => {
+    const next = !copyOnSelect;
+    setCopyOnSelect(next);
+    localStorage.setItem(COPY_ON_SELECT_KEY, String(next));
+  };
 
   const toggleAutoCopyTrigger = () => {
     const next = !autoCopyTrigger;
@@ -477,6 +485,15 @@ const Header: React.FC<HeaderProps> = ({ title, showBack = false, onBack, minima
               </button>
               {openSection === 'assistant' && (
                 <div className="pl-6 pr-4 pb-4 pt-1 space-y-3">
+                  <button
+                    onClick={toggleCopyOnSelect}
+                    className="flex items-center justify-between w-full text-xs text-ink-muted hover:text-ink transition-colors"
+                  >
+                    <span>{t('chatbot.copyOnSelect')}</span>
+                    <span className={`relative inline-flex h-5 w-9 shrink-0 rounded-full transition-colors duration-200 ${copyOnSelect ? 'bg-ink' : 'bg-ink/20 '}`}>
+                      <span className={`inline-block h-4 w-4 mt-0.5 rounded-full bg-surface shadow transition-transform duration-200 ${copyOnSelect ? 'translate-x-4' : 'translate-x-0.5'}`} />
+                    </span>
+                  </button>
                   <button
                     onClick={toggleAutoCopyTrigger}
                     className="flex items-center justify-between w-full text-xs text-ink-muted hover:text-ink transition-colors"

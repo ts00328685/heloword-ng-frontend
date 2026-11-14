@@ -1114,6 +1114,7 @@ const zh = {
     thinking: '思考中…',
     emptyHint: '輸入單字後按翻譯或例句！',
     clearHistory: '清除對話紀錄',
+    copyOnSelect: '反白即複製',
     autoCopyTrigger: '複製時自動開啟',
     idleShrink: '閒置或捲動時收到邊緣',
     pronounce: '發音',
