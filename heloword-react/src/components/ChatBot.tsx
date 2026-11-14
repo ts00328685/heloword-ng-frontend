@@ -40,52 +40,67 @@ interface ChatEntry {
 
 type WinkEye = 'none' | 'left' | 'right';
 
-const OpenEye: React.FC<{ cx: number; shineCx: number }> = ({ cx, shineCx }) => (
+// Modelled on a blue-grey British Shorthair: broad round face, small rounded ears,
+// yellow-green eyes under a slightly stern brow, mauve nose, puffy whisker pads.
+const FUR = '#8a8592';
+const FUR_DARK = '#6c6774';
+const LINE = '#5c5765';
+
+const OpenEye: React.FC<{ cx: number }> = ({ cx }) => (
   <>
-    <ellipse cx={cx} cy="50" rx="11" ry="10" fill="#f1f5f9" />
-    <ellipse cx={cx} cy="50" rx="8" ry="9" fill="#d97706" />
-    <ellipse cx={cx} cy="50" rx="2.5" ry="7" fill="#1e293b" />
-    <circle cx={shineCx} cy="47" r="2" fill="white" opacity="0.9" />
+    <ellipse cx={cx} cy="55" rx="10.5" ry="10" fill="#4a4552" />
+    <ellipse cx={cx} cy="55" rx="9" ry="8.6" fill="#c8c27a" />
+    <circle cx={cx} cy="55" r="5.5" fill="#a9a85e" opacity="0.55" />
+    <ellipse cx={cx} cy="55" rx="2.3" ry="6.3" fill="#1c1a20" />
+    <circle cx={cx - 3} cy="51.5" r="1.8" fill="white" opacity="0.9" />
   </>
 );
 
 const WinkLine: React.FC<{ cx: number }> = ({ cx }) => (
   <path
-    d={`M${cx - 10} 51 Q${cx} 57 ${cx + 10} 51`}
-    stroke="#4b5563" strokeWidth="2.5" strokeLinecap="round" fill="none"
+    d={`M${cx - 10} 55 Q${cx} 61 ${cx + 10} 55`}
+    stroke={LINE} strokeWidth="2.5" strokeLinecap="round" fill="none"
+  />
+);
+
+/** Heavy upper lid that gives the stern, sleepy-serious look. */
+const Brow: React.FC<{ cx: number; side: 1 | -1 }> = ({ cx, side }) => (
+  <path
+    d={`M${cx - 11 * side} ${side === 1 ? 50 : 49} Q${cx} 42 ${cx + 11 * side} ${side === 1 ? 49 : 50}`}
+    stroke={LINE} strokeWidth="1.8" strokeLinecap="round" opacity="0.7" fill="none"
   />
 );
 
 const KittenSVG: React.FC<{ wink: WinkEye; size?: number }> = ({ wink, size = 52 }) => (
   <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Ears (rounded, behind head) */}
-    <path d="M8 33 C 7 18, 14 5, 27 9 C 34 11, 37 23, 35 30 Z" fill="#8596a8" />
-    <path d="M11 30 C 11 20, 16 9, 25 13 C 30 15, 32 23, 31 28 Z" fill="#c4cdd8" />
-    <path d="M92 33 C 93 18, 86 5, 73 9 C 66 11, 63 23, 65 30 Z" fill="#8596a8" />
-    <path d="M89 30 C 89 20, 84 9, 75 13 C 70 15, 68 23, 69 28 Z" fill="#c4cdd8" />
-    {/* Head */}
-    <circle cx="50" cy="56" r="40" fill="#8596a8" />
-    {/* Face centre lighter patch */}
-    <ellipse cx="50" cy="60" rx="27" ry="23" fill="#a0b0bf" opacity="0.5" />
-    {/* Chubby cheeks */}
-    <ellipse cx="20" cy="67" rx="13" ry="10" fill="#a8b8c8" opacity="0.38" />
-    <ellipse cx="80" cy="67" rx="13" ry="10" fill="#a8b8c8" opacity="0.38" />
+    {/* Small rounded ears, set wide, darker with mauve insides */}
+    <path d="M13 42 C 9 26, 12 11, 23 9 C 31 8, 39 19, 42 28 Z" fill={FUR_DARK} />
+    <path d="M18 37 C 16 26, 18 16, 24 15 C 30 15, 34 22, 36 28 Z" fill="#94798a" />
+    <path d="M87 42 C 91 26, 88 11, 77 9 C 69 8, 61 19, 58 28 Z" fill={FUR_DARK} />
+    <path d="M82 37 C 84 26, 82 16, 76 15 C 70 15, 66 22, 64 28 Z" fill="#94798a" />
+    {/* Broad, round head */}
+    <ellipse cx="50" cy="58" rx="44" ry="38" fill={FUR} />
+    {/* Faint tabby forehead stripes */}
+    <ellipse cx="50" cy="34" rx="20" ry="10" fill={FUR_DARK} opacity="0.3" />
+    <path d="M44 25 L45 37 M50 23 L50 38 M56 25 L55 37" stroke={FUR_DARK} strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+    {/* Chubby jowls and lighter nose bridge */}
+    <ellipse cx="50" cy="76" rx="32" ry="18" fill="#a29eab" opacity="0.45" />
+    <ellipse cx="50" cy="60" rx="5" ry="9" fill="#a19dab" opacity="0.5" />
 
-    {/* Left eye */}
-    {wink === 'left' ? <WinkLine cx={35} /> : <OpenEye cx={35} shineCx={32} />}
-    {/* Right eye */}
-    {wink === 'right' ? <WinkLine cx={65} /> : <OpenEye cx={65} shineCx={62} />}
+    {wink === 'left' ? <WinkLine cx={33} /> : <OpenEye cx={33} />}
+    {wink === 'right' ? <WinkLine cx={67} /> : <OpenEye cx={67} />}
+    <Brow cx={33} side={1} />
+    <Brow cx={67} side={-1} />
 
-    {/* Nose */}
-    <path d="M46 64 L54 64 L50 68 Z" fill="#fca5a5" />
+    {/* Puffy whisker pads */}
+    <ellipse cx="44.5" cy="75" rx="7" ry="5" fill="#b1adb8" opacity="0.75" />
+    <ellipse cx="55.5" cy="75" rx="7" ry="5" fill="#b1adb8" opacity="0.75" />
+    {/* Mauve nose */}
+    <path d="M45 67 Q50 65.5 55 67 L50.9 71.6 Q50 72.4 49.1 71.6 Z" fill="#987a88" />
     {/* Mouth */}
-    <path d="M50 68 Q44 72 40 70" stroke="#64748b" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-    <path d="M50 68 Q56 72 60 70" stroke="#64748b" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+    <path d="M50 72 V74 M50 74 Q46.5 78 42.5 76 M50 74 Q53.5 78 57.5 76" stroke={LINE} strokeWidth="1.4" strokeLinecap="round" />
     {/* Whiskers */}
-    <line x1="11" y1="63" x2="38" y2="64" stroke="#b8c4ce" strokeWidth="0.9" opacity="0.6" />
-    <line x1="11" y1="67" x2="38" y2="67" stroke="#b8c4ce" strokeWidth="0.9" opacity="0.6" />
-    <line x1="89" y1="63" x2="62" y2="64" stroke="#b8c4ce" strokeWidth="0.9" opacity="0.6" />
-    <line x1="89" y1="67" x2="62" y2="67" stroke="#b8c4ce" strokeWidth="0.9" opacity="0.6" />
+    <path d="M5 70 L37 73 M6 77 L37 76 M95 70 L63 73 M94 77 L63 76" stroke="#ebe9ee" strokeWidth="0.9" opacity="0.7" strokeLinecap="round" />
   </svg>
 );
 
