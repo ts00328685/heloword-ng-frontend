@@ -1114,6 +1114,7 @@ const en = {
     thinking: 'Thinking…',
     emptyHint: 'Type a word and hit Translate or Example!',
     clearHistory: 'Clear Chat History',
+    copyOnSelect: 'Copy on highlight',
     autoCopyTrigger: 'Open on copy',
     idleShrink: 'Tuck icon aside when idle or scrolling',
     pronounce: 'Pronounce',
